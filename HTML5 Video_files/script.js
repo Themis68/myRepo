@@ -157,8 +157,10 @@ function capture(event) {
 		var seq = Math.round(document._video.currentTime);
 		var action = parseInt(actions[0].step);
 		if (seq === action) {
-			console.log('action', actions[0].act);
+			//console.log('action', actions[0].act);
+			mesActions[actions[0].act]();
 			actions.shift();	// on supprime l'élément FIRST
+
 		}
 	}
 	// traitement : on augmente de 1
