@@ -10,57 +10,62 @@
   <link href="./HTML5 Video_files/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-  <h1>HTML5 Video Events and API</h1>
+  <div id="Z1">
+    <div class="zleft">
+      <div>
+        <video id="video" controls="" preload="none" poster="https://media.w3.org/2010/05/sintel/poster.png">
+        <source id="mp4" src="https://media.w3.org/2010/05/sintel/trailer.mp4" type="video/mp4">
+        <source id="webm" src="https://media.w3.org/2010/05/sintel/trailer.webm" type="video/webm">
+        <source id="ogv" src="https://media.w3.org/2010/05/sintel/trailer.ogv" type="video/ogg">
 
-  <p>This page demonstrates the new <a href="http://www.w3.org/TR/html5/embedded-content-0.html#the-video-element">HTML5 video
-  element</a>, its <a href="http://www.w3.org/TR/html5/embedded-content-0.html#htmlmediaelement">media API</a>, and the <a href="http://www.w3.org/TR/html5/embedded-content-0.html#mediaevents">media events</a>. Play, pause, and seek in the entire
-  video, change the volume, mute, change the playback rate (including
-  going into negative values). See the effect on the video and on the
-  underlying events and properties.</p>
-
-  <div>
-    <video id="video" controls="" preload="none" poster="https://media.w3.org/2010/05/sintel/poster.png">
-<!--
-      <source id='mp4'
-        src="../sintel/trailer.mp4"
-        type='video/mp4'>
-      <source id='webm'
-        src="../sintel/trailer.webm"
-        type='video/webm'>
--->
-      <source id="mp4" src="https://media.w3.org/2010/05/sintel/trailer.mp4" type="video/mp4">
-      <source id="webm" src="https://media.w3.org/2010/05/sintel/trailer.webm" type="video/webm">
-      <source id="ogv" src="https://media.w3.org/2010/05/sintel/trailer.ogv" type="video/ogg">
-
-      <p>Your user agent does not support the HTML5 Video element.</p>
-    </video>
-    <div id="fields">
-        <input id="step" maxlength="4" type="text" value="10" class="inp"> secondes
-        <button onclick="getVideo().currentTime=document.getElementById('step').value">Step</button>
+        <p>Your user agent does not support the HTML5 Video element.</p>
+        </video>
+      </div>
+      <div id="badgeRouge" class="coinHD" style="visibility:hidden;">
+        <img src="images/bRouge.png" width="20" height="20">
+      </div>
     </div>
-    <div id="buttons">
-      <button onclick="switchVideo(0);">Sintel teaser</button>
-      <button onclick="switchVideo(1);">Bunny trailer</button>
-      <button onclick="switchVideo(2);">Bunny movie</button>
-      <button onclick="switchVideo(3);">Test movie</button><br>
-
-      <button onclick="getVideo().load()">|<</button>
-      <button onclick="getVideo().play()">></button>
-      <button onclick="getVideo().currentTime=getVideo().duration">>|</button>
-      <button onclick="getVideo().pause()">||</button><br>
-      <button onclick="getVideo().currentTime-=10">currentTime-=10</button>
-      <button onclick="getVideo().currentTime+=10">currentTime+=10</button>
-      <br>
-      <button onclick="getVideo().playbackRate++">playbackRate++</button>
-      <button onclick="getVideo().playbackRate--">playbackRate--</button>
-      <button onclick="getVideo().playbackRate+=0.1">playbackRate+=0.1</button>
-      <button onclick="getVideo().playbackRate-=0.1">playbackRate-=0.1</button><br>
-      <button onclick="getVideo().volume+=0.1">volume+=0.1</button>
-      <button onclick="getVideo().volume-=0.1">volume-=0.1</button>
-      <button onclick="getVideo().muted=true">muted=true</button>
-      <button onclick="getVideo().muted=false">muted=false</button><br>
+    <div class="zright" id="Question" style="visibility:hidden;">
+      <textarea id="message" rows="4" cols="50">vide</textarea>
+      <div id="repondre" style="visibility:hidden;">
+        <button type="button" onclick="mesReponses();">Enregistrer ma réponse</button>
+      </div>
+      <div id="continuer" style="visibility:hidden;">
+      <button type="button" onclick="continuer();">Continuer</button>
+      </div>
     </div>
-
+  </div>
+  <div id="Z2">
+    <div class="zleft">
+        <div id="fields">
+            <input id="step" maxlength="4" type="text" value="10" class="inp"> secondes
+            <button onclick="getVideo().currentTime=document.getElementById('step').value">Step</button>
+        </div>
+        <div id="buttons">
+          <button onclick="switchVideo(0);">Sintel teaser</button>
+          <button onclick="switchVideo(1);">Bunny trailer</button>
+          <br>
+          <button onclick="switchVideo(2);">Bunny movie</button>
+          <button onclick="switchVideo(3);">Test movie</button>
+          <br>    
+          <button onclick="getVideo().load()">|<</button>
+          <button onclick="getVideo().play()">></button>
+          <button onclick="getVideo().currentTime=getVideo().duration">>|</button>
+          <button onclick="getVideo().pause()">||</button>
+          <br>
+          <!--
+          <button onclick="getVideo().playbackRate++">playbackRate++</button>
+          <button onclick="getVideo().playbackRate--">playbackRate--</button>
+          <button onclick="getVideo().playbackRate+=0.1">playbackRate+=0.1</button>
+          <button onclick="getVideo().playbackRate-=0.1">playbackRate-=0.1</button><br>
+          <button onclick="getVideo().volume+=0.1">volume+=0.1</button>
+          <button onclick="getVideo().volume-=0.1">volume-=0.1</button>
+          <button onclick="getVideo().muted=true">muted=true</button>
+          <button onclick="getVideo().muted=false">muted=false</button><br>
+          -->
+        </div>
+    </div>
+    <div class="zright">
     <table>
       <caption>Media Events</caption>
       <tbody id="events">
@@ -159,14 +164,8 @@
 	</tr>
       </tbody>
     </table>
-
-<!--
-  <div id='canPlayType'>
-      // @@TODO canPlayType
-    </div>
-    -->
   </div>
-
+  <!--
 <h2>Limitations</h2>
 
   <ul>
@@ -185,7 +184,7 @@
 Many, many thanks to the <a href="http://www.blender.org/blenderorg/blender-foundation/">Blender
 Foundation</a> and the community around the <a href="http://www.blender.org/">blender project</a>.
 </p>
-
+-->
      
 
 </body></html>
