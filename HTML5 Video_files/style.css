@@ -27,3 +27,21 @@ hr { clear: both; margin-top: 2em;}
 .inp {
   width:50px;
 }
+
+.Z1, .Z2 {
+  clear:both;
+}
+
+.zleft {
+  float:left;
+}
+
+
+.zright {
+  float:right;
+}
+
+.coinHD {
+  float:right;
+
+}

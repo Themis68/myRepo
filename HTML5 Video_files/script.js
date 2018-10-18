@@ -30,10 +30,6 @@ var media_properties = [ "error", "src", "srcObject", "currentSrc", "crossOrigin
 "paused", "defaultPlaybackRate", "playbackRate", "played", "seekable", "ended", "autoplay", "loop", "controls", "volume",
 "muted", "defaultMuted", "audioTracks", "videoTracks", "textTracks", "width", "height", "videoWidth", "videoHeight", "poster" ];
 
-var actions = [{step:10, act:'stop1'},
-			{step:20, act:'stop2'},
-			{step:30, act:'stop3'}];
-
 // CODE START HERE
 
 var media_properties_elts = null;
@@ -68,7 +64,7 @@ function init_events(id, arrayEventDef) {
     var i = 1;
     var tr = null;
     for (key in arrayEventDef) {
-		if (tr == null) tr    = document.createElement("tr");
+		if (tr == null) tr = document.createElement("tr");
 		var th = document.createElement("th");
 		th.textContent = key;
 		var td = document.createElement("td");
