@@ -9,22 +9,39 @@ video {
   float: left;
 }
 
+a { color: #ffffe0;}
+
 table { border: none; margin: auto; margin-top: 1ex;}
 th {  text-align: right; }
 caption { background-color: #ffffe0; color: black;}
 thead th {  background-color: #ffffe0; color: black;}
 #events td { text-align: right; width: 4ex;}
+#properties td { }
+hr { clear: both; margin-top: 2em;}
+.true { background-color: #360; color: #ffffe0; }
+.false { background-color: #603; color: #ffffe0; }
+#buttons { text-align: center; }
 
-#gauche {
-  float:left;
-  border:0px;
-  width:50%; 
-  background-color:black;
+#m_video td, #m_video th, #tracks td, #tracks tth { text-align: center; padding-left: 0.5ex; padding-right: 0.5ex;}
+
+.inp {
+  width:50px;
 }
 
-#droite {
+.Z1, .Z2 {
+  clear:both;
+}
+
+.zleft {
   float:left;
-  border:0px;
-  width:50%; 
-  background-color:black;
+}
+
+
+.zright {
+  float:right;
+}
+
+.coinHD {
+  float:right;
+
 }
