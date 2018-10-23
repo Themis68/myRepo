@@ -23,13 +23,13 @@ media_events["ratechange"] = 0;
 media_events["resize"] = 0;
 media_events["volumechange"] = 0;
 
+document.addEventListener("DOMContentLoaded", init, false);
+
 function init() {
 	document._video = document.getElementById("video");
 	init_events("events", media_events);
 	setInterval(update_properties, 200);
 }
-document.addEventListener("DOMContentLoaded", init, false);
-//
 
 function init_events(id, arrayEventDef) {
 	// intercepte tous les évènements pour les renseigner
@@ -68,16 +68,13 @@ function capture(event) {
 	// affiche tout ça vie le panneau Media Events
 	// event.type est le nom de l'évènement reçu
 	// media_events['timeupdate'] est la valeur actuelle
-	console.log(event.type);
 	if ((event.type === 'timeupdate') && (actions.length>0)) {
 		// actions
 		var seq = Math.round(document._video.currentTime);
 		var action = parseInt(actions[0].step);
 		if (seq === action) {
-			//console.log('action', actions[0].act);
+			//appel de la fonction de traitement
 			mesActions[actions[0].act]();
-			actions.shift();	// on supprime l'élément FIRST
-
 		}
 	}
 	// traitement : on augmente de 1

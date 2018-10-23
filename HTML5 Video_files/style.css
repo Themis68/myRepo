@@ -1,12 +1,19 @@
 body {  background-color: black; color: #ffffe0; font-family: Arial, sans-serif; }
 video {
-  border: 1px solid black;
   padding: 0; margin: 0;
   width: 427px;
   height: 240px;
   background-color: black;
   margin: auto;
   float: left;
+}
+
+.videoNonEncadre {
+  border: 1px solid black;
+}
+
+.videoEncadre {
+  border: 4px solid green;
 }
 
 table { border: none; margin: auto; margin-top: 1ex;}
