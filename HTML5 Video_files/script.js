@@ -23,6 +23,8 @@ media_events["ratechange"] = 0;
 media_events["resize"] = 0;
 media_events["volumechange"] = 0;
 
+var seqUsed = -1;	// valeur de l'étape de la séquence qui a été traitée
+
 document.addEventListener("DOMContentLoaded", init, false);
 
 function init() {
@@ -64,21 +66,19 @@ function init_events(id, arrayEventDef) {
 }
 
 function capture(event) {
-	// media_events recense les évènements  et leur état
-	// affiche tout ça vie le panneau Media Events
-	// event.type est le nom de l'évènement reçu
-	// media_events['timeupdate'] est la valeur actuelle
-	if ((event.type === 'timeupdate') && (actions.length>0)) {
-		// actions
-		var seq = Math.round(document._video.currentTime);
-		var action = parseInt(actions[0].step);
-		if (seq === action) {
-			//appel de la fonction de traitement
-			mesActions[actions[0].act]();
+	if (event.type === 'timeupdate') {
+		// recherche s'il existe un traotement a effectuer
+		var seq = Math.round(document._video.currentTime);	// on récupère le pointeur temps
+		if (seq !== seqUsed) {
+			var asWork = arrayAssoSearch(actions, seq);
+			if (asWork > -1) {
+				// on a trouvé un traitement prévu
+				mesActions[actions[asWork].act](asWork);	// on appelle le traitement nécessaire
+			}
+			seqUsed = seq;	// évite de jouer deux fois le traitement
 		}
 	}
-	// traitement : on augmente de 1
-	media_events[event.type]++;
+	media_events[event.type]++;		// traitement : on augmente de 1
 }
 
 function resize() {
@@ -99,4 +99,27 @@ function update_properties() {
 		    if (media_events[key] > 0) e.className = "true";
 		}
     }
+}
+
+// retourne la taille d'un tableau associatif
+function arrayAssoSize(arr) {
+    var size = 0;
+    for (var key in arr) 
+    {
+        if (arr.hasOwnProperty(key)) size++;
+    }
+    return size;
+}
+
+// scanne d'un ableau associatif
+function arrayAssoSearch(arr, valObject) {
+	var nbEl = arrayAssoSize(arr);
+	console.log(nbEl, valObject);
+	for (ind = 0; ind < nbEl; ind++) {
+		if (arr[ind].step === valObject) {
+			console.log('ind', ind);
+			return ind;	// retourne l'indice du tableau
+		}
+	}
+	return -1;	// aucun résultat
 }
