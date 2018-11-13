@@ -12,3 +12,22 @@ ou
 Gestion de la valeur d'un Label :
 document.getElementById("LR1").innerHTML = "une main";
 
+Gestion des vidéos
+- Il faut d'abord "rembobiner" la vidéo pour obtenir sa longueur
+
+
+Gestion des actions
+- la vidéo s'encadre en vert dès qu'il y a une action en cours
+- on possède un catalogue d'actions
+
+
+**************************************
+               A FAIRE
+**************************************
+
+- Lire les actions depuis un fichir du même nom que la vidéo
+- Compter les points
+- Gérer une action qui attend une clic de l'utilisateur
+- Gérer une action qui affiche une faute que l'utilisateur n'a pas vu
+- Gérer l'affichage des contrôles selon les besoins
+- proposer une liste de vidéos à l'utilisateur
