@@ -149,11 +149,6 @@ function capture(event) {
 	media_events[event.type]++;		// traitement : on augmente de 1
 }
 
-function resize() {
-    document._video.width = document._video.videoWidth + 10;
-    document._video.height = document._video.videoHeight + 10;
-}
-
 function getVideo() {
 	return document._video;
 }
@@ -207,6 +202,8 @@ function switchVideo(n) {
 		document._video.setAttribute("poster", tableau[n-1][2]);
 		mp4.setAttribute("src", "videos/" + tableau[n-1][1] + ".mp4");
 
+		resize(300,200);
+		
 		document._video.load();
 
 		init_events("events", media_events);
@@ -216,4 +213,14 @@ function switchVideo(n) {
 		video = tableau[n-1];    // initialisation de la vidéo
 		actions = video[3];    // initialisation des actions
 	}
+}
+
+function resize(larg, haut) {
+    document._video.width = larg;
+	document._video.height = haut;
+	document._video.load();
+	/*
+	 document._video.width = document._video.videoWidth + 10;
+	document._video.height = document._video.videoHeight + 10;
+	*/
 }
