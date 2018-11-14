@@ -33,7 +33,7 @@ var tableau = [
     ],
     [
         2,
-        "MAH00064",
+        "extrait_match",
         "http://media.w3.org/2010/05/bunny/poster.png",
         [{
                 step: 10,
@@ -47,25 +47,6 @@ var tableau = [
                 attributs: ["une main", "un pied", "une tête"],
                 reponse: 1,
                 loi: "loi_02"
-            }
-        ]
-    ],
-    [
-        3,
-        "MAH00065",
-        "http://media.w3.org/2010/05/sintel/poster.png",
-        [{
-                step: 10,
-                act: "information",
-                libelle: "Soyez attentifs à cette phase de jeu"
-            },
-            {
-                step: 20,
-                act: "question",
-                libelle: "L'arbitre vient de siffler une faute. D'après-vous laquelle ? ",
-                attributs: ["une main", "un pied", "une tête"],
-                reponse: 1,
-                loi: "loi_03"
             }
         ]
     ]
