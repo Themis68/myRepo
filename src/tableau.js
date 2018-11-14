@@ -35,18 +35,42 @@ var tableau = [
         2,
         "extrait_match",
         "http://media.w3.org/2010/05/bunny/poster.png",
-        [{
-                step: 10,
+        [   {
+                step: 1,
                 act: "information",
-                libelle: "Soyez attentifs à cette phase de jeu"
+                libelle: "Soyez attentifs pendant toute la vidéo"
             },
             {
-                step: 20,
+                step: 3,
                 act: "question",
-                libelle: "L'arbitre vient de siffler une faute. D'après-vous laquelle ? ",
-                attributs: ["une main", "un pied", "une tête"],
+                libelle: "Selon vous y-a-t-il hors-jeu ? ",
+                attributs: ["Oui", "Non"],
                 reponse: 1,
-                loi: "loi_02"
+                loi: "loi_11"
+            },
+            {
+                step: 10,
+                act: "question",
+                libelle: "Le but n'est pas validé. Pour quelle raison ? ",
+                attributs: ["Charge sur défenseur", "Position de hors-jeu", "Main"],
+                reponse: 2,
+                loi: "loi_11"
+            },
+            {
+                step: 13,
+                act: "question",
+                libelle: "La remise en jeu s'est-elle effectuée correctement ? ",
+                attributs: ["Oui", "Non"],
+                reponse: 1,
+                loi: "loi_15"
+            },
+            {
+                step: 18,
+                act: "question",
+                libelle: "Que décidez-vous ? ",
+                attributs: ["Je ne siffle rien", "Je siffle un coup franc", "Je siffle un coup franc et donne un carton jaune"],
+                reponse: 2,
+                loi: "loi_13"
             }
         ]
     ]

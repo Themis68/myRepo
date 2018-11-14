@@ -25,16 +25,15 @@ var mesActions = {
             // saut de lignes
             maQuestion.appendChild(document.createElement("br"));
         }
-        // gestion du bouton continuer
+        // on cache le bouton continuer
         document.getElementById("continuer").style.visibility = "hidden";
-        // gestion du bouton répondre
-        
+        // on affiche le bouton répondre
         var btnReponse = document.getElementById("btnRepondre");
         btnReponse.onclick = function() 
         {
           mesReponses(indice); 
-        };
-        
+        };        
+        document.getElementById("message").style.visibility = "visible";
         document.getElementById("repondre").style.visibility = "visible";
         // gestion de la zone Question
         maQuestion.style.visibility = "visible";
@@ -67,6 +66,8 @@ function mesReponses(indice) {
 
     // retirer les elements de la réponse du DOM
     // sinon on les aura à la prochaine question
+    var maQuestion = document.getElementById("questions");
+    maQuestion.parentNode.removeChild(monLab);
     for(i=1; i <= actions[indice].attributs.length ; i++) {
         var maReponse = document.getElementById("R"+i);
         maReponse.parentNode.removeChild(maReponse);
@@ -88,8 +89,10 @@ function mesReponses(indice) {
             maLoi.appendChild(monDoc);
     }
     document.getElementById("continuer").style.visibility = "visible";
+    document.getElementById("loi").style.visibility = "visible";
     // gestion du bouton répondre
     document.getElementById("repondre").style.visibility = "hidden";
+    document.getElementById("message").style.visibility = "hidden";
 }
 
 // récupère le bouton radio sélectionné par l'utilisateur
@@ -107,6 +110,8 @@ function continuer(){
     document.getElementById("repondre").style.visibility = "hidden";
     // gestion du bouton continuer
     document.getElementById("continuer").style.visibility = "hidden";
+    // cacher les lois
+    document.getElementById("loi").style.visibility = "hidden";
     // gestion du bouton question
     document.getElementById("Question").style.visibility = "hidden";
     // zone lois

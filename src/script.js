@@ -212,6 +212,8 @@ function switchVideo(n) {
 		// ré-init du tableau
 		video = tableau[n-1];    // initialisation de la vidéo
 		actions = video[3];    // initialisation des actions
+
+		document.getElementById("zoneVideo").style.visibility = "visible";
 	}
 }
 

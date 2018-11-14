@@ -15,21 +15,21 @@
   <div id="gauche">
     <div>
         <table>
-            <caption>Videos</caption>
+            <caption>Bibliothèque des Videos</caption>
             <tbody id="videos">
           </table>
     </div>
-      <div id="boutons">
-          <button onclick="getVideo().load()">|<</button>
-          <button onclick="getVideo().play()">></button>
-          <button onclick="getVideo().currentTime=getVideo().duration">>|</button>
-          <button onclick="getVideo().pause()">||</button>
-          <div id="fields">
-              <input id="step" maxlength="4" type="text" value="10" class="inp"> secondes
-              <button onclick="getVideo().currentTime=document.getElementById('step').value">Step</button>
-          </div>
-      </div>
-      <div id="zoneVideo">
+    <div id="boutons" style="visibility:hidden;">
+        <button onclick="getVideo().load()">|<</button>
+        <button onclick="getVideo().play()">></button>
+        <button onclick="getVideo().currentTime=getVideo().duration">>|</button>
+        <button onclick="getVideo().pause()">||</button>
+        <div id="fields">
+            <input id="step" maxlength="4" type="text" value="10" class="inp"> secondes
+            <button onclick="getVideo().currentTime=document.getElementById('step').value">Step</button>
+        </div>
+    </div>
+      <div id="zoneVideo" style="visibility:hidden;">
         <video id="video" class="videoNonEncadre" controls="" preload="none" width="300" height="150" poster="https://media.w3.org/2010/05/sintel/poster.png">
           <!--<source id="mp4" src="https://media.w3.org/2010/05/sintel/trailer.mp4" type="video/mp4">-->
             <source id="mp4" src="videos/MAH00063.MP4" type="video/mp4">
