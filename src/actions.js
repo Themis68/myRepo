@@ -66,8 +66,6 @@ function mesReponses(indice) {
 
     // retirer les elements de la réponse du DOM
     // sinon on les aura à la prochaine question
-    var maQuestion = document.getElementById("questions");
-    maQuestion.parentNode.removeChild(monLab);
     for(i=1; i <= actions[indice].attributs.length ; i++) {
         var maReponse = document.getElementById("R"+i);
         maReponse.parentNode.removeChild(maReponse);
