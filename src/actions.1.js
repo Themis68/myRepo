@@ -1,13 +1,12 @@
 // tableau de fonctions pour traiter les arrêts deans la vidéo
 var mesActions = { 
     question : function (indice) {
-        document.getElementById("droite").style.visibility = "hidden";
-        // préparation des actions
         var monJob = actions[indice];
         document._video.pause();    // on pause la vidéo
-        // on prépare dMessage
+        // on affiche la question
+      //  document.getElementById("badgeRouge").style.visibility = "hidden";
         document.getElementById("message").value = monJob.libelle;
-        // on construct dPropositions
+        // construction des réponses
         var maQuestion = document.getElementById("questions");
         for (i=1; i <= monJob.attributs.length; i++) { 
             // construction du input
@@ -24,36 +23,32 @@ var mesActions = {
             monLabel.innerHTML = monJob.attributs[i-1];
             maQuestion.appendChild(monLabel);
             // saut de lignes
-            var lig = document.createElement("br");
-            lig.id = "br" + i;
-            maQuestion.appendChild(lig);
+            maQuestion.appendChild(document.createElement("br"));
         }
+        // on cache le bouton continuer
+        document.getElementById("continuer").style.visibility = "hidden";
         // on affiche le bouton répondre
-        var btnRepondre = document.getElementById("btnRepondre");
-        btnRepondre.onclick = function() 
+        var btnReponse = document.getElementById("btnRepondre");
+        btnReponse.onclick = function() 
         {
           mesReponses(indice); 
         };        
+        document.getElementById("message").style.visibility = "visible";
+        document.getElementById("repondre").style.visibility = "visible";
         // gestion de la zone Question
-       // maQuestion.style.visibility = "visible";
+        maQuestion.style.visibility = "visible";
 
-        document.getElementById("dMessage").style.visibility = "visible";
-        document.getElementById("dPropositions").style.visibility = "visible";
-        document.getElementById("dReponse").style.visibility = "hidden";
-        document.getElementById("droite").style.visibility = "visible";
     },
 
     information : function (indice) {
-        document.getElementById("droite").style.visibility = "hidden";
-        // préparation dMessage
+        //document.getElementById("badgeRouge").style.visibility = "visible";
         document.getElementById("message").value = actions[indice].libelle;
-        // MAJ cadre de la vidéo
+        document.getElementById("Question").style.visibility = "visible";
+        //
         var myVideo = document._video = document.getElementById("video");
         myVideo.className = "videoEncadre";
-        document.getElementById("dMessage").style.visibility = "visible";
-        document.getElementById("dPropositions").style.visibility = "hidden";
-        document.getElementById("dReponse").style.visibility = "hidden";
-        document.getElementById("droite").style.visibility = "visible";
+
+        //actions.shift();	// on supprime l'élément FIRST
     },
 
     stop3 : function () {
@@ -64,7 +59,6 @@ var mesActions = {
 
 // est appelé depuis l'IHM pour remonter la réponse
 function mesReponses(indice) {
-    document.getElementById("droite").style.visibility = "hidden";
     var maRep = returnSelRadio(actions[indice].attributs.length);   // récupère le bouton radio sélectionné par l'utilisateur
     var repOk = actions[indice].reponse;     // récupère la bonne réponse
 
@@ -77,33 +71,29 @@ function mesReponses(indice) {
         maReponse.parentNode.removeChild(maReponse);
         var monLab = document.getElementById("L"+i);
         monLab.parentNode.removeChild(monLab);
-        var lig = document.getElementById("br"+i);
-        lig.parentNode.removeChild(lig);
     }
 
     // gestion du bouton continuer
     if (actions[indice].loi) {
         // afficher l'accès à la règle du jeu
-        var maLoi = document.getElementById("loi");
+        var maLoi = document.getElementById("maLoi");
         var monIco = '<img id="ico" src="images/pdf.png" width="5%" height="5%" />';
         // imbriquer l'icone dans le lien hypertexte
-       // var maLoi = document.getElementById("maLoi");
-      // maLoi.setAttribute("id", 'urlIco'); 
+       // var moaLoi = document.getElementById("maLoi");
+       maLoi.setAttribute("id", 'urlIco'); 
        maLoi.setAttribute("href", myURL + '/lois/' + actions[indice].loi + '.pdf');
        maLoi.setAttribute("target",'_blank');
        maLoi.innerHTML = monIco + '&nbsp;'+ actions[indice].loi;
          //   maLoi.appendChild(monDoc);
     }
-
+    document.getElementById("continuer").style.visibility = "visible";
+    document.getElementById("loi").style.visibility = "visible";
+    // gestion du bouton répondre
+    document.getElementById("repondre").style.visibility = "hidden";
     // on complète le message
     document.getElementById("message").value +=  "\nRéponse : " +  actions[indice].attributs[repOk - 1];
     document.getElementById("message").value +=  "\nExplication : " + actions[indice].libRep;
     document.getElementById("message").value +=  "\n";
-
-    document.getElementById("dMessage").style.visibility = "visible";
-    document.getElementById("dPropositions").style.visibility = "hidden";
-    document.getElementById("dReponse").style.visibility = "visible";
-    document.getElementById("droite").style.visibility = "visible"; 
 }
 
 // récupère le bouton radio sélectionné par l'utilisateur
@@ -117,17 +107,20 @@ function returnSelRadio(nbEl){
 }
 
 function continuer(){
-   // var m1 = document.getElementById("ico");
-   // m1.parentNode.removeChild(m1);
-   // var m2 = document.getElementById("urlIco");
-   // m2.parentNode.removeChild(m2);
-
-    document.getElementById("dMessage").style.visibility = "hidden";
-    document.getElementById("dPropositions").style.visibility = "hidden";
-    document.getElementById("dReponse").style.visibility = "hidden";
-    document.getElementById("droite").style.visibility = "hidden"; 
-
-
+     // gestion du bouton répondre
+    document.getElementById("repondre").style.visibility = "hidden";
+    document.getElementById("message").style.visibility = "hidden";
+    // gestion du bouton continuer
+    document.getElementById("continuer").style.visibility = "hidden";
+    // cacher les lois
+    document.getElementById("loi").style.visibility = "hidden";
+    // gestion du bouton question
+    document.getElementById("Question").style.visibility = "hidden";
+    // zone lois
+    var m1 = document.getElementById("ico");
+    m1.parentNode.removeChild(m1);
+    var m2 = document.getElementById("urlIco");
+    m2.parentNode.removeChild(m2);
     // zone vidéo
     var myVideo = document._video = document.getElementById("video");
     myVideo.className = "videoNonEncadre";

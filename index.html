@@ -19,64 +19,41 @@
             <tbody id="videos">
           </table>
     </div>
-    <div id="boutons" style="visibility:hidden;">
-        <button onclick="getVideo().load()">|<</button>
-        <button onclick="getVideo().play()">></button>
-        <button onclick="getVideo().currentTime=getVideo().duration">>|</button>
-        <button onclick="getVideo().pause()">||</button>
-        <div id="fields">
-            <input id="step" maxlength="4" type="text" value="10" class="inp"> secondes
-            <button onclick="getVideo().currentTime=document.getElementById('step').value">Step</button>
-        </div>
+    <div id="zoneVideo" style="visibility:hidden;">
+      <video id="video" class="videoNonEncadre" controls="" preload="none" width="300" height="150" poster="https://media.w3.org/2010/05/sintel/poster.png">
+        <!--<source id="mp4" src="https://media.w3.org/2010/05/sintel/trailer.mp4" type="video/mp4">-->
+          <source id="mp4" src="videos/MAH00063.MP4" type="video/mp4">
+        
+      <p>Votre navigateur ne supporte pas la balise HTML5 vidéo.</p>
+      </video>
     </div>
-      <div id="zoneVideo" style="visibility:hidden;">
-        <video id="video" class="videoNonEncadre" controls="" preload="none" width="300" height="150" poster="https://media.w3.org/2010/05/sintel/poster.png">
-          <!--<source id="mp4" src="https://media.w3.org/2010/05/sintel/trailer.mp4" type="video/mp4">-->
-            <source id="mp4" src="videos/MAH00063.MP4" type="video/mp4">
-          
-        <p>Votre navigateur ne supporte pas la balise HTML5 vidéo.</p>
-        </video>
-      </div>
   </div>
-  <div id="droite">
-    <div id="Question" style="visibility:hidden;">
-      <textarea id="message" rows="4" cols="50">vide</textarea>
-      <div id="questions">
-      </div>
-      <div id="loi">
-      </div>
+
+  <div id="droite" style="visibility:hidden;">
+    <div id="dMessage" >
+      <textarea id="message" rows="6" cols="60">vide</textarea>
+    </div>
+
+    <div id="dPropositions">
+      <div id="questions"></div>
       <br>
-      <div id="repondre" style="visibility:hidden;">
-        <button id="btnRepondre" type="button" onclick="mesReponses();">Enregistrer ma réponse</button>
-      </div>
-      <div id="continuer" style="visibility:hidden;">
-       <button type="button" onclick="continuer();">Continuer</button>
+      <button id="btnRepondre" type="button" onclick="mesReponses();">Enregistrer ma réponse</button>
+    </div>
+
+    <div id="dReponse">
+      <p>Pour plus d'explication regardez la loi du jeu</p>
+      <a id="loi"></a>
+      <br>
+      <button if="btnContinuer" type="button" onclick="continuer();">Continuer</button>
     </div>
   </div>
 
-  
-<div>
-  <table>
-    <caption>Media Events</caption>
-    <tbody id="events"></tbody>
-  </table>
-  <!--
-  <table>
-    <caption>Media Properties</caption>
-    <tbody id="properties">
-    </tbody>
-  </table>
--->
-</div>
+  <div>
+    <table>
+      <caption>Media Events</caption>
+      <tbody id="events"></tbody>
+    </table>
+  </div>
 
-<!--
-  <div id="Z2">
-    <div class="zleft">
-        <div id="fields">
-            <input id="step" maxlength="4" type="text" value="10" class="inp"> secondes
-            <button onclick="getVideo().currentTime=document.getElementById('step').value">Step</button>
-        </div>
-    </div>
-  -->
 </body>
 </html>

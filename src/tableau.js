@@ -14,6 +14,7 @@ var tableau = [
                 libelle: "L'arbitre vient de siffler une faute. D'après-vous laquelle ? ",
                 attributs: ["une main", "un pied", "une tête"],
                 reponse: 1,
+                libRep:"La joueuse de l'équipe Blanche qui reçoit le ballon est en position de hors-jeu.",
                 loi: "loi_01"
             },
             {
@@ -27,6 +28,7 @@ var tableau = [
                 libelle: "L'arbitre vient de siffler une faute de la joueuse n°10. Qu'a-t-elle fait ? ",
                 attributs: ["position de hors-jeu", "a poussé une joueuse sans ballon"],
                 reponse: 1,
+                libRep:"La joueuse de l'équipe Blanche qui reçoit le ballon est en position de hors-jeu.",
                 loi: "loi_11"
             }
         ]
@@ -38,7 +40,7 @@ var tableau = [
         [   {
                 step: 1,
                 act: "information",
-                libelle: "Soyez attentifs pendant toute la vidéo"
+                libelle: "Soyez attentifs pendant toute la vidéo."
             },
             {
                 step: 3,
@@ -46,7 +48,8 @@ var tableau = [
                 libelle: "Selon vous y-a-t-il hors-jeu ? ",
                 attributs: ["Oui", "Non"],
                 reponse: 1,
-                loi: "loi_11"
+                libRep:"La joueuse de l'équipe Blanche qui reçoit le ballon est en position de hors-jeu.",
+                loi: "Loi_11"
             },
             {
                 step: 10,
@@ -54,7 +57,8 @@ var tableau = [
                 libelle: "Le but n'est pas validé. Pour quelle raison ? ",
                 attributs: ["Charge sur défenseur", "Position de hors-jeu", "Main"],
                 reponse: 2,
-                loi: "loi_11"
+                libRep:"La joueuse de l'équipe Blanche qui transmet le ballon du but est en position de hors-jeu.",
+                loi: "Loi_11"
             },
             {
                 step: 13,
@@ -62,7 +66,8 @@ var tableau = [
                 libelle: "La remise en jeu s'est-elle effectuée correctement ? ",
                 attributs: ["Oui", "Non"],
                 reponse: 1,
-                loi: "loi_15"
+                libRep:"Lors de la remise en jeu suite à une touche, la joueuse doit avoir les talons au sol et le ballon doit être placé dans le dos au départ du mouvement.",
+                loi: "Loi_15"
             },
             {
                 step: 18,
@@ -70,7 +75,8 @@ var tableau = [
                 libelle: "Que décidez-vous ? ",
                 attributs: ["Je ne siffle rien", "Je siffle un coup franc", "Je siffle un coup franc et donne un carton jaune"],
                 reponse: 2,
-                loi: "loi_13"
+                libRep: "La joueuse de l'équipe Rouge touche le pied de la joueuse de l'équipe blanche. C'est une faute caractérisée mais sans intention du coup pas de carton.",
+                loi: "Loi_13"
             }
         ]
     ]

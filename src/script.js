@@ -134,17 +134,19 @@ function init_properties(id, arrayPropDef, arrayProp) {
 
 function capture(event) {
 	if (event.type === 'timeupdate') {
-		// recherche s'il existe un traotement a effectuer
-		var seq = Math.floor(document._video.currentTime);	// on récupère le pointeur temps
-		if (seq !== seqUsed) {
-			var asWork = arrayAssoSearch(actions, seq);
-			if (asWork > -1) {
-				mesActions[actions[asWork].act](asWork);	// on appelle le traitement nécessaire
-			}
+		// recherche s'il existe un traitement a effectuer
+		//console.log(Math.trunc(document._video.currentTime), Math.round(document._video.currentTime), Math.floor(document._video.currentTime), document._video.currentTime);
+		var seq = Math.trunc(document._video.currentTime);	// on récupère la partie entière du pointeur temps
+		if (seq !== seqUsed) {			
+			console.log(seq, seqUsed, asWork);
 			seqUsed = seq;	// évite de jouer deux fois le traitement
+			var asWork = arrayAssoSearch(actions, seq);	// renvoi l'indice de l'action si elle existe pour cette séquence
+			if (asWork > -1) {
+				// il y a une action				
+				mesActions[actions[asWork].act](asWork);	// on appelle le traitement nécessaire
+			}			
 		}
 		media_events["currentTime"] = seq;	// MAJ de la vakeur dans le tableau (pour info)
-
 	}
 	media_events[event.type]++;		// traitement : on augmente de 1
 }
@@ -164,10 +166,12 @@ function update_properties() {
 		    if (media_events[key] > 0) e.className = "true";
 		}
 	}
+	/*
 	for (key in media_properties) {
 		var val = eval("document._video." + media_properties[key]);
 		media_properties_elts[i++].textContent = val;
-    }
+	}
+	*/
 }
 
 // retourne la taille d'un tableau associatif
@@ -213,7 +217,8 @@ function switchVideo(n) {
 		video = tableau[n-1];    // initialisation de la vidéo
 		actions = video[3];    // initialisation des actions
 
-		document.getElementById("zoneVideo").style.visibility = "visible";
+		document.getElementById("droite").style.visibility = "hidden";	// on masque la zone d'échanges
+		document.getElementById("zoneVideo").style.visibility = "visible";	// on affiche la zone Vidéo
 	}
 }
 
