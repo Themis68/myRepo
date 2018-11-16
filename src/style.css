@@ -1,4 +1,13 @@
-body {  background-color: black; color: #ffffe0; font-family: Arial, sans-serif; }
+body {  
+  background-repeat:no-repeat;
+  background-position:center center;
+}
+
+#media {
+  background-color: black; 
+  color: #ffffe0; 
+  font-family: Arial, sans-serif; 
+}
 video {
   padding: 0; margin: 0;
   width: 427px;

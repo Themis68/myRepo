@@ -24,10 +24,15 @@ media_events["resize"] = 0;
 media_events["volumechange"] = 0;
 media_events["currentTime"] = 0;
 
-//var media_properties = ["currentTime"];
-
 var myURLcomplete = document.location.href;
 var myURL  = myURLcomplete.substring( 0 ,myURLcomplete.lastIndexOf( "/" ) );
+
+// choix de l'image de fond
+function chargeImage() {	
+	// console.log(document.body);	// affiche le code HTML de l'objet et ses enfants
+	var myBody = document.body;
+	myBody.background = myURL + '/images/pelouse3.jpg';
+}
 
 var seqUsed = -1;	// valeur de l'étape de la séquence qui a été traitée
 
@@ -133,12 +138,11 @@ function init_properties(id, arrayPropDef, arrayProp) {
 }
 
 function capture(event) {
+	// attention : si l'on change les ligne sde place dans cette fonction, on peut être dans la situation de gérer deux appels  àun même évènement
 	if (event.type === 'timeupdate') {
 		// recherche s'il existe un traitement a effectuer
-		//console.log(Math.trunc(document._video.currentTime), Math.round(document._video.currentTime), Math.floor(document._video.currentTime), document._video.currentTime);
 		var seq = Math.trunc(document._video.currentTime);	// on récupère la partie entière du pointeur temps
 		if (seq !== seqUsed) {			
-			console.log(seq, seqUsed, asWork);
 			seqUsed = seq;	// évite de jouer deux fois le traitement
 			var asWork = arrayAssoSearch(actions, seq);	// renvoi l'indice de l'action si elle existe pour cette séquence
 			if (asWork > -1) {
