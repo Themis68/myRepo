@@ -11,24 +11,46 @@
   </script>
   <link href="./src/style.css" rel="stylesheet" type="text/css">
 </head>
-<body background="" onload="chargeImage();">
-  <div id="gauche">
+<body onload="chargeImage('zoneVideo');">
+  <div class="centrage">
     <div>
-        <table>
-            <caption>Bibliothèque des Videos</caption>
-            <tbody id="videos">
-          </table>
+      <table>
+        <tr>
+          <td>
+              <img src="images/camescope2.png" width="25" height="25" />
+          </td>
+          <td id="videos">
+          </td>       
+        </tr>
+      </table>
     </div>
-    <div id="zoneVideo" style="visibility:hidden;">
+    <div id="zoneVideo" style="visibility:hidden;" classe="zoneVideo">
       <video id="video" class="videoNonEncadre" controls="" preload="none" width="" height="" poster="">
-        <!--<source id="mp4" src="https://media.w3.org/2010/05/sintel/trailer.mp4" type="video/mp4">-->
-          <source id="mp4" src="" type="video/mp4">
-        
-      <p>Votre navigateur ne supporte pas la balise HTML5 vidéo.</p>
+        <source id="mp4" src="" type="video/mp4">
+        <p>Votre navigateur ne supporte pas la balise HTML5 vidéo.</p>
       </video>
     </div>
   </div>
 
+  <div id="echanges" style="visibility:hidden;">
+    <div id="dMessage">
+      <textarea id="message" rows="6" cols="60">vide</textarea>
+    </div>
+
+    <div id="dPropositions">
+      <div id="questions"></div>
+      <br>
+      <button id="btnRepondre" type="button" onclick="mesReponses();">Enregistrer ma réponse</button>
+    </div>
+
+    <div id="dReponse">
+      <p>Pour plus d'explication regardez la loi du jeu</p>
+      <a id="loi"></a>
+      <br>
+      <button if="btnContinuer" type="button" onclick="continuer();">Continuer</button>
+    </div>
+  </div>
+<!--
   <div id="droite" style="visibility:hidden;">
     <div id="dMessage" >
       <textarea id="message" rows="6" cols="60">vide</textarea>
@@ -47,7 +69,7 @@
       <button if="btnContinuer" type="button" onclick="continuer();">Continuer</button>
     </div>
   </div>
-
+-->
   <div class="media">
     <table>
       <caption>Media Events</caption>

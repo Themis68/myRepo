@@ -1,7 +1,7 @@
 // tableau de fonctions pour traiter les arrêts deans la vidéo
 var mesActions = { 
     question : function (indice) {
-        document.getElementById("droite").style.visibility = "hidden";
+        document.getElementById("echanges").style.visibility = "hidden";
         // préparation des actions
         var monJob = actions[indice];
         document._video.pause();    // on pause la vidéo
@@ -40,11 +40,11 @@ var mesActions = {
         document.getElementById("dMessage").style.visibility = "visible";
         document.getElementById("dPropositions").style.visibility = "visible";
         document.getElementById("dReponse").style.visibility = "hidden";
-        document.getElementById("droite").style.visibility = "visible";
+        document.getElementById("echanges").style.visibility = "visible";
     },
 
     information : function (indice) {
-        document.getElementById("droite").style.visibility = "hidden";
+        document.getElementById("echanges").style.visibility = "hidden";
         // préparation dMessage
         document.getElementById("message").value = actions[indice].libelle;
         // MAJ cadre de la vidéo
@@ -53,7 +53,7 @@ var mesActions = {
         document.getElementById("dMessage").style.visibility = "visible";
         document.getElementById("dPropositions").style.visibility = "hidden";
         document.getElementById("dReponse").style.visibility = "hidden";
-        document.getElementById("droite").style.visibility = "visible";
+        document.getElementById("echanges").style.visibility = "visible";
     },
 
     stop3 : function () {
@@ -64,7 +64,7 @@ var mesActions = {
 
 // est appelé depuis l'IHM pour remonter la réponse
 function mesReponses(indice) {
-    document.getElementById("droite").style.visibility = "hidden";
+    document.getElementById("echanges").style.visibility = "hidden";
     var maRep = returnSelRadio(actions[indice].attributs.length);   // récupère le bouton radio sélectionné par l'utilisateur
     var repOk = actions[indice].reponse;     // récupère la bonne réponse
 
@@ -103,7 +103,7 @@ function mesReponses(indice) {
     document.getElementById("dMessage").style.visibility = "visible";
     document.getElementById("dPropositions").style.visibility = "hidden";
     document.getElementById("dReponse").style.visibility = "visible";
-    document.getElementById("droite").style.visibility = "visible"; 
+    document.getElementById("echanges").style.visibility = "visible"; 
 }
 
 // récupère le bouton radio sélectionné par l'utilisateur
@@ -125,7 +125,7 @@ function continuer(){
     document.getElementById("dMessage").style.visibility = "hidden";
     document.getElementById("dPropositions").style.visibility = "hidden";
     document.getElementById("dReponse").style.visibility = "hidden";
-    document.getElementById("droite").style.visibility = "hidden"; 
+    document.getElementById("echanges").style.visibility = "hidden"; 
 
 
     // zone vidéo

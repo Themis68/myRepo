@@ -1,20 +1,65 @@
 body {  
-  background-repeat:no-repeat;
-  background-position:center center;
+  background-color: black;
 }
 
-#media {
-  background-color: black; 
+#echanges {
+  float:left;
+  margin-left:100px;
+  width:80%;
+  height:100px;
+  background-color: whitesmoke;
+  color: black;
+}
+
+#message {
+  background-color: whitesmoke;
+  border: 0px;
+
+}
+
+#questions {
+  background-color: whitesmoke;
+
+}
+
+#propositions {
+  background-color: whitesmoke;
+}
+
+#reponse {
+  background-color: whitesmoke;
+}
+
+.centrage {
+  text-align: center;
+  float:left;
+  margin-left:100px;
+  width:80%;
+}
+
+#gauche {
+  float:left;
+  border:0px;
+  width:50%; 
+  background-color:black;
+}
+
+#media {   
   color: #ffffe0; 
   font-family: Arial, sans-serif; 
 }
+
+.zoneVideo {
+  background-repeat:no-repeat;
+  background-position:center center;
+  position: absolute;
+}
 video {
   padding: 0; margin: 0;
-  width: 427px;
-  height: 240px;
-  background-color: black;
+  width: 80%;
+  height: 80%;
   margin: auto;
-  float: left;
+  float: none;
 }
 
 .videoNonEncadre {
@@ -32,24 +77,13 @@ thead th {  background-color: #ffffe0; color: black;}
 #events td { text-align: right; width: 4ex;}
 
 
-#gauche {
-  float:left;
-  border:0px;
-  width:50%; 
-  background-color:black;
-}
+
 
 #droite {
   float:left;
   border:0px;
   width:50%; 
   background-color:black;
-}
-
-#message {
-  color: white;
-  background-color: black;
-  border-color: black; 
 }
 
 a:link {

@@ -28,10 +28,12 @@ var myURLcomplete = document.location.href;
 var myURL  = myURLcomplete.substring( 0 ,myURLcomplete.lastIndexOf( "/" ) );
 
 // choix de l'image de fond
-function chargeImage() {	
+function chargeImage(id) {	
 	// console.log(document.body);	// affiche le code HTML de l'objet et ses enfants
-	var myBody = document.body;
-	myBody.background = myURL + '/images/pelouse3.jpg';
+//	var myBody = document.body;
+	var myZone = document.getElementById(id);
+	// afficher une image qui a pour index 1 à 5
+	myZone.background = myURL + '/images/pelouse'+ Math.floor(Math.random() * Math.floor(5) + 1)+'.jpg';
 }
 
 var seqUsed = -1;	// valeur de l'étape de la séquence qui a été traitée
@@ -221,7 +223,7 @@ function switchVideo(n) {
 		video = tableau[n-1];    // initialisation de la vidéo
 		actions = video[3];    // initialisation des actions
 
-		document.getElementById("droite").style.visibility = "hidden";	// on masque la zone d'échanges
+		document.getElementById("echanges").style.visibility = "hidden";	// on masque la zone d'échanges
 		document.getElementById("zoneVideo").style.visibility = "visible";	// on affiche la zone Vidéo
 	}
 }
