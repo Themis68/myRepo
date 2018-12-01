@@ -28,12 +28,10 @@ var myURLcomplete = document.location.href;
 var myURL  = myURLcomplete.substring( 0 ,myURLcomplete.lastIndexOf( "/" ) );
 
 // choix de l'image de fond
-function chargeImage(id) {	
-	// console.log(document.body);	// affiche le code HTML de l'objet et ses enfants
-//	var myBody = document.body;
-	var myZone = document.getElementById(id);
+function chargeImgFond() {	
+	var myBody = document.body;
 	// afficher une image qui a pour index 1 à 5
-	myZone.background = myURL + '/images/pelouse'+ Math.floor(Math.random() * Math.floor(5) + 1)+'.jpg';
+	myBody.background = myURL + '/images/pelouses/stade'+ Math.floor(Math.random() * Math.floor(4) + 1)+'.jpg';
 }
 
 var seqUsed = -1;	// valeur de l'étape de la séquence qui a été traitée
