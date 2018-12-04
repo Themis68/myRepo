@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <!-- saved from url=(0049)https://www.w3.org/2010/05/video/mediaevents.html -->
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html lang="fr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   
-  <title>HTML5 Video</title>
+  <title>Apprentissage de l'arbitrage</title>
   <script src="./src/script.js">
   </script>
   <script src="./src/actions.js">
@@ -12,6 +12,37 @@
   <link href="./src/style.css" rel="stylesheet" type="text/css">
 </head>
 <body onLoad="chargeImgFond();">
+    <div class="zone">
+      <div id="stage">
+        <table>
+          <tbody id="videos">
+        </table>
+      </div>
+    </div>
+    <div class="zone">
+      <div id="videoOn">
+        <div>
+            <video id="video" class="videoNonEncadre" controls="" preload="none" poster="https://media.w3.org/2010/05/sintel/poster.png">
+              <source id="mp4" src="videos/MAH00063.MP4" type="video/mp4">
+              <p>Votre navigateur ne supporte pas la balise HTML5 vidéo.</p>
+            </video>
+        </div>
+        <div id="barre">
+            <hr width="10%" background-color="red">
+        </div>
+      </div>
+      <div id="board">
+
+      </div>
+    </div>
+    <div class="zone">
+      <div id="infos">infos</div>
+    </div>
+<div>
+  <table>
+    <tbody id="events"></tbody>
+  </table>
+</div>
 
 </body>
 </html>

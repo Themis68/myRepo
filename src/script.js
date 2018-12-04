@@ -1,27 +1,27 @@
 var media_events = new Array();
 media_events["loadstart"] = 0;
 media_events["progress"] = 0;
-media_events["suspend"] = 0;
-media_events["abort"] = 0;
-media_events["error"] = 0;
-media_events["emptied"] = 0;
-media_events["stalled"] = 0;
-media_events["loadedmetadata"] = 0;
-media_events["loadeddata"] = 0;
-media_events["canplay"] = 0;
-media_events["canplaythrough"] = 0;
-media_events["playing"] = 0;
-media_events["waiting"] = 0;
-media_events["seeking"] = 0;
-media_events["seeked"] = 0;
-media_events["ended"] = 0;
-media_events["durationchange"] = 0;
+//media_events["suspend"] = 0;
+//media_events["abort"] = 0;
+//media_events["error"] = 0;
+//media_events["emptied"] = 0;
+//media_events["stalled"] = 0;
+//media_events["loadedmetadata"] = 0;
+//media_events["loadeddata"] = 0;
+//media_events["canplay"] = 0;
+//media_events["canplaythrough"] = 0;
+//media_events["playing"] = 0;
+//media_events["waiting"] = 0;
+//media_events["seeking"] = 0;
+//media_events["seeked"] = 0;
+//media_events["ended"] = 0;
+//media_events["durationchange"] = 0;
 media_events["timeupdate"] = 0;
-media_events["play"] = 0;
-media_events["pause"] = 0;
-media_events["ratechange"] = 0;
-media_events["resize"] = 0;
-media_events["volumechange"] = 0;
+//media_events["play"] = 0;
+//media_events["pause"] = 0;
+//media_events["ratechange"] = 0;
+//media_events["resize"] = 0;
+//media_events["volumechange"] = 0;
 media_events["currentTime"] = 0;
 
 var myURLcomplete = document.location.href;
@@ -39,15 +39,14 @@ var seqUsed = -1;	// valeur de l'étape de la séquence qui a été traitée
 document.addEventListener("DOMContentLoaded", init, false);
 
 function init() {
-	//media_properties_elts = new Array(media_properties.length);
 	document._video = document.getElementById("video");
+	init_videos("videos");
+	init_barre(5);
 	init_events("events", media_events);
-   // init_properties("properties", media_properties, media_properties_elts);
-	init_videos("videos", videos);
 	setInterval(update_properties, 200);
 }
 
-function init_videos(id, videos) {
+function init_videos(id) {
 	// création des boutyons pour les vidéos
 	//<button onclick="switchVideo(3);">MAH00065</button>
 	var tbody = document.getElementById(id);
@@ -62,11 +61,33 @@ function init_videos(id, videos) {
 		tr.appendChild(td);		
 	}
 	tbody.appendChild(tr);
+
+	/*
+<div class="bouton">
+  <p>
+   <a href="#">Bouton</a>
+ </p>
+</div>
+*/
 }
+
+function init_barre(nbQuestions) {
+	var tbody = document.getElementById("progression");
+	tr = document.createElement("tr");
+	for (i=0; i < nbQuestions; i++) {
+		var td = document.createElement("td");
+		td.textContent = "&nbsp;";
+		td.className = "progCell";
+		tr.appendChild(td);		
+	}
+	tbody.appendChild(tr);
+}
+
+
+
 
 function init_events(id, arrayEventDef) {
 	// intercepte tous les évènements pour les renseigner
-
 	var f;
     for (key in arrayEventDef) {
 		document._video.addEventListener(key, capture, false);

@@ -1,13 +1,97 @@
 body {  
-    /*background-image: url("../images/stade7.jpg");*/
-    background-repeat: no-repeat;
-    background-origin: padding-box;
-    background-attachment: fixed;
-    background-position: center; 
-    background-size: 100% 150%;
+  margin-top: 20px;
+  background-repeat: no-repeat;
+  background-origin: padding-box;
+  background-attachment: fixed;
+  background-position: center; 
+  background-size: 100% 150%;
 }
 
+/* les zones */
+div.zone {
+  display: flex;
+  justify-content: center;
+  margin: 6px;
+}
 
+#stage, #infos{
+  float: left;
+  background-color: green;
+  width: 80%;
+}
+
+#videoOn {
+  float: left;
+  background-color: black;
+  width: 60%;
+}
+
+#barre {
+  float: left;
+  background-color: chocolate;
+  width: 100%;
+  height: 8px;
+
+}
+
+#board {
+  float: left;
+  width: 20%;
+  background-image: url("../images/terrain1.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+/* fin des zones */
+
+/* ma vidéo */
+video {
+  margin: auto;
+  float: left;
+  width: 100%;
+  height: 90%;
+}
+
+.videoNonEncadre {
+  border: 1px solid black;
+}
+
+.videoEncadre {
+  border: 8px solid red;
+}
+/* fin des vidéos */
+
+/* stage */
+/* pas utilisé pour l'instant */
+.bouton a {
+  display:block;
+  width:150px;
+  line-height:50px;
+  text-align:center;
+  vertical-align:middle;
+  background:url(images/bouton-noir.png) no-repeat;
+  color:white;
+  text-decoration:none;
+  }
+  .bouton a:hover {
+  background:url(images/bouton-noir-2.png) no-repeat;
+  }
+/* fin du stage */
+
+/* barre */
+td.progCell {
+  background-color: chocolate;
+  height:20px;
+  padding: 0;
+
+}
+
+hr.prog {
+  width: auto;
+  height: 5px;
+  border: 0px;
+  background-color: chocolate;
+}
+/* fin de la barre */
 
 /* ------------   */
 
@@ -63,27 +147,15 @@ body {
   background-position:center center;
   position: absolute;
 }
-video {
-  padding: 0; margin: 0;
-  width: 80%;
-  height: 80%;
-  margin: auto;
-  float: none;
-}
 
-.videoNonEncadre {
-  border: 1px solid black;
-}
 
-.videoEncadre {
-  border: 8px solid green;
-}
+
 
 table { border: none; margin: auto; margin-top: 1ex;}
 th {  text-align: right; }
 caption { background-color: #ffffe0; color: black;}
 thead th {  background-color: #ffffe0; color: black;}
-#events td { text-align: right; width: 4ex;}
+
 
 
 
@@ -111,3 +183,30 @@ a:link {
   color: green;
   text-decoration: none;
  }
+
+ /* ensemble à garder
+html{
+  display: flex;
+  flex-flow: row nowrap;  
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  height:100%;
+  margin: 0;
+  padding: 0;
+  background:#eeeeee;
+}
+body {
+  margin: 0;
+  flex: 0 1 auto;
+  align-self: auto;
+  width: 100%
+  max-width: 900px;
+  height: 100%;
+  max-height: 600px;
+  background:#fafafa;
+  -webkit-box-shadow: 0px 0px 96px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 96px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 96px 0px rgba(0,0,0,0.75);
+}
+*/
