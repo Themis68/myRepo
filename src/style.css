@@ -30,7 +30,7 @@ div.zone {
   float: left;
   background-color: chocolate;
   width: 100%;
-  height: 8px;
+  height: 6px;
 
 }
 
@@ -60,6 +60,31 @@ video {
 }
 /* fin des vidéos */
 
+/* Barre */
+#questDone {
+  background-color: white;
+  float: left;
+  width: 20%;
+}
+
+#questDo {
+  background-color: chocolate;
+  float: left;
+  width: 80%;
+}
+/* fin de Barre */
+
+/* infos */
+#score {
+  display: center;
+  font-family: scoreboardregular;
+  background-color: black;
+  border-color: white;
+  margin: 6px;
+  width: 80%;
+}
+/* fin Infos */
+
 /* stage */
 /* pas utilisé pour l'instant */
 .bouton a {
@@ -70,7 +95,7 @@ video {
   vertical-align:middle;
   background:url(images/bouton-noir.png) no-repeat;
   color:white;
-  text-decoration:none;
+  text-decoration: none;
   }
   .bouton a:hover {
   background:url(images/bouton-noir-2.png) no-repeat;
