@@ -10,7 +10,6 @@
   <script src="./src/tableau.js">
   </script>
   <link href="./src/style.css" rel="stylesheet" type="text/css">
-  <link href="./typo/stylesheet.css" rel="stylesheet" type="text/css">
 </head>
 <body onLoad="chargeImgFond();">
     <div class="zone">
@@ -33,15 +32,17 @@
               <div id="questDo">&nbsp;</div>
         </div>
       </div>
+      <div id="goulotte"></div>
       <div id="board">
-        <div>
-          <input id="btnLevel" type="button" name="CONFIRMER">
+        <div class="bouton">
+          <input id="btnLevel" type="button" value="DEBUTANT">
         </div>
         <div id="score">
-          <p>12 : 20</p>
+          <p id="textBoard">SCORE</p>
+          <p id="scoreBoard">12 : 20</p>
         </div>
-        <div>
-          <input id="btnAction" type="button" name="CONTINUER">
+        <div class="bouton">
+          <input id="btnContinuer" type="button" value="CONTINUER">
         </div>
       </div>
     </div>
