@@ -8,6 +8,7 @@ body {
   background-attachment: fixed;
   background-position: center; 
   background-size: 100% 150%;
+
 }
 
 /* les zones */
@@ -37,16 +38,19 @@ div.zone {
   background-color: chocolate;
   width: 100%;
   height: 4px;
-
 }
 
 #board {
-  float: left;
+  display: grid;        /* utilise le mode grille*/
+  grid-template-columns: 88%; /* définit le nombre et la taille des colonnes dans la grille
+  align-content: start; /* fixe l'alignement TOP des objets : permet de gérer les espacements*/
+  float: left;          /* place la DIV à la suite de la goulotte*/
   justify-content: center;
   width: 23%;
   background-image: url("../images/terrain1.jpg");
   background-repeat: no-repeat;
-  background-size: 100% 100%;/
+  background-size: 100% 98%;
+  background-position: 0px 10px;  /* créer un décalage vers le bas de l'image */
 }
 /* fin des zones */
 
@@ -82,32 +86,35 @@ video {
 /* fin de Barre */
 
 /* board */
+.zBarre {
+  text-align: center;
+}
+
 #score {
   background-color: black;
   border: 5px solid white;
-  line-height:25px; /* centrage vertical */
-  margin: 6px;
-  width: 85%;
-  height: 150px;
-  text-align: center; /* centrage horizontal du texte */
+  height: 120px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 #textBoard {
   font-family: passion_oneregular;
   font-size: 18pt;
   color: white;
-  margin: 10px;
+  margin-left: 6px;
+  margin-right: 6px;
+  margin-bottom: 6px;
 }
 
 #scoreBoard {
   font-family: scoreboardregular;
   font-size: 38pt;
   color: white;
-  margin: 15px;
-}
-
-.bouton {
-  text-align: center;
+  margin-left: 6px;
+  margin-right: 6px;
+  margin-bottom: 6px;
+  margin-top: 6px;
 }
 
 #btnLevel , #btnContinuer {
@@ -117,6 +124,35 @@ video {
   background-color: chocolate;  
 }
 /* fin board */
+
+/*  echange  */
+#echange {
+  float:left;
+  height:150px;
+  border: 0px;
+  margin-bottom: 10px;
+  background-image: url("../images/bandeau.png");
+  background-repeat: no-repeat;
+  background-position: 0px -5px;  /* créer un décalage vers le bas de l'image */
+}
+
+#numQuest {
+  color: white;
+
+}
+
+#message {
+  color: black;
+  border: 0px;
+  margin-top:20px;
+  padding-left: 3px;
+  padding-right: 3px;
+  background-color: whitesmoke;  
+}
+/* fin de echange */
+
+
+
 
 /* stage */
 /* pas utilisé pour l'instant */
@@ -134,7 +170,6 @@ video {
   background:url(images/bouton-noir-2.png) no-repeat;
   }
 /* fin du stage */
-
 /* barre */
 td.progCell {
   background-color: chocolate;
@@ -162,7 +197,7 @@ hr.prog {
   color: black;
 }
 
-#message {
+#message2 {
   background-color: whitesmoke;
   border: 0px;
 
