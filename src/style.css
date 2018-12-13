@@ -86,7 +86,7 @@ video {
 /* fin de Barre */
 
 /* board */
-.zBarre {
+.zBoard {
   text-align: center;
 }
 
@@ -94,8 +94,8 @@ video {
   background-color: black;
   border: 5px solid white;
   height: 120px;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 8px;
+  margin-bottom: 8px;
 }
 
 #textBoard {
@@ -130,24 +130,34 @@ video {
   float:left;
   height:150px;
   border: 0px;
-  margin-bottom: 10px;
-  background-image: url("../images/bandeau.png");
-  background-repeat: no-repeat;
-  background-position: 0px -5px;  /* créer un décalage vers le bas de l'image */
+  margin-bottom: 8px;
 }
 
-#numQuest {
+.numQuest {
+  font-family: passion_oneregular;
   color: white;
-
+  font-size: 14pt;
+  padding-top: 3px;
+  background-image: url("../images/bandeau.png");
+  background-repeat: no-repeat;
+  height: 25px;
 }
 
 #message {
   color: black;
   border: 0px;
-  margin-top:20px;
+  margin-top:0px;
+  padding-top: 3px;
   padding-left: 3px;
   padding-right: 3px;
-  background-color: whitesmoke;  
+  text-align: left;
+}
+
+#zMessage {
+  background-color: whitesmoke;
+  height: 120px;
+  margin-top: 0px;
+  margin-bottom: 8px;
 }
 /* fin de echange */
 
