@@ -8,7 +8,7 @@ body {
   background-attachment: fixed;
   background-position: center; 
   background-size: 100% 150%;
-
+  background-color: black;
 }
 
 /* les zones */
@@ -150,7 +150,10 @@ video {
 
 #zMessage {
   background-color: whitesmoke;
-  height: 120px;
+  background-repeat: no-repeat;
+  background-size: 50% 90%;
+  background-position: bottom right; 
+  height: 200px;
   margin-top: 0px;
   margin-bottom: 8px;
   border: 2px solid chocolate;
@@ -171,6 +174,13 @@ video {
   border: 0px;
   padding-left: 3px;
   text-align: left;
+  position: relative;
+}
+
+#zConseiller {
+  text-align: right;
+  position: relative;
+  z-index: 20;
 }
 /* fin de echange */
 

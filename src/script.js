@@ -30,8 +30,17 @@ var myURL  = myURLcomplete.substring( 0 ,myURLcomplete.lastIndexOf( "/" ) );
 // choix de l'image de fond
 function chargeImgFond() {	
 	var myBody = document.body;
-	// afficher une image qui a pour index 1 à 5
+	// afficher une image qui a pour index 1 à 4
 	myBody.background = myURL + '/images/pelouses/stade'+ Math.floor(Math.random() * Math.floor(4) + 1)+'.jpg';
+
+	chargeImgConseiller();
+}
+
+function chargeImgConseiller() {	
+	console.log('esd');
+	var myConseiller = document.getElementById('zMessage');
+	// afficher une image qui a pour index 1 à 4
+	myConseiller.background = myURL + '/images/conseiller/tete'+ Math.floor(Math.random() * Math.floor(4) + 1)+'.png';
 }
 
 var seqUsed = -1;	// valeur de l'étape de la séquence qui a été traitée
@@ -72,15 +81,11 @@ function init_videos(id) {
 }
 
 function init_barre(nbQuestions) {
-	var tbody = document.getElementById("progression");
-	tr = document.createElement("tr");
-	for (i=0; i < nbQuestions; i++) {
-		var td = document.createElement("td");
-		td.textContent = "&nbsp;";
-		td.className = "progCell";
-		tr.appendChild(td);		
-	}
-	tbody.appendChild(tr);
+	var questDone = document.getElementById("questDone");
+	var questDo = document.getElementById("questDo");
+	var ratioLargeur = Math.trunc(10 / nbQuestions) * 10;
+	questDone.width = ratioLargeur * 3 + '%';
+	console.log(nbQuestions, ratioLargeur);
 }
 
 
