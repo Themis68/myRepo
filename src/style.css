@@ -49,7 +49,7 @@ div.zone {
   width: 23%;
   background-image: url("../images/terrain1.jpg");
   background-repeat: no-repeat;
-  background-size: 100% 98%;
+  background-size: 100% 95%;      /* on réduit la hauteur pour faire déborder les boutons*/
   background-position: 0px 10px;  /* créer un décalage vers le bas de l'image */
 }
 /* fin des zones */
@@ -123,6 +123,10 @@ video {
   color: white;
   background-color: chocolate;  
 }
+
+#btnContinuer {
+  margin-top: 25px;
+}
 /* fin board */
 
 /*  echange  */
@@ -143,6 +147,14 @@ video {
   height: 25px;
 }
 
+#zMessage {
+  background-color: whitesmoke;
+  height: 120px;
+  margin-top: 0px;
+  margin-bottom: 8px;
+  border: 2px solid chocolate;
+}
+
 #message {
   color: black;
   border: 0px;
@@ -153,11 +165,11 @@ video {
   text-align: left;
 }
 
-#zMessage {
-  background-color: whitesmoke;
-  height: 120px;
-  margin-top: 0px;
-  margin-bottom: 8px;
+#zPropositions {
+  color: black;
+  border: 0px;
+  padding-left: 3px;
+  text-align: left;
 }
 /* fin de echange */
 
