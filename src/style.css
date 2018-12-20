@@ -60,6 +60,7 @@ div.zone {
   float: left;
   background-color: green;
   width: 85%;
+  padding: 6px;
 }
 
 #goulotte {
@@ -92,6 +93,11 @@ div.zone {
 /* fin des zones */
 
 /* ma vidéo */
+
+#videos {
+
+}
+
 #zVideo {
   display: none;
 }
