@@ -1,14 +1,52 @@
 @import url(typo/scoreboard/stylesheet.css);
 @import url(typo/passion_one/stylesheet.css);
 
+/*! minireset.css v0.0.3 | MIT License | github.com/jgthms/minireset.css */html,body,p,ol,ul,li,dl,dt,dd,blockquote,figure,fieldset,legend,textarea,pre,iframe,hr,h1,h2,h3,h4,h5,h6{margin:0;padding:0}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal}ul{list-style:none}button,input,select,textarea{margin:0}html{box-sizing:border-box}*,*:before,*:after{box-sizing:inherit}img,embed,iframe,object,audio,video{height:auto;max-width:100%}iframe{border:0}table{border-collapse:collapse;border-spacing:0}td,th{padding:0;text-align:left}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 body {  
-  margin-top: 20px;
+  background-image: url("../images/stade.jpg");
   background-repeat: no-repeat;
-  background-origin: padding-box;
-  background-attachment: fixed;
   background-position: center; 
-  background-size: 100% 150%;
   background-color: black;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container-content {
+  position: relative;
+  z-index: 10;
+}
+
+#zConseiller {
+  visibility: hidden;
+  border-radius: 10px;
+  display: flex;
+  position: absolute;
+  z-index: 20;
+  width: 600px;
+  height: 250px;
+  background-color: whitesmoke;
+}
+
+#pict {
+  background-image: url("../images/conseiller/tete1.png");
+  background-repeat: no-repeat;
+  background-position: center; 
+  background-size: cover;
+}
+
+#rep {
+  display: flex;
+  justify-content: left;
 }
 
 /* les zones */
@@ -30,36 +68,57 @@ div.zone {
 
 #videoOn {
   float: left;
-  background-color: black;
   width: 60%;
 }
 
 #barre {
+  display: none;
   background-color: chocolate;
   width: 100%;
   height: 4px;
 }
 
 #board {
-  display: grid;        /* utilise le mode grille*/
-  grid-template-columns: 88%; /* définit le nombre et la taille des colonnes dans la grille
+  display: none;
   align-content: start; /* fixe l'alignement TOP des objets : permet de gérer les espacements*/
   float: left;          /* place la DIV à la suite de la goulotte*/
   justify-content: center;
   width: 23%;
-  background-image: url("../images/terrain1.jpg");
+  /*background-image: url("../images/terrain1.jpg");
   background-repeat: no-repeat;
   background-size: 100% 95%;      /* on réduit la hauteur pour faire déborder les boutons*/
-  background-position: 0px 10px;  /* créer un décalage vers le bas de l'image */
+  /*background-position: 0px 10px;*/  /* créer un décalage vers le bas de l'image */
 }
 /* fin des zones */
 
 /* ma vidéo */
+#zVideo {
+  display: none;
+}
+
 video {
+  background-color: black;
   margin: auto;
   float: left;
   width: 100%;
   height: 90%;
+}
+
+#fondVideo {
+  width: 600px;
+  height: 500px;
+  align-items: center;
+  background-image: url("../images/terrain3.png");
+  background-repeat: no-repeat;
+  background-position: center; 
+  background-size: contain;
+}
+
+#msgVideo {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 24pt;
+  color: white;
+  align-items: center;
 }
 
 .videoNonEncadre {
@@ -117,14 +176,14 @@ video {
   margin-top: 6px;
 }
 
-#btnLevel , #btnContinuer {
+#btnLevel , #btnContinuer, #btnRepondre {
   font-family: passion_oneregular;
   font-size: 18pt;
   color: white;
   background-color: chocolate;  
 }
 
-#btnContinuer {
+#btnContinuer, #btnRepondre {
   margin-bottom: 0px;
 }
 /* fin board */
@@ -150,10 +209,6 @@ video {
 
 #zMessage {
   background-color: whitesmoke;
-  background-repeat: no-repeat;
-  background-size: 50% 90%;
-  background-position: bottom right; 
-  height: 200px;
   margin-top: 0px;
   margin-bottom: 8px;
   border: 2px solid chocolate;
@@ -162,10 +217,8 @@ video {
 #message {
   color: black;
   border: 0px;
-  margin-top:0px;
-  padding-top: 3px;
-  padding-left: 3px;
-  padding-right: 3px;
+  margin-top:0px; 
+  padding: 3px;
   text-align: left;
 }
 
@@ -173,15 +226,33 @@ video {
   color: black;
   border: 0px;
   padding-left: 3px;
+  padding-bottom: 3px;
   text-align: left;
-  position: relative;
 }
 
-#zConseiller {
-  text-align: right;
-  position: relative;
-  z-index: 20;
+.credits {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 8pt;
+  color: white;
 }
+
+
+a:link {
+  color: white;
+  text-decoration: none;
+  }
+ a:visited {
+  color: yellow;
+  text-decoration: none;
+  }
+ a:active {
+  color: white;
+  text-decoration: none;
+ }
+ a:hover {
+  color: yellow;
+  text-decoration: none;
+ }
 /* fin de echange */
 
 
@@ -293,22 +364,7 @@ thead th {  background-color: #ffffe0; color: black;}
   background-color:black;
 }
 
-a:link {
-  color: white;
-  text-decoration: none;
-  }
- a:visited {
-  color: green;
-  text-decoration: none;
-  }
- a:active {
-  color: white;
-  text-decoration: none;
- }
- a:hover {
-  color: green;
-  text-decoration: none;
- }
+
 
  /* ensemble à garder
 html{

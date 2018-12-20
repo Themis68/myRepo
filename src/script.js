@@ -27,17 +27,10 @@ media_events["currentTime"] = 0;
 var myURLcomplete = document.location.href;
 var myURL  = myURLcomplete.substring( 0 ,myURLcomplete.lastIndexOf( "/" ) );
 
-// choix de l'image de fond
-function chargeImgFond() {	
-	var myBody = document.body;
-	// afficher une image qui a pour index 1 à 4
-	myBody.background = myURL + '/images/pelouses/stade'+ Math.floor(Math.random() * Math.floor(4) + 1)+'.jpg';
-
-	chargeImgConseiller();
-}
-
+/* image du conseiller 
+a utiliser après pour avoir une image dynamique
+*/
 function chargeImgConseiller() {	
-	console.log('esd');
 	var myConseiller = document.getElementById('zMessage');
 	// afficher une image qui a pour index 1 à 4
 	myConseiller.background = myURL + '/images/conseiller/tete'+ Math.floor(Math.random() * Math.floor(4) + 1)+'.png';
@@ -50,7 +43,6 @@ document.addEventListener("DOMContentLoaded", init, false);
 function init() {
 	document._video = document.getElementById("video");
 	init_videos("videos");
-	init_barre(5);
 	init_events("events", media_events);
 	setInterval(update_properties, 200);
 }
@@ -226,6 +218,8 @@ function arrayAssoSearch(arr, valObject) {
 }
 
 function switchVideo(n) {
+	init_barre(5);
+	
 	if (n > arrayAssoSize(tableau)) {
 		n = 0;
 		return false;

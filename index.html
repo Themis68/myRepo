@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <!-- saved from url=(0049)https://www.w3.org/2010/05/video/mediaevents.html -->
-<html lang="fr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  
+<html lang="fr">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
   <title>Apprentissage de l'arbitrage</title>
   <script src="./src/script.js">
   </script>
@@ -11,7 +14,15 @@
   </script>
   <link href="./src/style.css" rel="stylesheet" type="text/css">
 </head>
-<body onLoad="chargeImgFond();">
+
+<!-- style="visibility:hidden;" -->
+<body background="images/stade.jpg">
+  <div id="zConseiller" >
+    <div id="pict"><img id="conseiller" src="images/conseiller/tete1.png" /></div>
+    <div id="rep"><p>Question 1 : Quelle est la couleur du carton de l'arbitre ?<br>La bonne réponse est<span>une main</span>
+    <span>Bravo vous gagnez 10 points</span></p></div>
+  </div>
+  <div class="container-content">
     <div class="zone">
       <div id="stage">
         <table>
@@ -21,15 +32,19 @@
     </div>
     <div class="zone">
       <div id="videoOn">
-        <div>
-            <video id="video" class="videoNonEncadre" controls="" preload="none" poster="https://media.w3.org/2010/05/sintel/poster.png">
-              <source id="mp4" src="videos/MAH00063.MP4" type="video/mp4">
-              <p>Votre navigateur ne supporte pas la balise HTML5 vidéo.</p>
-            </video>
+        <div id="fondVideo">
+          <p id="msgVideo">Merci de sélectionner une vidéo de match ci-dessus</p>
+          <img src="images/sifflet.jpg" />
+        </div>
+        <div id="zVideo">
+          <video id="video" class="videoNonEncadre" controls="" preload="none" poster="https://media.w3.org/2010/05/sintel/poster.png">
+            <source id="mp4" src="videos/MAH00063.MP4" type="video/mp4">
+            <p>Votre navigateur ne supporte pas la gestion des vidéos</p>
+          </video>
         </div>
         <div id="barre">
-              <div id="questDone">&nbsp;</div>
-              <div id="questDo">&nbsp;</div>
+          <div id="questDone">&nbsp;</div>
+          <div id="questDo">&nbsp;</div>
         </div>
       </div>
       <div id="goulotte"></div>
@@ -39,36 +54,34 @@
         </div>
         <div class="zBoard" id="score">
           <p id="textBoard">SCORE</p>
-          <p id="scoreBoard">12 / 20</p>
+          <p id="scoreBoard">0 / 20</p>
         </div>
         <div class="zBoard" id="echange">
           <div class="numQuest">
-            <span id="quest">Question 1</span>
+            <span id="quest">Information</span>
           </div>
           <div id="zMessage">
-            <p id="message">Quelle est la couleur du carton de l'arbitre ?</p>
-            <div id="zPropositions">
-                <input type="radio" id="P1" value="1" name="Q1" checked>une main<br>
-                <input type="radio" id="P2" value="2" name="Q1">un pied<br>
-                <input type="radio" id="P3" value="3" name="Q1">une tete
-            </div>
+            <p id="message">Cliquer sur la vidéo pour démarrer</p>
+            <div id="zPropositions"></div>
           </div>
         </div>
         <div class="zBoard">
           <input id="btnContinuer" type="button" value="CONTINUER">
+          <input id="btnRepondre" type="button" value="REPONDRE">
         </div>
       </div>
     </div>
     <div class="zone">
       <div id="infos">
-        infos
+          <p class="credits">Photo by <a href="https://unsplash.com/photos/HgwY_YQ1m0w">Sandro Schuh</a> on <a href="https://unsplash.com">unsplash</a></p>
       </div>
     </div>
-<div>
-  <table>
-    <tbody id="events"></tbody>
-  </table>
-</div>
-
+    <div id="zEvents">
+      <table>
+        <tbody id="events"></tbody>
+      </table>
+    </div>
+  </div>
 </body>
+
 </html>

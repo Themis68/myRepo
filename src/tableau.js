@@ -15,7 +15,8 @@ var tableau = [
                 attributs: ["une main", "un pied", "une tête"],
                 reponse: 1,
                 libRep:"La joueuse de l'équipe Blanche qui reçoit le ballon est en position de hors-jeu.",
-                loi: "loi_01"
+                loi: "loi_01",
+                points: 5
             },
             {
                 step: 25,
@@ -29,9 +30,11 @@ var tableau = [
                 attributs: ["position de hors-jeu", "a poussé une joueuse sans ballon"],
                 reponse: 1,
                 libRep:"La joueuse de l'équipe Blanche qui reçoit le ballon est en position de hors-jeu.",
-                loi: "loi_11"
+                loi: "loi_11",
+                points: 5
             }
-        ]
+        ],
+        "Débutant"
     ],
     [
         2,
@@ -49,7 +52,8 @@ var tableau = [
                 attributs: ["Oui", "Non"],
                 reponse: 1,
                 libRep:"La joueuse de l'équipe Blanche qui reçoit le ballon est en position de hors-jeu.",
-                loi: "Loi_11"
+                loi: "Loi_11",
+                points: 6
             },
             {
                 step: 10,
@@ -58,7 +62,8 @@ var tableau = [
                 attributs: ["Charge sur défenseur", "Position de hors-jeu", "Main"],
                 reponse: 2,
                 libRep:"La joueuse de l'équipe Blanche qui transmet le ballon du but est en position de hors-jeu.",
-                loi: "Loi_11"
+                loi: "Loi_11",
+                points: 5
             },
             {
                 step: 13,
@@ -67,7 +72,8 @@ var tableau = [
                 attributs: ["Oui", "Non"],
                 reponse: 1,
                 libRep:"Lors de la remise en jeu suite à une touche, la joueuse doit avoir les talons au sol et le ballon doit être placé dans le dos au départ du mouvement.",
-                loi: "Loi_15"
+                loi: "Loi_15",
+                points: 8
             },
             {
                 step: 18,
@@ -76,9 +82,11 @@ var tableau = [
                 attributs: ["Je ne siffle rien", "Je siffle un coup franc", "Je siffle un coup franc et donne un carton jaune"],
                 reponse: 2,
                 libRep: "La joueuse de l'équipe Rouge touche le pied de la joueuse de l'équipe blanche. C'est une faute caractérisée mais sans intention du coup pas de carton.",
-                loi: "Loi_13"
+                loi: "Loi_13",
+                points: 4
             }
-        ]
+        ],
+        "confirmé"
     ]
 ];
 
