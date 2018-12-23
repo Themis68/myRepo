@@ -34,7 +34,9 @@ var tableau = [
                 points: 5
             }
         ],
-        "Débutant"
+        "DEBUTANT",
+        10,
+        2
     ],
     [
         2,
@@ -86,7 +88,9 @@ var tableau = [
                 points: 4
             }
         ],
-        "confirmé"
+        "CONFIRME",
+        23,
+        4
     ]
 ];
 

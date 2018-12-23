@@ -27,6 +27,11 @@ media_events["currentTime"] = 0;
 var myURLcomplete = document.location.href;
 var myURL  = myURLcomplete.substring( 0 ,myURLcomplete.lastIndexOf( "/" ) );
 
+// variables globales
+var videoMaxPoint = 0;		// nb points maximum
+var videoNbPoint = 0;		// nb points en cours
+var stepBarre = 0;			// % de progression pour une question
+
 /* image du conseiller 
 a utiliser après pour avoir une image dynamique
 */
@@ -38,16 +43,14 @@ function chargeImgConseiller() {
 
 var seqUsed = -1;	// valeur de l'étape de la séquence qui a été traitée
 
-document.addEventListener("DOMContentLoaded", init, false);
+document.addEventListener("DOMContentLoaded", init, false);	// lance l'écoute des évènements
 
 function init() {
 	document._video = document.getElementById("video");
-	init_videos("videos");
-	init_events("events", media_events);
-	setInterval(update_properties, 200);
+	listeVideos("videos");					// créé la barre des vidéos disponibles
 }
 
-function init_videos(id) {
+function listeVideos(id) {
 	// création des boutyons pour les vidéos
 	//<button onclick="switchVideo(3);">MAH00065</button>
 	var tbody = document.getElementById(id);
@@ -62,14 +65,6 @@ function init_videos(id) {
 		tr.appendChild(td);		
 	}
 	tbody.appendChild(tr);
-
-	/*
-<div class="bouton">
-  <p>
-   <a href="#">Bouton</a>
- </p>
-</div>
-*/
 }
 
 function init_barre(nbQuestions) {
@@ -77,13 +72,9 @@ function init_barre(nbQuestions) {
 	var questDo = document.getElementById("questDo");
 	var ratioLargeur = Math.trunc(10 / nbQuestions) * 10;
 	questDone.width = ratioLargeur * 3 + '%';
-	console.log(nbQuestions, ratioLargeur);
 }
 
-
-
-
-function init_events(id, arrayEventDef) {
+function listeEvents(id, arrayEventDef) {
 	// intercepte tous les évènements pour les renseigner
 	var f;
     for (key in arrayEventDef) {
@@ -218,34 +209,67 @@ function arrayAssoSearch(arr, valObject) {
 }
 
 function switchVideo(n) {
+	// affectation de la nouvelle vidéo et des attributs liés
 	init_barre(5);
 	
 	if (n > arrayAssoSize(tableau)) {
+		// vérifie si l'index de la vidéo existe dans le ficheir tableau.js
 		n = 0;
 		return false;
 	} else {
 		var mp4 = document.getElementById("mp4");
 		var parent = mp4.parentNode;
-
 		document._video.setAttribute("poster", tableau[n-1][2]);
 		mp4.setAttribute("src", "videos/" + tableau[n-1][1] + ".mp4");
-
-		resize(300,200);
-		
 		document._video.load();
+				//resize(300,200);
 
-		init_events("events", media_events);
-		setInterval(update_properties, 200);
+		listeEvents("events", media_events);	// créé le tableau des évènements vidéos
+		setInterval(update_properties, 200);	// lance le process de MAJ des évènements	
+
+		// Barre de progression
+		let larg = document.getElementById("mp4");
+		console.log(document._video.videoWidth);
+		stepBarre = 100 / tableau[n-1][6];		// valeur pour une tranche de progression
+		let questDone = document.getElementById("questDone");
+		questDone.setAttribute("width",'10%');
+		let questDo = document.getElementById("questDo");
+		questDo.setAttribute("width",'90%');
+
+
+		// Niveau
+		document.getElementById("btnLevel").value = tableau[n-1][4];
+
+		// Score
+		videoMaxPoint = tableau[n-1][5];		// nb points maximum
+		videoNbPoint = 0;						// nb points en cours
+		document.getElementById("scoreBoard").innerHTML = videoNbPoint.toString() + ' / ' + videoMaxPoint.toString();
 		
 		// ré-init du tableau
 		video = tableau[n-1];    // initialisation de la vidéo
 		actions = video[3];    // initialisation des actions
 
-		document.getElementById("echanges").style.visibility = "hidden";	// on masque la zone d'échanges
-		document.getElementById("zoneVideo").style.visibility = "visible";	// on affiche la zone Vidéo
+		showItem("fondVideo", false);
+		showItem("videoOn", true);
+		showItem("goulotte", true);
+		showItem("board", true);	
+		showItem("btnMsg", false);	
 	}
 }
 
+function showItem(id, state) {
+	let myState = (state === true ? "show" : "hide");
+	const el = document.getElementById(id);
+	switch (myState) {
+		case "show":
+		(el.classList.contains("hide") ? el.classList.replace("hide", "show") : el.classList.add("show"));
+		break;
+
+		default:
+		(el.classList.contains("show") ? el.classList.replace("show", "hide") : el.classList.add("hide"));	
+	}
+}
+/*
 function resize(larg, haut) {
     document._video.width = larg;
 	document._video.height = haut;
@@ -253,5 +277,6 @@ function resize(larg, haut) {
 	/*
 	 document._video.width = document._video.videoWidth + 10;
 	document._video.height = document._video.videoHeight + 10;
-	*/
+	
 }
+*/

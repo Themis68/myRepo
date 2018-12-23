@@ -2,6 +2,13 @@
 @import url(typo/passion_one/stylesheet.css);
 
 /*! minireset.css v0.0.3 | MIT License | github.com/jgthms/minireset.css */html,body,p,ol,ul,li,dl,dt,dd,blockquote,figure,fieldset,legend,textarea,pre,iframe,hr,h1,h2,h3,h4,h5,h6{margin:0;padding:0}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal}ul{list-style:none}button,input,select,textarea{margin:0}html{box-sizing:border-box}*,*:before,*:after{box-sizing:inherit}img,embed,iframe,object,audio,video{height:auto;max-width:100%}iframe{border:0}table{border-collapse:collapse;border-spacing:0}td,th{padding:0;text-align:left}
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
+}
 
 html, body {
   width: 100%;
@@ -27,7 +34,7 @@ body {
 }
 
 #zConseiller {
-  visibility: hidden;
+  visibility: hidden;   /* opacity 100% */
   border-radius: 10px;
   display: flex;
   position: absolute;
@@ -63,43 +70,46 @@ div.zone {
   padding: 6px;
 }
 
+.arrondiH {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.arrondiB {
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
 #goulotte {
   width:2%;
 }
 
-#videoOn {
-  float: left;
-  width: 60%;
-}
-
 #barre {
-  display: none;
   background-color: chocolate;
   width: 100%;
   height: 4px;
 }
 
 #board {
-  display: none;
   align-content: start; /* fixe l'alignement TOP des objets : permet de gérer les espacements*/
   float: left;          /* place la DIV à la suite de la goulotte*/
   justify-content: center;
   width: 23%;
-  /*background-image: url("../images/terrain1.jpg");
-  background-repeat: no-repeat;
-  background-size: 100% 95%;      /* on réduit la hauteur pour faire déborder les boutons*/
-  /*background-position: 0px 10px;*/  /* créer un décalage vers le bas de l'image */
 }
 /* fin des zones */
 
 /* ma vidéo */
+#videoOn {
+  float: left;
+  width: 60%;
+}
 
 #videos {
-
+text-align: center;
 }
 
 #zVideo {
-  display: none;
+
 }
 
 video {
@@ -112,7 +122,7 @@ video {
 
 #fondVideo {
   width: 600px;
-  height: 500px;
+  height: 330px;
   align-items: center;
   background-image: url("../images/terrain3.png");
   background-repeat: no-repeat;
@@ -122,9 +132,9 @@ video {
 
 #msgVideo {
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 24pt;
+  font-size: 14pt;
   color: white;
-  align-items: center;
+  text-align: center;
 }
 
 .videoNonEncadre {
@@ -140,13 +150,11 @@ video {
 #questDone {
   background-color: white;
   float: left;
-  width: 20%;
 }
 
 #questDo {
   background-color: chocolate;
   float: left;
-  width: 80%;
 }
 /* fin de Barre */
 
@@ -350,51 +358,3 @@ hr.prog {
   background-position:center center;
   position: absolute;
 }
-
-
-
-
-table { border: none; margin: auto; margin-top: 1ex;}
-th {  text-align: right; }
-caption { background-color: #ffffe0; color: black;}
-thead th {  background-color: #ffffe0; color: black;}
-
-
-
-
-
-#droite {
-  float:left;
-  border:0px;
-  width:50%; 
-  background-color:black;
-}
-
-
-
- /* ensemble à garder
-html{
-  display: flex;
-  flex-flow: row nowrap;  
-  justify-content: center;
-  align-content: center;
-  align-items: center;
-  height:100%;
-  margin: 0;
-  padding: 0;
-  background:#eeeeee;
-}
-body {
-  margin: 0;
-  flex: 0 1 auto;
-  align-self: auto;
-  width: 100%
-  max-width: 900px;
-  height: 100%;
-  max-height: 600px;
-  background:#fafafa;
-  -webkit-box-shadow: 0px 0px 96px 0px rgba(0,0,0,0.75);
-  -moz-box-shadow: 0px 0px 96px 0px rgba(0,0,0,0.75);
-  box-shadow: 0px 0px 96px 0px rgba(0,0,0,0.75);
-}
-*/
