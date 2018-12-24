@@ -24,19 +24,16 @@
   </div>
   <div class="container-content">
     <div class="zone">
-      <div id="stage">
+      <div id="stage" class="arrondiH">
         <table>
-          <tbody id="videos"><span id="msgVideo">Merci de sélectionner une vidéo</span></tbody>
-
+          <tbody id="videos"><p id="msgVideo">Merci de sélectionner une vidéo de match</p></tbody>
         </table>
       </div>
     </div>
     <div class="zone">
-      <div id="videoOn">
-        <div id="fondVideo">
-          <p id="msgVideo">Merci de sélectionner une vidéo de match ci-dessus</p>
-          <img src="images/sifflet.png" />
-        </div>
+      <div id="fondVideo">
+      </div>
+      <div id="videoOn" class="hide">
         <div id="zVideo">
           <video id="video" class="videoNonEncadre" controls="" preload="none" poster="https://media.w3.org/2010/05/sintel/poster.png">
             <source id="mp4" src="videos/MAH00063.MP4" type="video/mp4">
@@ -49,13 +46,13 @@
         </div>
       </div>
       <div id="goulotte"></div>
-      <div id="board">
+      <div id="board" class="hide">
         <div class="zBoard">
-          <input id="btnLevel" type="button" value="DEBUTANT">
+          <input id="btnLevel" type="button" value="">
         </div>
         <div class="zBoard" id="score">
           <p id="textBoard">SCORE</p>
-          <p id="scoreBoard">0 / 20</p>
+          <p id="scoreBoard"></p>
         </div>
         <div class="zBoard" id="echange">
           <div class="numQuest">
@@ -66,14 +63,14 @@
             <div id="zPropositions"></div>
           </div>
         </div>
-        <div class="zBoard">
+        <div class="zBoard" id="btnMsg">
           <input id="btnContinuer" type="button" value="CONTINUER">
           <input id="btnRepondre" type="button" value="REPONDRE">
         </div>
       </div>
     </div>
     <div class="zone">
-      <div id="infos">
+      <div id="infos" class="arrondiB">
           <p class="credits">Photo by <a href="https://unsplash.com/photos/HgwY_YQ1m0w">Sandro Schuh</a> on <a href="https://unsplash.com">unsplash</a></p>
       </div>
     </div>
