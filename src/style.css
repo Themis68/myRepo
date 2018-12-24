@@ -111,9 +111,9 @@ video {
 }
 
 #fondVideo {
-  width: 600px;
-  height: 500px;
-  align-items: center;
+  width: 110%;
+  height: 300%;
+  justify-content: center;
   background-image: url("../images/terrain3.png");
   background-repeat: no-repeat;
   background-position: center; 
