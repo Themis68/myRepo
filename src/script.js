@@ -31,6 +31,7 @@ var myURL  = myURLcomplete.substring( 0 ,myURLcomplete.lastIndexOf( "/" ) );
 var videoMaxPoint = 0;		// nb points maximum
 var videoNbPoint = 0;		// nb points en cours
 var stepBarre = 0;			// % de progression pour une question
+var stepDone = 0;			// % de progression effectué
 
 /* image du conseiller 
 a utiliser après pour avoir une image dynamique
@@ -65,13 +66,6 @@ function listeVideos(id) {
 		tr.appendChild(td);		
 	}
 	tbody.appendChild(tr);
-}
-
-function init_barre(nbQuestions) {
-	var questDone = document.getElementById("questDone");
-	var questDo = document.getElementById("questDo");
-	var ratioLargeur = Math.trunc(10 / nbQuestions) * 10;
-	questDone.width = ratioLargeur * 3 + '%';
 }
 
 function listeEvents(id, arrayEventDef) {
@@ -208,9 +202,20 @@ function arrayAssoSearch(arr, valObject) {
 	return -1;	// aucun résultat
 }
 
+function init_barre() {
+	console.log('stepDone', stepDone);
+	let step = stepBarre * stepDone;							// valeur à implémenter
+	let questDone = document.getElementById("questDone");
+	questDone.setAttribute("style","width:"+ step +"%");
+	let questDo = document.getElementById("questDo");
+	questDo.setAttribute("style","width:"+ (100 - step) +"%");
+}
+
 function switchVideo(n) {
 	// affectation de la nouvelle vidéo et des attributs liés
-	init_barre(5);
+	stepBarre = Math.trunc(100 / tableau[n-1][6]);		// valeur pour une tranche de progression
+	console.log('stepBarre', stepBarre, 'nb quest', tableau[n-1][6]);
+	init_barre();				// on passe l'état de progression
 	
 	if (n > arrayAssoSize(tableau)) {
 		// vérifie si l'index de la vidéo existe dans le ficheir tableau.js
@@ -226,16 +231,6 @@ function switchVideo(n) {
 
 		listeEvents("events", media_events);	// créé le tableau des évènements vidéos
 		setInterval(update_properties, 200);	// lance le process de MAJ des évènements	
-
-		// Barre de progression
-		let larg = document.getElementById("mp4");
-		console.log(document._video.videoWidth);
-		stepBarre = 100 / tableau[n-1][6];		// valeur pour une tranche de progression
-		let questDone = document.getElementById("questDone");
-		questDone.setAttribute("width",'10%');
-		let questDo = document.getElementById("questDo");
-		questDo.setAttribute("width",'90%');
-
 
 		// Niveau
 		document.getElementById("btnLevel").value = tableau[n-1][4];
