@@ -90,6 +90,18 @@ div.zone {
   height: 4px;
 }
 
+#questDone {
+  background-color: white;
+  float: left;
+  margin-top: 5px;
+}
+
+#questDo {
+  background-color: chocolate;
+  float: left;
+  margin-top: 5px;
+}
+
 #board {
   align-content: start; /* fixe l'alignement TOP des objets : permet de gérer les espacements*/
   float: left;          /* place la DIV à la suite de la goulotte*/
@@ -143,15 +155,7 @@ video {
 /* fin des vidéos */
 
 /* Barre */
-#questDone {
-  background-color: white;
-  float: left;
-}
 
-#questDo {
-  background-color: chocolate;
-  float: left;
-}
 /* fin de Barre */
 
 /* board */

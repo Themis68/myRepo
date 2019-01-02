@@ -141,6 +141,7 @@ function init_properties(id, arrayPropDef, arrayProp) {
 }
 
 function capture(event) {
+	console.log(event.type);
 	// attention : si l'on change les ligne sde place dans cette fonction, on peut être dans la situation de gérer deux appels  àun même évènement
 	if (event.type === 'timeupdate') {
 		// recherche s'il existe un traitement a effectuer
@@ -191,7 +192,7 @@ function arrayAssoSize(arr) {
     return size;
 }
 
-// scanne d'un ableau associatif
+// scanne d'un tableau associatif
 function arrayAssoSearch(arr, valObject) {
 	var nbEl = arrayAssoSize(arr);
 	for (ind = 0; ind < nbEl; ind++) {
@@ -214,11 +215,10 @@ function init_barre() {
 function switchVideo(n) {
 	// affectation de la nouvelle vidéo et des attributs liés
 	stepBarre = Math.trunc(100 / tableau[n-1][6]);		// valeur pour une tranche de progression
-	console.log('stepBarre', stepBarre, 'nb quest', tableau[n-1][6]);
 	init_barre();				// on passe l'état de progression
 	
 	if (n > arrayAssoSize(tableau)) {
-		// vérifie si l'index de la vidéo existe dans le ficheir tableau.js
+		// vérifie si l'index de la vidéo existe dans le fichier tableau.js
 		n = 0;
 		return false;
 	} else {
@@ -262,6 +262,19 @@ function showItem(id, state) {
 
 		default:
 		(el.classList.contains("show") ? el.classList.replace("show", "hide") : el.classList.add("hide"));	
+	}
+}
+
+function encadreVideo(state) {
+	let myState = (state === true ? "videoEncadre" : "videoNonEncadre");
+	const el = document.getElementById("video");
+	switch (myState) {
+		case "videoEncadre":
+		(el.classList.contains("videoNonEncadre") ? el.classList.replace("videoNonEncadre", "videoEncadre") : el.classList.add("videoEncadre"));
+		break;
+
+		default:
+		(el.classList.contains("videoEncadre") ? el.classList.replace("videoEncadre", "videoNonEncadre") : el.classList.add("videoNonEncadre"));	
 	}
 }
 /*
