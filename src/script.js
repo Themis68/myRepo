@@ -141,7 +141,6 @@ function init_properties(id, arrayPropDef, arrayProp) {
 }
 
 function capture(event) {
-	console.log(event.type);
 	// attention : si l'on change les ligne sde place dans cette fonction, on peut être dans la situation de gérer deux appels  àun même évènement
 	if (event.type === 'timeupdate') {
 		// recherche s'il existe un traitement a effectuer
@@ -154,7 +153,7 @@ function capture(event) {
 				mesActions[actions[asWork].act](asWork);	// on appelle le traitement nécessaire
 			}			
 		}
-		media_events["currentTime"] = seq;	// MAJ de la vakeur dans le tableau (pour info)
+		media_events["currentTime"] = seq;	// MAJ de la valeur dans le tableau (pour info)
 	}
 	media_events[event.type]++;		// traitement : on augmente de 1
 }
@@ -174,12 +173,6 @@ function update_properties() {
 		    if (media_events[key] > 0) e.className = "true";
 		}
 	}
-	/*
-	for (key in media_properties) {
-		var val = eval("document._video." + media_properties[key]);
-		media_properties_elts[i++].textContent = val;
-	}
-	*/
 }
 
 // retourne la taille d'un tableau associatif
@@ -227,7 +220,6 @@ function switchVideo(n) {
 		document._video.setAttribute("poster", tableau[n-1][2]);
 		mp4.setAttribute("src", "videos/" + tableau[n-1][1] + ".mp4");
 		document._video.load();
-				//resize(300,200);
 
 		listeEvents("events", media_events);	// créé le tableau des évènements vidéos
 		setInterval(update_properties, 200);	// lance le process de MAJ des évènements	
@@ -248,7 +240,9 @@ function switchVideo(n) {
 		showItem("videoOn", true);
 		showItem("goulotte", true);
 		showItem("board", true);	
-		showItem("btnMsg", false);	
+		showItem("zPropositions", false);
+		showItem("zLoi", false);
+		showItem("zSuite", false);
 	}
 }
 
@@ -277,14 +271,3 @@ function encadreVideo(state) {
 		(el.classList.contains("videoEncadre") ? el.classList.replace("videoEncadre", "videoNonEncadre") : el.classList.add("videoNonEncadre"));	
 	}
 }
-/*
-function resize(larg, haut) {
-    document._video.width = larg;
-	document._video.height = haut;
-	document._video.load();
-	/*
-	 document._video.width = document._video.videoWidth + 10;
-	document._video.height = document._video.videoHeight + 10;
-	
-}
-*/

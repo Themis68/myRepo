@@ -1,14 +1,14 @@
 // tableau de fonctions pour traiter les arrêts deans la vidéo
 var mesActions = { 
     question : function (indice) {
-        showItem("btnMsg", false);
+        document._video.pause();    // on pause la vidéo
         // préparation des actions
         var monJob = actions[indice];
-        document._video.pause();    // on pause la vidéo
+
         // on prépare dMessage
         document.getElementById("message").innerHTML = monJob.libelle;
         // on construct dPropositions
-        var maQuestion = document.getElementById("questions");
+        var maQuestion = document.getElementById("zPropositions");
         for (i=1; i <= monJob.attributs.length; i++) { 
             // construction du input
             var monInput = document.createElement("input");
@@ -34,25 +34,21 @@ var mesActions = {
         {
           mesReponses(indice); 
         };        
-        // gestion de la zone Question
-       // maQuestion.style.visibility = "visible";
 
-        showItem("dMessage", true);
-        showItem("dPropositions", false);
-        showItem("dReponse", true);
-        showItem("btnMsg", true);
+        document.getElementById("quest").innerHTML = (actions[indice].act).toUpperCase();
+        showItem("zPropositions", true);
+        showItem("zLoi", false);
+        showItem("zSuite", true);
+        showItem("btnContinuer", false);
     },
 
     information : function (indice) {
-        showItem("btnMsg", false);
-        // préparation dMessage
-        console.log("message", document.getElementById("message").innerHTML);
+        showItem("zPropositions", false);
+        showItem("zLoi", false);
+        showItem("zSuite", false);
+        document.getElementById("quest").innerHTML = (actions[indice].act).toUpperCase();
         document.getElementById("message").innerHTML = actions[indice].libelle;
-        // MAJ cadre de la vidéo
         encadreVideo(true);
-        showItem("dPropositions", false);
-        showItem("dReponse", false);
-        showItem("btnMsg", true);
     },
 
     stop3 : function () {
@@ -63,22 +59,29 @@ var mesActions = {
 
 // est appelé depuis l'IHM pour remonter la réponse
 function mesReponses(indice) {
-    showItem("echanges", false);
     var maRep = returnSelRadio(actions[indice].attributs.length);   // récupère le bouton radio sélectionné par l'utilisateur
     var repOk = actions[indice].reponse;     // récupère la bonne réponse
 
-    alert(maRep === repOk ? "bonne réponse" : "mauvaise réponse. Il fallait choisir '"+ actions[indice].attributs[repOk - 1] +"'");
+   // showItem("zConseiller", true);
+    var conseil = document.getElementById("zConseiller");
+    conseil.setAttribute("style","visibility:visible;");
+   // alert(maRep === repOk ? "bonne réponse" : "mauvaise réponse. Il fallait choisir '"+ actions[indice].attributs[repOk - 1] +"'");
 
     // retirer les elements de la réponse du DOM
     // sinon on les aura à la prochaine question
-    for(i=1; i <= actions[indice].attributs.length ; i++) {
+   
+   /* for(i=1; i <= actions[indice].attributs.length ; i++) {
         var maReponse = document.getElementById("R"+i);
         maReponse.parentNode.removeChild(maReponse);
         var monLab = document.getElementById("L"+i);
         monLab.parentNode.removeChild(monLab);
         var lig = document.getElementById("br"+i);
         lig.parentNode.removeChild(lig);
-    }
+    }*/
+
+    // conseiller
+    var monConseiller = document.getElementById("conseiller");
+    monConseiller.setAttribute("src", "images/conseiller/tete1.png");
 
     // gestion du bouton continuer
     if (actions[indice].loi) {
@@ -93,14 +96,24 @@ function mesReponses(indice) {
     }
 
     // on complète le message
-    document.getElementById("message").value +=  "\nRéponse : " +  actions[indice].attributs[repOk - 1];
-    document.getElementById("message").value +=  "\nExplication : " + actions[indice].libRep;
-    document.getElementById("message").value +=  "\n";
+    document.getElementById("message").innerHTML +=  "<br><br>Réponse : " +  actions[indice].attributs[repOk - 1];
+    document.getElementById("message").innerHTML +=  "<br>Explication : " + actions[indice].libRep;
+    document.getElementById("message").innerHTML +=  "<br>";
 
-    showItem("dMessage", true);
-    showItem("dPropositions", false);
-    showItem("dReponse", true);
-    showItem("echanges", true); 
+    // POP-UP
+    document.getElementById("rep").innerHTML =  document.getElementById("message").innerHTML;
+    var maLoiP = document.getElementById("loiP");
+    var monIcoP = '<img id="ico" src="images/pdf.png" width="5%" height="5%" />';
+    // imbriquer l'icone dans le lien hypertexte
+   maLoiP.setAttribute("href", myURL + '/lois/' + actions[indice].loi + '.pdf');
+   maLoiP.setAttribute("target",'_blank');
+   maLoiP.innerHTML = monIcoP + '&nbsp;'+ actions[indice].loi;
+
+
+    showItem("zPropositions", false);
+    showItem("btnRepondre", false);
+    showItem("zLoi", true);
+    showItem("btnContinuer", true);
 }
 
 // récupère le bouton radio sélectionné par l'utilisateur
@@ -114,13 +127,8 @@ function returnSelRadio(nbEl){
 }
 
 function continuer(){
-   showItem("dMessage", false);
-   showItem("dPropositions", false);
-   showItem("dReponse", false);
-   showItem("echanges", false); 
-
-    // zone vidéo
-    //var myVideo = document._video = document.getElementById("video");
+    showItem("echanges", false);
+    showItem("zSuite", false); 
     encadreVideo(false);
     document._video.play(); // on reprend la lecture de la vidéo
 }
