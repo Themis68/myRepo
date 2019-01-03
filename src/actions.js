@@ -63,25 +63,15 @@ function mesReponses(indice) {
     var repOk = actions[indice].reponse;     // récupère la bonne réponse
 
    // showItem("zConseiller", true);
-    var conseil = document.getElementById("zConseiller");
-    conseil.setAttribute("style","visibility:visible;");
    // alert(maRep === repOk ? "bonne réponse" : "mauvaise réponse. Il fallait choisir '"+ actions[indice].attributs[repOk - 1] +"'");
 
-    // retirer les elements de la réponse du DOM
-    // sinon on les aura à la prochaine question
-   
-   /* for(i=1; i <= actions[indice].attributs.length ; i++) {
-        var maReponse = document.getElementById("R"+i);
-        maReponse.parentNode.removeChild(maReponse);
-        var monLab = document.getElementById("L"+i);
-        monLab.parentNode.removeChild(monLab);
-        var lig = document.getElementById("br"+i);
-        lig.parentNode.removeChild(lig);
-    }*/
+
 
     // conseiller
     var monConseiller = document.getElementById("conseiller");
-    monConseiller.setAttribute("src", "images/conseiller/tete1.png");
+    let source = myURL + '/images/conseiller/tete'+ Math.floor(Math.random() * Math.floor(4) + 1)+'.png';
+    monConseiller.setAttribute("src", source);
+    //monConseiller.setAttribute("style", "width: 60%");
 
     // gestion du bouton continuer
     if (actions[indice].loi) {
@@ -92,7 +82,9 @@ function mesReponses(indice) {
        maLoi.setAttribute("href", myURL + '/lois/' + actions[indice].loi + '.pdf');
        maLoi.setAttribute("target",'_blank');
        maLoi.innerHTML = monIco + '&nbsp;'+ actions[indice].loi;
-         //   maLoi.appendChild(monDoc);
+       showItem("zLoi", true);
+    } else {
+        showItem("zLoi", false);
     }
 
     // on complète le message
@@ -101,19 +93,44 @@ function mesReponses(indice) {
     document.getElementById("message").innerHTML +=  "<br>";
 
     // POP-UP
-    document.getElementById("rep").innerHTML =  document.getElementById("message").innerHTML;
-    var maLoiP = document.getElementById("loiP");
-    var monIcoP = '<img id="ico" src="images/pdf.png" width="5%" height="5%" />';
-    // imbriquer l'icone dans le lien hypertexte
-   maLoiP.setAttribute("href", myURL + '/lois/' + actions[indice].loi + '.pdf');
-   maLoiP.setAttribute("target",'_blank');
-   maLoiP.innerHTML = monIcoP + '&nbsp;'+ actions[indice].loi;
-
+    // gestion particulière de la zone du conseiller
+    var conseil = document.getElementById("zConseiller");
+    conseil.setAttribute("style","visibility:visible;");
+    document.getElementById("rep").innerHTML = (maRep === repOk ? "bonne réponse" : "mauvaise réponse. Il fallait choisir '"+ actions[indice].attributs[repOk - 1] +"'");
+    document.getElementById("rep").innerHTML += '<br>' + (maRep === repOk ? " Vous avez gagné " + actions[indice].points + " points" : "Dommage. ce sera pour une prochaine fois");
+    /*if (actions[indice].loi) {
+        var maLoiP = document.getElementById("loiP");
+        var monIcoP = '<img id="ico" src="images/pdf.png" width="5%" height="5%" />';
+        maLoiP.setAttribute("href", myURL + '/lois/' + actions[indice].loi + '.pdf');
+        maLoiP.setAttribute("target",'_blank');
+        maLoiP.innerHTML = monIcoP + '&nbsp;'+ actions[indice].loi;
+        showItem("zLoiP", true);
+    } else {
+        showItem("zLoiP", false);
+    }*/
 
     showItem("zPropositions", false);
     showItem("btnRepondre", false);
-    showItem("zLoi", true);
     showItem("btnContinuer", true);
+
+    // retirer les elements de la réponse du DOM
+    // sinon on les aura à la prochaine question
+    for(i=1; i <= actions[indice].attributs.length ; i++) {
+        var maReponse = document.getElementById("R"+i);
+        maReponse.parentNode.removeChild(maReponse);
+        var monLab = document.getElementById("L"+i);
+        monLab.parentNode.removeChild(monLab);
+        var lig = document.getElementById("br"+i);
+        lig.parentNode.removeChild(lig);
+    }
+
+    // MAJ score
+    videoNbPoint += (maRep === repOk ? actions[indice].points : videoNbPoint);
+    document.getElementById("scoreBoard").innerHTML = videoNbPoint.toString() + ' / ' + videoMaxPoint.toString();
+	
+
+    // MAJ Barre progression
+    stepBarre++;
 }
 
 // récupère le bouton radio sélectionné par l'utilisateur

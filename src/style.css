@@ -39,34 +39,26 @@ body {
   display: flex;
   position: absolute;
   z-index: 100;
-  width: 500px;
-  height: 200px;
+  width: 240px;
+  height: 120px;
   background-color: whitesmoke;
 }
 
-#pict {
+#pict2 {
   background-image: url("../images/conseiller/tete1.png");
   background-repeat: no-repeat;
   background-position: center; 
   background-size: cover;
 }
 
-#texte {
-  display: block;
+#pict {
+  display: flex;
   justify-content: left;
+  width: 170px;
+  height: 100px;
 }
 
 #rep {
-  display: flex;
-  justify-content: left;
-}
-
-#rep {
-  display: flex;
-  justify-content: left;
-}
-
-#zLoiP {
   display: flex;
   justify-content: left;
 }

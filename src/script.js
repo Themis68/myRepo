@@ -37,9 +37,10 @@ var stepDone = 0;			// % de progression effectué
 a utiliser après pour avoir une image dynamique
 */
 function chargeImgConseiller() {	
-	var myConseiller = document.getElementById('zMessage');
+	//var myConseiller = document.getElementById('zMessage');
 	// afficher une image qui a pour index 1 à 4
-	myConseiller.background = myURL + '/images/conseiller/tete'+ Math.floor(Math.random() * Math.floor(4) + 1)+'.png';
+	//myConseiller.background = myURL + '/images/conseiller/tete'+ Math.floor(Math.random() * Math.floor(4) + 1)+'.png';
+	return myURL + '/images/conseiller/tete'+ Math.floor(Math.random() * Math.floor(4) + 1)+'.png';
 }
 
 var seqUsed = -1;	// valeur de l'étape de la séquence qui a été traitée
@@ -197,7 +198,6 @@ function arrayAssoSearch(arr, valObject) {
 }
 
 function init_barre() {
-	console.log('stepDone', stepDone);
 	let step = stepBarre * stepDone;							// valeur à implémenter
 	let questDone = document.getElementById("questDone");
 	questDone.setAttribute("style","width:"+ step +"%");
