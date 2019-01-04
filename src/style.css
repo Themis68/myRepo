@@ -44,13 +44,6 @@ body {
   background-color: whitesmoke;
 }
 
-#pict2 {
-  background-image: url("../images/conseiller/tete1.png");
-  background-repeat: no-repeat;
-  background-position: center; 
-  background-size: cover;
-}
-
 #pict {
   display: flex;
   justify-content: left;
@@ -61,6 +54,7 @@ body {
 #rep {
   display: flex;
   justify-content: left;
+  padding: 3px;
 }
 
 /* les zones */
@@ -101,12 +95,16 @@ div.zone {
   background-color: white;
   float: left;
   margin-top: 5px;
+  text-align: right;
+  padding-right: 5px;
 }
 
 #questDo {
   background-color: chocolate;
   float: left;
   margin-top: 5px;
+  text-align: right;
+  padding-right: 5px;
 }
 
 #board {
@@ -206,7 +204,6 @@ video {
 /*  echange  */
 #echange {
   float:left;
-  height:150px;
   border: 0px;
   margin-bottom: 8px;
 }
@@ -294,4 +291,12 @@ video {
  a:hover {
   color: yellow;
   text-decoration: none;
+ }
+
+ .gagne {
+  color: green;
+ }
+ 
+ .perdu {
+  color: red;
  }

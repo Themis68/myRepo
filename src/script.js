@@ -32,6 +32,7 @@ var videoMaxPoint = 0;		// nb points maximum
 var videoNbPoint = 0;		// nb points en cours
 var stepBarre = 0;			// % de progression pour une question
 var stepDone = 0;			// % de progression effectué
+var nbQuest = 0;			// nombre de question sur la vidéo
 
 /* image du conseiller 
 a utiliser après pour avoir une image dynamique
@@ -201,13 +202,20 @@ function init_barre() {
 	let step = stepBarre * stepDone;							// valeur à implémenter
 	let questDone = document.getElementById("questDone");
 	questDone.setAttribute("style","width:"+ step +"%");
+	if(stepDone !== 0 ) {
+		document.getElementById("curStep").innerHTML = stepDone;
+	}
 	let questDo = document.getElementById("questDo");
+	if(stepDone !== nbQuest ) {
+		document.getElementById("nbQuest").innerHTML = nbQuest;
+	}
 	questDo.setAttribute("style","width:"+ (100 - step) +"%");
 }
 
 function switchVideo(n) {
 	// affectation de la nouvelle vidéo et des attributs liés
-	stepBarre = Math.trunc(100 / tableau[n-1][6]);		// valeur pour une tranche de progression
+	nbQuest =  tableau[n-1][6];
+	stepBarre = Math.trunc(100 / nbQuest);		// valeur pour une tranche de progression
 	init_barre();				// on passe l'état de progression
 	
 	if (n > arrayAssoSize(tableau)) {
@@ -235,6 +243,8 @@ function switchVideo(n) {
 		// ré-init du tableau
 		video = tableau[n-1];    // initialisation de la vidéo
 		actions = video[3];    // initialisation des actions
+
+		document.getElementById("quest").innerHTML = "INFORMATION";
 
 		showItem("fondVideo", false);
 		showItem("videoOn", true);

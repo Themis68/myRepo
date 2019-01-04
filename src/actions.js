@@ -96,8 +96,11 @@ function mesReponses(indice) {
     // gestion particulière de la zone du conseiller
     var conseil = document.getElementById("zConseiller");
     conseil.setAttribute("style","visibility:visible;");
-    document.getElementById("rep").innerHTML = (maRep === repOk ? "bonne réponse" : "mauvaise réponse. Il fallait choisir '"+ actions[indice].attributs[repOk - 1] +"'");
-    document.getElementById("rep").innerHTML += '<br>' + (maRep === repOk ? " Vous avez gagné " + actions[indice].points + " points" : "Dommage. ce sera pour une prochaine fois");
+    let text =  '<p>' + (maRep === repOk ? 'BONNE REPONSE' : 'MAUVAISE REPONSE') + '<br><br>';
+    text +=  '<span ' + (maRep === repOk ? 'class="gagne">Vous avez gagné ' + actions[indice].points + ' points' : 'class="perdu">Dommage. ce sera pour une prochaine fois') + "</span></p>";
+
+    document.getElementById("rep").innerHTML = text;
+    
     /*if (actions[indice].loi) {
         var maLoiP = document.getElementById("loiP");
         var monIcoP = '<img id="ico" src="images/pdf.png" width="5%" height="5%" />';
@@ -130,7 +133,9 @@ function mesReponses(indice) {
 	
 
     // MAJ Barre progression
-    stepBarre++;
+    stepDone++;
+    console.log(stepDone);
+    init_barre();
 }
 
 // récupère le bouton radio sélectionné par l'utilisateur
