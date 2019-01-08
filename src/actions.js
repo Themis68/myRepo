@@ -57,7 +57,7 @@ var mesActions = {
     fin : function (indice) {
         var conseil = document.getElementById("zConseiller");
         conseil.setAttribute("style","visibility:visible;");
-        let text =  '<p>' + ((videoNbPoint / videoMaxPoint) > 0,5 ? 'BRAVO vous avez résussi à obtenir plus de la moitié des points' : 'Bien joué mais il faut faire encore des efforts pour devenir arbitre<br><br>';
+        let text =  '<p>' + ((videoNbPoint / videoMaxPoint) > 0,5 ? 'BRAVO vous avez résussi à obtenir plus de la moitié des points' : 'Bien joué mais il faut faire encore des efforts pour devenir arbitre<br><br>');
         text +=  'N\hésite pas à ré-essyer</span></p>';
         document.getElementById("rep").innerHTML = text;
 
