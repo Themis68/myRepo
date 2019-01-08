@@ -257,6 +257,7 @@ function switchVideo(n) {
 }
 
 function showItem(id, state) {
+	console.log(id, state);
 	let myState = (state === true ? "show" : "hide");
 	const el = document.getElementById(id);
 	switch (myState) {

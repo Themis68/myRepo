@@ -86,6 +86,10 @@ var tableau = [
                 libRep: "La joueuse de l'équipe Rouge touche le pied de la joueuse de l'équipe blanche. C'est une faute caractérisée mais sans intention du coup pas de carton.",
                 loi: "Loi_13",
                 points: 4
+            },
+            {
+                step: 19,
+                act: "fin"
             }
         ],
         "CONFIRME",

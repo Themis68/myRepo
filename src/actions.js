@@ -1,6 +1,7 @@
 // tableau de fonctions pour traiter les arrêts deans la vidéo
 var mesActions = { 
     question : function (indice) {
+        console.log(actions[indice]);
         document._video.pause();    // on pause la vidéo
         // préparation des actions
         var monJob = actions[indice];
@@ -22,7 +23,6 @@ var mesActions = {
             var monLabel = document.createElement("label");
             monLabel.id = 'L' + i;
             monLabel.innerHTML = monJob.attributs[i-1];
-            //monLabel.setAttribute("style", "padding-left: 5px;");
             maQuestion.appendChild(monLabel);
             // saut de lignes
             var lig = document.createElement("br");
@@ -37,10 +37,12 @@ var mesActions = {
         };        
 
         document.getElementById("quest").innerHTML = (actions[indice].act).toUpperCase();
+        showItem("echange", true);
         showItem("zPropositions", true);
         showItem("zLoi", false);
         showItem("zSuite", true);
         showItem("btnContinuer", false);
+        showItem("btnRepondre", true);
     },
 
     information : function (indice) {
@@ -52,9 +54,13 @@ var mesActions = {
         encadreVideo(true);
     },
 
-    stop3 : function () {
-        var msg = document.getElementById("message");
-        msg.value = 'stop3';
+    fin : function (indice) {
+        var conseil = document.getElementById("zConseiller");
+        conseil.setAttribute("style","visibility:visible;");
+        let text =  '<p>' + ((videoNbPoint / videoMaxPoint) > 0,5 ? 'BRAVO vous avez résussi à obtenir plus de la moitié des points' : 'Bien joué mais il faut faire encore des efforts pour devenir arbitre<br><br>';
+        text +=  'N\hésite pas à ré-essyer</span></p>';
+        document.getElementById("rep").innerHTML = text;
+
     }
 }
 
@@ -63,21 +69,14 @@ function mesReponses(indice) {
     var maRep = returnSelRadio(actions[indice].attributs.length);   // récupère le bouton radio sélectionné par l'utilisateur
     var repOk = actions[indice].reponse;     // récupère la bonne réponse
 
-   // showItem("zConseiller", true);
-   // alert(maRep === repOk ? "bonne réponse" : "mauvaise réponse. Il fallait choisir '"+ actions[indice].attributs[repOk - 1] +"'");
-
-
-
     // conseiller
     var monConseiller = document.getElementById("conseiller");
     let source = myURL + '/images/conseiller/tete'+ Math.floor(Math.random() * Math.floor(4) + 1)+'.png';
     monConseiller.setAttribute("src", source);
 
-    // gestion du bouton continuer
     if (actions[indice].loi) {
         // afficher l'accès à la règle du jeu
         var maLoi = document.getElementById("loi");
-       // var monIco = '<img id="ico" src="images/pdf.png" width="5%" height="5%" />';
         // imbriquer l'icone dans le lien hypertexte
        maLoi.setAttribute("href", myURL + '/lois/' + actions[indice].loi + '.pdf');
        maLoi.setAttribute("target",'_blank');
@@ -100,17 +99,6 @@ function mesReponses(indice) {
     text +=  '<span ' + (maRep === repOk ? 'class="gagne">Vous avez gagné ' + actions[indice].points + ' points' : 'class="perdu">Dommage. ce sera pour une prochaine fois') + "</span></p>";
 
     document.getElementById("rep").innerHTML = text;
-    
-    /*if (actions[indice].loi) {
-        var maLoiP = document.getElementById("loiP");
-        var monIcoP = '<img id="ico" src="images/pdf.png" width="5%" height="5%" />';
-        maLoiP.setAttribute("href", myURL + '/lois/' + actions[indice].loi + '.pdf');
-        maLoiP.setAttribute("target",'_blank');
-        maLoiP.innerHTML = monIcoP + '&nbsp;'+ actions[indice].loi;
-        showItem("zLoiP", true);
-    } else {
-        showItem("zLoiP", false);
-    }*/
 
     showItem("zPropositions", false);
     showItem("btnRepondre", false);
@@ -128,7 +116,7 @@ function mesReponses(indice) {
     }
 
     // MAJ score
-    videoNbPoint += (maRep === repOk ? actions[indice].points : videoNbPoint);
+    videoNbPoint += (maRep === repOk ? actions[indice].points : 0);
     document.getElementById("scoreBoard").innerHTML = videoNbPoint.toString() + ' / ' + videoMaxPoint.toString();
 	
 
@@ -149,8 +137,10 @@ function returnSelRadio(nbEl){
 }
 
 function continuer(){
-    showItem("echanges", false);
+    showItem("echange", false);
     showItem("zSuite", false); 
     encadreVideo(false);
+    var conseil = document.getElementById("zConseiller");
+    conseil.setAttribute("style","visibility:hidden;");
     document._video.play(); // on reprend la lecture de la vidéo
 }
