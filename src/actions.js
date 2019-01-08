@@ -22,6 +22,7 @@ var mesActions = {
             var monLabel = document.createElement("label");
             monLabel.id = 'L' + i;
             monLabel.innerHTML = monJob.attributs[i-1];
+            //monLabel.setAttribute("style", "padding-left: 5px;");
             maQuestion.appendChild(monLabel);
             // saut de lignes
             var lig = document.createElement("br");
@@ -71,17 +72,16 @@ function mesReponses(indice) {
     var monConseiller = document.getElementById("conseiller");
     let source = myURL + '/images/conseiller/tete'+ Math.floor(Math.random() * Math.floor(4) + 1)+'.png';
     monConseiller.setAttribute("src", source);
-    //monConseiller.setAttribute("style", "width: 60%");
 
     // gestion du bouton continuer
     if (actions[indice].loi) {
         // afficher l'accès à la règle du jeu
         var maLoi = document.getElementById("loi");
-        var monIco = '<img id="ico" src="images/pdf.png" width="5%" height="5%" />';
+       // var monIco = '<img id="ico" src="images/pdf.png" width="5%" height="5%" />';
         // imbriquer l'icone dans le lien hypertexte
        maLoi.setAttribute("href", myURL + '/lois/' + actions[indice].loi + '.pdf');
        maLoi.setAttribute("target",'_blank');
-       maLoi.innerHTML = monIco + '&nbsp;'+ actions[indice].loi;
+       maLoi.innerHTML = "Relire la loi du jeu";
        showItem("zLoi", true);
     } else {
         showItem("zLoi", false);

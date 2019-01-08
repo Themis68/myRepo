@@ -233,7 +233,7 @@ function switchVideo(n) {
 		setInterval(update_properties, 200);	// lance le process de MAJ des évènements	
 
 		// Niveau
-		document.getElementById("btnLevel").value = tableau[n-1][4];
+		document.getElementById("btnLevel").value = "NIVEAU " + tableau[n-1][4];
 
 		// Score
 		videoMaxPoint = tableau[n-1][5];		// nb points maximum
