@@ -3,10 +3,10 @@ var tableau = [
         1,
         "MAH00063",
         "http://media.w3.org/2010/05/sintel/poster.png",
-        [{
-                step: 10,
+        [   {
+                step: 1,
                 act: "information",
-                libelle: "Soyez attentifs à cette phase de jeu"
+                libelle: "Match opposant Metz (marron) à la Croix-Blanche Angers (Blanc) en championnat u19F"
             },
             {
                 step: 20,
@@ -14,29 +14,38 @@ var tableau = [
                 libelle: "L'arbitre vient de siffler une faute. D'après-vous laquelle ? ",
                 attributs: ["une main", "un pied", "une tête"],
                 reponse: 1,
-                libRep:"La joueuse de l'équipe Blanche qui reçoit le ballon est en position de hors-jeu.",
+                libRep:"La joueuse de l'équipe Blanche qui reçoit le ballon est en position de hors-jeu",
                 loi: "loi_01",
                 points: 5
             },
             {
-                step: 25,
-                act: "information",
-                libelle: "Surveillez la joueuse n°10"
+                step: 40,
+                act: "question",
+                libelle: "Que signifie le geste de l'arbitre assistant ?",
+                attributs: ["touche en faveur des blancs", "touche en faveur des marrons"],
+                reponse: 1,
+                libRep:"Touche en faveur de la Croix-Blanche (blancs)",
+                loi: "loi_15",
+                points: 3
             },
             {
-                step: 30,
+                step: 58,
                 act: "question",
-                libelle: "L'arbitre vient de siffler une faute de la joueuse n°10. Qu'a-t-elle fait ? ",
-                attributs: ["position de hors-jeu", "a poussé une joueuse sans ballon"],
-                reponse: 1,
-                libRep:"La joueuse de l'équipe Blanche qui reçoit le ballon est en position de hors-jeu.",
-                loi: "loi_11",
+                libelle: "L'arbitre vient de siffler une faute. Pour quelle raison ? ",
+                attributs: ["position de hors-jeu", "contact sur une joueuse marron"],
+                reponse: 2,
+                libRep:"L'attaquante marron a été taclée par la défenseuse blanche sans avoir le ballon",
+                loi: "loi_13",
                 points: 5
+            },
+            {
+                step: 60,
+                act: "fin"
             }
         ],
         "DEBUTANT",
-        10,
-        2
+        13,
+        3
     ],
     [
         2,
@@ -45,7 +54,7 @@ var tableau = [
         [   {
                 step: 1,
                 act: "information",
-                libelle: "Soyez attentifs pendant toute la vidéo."
+                libelle: "Match opposant Les Verchers (marron) à l'Etoile Mouzillon (Blanc) en championnat R2F"
             },
             {
                 step: 3,
@@ -78,7 +87,7 @@ var tableau = [
                 points: 8
             },
             {
-                step: 17,
+                step: 16,
                 act: "question",
                 libelle: "Que décidez-vous ? ",
                 attributs: ["Je ne siffle rien", "Je siffle un coup franc", "Je siffle un coup franc et donne un carton jaune"],
@@ -88,7 +97,7 @@ var tableau = [
                 points: 4
             },
             {
-                step: 18,
+                step: 17,
                 act: "fin"
             }
         ],

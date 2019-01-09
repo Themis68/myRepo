@@ -55,10 +55,12 @@ var mesActions = {
     },
 
     fin : function (indice) {
+        // zone à afficher
         var conseil = document.getElementById("zConseiller");
         conseil.setAttribute("style","visibility:visible;");
-        let text =  '<p>' + ((videoNbPoint / videoMaxPoint) > 0,5 ? 'BRAVO vous avez résussi à obtenir plus de la moitié des points' : 'Bien joué mais il faut faire encore des efforts pour devenir arbitre<br><br>');
-        text +=  'N\hésite pas à ré-essyer</span></p>';
+        // préparation message
+        let text =  '<p>' + ((videoNbPoint / videoMaxPoint) > 0.5 ? 'BRAVO tu as à obtenu plus de la moitié des points' : 'Je suis ûr que tu peux faire mieux') + '<br><br>';
+        text +=  'N\hésite pas à essayer avec d\'autres vidéos</p>';
         document.getElementById("rep").innerHTML = text;
 
     }
@@ -95,8 +97,8 @@ function mesReponses(indice) {
     // gestion particulière de la zone du conseiller
     var conseil = document.getElementById("zConseiller");
     conseil.setAttribute("style","visibility:visible;");
-    let text =  '<p>' + (maRep === repOk ? 'BONNE REPONSE' : 'MAUVAISE REPONSE') + '<br><br>';
-    text +=  '<span ' + (maRep === repOk ? 'class="gagne">Vous avez gagné ' + actions[indice].points + ' points' : 'class="perdu">Dommage. ce sera pour une prochaine fois') + "</span></p>";
+    let text =  '<p style="text-align:center;">' + (maRep === repOk ? 'BONNE REPONSE' : 'MAUVAISE REPONSE') + '<br><br>';
+    text +=  '<span ' + (maRep === repOk ? 'class="gagne">Tu as gagné <br><span style="font-size: 18pt;font-weight: bolder;">' + actions[indice].points + ' points' : 'class="perdu">Dommage. ce sera pour une prochaine fois') + "</span></span></p>";
 
     document.getElementById("rep").innerHTML = text;
 
@@ -128,7 +130,7 @@ function mesReponses(indice) {
 
 // récupère le bouton radio sélectionné par l'utilisateur
 function returnSelRadio(nbEl){
-	var valeur = '';
+//	var valeur = '';
 	for (i=1; i <= nbEl; i++) {
 		if (document.getElementById("R" + i).checked) {
 			return i;
@@ -140,7 +142,7 @@ function continuer(){
     showItem("echange", false);
     showItem("zSuite", false); 
     encadreVideo(false);
-    var conseil = document.getElementById("zConseiller");
+    let conseil = document.getElementById("zConseiller");
     conseil.setAttribute("style","visibility:hidden;");
     document._video.play(); // on reprend la lecture de la vidéo
 }

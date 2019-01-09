@@ -49,6 +49,10 @@ var seqUsed = -1;	// valeur de l'étape de la séquence qui a été traitée
 document.addEventListener("DOMContentLoaded", init, false);	// lance l'écoute des évènements
 
 function init() {
+	// zone conseiller
+	let conseil = document.getElementById("zConseiller");
+	conseil.setAttribute("style","visibility:hidden;");
+	// zone vidéos
 	document._video = document.getElementById("video");
 	listeVideos("videos");					// créé la barre des vidéos disponibles
 }
@@ -255,6 +259,7 @@ function switchVideo(n) {
 		showItem("zPropositions", false);
 		showItem("zLoi", false);
 		showItem("zSuite", false);
+		encadreVideo(false);
 	}
 }
 
