@@ -78,7 +78,7 @@ var tableau = [
                 points: 8
             },
             {
-                step: 18,
+                step: 17,
                 act: "question",
                 libelle: "Que décidez-vous ? ",
                 attributs: ["Je ne siffle rien", "Je siffle un coup franc", "Je siffle un coup franc et donne un carton jaune"],
@@ -88,7 +88,7 @@ var tableau = [
                 points: 4
             },
             {
-                step: 19,
+                step: 18,
                 act: "fin"
             }
         ],

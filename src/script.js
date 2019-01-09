@@ -208,6 +208,8 @@ function init_barre() {
 	let questDo = document.getElementById("questDo");
 	if(stepDone !== nbQuest ) {
 		document.getElementById("nbQuest").innerHTML = nbQuest;
+	} else {
+		document.getElementById("nbQuest").innerHTML = '';
 	}
 	questDo.setAttribute("style","width:"+ (100 - step) +"%");
 }
