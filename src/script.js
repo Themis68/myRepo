@@ -49,12 +49,28 @@ var seqUsed = -1;	// valeur de l'étape de la séquence qui a été traitée
 document.addEventListener("DOMContentLoaded", init, false);	// lance l'écoute des évènements
 
 function init() {
-	// zone conseiller
-	let conseil = document.getElementById("zConseiller");
-	conseil.setAttribute("style","visibility:hidden;");
-	// zone vidéos
+	showZone("zConseiller", false);
 	document._video = document.getElementById("video");
 	listeVideos("videos");					// créé la barre des vidéos disponibles
+}
+
+function showZone(id, state) {
+	const myState = (state === true ? "visible" : "hidden");
+	const el = document.getElementById(id);
+	el.setAttribute("style","visibility:"+ myState +";");
+}
+
+function showItem(id, state) {
+	let myState = (state === true ? "show" : "hide");
+	const el = document.getElementById(id);
+	switch (myState) {
+		case "show":
+		(el.classList.contains("hide") ? el.classList.replace("hide", "show") : el.classList.add("show"));
+		break;
+
+		default:
+		(el.classList.contains("show") ? el.classList.replace("show", "hide") : el.classList.add("hide"));	
+	}
 }
 
 function listeVideos(id) {
@@ -260,20 +276,7 @@ function switchVideo(n) {
 		showItem("zLoi", false);
 		showItem("zSuite", false);
 		encadreVideo(false);
-	}
-}
-
-function showItem(id, state) {
-	console.log(id, state);
-	let myState = (state === true ? "show" : "hide");
-	const el = document.getElementById(id);
-	switch (myState) {
-		case "show":
-		(el.classList.contains("hide") ? el.classList.replace("hide", "show") : el.classList.add("show"));
-		break;
-
-		default:
-		(el.classList.contains("show") ? el.classList.replace("show", "hide") : el.classList.add("hide"));	
+		showZone("zConseiller", false);
 	}
 }
 

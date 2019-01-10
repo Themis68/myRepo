@@ -1,12 +1,10 @@
 // tableau de fonctions pour traiter les arrêts deans la vidéo
 var mesActions = { 
     question : function (indice) {
-        console.log(actions[indice]);
         document._video.pause();    // on pause la vidéo
         // préparation des actions
         var monJob = actions[indice];
 
-        // on prépare dMessage
         document.getElementById("message").innerHTML = monJob.libelle;
         // on construct dPropositions
         var maQuestion = document.getElementById("zPropositions");
@@ -54,15 +52,18 @@ var mesActions = {
         encadreVideo(true);
     },
 
+    allerA: function (indice) {
+        getVideo().currentTime = actions[indice].indice;
+        document._video.play(); // on reprend la lecture de la vidéo
+    },
+
     fin : function (indice) {
         // zone à afficher
-        var conseil = document.getElementById("zConseiller");
-        conseil.setAttribute("style","visibility:visible;");
+        showZone("zConseiller", true);
         // préparation message
-        let text =  '<p>' + ((videoNbPoint / videoMaxPoint) > 0.5 ? 'BRAVO tu as à obtenu plus de la moitié des points' : 'Je suis ûr que tu peux faire mieux') + '<br><br>';
+        let text =  '<p>' + ((videoNbPoint / videoMaxPoint) > 0.5 ? 'BRAVO tu as à obtenu plus de la moitié des points' : 'Bien joué. Je suis sûr que tu peux faire mieux') + '<br><br>';
         text +=  'N\hésite pas à essayer avec d\'autres vidéos</p>';
         document.getElementById("rep").innerHTML = text;
-
     }
 }
 
@@ -94,9 +95,7 @@ function mesReponses(indice) {
     document.getElementById("message").innerHTML +=  "<br>";
 
     // POP-UP
-    // gestion particulière de la zone du conseiller
-    var conseil = document.getElementById("zConseiller");
-    conseil.setAttribute("style","visibility:visible;");
+
     let text =  '<p style="text-align:center;">' + (maRep === repOk ? 'BONNE REPONSE' : 'MAUVAISE REPONSE') + '<br><br>';
     text +=  '<span ' + (maRep === repOk ? 'class="gagne">Tu as gagné <br><span style="font-size: 18pt;font-weight: bolder;">' + actions[indice].points + ' points' : 'class="perdu">Dommage. ce sera pour une prochaine fois') + "</span></span></p>";
 
@@ -105,6 +104,7 @@ function mesReponses(indice) {
     showItem("zPropositions", false);
     showItem("btnRepondre", false);
     showItem("btnContinuer", true);
+    showZone("zConseiller", true);
 
     // retirer les elements de la réponse du DOM
     // sinon on les aura à la prochaine question
@@ -142,7 +142,8 @@ function continuer(){
     showItem("echange", false);
     showItem("zSuite", false); 
     encadreVideo(false);
-    let conseil = document.getElementById("zConseiller");
-    conseil.setAttribute("style","visibility:hidden;");
+   // let conseil = document.getElementById("zConseiller");
+    //conseil.setAttribute("style","visibility:hidden;");
+    showZone("zConseiller", false);
     document._video.play(); // on reprend la lecture de la vidéo
 }

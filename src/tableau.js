@@ -29,6 +29,11 @@ var tableau = [
                 points: 3
             },
             {
+                step: 45,
+                act: "allerA",
+                indice: 50
+            },
+            {
                 step: 58,
                 act: "question",
                 libelle: "L'arbitre vient de siffler une faute. Pour quelle raison ? ",
