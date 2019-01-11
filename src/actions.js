@@ -61,7 +61,7 @@ var mesActions = {
         // zone à afficher
         showZone("zConseiller", true);
         // préparation message
-        let text =  '<p>' + ((videoNbPoint / videoMaxPoint) > 0.5 ? 'BRAVO tu as à obtenu plus de la moitié des points' : 'Bien joué. Je suis sûr que tu peux faire mieux') + '<br><br>';
+        let text =  '<p>' + ((videoNbPoint / nbQuests[0].points) > 0.5 ? 'BRAVO tu as à obtenu plus de la moitié des points' : 'Bien joué. Je suis sûr que tu peux faire mieux') + '<br><br>';
         text +=  'N\hésite pas à essayer avec d\'autres vidéos</p>';
         document.getElementById("rep").innerHTML = text;
     }
@@ -119,7 +119,7 @@ function mesReponses(indice) {
 
     // MAJ score
     videoNbPoint += (maRep === repOk ? actions[indice].points : 0);
-    document.getElementById("scoreBoard").innerHTML = videoNbPoint.toString() + ' / ' + videoMaxPoint.toString();
+    document.getElementById("scoreBoard").innerHTML = videoNbPoint.toString() + ' / ' + (nbQuests[0].points).toString();
 	
 
     // MAJ Barre progression
