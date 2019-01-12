@@ -176,11 +176,29 @@ function capture(event) {
 			seqUsed = seq;	// évite de jouer deux fois le traitement
 			var asWork = arrayAssoSearch(actions, seq);	// renvoi l'indice de l'action si elle existe pour cette séquence
 
-			// on teste si cela correspond au niveau demandé
-			if (asWork > -1 && actions[asWork].niveau === nbQuests[niveauQuest].niv) {
+			// on teste si on doit jouer ou pas
+			if (asWork > -1) {
+				switch(actions[asWork].act) {
+					case "question":
+					if (actions[asWork].niveau === nbQuests[niveauQuest].niv) {
+						mesActions[actions[asWork].act](asWork);	// on appelle le traitement nécessaire
+					}
+					break;
+
+					case "information":
+						mesActions[actions[asWork].act](asWork);	// on appelle le traitement nécessaire
+					break;
+
+					case "fin":
+						mesActions[actions[asWork].act](asWork);	// on appelle le traitement nécessaire
+					break;
+				}
+			}
+
+			/*if (asWork > -1 && actions[asWork].niveau === nbQuests[niveauQuest].niv) {
 				// il y a une action				
 				mesActions[actions[asWork].act](asWork);	// on appelle le traitement nécessaire
-			}			
+			}*/	
 		}
 		media_events["currentTime"] = seq;	// MAJ de la valeur dans le tableau (pour info)
 	}
@@ -256,9 +274,9 @@ function scanQuestion() {
 				nbQuests[niv].points+= actions[ind].points;
 				break;
 			
-			case "information":
+			/*case "information":
 				document.getElementById("description").innerHTML = actions[ind].libelle;
-				break;
+				break;*/
 		}
 	}
 }
@@ -278,6 +296,8 @@ function switchVideo(n) {
 		var mp4 = document.getElementById("mp4");
 		document._video.setAttribute("poster", video[0].poster);
 		mp4.setAttribute("src", "videos/" + video[0].fichier);
+		document.getElementById("description").innerHTML = video[0].description;
+
 		document._video.load();
 
 		//
@@ -301,7 +321,22 @@ function switchVideo(n) {
 		setInterval(update_properties, 200);	// lance le process de MAJ des évènements	
 
 		// Niveau
-		//document.getElementById("btnLevel").value = tableau[n-1][4];
+		let myB = null;
+		switch (niveauQuest) {
+			case 1:
+			myB = document.getElementById("btnLevel1");
+			myB.setAttribute("style", "background-color:limegreen");
+			myB = document.getElementById("btnLevel2");
+			myB.setAttribute("style", "background-color:buttonface");
+			break;
+	
+			case 2:
+			myB = document.getElementById("btnLevel2");
+			myB.setAttribute("style", "background-color:limegreen");
+			myB = document.getElementById("btnLevel1");
+			myB.setAttribute("style", "background-color:buttonface");
+			break;
+		}
 		
 		showItem("fondVideo", false);
 		showItem("videoOn", true);

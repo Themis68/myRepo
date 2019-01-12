@@ -1,6 +1,7 @@
 // tableau de fonctions pour traiter les arrêts deans la vidéo
 var mesActions = { 
     question : function (indice) {
+        encadreVideo(false);
         document._video.pause();    // on pause la vidéo
         // préparation des actions
         var monJob = actions[indice];
@@ -44,20 +45,26 @@ var mesActions = {
     },
 
     information : function (indice) {
+        showItem("echange", true);
         showItem("zPropositions", false);
         showItem("zLoi", false);
         showItem("zSuite", false);
         document.getElementById("quest").innerHTML = (actions[indice].act).toUpperCase();
         document.getElementById("message").innerHTML = actions[indice].libelle;
+        showItem("message", true);
+        showItem("btnContinuer", false);
+        showItem("btnRepondre", false);
         encadreVideo(true);
     },
 
     allerA: function (indice) {
+        encadreVideo(false);
         getVideo().currentTime = actions[indice].indice;
         document._video.play(); // on reprend la lecture de la vidéo
     },
 
     fin : function (indice) {
+        encadreVideo(false);
         // zone à afficher
         showZone("zConseiller", true);
         // préparation message
@@ -128,6 +135,7 @@ function mesReponses(indice) {
 
 function changeLevel(level) {
     niveauQuest = level;
+    stepDone = 0;
     switchVideo(idVideo);
 }
 
