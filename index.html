@@ -15,7 +15,6 @@
   <link href="./src/style.css" rel="stylesheet" type="text/css">
 </head>
 
-<!-- style="visibility:hidden;" -->
 <body background="images/stade.jpg">
   <div id="zConseiller" >
     <div id="pict"><img id="conseiller" /></div>
@@ -54,7 +53,9 @@
       <div id="goulotte"></div>
       <div id="board" class="hide">
         <div class="zBoard">
-          <input id="btnLevel" type="button" value="">
+          <!--<input id="btnLevel" type="button" value="">-->
+          <input id="btnLevel1" type="button" value="DEBUTANT" onclick="changeLevel(1);">
+          <input id="btnLevel2" type="button" value="CONFIRME" onclick="changeLevel(2);">
         </div>
         <div class="zBoard" id="score">
           <p id="textBoard">SCORE</p>

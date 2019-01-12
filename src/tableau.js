@@ -51,8 +51,7 @@ var tableau = [
                 step: 60,
                 act: "fin"
             }
-        ],
-        "ESSAI1"
+        ]
     ],
     [
         2,
@@ -111,8 +110,7 @@ var tableau = [
                 step: 17,
                 act: "fin"
             }
-        ],
-        "ESSAI2"
+        ]
     ],
     [
         3,
@@ -171,8 +169,7 @@ var tableau = [
                 step: 17,
                 act: "fin"
             }
-        ],
-        "DEBUTANT n°1"
+        ]
     ],
     [
         4,
@@ -220,10 +217,6 @@ var tableau = [
                 step: 17,
                 act: "fin"
             }
-        ],
-        "CONFIRME n°2"
+        ]
     ]
-];
-
-//var video = tableau[0]; // initialisation
-//var actions = video[3]; // initialisation
+]

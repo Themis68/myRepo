@@ -32,6 +32,8 @@ var myURL  = myURLcomplete.substring( 0 ,myURLcomplete.lastIndexOf( "/" ) );
 var videoNbPoint = 0;		// nb points en cours
 var stepBarre = 0;			// % de progression pour une question
 var stepDone = 0;			// % de progression effectué
+var niveauQuest = 1		//niveau par défaut au démarrage
+var idVideo = null;		// vidéo en cours
 //var nbQuest = 0;			// nombre de question sur la vidéo de niveau
 var nbQuests = [
 	{niv: "COURANT", nb: 0, points: 0},
@@ -269,46 +271,36 @@ function switchVideo(n) {
 		n = 0;
 		return false;
 	} else {
+		// MAJ videos
+		idVideo = n;		// maj de l'indice de la vidéo en cours
+		// affectation video à la zone
 		var mp4 = document.getElementById("mp4");
-		//var parent = mp4.parentNode;
-
-		// variables de la vidéo
-		video = tableau[n-1];    // recup données de la vidéo
-		actions = video[3];    // recup tableau des actions
-		niveauQuest = 1;	// niveau des questions demandé par défaut
-
-		console.log(nbQuests);
-		scanQuestion();	// scanne des actions du niveau
-
-		nbQuests[0].nb = nbQuests[niveauQuest].nb;
-		nbQuests[0].points = nbQuests[niveauQuest].points;
-
-		console.log(nbQuests);
-
-		//nbQuest = nbQuests[0].nb;		// nb questions DEBUTANT
-		//videoMaxPoint = nbQuests[0].points;	// nb points max
-
-		stepBarre = Math.trunc(100 / nbQuests[0].nb);		// valeur pour une tranche de progression
-		init_barre();	
-
-
 		document._video.setAttribute("poster", tableau[n-1][2]);
 		mp4.setAttribute("src", "videos/" + tableau[n-1][1] + ".mp4");
 		document._video.load();
+		video = tableau[n-1];    // recup données de la vidéo
+		actions = video[3];    // recup tableau des actions (position 3)
+
+		// travail sur les actions et l'IHM associée
+		scanQuestion();		// scanne des actions du niveau et met à jour le tableau des niveaux
+		// le niveau est pris en charge par la fonction appelante changeLevel et la fonction INIT pour le premier tour
+		nbQuests[0].nb = nbQuests[niveauQuest].nb;
+    	nbQuests[0].points = nbQuests[niveauQuest].points;
+		// barre de progression
+		stepBarre = Math.trunc(100 / nbQuests[0].nb);		// valeur pour une tranche de progression
+		init_barre();
+		// Score
+		videoNbPoint = 0;						// nb points en cours
+		document.getElementById("scoreBoard").innerHTML = videoNbPoint.toString() + ' / ' + (nbQuests[0].points).toString();
+		// titre cartouche message
+		document.getElementById("quest").innerHTML = "INFORMATION";
 
 		listeEvents("events", media_events);	// créé le tableau des évènements vidéos
 		setInterval(update_properties, 200);	// lance le process de MAJ des évènements	
 
 		// Niveau
-		document.getElementById("btnLevel").value = tableau[n-1][4];
-
-		// Score
-		//videoMaxPoint = tableau[n-1][5];		// nb points maximum
-		videoNbPoint = 0;						// nb points en cours
-		document.getElementById("scoreBoard").innerHTML = videoNbPoint.toString() + ' / ' + (nbQuests[0].points).toString();
-
-		document.getElementById("quest").innerHTML = "INFORMATION";
-
+		//document.getElementById("btnLevel").value = tableau[n-1][4];
+		
 		showItem("fondVideo", false);
 		showItem("videoOn", true);
 		showItem("goulotte", true);
