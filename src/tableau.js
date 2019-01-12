@@ -1,8 +1,11 @@
 var tableau = [
     [
-        1,
-        "MAH00063",
-        "http://media.w3.org/2010/05/sintel/poster.png",
+        {
+            id: 1,
+            titre: "Metz/CBAF",
+            poster: "http://media.w3.org/2010/05/sintel/poster.png",
+            fichier: "MAH00063.mp4"
+        },
         [   {
                 step: 1,
                 act: "information",
@@ -54,9 +57,12 @@ var tableau = [
         ]
     ],
     [
-        2,
-        "extrait_match",
-        "http://media.w3.org/2010/05/bunny/poster.png",
+        {
+            id: 2,
+            titre: "EM/Verchers1",
+            poster: "http://media.w3.org/2010/05/bunny/poster.png",
+            fichier: "EM_Verchers.mp4"
+        },
         [   {
                 step: 1,
                 act: "information",
@@ -113,9 +119,12 @@ var tableau = [
         ]
     ],
     [
-        3,
-        "EM_Verchers",
-        "http://media.w3.org/2010/05/bunny/poster.png",
+        {
+            id: 3,
+            titre: "EM/Verchers2",
+            poster: "http://media.w3.org/2010/05/bunny/poster.png",
+            fichier: "EM_Verchers.mp4"
+        },
         [   {
                 step: 1,
                 act: "information",
@@ -172,9 +181,12 @@ var tableau = [
         ]
     ],
     [
-        4,
-        "EM_Verchers",
-        "http://media.w3.org/2010/05/bunny/poster.png",
+        {
+            id: 4,
+            titre: "EM/Verchers3",
+            poster: "http://media.w3.org/2010/05/bunny/poster.png",
+            fichier: "EM_Verchers.mp4"
+        },
         [   {
                 step: 1,
                 act: "information",

@@ -87,9 +87,9 @@ function listeVideos(id) {
 	for (i=0; i < arrayAssoSize(tableau); i++) {
 		var td = document.createElement("td");
 		var btn = document.createElement("button");
-		btn.textContent = tableau[i][4];
+		btn.textContent = tableau[i][0].titre;
 		btn.setAttribute("name", i);
-		btn.setAttribute("onclick", 'switchVideo('+ tableau[i][0]+');');
+		btn.setAttribute("onclick", 'switchVideo('+ tableau[i][0].id +');');
 		td.appendChild(btn);
 		tr.appendChild(td);		
 	}
@@ -273,15 +273,17 @@ function switchVideo(n) {
 	} else {
 		// MAJ videos
 		idVideo = n;		// maj de l'indice de la vidéo en cours
+		video = tableau[n-1];    // recup données de la vidéo
 		// affectation video à la zone
 		var mp4 = document.getElementById("mp4");
-		document._video.setAttribute("poster", tableau[n-1][2]);
-		mp4.setAttribute("src", "videos/" + tableau[n-1][1] + ".mp4");
+		document._video.setAttribute("poster", video[0].poster);
+		mp4.setAttribute("src", "videos/" + video[0].fichier);
 		document._video.load();
-		video = tableau[n-1];    // recup données de la vidéo
-		actions = video[3];    // recup tableau des actions (position 3)
 
+		//
 		// travail sur les actions et l'IHM associée
+		//
+		actions = video[1];    // recup tableau des actions (position 3)
 		scanQuestion();		// scanne des actions du niveau et met à jour le tableau des niveaux
 		// le niveau est pris en charge par la fonction appelante changeLevel et la fonction INIT pour le premier tour
 		nbQuests[0].nb = nbQuests[niveauQuest].nb;
