@@ -169,6 +169,14 @@ video {
   text-align: center;
 }
 
+#description {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  color: white;
+  text-align: left;
+  padding: 5px;
+}
+
 .videoNonEncadre {
   border: 1px solid black;
 }

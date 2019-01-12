@@ -28,12 +28,16 @@ var myURLcomplete = document.location.href;
 var myURL  = myURLcomplete.substring( 0 ,myURLcomplete.lastIndexOf( "/" ) );
 
 // variables globales
-var videoMaxPoint = 0;		// nb points maximum
+//var videoMaxPoint = 0;		// nb points maximum
 var videoNbPoint = 0;		// nb points en cours
 var stepBarre = 0;			// % de progression pour une question
 var stepDone = 0;			// % de progression effectué
-var nbQuest = 0;			// nombre de question sur la vidéo
-
+//var nbQuest = 0;			// nombre de question sur la vidéo de niveau
+var nbQuests = [
+	{niv: "COURANT", nb: 0, points: 0},
+	{niv: "DEBUTANT", nb: 0, points: 0},
+	{niv: "CONFIRME", nb: 0, points: 0}
+];		// le niveau 0 est le niveau en cours
 /* image du conseiller 
 a utiliser après pour avoir une image dynamique
 */
@@ -49,12 +53,28 @@ var seqUsed = -1;	// valeur de l'étape de la séquence qui a été traitée
 document.addEventListener("DOMContentLoaded", init, false);	// lance l'écoute des évènements
 
 function init() {
-	// zone conseiller
-	let conseil = document.getElementById("zConseiller");
-	conseil.setAttribute("style","visibility:hidden;");
-	// zone vidéos
+	showZone("zConseiller", false);
 	document._video = document.getElementById("video");
 	listeVideos("videos");					// créé la barre des vidéos disponibles
+}
+
+function showZone(id, state) {
+	const myState = (state === true ? "visible" : "hidden");
+	const el = document.getElementById(id);
+	el.setAttribute("style","visibility:"+ myState +";");
+}
+
+function showItem(id, state) {
+	let myState = (state === true ? "show" : "hide");
+	const el = document.getElementById(id);
+	switch (myState) {
+		case "show":
+		(el.classList.contains("hide") ? el.classList.replace("hide", "show") : el.classList.add("show"));
+		break;
+
+		default:
+		(el.classList.contains("show") ? el.classList.replace("show", "hide") : el.classList.add("hide"));	
+	}
 }
 
 function listeVideos(id) {
@@ -65,7 +85,7 @@ function listeVideos(id) {
 	for (i=0; i < arrayAssoSize(tableau); i++) {
 		var td = document.createElement("td");
 		var btn = document.createElement("button");
-		btn.textContent = tableau[i][1];
+		btn.textContent = tableau[i][4];
 		btn.setAttribute("name", i);
 		btn.setAttribute("onclick", 'switchVideo('+ tableau[i][0]+');');
 		td.appendChild(btn);
@@ -114,7 +134,6 @@ function listeEvents(id, arrayEventDef) {
 
 function init_properties(id, arrayPropDef, arrayProp) {
 	for (key in arrayProp) {
-		console.log('key', key);
 		document._video.addEventListener(key, capture2, false);
 	}
 	
@@ -154,7 +173,9 @@ function capture(event) {
 		if (seq !== seqUsed) {			
 			seqUsed = seq;	// évite de jouer deux fois le traitement
 			var asWork = arrayAssoSearch(actions, seq);	// renvoi l'indice de l'action si elle existe pour cette séquence
-			if (asWork > -1) {
+
+			// on teste si cela correspond au niveau demandé
+			if (asWork > -1 && actions[asWork].niveau === nbQuests[niveauQuest].niv) {
 				// il y a une action				
 				mesActions[actions[asWork].act](asWork);	// on appelle le traitement nécessaire
 			}			
@@ -210,19 +231,38 @@ function init_barre() {
 		document.getElementById("curStep").innerHTML = stepDone;
 	}
 	let questDo = document.getElementById("questDo");
-	if(stepDone !== nbQuest ) {
-		document.getElementById("nbQuest").innerHTML = nbQuest;
+	if(stepDone !== nbQuests[0].nb ) {
+		document.getElementById("nbQuest").innerHTML = nbQuests[0].nb;
 	} else {
 		document.getElementById("nbQuest").innerHTML = '';
 	}
 	questDo.setAttribute("style","width:"+ (100 - step) +"%");
 }
 
+function scanQuestion() {
+	// init
+	nbQuests[1].nb = 0;
+	nbQuests[2].nb = 0;
+	nbQuests[1].points = 0;
+	nbQuests[2].points = 0;
+	// scanne des actions
+	for (ind = 0; ind < arrayAssoSize(actions); ind++) {
+		switch(actions[ind].act) {
+			case  "question": 
+				let niv = (actions[ind].niveau === "DEBUTANT" ? 1: actions[ind].niveau === "CONFIRME" ? 2 : 0);
+				nbQuests[niv].nb++;
+				nbQuests[niv].points+= actions[ind].points;
+				break;
+			
+			case "information":
+				document.getElementById("description").innerHTML = actions[ind].libelle;
+				break;
+		}
+	}
+}
+
 function switchVideo(n) {
 	// affectation de la nouvelle vidéo et des attributs liés
-	nbQuest =  tableau[n-1][6];
-	stepBarre = Math.trunc(100 / nbQuest);		// valeur pour une tranche de progression
-	init_barre();				// on passe l'état de progression
 	
 	if (n > arrayAssoSize(tableau)) {
 		// vérifie si l'index de la vidéo existe dans le fichier tableau.js
@@ -230,7 +270,28 @@ function switchVideo(n) {
 		return false;
 	} else {
 		var mp4 = document.getElementById("mp4");
-		var parent = mp4.parentNode;
+		//var parent = mp4.parentNode;
+
+		// variables de la vidéo
+		video = tableau[n-1];    // recup données de la vidéo
+		actions = video[3];    // recup tableau des actions
+		niveauQuest = 1;	// niveau des questions demandé par défaut
+
+		console.log(nbQuests);
+		scanQuestion();	// scanne des actions du niveau
+
+		nbQuests[0].nb = nbQuests[niveauQuest].nb;
+		nbQuests[0].points = nbQuests[niveauQuest].points;
+
+		console.log(nbQuests);
+
+		//nbQuest = nbQuests[0].nb;		// nb questions DEBUTANT
+		//videoMaxPoint = nbQuests[0].points;	// nb points max
+
+		stepBarre = Math.trunc(100 / nbQuests[0].nb);		// valeur pour une tranche de progression
+		init_barre();	
+
+
 		document._video.setAttribute("poster", tableau[n-1][2]);
 		mp4.setAttribute("src", "videos/" + tableau[n-1][1] + ".mp4");
 		document._video.load();
@@ -239,16 +300,12 @@ function switchVideo(n) {
 		setInterval(update_properties, 200);	// lance le process de MAJ des évènements	
 
 		// Niveau
-		document.getElementById("btnLevel").value = "NIVEAU " + tableau[n-1][4];
+		document.getElementById("btnLevel").value = tableau[n-1][4];
 
 		// Score
-		videoMaxPoint = tableau[n-1][5];		// nb points maximum
+		//videoMaxPoint = tableau[n-1][5];		// nb points maximum
 		videoNbPoint = 0;						// nb points en cours
-		document.getElementById("scoreBoard").innerHTML = videoNbPoint.toString() + ' / ' + videoMaxPoint.toString();
-		
-		// ré-init du tableau
-		video = tableau[n-1];    // initialisation de la vidéo
-		actions = video[3];    // initialisation des actions
+		document.getElementById("scoreBoard").innerHTML = videoNbPoint.toString() + ' / ' + (nbQuests[0].points).toString();
 
 		document.getElementById("quest").innerHTML = "INFORMATION";
 
@@ -260,20 +317,7 @@ function switchVideo(n) {
 		showItem("zLoi", false);
 		showItem("zSuite", false);
 		encadreVideo(false);
-	}
-}
-
-function showItem(id, state) {
-	console.log(id, state);
-	let myState = (state === true ? "show" : "hide");
-	const el = document.getElementById(id);
-	switch (myState) {
-		case "show":
-		(el.classList.contains("hide") ? el.classList.replace("hide", "show") : el.classList.add("show"));
-		break;
-
-		default:
-		(el.classList.contains("show") ? el.classList.replace("show", "hide") : el.classList.add("hide"));	
+		showZone("zConseiller", false);
 	}
 }
 
