@@ -1,6 +1,7 @@
 // tableau de fonctions pour traiter les arrêts deans la vidéo
 var mesActions = { 
     question : function (indice) {
+        encadreVideo(false);
         document._video.pause();    // on pause la vidéo
         // préparation des actions
         var monJob = actions[indice];
@@ -44,24 +45,30 @@ var mesActions = {
     },
 
     information : function (indice) {
+        showItem("echange", true);
         showItem("zPropositions", false);
         showItem("zLoi", false);
         showItem("zSuite", false);
         document.getElementById("quest").innerHTML = (actions[indice].act).toUpperCase();
         document.getElementById("message").innerHTML = actions[indice].libelle;
+        showItem("message", true);
+        showItem("btnContinuer", false);
+        showItem("btnRepondre", false);
         encadreVideo(true);
     },
 
     allerA: function (indice) {
+        encadreVideo(false);
         getVideo().currentTime = actions[indice].indice;
         document._video.play(); // on reprend la lecture de la vidéo
     },
 
     fin : function (indice) {
+        encadreVideo(false);
         // zone à afficher
         showZone("zConseiller", true);
         // préparation message
-        let text =  '<p>' + ((videoNbPoint / nbQuests[0].points) > 0.5 ? 'BRAVO tu as à obtenu plus de la moitié des points' : 'Bien joué. Je suis sûr que tu peux faire mieux') + '<br><br>';
+        let text =  '<p>' + ((videoNbPoint / nbQuests[0].points) > 0.5 ? 'BRAVO tu as obtenu plus de la moitié des points' : 'Bien joué. Je suis sûr que tu peux faire mieux') + '<br><br>';
         text +=  'N\hésite pas à essayer avec d\'autres vidéos</p>';
         document.getElementById("rep").innerHTML = text;
     }
@@ -95,12 +102,20 @@ function mesReponses(indice) {
     document.getElementById("message").innerHTML +=  "<br>";
 
     // POP-UP
-
     let text =  '<p style="text-align:center;">' + (maRep === repOk ? 'BONNE REPONSE' : 'MAUVAISE REPONSE') + '<br><br>';
     text +=  '<span ' + (maRep === repOk ? 'class="gagne">Tu as gagné <br><span style="font-size: 18pt;font-weight: bolder;">' + actions[indice].points + ' points' : 'class="perdu">Dommage. ce sera pour une prochaine fois') + "</span></span></p>";
-
     document.getElementById("rep").innerHTML = text;
 
+    // MAJ score
+    videoNbPoint += (maRep === repOk ? actions[indice].points : 0);
+    document.getElementById("scoreBoard").innerHTML = videoNbPoint.toString() + ' / ' + (nbQuests[0].points).toString();
+
+    // MAJ Barre progression
+    stepDone++;
+    console.log(stepDone);
+    init_barre();
+
+    // MAJ interface
     showItem("zPropositions", false);
     showItem("btnRepondre", false);
     showItem("btnContinuer", true);
@@ -116,21 +131,16 @@ function mesReponses(indice) {
         var lig = document.getElementById("br"+i);
         lig.parentNode.removeChild(lig);
     }
+}
 
-    // MAJ score
-    videoNbPoint += (maRep === repOk ? actions[indice].points : 0);
-    document.getElementById("scoreBoard").innerHTML = videoNbPoint.toString() + ' / ' + (nbQuests[0].points).toString();
-	
-
-    // MAJ Barre progression
-    stepDone++;
-    console.log(stepDone);
-    init_barre();
+function changeLevel(level) {
+    niveauQuest = level;
+    stepDone = 0;
+    switchVideo(idVideo);
 }
 
 // récupère le bouton radio sélectionné par l'utilisateur
 function returnSelRadio(nbEl){
-//	var valeur = '';
 	for (i=1; i <= nbEl; i++) {
 		if (document.getElementById("R" + i).checked) {
 			return i;
@@ -142,8 +152,6 @@ function continuer(){
     showItem("echange", false);
     showItem("zSuite", false); 
     encadreVideo(false);
-   // let conseil = document.getElementById("zConseiller");
-    //conseil.setAttribute("style","visibility:hidden;");
     showZone("zConseiller", false);
     document._video.play(); // on reprend la lecture de la vidéo
 }

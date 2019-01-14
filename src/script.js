@@ -32,6 +32,8 @@ var myURL  = myURLcomplete.substring( 0 ,myURLcomplete.lastIndexOf( "/" ) );
 var videoNbPoint = 0;		// nb points en cours
 var stepBarre = 0;			// % de progression pour une question
 var stepDone = 0;			// % de progression effectué
+var niveauQuest = 1		//niveau par défaut au démarrage
+var idVideo = null;		// vidéo en cours
 //var nbQuest = 0;			// nombre de question sur la vidéo de niveau
 var nbQuests = [
 	{niv: "COURANT", nb: 0, points: 0},
@@ -85,9 +87,9 @@ function listeVideos(id) {
 	for (i=0; i < arrayAssoSize(tableau); i++) {
 		var td = document.createElement("td");
 		var btn = document.createElement("button");
-		btn.textContent = tableau[i][4];
+		btn.textContent = tableau[i][0].titre;
 		btn.setAttribute("name", i);
-		btn.setAttribute("onclick", 'switchVideo('+ tableau[i][0]+');');
+		btn.setAttribute("onclick", 'switchVideo('+ tableau[i][0].id +');');
 		td.appendChild(btn);
 		tr.appendChild(td);		
 	}
@@ -174,11 +176,29 @@ function capture(event) {
 			seqUsed = seq;	// évite de jouer deux fois le traitement
 			var asWork = arrayAssoSearch(actions, seq);	// renvoi l'indice de l'action si elle existe pour cette séquence
 
-			// on teste si cela correspond au niveau demandé
-			if (asWork > -1 && actions[asWork].niveau === nbQuests[niveauQuest].niv) {
+			// on teste si on doit jouer ou pas
+			if (asWork > -1) {
+				switch(actions[asWork].act) {
+					case "question":
+					if (actions[asWork].niveau === nbQuests[niveauQuest].niv) {
+						mesActions[actions[asWork].act](asWork);	// on appelle le traitement nécessaire
+					}
+					break;
+
+					case "information":
+						mesActions[actions[asWork].act](asWork);	// on appelle le traitement nécessaire
+					break;
+
+					case "fin":
+						mesActions[actions[asWork].act](asWork);	// on appelle le traitement nécessaire
+					break;
+				}
+			}
+
+			/*if (asWork > -1 && actions[asWork].niveau === nbQuests[niveauQuest].niv) {
 				// il y a une action				
 				mesActions[actions[asWork].act](asWork);	// on appelle le traitement nécessaire
-			}			
+			}*/	
 		}
 		media_events["currentTime"] = seq;	// MAJ de la valeur dans le tableau (pour info)
 	}
@@ -254,9 +274,9 @@ function scanQuestion() {
 				nbQuests[niv].points+= actions[ind].points;
 				break;
 			
-			case "information":
+			/*case "information":
 				document.getElementById("description").innerHTML = actions[ind].libelle;
-				break;
+				break;*/
 		}
 	}
 }
@@ -269,46 +289,55 @@ function switchVideo(n) {
 		n = 0;
 		return false;
 	} else {
-		var mp4 = document.getElementById("mp4");
-		//var parent = mp4.parentNode;
-
-		// variables de la vidéo
+		// MAJ videos
+		idVideo = n;		// maj de l'indice de la vidéo en cours
 		video = tableau[n-1];    // recup données de la vidéo
-		actions = video[3];    // recup tableau des actions
-		niveauQuest = 1;	// niveau des questions demandé par défaut
+		// affectation video à la zone
+		var mp4 = document.getElementById("mp4");
+		document._video.setAttribute("poster", video[0].poster);
+		mp4.setAttribute("src", "videos/" + video[0].fichier);
+		document.getElementById("description").innerHTML = video[0].description;
 
-		console.log(nbQuests);
-		scanQuestion();	// scanne des actions du niveau
-
-		nbQuests[0].nb = nbQuests[niveauQuest].nb;
-		nbQuests[0].points = nbQuests[niveauQuest].points;
-
-		console.log(nbQuests);
-
-		//nbQuest = nbQuests[0].nb;		// nb questions DEBUTANT
-		//videoMaxPoint = nbQuests[0].points;	// nb points max
-
-		stepBarre = Math.trunc(100 / nbQuests[0].nb);		// valeur pour une tranche de progression
-		init_barre();	
-
-
-		document._video.setAttribute("poster", tableau[n-1][2]);
-		mp4.setAttribute("src", "videos/" + tableau[n-1][1] + ".mp4");
 		document._video.load();
+
+		//
+		// travail sur les actions et l'IHM associée
+		//
+		actions = video[1];    // recup tableau des actions (position 3)
+		scanQuestion();		// scanne des actions du niveau et met à jour le tableau des niveaux
+		// le niveau est pris en charge par la fonction appelante changeLevel et la fonction INIT pour le premier tour
+		nbQuests[0].nb = nbQuests[niveauQuest].nb;
+    	nbQuests[0].points = nbQuests[niveauQuest].points;
+		// barre de progression
+		stepBarre = Math.trunc(100 / nbQuests[0].nb);		// valeur pour une tranche de progression
+		init_barre();
+		// Score
+		videoNbPoint = 0;						// nb points en cours
+		document.getElementById("scoreBoard").innerHTML = videoNbPoint.toString() + ' / ' + (nbQuests[0].points).toString();
+		// titre cartouche message
+		document.getElementById("quest").innerHTML = "INFORMATION";
 
 		listeEvents("events", media_events);	// créé le tableau des évènements vidéos
 		setInterval(update_properties, 200);	// lance le process de MAJ des évènements	
 
 		// Niveau
-		document.getElementById("btnLevel").value = tableau[n-1][4];
-
-		// Score
-		//videoMaxPoint = tableau[n-1][5];		// nb points maximum
-		videoNbPoint = 0;						// nb points en cours
-		document.getElementById("scoreBoard").innerHTML = videoNbPoint.toString() + ' / ' + (nbQuests[0].points).toString();
-
-		document.getElementById("quest").innerHTML = "INFORMATION";
-
+		let myB = null;
+		switch (niveauQuest) {
+			case 1:
+			myB = document.getElementById("btnLevel1");
+			myB.setAttribute("style", "background-color:limegreen");
+			myB = document.getElementById("btnLevel2");
+			myB.setAttribute("style", "background-color:buttonface");
+			break;
+	
+			case 2:
+			myB = document.getElementById("btnLevel2");
+			myB.setAttribute("style", "background-color:limegreen");
+			myB = document.getElementById("btnLevel1");
+			myB.setAttribute("style", "background-color:buttonface");
+			break;
+		}
+		
 		showItem("fondVideo", false);
 		showItem("videoOn", true);
 		showItem("goulotte", true);
