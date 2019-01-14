@@ -1,10 +1,10 @@
 // tableau de fonctions pour traiter les arrêts deans la vidéo
 var mesActions = { 
-    question : function (indice) {
+    question : function (ind) {
         encadreVideo(false);
         document._video.pause();    // on pause la vidéo
         // préparation des actions
-        var monJob = actions[indice];
+        var monJob = actions[ind];
 
         document.getElementById("message").innerHTML = monJob.libelle;
         // on construct dPropositions
@@ -32,10 +32,10 @@ var mesActions = {
         var btnRepondre = document.getElementById("btnRepondre");
         btnRepondre.onclick = function() 
         {
-          mesReponses(indice); 
+          mesReponses(ind); 
         };        
 
-        document.getElementById("quest").innerHTML = (actions[indice].act).toUpperCase();
+        document.getElementById("quest").innerHTML = (actions[ind].act).toUpperCase();
         showItem("echange", true);
         showItem("zPropositions", true);
         showItem("zLoi", false);
@@ -44,26 +44,27 @@ var mesActions = {
         showItem("btnRepondre", true);
     },
 
-    information : function (indice) {
+    information : function (ind) {
         showItem("echange", true);
         showItem("zPropositions", false);
         showItem("zLoi", false);
         showItem("zSuite", false);
-        document.getElementById("quest").innerHTML = (actions[indice].act).toUpperCase();
-        document.getElementById("message").innerHTML = actions[indice].libelle;
+        document.getElementById("quest").innerHTML = (actions[ind].act).toUpperCase();
+        document.getElementById("message").innerHTML = actions[ind].libelle;
         showItem("message", true);
         showItem("btnContinuer", false);
         showItem("btnRepondre", false);
         encadreVideo(true);
     },
 
-    allerA: function (indice) {
+    allerA: function (ind) {
+        console.log()
         encadreVideo(false);
-        getVideo().currentTime = actions[indice].indice;
+        getVideo().currentTime = actions[ind].indice;
         document._video.play(); // on reprend la lecture de la vidéo
     },
 
-    fin : function (indice) {
+    fin : function (ind) {
         encadreVideo(false);
         // zone à afficher
         showZone("zConseiller", true);

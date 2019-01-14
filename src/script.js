@@ -192,6 +192,10 @@ function capture(event) {
 					case "fin":
 						mesActions[actions[asWork].act](asWork);	// on appelle le traitement nécessaire
 					break;
+
+					case "allerA":
+						mesActions[actions[asWork].act](asWork);	// on appelle le traitement nécessaire
+					break;
 				}
 			}
 
