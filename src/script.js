@@ -44,9 +44,6 @@ var nbQuests = [
 a utiliser après pour avoir une image dynamique
 */
 function chargeImgConseiller() {	
-	//var myConseiller = document.getElementById('zMessage');
-	// afficher une image qui a pour index 1 à 4
-	//myConseiller.background = myURL + '/images/conseiller/tete'+ Math.floor(Math.random() * Math.floor(4) + 1)+'.png';
 	return myURL + '/images/conseiller/tete'+ Math.floor(Math.random() * Math.floor(4) + 1)+'.png';
 }
 
@@ -341,9 +338,14 @@ function switchVideo(n) {
 			myB.setAttribute("style", "background-color:buttonface");
 			break;
 		}
+
+		// camps
+		document.getElementById("gauche").innerHTML = video[0].gauche;
+		document.getElementById("droite").innerHTML = video[0].droite;
 		
 		showItem("fondVideo", false);
 		showItem("videoOn", true);
+		showItem("zCamp", true);
 		showItem("goulotte", true);
 		showItem("board", true);	
 		showItem("zPropositions", false);

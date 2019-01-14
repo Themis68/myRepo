@@ -96,6 +96,19 @@ div.zone {
   width:2%;
 }
 
+#gauche, #droite {
+  font-family: passion_oneregular;
+  font-size: 18pt;
+  color: white; 
+}
+
+#zCamp {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px;
+}
+
 #barre {
   background-color: chocolate;
   width: 100%;
@@ -233,6 +246,7 @@ video {
   float:left;
   border: 0px;
   margin-bottom: 8px;
+  width:100%;
 }
 
 .numQuest {

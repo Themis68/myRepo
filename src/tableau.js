@@ -5,7 +5,9 @@ var tableau = [
             titre: "Metz/CBAF",
             poster: "http://media.w3.org/2010/05/sintel/poster.png",
             fichier: "MAH00063.mp4",
-            description: "Match opposant Metz (grenat) à la Croix-Blanche Angers (Blanc) en championnat u19F"
+            description: "Match opposant Metz (grenat) à la Croix-Blanche Angers (Blanc) en championnat u19F",
+            gauche: "FC Metz (Grenat)",
+            droite: "CBAF (Blanc)"
         },
         [   
             {
@@ -58,7 +60,9 @@ var tableau = [
             titre: "EM/Herbiers1",
             poster: "http://media.w3.org/2010/05/bunny/poster.png",
             fichier: "EM_Herbiers.mp4",
-            description: "Match opposant Les Herbiers (rouge) à l'Etoile Mouzillon (Blanc) en championnat R2F"
+            description: "Match opposant Les Herbiers (rouge) à l'Etoile Mouzillon (Blanc) en championnat R2F",
+            gauche: "Les Herbiers (Rouge)",
+            droite: "Etoile Mouzillon (Blanc)"
         },
         [   
             {
@@ -175,8 +179,10 @@ var tableau = [
             id: 4,
             titre: "EM/Herbiers3",
             poster: "http://media.w3.org/2010/05/bunny/poster.png",
-            fichier: "EM_Herbiers3.mp4",
-            description: "Match opposant Les Herbiers (Rouge) à l'Etoile Mouzillon (Blanc) en championnat R2F" 
+            fichier: "EM_Herbiers.mp4",
+            description: "Match opposant Les Herbiers (Rouge) à l'Etoile Mouzillon (Blanc) en championnat R2F",
+            gauche: "Les Herbiers (Rouge)",
+            droite: "Etoile Mouzillon (Blanc)"
         },
         [   
             {
@@ -414,7 +420,9 @@ var tableau = [
             titre: "EM/Herbiers4",
             poster: "http://media.w3.org/2010/05/bunny/poster.png",
             fichier: "EM_Herbiers.mp4",
-            description: "Match opposant Les Herbiers (Rouge) à l'Etoile Mouzillon (Blanc) en championnat R2F" 
+            description: "Match opposant Les Herbiers (Rouge) à l'Etoile Mouzillon (Blanc) en championnat R2F" ,
+            gauche: "Les Herbiers (Rouge)",
+            droite: "Etoile Mouzillon (Blanc)"
         },
         [   
             {
@@ -443,6 +451,5 @@ var tableau = [
             step: 313,
             act: "fin"
         }
-
     ]
 ]
