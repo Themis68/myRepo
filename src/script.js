@@ -61,12 +61,14 @@ function init() {
 }
 
 function showZone(id, state) {
+	// gère les DIV qui ont "display:flex"
 	const myState = (state === true ? "visible" : "hidden");
 	const el = document.getElementById(id);
 	el.setAttribute("style","visibility:"+ myState +";");
 }
 
 function showItem(id, state) {
+	// gère les DIV qui ont "display:block"
 	let myState = (state === true ? "show" : "hide");
 	const el = document.getElementById(id);
 	switch (myState) {
@@ -178,7 +180,7 @@ function capture(event) {
 			if (seq < oldStep) {
 				// on recule
 				showItem("echange", false);
-    			showItem("zSuite", false); 
+    			showZone("zSuite", false); 
     			encadreVideo(false);
     			showZone("zConseiller", false);
 			} else {
@@ -359,7 +361,7 @@ function switchVideo(n) {
 		showItem("board", true);	
 		showItem("zPropositions", false);
 		showItem("zLoi", false);
-		showItem("zSuite", false);
+		showZone("zSuite", false);
 		encadreVideo(false);
 		showZone("zConseiller", false);
 	}

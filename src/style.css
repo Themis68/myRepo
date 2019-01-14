@@ -230,20 +230,28 @@ video {
   margin-top: 6px;
 }
 
-#btnLevel , #btnContinuer, #btnRepondre {
+#btnLevel , #btnContinuer, #btnRepondre, #btnReplay {
   font-family: passion_oneregular;
   font-size: 18pt;
   color: white;
   background-color: chocolate;  
 }
 
-#btnContinuer, #btnRepondre {
+#btnContinuer, #btnRepondre, #btnReplay {
   margin-bottom: 0px;
 }
 /* fin board */
 
 /*  echange  */
 #echange {
+  float:left;
+  border: 0px;
+  margin-bottom: 8px;
+  width: 100%;
+}
+
+#zSuite {
+  display: flex;
   float:left;
   border: 0px;
   margin-bottom: 8px;

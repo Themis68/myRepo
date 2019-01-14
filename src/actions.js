@@ -54,21 +54,23 @@ var mesActions = {
         showItem("echange", true);
         showItem("zPropositions", true);
         showItem("zLoi", false);
-        showItem("zSuite", true);
+        showZone("zSuite", true);
         showItem("btnContinuer", false);
         showItem("btnRepondre", true);
+        showItem("btnReplay", true);
     },
 
     information : function (ind) {
         showItem("echange", true);
         showItem("zPropositions", false);
         showItem("zLoi", false);
-        showItem("zSuite", false);
+        showZone("zSuite", false);
         document.getElementById("quest").innerHTML = (actions[ind].act).toUpperCase();
         document.getElementById("message").innerHTML = actions[ind].libelle;
         showItem("message", true);
         showItem("btnContinuer", false);
         showItem("btnRepondre", false);
+        showItem("btnReplay", false);
         encadreVideo(true);
     },
 
@@ -145,6 +147,7 @@ function mesReponses(ind) {
     // MAJ interface
     showItem("zPropositions", false);
     showItem("btnRepondre", false);
+    showItem("btnReplay", false);
     showItem("btnContinuer", true);
     showZone("zConseiller", true);
 }
@@ -166,8 +169,18 @@ function returnSelRadio(nbEl){
 
 function continuer(){
     showItem("echange", false);
-    showItem("zSuite", false); 
+    showZone("zSuite", false); 
     encadreVideo(false);
     showZone("zConseiller", false);
+    document._video.play(); // on reprend la lecture de la vidéo
+}
+
+function replay(){
+    showItem("echange", false);
+    showZone("zSuite", false); 
+    encadreVideo(false);
+    showZone("zConseiller", false);
+    encadreVideo(false);
+    getVideo().currentTime = getVideo().currentTime - 2;    // on recule de 2 secondes
     document._video.play(); // on reprend la lecture de la vidéo
 }
