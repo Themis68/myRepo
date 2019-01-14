@@ -121,6 +121,7 @@ function mesReponses(ind) {
     let text =  '<p style="text-align:center;">' + (maRep === repOk ? 'BONNE REPONSE' : 'MAUVAISE REPONSE') + '<br><br>';
     
     if (questionsFaites.indexOf(actions[ind].step) < 0) {
+        // PAS TRAITE
         // POP-UP
         text+= '<span ' + (maRep === repOk ? 'class="gagne">Tu as gagné <br><span style="font-size: 18pt;font-weight: bolder;">' + actions[ind].points + 
         ' points' : 'class="perdu">Dommage. ce sera pour une prochaine fois') + "</span></span></p>";
@@ -134,7 +135,7 @@ function mesReponses(ind) {
         init_barre();
         questionsFaites.push(actions[ind].step);
     } else {
-        // on a deja traité la question
+        // DEJA TRAITE
         text+=  '<span ' + (maRep === repOk ? 'class="gagne">Tu as déja reçu tes points' : 'class="perdu">Et pourtant tu l\'as déjà faite') + '</span></p>';
     
     }

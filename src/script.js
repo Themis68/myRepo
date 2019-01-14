@@ -24,6 +24,8 @@ media_events["timeupdate"] = 0;
 //media_events["volumechange"] = 0;
 media_events["currentTime"] = 0;
 
+var oldStep = null;	// conserve la valeur de step pour gérer le replay
+
 var myURLcomplete = document.location.href;
 var myURL  = myURLcomplete.substring( 0 ,myURLcomplete.lastIndexOf( "/" ) );
 
@@ -34,7 +36,6 @@ var stepBarre = 0;			// % de progression pour une question
 var stepDone = 0;			// % de progression effectué
 var niveauQuest = 1		//niveau par défaut au démarrage
 var idVideo = null;		// vidéo en cours
-//var nbQuest = 0;			// nombre de question sur la vidéo de niveau
 var nbQuests = [
 	{niv: "COURANT", nb: 0, points: 0},
 	{niv: "DEBUTANT", nb: 0, points: 0},
@@ -173,36 +174,46 @@ function capture(event) {
 		var seq = Math.trunc(document._video.currentTime);	// on récupère la partie entière du pointeur temps
 		if (seq !== seqUsed) {			
 			seqUsed = seq;	// évite de jouer deux fois le traitement
-			var asWork = arrayAssoSearch(actions, seq);	// renvoi l'indice de l'action si elle existe pour cette séquence
+			console.log('oldStep', oldStep, '    seq', seq);
+			if (seq < oldStep) {
+				// on recule
+				showItem("echange", false);
+    			showItem("zSuite", false); 
+    			encadreVideo(false);
+    			showZone("zConseiller", false);
+			} else {
+				var asWork = arrayAssoSearch(actions, seq);	// renvoi l'indice de l'action si elle existe pour cette séquence
 
-			// on teste si on doit jouer ou pas
-			if (asWork > -1) {
-				switch(actions[asWork].act) {
-					case "question":
-					if (actions[asWork].niveau === nbQuests[niveauQuest].niv) {
-						mesActions[actions[asWork].act](asWork);	// on appelle le traitement nécessaire
+				// on teste si on doit jouer ou pas
+				if (asWork > -1) {
+					switch(actions[asWork].act) {
+						case "question":
+						if (actions[asWork].niveau === nbQuests[niveauQuest].niv) {
+							mesActions[actions[asWork].act](asWork);	// on appelle le traitement nécessaire
+						}
+						break;
+
+						case "information":
+						if (actions[asWork].niveau === nbQuests[niveauQuest].niv) {
+							mesActions[actions[asWork].act](asWork);	// on appelle le traitement nécessaire
+						}
+						break;
+
+						case "fin":
+							mesActions[actions[asWork].act](asWork);	// on appelle le traitement nécessaire
+						break;
+
+						case "allerA":
+							mesActions[actions[asWork].act](asWork);	// on appelle le traitement nécessaire
+						break;
 					}
-					break;
-
-					case "information":
-					if (actions[asWork].niveau === nbQuests[niveauQuest].niv) {
-						mesActions[actions[asWork].act](asWork);	// on appelle le traitement nécessaire
-					}
-					break;
-
-					case "fin":
-						mesActions[actions[asWork].act](asWork);	// on appelle le traitement nécessaire
-					break;
-
-					case "allerA":
-						mesActions[actions[asWork].act](asWork);	// on appelle le traitement nécessaire
-					break;
 				}
 			}
 		}
 		media_events["currentTime"] = seq;	// MAJ de la valeur dans le tableau (pour info)
 	}
 	media_events[event.type]++;		// traitement : on augmente de 1
+	oldStep = seq;
 }
 
 function getVideo() {
