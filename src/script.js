@@ -297,7 +297,7 @@ function switchVideo(n) {
 		var mp4 = document.getElementById("mp4");
 		document._video.setAttribute("poster", video[0].poster);
 		mp4.setAttribute("src", "videos/" + video[0].fichier);
-		document.getElementById("description").innerHTML = video[0].description;
+		//document.getElementById("description").innerHTML = video[0].description;
 
 		document._video.load();
 
