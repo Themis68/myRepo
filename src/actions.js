@@ -7,7 +7,24 @@ var mesActions = {
         var monJob = actions[ind];
 
         document.getElementById("message").innerHTML = monJob.libelle;
+        
+        //
+        // PROPOSITIONS
         // on construct dPropositions
+        if (document.getElementById("R1") !== null) {
+            console.log('efface');
+            // retirer les elements de la réponse du DOM
+            // sinon on les aura à la prochaine question
+            for(i=1; i <= actions[ind].attributs.length ; i++) {
+                var maReponse = document.getElementById("R"+i);
+                maReponse.parentNode.removeChild(maReponse);
+                var monLab = document.getElementById("L"+i);
+                monLab.parentNode.removeChild(monLab);
+                var lig = document.getElementById("br"+i);
+                lig.parentNode.removeChild(lig);
+            }
+
+        }
         var maQuestion = document.getElementById("zPropositions");
         for (i=1; i <= monJob.attributs.length; i++) { 
             // construction du input
@@ -121,17 +138,6 @@ function mesReponses(indice) {
     showItem("btnRepondre", false);
     showItem("btnContinuer", true);
     showZone("zConseiller", true);
-
-    // retirer les elements de la réponse du DOM
-    // sinon on les aura à la prochaine question
-    for(i=1; i <= actions[indice].attributs.length ; i++) {
-        var maReponse = document.getElementById("R"+i);
-        maReponse.parentNode.removeChild(maReponse);
-        var monLab = document.getElementById("L"+i);
-        monLab.parentNode.removeChild(monLab);
-        var lig = document.getElementById("br"+i);
-        lig.parentNode.removeChild(lig);
-    }
 }
 
 function changeLevel(level) {

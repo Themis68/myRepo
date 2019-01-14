@@ -72,3 +72,7 @@ au survol d'un texte :
 Code: [Sélectionner]
 <a href="#" onMouseOver="PlaySound('tonfichier.mp3')">lecture du son au survol</A>
 Voilà bon travail maintenant....
+
+INFORMATION :
+c'est nivellé car accompagne souvent une question
+

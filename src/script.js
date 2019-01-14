@@ -183,7 +183,9 @@ function capture(event) {
 					break;
 
 					case "information":
+					if (actions[asWork].niveau === nbQuests[niveauQuest].niv) {
 						mesActions[actions[asWork].act](asWork);	// on appelle le traitement nécessaire
+					}
 					break;
 
 					case "fin":
@@ -195,11 +197,6 @@ function capture(event) {
 					break;
 				}
 			}
-
-			/*if (asWork > -1 && actions[asWork].niveau === nbQuests[niveauQuest].niv) {
-				// il y a une action				
-				mesActions[actions[asWork].act](asWork);	// on appelle le traitement nécessaire
-			}*/	
 		}
 		media_events["currentTime"] = seq;	// MAJ de la valeur dans le tableau (pour info)
 	}
@@ -275,7 +272,15 @@ function scanQuestion() {
 				nbQuests[niv].points+= actions[ind].points;
 				break;
 			
-			/*case "information":
+				/*case "information":
+				document.getElementById("description").innerHTML = actions[ind].libelle;
+				break;
+
+				case "allerA":
+				document.getElementById("description").innerHTML = actions[ind].libelle;
+				break;
+
+				case "fin":
 				document.getElementById("description").innerHTML = actions[ind].libelle;
 				break;*/
 		}
