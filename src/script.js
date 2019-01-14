@@ -195,6 +195,12 @@ function capture(event) {
 						}
 						break;
 
+						case "bonus":
+						if (actions[asWork].niveau === nbQuests[niveauQuest].niv) {
+							mesActions[actions[asWork].act](asWork);	// on appelle le traitement nécessaire
+						}
+						break;
+
 						case "information":
 						if (actions[asWork].niveau === nbQuests[niveauQuest].niv) {
 							mesActions[actions[asWork].act](asWork);	// on appelle le traitement nécessaire
@@ -273,6 +279,7 @@ function init_barre() {
 }
 
 function scanQuestion() {
+	let niv = 0;
 	// init
 	nbQuests[1].nb = 0;
 	nbQuests[2].nb = 0;
@@ -282,7 +289,13 @@ function scanQuestion() {
 	for (ind = 0; ind < arrayAssoSize(actions); ind++) {
 		switch(actions[ind].act) {
 			case  "question": 
-				let niv = (actions[ind].niveau === "DEBUTANT" ? 1: actions[ind].niveau === "CONFIRME" ? 2 : 0);
+				niv = (actions[ind].niveau === "DEBUTANT" ? 1: actions[ind].niveau === "CONFIRME" ? 2 : 0);
+				nbQuests[niv].nb++;
+				nbQuests[niv].points+= actions[ind].points;
+				break;
+
+			case  "bonus": 
+				niv = (actions[ind].niveau === "DEBUTANT" ? 1: actions[ind].niveau === "CONFIRME" ? 2 : 0);
 				nbQuests[niv].nb++;
 				nbQuests[niv].points+= actions[ind].points;
 				break;

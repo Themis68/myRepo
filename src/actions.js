@@ -59,6 +59,66 @@ var mesActions = {
         showItem("btnRepondre", true);
         showItem("btnReplay", true);
     },
+    
+    bonus : function (ind) {
+        encadreVideo(false);
+        document._video.pause();    // on pause la vidéo
+        // préparation des actions
+        var monJob = actions[ind];
+
+        document.getElementById("message").innerHTML = monJob.libelle;
+        
+        //
+        // PROPOSITIONS
+        // on construct dPropositions
+        if (document.getElementById("R1") !== null) {
+            // retirer les elements de la réponse du DOM
+            // sinon on les aura à la prochaine question
+            for(i=1; i <= actions[ind].attributs.length ; i++) {
+                var maReponse = document.getElementById("R"+i);
+                maReponse.parentNode.removeChild(maReponse);
+                var monLab = document.getElementById("L"+i);
+                monLab.parentNode.removeChild(monLab);
+                var lig = document.getElementById("br"+i);
+                lig.parentNode.removeChild(lig);
+            }
+        }
+        var maQuestion = document.getElementById("zPropositions");
+        for (i=1; i <= monJob.attributs.length; i++) { 
+            // construction du input
+            var monInput = document.createElement("input");
+            if (i===1) {monInput.checked = true;}
+            monInput.name = 'Q1';
+            monInput.id = 'R' + i;
+            monInput.type = 'radio';
+            monInput.value = i;
+            maQuestion.appendChild(monInput);
+            // construction du label
+            var monLabel = document.createElement("label");
+            monLabel.id = 'L' + i;
+            monLabel.innerHTML = monJob.attributs[i-1];
+            maQuestion.appendChild(monLabel);
+            // saut de lignes
+            var lig = document.createElement("br");
+            lig.id = "br" + i;
+            maQuestion.appendChild(lig);
+        }
+        // on affiche le bouton répondre
+        var btnRepondre = document.getElementById("btnRepondre");
+        btnRepondre.onclick = function() 
+        {
+          mesReponses(ind); 
+        };        
+
+        document.getElementById("quest").innerHTML = (actions[ind].act).toUpperCase();
+        showItem("echange", true);
+        showItem("zPropositions", true);
+        showItem("zLoi", false);
+        showZone("zSuite", true);
+        showItem("btnContinuer", false);
+        showItem("btnRepondre", true);
+        showItem("btnReplay", true);
+    },
 
     information : function (ind) {
         showItem("echange", true);

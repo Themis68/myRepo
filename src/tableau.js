@@ -28,6 +28,17 @@ var tableau = [
                 libelle: "L'arbitre lève le bras pour indiquer qu'il y a hors-jeu"
             },
             {
+                step: 15,
+                act: "bonus",
+                niveau: "DEBUTANT",
+                libelle: "Quel est le carton que sort l'arbitre lorsqu'il autorise le soigneur à entrer ? ",
+                attributs: ["A", "B", "C", "D", "E", "F"],
+                reponse: 4,
+                libRep:"L'arbitre peut également lever le bras en direction du banc de touche",
+                loi: "Loi_11",
+                points: 2
+            },
+            {
                 step: 21,
                 act: "question",
                 niveau: "CONFIRME",
@@ -77,7 +88,7 @@ var tableau = [
                 act: "question",
                 niveau: "CONFIRME",
                 libelle: "A quoi correspond le geste de l'arbitre ? ",
-                attributs: ["Le soigneur peut entrer sur le terrain", "Le remplçant peur entrer sur le terrain"],
+                attributs: ["Le soigneur peut entrer sur le terrain", "Le remplaçant peur entrer sur le terrain"],
                 reponse: 1,
                 libRep:"L'arbitre définit s'il y a besoin ou pas du soigneur auprès de la joueuse",
                 loi: "Loi_15",
