@@ -40,6 +40,8 @@ var nbQuests = [
 	{niv: "DEBUTANT", nb: 0, points: 0},
 	{niv: "CONFIRME", nb: 0, points: 0}
 ];		// le niveau 0 est le niveau en cours
+var questionsFaites = [];
+
 /* image du conseiller 
 a utiliser après pour avoir une image dynamique
 */
@@ -271,18 +273,6 @@ function scanQuestion() {
 				nbQuests[niv].nb++;
 				nbQuests[niv].points+= actions[ind].points;
 				break;
-			
-				/*case "information":
-				document.getElementById("description").innerHTML = actions[ind].libelle;
-				break;
-
-				case "allerA":
-				document.getElementById("description").innerHTML = actions[ind].libelle;
-				break;
-
-				case "fin":
-				document.getElementById("description").innerHTML = actions[ind].libelle;
-				break;*/
 		}
 	}
 }
@@ -313,20 +303,23 @@ function switchVideo(n) {
 		scanQuestion();		// scanne des actions du niveau et met à jour le tableau des niveaux
 		// le niveau est pris en charge par la fonction appelante changeLevel et la fonction INIT pour le premier tour
 		nbQuests[0].nb = nbQuests[niveauQuest].nb;
-    	nbQuests[0].points = nbQuests[niveauQuest].points;
-		// barre de progression
-		stepBarre = Math.trunc(100 / nbQuests[0].nb);		// valeur pour une tranche de progression
-		init_barre();
+		nbQuests[0].points = nbQuests[niveauQuest].points;
+		// tableaux du jeu
+		questionsFaites.splice(0, questionsFaites.length);
 		// Score
 		videoNbPoint = 0;						// nb points en cours
 		document.getElementById("scoreBoard").innerHTML = videoNbPoint.toString() + ' / ' + (nbQuests[0].points).toString();
+		// barre de progression (après score sinon on n'a pas l'init des valeurs)
+		stepBarre = Math.trunc(100 / nbQuests[0].nb);		// valeur pour une tranche de progression
+		stepDone = 0;
+		init_barre();
 		// titre cartouche message
 		document.getElementById("quest").innerHTML = "INFORMATION";
 
 		listeEvents("events", media_events);	// créé le tableau des évènements vidéos
 		setInterval(update_properties, 200);	// lance le process de MAJ des évènements	
 
-		// Niveau
+		// NIVEAUX
 		let myB = null;
 		switch (niveauQuest) {
 			case 1:
@@ -344,7 +337,7 @@ function switchVideo(n) {
 			break;
 		}
 
-		// camps
+		// EQUIPES
 		document.getElementById("gauche").innerHTML = video[0].gauche;
 		document.getElementById("droite").innerHTML = video[0].droite;
 		

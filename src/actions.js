@@ -12,7 +12,6 @@ var mesActions = {
         // PROPOSITIONS
         // on construct dPropositions
         if (document.getElementById("R1") !== null) {
-            console.log('efface');
             // retirer les elements de la réponse du DOM
             // sinon on les aura à la prochaine question
             for(i=1; i <= actions[ind].attributs.length ; i++) {
@@ -23,7 +22,6 @@ var mesActions = {
                 var lig = document.getElementById("br"+i);
                 lig.parentNode.removeChild(lig);
             }
-
         }
         var maQuestion = document.getElementById("zPropositions");
         for (i=1; i <= monJob.attributs.length; i++) { 
@@ -75,7 +73,6 @@ var mesActions = {
     },
 
     allerA: function (ind) {
-        console.log()
         encadreVideo(false);
         getVideo().currentTime = actions[ind].indice;
         document._video.play(); // on reprend la lecture de la vidéo
@@ -93,45 +90,56 @@ var mesActions = {
 }
 
 // est appelé depuis l'IHM pour remonter la réponse
-function mesReponses(indice) {
-    var maRep = returnSelRadio(actions[indice].attributs.length);   // récupère le bouton radio sélectionné par l'utilisateur
-    var repOk = actions[indice].reponse;     // récupère la bonne réponse
+function mesReponses(ind) {
+    // n'a pas encore été joué
+    var maRep = returnSelRadio(actions[ind].attributs.length);   // récupère le bouton radio sélectionné par l'utilisateur
+    var repOk = actions[ind].reponse;     // récupère la bonne réponse
 
     // conseiller
     var monConseiller = document.getElementById("conseiller");
     let source = myURL + '/images/conseiller/tete'+ Math.floor(Math.random() * Math.floor(4) + 1)+'.png';
     monConseiller.setAttribute("src", source);
 
-    if (actions[indice].loi) {
+    if (actions[ind].loi) {
         // afficher l'accès à la règle du jeu
         var maLoi = document.getElementById("loi");
         // imbriquer l'icone dans le lien hypertexte
-       maLoi.setAttribute("href", myURL + '/lois/' + actions[indice].loi + '.pdf');
-       maLoi.setAttribute("target",'_blank');
-       maLoi.innerHTML = "Relire la loi du jeu";
-       showItem("zLoi", true);
+        maLoi.setAttribute("href", myURL + '/lois/' + actions[ind].loi + '.pdf');
+        maLoi.setAttribute("target",'_blank');
+        maLoi.innerHTML = "Relire la loi du jeu";
+        showItem("zLoi", true);
     } else {
         showItem("zLoi", false);
     }
 
     // on complète le message
-    document.getElementById("message").innerHTML +=  "<br><br>Réponse : " +  actions[indice].attributs[repOk - 1];
-    document.getElementById("message").innerHTML +=  "<br>Explication : " + actions[indice].libRep;
+    document.getElementById("message").innerHTML +=  "<br><br>Réponse : " +  actions[ind].attributs[repOk - 1];
+    document.getElementById("message").innerHTML +=  "<br>Explication : " + actions[ind].libRep;
     document.getElementById("message").innerHTML +=  "<br>";
 
     // POP-UP
     let text =  '<p style="text-align:center;">' + (maRep === repOk ? 'BONNE REPONSE' : 'MAUVAISE REPONSE') + '<br><br>';
-    text +=  '<span ' + (maRep === repOk ? 'class="gagne">Tu as gagné <br><span style="font-size: 18pt;font-weight: bolder;">' + actions[indice].points + ' points' : 'class="perdu">Dommage. ce sera pour une prochaine fois') + "</span></span></p>";
-    document.getElementById("rep").innerHTML = text;
+    
+    if (questionsFaites.indexOf(actions[ind].step) < 0) {
+        // POP-UP
+        text+= '<span ' + (maRep === repOk ? 'class="gagne">Tu as gagné <br><span style="font-size: 18pt;font-weight: bolder;">' + actions[ind].points + 
+        ' points' : 'class="perdu">Dommage. ce sera pour une prochaine fois') + "</span></span></p>";
 
-    // MAJ score
-    videoNbPoint += (maRep === repOk ? actions[indice].points : 0);
-    document.getElementById("scoreBoard").innerHTML = videoNbPoint.toString() + ' / ' + (nbQuests[0].points).toString();
+        // MAJ score
+        videoNbPoint += (maRep === repOk ? actions[ind].points : 0);
+        document.getElementById("scoreBoard").innerHTML = videoNbPoint.toString() + ' / ' + (nbQuests[0].points).toString();
 
-    // MAJ Barre progression
-    stepDone++;
-    console.log(stepDone);
-    init_barre();
+        // MAJ Barre progression
+        stepDone++;
+        init_barre();
+        questionsFaites.push(actions[ind].step);
+    } else {
+        // on a deja traité la question
+        text+=  '<span ' + (maRep === repOk ? 'class="gagne">Tu as déja reçu tes points' : 'class="perdu">Et pourtant tu l\'as déjà faite') + '</span></p>';
+    
+    }
+
+    document.getElementById("rep").innerHTML = text;    //ne pas mettre cette ligne avant le if(questionsFaites...
 
     // MAJ interface
     showItem("zPropositions", false);
