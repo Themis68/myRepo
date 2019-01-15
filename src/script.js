@@ -176,7 +176,6 @@ function capture(event) {
 		var seq = Math.trunc(document._video.currentTime);	// on récupère la partie entière du pointeur temps
 		if (seq !== seqUsed) {			
 			seqUsed = seq;	// évite de jouer deux fois le traitement
-			console.log('oldStep', oldStep, '    seq', seq);
 			if (seq < oldStep) {
 				// on recule
 				showItem("echange", false);
@@ -188,6 +187,7 @@ function capture(event) {
 
 				// on teste si on doit jouer ou pas
 				if (asWork > -1) {
+					console.log(actions[asWork].act);
 					switch(actions[asWork].act) {
 						case "question":
 						if (actions[asWork].niveau === nbQuests[niveauQuest].niv) {
@@ -341,6 +341,7 @@ function switchVideo(n) {
 		init_barre();
 		// titre cartouche message
 		document.getElementById("quest").innerHTML = "INFORMATION";
+		document.getElementById("message").innerHTML = video[0].description + "<br><br> Vous pouvez lancer la vidéo";
 
 		listeEvents("events", media_events);	// créé le tableau des évènements vidéos
 		setInterval(update_properties, 200);	// lance le process de MAJ des évènements	

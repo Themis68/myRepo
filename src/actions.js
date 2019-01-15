@@ -10,19 +10,17 @@ var mesActions = {
         
         //
         // PROPOSITIONS
-        // on construct dPropositions
+        // on construit dPropositions       
+        // retirer les elements de la réponse du DOM
+        // sinon on les aura à la prochaine question
         if (document.getElementById("R1") !== null) {
-            // retirer les elements de la réponse du DOM
-            // sinon on les aura à la prochaine question
-            for(i=1; i <= actions[ind].attributs.length ; i++) {
-                var maReponse = document.getElementById("R"+i);
-                maReponse.parentNode.removeChild(maReponse);
-                var monLab = document.getElementById("L"+i);
-                monLab.parentNode.removeChild(monLab);
-                var lig = document.getElementById("br"+i);
-                lig.parentNode.removeChild(lig);
+            var parent = document.getElementById("R1").parentNode;
+            while( parent.firstChild) {
+                // La liste n'est pas une copie, elle sera donc réindexée à chaque appel
+                parent.removeChild( parent.firstChild);
             }
         }
+
         var maQuestion = document.getElementById("zPropositions");
         for (i=1; i <= monJob.attributs.length; i++) { 
             // construction du input
@@ -50,7 +48,7 @@ var mesActions = {
           mesReponses(ind); 
         };        
 
-        document.getElementById("quest").innerHTML = (actions[ind].act).toUpperCase();
+        document.getElementById("quest").innerHTML = (actions[ind].act).toUpperCase() + " " + (questionsFaites.length + 1);
         showItem("echange", true);
         showItem("zPropositions", true);
         showItem("zLoi", false);
@@ -72,17 +70,13 @@ var mesActions = {
         // PROPOSITIONS
         // on construct dPropositions
         if (document.getElementById("R1") !== null) {
-            // retirer les elements de la réponse du DOM
-            // sinon on les aura à la prochaine question
-            for(i=1; i <= actions[ind].attributs.length ; i++) {
-                var maReponse = document.getElementById("R"+i);
-                maReponse.parentNode.removeChild(maReponse);
-                var monLab = document.getElementById("L"+i);
-                monLab.parentNode.removeChild(monLab);
-                var lig = document.getElementById("br"+i);
-                lig.parentNode.removeChild(lig);
+            var parent = document.getElementById("R1").parentNode;
+            while( parent.firstChild) {
+                // La liste n'est pas une copie, elle sera donc réindexée à chaque appel
+                parent.removeChild( parent.firstChild);
             }
         }
+
         var maQuestion = document.getElementById("zPropositions");
         for (i=1; i <= monJob.attributs.length; i++) { 
             // construction du input
@@ -110,14 +104,14 @@ var mesActions = {
           mesReponses(ind); 
         };        
 
-        document.getElementById("quest").innerHTML = (actions[ind].act).toUpperCase();
+        document.getElementById("quest").innerHTML = (actions[ind].act).toUpperCase() + " " + (questionsFaites.length + 1);
         showItem("echange", true);
         showItem("zPropositions", true);
         showItem("zLoi", false);
         showZone("zSuite", true);
         showItem("btnContinuer", false);
         showItem("btnRepondre", true);
-        showItem("btnReplay", true);
+        showItem("btnReplay", false);
     },
 
     information : function (ind) {
@@ -137,7 +131,7 @@ var mesActions = {
     allerA: function (ind) {
         encadreVideo(false);
         getVideo().currentTime = actions[ind].indice;
-        document._video.play(); // on reprend la lecture de la vidéo
+        //document._video.play(); // on reprend la lecture de la vidéo
     },
 
     fin : function (ind) {

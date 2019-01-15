@@ -14,7 +14,7 @@ var tableau = [
                 step: 5,
                 act: "question",
                 niveau: "DEBUTANT",
-                libelle: "Selon vous y-a-t-il hors-jeu ? ",
+                libelle: "Selon vous y-a-t-il hors-jeu des blanches ? ",
                 attributs: ["Oui", "Non"],
                 reponse: 1,
                 libRep:"La joueuse de l'équipe Blanche qui reçoit le ballon est en position de hors-jeu",
@@ -29,7 +29,7 @@ var tableau = [
             },
             {
                 step: 15,
-                act: "bonus",
+                act: "question",
                 niveau: "DEBUTANT",
                 libelle: "Quel est le carton que sort l'arbitre lorsqu'il autorise le soigneur à entrer ? ",
                 attributs: ["A", "B", "C", "D", "E", "F"],
@@ -37,6 +37,11 @@ var tableau = [
                 libRep:"L'arbitre peut également lever le bras en direction du banc de touche",
                 loi: "Loi_11",
                 points: 2
+            },
+            {
+                step: 17,
+                act: "allerA",
+                indice: 42
             },
             {
                 step: 21,
@@ -86,22 +91,22 @@ var tableau = [
             {
                 step: 74,
                 act: "question",
-                niveau: "CONFIRME",
-                libelle: "A quoi correspond le geste de l'arbitre ? ",
-                attributs: ["Le soigneur peut entrer sur le terrain", "Le remplaçant peur entrer sur le terrain"],
+                niveau: "DEBUTANT",
+                libelle: "L'arbitre a sifflé en faveur d'un ",
+                attributs: ["Coup-franc en faveur des rouges", "Coup-franc en faveur des banches"],
                 reponse: 1,
-                libRep:"L'arbitre définit s'il y a besoin ou pas du soigneur auprès de la joueuse",
+                libRep:"L'arbitre tend son bras en direction du camp sanctionné",
                 loi: "Loi_15",
                 points: 9
             },
             {
                 step: 81,
                 act: "question",
-                niveau: "DEBUTANT",
-                libelle: "L'arbitre a sifflé en faveur d'un ",
-                attributs: ["Coup-franc en faveur des rouges", "Coup-franc en faveur des banches"],
+                niveau: "CONFIRME",
+                libelle: "A quoi correspond le geste de l'arbitre ? ",
+                attributs: ["Le soigneur peut entrer sur le terrain", "Le remplaçant peur entrer sur le terrain"],
                 reponse: 1,
-                libRep:"L'arbitre tend son bras en direction du camp sanctionné",
+                libRep:"L'arbitre définit s'il y a besoin ou pas du soigneur auprès de la joueuse",
                 loi: "Loi_15",
                 points: 9
             },
