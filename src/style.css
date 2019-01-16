@@ -203,6 +203,12 @@ video {
   text-align: center;
 }
 
+.pict2 {
+  text-align: -webkit-center;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
 #score {
   background-color: black;
   border: 5px solid white;

@@ -29,10 +29,11 @@ var tableau = [
             },
             {
                 step: 15,
-                act: "question",
+                act: "bonus",
                 niveau: "DEBUTANT",
                 libelle: "Quel est le carton que sort l'arbitre lorsqu'il autorise le soigneur à entrer ? ",
-                attributs: ["A", "B", "C", "D", "E", "F"],
+                pict: "../images/cartons.png",
+                attributs: ["A", "C", "F", "D"],
                 reponse: 4,
                 libRep:"L'arbitre peut également lever le bras en direction du banc de touche",
                 loi: "Loi_11",

@@ -187,7 +187,6 @@ function capture(event) {
 
 				// on teste si on doit jouer ou pas
 				if (asWork > -1) {
-					console.log(actions[asWork].act);
 					switch(actions[asWork].act) {
 						case "question":
 						if (actions[asWork].niveau === nbQuests[niveauQuest].niv) {

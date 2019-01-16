@@ -21,6 +21,16 @@ var mesActions = {
             }
         }
 
+        // gestion de l'image
+        if (monJob.pict) {
+            var myPict = document.getElementById("myPict");
+            let source = myURL + '/images/'+ monJob.pict;
+            myPict.setAttribute("src", source);
+            showItem('myPict', true);
+        } else {
+            showItem('myPict', false);
+        }
+
         var maQuestion = document.getElementById("zPropositions");
         for (i=1; i <= monJob.attributs.length; i++) { 
             // construction du input
@@ -77,6 +87,16 @@ var mesActions = {
             }
         }
 
+        // gestion de l'image
+        if (monJob.pict) {
+            var myPict = document.getElementById("myPict");
+            let source = myURL + '/images/'+ monJob.pict;
+            myPict.setAttribute("src", source);
+            showItem('myPict', true);
+        } else {
+            showItem('myPict', false);
+        }
+
         var maQuestion = document.getElementById("zPropositions");
         for (i=1; i <= monJob.attributs.length; i++) { 
             // construction du input
@@ -104,7 +124,7 @@ var mesActions = {
           mesReponses(ind); 
         };        
 
-        document.getElementById("quest").innerHTML = (actions[ind].act).toUpperCase() + " " + (questionsFaites.length + 1);
+        document.getElementById("quest").innerHTML = (actions[ind].act).toUpperCase();
         showItem("echange", true);
         showItem("zPropositions", true);
         showItem("zLoi", false);
