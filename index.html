@@ -15,7 +15,7 @@
   <link href="./src/style.css" rel="stylesheet" type="text/css">
 </head>
 
-<body background="images/stade.jpg">
+<body background="images/stade.jpg" onLoad="user();">
   <div id="zConseiller" >
     <div id="pict"><img id="conseiller" /></div>
       <div id="rep">
@@ -81,7 +81,7 @@
         </div>
         <div class="zBoard" id="zSuite">
           <input id="btnContinuer" type="button" value="CONTINUER" onclick="continuer();">
-          <input id="btnReplay" type="button" value="REPLAY" onclick="replay();">
+          <input id="btnReplay" type="button" value="REPLAY (-1 pt)" onclick="replay();">
           <input id="btnRepondre" type="button" value="REPONDRE">
         </div>
       </div>

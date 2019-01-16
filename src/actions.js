@@ -141,6 +141,17 @@ var mesActions = {
         showZone("zSuite", false);
         document.getElementById("quest").innerHTML = (actions[ind].act).toUpperCase();
         document.getElementById("message").innerHTML = actions[ind].libelle;
+
+        // gestion de l'image
+        if (actions[ind].pict) {
+            var myPict = document.getElementById("myPict");
+            let source = myURL + '/images/'+ actions[ind].pict;
+            myPict.setAttribute("src", source);
+            showItem('myPict', true);
+        } else {
+            showItem('myPict', false);
+        }
+
         showItem("message", true);
         showItem("btnContinuer", false);
         showItem("btnRepondre", false);
@@ -207,13 +218,15 @@ function mesReponses(ind) {
         document.getElementById("scoreBoard").innerHTML = videoNbPoint.toString() + ' / ' + (nbQuests[0].points).toString();
 
         // MAJ Barre progression
-        stepDone++;
-        init_barre();
+        if(actions[ind].act === 'question') {
+            stepDone++;
+            init_barre();
+        }
+        // on stocke le step qui a été traité
         questionsFaites.push(actions[ind].step);
     } else {
         // DEJA TRAITE
         text+=  '<span ' + (maRep === repOk ? 'class="gagne">Tu as déja reçu tes points' : 'class="perdu">Et pourtant tu l\'as déjà faite') + '</span></p>';
-    
     }
 
     document.getElementById("rep").innerHTML = text;    //ne pas mettre cette ligne avant le if(questionsFaites...
@@ -228,7 +241,8 @@ function mesReponses(ind) {
 
 function changeLevel(level) {
     niveauQuest = level;
-    stepDone = 0;
+    console.log('niveau', niveauQuest);
+    //stepDone = 0;
     switchVideo(idVideo);
 }
 
@@ -256,5 +270,9 @@ function replay(){
     showZone("zConseiller", false);
     encadreVideo(false);
     getVideo().currentTime = getVideo().currentTime - 2;    // on recule de 2 secondes
+    // MAJ score
+    videoNbPoint--;
+    document.getElementById("scoreBoard").innerHTML = videoNbPoint.toString() + ' / ' + (nbQuests[0].points).toString();
+    // on relance la vidéo
     document._video.play(); // on reprend la lecture de la vidéo
 }

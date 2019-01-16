@@ -9,7 +9,13 @@ var tableau = [
             gauche: "Les Herbiers (Rouge)",
             droite: "Etoile Mouzillon (Blanc)"
         },
-        [   
+        [               
+            {
+                step: 3,
+                act: "allerA",
+                niveau: "CONFIRME",
+                indice: 16
+            },
             {
                 step: 5,
                 act: "question",
@@ -32,7 +38,7 @@ var tableau = [
                 act: "bonus",
                 niveau: "DEBUTANT",
                 libelle: "Quel est le carton que sort l'arbitre lorsqu'il autorise le soigneur à entrer ? ",
-                pict: "../images/cartons.png",
+                pict: "cartons.png",
                 attributs: ["A", "C", "F", "D"],
                 reponse: 4,
                 libRep:"L'arbitre peut également lever le bras en direction du banc de touche",
@@ -42,6 +48,7 @@ var tableau = [
             {
                 step: 17,
                 act: "allerA",
+                niveau: "DEBUTANT",
                 indice: 42
             },
             {
@@ -60,6 +67,18 @@ var tableau = [
                 act: "information",
                 niveau: "CONFIRME",
                 libelle: "Le jeu reprend à la position signalée du hors-jeu"
+            },
+            {
+                step: 40,
+                act: "bonus",
+                niveau: "CONFIRME",
+                libelle: "Quel est le bon geste pour que l'arbitre assistant indique un coup de pied de coin ?",
+                pict:"gestes_assistant.png",
+                attributs: ["A", "B", "C"],
+                reponse: 2,
+                libRep:"",
+                loi: "Loi_11",
+                points: 3
             },
             {
                 step: 44,
@@ -87,14 +106,27 @@ var tableau = [
                 step: 58,
                 act: "information",
                 niveau: "DEBUTANT",
-                libelle: "La joueuse en rouge fait preuve de fair-play en allant aider à se relever la joueuse blanche"
+                libelle: "La joueuse en rouge fait preuve de fair-play en allant aider à se relever la joueuse blanche",
+                pict: "FIFA_Fair_Play.jpg"
             },
             {
-                step: 74,
+                step: 60,
+                act: "bonus",
+                niveau: "CONFIRME",
+                libelle: "Quel est le bon geste pour que l'arbitre indique un coup-franc indirect ?",
+                pict:"gestes_arbitre.png",
+                attributs: ["A", "D", "E"],
+                reponse: 1,
+                libRep:"",
+                loi: "Loi_11",
+                points: 3
+            },
+            {
+                step: 75,
                 act: "question",
                 niveau: "DEBUTANT",
-                libelle: "L'arbitre a sifflé en faveur d'un ",
-                attributs: ["Coup-franc en faveur des rouges", "Coup-franc en faveur des banches"],
+                libelle: "L'arbitre a sifflé un coup-franc en faveur des : ",
+                attributs: ["Rouges", "Blanches"],
                 reponse: 1,
                 libRep:"L'arbitre tend son bras en direction du camp sanctionné",
                 loi: "Loi_15",
@@ -126,7 +158,7 @@ var tableau = [
                 step: 113,
                 act: "question",
                 niveau: "DEBUTANT",
-                libelle: "La touche sera en faveur de l'équipe ",
+                libelle: "La touche sera en faveur des joueuses de l'équipe : ",
                 attributs: ["Blanche", "Rouge"],
                 reponse: 1,
                 libRep:"L'arbitre assistant tend son drapeau en direction du camp sanctionné. L'arbitre central confirme.",
@@ -189,6 +221,18 @@ var tableau = [
                 points: 9
             },
             {
+                step: 190,
+                act: "bonus",
+                niveau: "DEBUTANT",
+                libelle: "Quel est le bon geste pour que l'arbitre assistant indique la rentrée de touche ?",
+                pict:"gestes_assistant.png",
+                attributs: ["A", "B", "C"],
+                reponse: 1,
+                libRep:"",
+                loi: "Loi_11",
+                points: 3
+            },
+            {
                 step: 197,
                 act: "question",
                 niveau: "CONFIRME",
@@ -214,7 +258,8 @@ var tableau = [
                 step: 210,
                 act: "information",
                 niveau: "DEBUTANT",
-                libelle: "Les co-équipières applaudissent pour remercier leur copine pour sa prestation"
+                libelle: "Les co-équipières applaudissent pour remercier leur copine pour sa prestation",
+                pict: "FIFA_Fair_Play.jpeg"
             },
             {
                 step: 228,

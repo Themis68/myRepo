@@ -1,6 +1,6 @@
 var media_events = new Array();
 media_events["loadstart"] = 0;
-media_events["progress"] = 0;
+//media_events["progress"] = 0;
 //media_events["suspend"] = 0;
 //media_events["abort"] = 0;
 //media_events["error"] = 0;
@@ -23,6 +23,8 @@ media_events["timeupdate"] = 0;
 //media_events["resize"] = 0;
 //media_events["volumechange"] = 0;
 media_events["currentTime"] = 0;
+
+var avatar = '';
 
 var oldStep = null;	// conserve la valeur de step pour gérer le replay
 
@@ -211,7 +213,9 @@ function capture(event) {
 						break;
 
 						case "allerA":
+						if (actions[asWork].niveau === nbQuests[niveauQuest].niv) {
 							mesActions[actions[asWork].act](asWork);	// on appelle le traitement nécessaire
+						}
 						break;
 					}
 				}
@@ -267,6 +271,8 @@ function init_barre() {
 	questDone.setAttribute("style","width:"+ step +"%");
 	if(stepDone !== 0 ) {
 		document.getElementById("curStep").innerHTML = stepDone;
+	} else {
+		document.getElementById("curStep").innerHTML = '';
 	}
 	let questDo = document.getElementById("questDo");
 	if(stepDone !== nbQuests[0].nb ) {
@@ -284,16 +290,10 @@ function scanQuestion() {
 	nbQuests[2].nb = 0;
 	nbQuests[1].points = 0;
 	nbQuests[2].points = 0;
-	// scanne des actions
+	// scanne des actions et imputation des points ou pas
 	for (ind = 0; ind < arrayAssoSize(actions); ind++) {
 		switch(actions[ind].act) {
 			case  "question": 
-				niv = (actions[ind].niveau === "DEBUTANT" ? 1: actions[ind].niveau === "CONFIRME" ? 2 : 0);
-				nbQuests[niv].nb++;
-				nbQuests[niv].points+= actions[ind].points;
-				break;
-
-			case  "bonus": 
 				niv = (actions[ind].niveau === "DEBUTANT" ? 1: actions[ind].niveau === "CONFIRME" ? 2 : 0);
 				nbQuests[niv].nb++;
 				nbQuests[niv].points+= actions[ind].points;
@@ -330,9 +330,10 @@ function switchVideo(n) {
 		nbQuests[0].nb = nbQuests[niveauQuest].nb;
 		nbQuests[0].points = nbQuests[niveauQuest].points;
 		// tableaux du jeu
-		questionsFaites.splice(0, questionsFaites.length);
+		questionsFaites.splice(0, questionsFaites.length);	// efface le contenu
 		// Score
 		videoNbPoint = 0;						// nb points en cours
+		document.getElementById("textBoard").innerHTML = "SCORE DE " + avatar.toUpperCase();
 		document.getElementById("scoreBoard").innerHTML = videoNbPoint.toString() + ' / ' + (nbQuests[0].points).toString();
 		// barre de progression (après score sinon on n'a pas l'init des valeurs)
 		stepBarre = Math.trunc(100 / nbQuests[0].nb);		// valeur pour une tranche de progression
@@ -391,4 +392,9 @@ function encadreVideo(state) {
 		default:
 		(el.classList.contains("videoEncadre") ? el.classList.replace("videoEncadre", "videoNonEncadre") : el.classList.add("videoNonEncadre"));	
 	}
+}
+
+function user() {
+	avatar = prompt("Saisie ton prénom s'il te plait");
+	console.log('avatar', avatar);
 }
