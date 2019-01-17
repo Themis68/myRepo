@@ -59,7 +59,7 @@ body {
 #pict {
   display: flex;
   justify-content: left;
-  width: 170px;
+  width: 50%;
   height: 100px;
 }
 
@@ -67,6 +67,7 @@ body {
   display: flex;
   justify-content: left;
   padding: 3px;
+  width: 50%;
 }
 
 /* les zones */
