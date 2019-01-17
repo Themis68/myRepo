@@ -229,7 +229,7 @@ video {
 #scoreBoard {
   font-family: scoreboardregular;
   font-size: 38pt;
-  color: lime;
+  color: white;
   margin-left: 6px;
   margin-right: 6px;
   margin-bottom: 6px;
@@ -279,7 +279,7 @@ video {
 #zMessage {
   background-color: whitesmoke;
   margin-top: 0px;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
   border: 2px solid chocolate;
   height: 260px;
 }

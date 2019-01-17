@@ -162,18 +162,11 @@ var mesActions = {
     allerA: function (ind) {
         encadreVideo(false);
         getVideo().currentTime = actions[ind].indice;
-        //document._video.play(); // on reprend la lecture de la vidéo
     },
 
     fin : function (ind) {
         encadreVideo(false);
         showConseiller('fin', ((videoNbPoint / nbQuests[0].points) > 0.5));
-        // zone à afficher
-       // showZone("zConseiller", true);
-        // préparation message
-      //  let text =  '<p>' + ((videoNbPoint / nbQuests[0].points) > 0.5 ? 'BRAVO tu as obtenu plus de la moitié des points' : 'Bien joué. Je suis sûr que tu peux faire mieux') + '<br><br>';
-      //  text +=  'N\hésite pas à essayer avec d\'autres vidéos</p>';
-       // document.getElementById("rep").innerHTML = text;
     }
 }
 
@@ -199,9 +192,6 @@ function mesReponses(ind) {
     document.getElementById("message").innerHTML +=  "<br><br>Réponse : " +  actions[ind].attributs[repOk - 1];
     document.getElementById("message").innerHTML +=  "<br>Explication : " + actions[ind].libRep;
     document.getElementById("message").innerHTML +=  "<br>";
-
-    // POP-UP
-   // let text =  '<p style="text-align:center;">' + (maRep === repOk ? 'BONNE REPONSE' : 'MAUVAISE REPONSE') + '<br><br>';
     
     if (questionsFaites.indexOf(actions[ind].step) < 0) {
         // MAJ score
@@ -216,18 +206,12 @@ function mesReponses(ind) {
         }
         // on stocke le step qui a été traité
         questionsFaites.push(actions[ind].step);
-
         // PAS TRAITE
-        // POP-UP
         //ne pas mettre cette appel à showConseiller avant le if(questionsFaites...
         showConseiller('reponse', (maRep === repOk));
-        //text+= '<span ' + (maRep === repOk ? 'class="gagne">Tu as gagné <br><span style="font-size: 18pt;font-weight: bolder;">' + actions[ind].points + 
-        //' points' : 'class="perdu">Dommage. ce sera pour une prochaine fois') + "</span></span></p>";
-
     } else {
         // DEJA TRAITE
         showConseiller('traite', ((maRep === repOk)));
-        //text+=  '<span ' + (maRep === repOk ? 'class="gagne">Tu as déja reçu tes points' : 'class="perdu">Et pourtant tu l\'as déjà faite') + '</span></p>';
     }
 
     //document.getElementById("rep").innerHTML = text;    //ne pas mettre cette ligne avant le if(questionsFaites...
@@ -288,11 +272,21 @@ function showConseiller(rubrique, resultat) {
      let monConseiller = document.getElementById("conseiller");
      let source = myURL + '/images/conseiller/tete'+ Math.floor(Math.random() * Math.floor(4) + 1)+'.png';
 
-    let text = '<p style="text-align:center;">' + (resultat ? 'BRAVO' : 'DOMMAGE') + '<br><br>';
+     let text= '';
+
+    switch (rubrique) {
+        case 'encouragement':
+            text = '<p style="text-align:center;">Tu as l\'air d\'avoir un peu de mal à trouver tes réponses.<br><br>';
+            break;
+        
+        default:
+            text = '<p style="text-align:center;">' + (resultat ? 'BRAVO' : 'DOMMAGE') + '<br><br>';    
+    }
+
     switch(rubrique) {
         case 'fin':
-            text+=  (resultat ? 'Tu as obtenu plus de la moitié des points' : 'Je suis sûr que tu peux faire mieux') + '<br><br>';
-            text +=  'N\hésite pas à essayer avec d\'autres vidéos</p>';
+            text+=  (resultat ? 'Plus de 50% de réussite' : 'Je suis sûr que tu peux mieux faire') + '<br><br>';
+            text +=  'Reviens vite</p>';
             break;
 
         case 'traite':
@@ -304,6 +298,7 @@ function showConseiller(rubrique, resultat) {
             break;
         
         case 'encouragement':
+            text+= 'Ne lâche pas</p>'
             break;
     }
     showZone("zConseiller", true);

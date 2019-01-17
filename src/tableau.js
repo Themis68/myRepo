@@ -276,6 +276,16 @@ var tableau = [
                 points: 2
             },
             {
+                step: 291,
+                act: "question",
+                niveau: "CONFIRME",
+                libelle: "A quelle distance doit se trouver le mur sur un coup-franc direct ?",
+                attributs: ["9m", "9m10", "9m15"],
+                reponse: 3,
+                loi: "Loi_13",
+                points: 2
+            },
+            {
                 step: 296,
                 act: "question",
                 niveau: "DEBUTANT",
