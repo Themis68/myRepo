@@ -396,5 +396,5 @@ function encadreVideo(state) {
 
 function user() {
 	avatar = prompt("Saisie ton prénom s'il te plait");
-	console.log('avatar', avatar);
+	document.getElementById("msgVideo").innerHTML = "Bienvenue "+ avatar.toUpperCase() + ". Merci de sélectionner une vidéo ci-dessous";
 }
