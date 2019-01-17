@@ -170,7 +170,7 @@ video {
   width: 600px;
   height: 330px;
   align-items: center;
-  background-image: url("../images/terrain3.png");
+  background-image: url("../images/terrain2.png");
   background-repeat: no-repeat;
   background-position: center; 
   background-size: contain;
@@ -229,7 +229,7 @@ video {
 #scoreBoard {
   font-family: scoreboardregular;
   font-size: 38pt;
-  color: white;
+  color: lime;
   margin-left: 6px;
   margin-right: 6px;
   margin-bottom: 6px;
@@ -281,7 +281,7 @@ video {
   margin-top: 0px;
   margin-bottom: 8px;
   border: 2px solid chocolate;
-  height: 210px;
+  height: 260px;
 }
 
 #message {

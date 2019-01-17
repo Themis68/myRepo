@@ -25,7 +25,7 @@ var tableau = [
                 reponse: 1,
                 libRep:"La joueuse de l'équipe Blanche qui reçoit le ballon est en position de hors-jeu",
                 loi: "Loi_11",
-                points: 3
+                points: 2
             },
             {
                 step: 10,
@@ -42,8 +42,7 @@ var tableau = [
                 attributs: ["A", "C", "F", "D"],
                 reponse: 4,
                 libRep:"L'arbitre peut également lever le bras en direction du banc de touche",
-                loi: "Loi_11",
-                points: 2
+                points: 1
             },
             {
                 step: 17,
@@ -60,7 +59,7 @@ var tableau = [
                 reponse: 2,
                 libRep:"La joueuse de l'équipe Blanche qui transmet le ballon du but est en position de hors-jeu.",
                 loi: "Loi_11",
-                points: 5
+                points: 2
             },
             {
                 step: 37,
@@ -77,7 +76,7 @@ var tableau = [
                 attributs: ["A", "B", "C"],
                 reponse: 2,
                 libRep:"",
-                loi: "Loi_11",
+                loi: "Loi_17",
                 points: 3
             },
             {
@@ -89,18 +88,18 @@ var tableau = [
                 reponse: 1,
                 libRep:"Lors de la remise en jeu suite à une touche, la joueuse doit avoir les talons au sol et le ballon doit être placé dans le dos au départ du mouvement.",
                 loi: "Loi_15",
-                points: 9
+                points: 3
             },
             {
                 step: 54,
                 act: "question",
                 niveau: "CONFIRME",
-                libelle: "L'arbitre va-t-il siffler un coup-franc ? ",
+                libelle: "Selon vous l'arbitre va-t-il siffler un coup-franc ? ",
                 attributs: ["Oui", "Non"],
                 reponse: 2,
                 libRep:"Il indique de poursuire le jeu car il n'y a pas de faute caractérisée",
-                loi: "Loi_15",
-                points: 9
+                loi: "Loi_13",
+                points: 3
             },
             {
                 step: 58,
@@ -118,7 +117,7 @@ var tableau = [
                 attributs: ["A", "D", "E"],
                 reponse: 1,
                 libRep:"",
-                loi: "Loi_11",
+                loi: "Loi_13",
                 points: 3
             },
             {
@@ -129,8 +128,8 @@ var tableau = [
                 attributs: ["Rouges", "Blanches"],
                 reponse: 1,
                 libRep:"L'arbitre tend son bras en direction du camp sanctionné",
-                loi: "Loi_15",
-                points: 9
+                loi: "Loi_12",
+                points: 3
             },
             {
                 step: 81,
@@ -140,19 +139,19 @@ var tableau = [
                 attributs: ["Le soigneur peut entrer sur le terrain", "Le remplaçant peur entrer sur le terrain"],
                 reponse: 1,
                 libRep:"L'arbitre définit s'il y a besoin ou pas du soigneur auprès de la joueuse",
-                loi: "Loi_15",
-                points: 9
+                loi: "Loi_5",
+                points: 3
             },
             {
                 step: 100,
                 act: "question",
                 niveau: "DEBUTANT",
-                libelle: "L'arbitre a sifflé en faveur d'un ",
+                libelle: "L'arbitre a sifflé une faute. Laquelle ?",
                 attributs: ["Faute du bras de la joueuse blanche", "Charge de la joueuse blanche"],
                 reponse: 1,
                 libRep:"L'arbitre considère qu'il y a obstruction",
-                loi: "Loi_15",
-                points: 9
+                loi: "Loi_12",
+                points: 3
             },
             {
                 step: 113,
@@ -170,11 +169,12 @@ var tableau = [
                 act: "question",
                 niveau: "DEBUTANT",
                 libelle: "Comment l'arbitre confirme-t-il le but ?",
-                attributs: ["Il tend son bras vers le ciel", "Il tend son bras vers le rond central"],
-                reponse: 1,
+                pict: "gestes_arbitre.png",
+                attributs: ["B", "D", "A" ],
+                reponse: 3,
                 libRep:"Il se rend ensuite vers le rond central",
-                loi: "Loi_15",
-                points: 9
+                loi: "Loi_10",
+                points: 2
             },
             {
                 step: 150,
@@ -184,8 +184,7 @@ var tableau = [
                 attributs: ["La minute de jeu et le score", "La minute de jeu, le score et le nom de la buteuse"],
                 reponse: 2,
                 libRep:"Il se rend ensuite vers le rond central",
-                loi: "Loi_15",
-                points: 9
+                points: 2
             },
             {
                 step: 161,
@@ -195,8 +194,8 @@ var tableau = [
                 attributs: ["Il n'y a que la joueuse qui fait la remise en jeu", "Il peut y avoir les joueuses de l'équipe qui a pris le but"],
                 reponse: 1,
                 libRep:"Il se rend ensuite vers le rond central",
-                loi: "Loi_15",
-                points: 9
+                loi: "Loi_8",
+                points: 2
             },
             {
                 step: 173,
@@ -207,7 +206,7 @@ var tableau = [
                 reponse: 2,
                 libRep:"Un touche mal effectuée donne droit à l'inversion de la touche enf aveur de l'adversaire",
                 loi: "Loi_15",
-                points: 9
+                points: 2
             },
             {
                 step: 183,
@@ -217,8 +216,7 @@ var tableau = [
                 attributs: ["indique qu'il n'y a pas faute", "indique l'avantage aux blanches"],
                 reponse: 2,
                 libRep:"L'arbitre peu laisser le jeu se dérouler suite à une faute si le bénéficiaire est en possession du ballon",
-                loi: "Loi_15",
-                points: 9
+                points: 1
             },
             {
                 step: 190,
@@ -229,8 +227,8 @@ var tableau = [
                 attributs: ["A", "B", "C"],
                 reponse: 1,
                 libRep:"",
-                loi: "Loi_11",
-                points: 3
+                loi: "Loi_15",
+                points: 1
             },
             {
                 step: 197,
@@ -240,8 +238,8 @@ var tableau = [
                 attributs: ["Il siffle la faute", "Il laisse l'avantage aux blanches"],
                 reponse: 2,
                 libRep:"L'arbitre tend ses deux bras vers le camp sanctionné",
-                loi: "Loi_15",
-                points: 9
+                loi: "Loi_12",
+                points: 1
             },
             {
                 step: 207,
@@ -251,15 +249,14 @@ var tableau = [
                 attributs: ["Autoriser le changement de joueuse", "Indiquer la fin de la mi-temps"],
                 reponse: 1,
                 libRep:"La nouvelle joueuse attend la sortie avant d'entrer",
-                loi: "Loi_15",
-                points: 9
+                points: 1
             },
             {
                 step: 210,
                 act: "information",
                 niveau: "DEBUTANT",
-                libelle: "Les co-équipières applaudissent pour remercier leur copine pour sa prestation",
-                pict: "FIFA_Fair_Play.jpeg"
+                libelle: "Les co-équipières applaudissent la joueuse qui sort pour la remercier pour sa prestation",
+                pict: "FIFA_Fair_Play.jpg"
             },
             {
                 step: 228,
@@ -271,34 +268,36 @@ var tableau = [
                 step: 263,
                 act: "question",
                 niveau: "CONFIRME",
-                libelle: "L'arbitre va",
-                attributs: ["Siffler une charge par derrière et donner un carton jaune", "Siffler une charge par derrière", "Laisser l'avantage aux rouges"],
+                libelle: "Selon vous quelle faute va siffler l'arbitre ?",
+                attributs: ["une charge par derrière et donner un carton jaune", "une charge par derrière", "Laisser l'avantage aux rouges"],
                 reponse: 2,
                 libRep:"L'arbitre a d'abord vérifié si les rouges conservaient le ballon",
-                loi: "Loi_15",
-                points: 9
+                loi: "Loi_12",
+                points: 2
             },
             {
                 step: 296,
                 act: "question",
                 niveau: "DEBUTANT",
-                libelle: "Comment l'arbitre va-t-il signaler le corner ?",
-                attributs: ["Il lève son bras en direction du coin", "Il lève son bras vers le ciel", "Il lève ses deux bras vers le coin"],
+                libelle: "Comment l'arbitre assistant va-t-il signaler le coup de pied de coin ?",
+                pict: "gestes_assistant.png",
+                attributs: ["B", "A", "D"],
                 reponse: 1,
-                libRep:"L'arbitre se positionne à l'extérieur de la surface de réparation pour suivre le corner",
-                loi: "Loi_15",
-                points: 9
+                libRep:"L'arbitre assistant se positionne au niveau de la ligne de limite de terrain pour vérifier que le ballon ne sort pas.",
+                loi: "Loi_17",
+                points: 1
             },
             {
                 step: 307,
                 act: "question",
                 niveau: "DEBUTANT",
-                libelle: "Comment l'arbitre va-t-il signaler la sortie de but ?",
-                attributs: ["Il lève son bras vers le ciel", "Il tend son bras vers la ligne des 6 mètres"],
-                reponse: 2,
+                libelle: "Comment l'arbitre va-t-il signaler la relance aux 6 mètres ?",
+                pict: "gestes_arbitre.png",
+                attributs: ["F", "A", "C"],
+                reponse: 3,
                 libRep:"L'arbitre se re-positionne pour suivre le jeu",
-                loi: "Loi_15",
-                points: 9
+                loi: "Loi_8",
+                points: 2
             },
             {
                 step: 313,

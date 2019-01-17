@@ -332,9 +332,10 @@ function switchVideo(n) {
 		// tableaux du jeu
 		questionsFaites.splice(0, questionsFaites.length);	// efface le contenu
 		// Score
-		videoNbPoint = 0;						// nb points en cours
+		//videoNbPoint = 0;						// nb points en cours
 		document.getElementById("textBoard").innerHTML = "SCORE DE " + avatar.toUpperCase();
-		document.getElementById("scoreBoard").innerHTML = videoNbPoint.toString() + ' / ' + (nbQuests[0].points).toString();
+		addScore(0);
+		//document.getElementById("scoreBoard").innerHTML = videoNbPoint.toString() + ' / ' + (nbQuests[0].points).toString();
 		// barre de progression (après score sinon on n'a pas l'init des valeurs)
 		stepBarre = Math.trunc(100 / nbQuests[0].nb);		// valeur pour une tranche de progression
 		stepDone = 0;

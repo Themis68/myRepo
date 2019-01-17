@@ -167,12 +167,13 @@ var mesActions = {
 
     fin : function (ind) {
         encadreVideo(false);
+        showConseiller('fin', ((videoNbPoint / nbQuests[0].points) > 0.5));
         // zone à afficher
-        showZone("zConseiller", true);
+       // showZone("zConseiller", true);
         // préparation message
-        let text =  '<p>' + ((videoNbPoint / nbQuests[0].points) > 0.5 ? 'BRAVO tu as obtenu plus de la moitié des points' : 'Bien joué. Je suis sûr que tu peux faire mieux') + '<br><br>';
-        text +=  'N\hésite pas à essayer avec d\'autres vidéos</p>';
-        document.getElementById("rep").innerHTML = text;
+      //  let text =  '<p>' + ((videoNbPoint / nbQuests[0].points) > 0.5 ? 'BRAVO tu as obtenu plus de la moitié des points' : 'Bien joué. Je suis sûr que tu peux faire mieux') + '<br><br>';
+      //  text +=  'N\hésite pas à essayer avec d\'autres vidéos</p>';
+       // document.getElementById("rep").innerHTML = text;
     }
 }
 
@@ -181,11 +182,6 @@ function mesReponses(ind) {
     // n'a pas encore été joué
     var maRep = returnSelRadio(actions[ind].attributs.length);   // récupère le bouton radio sélectionné par l'utilisateur
     var repOk = actions[ind].reponse;     // récupère la bonne réponse
-
-    // conseiller
-    var monConseiller = document.getElementById("conseiller");
-    let source = myURL + '/images/conseiller/tete'+ Math.floor(Math.random() * Math.floor(4) + 1)+'.png';
-    monConseiller.setAttribute("src", source);
 
     if (actions[ind].loi) {
         // afficher l'accès à la règle du jeu
@@ -205,17 +201,13 @@ function mesReponses(ind) {
     document.getElementById("message").innerHTML +=  "<br>";
 
     // POP-UP
-    let text =  '<p style="text-align:center;">' + (maRep === repOk ? 'BONNE REPONSE' : 'MAUVAISE REPONSE') + '<br><br>';
+   // let text =  '<p style="text-align:center;">' + (maRep === repOk ? 'BONNE REPONSE' : 'MAUVAISE REPONSE') + '<br><br>';
     
     if (questionsFaites.indexOf(actions[ind].step) < 0) {
-        // PAS TRAITE
-        // POP-UP
-        text+= '<span ' + (maRep === repOk ? 'class="gagne">Tu as gagné <br><span style="font-size: 18pt;font-weight: bolder;">' + actions[ind].points + 
-        ' points' : 'class="perdu">Dommage. ce sera pour une prochaine fois') + "</span></span></p>";
-
         // MAJ score
-        videoNbPoint += (maRep === repOk ? actions[ind].points : 0);
-        document.getElementById("scoreBoard").innerHTML = videoNbPoint.toString() + ' / ' + (nbQuests[0].points).toString();
+        if (maRep === repOk) {
+            addScore((maRep === repOk ? actions[ind].points : 0));
+        }
 
         // MAJ Barre progression
         if(actions[ind].act === 'question') {
@@ -224,19 +216,28 @@ function mesReponses(ind) {
         }
         // on stocke le step qui a été traité
         questionsFaites.push(actions[ind].step);
+
+        // PAS TRAITE
+        // POP-UP
+        //ne pas mettre cette appel à showConseiller avant le if(questionsFaites...
+        showConseiller('reponse', (maRep === repOk));
+        //text+= '<span ' + (maRep === repOk ? 'class="gagne">Tu as gagné <br><span style="font-size: 18pt;font-weight: bolder;">' + actions[ind].points + 
+        //' points' : 'class="perdu">Dommage. ce sera pour une prochaine fois') + "</span></span></p>";
+
     } else {
         // DEJA TRAITE
-        text+=  '<span ' + (maRep === repOk ? 'class="gagne">Tu as déja reçu tes points' : 'class="perdu">Et pourtant tu l\'as déjà faite') + '</span></p>';
+        showConseiller('traite', ((maRep === repOk)));
+        //text+=  '<span ' + (maRep === repOk ? 'class="gagne">Tu as déja reçu tes points' : 'class="perdu">Et pourtant tu l\'as déjà faite') + '</span></p>';
     }
 
-    document.getElementById("rep").innerHTML = text;    //ne pas mettre cette ligne avant le if(questionsFaites...
+    //document.getElementById("rep").innerHTML = text;    //ne pas mettre cette ligne avant le if(questionsFaites...
 
     // MAJ interface
     showItem("zPropositions", false);
     showItem("btnRepondre", false);
     showItem("btnReplay", false);
     showItem("btnContinuer", true);
-    showZone("zConseiller", true);
+   // showZone("zConseiller", true);
 }
 
 function changeLevel(level) {
@@ -264,15 +265,48 @@ function continuer(){
 }
 
 function replay(){
+    addScore(-1);   // MAJ score
     showItem("echange", false);
     showZone("zSuite", false); 
-    encadreVideo(false);
     showZone("zConseiller", false);
     encadreVideo(false);
     getVideo().currentTime = getVideo().currentTime - 2;    // on recule de 2 secondes
-    // MAJ score
-    videoNbPoint--;
-    document.getElementById("scoreBoard").innerHTML = videoNbPoint.toString() + ' / ' + (nbQuests[0].points).toString();
-    // on relance la vidéo
     document._video.play(); // on reprend la lecture de la vidéo
+}
+
+function addScore(value) {
+    if (value === 0) {
+        videoNbPoint = 0;
+    } else {
+        videoNbPoint = videoNbPoint + value;
+    }
+    document.getElementById("scoreBoard").innerHTML = videoNbPoint.toString() + ' / ' + (nbQuests[0].points).toString();
+}
+
+function showConseiller(rubrique, resultat) {
+     // conseiller
+     let monConseiller = document.getElementById("conseiller");
+     let source = myURL + '/images/conseiller/tete'+ Math.floor(Math.random() * Math.floor(4) + 1)+'.png';
+
+    let text = '<p style="text-align:center;">' + (resultat ? 'BRAVO' : 'DOMMAGE') + '<br><br>';
+    switch(rubrique) {
+        case 'fin':
+            text+=  (resultat ? 'Tu as obtenu plus de la moitié des points' : 'Je suis sûr que tu peux faire mieux') + '<br><br>';
+            text +=  'N\hésite pas à essayer avec d\'autres vidéos</p>';
+            break;
+
+        case 'traite':
+            text+=  '<span ' + (resultat ? 'class="gagne">Tu as déja reçu tes points' : 'class="perdu">Et pourtant tu l\'as déjà faite') + '</span></p>';
+            break;
+
+        case 'reponse':
+            text+= '<span ' + (resultat ? 'class="gagne">Tu as gagné<br><span style="font-size: 18pt;font-weight: bolder;">' + actions[ind].points + ' pts' : 'class="perdu">Ne lâche rien') + "</span></span></p>";
+            break;
+        
+        case 'encouragement':
+            break;
+    }
+    showZone("zConseiller", true);
+    monConseiller.setAttribute("src", source);
+    document.getElementById("rep").innerHTML = text;
 }
