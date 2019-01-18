@@ -76,3 +76,34 @@ Voilà bon travail maintenant....
 INFORMATION :
 c'est nivellé car accompagne souvent une question
 
+
+********************************
+NIVEAU
+********************************
+
+Le bouton du niveau sélectionné apparait en fond vert
+
+
+********************************
+SCORE
+********************************
+
+le score du User change de couleur lorsqu'il dépasse 50% des points totals
+
+
+********************************
+MESSAGES
+********************************
+
+La zone des messages est différentes :
+- question : cadre et chapeau chocolate
+- information : cadre et chapeau chocolate
+- bonus : cadre et chapeau vert
+
+********************************
+INFORMATION
+********************************
+
+Si c'est un FairPlay on peut gagner 1 point en cliquant sur le bouton
+
+

@@ -28,12 +28,6 @@ var tableau = [
                 points: 2
             },
             {
-                step: 10,
-                act: "information",
-                niveau: "DEBUTANT",
-                libelle: "L'arbitre lève le bras pour indiquer qu'il y a hors-jeu"
-            },
-            {
                 step: 15,
                 act: "bonus",
                 niveau: "DEBUTANT",
@@ -42,7 +36,7 @@ var tableau = [
                 attributs: ["A", "C", "F", "D"],
                 reponse: 4,
                 libRep:"L'arbitre peut également lever le bras en direction du banc de touche",
-                points: 1
+                points: 2
             },
             {
                 step: 17,
@@ -106,7 +100,8 @@ var tableau = [
                 act: "information",
                 niveau: "DEBUTANT",
                 libelle: "La joueuse en rouge fait preuve de fair-play en allant aider à se relever la joueuse blanche",
-                pict: "FIFA_Fair_Play.jpg"
+                pict: "FIFA_Fair_Play.jpg",
+                type: 'fairplay'
             },
             {
                 step: 60,
@@ -126,7 +121,7 @@ var tableau = [
                 niveau: "DEBUTANT",
                 libelle: "L'arbitre a sifflé un coup-franc en faveur des : ",
                 attributs: ["Rouges", "Blanches"],
-                reponse: 1,
+                reponse: 2,
                 libRep:"L'arbitre tend son bras en direction du camp sanctionné",
                 loi: "Loi_12",
                 points: 3
@@ -162,7 +157,7 @@ var tableau = [
                 reponse: 1,
                 libRep:"L'arbitre assistant tend son drapeau en direction du camp sanctionné. L'arbitre central confirme.",
                 loi: "Loi_15",
-                points: 9
+                points: 2
             },
             {
                 step: 135,
@@ -216,7 +211,7 @@ var tableau = [
                 attributs: ["indique qu'il n'y a pas faute", "indique l'avantage aux blanches"],
                 reponse: 2,
                 libRep:"L'arbitre peu laisser le jeu se dérouler suite à une faute si le bénéficiaire est en possession du ballon",
-                points: 1
+                points: 2
             },
             {
                 step: 190,
@@ -228,7 +223,7 @@ var tableau = [
                 reponse: 1,
                 libRep:"",
                 loi: "Loi_15",
-                points: 1
+                points: 3
             },
             {
                 step: 197,
@@ -248,15 +243,16 @@ var tableau = [
                 libelle: "L'arbitre lève ses deux bras pour",
                 attributs: ["Autoriser le changement de joueuse", "Indiquer la fin de la mi-temps"],
                 reponse: 1,
-                libRep:"La nouvelle joueuse attend la sortie avant d'entrer",
-                points: 1
+                libRep:"La ouvelle joueuse attend la sortie avant d'entrer",
+                points: 2
             },
             {
                 step: 210,
                 act: "information",
                 niveau: "DEBUTANT",
                 libelle: "Les co-équipières applaudissent la joueuse qui sort pour la remercier pour sa prestation",
-                pict: "FIFA_Fair_Play.jpg"
+                pict: "FIFA_Fair_Play.jpg",
+                type: 'fairplay'
             },
             {
                 step: 228,
@@ -295,7 +291,7 @@ var tableau = [
                 reponse: 1,
                 libRep:"L'arbitre assistant se positionne au niveau de la ligne de limite de terrain pour vérifier que le ballon ne sort pas.",
                 loi: "Loi_17",
-                points: 1
+                points: 2
             },
             {
                 step: 307,

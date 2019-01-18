@@ -59,13 +59,14 @@ var mesActions = {
         };        
 
         document.getElementById("quest").innerHTML = (actions[ind].act).toUpperCase() + " " + (questionsFaites.length + 1);
-        showItem("echange", true);
+        setMessage("question");
         showItem("zPropositions", true);
         showItem("zLoi", false);
         showZone("zSuite", true);
         showItem("btnContinuer", false);
         showItem("btnRepondre", true);
         showItem("btnReplay", true);
+        showItem("btnFairPlay", false);
     },
     
     bonus : function (ind) {
@@ -122,23 +123,41 @@ var mesActions = {
         btnRepondre.onclick = function() 
         {
           mesReponses(ind); 
-        };        
+        };
 
         document.getElementById("quest").innerHTML = (actions[ind].act).toUpperCase();
-        showItem("echange", true);
+
+        setMessage("bonus");
         showItem("zPropositions", true);
         showItem("zLoi", false);
         showZone("zSuite", true);
         showItem("btnContinuer", false);
         showItem("btnRepondre", true);
         showItem("btnReplay", false);
+        showItem("btnFairPlay", false);
     },
 
     information : function (ind) {
-        showItem("echange", true);
+        setMessage("information");
         showItem("zPropositions", false);
         showItem("zLoi", false);
-        showZone("zSuite", false);
+        showZone("zSuite", true);
+        showItem("btnContinuer", false);
+        showItem("btnRepondre", false);
+        showItem("btnReplay", false);
+
+        // on affiche le bouton répondre si FAIRPLAY et pas encore GAGNE
+        if ((actions[ind].type === 'fairplay') && (questionsFaites.indexOf(actions[ind].step) < 0)) {
+            var btnFairPlay = document.getElementById("btnFairPlay");
+            btnFairPlay.onclick = function() 
+            {
+            fairplay(ind); 
+            };
+            showItem("btnFairPlay", true);
+        } else {
+            showItem("btnFairPlay", false);
+        }
+
         document.getElementById("quest").innerHTML = (actions[ind].act).toUpperCase();
         document.getElementById("message").innerHTML = actions[ind].libelle;
 
@@ -153,9 +172,9 @@ var mesActions = {
         }
 
         showItem("message", true);
-        showItem("btnContinuer", false);
-        showItem("btnRepondre", false);
-        showItem("btnReplay", false);
+       // showItem("btnContinuer", false);
+       // showItem("btnRepondre", false);
+       // showItem("btnReplay", false);
         encadreVideo(true);
     },
 
@@ -240,7 +259,7 @@ function returnSelRadio(nbEl){
 	}
 }
 
-function continuer(){
+function continuer() {
     showItem("echange", false);
     showZone("zSuite", false); 
     encadreVideo(false);
@@ -248,7 +267,7 @@ function continuer(){
     document._video.play(); // on reprend la lecture de la vidéo
 }
 
-function replay(){
+function replay() {
     addScore(-1);   // MAJ score
     showItem("echange", false);
     showZone("zSuite", false); 
@@ -258,13 +277,28 @@ function replay(){
     document._video.play(); // on reprend la lecture de la vidéo
 }
 
+function fairplay(ind) {
+    if (questionsFaites.indexOf(actions[ind].step) < 0) {
+        // on accorde le point seulement une fois
+        addScore(1);   // MAJ score
+        showItem("echange", false);
+        showZone("zSuite", false); 
+        showZone("zConseiller", false);
+        encadreVideo(false);
+        questionsFaites.push(actions[ind].step);    // on ajoute l'action comme traitée
+    }
+   
+}
+
 function addScore(value) {
     if (value === 0) {
         videoNbPoint = 0;
     } else {
         videoNbPoint = videoNbPoint + value;
     }
-    document.getElementById("scoreBoard").innerHTML = videoNbPoint.toString() + ' / ' + (nbQuests[0].points).toString();
+    let myColor = ((videoNbPoint / nbQuests[0].points) > 0.5 ? 'green' : 'white');
+    let myScore = '<span style="color:'+ myColor +';">' + videoNbPoint.toString() + '</span>';
+    document.getElementById("scoreBoard").innerHTML = myScore + ' / ' + (nbQuests[0].points).toString();
 }
 
 function showConseiller(rubrique, resultat) {
@@ -272,36 +306,38 @@ function showConseiller(rubrique, resultat) {
      let monConseiller = document.getElementById("conseiller");
      let source = myURL + '/images/conseiller/tete'+ Math.floor(Math.random() * Math.floor(4) + 1)+'.png';
 
-     let text= '';
-
-    switch (rubrique) {
-        case 'encouragement':
-            text = '<p style="text-align:center;">Tu as l\'air d\'avoir un peu de mal à trouver tes réponses.<br><br>';
-            break;
-        
-        default:
-            text = '<p style="text-align:center;">' + (resultat ? 'BRAVO' : 'DOMMAGE') + '<br><br>';    
-    }
+    let text = '<p style="text-align:center;font-size: 16pt;font-weight: bolder;">' + (resultat ? 'BRAVO !' : 'DOMMAGE') + '<br><br>';    
+    let isEnd = false;
 
     switch(rubrique) {
         case 'fin':
-            text+=  (resultat ? 'Plus de 50% de réussite' : 'Je suis sûr que tu peux mieux faire') + '<br><br>';
-            text +=  'Reviens vite</p>';
+            text+= '<span ' + (resultat ? 'class="gagne">Tu as Plus de<br><span style="font-size: 18pt;font-weight: bolder;">50%</span> de réussite' : 'class="perdu">Reviens vite essayer') +'</span></p>';
+            isEnd = true;
             break;
 
         case 'traite':
-            text+=  '<span ' + (resultat ? 'class="gagne">Tu as déja reçu tes points' : 'class="perdu">Et pourtant tu l\'as déjà faite') + '</span></p>';
+            text+=  '<span ' + (resultat ? 'class="gagne">Mais tu as déja tes points' : 'class="perdu">Et pourtant tu l\'as déjà faite') + '</span></p>';
             break;
 
         case 'reponse':
-            text+= '<span ' + (resultat ? 'class="gagne">Tu as gagné<br><span style="font-size: 18pt;font-weight: bolder;">' + actions[ind].points + ' pts' : 'class="perdu">Ne lâche rien') + "</span></span></p>";
-            break;
-        
-        case 'encouragement':
-            text+= 'Ne lâche pas</p>'
+            text+= '<span ' + (resultat ? 'class="gagne">Tu as gagné<br><span style="font-size: 18pt;font-weight: bolder;">' + actions[ind].points + ' pts' : 'class="perdu">Essaye encore') + "</span></span></p>";
             break;
     }
-    showZone("zConseiller", true);
+    showZone("zConseiller", true, isEnd);
     monConseiller.setAttribute("src", source);
     document.getElementById("rep").innerHTML = text;
+}
+
+function setMessage(rubrique) {
+    let monMessage = document.getElementById("zMessage");
+    let monTitre = document.getElementById("chapeau");
+
+    if (rubrique === 'bonus') {
+        monTitre.style.backgroundImage="url("+ myURL +"/images/bandeau2.png)";
+        monMessage.style.border= "2px solid #32CD32";
+    } else {
+        monTitre.style.backgroundImage="url("+ myURL +"/images/bandeau.png)";
+        monMessage.style.border= "2px solid chocolate";
+    }
+    showItem("echange", true);
 }

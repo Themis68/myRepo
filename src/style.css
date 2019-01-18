@@ -51,23 +51,23 @@ body {
   display: flex;
   position: absolute;
   z-index: 100;
-  width: 240px;
-  height: 120px;
+  width: 300px;
+  height: 160px;
   background-color: whitesmoke;
+  align-items: center;
 }
 
 #pict {
   display: flex;
   justify-content: left;
-  width: 50%;
-  height: 100px;
+  width: 70%;
 }
 
 #rep {
   display: flex;
   justify-content: left;
   padding: 3px;
-  width: 50%;
+  width: 60%;
 }
 
 /* les zones */
@@ -237,7 +237,7 @@ video {
   margin-top: 6px;
 }
 
-#btnLevel , #btnContinuer, #btnRepondre, #btnReplay {
+#btnLevel , #btnContinuer, #btnRepondre, #btnReplay, #btnFairPlay {
   font-family: passion_oneregular;
   font-size: 18pt;
   color: white;
@@ -274,7 +274,7 @@ video {
   background-image: url("../images/bandeau.png");
   background-repeat: no-repeat;
   background-size: 100%;
-  height: 25px;
+  height: 45px;
 }
 
 #zMessage {
@@ -282,6 +282,14 @@ video {
   margin-top: 0px;
   margin-bottom: 10px;
   border: 2px solid chocolate;
+  height: 220px;
+}
+
+#zMessage2 {
+  background-color: whitesmoke;
+  margin-top: 0px;
+  margin-bottom: 10px;
+  border: 10px solid green;
   height: 260px;
 }
 
@@ -372,5 +380,5 @@ p #message {
  }
  
  .perdu {
-  color: red;
+  color: black;
  }

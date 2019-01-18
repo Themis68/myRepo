@@ -62,11 +62,11 @@ function init() {
 	listeVideos("videos");					// créé la barre des vidéos disponibles
 }
 
-function showZone(id, state) {
+function showZone(id, state, isEnd) {
 	// gère les DIV qui ont "display:flex"
 	const myState = (state === true ? "visible" : "hidden");
 	const el = document.getElementById(id);
-	el.setAttribute("style","visibility:"+ myState +";");
+	el.setAttribute("style","visibility:"+ myState +";" + (isEnd ? "border: solid chocolate 10px;" : "border:"));
 }
 
 function showItem(id, state) {
