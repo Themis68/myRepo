@@ -6,8 +6,14 @@ var tableau = [
             poster: "http://media.w3.org/2010/05/bunny/poster.png",
             fichier: "EM_Herbiers.mp4",
             description: "Match opposant Les Herbiers (Rouge) à l'Etoile Mouzillon (Blanc) en championnat R2F",
-            gauche: "Les Herbiers (Rouge)",
-            droite: "Etoile Mouzillon (Blanc)"
+            gauche: {
+                nom: "Les Herbiers (Rouge)",
+                fanion: "LHerbiers.jpg"
+            },
+            droite: {
+                nom: "Etoile Mouzillon (Blanc)",
+                fanion: "EMouz.jpg"
+            }
         },
         [               
             {

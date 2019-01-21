@@ -366,8 +366,16 @@ function switchVideo(n) {
 		}
 
 		// EQUIPES
-		document.getElementById("gauche").innerHTML = video[0].gauche;
-		document.getElementById("droite").innerHTML = video[0].droite;
+		let source = myURL + '/images/fanions/'+ video[0].gauche.fanion;
+		let code = '<img src="'+ source +'" width="30%" height="30%"/>';
+		code+= ' <span>' + video[0].gauche.nom + '</span>';
+		document.getElementById("gauche").innerHTML = code;
+
+		source = myURL + '/images/fanions/'+ video[0].droite.fanion;
+		code = ' <span>' + video[0].droite.nom + '</span>';
+		code+= '<img src="'+ source +'" width="30%" height="30%" />';
+		
+		document.getElementById("droite").innerHTML = code;
 		
 		showItem("fondVideo", false);
 		showItem("videoOn", true);
@@ -396,6 +404,9 @@ function encadreVideo(state) {
 }
 
 function user() {
-	avatar = prompt("Saisie ton prénom s'il te plait");
+	do {
+		avatar = prompt("Saisie ton prénom s'il te plait");
+	}
+	while (!avatar)
 	document.getElementById("msgVideo").innerHTML = "Bienvenue "+ avatar.toUpperCase() + ". Merci de sélectionner une vidéo ci-dessous";
 }

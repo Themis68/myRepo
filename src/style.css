@@ -59,7 +59,6 @@ body {
 
 #pict {
   display: flex;
-  justify-content: left;
   width: 70%;
 }
 
@@ -205,7 +204,6 @@ video {
 }
 
 .pict2 {
-  text-align: -webkit-center;
   padding-top: 3px;
   padding-bottom: 3px;
 }
@@ -330,6 +328,14 @@ p #message {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 8pt;
   color: white;
+  display:flex;
+  justify-content: space-between 
+}
+
+.event {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 8pt;
+  color: green;
   display:flex;
   justify-content: space-between 
 }

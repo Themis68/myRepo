@@ -22,14 +22,7 @@ var mesActions = {
         }
 
         // gestion de l'image
-        if (monJob.pict) {
-            var myPict = document.getElementById("myPict");
-            let source = myURL + '/images/'+ monJob.pict;
-            myPict.setAttribute("src", source);
-            showItem('myPict', true);
-        } else {
-            showItem('myPict', false);
-        }
+        showPict(monJob.pict, 'myPict');
 
         var maQuestion = document.getElementById("zPropositions");
         for (i=1; i <= monJob.attributs.length; i++) { 
@@ -89,14 +82,7 @@ var mesActions = {
         }
 
         // gestion de l'image
-        if (monJob.pict) {
-            var myPict = document.getElementById("myPict");
-            let source = myURL + '/images/'+ monJob.pict;
-            myPict.setAttribute("src", source);
-            showItem('myPict', true);
-        } else {
-            showItem('myPict', false);
-        }
+        showPict(monJob.pict, 'myPict');
 
         var maQuestion = document.getElementById("zPropositions");
         for (i=1; i <= monJob.attributs.length; i++) { 
@@ -162,19 +148,9 @@ var mesActions = {
         document.getElementById("message").innerHTML = actions[ind].libelle;
 
         // gestion de l'image
-        if (actions[ind].pict) {
-            var myPict = document.getElementById("myPict");
-            let source = myURL + '/images/'+ actions[ind].pict;
-            myPict.setAttribute("src", source);
-            showItem('myPict', true);
-        } else {
-            showItem('myPict', false);
-        }
+        showPict(actions[ind].pict, 'myPict');
 
         showItem("message", true);
-       // showItem("btnContinuer", false);
-       // showItem("btnRepondre", false);
-       // showItem("btnReplay", false);
         encadreVideo(true);
     },
 
@@ -233,14 +209,11 @@ function mesReponses(ind) {
         showConseiller('traite', ((maRep === repOk)));
     }
 
-    //document.getElementById("rep").innerHTML = text;    //ne pas mettre cette ligne avant le if(questionsFaites...
-
     // MAJ interface
     showItem("zPropositions", false);
     showItem("btnRepondre", false);
     showItem("btnReplay", false);
     showItem("btnContinuer", true);
-   // showZone("zConseiller", true);
 }
 
 function changeLevel(level) {
@@ -334,10 +307,21 @@ function setMessage(rubrique) {
 
     if (rubrique === 'bonus') {
         monTitre.style.backgroundImage="url("+ myURL +"/images/bandeau2.png)";
-        monMessage.style.border= "2px solid #32CD32";
+        monMessage.style.border= "4px solid #32CD32";
     } else {
         monTitre.style.backgroundImage="url("+ myURL +"/images/bandeau.png)";
         monMessage.style.border= "2px solid chocolate";
     }
     showItem("echange", true);
+}
+
+function showPict(attribut, id) {
+    if (attribut) {
+        let myPict = document.getElementById(id);
+        let source = myURL + '/images/'+ attribut;
+        myPict.setAttribute("src", source);
+        showItem(id, true);
+    } else {
+        showItem(id, false);
+    }
 }
