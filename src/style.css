@@ -97,10 +97,24 @@ div.zone {
   width:2%;
 }
 
-#gauche, #droite {
+#gauche {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+#droite {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.fanion {
+  color: white; 
   font-family: passion_oneregular;
   font-size: 18pt;
-  color: white; 
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 #zCamp {

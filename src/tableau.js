@@ -8,11 +8,11 @@ var tableau = [
             description: "Match opposant Les Herbiers (Rouge) à l'Etoile Mouzillon (Blanc) en championnat R2F",
             gauche: {
                 nom: "Les Herbiers (Rouge)",
-                fanion: "LHerbiers.jpg"
+                fanion: "LHerbiers.png"
             },
             droite: {
                 nom: "Etoile Mouzillon (Blanc)",
-                fanion: "EMouz.jpg"
+                fanion: "EMouz.png"
             }
         },
         [               

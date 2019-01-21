@@ -367,13 +367,13 @@ function switchVideo(n) {
 
 		// EQUIPES
 		let source = myURL + '/images/fanions/'+ video[0].gauche.fanion;
-		let code = '<img src="'+ source +'" width="30%" height="30%"/>';
-		code+= ' <span>' + video[0].gauche.nom + '</span>';
+		let code = '<img src="'+ source +'" width="20%" height="20%"/>';
+		code+= '<span class="fanion">' + video[0].gauche.nom + '</span>';
 		document.getElementById("gauche").innerHTML = code;
 
 		source = myURL + '/images/fanions/'+ video[0].droite.fanion;
-		code = ' <span>' + video[0].droite.nom + '</span>';
-		code+= '<img src="'+ source +'" width="30%" height="30%" />';
+		code = '<span class="fanion">' + video[0].droite.nom + '</span>';
+		code+= '<img src="'+ source +'" width="20%" height="20%" />';
 		
 		document.getElementById("droite").innerHTML = code;
 		
