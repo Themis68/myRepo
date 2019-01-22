@@ -95,6 +95,7 @@ function listeVideos(id) {
 		btn.setAttribute("name", i);
 		btn.setAttribute("onclick", 'switchVideo('+ tableau[i][0].id +');');
 		td.appendChild(btn);
+		td.classList.add("cellListVideos");
 		tr.appendChild(td);		
 	}
 	tbody.appendChild(tr);

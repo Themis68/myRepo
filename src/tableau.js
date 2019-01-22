@@ -5,7 +5,7 @@ var tableau = [
             titre: "EM/Herbiers",
             poster: "http://media.w3.org/2010/05/bunny/poster.png",
             fichier: "EM_Herbiers.mp4",
-            description: "Match opposant Les Herbiers (Rouge) à l'Etoile Mouzillon (Blanc) en championnat R2F",
+            description: "Match opposant Les Herbiers à l'Etoile Mouzillon en championnat R2F",
             gauche: {
                 nom: "Les Herbiers (Rouge)",
                 fanion: "LHerbiers.png"
@@ -313,6 +313,41 @@ var tableau = [
             },
             {
                 step: 313,
+                act: "fin"
+            }
+        ]
+    ],
+    [
+        {
+            id: 2,
+            titre: "EM/Baugé",
+            poster: "http://media.w3.org/2010/05/bunny/poster.png",
+            fichier: "EM_Bauge.mp4",
+            description: "Match opposant Baugé à l'Etoile Mouzillon en championnat u18F Région",
+            gauche: {
+                nom: "Baugé (Orange)",
+                fanion: "Bauge.png"
+            },
+            droite: {
+                nom: "Etoile Mouzillon (Blanc)",
+                fanion: "EMouz.png"
+            }
+        },
+        [               
+            {
+                step: 3,
+                act: "allerA",
+                niveau: "CONFIRME",
+                indice: 2506
+            },
+            {
+                step: 4,
+                act: "allerA",
+                niveau: "DEBUTANT",
+                indice: 2506
+            },
+            {
+                step: 2508,
                 act: "fin"
             }
         ]

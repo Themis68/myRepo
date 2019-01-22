@@ -180,6 +180,14 @@ video {
   height: 90%;
 }
 
+#listVideos {
+  display: block;
+}
+
+.cellListVideos {
+  padding: 5px;;
+}
+
 #fondVideo {
   width: 600px;
   height: 330px;
