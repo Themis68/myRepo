@@ -1,4 +1,4 @@
-var tableau = [
+var scenario = [
     [
         {
             id: 1,
@@ -341,10 +341,16 @@ var tableau = [
                 indice: 2506
             },
             {
-                step: 4,
-                act: "allerA",
+                step: 307,
+                act: "question",
                 niveau: "DEBUTANT",
-                indice: 2506
+                libelle: "Comment l'arbitre va-t-il signaler la relance aux 6 mètres ?",
+                pict: "gestes_arbitre.png",
+                attributs: ["F", "A", "C"],
+                reponse: 3,
+                libRep:"L'arbitre se re-positionne pour suivre le jeu",
+                loi: "Loi_8",
+                points: 2
             },
             {
                 step: 2508,

@@ -88,12 +88,12 @@ function listeVideos(id) {
 	//<button onclick="switchVideo(3);">MAH00065</button>
 	var tbody = document.getElementById(id);
 	tr = document.createElement("tr");
-	for (i=0; i < arrayAssoSize(tableau); i++) {
+	for (i=0; i < arrayAssoSize(scenario); i++) {
 		var td = document.createElement("td");
 		var btn = document.createElement("button");
-		btn.textContent = tableau[i][0].titre;
+		btn.textContent = scenario[i][0].titre;
 		btn.setAttribute("name", i);
-		btn.setAttribute("onclick", 'switchVideo('+ tableau[i][0].id +');');
+		btn.setAttribute("onclick", 'switchVideo('+ scenario[i][0].id +');');
 		td.appendChild(btn);
 		td.classList.add("cellListVideos");
 		tr.appendChild(td);		
@@ -222,7 +222,7 @@ function capture(event) {
 				}
 			}
 		}
-		media_events["currentTime"] = seq;	// MAJ de la valeur dans le tableau (pour info)
+		media_events["currentTime"] = seq;	// MAJ de la valeur dans le scenario (pour info)
 	}
 	media_events[event.type]++;		// traitement : on augmente de 1
 	oldStep = seq;
@@ -306,14 +306,14 @@ function scanQuestion() {
 function switchVideo(n) {
 	// affectation de la nouvelle vidéo et des attributs liés
 	
-	if (n > arrayAssoSize(tableau)) {
+	if (n > arrayAssoSize(scenario)) {
 		// vérifie si l'index de la vidéo existe dans le fichier tableau.js
 		n = 0;
 		return false;
 	} else {
 		// MAJ videos
 		idVideo = n;		// maj de l'indice de la vidéo en cours
-		video = tableau[n-1];    // recup données de la vidéo
+		video = scenario[n-1];    // recup données de la vidéo
 		// affectation video à la zone
 		var mp4 = document.getElementById("mp4");
 		document._video.setAttribute("poster", video[0].poster);
