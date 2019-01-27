@@ -11,11 +11,12 @@ https://www.w3.org/2010/05/video/mediaevents.html
 - Gérer une action qui affiche une faute que le joueur n'a pas vu
 - Gérer l'affichage des contrôles selon les besoins
 - proposer une liste de vidéos à le joueur (thumnails)
-- inforamtion : Reste le problème de cacher le message et le bouton au bout d'un certain temps
+- information : Reste le problème de cacher le message et le bouton au bout d'un certain temps
 - afficher des messages en zoom écran
 - proposer une intéraction en zoom écran
 - formule quizz : questions et timer
-- replay au ralenti avec un démarrage à une séquence précise
+- gérer automatiquement la fin de la vidéo
+- page accueil : intégrer des photos d'arbitres
 
 **************************************
                LINKEDIN

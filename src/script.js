@@ -213,6 +213,10 @@ function capture(event) {
 							mesActions[actions[asWork].act](asWork);	// on appelle le traitement nécessaire
 						break;
 
+						case "mitemps":
+							mesActions[actions[asWork].act](asWork);	// on appelle le traitement nécessaire
+						break;
+
 						case "allerA":
 						if (actions[asWork].niveau === nbQuests[niveauQuest].niv) {
 							mesActions[actions[asWork].act](asWork);	// on appelle le traitement nécessaire
@@ -367,16 +371,7 @@ function switchVideo(n) {
 		}
 
 		// EQUIPES
-		let source = myURL + '/images/fanions/'+ video[0].gauche.fanion;
-		let code = '<img src="'+ source +'" width="20%" height="20%"/>';
-		code+= '<span class="fanion">' + video[0].gauche.nom + '</span>';
-		document.getElementById("gauche").innerHTML = code;
-
-		source = myURL + '/images/fanions/'+ video[0].droite.fanion;
-		code = '<span class="fanion">' + video[0].droite.nom + '</span>';
-		code+= '<img src="'+ source +'" width="20%" height="20%" />';
-		
-		document.getElementById("droite").innerHTML = code;
+		gestionCamps(1);	// affichage des informations sur l'équipe pour la première mi-temps
 		
 		showItem("fondVideo", false);
 		showItem("videoOn", true);
@@ -391,6 +386,28 @@ function switchVideo(n) {
 	}
 }
 
+function gestionCamps(mitemps) {
+	let codeG = '';
+	let codeD = '';
+
+	switch (mitemps) {
+		case 1:
+			codeG = '<img src="'+ myURL + '/images/fanions/'+ video[0].gauche.fanion +'" width="20%" height="20%"/>';
+			codeG+= '<span class="fanion">' + video[0].gauche.nom + '</span>';
+			codeD = '<span class="fanion">' + video[0].droite.nom + '</span>';
+			codeD+= '<img src="'+ myURL + '/images/fanions/'+ video[0].droite.fanion +'" width="20%" height="20%" />';
+			break;
+		case 2:
+			codeG = '<img src="'+ myURL + '/images/fanions/'+ video[0].droite.fanion +'" width="20%" height="20%"/>';
+			codeG+= '<span class="fanion">' + video[0].droite.nom + '</span>';
+			codeD = '<span class="fanion">' + video[0].gauche.nom + '</span>';
+			codeD+= '<img src="'+ myURL + '/images/fanions/'+ video[0].gauche.fanion +'" width="20%" height="20%" />';
+			break;
+	}
+
+	document.getElementById("gauche").innerHTML = codeG;
+	document.getElementById("droite").innerHTML = codeD;
+}
 function encadreVideo(state) {
 	let myState = (state === true ? "videoEncadre" : "videoNonEncadre");
 	const el = document.getElementById("video");

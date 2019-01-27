@@ -159,10 +159,15 @@ var mesActions = {
         getVideo().currentTime = actions[ind].indice;
     },
 
-    fin : function (ind) {
+    fin: function (ind) {
         encadreVideo(false);
         showConseiller('fin', ((videoNbPoint / nbQuests[0].points) > 0.5));
+    },
+
+    mitemps: function (ind) {
+        gestionCamps(2);	// changement de camp
     }
+
 }
 
 // est appelé depuis l'IHM pour remonter la réponse
@@ -237,6 +242,7 @@ function continuer() {
     showZone("zSuite", false); 
     encadreVideo(false);
     showZone("zConseiller", false);
+    document._video.playbackRate = 1;   // vitesse normale
     document._video.play(); // on reprend la lecture de la vidéo
 }
 
@@ -245,8 +251,9 @@ function replay() {
     showItem("echange", false);
     showZone("zSuite", false); 
     showZone("zConseiller", false);
-    encadreVideo(false);
+    encadreVideo(true);
     getVideo().currentTime = getVideo().currentTime - 2;    // on recule de 2 secondes
+    document._video.playbackRate = 0.2; // on active le ralentis
     document._video.play(); // on reprend la lecture de la vidéo
 }
 
