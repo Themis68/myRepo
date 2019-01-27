@@ -7,10 +7,10 @@ https://www.w3.org/2010/05/video/mediaevents.html
 **************************************
 
 - Lire les actions depuis un fichier du même nom que la vidéo
-- Gérer une action qui attend une clic de le joueur
+- Gérer une action qui attend une clic du joueur
 - Gérer une action qui affiche une faute que le joueur n'a pas vu
 - Gérer l'affichage des contrôles selon les besoins
-- proposer une liste de vidéos à le joueur (thumnails)
+- proposer une liste de vidéos à le joueur (thumbnails)
 - information : Reste le problème de cacher le message et le bouton au bout d'un certain temps
 - afficher des messages en zoom écran
 - proposer une intéraction en zoom écran
