@@ -322,7 +322,14 @@ function switchVideo(n) {
 		var mp4 = document.getElementById("mp4");
 		document._video.setAttribute("poster", video[0].poster);
 		mp4.setAttribute("src", "videos/" + video[0].fichier);
-		//document.getElementById("description").innerHTML = video[0].description;
+
+		var player = getVideo().document._video; // videojs('my-video');
+    	player.brand({
+			image: myURL + '/images/fanions/EMouz.png',
+			title: "Logo Title",
+			destination: "http://www.google.com",
+			destinationTarget: "_top"
+		});
 
 		document._video.load();
 
