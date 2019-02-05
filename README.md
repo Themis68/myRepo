@@ -211,3 +211,14 @@ Le scénario accepte plusieurs opérations :
         act: "mitemps"
     },
 
+********************************
+INFORMATIONS TECHNIQUES
+********************************
+Ne pas envoyer de données statistiques à google :
+<script>window.HELP_IMPROVE_VIDEOJS = false;</script>
+
+Liaison avec le site de video.js :
+<link href="http://vjs.zencdn.net/7.0/video-js.min.css" rel="stylesheet">
+<script src="http://vjs.zencdn.net/7.0/video.min.js"></script>
+
+ou en local :

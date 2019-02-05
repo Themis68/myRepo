@@ -4,15 +4,23 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8" />
 
   <title>Apprentissage de l'arbitrage</title>
-  <script src="./src/script.js">
-  </script>
-  <script src="./src/actions.js">
-  </script>
-  <script src="./src/scenario.js">
-  </script>
+  <script>window.HELP_IMPROVE_VIDEOJS = false;</script>
+
+  <script src="./src/script.js"></script>
+  <script src="./src/actions.js"></script>
+  <script src="./src/scenario.js"></script>
+  
   <link href="./src/style.css" rel="stylesheet" type="text/css">
+
+  <script type="text/javascript" src="./video.js/dist/video.min.js"/></script>
+  <link href="./video.js/dist/video-js.css" rel="stylesheet" type="text/css">
+
+  <script type="text/javascript" src="./videojs-brand/dist/videojs-brand.min.js"/></script>
+  <link href="./videojs-brand/dist/videojs-brand.css" rel="stylesheet" type="text/css">
+
 </head>
 
 <body background="images/stade.jpg" onLoad="user();">
@@ -30,8 +38,6 @@
         <table id="listVideos" width="100%">
           <tbody id="videos"><p id="msgVideo"></p></tbody>
         </table>
-        <button onclick="getVideo().playbackRate+=0.1">playbackRate+=0.1</button>
-        <button onclick="getVideo().playbackRate-=0.1">playbackRate-=0.1</button><br>
         <p id="description"></p>
       </div>
     </div>
@@ -46,7 +52,7 @@
         </div>
         <div id="zVideo">
           <video id="video" class="videoNonEncadre" controls="" preload="none" poster="https://media.w3.org/2010/05/sintel/poster.png">
-            <source id="mp4" src="videos/MAH00063.MP4" type="video/mp4">
+            <source id="mp4" src="videos/MAH00063.MP4" type="video/mp4" data-setup='{ "html5" : { "fluid" : false } }'>
             <p>Votre navigateur ne supporte pas la gestion des vidéos</p>
           </video>
         </div>

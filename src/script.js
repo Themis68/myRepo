@@ -323,13 +323,29 @@ function switchVideo(n) {
 		document._video.setAttribute("poster", video[0].poster);
 		mp4.setAttribute("src", "videos/" + video[0].fichier);
 
-		var player = getVideo().document._video; // videojs('my-video');
+		videojs.registerPlugin('videojs-brand', videojs-brand);
+
+		/*var player =  videojs('document.video');
     	player.brand({
 			image: myURL + '/images/fanions/EMouz.png',
 			title: "Logo Title",
 			destination: "http://www.google.com",
 			destinationTarget: "_top"
-		});
+		});*/
+
+
+/*
+		var player =  videojs('video', {
+				plugins: {
+					brand{
+						image: myURL + '/images/fanions/EMouz.png',
+						title: "Logo Title",
+						destination: "http://www.google.com",
+						destinationTarget: "_top"
+					}
+				}
+			}
+			);*/
 
 		document._video.load();
 
