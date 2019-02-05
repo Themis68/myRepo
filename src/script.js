@@ -319,33 +319,29 @@ function switchVideo(n) {
 		idVideo = n;		// maj de l'indice de la vidéo en cours
 		video = scenario[n-1];    // recup données de la vidéo
 		// affectation video à la zone
-		var mp4 = document.getElementById("mp4");
-		document._video.setAttribute("poster", video[0].poster);
-		mp4.setAttribute("src", "videos/" + video[0].fichier);
-
-		videojs.registerPlugin('videojs-brand', videojs-brand);
-
-		/*var player =  videojs('document.video');
-    	player.brand({
-			image: myURL + '/images/fanions/EMouz.png',
-			title: "Logo Title",
-			destination: "http://www.google.com",
-			destinationTarget: "_top"
-		});*/
+		//var mp4 = document.getElementById("mp4");
+		//document._video.setAttribute("poster", video[0].poster);
+		//mp4.setAttribute("src", "videos/" + video[0].fichier);
 
 
-/*
-		var player =  videojs('video', {
-				plugins: {
-					brand{
-						image: myURL + '/images/fanions/EMouz.png',
-						title: "Logo Title",
-						destination: "http://www.google.com",
-						destinationTarget: "_top"
-					}
+		// appel du plug-in
+		videojs('video', {
+			source: "videos/" + video[0].fichier,
+			width: 200,
+			height: 200,
+			controls: true,
+			preload:  'none',
+			poster: video[0].poster,
+			plugins: {
+				brand: {
+					image: myURL + '/images/fanions/Bauge.png',
+					title: "Logo Title",
+					destination: "http://www.google.com",
+					destinationTarget: "_top"
 				}
 			}
-			);*/
+		  }
+		);
 
 		document._video.load();
 

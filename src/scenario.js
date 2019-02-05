@@ -3,7 +3,7 @@ var scenario = [
         {
             id: 1,
             titre: "EM/Herbiers",
-            poster: "http://media.w3.org/2010/05/bunny/poster.png",
+            poster: "https://media.w3.org/2010/05/sintel/poster.png",
             fichier: "EM_Herbiers.mp4",
             description: "Match opposant Les Herbiers à l'Etoile Mouzillon en championnat R2F",
             gauche: {

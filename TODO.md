@@ -86,3 +86,43 @@ au survol d'un texte :
 Code: [Sélectionner]
 <a href="#" onMouseOver="PlaySound('tonfichier.mp3')">lecture du son au survol</A>
 Voilà bon travail maintenant....
+
+**************************************
+             VIDEOJS
+**************************************
+
+Générer un plug-in : https://docs.videojs.com/docs/guides/plugins.html
+
+Déclaration dans <HEAD> :
+    // videojs
+  <script type="text/javascript" src="./video.js/dist/video.min.js"/></script>
+  <link href="./video.js/dist/video-js.css" rel="stylesheet" type="text/css">
+
+  // plugin video-brand
+  <script type="text/javascript" src="./videojs-brand/dist/videojs-brand.min.js"/>
+    videojs.registerPlugin('brand', videojs-brand);
+  </script>
+  <link href="./videojs-brand/dist/videojs-brand.css" rel="stylesheet" type="text/css">
+
+Appel au plugin :
+
+    videojs('video', {
+        plugins: {
+            brand: {
+                image: myURL + '/images/fanions/Bauge.png',
+                title: "Logo Title",
+                destination: "http://www.google.com",
+                destinationTarget: "_top"
+            }
+        }
+        }
+    );
+
+Spinners : https://github.com/videojs/video.js/issues/2507
+
+
+
+<video id="video" data-setup='{"liveui": true}' class="videoNonEncadre" controls="" preload="none" poster="https://media.w3.org/2010/05/sintel/poster.png">
+            <source id="mp4" src="videos/MAH00063.MP4" type="video/mp4">
+            <p>Votre navigateur ne supporte pas la gestion des vidéos</p>
+          </video>
