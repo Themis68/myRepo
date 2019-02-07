@@ -155,6 +155,8 @@ Méthode 2 :
 </video>
 
 OPTIONS : https://docs.videojs.com/docs/guides/options.html 
+https://videojs.readthedocs.io/en/latest/guides/setup/
+
 
 - The actual default component structure of the Video.js player looks something like this:
 
