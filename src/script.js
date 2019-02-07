@@ -1,3 +1,4 @@
+
 var media_events = new Array();
 media_events["loadstart"] = 0;
 //media_events["progress"] = 0;
@@ -23,6 +24,9 @@ media_events["timeupdate"] = 0;
 //media_events["resize"] = 0;
 //media_events["volumechange"] = 0;
 media_events["currentTime"] = 0;
+
+var video = [];
+var actions = [];
 
 var avatar = '';
 
@@ -73,12 +77,9 @@ function showItem(id, state) {
 	// gère les DIV qui ont "display:block"
 	let myState = (state === true ? "show" : "hide");
 	const el = document.getElementById(id);
-	switch (myState) {
-		case "show":
+	if (myState === "show") {
 		(el.classList.contains("hide") ? el.classList.replace("hide", "show") : el.classList.add("show"));
-		break;
-
-		default:
+	} else {
 		(el.classList.contains("show") ? el.classList.replace("show", "hide") : el.classList.add("hide"));	
 	}
 }
@@ -103,7 +104,6 @@ function listeVideos(id) {
 
 function listeEvents(id, arrayEventDef) {
 	// intercepte tous les évènements pour les renseigner
-	var f;
     for (let key in arrayEventDef) {
 		document._video.addEventListener(key, capture, false);
     }
@@ -159,36 +159,18 @@ function capture(event) {
 				if (asWork > -1) {
 					switch(actions[asWork].act) {
 						case "question":
-						if (actions[asWork].niveau === nbQuests[niveauQuest].niv) {
-							mesActions[actions[asWork].act](asWork);	// on appelle le traitement nécessaire
-						}
-						break;
-
 						case "bonus":
-						if (actions[asWork].niveau === nbQuests[niveauQuest].niv) {
-							mesActions[actions[asWork].act](asWork);	// on appelle le traitement nécessaire
-						}
-						break;
-
 						case "information":
-						if (actions[asWork].niveau === nbQuests[niveauQuest].niv) {
-							mesActions[actions[asWork].act](asWork);	// on appelle le traitement nécessaire
-						}
-						break;
+						case "allerA":
+							if (actions[asWork].niveau === nbQuests[niveauQuest].niv) {
+								mesActions[actions[asWork].act](asWork);	// on appelle le traitement nécessaire
+							}
+							break;
 
 						case "fin":
-							mesActions[actions[asWork].act](asWork);	// on appelle le traitement nécessaire
-						break;
-
 						case "mitemps":
 							mesActions[actions[asWork].act](asWork);	// on appelle le traitement nécessaire
-						break;
-
-						case "allerA":
-						if (actions[asWork].niveau === nbQuests[niveauQuest].niv) {
-							mesActions[actions[asWork].act](asWork);	// on appelle le traitement nécessaire
-						}
-						break;
+							break;
 					}
 				}
 			}
@@ -204,7 +186,6 @@ function getVideo() {
 }
 
 function update_properties() {
-    var i = 0;
     for (let key in media_events) {
 		var e = document.getElementById("e_" + key);
 		if (e) {
@@ -262,12 +243,10 @@ function scanQuestion() {
 	nbQuests[2].points = 0;
 	// scanne des actions et imputation des points ou pas
 	for (let ind = 0; ind < arrayAssoSize(actions); ind++) {
-		switch(actions[ind].act) {
-			case  "question": 
+		if(actions[ind].act === "question") {
 				niv = (actions[ind].niveau === "DEBUTANT" ? 1: actions[ind].niveau === "CONFIRME" ? 2 : 0);
 				nbQuests[niv].nb++;
 				nbQuests[niv].points+= actions[ind].points;
-				break;
 		}
 	}
 }
@@ -402,12 +381,9 @@ function gestionCamps(mitemps) {
 function encadreVideo(state) {
 	let myState = (state === true ? "videoEncadre" : "videoNonEncadre");
 	const el = document.getElementById("myVideo");
-	switch (myState) {
-		case "videoEncadre":
+	if (myState === "videoEncadre") {
 		(el.classList.contains("videoNonEncadre") ? el.classList.replace("videoNonEncadre", "videoEncadre") : el.classList.add("videoEncadre"));
-		break;
-
-		default:
+	} else {
 		(el.classList.contains("videoEncadre") ? el.classList.replace("videoEncadre", "videoNonEncadre") : el.classList.add("videoNonEncadre"));	
 	}
 }

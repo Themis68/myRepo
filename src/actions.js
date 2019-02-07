@@ -25,7 +25,7 @@ var mesActions = {
         showPict(monJob.pict, 'myPict');
 
         var maQuestion = document.getElementById("zPropositions");
-        for (i=1; i <= monJob.attributs.length; i++) { 
+        for (let i=1; i <= monJob.attributs.length; i++) { 
             // construction du input
             var monInput = document.createElement("input");
             if (i===1) {monInput.checked = true;}
@@ -85,7 +85,7 @@ var mesActions = {
         showPict(monJob.pict, 'myPict');
 
         var maQuestion = document.getElementById("zPropositions");
-        for (i=1; i <= monJob.attributs.length; i++) { 
+        for (let i=1; i <= monJob.attributs.length; i++) { 
             // construction du input
             var monInput = document.createElement("input");
             if (i===1) {monInput.checked = true;}
@@ -211,7 +211,7 @@ function mesReponses(ind) {
         showConseiller('reponse', (maRep === repOk));
     } else {
         // DEJA TRAITE
-        showConseiller('traite', ((maRep === repOk)));
+        showConseiller('traite', (maRep === repOk));
     }
 
     // MAJ interface
@@ -230,7 +230,7 @@ function changeLevel(level) {
 
 // récupère le bouton radio sélectionné par l'utilisateur
 function returnSelRadio(nbEl){
-	for (i=1; i <= nbEl; i++) {
+	for (let i=1; i <= nbEl; i++) {
 		if (document.getElementById("R" + i).checked) {
 			return i;
 		}
