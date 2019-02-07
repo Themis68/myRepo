@@ -154,7 +154,7 @@ Méthode 2 :
     <p>Votre navigateur ne supporte pas la gestion des vidéos</p>
 </video>
 
-OPTIONS : https://docs.videojs.com/docs/guides/options.html
+OPTIONS : https://docs.videojs.com/docs/guides/options.html 
 
 - The actual default component structure of the Video.js player looks something like this:
 
@@ -184,6 +184,22 @@ Player
     ErrorDisplay
     TextTrackSettings
 
+<video id="myVideo" class="videojs"
+          data-setup='{"controls": true,
+          "autoplay": false,
+          "preload": "none"
+          "loop": false,
+          "fluid": true,
+          "poster": "https://media.w3.org/2010/05/sintel/poster.png",
+          "sources": [{
+            src: "../videos/EM_Herbiers.mp4",
+            type: "video/mp4"}]
+          }'>
+          <source src="videos/EMouz.mp4" type='video/mp4'>
+            <p class="vjs-no-js">Votre navigateur ne supporte pas la gestion des vidéos</p>
+          </video>
+
 *************************************************
+
 
 Spinners : https://github.com/videojs/video.js/issues/2507
