@@ -104,8 +104,11 @@ Déclaration dans <HEAD> :
   </script>
   <link href="./videojs-brand/dist/videojs-brand.css" rel="stylesheet" type="text/css">
 
-Appel au plugin :
+Appel au plugin :   
 
+ videojs('video', { options ou plugins});
+
+ex : passer un plugin "brand"
     videojs('video', {
         plugins: {
             brand: {
@@ -118,11 +121,69 @@ Appel au plugin :
         }
     );
 
+ex : passer un plug et des options
+	videojs('video', {
+			source: "videos/" + video[0].fichier,
+			controls: true,
+			preload:  'none',
+			poster: video[0].poster,
+			plugins: {
+				brand: {
+					image: myURL + '/images/ballonmini.png',
+					title: "Logo Title",
+					destination: "http://www.google.com",
+					destinationTarget: "_top"
+				}
+			}
+		  }, 
+		);
+
+Si on veut passer ces options pour toutes les vidéos, on les passe dasn HTML
+
+Méthode 1 : 
+<video id="video" class="" 
+    data-setup='{"controls": true,
+    "autoplay": false,
+    "preload": "none"}'>
+    <p class="vjs-no-js">Votre navigateur ne supporte pas la gestion des vidéos</p>
+</video>
+
+Méthode 2 : 
+<video id="video" class="videoNonEncadre" controls="" preload="none" poster="https://media.w3.org/2010/05/sintel/poster.png">
+    <source id="mp4" src="videos/MAH00063.MP4" type="video/mp4">
+    <p>Votre navigateur ne supporte pas la gestion des vidéos</p>
+</video>
+
+OPTIONS : https://docs.videojs.com/docs/guides/options.html
+
+- The actual default component structure of the Video.js player looks something like this:
+
+Player
+    PosterImage
+    TextTrackDisplay
+    LoadingSpinner
+    BigPlayButton
+    ControlBar
+        PlayToggle
+        VolumeMenuButton
+        CurrentTimeDisplay (Hidden by default)
+        TimeDivider (Hidden by default)
+        DurationDisplay (Hidden by default)
+        ProgressControl
+            SeekBar
+              LoadProgressBar
+              MouseTimeDisplay
+              PlayProgressBar
+        LiveDisplay (Hidden by default)
+        RemainingTimeDisplay
+        CustomControlsSpacer (No UI)
+        ChaptersButton (Hidden by default)
+        SubtitlesButton (Hidden by default)
+        CaptionsButton (Hidden by default)
+        FullscreenToggle
+    ErrorDisplay
+    TextTrackSettings
+
+*************************************************
+
 Spinners : https://github.com/videojs/video.js/issues/2507
-
-
-
-<video id="video" data-setup='{"liveui": true}' class="videoNonEncadre" controls="" preload="none" poster="https://media.w3.org/2010/05/sintel/poster.png">
-            <source id="mp4" src="videos/MAH00063.MP4" type="video/mp4">
-            <p>Votre navigateur ne supporte pas la gestion des vidéos</p>
-          </video>

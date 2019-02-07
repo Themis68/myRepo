@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", init, false);	// lance l'écoute d
 
 function init() {
 	showZone("zConseiller", false);
-	document._video = document.getElementById("video");
+	document._video = document.getElementById("myVideo");
 	listeVideos("videos");					// créé la barre des vidéos disponibles
 }
 
@@ -87,8 +87,8 @@ function listeVideos(id) {
 	// création des boutyons pour les vidéos
 	//<button onclick="switchVideo(3);">MAH00065</button>
 	var tbody = document.getElementById(id);
-	tr = document.createElement("tr");
-	for (i=0; i < arrayAssoSize(scenario); i++) {
+	let tr = document.createElement("tr");
+	for (let i = 0; i < arrayAssoSize(scenario); i++) {
 		var td = document.createElement("td");
 		var btn = document.createElement("button");
 		btn.textContent = scenario[i][0].titre;
@@ -104,13 +104,13 @@ function listeVideos(id) {
 function listeEvents(id, arrayEventDef) {
 	// intercepte tous les évènements pour les renseigner
 	var f;
-    for (key in arrayEventDef) {
+    for (let key in arrayEventDef) {
 		document._video.addEventListener(key, capture, false);
     }
 
 	var e_loadstart = document.getElementById('e_loadstart');
 	if (e_loadstart) {
-		for (key in arrayEventDef) {
+		for (let key in arrayEventDef) {
 			var elt = document.getElementById('e_' + key);
 			elt.textContent = "0";
 		}
@@ -119,7 +119,7 @@ function listeEvents(id, arrayEventDef) {
 		var tbody = document.getElementById(id);
 		var i = 1;
 		var tr = null;
-		for (key in arrayEventDef) {
+		for (let key in arrayEventDef) {
 			if (tr == null) tr = document.createElement("tr");
 			var th = document.createElement("th");
 			th.textContent = key;
@@ -137,39 +137,6 @@ function listeEvents(id, arrayEventDef) {
 		}
 		if (tr != null) tbody.appendChild(tr);
 	}
-}
-
-function init_properties(id, arrayPropDef, arrayProp) {
-	for (key in arrayProp) {
-		document._video.addEventListener(key, capture2, false);
-	}
-	
-    var tbody = document.getElementById(id);
-    var i = 0;
-    var tr = null;
-    do {
-		if (tr == null) tr    = document.createElement("tr");
-		var th = document.createElement("th");
-		th.textContent = arrayPropDef[i];
-		var td = document.createElement("td");
-		var r;
-		td.setAttribute("id", "p_" + arrayPropDef[i]);
-		r = eval("document._video." + arrayPropDef[i]);
-		td.textContent = r;
-		if (typeof(r) != "undefined") {
-		    td.className = "true";
-		} else {
-		    td.className = "false";
-		}
-		tr.appendChild(th);
-		tr.appendChild(td);
-		arrayProp[i] = td;
-		if ((++i % 3) == 0) {
-		    tbody.appendChild(tr);
-		    tr = null;
-		}
-    } while (i < arrayPropDef.length);
-    if (tr != null) tbody.appendChild(tr);
 }
 
 function capture(event) {
@@ -237,10 +204,8 @@ function getVideo() {
 }
 
 function update_properties() {
-	//</tr><th>currentTime</th><td id="p_currentTime" class="true">3.561355</td>
-
     var i = 0;
-    for (key in media_events) {
+    for (let key in media_events) {
 		var e = document.getElementById("e_" + key);
 		if (e) {
 		    e.textContent = media_events[key];
@@ -252,7 +217,7 @@ function update_properties() {
 // retourne la taille d'un tableau associatif
 function arrayAssoSize(arr) {
     var size = 0;
-    for (var key in arr) 
+    for (let key in arr) 
     {
         if (arr.hasOwnProperty(key)) size++;
     }
@@ -262,7 +227,7 @@ function arrayAssoSize(arr) {
 // scanne d'un tableau associatif
 function arrayAssoSearch(arr, valObject) {
 	var nbEl = arrayAssoSize(arr);
-	for (ind = 0; ind < nbEl; ind++) {
+	for (let ind = 0; ind < nbEl; ind++) {
 		if (arr[ind].step === valObject) {
 			return ind;	// retourne l'indice du tableau
 		}
@@ -296,7 +261,7 @@ function scanQuestion() {
 	nbQuests[1].points = 0;
 	nbQuests[2].points = 0;
 	// scanne des actions et imputation des points ou pas
-	for (ind = 0; ind < arrayAssoSize(actions); ind++) {
+	for (let ind = 0; ind < arrayAssoSize(actions); ind++) {
 		switch(actions[ind].act) {
 			case  "question": 
 				niv = (actions[ind].niveau === "DEBUTANT" ? 1: actions[ind].niveau === "CONFIRME" ? 2 : 0);
@@ -319,29 +284,36 @@ function switchVideo(n) {
 		idVideo = n;		// maj de l'indice de la vidéo en cours
 		video = scenario[n-1];    // recup données de la vidéo
 		// affectation video à la zone
-		//var mp4 = document.getElementById("mp4");
+		// var mp4 = document.getElementById("mp4");
 		//document._video.setAttribute("poster", video[0].poster);
 		//mp4.setAttribute("src", "videos/" + video[0].fichier);
 
+		var player = videojs('myVideo');
+		//player.source = "videos/" + video[0].fichier;
+		player.PosterImage = video[0].poster;
+
+		/*let player = videojs('myVideo', {
+			source: "videos/" + video[0].fichier,
+			poster: video[0].poster,
+		  }, 
+		);*/
 
 		// appel du plug-in
-		videojs('video', {
+	/*	videojs('video', {
 			source: "videos/" + video[0].fichier,
-			width: 200,
-			height: 200,
 			controls: true,
 			preload:  'none',
 			poster: video[0].poster,
 			plugins: {
 				brand: {
-					image: myURL + '/images/fanions/Bauge.png',
+					image: myURL + '/images/ballonmini.png',
 					title: "Logo Title",
 					destination: "http://www.google.com",
 					destinationTarget: "_top"
 				}
 			}
-		  }
-		);
+		  }, 
+		);*/
 
 		document._video.load();
 
@@ -429,7 +401,7 @@ function gestionCamps(mitemps) {
 }
 function encadreVideo(state) {
 	let myState = (state === true ? "videoEncadre" : "videoNonEncadre");
-	const el = document.getElementById("video");
+	const el = document.getElementById("myVideo");
 	switch (myState) {
 		case "videoEncadre":
 		(el.classList.contains("videoNonEncadre") ? el.classList.replace("videoNonEncadre", "videoEncadre") : el.classList.add("videoEncadre"));
