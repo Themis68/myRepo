@@ -174,6 +174,7 @@ var mesActions = {
 function mesReponses(ind) {
     // n'a pas encore été joué
     var maRep = returnSelRadio(actions[ind].attributs.length);   // récupère le bouton radio sélectionné par l'utilisateur
+    console.log(actions[ind].reponse);
     var repOk = actions[ind].reponse;     // récupère la bonne réponse
 
     if (actions[ind].loi) {

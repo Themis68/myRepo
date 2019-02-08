@@ -6,6 +6,7 @@ https://www.w3.org/2010/05/video/mediaevents.html
                A FAIRE
 **************************************
 
+- Vérifier que le nom de l'utilisateur n'est pas trop long et est correct
 - Lire les actions depuis un fichier du même nom que la vidéo
 - Gérer une action qui attend une clic du joueur
 - Gérer une action qui affiche une faute que le joueur n'a pas vu
@@ -202,6 +203,59 @@ Player
           </video>
 
 *************************************************
+STRUCTURE VIDEOJS
 
+ player = videojs('mainAudio', {
+    controls: true,
+    autoplay: true,
+    fluid: false,
+    loop: false,
+    width: 600,
+    height: 300,
+    playbackRates: [0.5, 0.75, 1, 1.25, 1.5, 1.75, 2]
+    plugins: {
+        wavesurfer: {
+            src: '<?php echo $global['webSiteRootURL'] . "videos/" . $video['filename'].$ext; ?>',
+            msDisplayMax: 10,
+            debug: true,
+            waveColor: 'grey',
+            progressColor: 'black',
+            cursorColor: 'black',
+            hideScrollbar: true
+        }
+    }
+}, function(){
+    // print version information at startup
+    videojs.log('Using video.js', videojs.VERSION,
+        'with videojs-wavesurfer', videojs.getPluginVersion('wavesurfer'));
+});
+
+player.autoplay('muted');
+
+*************************************************
+Gestion duréférencement de la vidéos dans la mémoire de videojs
+
+isDefineBVideoJS = false;
+.....
+	if (isDefineBVideoJS) {
+    // les uatres tours
+			myVideo.src({src: "./videos/" + video[0].fichier , type: "video/mp4"});
+			myVideo.poster(video[0].poster);
+		} else {
+      // premier tour
+			myVideo = videojs('myVideo', {
+				controls: true,
+				preload:  'none',
+				loop: false,
+				fluid: true,
+				poster: video[0].poster,
+				sources: [{
+					src: "./videos/" + video[0].fichier,
+					type: "video/mp4"}]
+			});
+		}
+		isDefineBVideoJS = true;
+
+*************************************************
 
 Spinners : https://github.com/videojs/video.js/issues/2507

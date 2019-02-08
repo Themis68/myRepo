@@ -9,11 +9,6 @@
   <title>Arrêt sur image</title>
   <script>window.HELP_IMPROVE_VIDEOJS = false;</script>
 
-  <script src="./src/script.js"></script>
-  <script src="./src/actions.js"></script>
-  <script src="./src/scenario.js"></script>
-  <link href="./src/style.css" rel="stylesheet" type="text/css">
-
   <script type="text/javascript" src="./video.js/dist/video.min.js"/></script>
   <link href="./video.js/dist/video-js.css" rel="stylesheet" type="text/css">
 
@@ -22,6 +17,11 @@
   </script>
   <link href="./videojs-brand/dist/videojs-brand.css" rel="stylesheet" type="text/css">
 
+  <script src="./src/script.js"></script>
+  <script src="./src/actions.js"></script>
+  <script src="./src/scenario.js"></script>
+  <link href="./src/style.css" rel="stylesheet" type="text/css">
+  
 </head>
 
 <body background="images/stade.jpg" onLoad="user();">
@@ -52,15 +52,8 @@
           <div><span id="droite"></span></div>
         </div>        
         <div id="zVideo">
-          <video id="myVideo" class="videojs"
-          data-setup='{"controls": true,
-          "autoplay": false,
-          "preload": "none"
-          "loop": false,
-          "fluid": true,
-          "poster": "https://media.w3.org/2010/05/sintel/poster.png"
-          }'>
-          <source src="videos/EMouz.mp4" type='video/mp4'>
+          <video id="myVideo" class="video-js">
+          <source id="mp4">
             <p class="vjs-no-js">Votre navigateur ne supporte pas la gestion des vidéos</p>
           </video>
         </div>

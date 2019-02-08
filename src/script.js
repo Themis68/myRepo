@@ -25,8 +25,10 @@ media_events["timeupdate"] = 0;
 //media_events["volumechange"] = 0;
 media_events["currentTime"] = 0;
 
+// varianbles des videos
 var video = [];
 var actions = [];
+var isDefineBVideoJS = false;
 
 var avatar = '';
 
@@ -263,39 +265,31 @@ function switchVideo(n) {
 		idVideo = n;		// maj de l'indice de la vidéo en cours
 		video = scenario[n-1];    // recup données de la vidéo
 		// affectation video à la zone
-		// var mp4 = document.getElementById("mp4");
-		//document._video.setAttribute("poster", video[0].poster);
-		//mp4.setAttribute("src", "videos/" + video[0].fichier);
+		//var mp4 = document.getElementById("mp4");
+	//	mp4.setAttribute("type", "video/mp4");
+	//	mp4.setAttribute("src", "videos/" + video[0].fichier);
 
-		var player = videojs('myVideo');
-		//player.source = "videos/" + video[0].fichier;
-		player.PosterImage = video[0].poster;
+		if (isDefineBVideoJS) {
+			myVideo.src({src: "./videos/" + video[0].fichier , type: "video/mp4"});
+			myVideo.poster(video[0].poster);
+		} else {
+			myVideo = videojs('myVideo', {
+				controls: true,
+				preload:  'none',
+				loop: false,
+				fluid: true,
+				poster: video[0].poster,
+				sources: [{
+					src: "./videos/" + video[0].fichier,
+					type: "video/mp4"}]
+			});
+		}
+		isDefineBVideoJS = true;
 
-		/*let player = videojs('myVideo', {
-			source: "videos/" + video[0].fichier,
-			poster: video[0].poster,
-		  }, 
-		);*/
+	
 
-		// appel du plug-in
-	/*	videojs('video', {
-			source: "videos/" + video[0].fichier,
-			controls: true,
-			preload:  'none',
-			poster: video[0].poster,
-			plugins: {
-				brand: {
-					image: myURL + '/images/ballonmini.png',
-					title: "Logo Title",
-					destination: "http://www.google.com",
-					destinationTarget: "_top"
-				}
-			}
-		  }, 
-		);*/
-
-		document._video.load();
-
+		//document._video.load();
+		myVideo.load();
 		//
 		// travail sur les actions et l'IHM associée
 		//
