@@ -6,18 +6,17 @@ https://www.w3.org/2010/05/video/mediaevents.html
                A FAIRE
 **************************************
 
-- Vérifier que le nom de l'utilisateur n'est pas trop long et est correct
 - Lire les actions depuis un fichier du même nom que la vidéo
 - Gérer une action qui attend une clic du joueur
 - Gérer une action qui affiche une faute que le joueur n'a pas vu
 - Gérer l'affichage des contrôles selon les besoins
-- proposer une liste de vidéos à le joueur (thumbnails)
+- proposer une liste de vidéos au joueur (thumbnails)
 - information : Reste le problème de cacher le message et le bouton au bout d'un certain temps
-- afficher des messages en zoom écran
-- proposer une intéraction en zoom écran
+- afficher des messages lorsqu'on est en zoom écran
 - formule quizz : questions et timer
 - gérer automatiquement la fin de la vidéo
 - page accueil : intégrer des photos d'arbitres
+- page de démarrage de la vidéo : afficher en pleine image le nom des équipes et leurs fanions
 
 **************************************
                LINKEDIN
