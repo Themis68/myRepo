@@ -209,7 +209,7 @@ function mesReponses(ind) {
         questionsFaites.push(actions[ind].step);
         // PAS TRAITE
         //ne pas mettre cette appel à showConseiller avant le if(questionsFaites...
-        showConseiller('reponse', (maRep === repOk));
+        showConseiller('reponse', (maRep === repOk), actions[ind].points);
     } else {
         // DEJA TRAITE
         showConseiller('traite', (maRep === repOk));
@@ -282,7 +282,7 @@ function addScore(value) {
     document.getElementById("scoreBoard").innerHTML = myScore + ' / ' + (nbQuests[0].points).toString();
 }
 
-function showConseiller(rubrique, resultat) {
+function showConseiller(rubrique, resultat, points) {
      // conseiller
      let monConseiller = document.getElementById("conseiller");
      let source = myURL + '/images/conseiller/tete'+ Math.floor(Math.random() * Math.floor(4) + 1)+'.png';
@@ -301,7 +301,7 @@ function showConseiller(rubrique, resultat) {
             break;
 
         case 'reponse':
-            text+= '<span ' + (resultat ? 'class="gagne">Tu as gagné<br><span style="font-size: 18pt;font-weight: bolder;">' + actions[ind].points + ' pts' : 'class="perdu">Essaye encore') + "</span></span></p>";
+            text+= '<span ' + (resultat ? 'class="gagne">Tu as gagné<br><span style="font-size: 18pt;font-weight: bolder;">' + points + ' pts' : 'class="perdu">Essaye encore') + "</span></span></p>";
             break;
     }
     showZone("zConseiller", true, isEnd);
