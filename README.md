@@ -2,7 +2,11 @@
 IHM
 ********************************
 
-Plusieurs zones sont proposées : 
+L'arrivée sur la page débute par la saisie du prénom de l'utilisateur :
+Il est possible de saisir 3 à 20 caractères qui seront affichés pendant la partie en majuscule.
+Cette saisie est obligatoire.
+
+Plusieurs zones sont alors proposées : 
 - liste des vidéos des matchs proposés
 - zone d'information sur la vidéo qui comprend : les équipes, le sens du jeu, la vidéo ainsi qu'une jauge de progression dans les questions
 - zone d'intéraction avec le joueur qui comprend les zones : niveau, score, message, les boutons d'action ainsi qu'une zone CONSEILLER
@@ -27,9 +31,13 @@ Nom des équipes, leur fanion, les couleurs principales
 
 ** vidéo  **
 Zone principale qui affiche le match.
-Possède ses propres boutons de contrôles : lecture, pause, son, zoom, jauge d'avancée
-Tous ces contrôles sont actifs et gérés
-Attention : le zoom masque toutes les autres zones redant impossible l'intéraction avec le joueur
+Possède ses propres boutons de contrôles : lecture, pause, son, zoom, jauge de progression
+
+La jauge de progression affiche :
+- le timing en cours
+- le timing correspondant à la position de la souris sur la jauge
+
+Attention : le zoom masque toutes les autres zones rendant impossible l'intéraction avec le joueur
 
 **  jauge des question  **
 Cette jauge affichera le nombre de questions prévues par le match et son niveau

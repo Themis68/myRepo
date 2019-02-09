@@ -383,9 +383,12 @@ function encadreVideo(state) {
 }
 
 function user() {
+	let avatarOk = false;
+	const reg = /^([a-zA-Z]){3,20}$/g;	// accepte des chaines de caractères jusqu'à 5 caractères
 	do {
-		avatar = prompt("Indique ton prénom s'il te plait");
+		avatar = prompt("Indique ton prénom s'il te plait (3 à 20 lettres maximum)");
+		avatarOk = reg.exec(avatar);
 	}
-	while (!avatar)
+	while (!avatarOk)
 	document.getElementById("msgVideo").innerHTML = "Bienvenue "+ avatar.toUpperCase() + ". Merci de sélectionner une vidéo ci-dessous";
 }
