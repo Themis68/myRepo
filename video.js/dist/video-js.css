@@ -23,14 +23,14 @@
   font-weight: normal;
   font-style: normal; }
   .vjs-icon-play:before, .video-js .vjs-big-play-button:before, .video-js .vjs-play-control:before {
-    content: "\f101"; }
+    content: "\f102"; }
 
 .vjs-icon-play-circle {
   font-family: VideoJS;
   font-weight: normal;
   font-style: normal; }
   .vjs-icon-play-circle:before {
-    content: "\f102"; }
+    content: "\f101"; }
 
 .vjs-icon-pause, .video-js .vjs-play-control.vjs-playing {
   font-family: VideoJS;

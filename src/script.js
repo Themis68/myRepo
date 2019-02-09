@@ -282,10 +282,23 @@ function switchVideo(n) {
 				sources: [{
 					src: "./videos/" + video[0].fichier,
 					type: "video/mp4"}]
+				
 			});
 		}
 		isDefineBVideoJS = true;
 
+		/*
+		plugins: {
+					brand: {
+						image: myURL + '/images/ballonmini.png',
+						title: "Logo Title",
+						destination: "http://www.google.com",
+						destinationTarget: "_top",
+						width: 20,
+						height: 20
+					}
+				}
+				*/
 	
 
 		//document._video.load();

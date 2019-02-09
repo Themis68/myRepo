@@ -256,5 +256,17 @@ isDefineBVideoJS = false;
 		isDefineBVideoJS = true;
 
 *************************************************
+video-js.css
+
+.vjs-icon-play-circle {
+  font-family: VideoJS;
+  font-weight: normal;
+  font-style: normal; }
+  .vjs-icon-play-circle:before {
+    content: "\f102"; }
+
+- content correspond au code de l'icone 
+
+*************************************************
 
 Spinners : https://github.com/videojs/video.js/issues/2507
