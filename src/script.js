@@ -281,8 +281,17 @@ function switchVideo(n) {
 				poster: video[0].poster,
 				sources: [{
 					src: "./videos/" + video[0].fichier,
-					type: "video/mp4"}]
-				
+					type: "video/mp4"}],
+				plugins: {
+					brand: {
+						image: myURL + '/images/EMouzmini.png',
+						title: "club Etoile Mouzillonnaise de football",
+						destination: "https://etoile-mouzillon.footeo.com/",
+						destinationTarget: "_blank",
+						width: 20,
+						height: 20
+					}
+				}
 			});
 		}
 		isDefineBVideoJS = true;
