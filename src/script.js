@@ -290,6 +290,9 @@ function switchVideo(n) {
 						destinationTarget: "_blank",
 						width: 20,
 						height: 20
+					},
+					ass: {
+						src: 'subs/subtitles.ass'
 					}
 				}
 			});
