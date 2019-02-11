@@ -14,7 +14,7 @@ media_events["loadstart"] = 0;
 //media_events["playing"] = 0;
 //media_events["waiting"] = 0;
 //media_events["seeking"] = 0;
-//media_events["seeked"] = 0;
+media_events["seeked"] = 0;
 //media_events["ended"] = 0;
 //media_events["durationchange"] = 0;
 media_events["timeupdate"] = 0;
@@ -89,19 +89,31 @@ function showItem(id, state) {
 function listeVideos(id) {
 	// création des boutyons pour les vidéos
 	//<button onclick="switchVideo(3);">MAH00065</button>
-	var tbody = document.getElementById(id);
+	let tbody = document.getElementById(id);
 	let tr = document.createElement("tr");
+
+	let tbody2 = document.getElementById('thumbnailContainer');
+	let tr2 = document.createElement("tr");
+
 	for (let i = 0; i < arrayAssoSize(scenario); i++) {
-		var td = document.createElement("td");
-		var btn = document.createElement("button");
+		let td = document.createElement("td");
+		let btn = document.createElement("button");
 		btn.textContent = scenario[i][0].titre;
 		btn.setAttribute("name", i);
 		btn.setAttribute("onclick", 'switchVideo('+ scenario[i][0].id +');');
 		td.appendChild(btn);
 		td.classList.add("cellListVideos");
-		tr.appendChild(td);		
+		tr.appendChild(td);	
+
+		// création des vignettes
+		let td2 = document.createElement("td");
+		td2.setAttribute("innerHTML", scenario[i][0].description);
+		td2.setAttribute("style", 'background-image: url("'+ scenario[i][0].poster +'")');
+		td2.setAttribute("onclick", 'switchVideo('+ scenario[i][0].id +');');	
+		tr2.appendChild(td2);
 	}
 	tbody.appendChild(tr);
+	tbody2.appendChild(tr2);
 }
 
 function listeEvents(id, arrayEventDef) {
@@ -281,7 +293,8 @@ function switchVideo(n) {
 				poster: video[0].poster,
 				sources: [{
 					src: "./videos/" + video[0].fichier,
-					type: "video/mp4"}],
+					type: "video/mp4"
+				}],
 				plugins: {
 					brand: {
 						image: myURL + '/images/EMouzmini.png',
@@ -290,10 +303,7 @@ function switchVideo(n) {
 						destinationTarget: "_blank",
 						width: 20,
 						height: 20
-					},
-					ass: {
-						src: 'subs/subtitles.ass'
-					}
+					}					
 				}
 			});
 		}
@@ -308,12 +318,23 @@ function switchVideo(n) {
 						destinationTarget: "_top",
 						width: 20,
 						height: 20
+					},
+					track: {
+						src: "./videos/" + video[0].fichier + ".vtt",
+						kind: "subtitles",
+						srclang: "en",
+						label: "English"
+					},
+					chapter_thumbnails: {
+						src: "./videos/" + video[0].fichier + ".vtt"
 					}
 				}
 				*/
 	
 
 		//document._video.load();
+
+
 		myVideo.load();
 		//
 		// travail sur les actions et l'IHM associée
@@ -417,3 +438,41 @@ function user() {
 	while (!avatarOk)
 	document.getElementById("msgVideo").innerHTML = "Bienvenue "+ avatar.toUpperCase() + ". Merci de sélectionner une vidéo ci-dessous";
 }
+
+function template(cue = {}, textTrack) {
+	let cueText;
+   
+	// NOTE: if `cue.text` isn't parseable, just send it through instead of blowing up.
+	// DRAGON: this probably opens up a possible script injection
+	try {
+	  cueText = JSON.parse(cue.text || '{}');
+	} catch (e) {
+	  cueText = cue.text;
+	}
+   
+	const {
+	  image,
+	  title,
+	} = cueText;
+   
+	const template = document.createElement('div');
+	template.className = 'vjs-chapters-thumbnails-item';
+   
+	if (image) {
+	  const img = document.createElement('img');
+	  img.className = 'vjs-chapters-thumbnails-item-image';
+	  img.src = image;
+   
+	  template.appendChild(img);
+	}
+   
+	if (title) {
+	  const span = document.createElement('span');
+	  span.className = 'vjs-chapters-thumbnails-item-title';
+	  span.innerHTML = title;
+   
+	  template.appendChild(span);
+	}
+   
+	return template;
+  }

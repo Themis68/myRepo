@@ -17,11 +17,16 @@
   </script>
   <link href="./videojs-brand/dist/videojs-brand.css" rel="stylesheet" type="text/css">
 
-  <script type="text/javascript"  src="src/videojs.ass.js">
+ <!-- <script type="text/javascript"  src="./videojs-ass/videojs.ass.js">
     videojs.registerPlugin('ass', videojs-ass);
   </script>
-  <link href="src/videojs.ass.css" rel="stylesheet">
-
+  <link href="./videojs-ass/videojs.ass.css" rel="stylesheet"> 
+ 
+  <script type="text/javascript" src="./videojs-chapter-thumbnails/dist/videojs.chapter-thumbnails.js">
+    videojs.registerPlugin('thumb', chapter_thumbnails);
+  </script>
+  <link href="./videojs-chapter-thumbnails/dist/videojs.chapter-thumbnails.css" rel="stylesheet">
+-->
   <script src="./src/script.js"></script>
   <script src="./src/actions.js"></script>
   <script src="./src/scenario.js"></script>
@@ -43,6 +48,9 @@
       <div id="stage" class="arrondiH">
         <table id="listVideos" width="100%">
           <tbody id="videos"><p id="msgVideo"></p></tbody>
+        </table>
+        <table id="listVideos2" width="100%"></table>
+          <tbody id="thumbnailContainer"></tr>
         </table>
         <p id="description"></p>
       </div>
