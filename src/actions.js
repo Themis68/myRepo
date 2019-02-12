@@ -197,7 +197,7 @@ function mesReponses(ind) {
     if (questionsFaites.indexOf(actions[ind].step) < 0) {
         // MAJ score
         if (maRep === repOk) {
-            addScore((maRep === repOk ? actions[ind].points : 0));
+            addScore(maRep === repOk ? actions[ind].points : 0);
         }
 
         // MAJ Barre progression
@@ -224,8 +224,6 @@ function mesReponses(ind) {
 
 function changeLevel(level) {
     niveauQuest = level;
-    console.log('niveau', niveauQuest);
-    //stepDone = 0;
     switchVideo(idVideo);
 }
 

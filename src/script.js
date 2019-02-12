@@ -14,7 +14,7 @@ media_events["loadstart"] = 0;
 //media_events["playing"] = 0;
 //media_events["waiting"] = 0;
 //media_events["seeking"] = 0;
-media_events["seeked"] = 0;
+//media_events["seeked"] = 0;
 //media_events["ended"] = 0;
 //media_events["durationchange"] = 0;
 media_events["timeupdate"] = 0;
@@ -106,14 +106,16 @@ function listeVideos(id) {
 		tr.appendChild(td);	
 
 		// création des vignettes
+		/*
 		let td2 = document.createElement("td");
 		td2.setAttribute("innerHTML", scenario[i][0].description);
 		td2.setAttribute("style", 'background-image: url("'+ scenario[i][0].poster +'")');
 		td2.setAttribute("onclick", 'switchVideo('+ scenario[i][0].id +');');	
 		tr2.appendChild(td2);
+		*/
 	}
 	tbody.appendChild(tr);
-	tbody2.appendChild(tr2);
+//	tbody2.appendChild(tr2);
 }
 
 function listeEvents(id, arrayEventDef) {
@@ -435,44 +437,6 @@ function user() {
 		avatar = prompt("Indique ton prénom s'il te plait (3 à 20 lettres maximum)");
 		avatarOk = reg.exec(avatar);
 	}
-	while (!avatarOk)
+	while (!avatarOk);
 	document.getElementById("msgVideo").innerHTML = "Bienvenue "+ avatar.toUpperCase() + ". Merci de sélectionner une vidéo ci-dessous";
 }
-
-function template(cue = {}, textTrack) {
-	let cueText;
-   
-	// NOTE: if `cue.text` isn't parseable, just send it through instead of blowing up.
-	// DRAGON: this probably opens up a possible script injection
-	try {
-	  cueText = JSON.parse(cue.text || '{}');
-	} catch (e) {
-	  cueText = cue.text;
-	}
-   
-	const {
-	  image,
-	  title,
-	} = cueText;
-   
-	const template = document.createElement('div');
-	template.className = 'vjs-chapters-thumbnails-item';
-   
-	if (image) {
-	  const img = document.createElement('img');
-	  img.className = 'vjs-chapters-thumbnails-item-image';
-	  img.src = image;
-   
-	  template.appendChild(img);
-	}
-   
-	if (title) {
-	  const span = document.createElement('span');
-	  span.className = 'vjs-chapters-thumbnails-item-title';
-	  span.innerHTML = title;
-   
-	  template.appendChild(span);
-	}
-   
-	return template;
-  }
