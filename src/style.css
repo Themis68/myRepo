@@ -32,6 +32,10 @@ html, body {
   padding: 0;
 }
 
+.vjs-looping .vjs-loading-spinner {
+  display: none;
+}
+
 body {  
   background-image: url("../images/stade.jpg");
   background-repeat: no-repeat;
@@ -193,10 +197,10 @@ video {
 }
 
 #fondVideo {
-  width: 600px;
-  height: 330px;
+  width: 80%;
+  height: 400px;
   align-items: center;
-  background-image: url("../images/terrain2.png");
+  background-image: url("../images/accueil.jpg");
   background-repeat: no-repeat;
   background-position: center; 
   background-size: contain;
@@ -240,6 +244,24 @@ video {
   height: 110px;
   margin-top: 8px;
   margin-bottom: 8px;
+}
+
+.accueil {
+  text-align: center;
+  height: 300px;
+}
+
+.titreAccueil {
+  font-family: scoreboardregular;
+  font-size: 52pt;
+  color: white;
+  line-height:120px; /* centrage vertical */
+}
+
+.sloganAccueil {
+  font-family: passion_oneregular;
+  font-size: 24pt;
+  color: white;
 }
 
 #textBoard {

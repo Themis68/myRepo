@@ -286,3 +286,16 @@ video-js.css
 *************************************************
 
 Spinners : https://github.com/videojs/video.js/issues/2507
+
+
+*************************************************
+                  NOTES TECHNIQUES
+*************************************************
+La vidéo lance un spinner qui gêne la lecture. Pour le désactiver il faut :
+- CCS
+.vjs-looping .vjs-loading-spinner {
+  display: none;
+}
+
+- index.html
+<video id="myVideo" class="video-js vjs-looping">
