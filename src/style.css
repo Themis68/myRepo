@@ -3,10 +3,6 @@
 
 /*! minireset.css v0.0.3 | MIT License | github.com/jgthms/minireset.css */html,body,p,ol,ul,li,dl,dt,dd,blockquote,figure,fieldset,legend,textarea,pre,iframe,hr,h1,h2,h3,h4,h5,h6{margin:0;padding:0}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal}ul{list-style:none}button,input,select,textarea{margin:0}html{box-sizing:border-box}*,*:before,*:after{box-sizing:inherit}img,embed,iframe,object,audio,video{height:auto;max-width:100%}iframe{border:0}table{border-collapse:collapse;border-spacing:0}td,th{padding:0;text-align:left}
 
-
-/*canvas { display: none; }*/
-
-
 button, label {
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -34,6 +30,11 @@ html, body {
 
 .vjs-looping .vjs-loading-spinner {
   display: none;
+}
+
+td.thumb {
+  border: green 5px solid;
+  text-align: center;
 }
 
 body {  
@@ -84,11 +85,18 @@ div.zone {
   margin: 6px;
 }
 
-#stage, #infos{
+#infos{
   float: left;
   background-color: green;
   width: 85%;
   padding: 6px;
+}
+
+#stage{
+  float: left;
+  width: 85%;
+  padding: 6px;
+  background-color: green;
 }
 
 .arrondiH {
@@ -129,7 +137,10 @@ div.zone {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 6px;
+  padding-left: 2px;
+  padding-right: 2px;
+  padding-top: 0px;
+  padding-bottom: 0px;
 }
 
 #barre {
@@ -188,7 +199,7 @@ video {
   height: 90%;
 }
 
-#listVideos {
+#listVideos, #listVideos2 {
   display: block;
 }
 
@@ -211,6 +222,7 @@ video {
   font-size: 24pt;
   color: white;
   text-align: center;
+  padding-bottom: 10px;
 }
 
 #description {
@@ -257,6 +269,7 @@ video {
   color: white;
   line-height:120px; /* centrage vertical */
 }
+
 
 .sloganAccueil {
   font-family: passion_oneregular;

@@ -3,7 +3,7 @@ var scenario = [
         {
             id: 1,
             titre: "EM/Herbiers",
-            poster: "https://media.w3.org/2010/05/sintel/poster.png",
+            poster: "./videos/EMouz_Herbiers.png",
             fichier: "EM_Herbiers.mp4",
             description: "Match opposant Les Herbiers à l'Etoile Mouzillon en championnat R2F",
             gauche: {
@@ -321,7 +321,7 @@ var scenario = [
         {
             id: 2,
             titre: "EM/Baugé",
-            poster: "http://media.w3.org/2010/05/bunny/poster.png",
+            poster: "./videos/EMouz_Bauge.png",
             fichier: "EM_Bauge.mp4",
             description: "Match opposant Baugé à l'Etoile Mouzillon en championnat u18F Région",
             gauche: {

@@ -6,7 +6,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta charset="utf-8" />
 
-  <title>Arrêt sur image</title>
+  <title>Arrêt sur image !</title>
   <script>window.HELP_IMPROVE_VIDEOJS = false;</script>
 
   <script type="text/javascript" src="./video.js/dist/video.min.js"/></script>
@@ -17,16 +17,13 @@
   </script>
   <link href="./videojs-brand/dist/videojs-brand.css" rel="stylesheet" type="text/css">
 
- <!-- <script type="text/javascript"  src="./videojs-ass/videojs.ass.js">
-    videojs.registerPlugin('ass', videojs-ass);
+  <script type="text/javascript" src='./videojs-zoomrotate/videojs-zoomrotate.js'>
   </script>
-  <link href="./videojs-ass/videojs.ass.css" rel="stylesheet"> 
- 
-  <script type="text/javascript" src="./videojs-chapter-thumbnails/dist/videojs.chapter-thumbnails.js">
-    videojs.registerPlugin('thumb', chapter_thumbnails);
+
+  <script type="text/javascript" src='./videojs-declencheur/videojs-declencheur.js'>
+    videojs.registerPlugin('declencheur', videojs-declencheur);
   </script>
-  <link href="./videojs-chapter-thumbnails/dist/videojs.chapter-thumbnails.css" rel="stylesheet">
--->
+
   <script src="./src/script.js"></script>
   <script src="./src/actions.js"></script>
   <script src="./src/scenario.js"></script>
@@ -46,16 +43,17 @@
   <div class="container-content">
     <div class="zone">
       <div id="stage" class="arrondiH">
-        <table id="listVideos" width="100%">
-          <tbody id="videos"><p id="msgVideo"></p></tbody>
-        </table>
-        <p id="description"></p>
+          <table id="listVideos2" class="thumb">
+              <tbody> <p id="msgVideo"></p></tbody>
+                <tr id="videos2"></tr>
+              </tbody>
+            </table>
       </div>
     </div>
     <div class="zone">
       <div id="fondVideo">
         <p class="accueil">
-            <span class="titreAccueil">Arrêt sur Image</span>
+            <span class="titreAccueil">Arrêt sur Image !</span>
             <br>
             <span class="sloganAccueil">Découvrir l'arbitrage en s'amusant</span>
         </p>
@@ -63,7 +61,7 @@
       <div id="videoOn" class="hide">
         <div id="zCamp">
           <div><span id="gauche"></span></div>
-          <div><img src="images/sifflet.png" width="90" height="90" /></div>
+          <div><img src="images/sifflet.png" width="70" height="20" /></div>
           <div><span id="droite"></span></div>
         </div>        
         <div id="zVideo">

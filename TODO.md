@@ -5,7 +5,8 @@ https://www.w3.org/2010/05/video/mediaevents.html
 **************************************
                A FAIRE
 **************************************
-
+- le titre est masqué quand on n'a pas la frame du developpement ouverte (F12)
+- saisir le temps "00:00" et non en nombre de secondes car cela oblige à convertir
 - Lire les actions depuis un fichier du même nom que la vidéo
 - Gérer une action qui attend une clic du joueur
 - Gérer une action qui affiche une faute que le joueur n'a pas vu
@@ -18,6 +19,14 @@ https://www.w3.org/2010/05/video/mediaevents.html
 - page accueil : intégrer des photos d'arbitres
 - page de démarrage de la vidéo : afficher en pleine image le nom des équipes et leurs fanions
 - rendre reactif une plage de vidéo pour donner des points à l'utilisateur
+
+**************************************
+              ZOOM
+**************************************
+le plugin a été akjouté avec succès mais aura fallu des adpatations du controleur
+Pour l'instant il reste à ajouter deux boutons sur la vidéo pour les changements directs
+J'ai essayé de récupérer Brand mais pas bon. Du coup je vais m'appuyer sur le code de Brand pour ajouter un bouton
+
 
 **************************************
                LINKEDIN
@@ -281,16 +290,20 @@ video-js.css
   .vjs-icon-play-circle:before {
     content: "\f102"; }
 
-- content correspond au code de l'icone 
+-> content correspond au code de l'icone 
 
 *************************************************
 
 Spinners : https://github.com/videojs/video.js/issues/2507
 
 
+***************************************************************************************************************************************************
+                                                                                NOTES TECHNIQUES
+***************************************************************************************************************************************************
+
+
 *************************************************
-                  NOTES TECHNIQUES
-*************************************************
+                   VIDEO
 La vidéo lance un spinner qui gêne la lecture. Pour le désactiver il faut :
 - CCS
 .vjs-looping .vjs-loading-spinner {
@@ -299,3 +312,8 @@ La vidéo lance un spinner qui gêne la lecture. Pour le désactiver il faut :
 
 - index.html
 <video id="myVideo" class="video-js vjs-looping">
+
+*************************************************
+                  THUMBNAIL
+
+

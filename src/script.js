@@ -26,6 +26,7 @@ media_events["timeupdate"] = 0;
 media_events["currentTime"] = 0;
 
 // varianbles des videos
+var nivZoom = 1;
 var video = [];
 var actions = [];
 var isDefineBVideoJS = false;
@@ -87,35 +88,29 @@ function showItem(id, state) {
 }
 
 function listeVideos(id) {
-	// création des boutyons pour les vidéos
-	//<button onclick="switchVideo(3);">MAH00065</button>
-	let tbody = document.getElementById(id);
-	let tr = document.createElement("tr");
+	let tr2 = document.getElementById('videos2');
+	//let tr2 = document.createElement("tr");
 
-	let tbody2 = document.getElementById('thumbnailContainer');
-	let tr2 = document.createElement("tr");
-
+			// création des vignettes
 	for (let i = 0; i < arrayAssoSize(scenario); i++) {
-		let td = document.createElement("td");
-		let btn = document.createElement("button");
-		btn.textContent = scenario[i][0].titre;
-		btn.setAttribute("name", i);
-		btn.setAttribute("onclick", 'switchVideo('+ scenario[i][0].id +');');
-		td.appendChild(btn);
-		td.classList.add("cellListVideos");
-		tr.appendChild(td);	
-
-		// création des vignettes
-		/*
+		let larg = '100px';
+		let haut = '80px';
 		let td2 = document.createElement("td");
-		td2.setAttribute("innerHTML", scenario[i][0].description);
-		td2.setAttribute("style", 'background-image: url("'+ scenario[i][0].poster +'")');
+		td2.setAttribute("width", larg);
+		td2.setAttribute("height", haut);
+		td2.setAttribute("title", scenario[i][0].description);
+		let content = '<img src="'+ myURL + '/images/fanions/'+ scenario[i][0].gauche.fanion +'" width="30%" height="30%"/>';
+		content += '&nbsp;&nbsp;<img src="'+ myURL + '/images/fanions/'+ scenario[i][0].droite.fanion +'" width="30%" height="30%"/>';
+		td2.innerHTML = content;
+		td2.style.backgroundSize = larg + " " + haut;
+		td2.style.backgroundRepeat = "no-repeat";
+		td2.style.backgroundImage = "url("+ scenario[i][0].poster +")";
+		td2.style.border = "white 3px solid";
+		td2.className = "thumb";
 		td2.setAttribute("onclick", 'switchVideo('+ scenario[i][0].id +');');	
 		tr2.appendChild(td2);
-		*/
 	}
-	tbody.appendChild(tr);
-//	tbody2.appendChild(tr2);
+	//tbody2.appendChild(tr2);
 }
 
 function listeEvents(id, arrayEventDef) {
@@ -267,6 +262,21 @@ function scanQuestion() {
 	}
 }
 
+function zoom(id) {
+//	let vid = videojs('myVideo');
+	//let curZoom = vid.options['plugins']['zoomrotate'];// vid.options;
+	switch (id) {
+		case 1:
+		nivZoom = nivZoom + 0.1;
+		break;
+
+		case -1:
+		nivZoom = nivZoom - 0.1;
+		break;
+	}	
+	myVideo.zoomrotate({zoom: nivZoom, rotate: 0});
+}
+
 function switchVideo(n) {
 	// affectation de la nouvelle vidéo et des attributs liés
 	
@@ -278,10 +288,6 @@ function switchVideo(n) {
 		// MAJ videos
 		idVideo = n;		// maj de l'indice de la vidéo en cours
 		video = scenario[n-1];    // recup données de la vidéo
-		// affectation video à la zone
-		//var mp4 = document.getElementById("mp4");
-	//	mp4.setAttribute("type", "video/mp4");
-	//	mp4.setAttribute("src", "videos/" + video[0].fichier);
 
 		if (isDefineBVideoJS) {
 			myVideo.src({src: "./videos/" + video[0].fichier , type: "video/mp4"});
@@ -305,37 +311,25 @@ function switchVideo(n) {
 						destinationTarget: "_blank",
 						width: 20,
 						height: 20
-					}					
+					},
+					declencheur: {
+						image: myURL + '/images/EMouzmini.png',
+						fonction: "zoom(1);"
+					},
+					declencheur: {
+						image: myURL + '/images/EMouzmini.png',
+						fonction: "zoom(-1);"
+					},
+					zoomrotate: {
+						zoom: nivZoom,
+						rotate: 0
+					}		
 				}
+					
 			});
+			//myVideo.className = "scale2";
 		}
 		isDefineBVideoJS = true;
-
-		/*
-		plugins: {
-					brand: {
-						image: myURL + '/images/ballonmini.png',
-						title: "Logo Title",
-						destination: "http://www.google.com",
-						destinationTarget: "_top",
-						width: 20,
-						height: 20
-					},
-					track: {
-						src: "./videos/" + video[0].fichier + ".vtt",
-						kind: "subtitles",
-						srclang: "en",
-						label: "English"
-					},
-					chapter_thumbnails: {
-						src: "./videos/" + video[0].fichier + ".vtt"
-					}
-				}
-				*/
-	
-
-		//document._video.load();
-
 
 		myVideo.load();
 		//
@@ -395,6 +389,14 @@ function switchVideo(n) {
 		showZone("zSuite", false);
 		encadreVideo(false);
 		showZone("zConseiller", false);
+
+		// titre de la page
+		let msg = document.getElementById("msgVideo");
+		msg.style.fontFamily = "scoreboardregular";
+		msg.style.fontSize = "24pt";
+		msg.style.color = "white";
+		msg.style.textAlign = "center";
+		msg.innerHTML = "Arrêt sur image !";
 	}
 }
 
@@ -438,5 +440,5 @@ function user() {
 		avatarOk = reg.exec(avatar);
 	}
 	while (!avatarOk);
-	document.getElementById("msgVideo").innerHTML = "Bienvenue "+ avatar.toUpperCase() + ". Merci de sélectionner une vidéo ci-dessous";
+	document.getElementById("msgVideo").innerHTML = "Bonjour "+ avatar.toUpperCase() + ". Merci de sélectionner une vidéo ci-dessous";
 }
