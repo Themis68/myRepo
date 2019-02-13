@@ -6,6 +6,7 @@ https://www.w3.org/2010/05/video/mediaevents.html
                A FAIRE
 **************************************
 - le titre est masqué quand on n'a pas la frame du developpement ouverte (F12)
+- revoir le skin pour rendre transparent la barre de progression
 - saisir le temps "00:00" et non en nombre de secondes car cela oblige à convertir
 - Lire les actions depuis un fichier du même nom que la vidéo
 - Gérer une action qui attend une clic du joueur
