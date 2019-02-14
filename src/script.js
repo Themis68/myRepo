@@ -299,6 +299,12 @@ function switchVideo(n) {
 				loop: false,
 				fluid: true,
 				poster: video[0].poster,
+				controlBar: {
+					volumeMenuButton: {
+					inline: false,
+					vertical: true
+					}
+				},
 				sources: [{
 					src: "./videos/" + video[0].fichier,
 					type: "video/mp4"
