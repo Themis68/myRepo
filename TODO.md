@@ -5,6 +5,7 @@ https://www.w3.org/2010/05/video/mediaevents.html
 **************************************
                A FAIRE
 **************************************
+- comment gérer la récupération des données d'un plugin ?
 - le titre est masqué quand on n'a pas la frame du developpement ouverte (F12)
 - revoir le skin pour rendre transparent la barre de progression
 - saisir le temps "00:00" et non en nombre de secondes car cela oblige à convertir
@@ -12,7 +13,6 @@ https://www.w3.org/2010/05/video/mediaevents.html
 - Gérer une action qui attend une clic du joueur
 - Gérer une action qui affiche une faute que le joueur n'a pas vu
 - Gérer l'affichage des contrôles selon les besoins
-- proposer une liste de vidéos au joueur (thumbnails)
 - information : Reste le problème de cacher le message et le bouton au bout d'un certain temps
 - afficher des messages lorsqu'on est en zoom écran
 - formule quizz : questions et timer

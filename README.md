@@ -16,7 +16,8 @@ Plusieurs zones sont alors proposées :
 Zone Liste des vidéos
 ********************************
 Affiche le nom du joueur
-Liste les vidéos disponibles en se basant sur le contenu du fichier scenario.js
+Liste les vidéos disponibles en se basant sur le contenu du fichier scenario.js 
+en créant une vignette composée de : fanions des équipes et le poster en miniature
 
 ********************************
 Zone Vidéo
@@ -32,6 +33,11 @@ Nom des équipes, leur fanion, les couleurs principales
 ** vidéo  **
 Zone principale qui affiche le match.
 Possède ses propres boutons de contrôles : lecture, pause, son, zoom, jauge de progression
+
+Un bouton PLAY s'affiche initialement au centre de la vidéo pour lancer le match
+Ensuite on peut utiliser le bouton PLAY/PAUSE sur la barre de contrôle
+
+Le son s'affiche verticalement
 
 La jauge de progression affiche :
 - le timing en cours
