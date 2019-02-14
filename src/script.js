@@ -26,6 +26,7 @@ media_events["timeupdate"] = 0;
 media_events["currentTime"] = 0;
 
 // varianbles des videos
+var nivZoom = 1;
 var video = [];
 var actions = [];
 var isDefineBVideoJS = false;
@@ -261,6 +262,21 @@ function scanQuestion() {
 	}
 }
 
+function zoom(id) {
+//	let vid = videojs('myVideo');
+	//let curZoom = vid.options['plugins']['zoomrotate'];// vid.options;
+	switch (id) {
+		case 1:
+		nivZoom = nivZoom + 0.1;
+		break;
+
+		case -1:
+		nivZoom = nivZoom - 0.1;
+		break;
+	}	
+	myVideo.zoomrotate({zoom: nivZoom, rotate: 0});
+}
+
 function switchVideo(n) {
 	// affectation de la nouvelle vidéo et des attributs liés
 	
@@ -295,7 +311,15 @@ function switchVideo(n) {
 						destinationTarget: "_blank",
 						width: 20,
 						height: 20
-					}	
+					},
+					declencheur: {
+						image: myURL + '/images/EMouzmini.png',
+						fonction: "zoom(-1);"
+					},
+					zoomrotate: {
+						zoom: nivZoom,
+						rotate: 0
+					}		
 				}
 					
 			});
