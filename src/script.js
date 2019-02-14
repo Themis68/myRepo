@@ -263,8 +263,6 @@ function scanQuestion() {
 }
 
 function zoom(id) {
-//	let vid = videojs('myVideo');
-	//let curZoom = vid.options['plugins']['zoomrotate'];// vid.options;
 	switch (id) {
 		case 1:
 		nivZoom = nivZoom + 0.1;
@@ -320,7 +318,7 @@ function switchVideo(n) {
 					},
 					declencheur: {
 						image: myURL + '/images/EMouzmini.png',
-						fonction: "zoom(-1);"
+						fonction: "zoom(1);"
 					},
 					zoomrotate: {
 						zoom: nivZoom,
@@ -329,7 +327,6 @@ function switchVideo(n) {
 				}
 					
 			});
-			//myVideo.className = "scale2";
 		}
 		isDefineBVideoJS = true;
 
