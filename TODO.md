@@ -115,39 +115,48 @@ Déclaration dans <HEAD> :
   </script>
   <link href="./videojs-brand/dist/videojs-brand.css" rel="stylesheet" type="text/css">
 
-Appel au plugin :   
+**********************************************************
+- paramètres du player :
 
- videojs('video', { options ou plugins});
-
-ex : passer un plugin "brand"
-    videojs('video', {
-        plugins: {
-            brand: {
-                image: myURL + '/images/fanions/Bauge.png',
-                title: "Logo Title",
-                destination: "http://www.google.com",
-                destinationTarget: "_top"
-            }
-        }
-        }
-    );
-
-ex : passer un plug et des options
-	videojs('video', {
-			source: "videos/" + video[0].fichier,
-			controls: true,
-			preload:  'none',
-			poster: video[0].poster,
-			plugins: {
-				brand: {
-					image: myURL + '/images/ballonmini.png',
-					title: "Logo Title",
-					destination: "http://www.google.com",
-					destinationTarget: "_top"
+myVideo = videojs('myVideo', {
+				controls: true,                 // afficher les contrôles
+				preload:  'none',               // ne pas précharger la vidéo
+				loop: false,                    // pas de boucle sur la lecture
+				fluid: true,                    // ?
+				poster: video[0].poster,        // poster à afficher
+				controlBar: {                   // éléments de la barre
+					volumeMenuButton: {           // gestion du son
+					inline: false,
+					vertical: true                // on affiche le menu verticalement
+					}
+				},
+				sources: [{                     // flux de la vidéo
+					src: "./videos/" + video[0].fichier,
+					type: "video/mp4"
+				}],
+				plugins: {                      // liste des plugs-in à activer
+					brand: {                      // affiche un bouton qui renvoi vers un site
+						image: myURL + '/images/EMouzmini.png',
+						title: "club Etoile Mouzillonnaise de football",
+						destination: "https://etoile-mouzillon.footeo.com/",
+						destinationTarget: "_blank",
+						width: 20,
+						height: 20
+					},
+					declencheur: {                // plug-in permettant d'afficher un bouton spécifique qui appelle une fonction JS
+						image: myURL + '/images/EMouzmini.png',
+						fonction: "zoom(-1);"
+					},
+					zoomrotate: {                 // gestion des rotations et des zoom de l'image
+						zoom: nivZoom,
+						rotate: 0
+					}		
 				}
-			}
-		  }, 
-		);
+					
+			});
+
+
+**********************************************************
 
 Si on veut passer ces options pour toutes les vidéos, on les passe dasn HTML
 
@@ -165,85 +174,16 @@ Méthode 2 :
     <p>Votre navigateur ne supporte pas la gestion des vidéos</p>
 </video>
 
+Méthode 3 : embarquer le minimum et définir les éléments dynamiquement
+<video id="myVideo" class="video-js vjs-looping vjs-big-play-centered"> 
+
 OPTIONS : https://docs.videojs.com/docs/guides/options.html 
 https://videojs.readthedocs.io/en/latest/guides/setup/
 
 
-- The actual default component structure of the Video.js player looks something like this:
-
-Player
-    PosterImage
-    TextTrackDisplay
-    LoadingSpinner
-    BigPlayButton
-    ControlBar
-        PlayToggle
-        VolumeMenuButton
-        CurrentTimeDisplay (Hidden by default)
-        TimeDivider (Hidden by default)
-        DurationDisplay (Hidden by default)
-        ProgressControl
-            SeekBar
-              LoadProgressBar
-              MouseTimeDisplay
-              PlayProgressBar
-        LiveDisplay (Hidden by default)
-        RemainingTimeDisplay
-        CustomControlsSpacer (No UI)
-        ChaptersButton (Hidden by default)
-        SubtitlesButton (Hidden by default)
-        CaptionsButton (Hidden by default)
-        FullscreenToggle
-    ErrorDisplay
-    TextTrackSettings
-
-<video id="myVideo" class="videojs"
-          data-setup='{"controls": true,
-          "autoplay": false,
-          "preload": "none"
-          "loop": false,
-          "fluid": true,
-          "poster": "https://media.w3.org/2010/05/sintel/poster.png",
-          "sources": [{
-            src: "../videos/EM_Herbiers.mp4",
-            type: "video/mp4"}]
-          }'>
-          <source src="videos/EMouz.mp4" type='video/mp4'>
-            <p class="vjs-no-js">Votre navigateur ne supporte pas la gestion des vidéos</p>
-          </video>
 
 *************************************************
-STRUCTURE VIDEOJS
-
- player = videojs('mainAudio', {
-    controls: true,
-    autoplay: true,
-    fluid: false,
-    loop: false,
-    width: 600,
-    height: 300,
-    playbackRates: [0.5, 0.75, 1, 1.25, 1.5, 1.75, 2]
-    plugins: {
-        wavesurfer: {
-            src: '<?php echo $global['webSiteRootURL'] . "videos/" . $video['filename'].$ext; ?>',
-            msDisplayMax: 10,
-            debug: true,
-            waveColor: 'grey',
-            progressColor: 'black',
-            cursorColor: 'black',
-            hideScrollbar: true
-        }
-    }
-}, function(){
-    // print version information at startup
-    videojs.log('Using video.js', videojs.VERSION,
-        'with videojs-wavesurfer', videojs.getPluginVersion('wavesurfer'));
-});
-
-player.autoplay('muted');
-
-*************************************************
-Gestion duréférencement de la vidéos dans la mémoire de videojs
+Gestion du référencement de la vidéos dans la mémoire de videojs
 
 isDefineBVideoJS = false;
 .....
@@ -314,7 +254,11 @@ La vidéo lance un spinner qui gêne la lecture. Pour le désactiver il faut :
 - index.html
 <video id="myVideo" class="video-js vjs-looping">
 
+Center le lanceur de la vidéo
+<video id="myVideo" class="video-js vjs-big-play-centered">
+
 *************************************************
                   THUMBNAIL
+Développé maison 
 
 
