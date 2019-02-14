@@ -316,14 +316,15 @@ function switchVideo(n) {
 						width: 20,
 						height: 20
 					},
+					zoom: {
+						default: 'auto',
+         		 		dynamicLabel: true
+					}/*
 					declencheur: {
 						image: myURL + '/images/EMouzmini.png',
 						fonction: "zoom(1);"
 					},
-					zoomrotate: {
-						zoom: nivZoom,
-						rotate: 0
-					}		
+					*/		
 				}
 					
 			});

@@ -1,11 +1,9 @@
-/*! videojs-resolution-switcher - 2015-7-26
+/*! videojs-zoom - 2019-02-14
  * Copyright (c) 2016 Kasper Moskwiak
- * Modified by Pierre Kraft
+ * Modified by Paulo PIRES SEIXAS
  * Licensed under the Apache-2.0 license. */
 
 (function() {
-  /* jshint eqnull: true*/
-  /* global require */
   'use strict';
   var videojs = null;
   if(typeof window.videojs === 'undefined' && typeof require === 'function') {
@@ -18,12 +16,12 @@
 
 
     var defaults = {},
-        videoJsResolutionSwitcher,
-        currentResolution = {}, // stores current resolution
+        videoJsZoom,
+        currentZoom = {}, // stores current zoom
         menuItemsHolder = {}; // stores menuItems
 
     function setSourcesSanitized(player, sources, label, customSourcePicker) {
-      currentResolution = {
+      currentZoom = {
         label: label,
         sources: sources
       };
@@ -36,10 +34,10 @@
     }
 
   /*
-   * Resolution menu item
+   * Zoom menu item
    */
   var MenuItem = videojs.getComponent('MenuItem');
-  var ResolutionMenuItem = videojs.extend(MenuItem, {
+  var ZoomMenuItem = videojs.extend(MenuItem, {
     constructor: function(player, options, onClickListener, label){
       this.onClickListener = onClickListener;
       this.label = label;
@@ -96,7 +94,7 @@
           // Start playing and hide loadingSpinner (flash issue ?)
           this.player_.play().handleTechSeeked_();
         }
-        this.player_.trigger('resolutionchange');
+        this.player_.trigger('zoomchange');
         });
       }
     });
@@ -106,20 +104,20 @@
      * Resolution menu button
      */
      var MenuButton = videojs.getComponent('MenuButton');
-     var ResolutionMenuButton = videojs.extend(MenuButton, {
+     var ZoomMenuButton = videojs.extend(MenuButton, {
        constructor: function(player, options, settings, label){
         this.sources = options.sources;
         this.label = label;
         this.label.innerHTML = options.initialySelectedLabel;
         // Sets this.player_, this.options_ and initializes the component
         MenuButton.call(this, player, options, settings);
-        this.controlText('Quality');
+        this.controlText('Zoom');
 
         if(settings.dynamicLabel){
           this.el().appendChild(label);
         }else{
           var staticLabel = document.createElement('span');
-					videojs.addClass(staticLabel, 'vjs-resolution-button-staticlabel');
+					videojs.addClass(staticLabel, 'vjs-zoom-button-staticlabel');
           this.el().appendChild(staticLabel);
         }
        },
@@ -135,7 +133,7 @@
 
          for (var key in labels) {
            if (labels.hasOwnProperty(key)) {
-            menuItems.push(new ResolutionMenuItem(
+            menuItems.push(new ZoomMenuItem(
               this.player_,
               {
                 label: key,
@@ -157,13 +155,13 @@
      * Initialize the plugin.
      * @param {object} [options] configuration for the plugin
      */
-    videoJsResolutionSwitcher = function(options) {
+    videoJsZoom = function(options) {
       var settings = videojs.mergeOptions(defaults, options),
           player = this,
           label = document.createElement('span'),
           groupedSrc = {};
 
-			videojs.addClass(label, 'vjs-resolution-button-label');
+			videojs.addClass(label, 'vjs-zoom-button-label');
 			
       /**
        * Updates player sources or returns current source URL
@@ -174,18 +172,18 @@
         //Return current src if src is not given
         if(!src){ return player.src(); }
         // Dispose old resolution menu button before adding new sources
-        if(player.controlBar.resolutionSwitcher){
-          player.controlBar.resolutionSwitcher.dispose();
-          delete player.controlBar.resolutionSwitcher;
+        if(player.controlBar.zoom){
+          player.controlBar.zoom.dispose();
+          delete player.controlBar.zoom;
         }
         //Sort sources
-        src = src.sort(compareResolutions);
+        src = src.sort(compareZoom);
         groupedSrc = bucketSources(src);
         var choosen = chooseSrc(groupedSrc, src);
-        var menuButton = new ResolutionMenuButton(player, { sources: groupedSrc, initialySelectedLabel: choosen.label , initialySelectedRes: choosen.res , customSourcePicker: settings.customSourcePicker}, settings, label);
-				videojs.addClass(menuButton.el(), 'vjs-resolution-button');
-        player.controlBar.resolutionSwitcher = player.controlBar.el_.insertBefore(menuButton.el_, player.controlBar.getChild('fullscreenToggle').el_);
-        player.controlBar.resolutionSwitcher.dispose = function(){
+        var menuButton = new ZoomMenuButton(player, { sources: groupedSrc, initialySelectedLabel: choosen.label , initialySelectedRes: choosen.res , customSourcePicker: settings.customSourcePicker}, settings, label);
+				videojs.addClass(menuButton.el(), 'vjs-zoom-button');
+        player.controlBar.zoom = player.controlBar.el_.insertBefore(menuButton.el_, player.controlBar.getChild('fullscreenToggle').el_);
+        player.controlBar.zoom.dispose = function(){
           this.parentNode.removeChild(this);
         };
         return setSourcesSanitized(player, choosen.sources, choosen.label);
@@ -198,7 +196,7 @@
        * @returns {Object}   current resolution object {label: '', sources: []} if used as getter or player object if used as setter
        */
       player.currentResolution = function(label, customSourcePicker){
-        if(label == null) { return currentResolution; }
+        if(label == null) { return currentZoom; }
         if(menuItemsHolder[label] != null){
           menuItemsHolder[label].onClick(customSourcePicker);
         }
@@ -219,7 +217,7 @@
        * @param   {Object} b - source object with res property
        * @returns {Number} result of comparation
        */
-      function compareResolutions(a, b){
+      function compareZoom(a, b){
         if(!a.res || !b.res){ return 0; }
         return (+b.res)-(+a.res);
       }
@@ -230,31 +228,31 @@
        * @returns {Object} grouped sources: { label: { key: [] }, res: { key: [] }, type: { key: [] } }
        */
       function bucketSources(src){
-        var resolutions = {
+        var zooms = {
           label: {},
           res: {},
           type: {}
         };
         src.map(function(source) {
-          initResolutionKey(resolutions, 'label', source);
-          initResolutionKey(resolutions, 'res', source);
-          initResolutionKey(resolutions, 'type', source);
+          initZoomKey(zooms, 'label', source);
+          initZoomKey(zooms, 'res', source);
+          initZoomKey(zooms, 'type', source);
 
-          appendSourceToKey(resolutions, 'label', source);
-          appendSourceToKey(resolutions, 'res', source);
-          appendSourceToKey(resolutions, 'type', source);
+          appendSourceToKey(zooms, 'label', source);
+          appendSourceToKey(zooms, 'res', source);
+          appendSourceToKey(zooms, 'type', source);
         });
-        return resolutions;
+        return zooms;
       }
 
-      function initResolutionKey(resolutions, key, source) {
-        if(resolutions[key][source[key]] == null) {
-          resolutions[key][source[key]] = [];
+      function initZoomKey(zooms, key, source) {
+        if(zooms[key][source[key]] == null) {
+          zooms[key][source[key]] = [];
         }
       }
 
-      function appendSourceToKey(resolutions, key, source) {
-        resolutions[key][source[key]].push(source);
+      function appendSourceToKey(zooms, key, source) {
+        zooms[key][source[key]].push(source);
       }
 
       /**
@@ -264,44 +262,42 @@
        * @returns {Object} {res: string, sources: []}
        */
       function chooseSrc(groupedSrc, src){
-        var selectedRes = settings['default']; // use array access as default is a reserved keyword
+        var selectedZoom = settings['default']; // use array access as default is a reserved keyword
         var selectedLabel = '';
-        if (selectedRes === 'high') {
-          selectedRes = src[0].res;
+        if (selectedZoom === 'high') {
+          selectedZoom = src[0].res;
           selectedLabel = src[0].label;
-        } else if (selectedRes === 'low' || selectedRes == null || !groupedSrc.res[selectedRes]) {
+        } else if (selectedZoom === 'low' || selectedZoom == null || !groupedSrc.res[selectedZoom]) {
           // Select low-res if default is low or not set
-          selectedRes = src[src.length - 1].res;
+          selectedZoom = src[src.length - 1].res;
           selectedLabel = src[src.length -1].label;
-        } else if (groupedSrc.res[selectedRes]) {
-          selectedLabel = groupedSrc.res[selectedRes][0].label;
+        } else if (groupedSrc.res[selectedZoom]) {
+          selectedLabel = groupedSrc.res[selectedZoom][0].label;
         }
 				
-        return {res: selectedRes, label: selectedLabel, sources: groupedSrc.res[selectedRes]};
+        return {res: selectedZoom, label: selectedLabel, sources: groupedSrc.res[selectedZoom]};
       }
 			
-			function initResolutionForYt(player){
+			function initZoomForYt(player){
 				// Init resolution
 				player.tech_.ytPlayer.setPlaybackQuality('default');
 				
 				// Capture events
 				player.tech_.ytPlayer.addEventListener('onPlaybackQualityChange', function(){
-					player.trigger('resolutionchange');
+					player.trigger('zoomchange');
 				});
 				
 				// We must wait for play event
 				player.one('play', function(){
 					var qualities = player.tech_.ytPlayer.getAvailableQualityLevels();
 					// Map youtube qualities names
-					var _yts = {
-						highres: {res: 1080, label: '1080', yt: 'highres'},
-						hd1080: {res: 1080, label: '1080', yt: 'hd1080'}, 
-						hd720: {res: 720, label: '720', yt: 'hd720'}, 
-						large: {res: 480, label: '480', yt: 'large'},
-						medium: {res: 360, label: '360', yt: 'medium'}, 
-						small: {res: 240, label: '240', yt: 'small'},
-						tiny: {res: 144, label: '144', yt: 'tiny'},
-						auto: {res: 0, label: 'auto', yt: 'default'}
+					var _yts = { 
+						trespetit: {res: 0.25, label: '0.25', yt: 'trespetit'}, 
+						petit: {res: 0.5, label: '0.5', yt: 'petit'},
+						auto: {res: 1, label: '1', yt: 'default'}, 
+						agrandir: {res: 1.5, label: '1.5', yt: 'agrandir'},
+						agrandirplus: {res: 2, label: '2', yt: 'agrandirplus'},
+						double: {res: 2.5, label: '2.5', yt: 'double'}
 					};
 
 					var _sources = [];
@@ -324,16 +320,16 @@
 						return player;
 					};
 
-					var choosen = {label: 'auto', res: 0, sources: groupedSrc.label.auto};
-					var menuButton = new ResolutionMenuButton(player, { 
+					var choosen = {label: 'auto', res: 1, sources: groupedSrc.label.auto};
+					var menuButton = new ZoomMenuButton(player, { 
 						sources: groupedSrc, 
 						initialySelectedLabel: choosen.label, 
-						initialySelectedRes: choosen.res, 
+						initialySelectedZoom: choosen.res, 
 						customSourcePicker: _customSourcePicker
 					}, settings, label);
 
-					menuButton.el().classList.add('vjs-resolution-button');
-					player.controlBar.resolutionSwitcher = player.controlBar.addChild(menuButton);
+					menuButton.el().classList.add('vjs-zoom-button');
+					player.controlBar.zoom = player.controlBar.addChild(menuButton);
 				});
 			}
 			
@@ -346,13 +342,13 @@
 				
 				if(player.techName_ === 'Youtube'){
 					// tech: YouTube
-					initResolutionForYt(player);
+					initZoomForYt(player);
 				}
 			});
 
     };
 
     // register the plugin
-    videojs.plugin('videoJsResolutionSwitcher', videoJsResolutionSwitcher);
+    videojs.plugin('videoJsZoom', videoJsZoom);
   })(window, videojs);
 })();
