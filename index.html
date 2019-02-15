@@ -17,15 +17,20 @@
   </script>
   <link href="./videojs-brand/dist/videojs-brand.css" rel="stylesheet" type="text/css">
 
-  <!-- <script type="text/javascript" src="./videojs-declencheur/videojs-declencheur.js">
+  <script type="text/javascript" src="./videojs-zoomrotate/videojs-zoomrotate.js">
+    videojs.registerPlugin('zoomrotate', videojs-zoomrotate);
+  </script>
+
+  <script type="text/javascript" src="./videojs-declencheur/videojs-declencheur.js">
   videojs.registerPlugin('declencheur', videojs-declencheur);
   </script>
   <link href="./videojs-declencheur/videojs-declencheur.css" rel="stylesheet" type="text/css">
-  -->
-  <script type="text/javascript" src="./videojs-zoom/videojs-zoom.js">
-  videojs.registerPlugin('zoom', videojs-zoom);
+  
+
+  <script type="text/javascript" src="./videojs-resolution-switcher/videojs-resolution-switcher.js">
+  videojs.registerPlugin('resolution-switcher', videojs-resolution-switcher);
   </script>
-  <link href="./videojs-zoom/videojs-zoom.css" rel="stylesheet" type="text/css">
+  <link href="./videojs-resolution-switcher/videojs-resolution-switcher.css" rel="stylesheet" type="text/css">
 
   <script src="./src/script.js"></script>
   <script src="./src/actions.js"></script>
@@ -68,7 +73,7 @@
           <div><span id="droite"></span></div>
         </div>        
         <div id="zVideo">
-          <video id="myVideo" class="video-js vjs-looping vjs-big-play-centered">
+          <video id="myVideo" class="video-js vjs-looping vjs-big-play-centered video-js vjs-default-skin">
           <source id="mp4">
             <p class="vjs-no-js">Votre navigateur ne supporte pas la gestion des vidéos</p>
           </video>

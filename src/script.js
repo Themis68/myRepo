@@ -316,18 +316,42 @@ function switchVideo(n) {
 						width: 20,
 						height: 20
 					},
-					zoom: {
-						default: 'auto',
-         		 		dynamicLabel: true
-					}/*
+				/*	videoJsResolutionSwitcher: {
+						default: 'high',
+						dynamicLabel: true
+					},*/
 					declencheur: {
-						image: myURL + '/images/EMouzmini.png',
-						fonction: "zoom(1);"
+						image: "https://etoile-mouzillon.footeo.com/",
+						fnction: "zoom(1);"
 					},
-					*/		
-				}
-					
-			});
+					zoomrotate: {
+						zoom: 1,
+						rotate: 0
+					}
+				}					
+			}/*, function(){
+  
+				// Add dynamically sources via updateSrc method
+				myVideo.updateSrc([
+					{
+						label: '1',
+						value: 1
+					},
+					{
+						label: '1.5',
+						value: 1.5
+					},
+					{
+						label: '2',
+						value: 2
+					}
+				  ])
+			
+				  myVideo.on('resolutionchange', function(){
+					console.info('Source changed to %s', player.src())
+				  })
+				  
+			  }*/);
 		}
 		isDefineBVideoJS = true;
 

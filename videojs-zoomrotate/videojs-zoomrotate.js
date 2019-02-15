@@ -2,7 +2,6 @@
 
 (function(){
     var defaults, extend;
-  ////  console.log('zoomrotate: Init defaults');
     defaults = {
       zoom: 1,
       rotate: 0,
