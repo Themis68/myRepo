@@ -28,6 +28,10 @@ html, body {
   padding: 0;
 }
 
+.video-js {
+  font-size: 0.8em;
+}
+
 .vjs-looping .vjs-loading-spinner {
   display: none;
 }
@@ -37,6 +41,13 @@ html, body {
   opacity: .8;
   font-size: 5em;
 }
+
+.video-js .vjs-menu-item {
+  text-align: right;
+  margin-right: 3px;
+  width: 80%;
+}
+
 
 td.thumb {
   border: green 5px solid;

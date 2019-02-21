@@ -276,7 +276,7 @@ function addScore(value) {
     }
     let myColor = ((videoNbPoint / nbQuests[0].points) > 0.5 ? 'green' : 'white');
     let myScore = '<span style="color:'+ myColor +';">' + videoNbPoint.toString() + '</span>';
-    document.getElementById("scoreBoard").innerHTML = myScore + ' / ' + (nbQuests[0].points).toString();
+    document.getElementById("scoreBoard").innerHTML = myScore + ' : ' + (nbQuests[0].points).toString();
 }
 
 function showConseiller(rubrique, resultat, points) {

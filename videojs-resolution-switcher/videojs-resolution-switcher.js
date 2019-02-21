@@ -13,180 +13,194 @@
   }
 
   (function(window, videojs) {
-
-
+   // console.log('init 1');
     var defaults = {},
-        videoJsResolutionSwitcher,
-        currentResolution = {}, // stores current resolution
+      videoJsResolutionSwitcher,
+        currentZoom = {}, 
         menuItemsHolder = {}; // stores menuItems
 
-    function setSourcesSanitized(player, sources, label, customSourcePicker) {
-      currentResolution = {
-        label: label,
-        sources: sources
-      };
-      if(typeof customSourcePicker === 'function'){
-        return customSourcePicker(player, sources, label);
+    var extend = function() {
+      var args, target, i, object, property;
+      args = Array.prototype.slice.call(arguments);
+      target = args.shift() || {};
+      for (i in args) {
+        object = args[i];
+        for (property in object) {
+          if (object.hasOwnProperty(property)) {
+            if (typeof object[property] === 'object') {
+              target[property] = extend(target[property], object[property]);
+            } else {
+              target[property] = object[property];
+            }
+          }
+        }
       }
-      return player.src(sources.map(function(src) {
-        return {src: src.src, type: src.type, res: src.res};
-      }));
+      return target;
+    };
+
+    function setSourcesSanitized(player, zoom) {
+      //   if (defaults.debug) console.log('zoomrotate: Register init');
+
+      /* Grab the necessary DOM elements */
+      player = player.el();
+      var video = player.getElementsByTagName('video')[0];
+      /* Array of possible browser specific sources for transformation */
+      var properties = ['transform', 'WebkitTransform', 'MozTransform',
+                        'msTransform', 'OTransform'],
+                       prop = properties[0];
+      var i,j;
+      /* Find out which CSS transform the browser supports */
+      for(i=0,j=properties.length;i<j;i++){
+        if(typeof player.style[properties[i]] !== 'undefined'){
+          prop = properties[i];
+          break;
+        }
+      }
+      player.style.overflow = 'hidden';
+      video.style[prop]='scale('+zoom.val+')';  // effectue la transformation
+      return true;
     }
 
-  /*
-   * Resolution menu item
-   */
-  var MenuItem = videojs.getComponent('MenuItem');
-  var ResolutionMenuItem = videojs.extend(MenuItem, {
-    constructor: function(player, options, onClickListener, label){
-      this.onClickListener = onClickListener;
-      this.label = label;
-      // Sets this.player_, this.options_ and initializes the component
-      MenuItem.call(this, player, options);
-      this.src = options.src;
-
-      this.on('click', this.onClick);
-      this.on('touchstart', this.onClick);
-
-      if (options.initialySelected) {
-        this.showAsLabel();
-        this.selected(true);
-
-        this.addClass('vjs-selected');
-      }
-    },
-    showAsLabel: function() {
-      // Change menu button label to the label of this item if the menu button label is provided
-      if(this.label) {
-        this.label.innerHTML = this.options_.label;
-      }
-    },
-    onClick: function(customSourcePicker){
-      this.onClickListener(this);
-      // Remember player state
-      var currentTime = this.player_.currentTime();
-      var isPaused = this.player_.paused();
-      this.showAsLabel();
-
-      // add .current class
-      this.addClass('vjs-selected');
-
-      // Hide bigPlayButton
-      if(!isPaused){
-        this.player_.bigPlayButton.hide();
-      }
-      if(typeof customSourcePicker !== 'function' &&
-        typeof this.options_.customSourcePicker === 'function'){
-        customSourcePicker = this.options_.customSourcePicker;
-      }
-      // Change player source and wait for loadeddata event, then play video
-      // loadedmetadata doesn't work right now for flash.
-      // Probably because of https://github.com/videojs/video-js-swf/issues/124
-      // If player preload is 'none' and then loadeddata not fired. So, we need timeupdate event for seek handle (timeupdate doesn't work properly with flash)
-      var handleSeekEvent = 'loadeddata';
-      if(this.player_.techName_ !== 'Youtube' && this.player_.preload() === 'none' && this.player_.techName_ !== 'Flash') {
-        handleSeekEvent = 'timeupdate';
-      }
-      setSourcesSanitized(this.player_, this.src, this.options_.label, customSourcePicker).one(handleSeekEvent, function() {
-        this.player_.currentTime(currentTime);
-        this.player_.handleTechSeeked_();
-        if(!isPaused){
-          // Start playing and hide loadingSpinner (flash issue ?)
-          this.player_.play().handleTechSeeked_();
-        }
-        this.player_.trigger('resolutionchange');
-        });
-      }
-    });
-
-
     /*
-     * Resolution menu button
-     */
-     var MenuButton = videojs.getComponent('MenuButton');
-     var ResolutionMenuButton = videojs.extend(MenuButton, {
-       constructor: function(player, options, settings, label){
-        this.sources = options.sources;
+    * Resolution menu item
+    */
+    var MenuItem = videojs.getComponent('MenuItem');
+
+   // console.log('init ResolutionMenuItem');
+    var ResolutionMenuItem = videojs.extend(MenuItem, {
+      constructor: function(player, options, onClickListener, label){
+        this.onClickListener = onClickListener;
         this.label = label;
-        this.label.innerHTML = options.initialySelectedLabel;
-        // Sets this.player_, this.options_ and initializes the component
-        MenuButton.call(this, player, options, settings);
-        this.controlText('Quality');
+        MenuItem.call(this, player, options);
+        this.zoom = options.zoom;
 
-        if(settings.dynamicLabel){
-          this.el().appendChild(label);
-        }else{
-          var staticLabel = document.createElement('span');
-					videojs.addClass(staticLabel, 'vjs-resolution-button-staticlabel');
-          this.el().appendChild(staticLabel);
+        this.on('click', this.onClick);
+        this.on('touchstart', this.onClick);
+
+        if (options.initialySelected) {
+          this.showAsLabel();
+          this.selected(true);
+
+          this.addClass('vjs-selected');
         }
-       },
-       createItems: function(){
-         var menuItems = [];
-         var labels = (this.sources && this.sources.label) || {};
-         var onClickUnselectOthers = function(clickedItem) {
-          menuItems.map(function(item) {
-            item.selected(item === clickedItem);
-            item.removeClass('vjs-selected');
-          });
-         };
+      },
+      showAsLabel: function() {
+        // Change menu button label to the label of this item if the menu button label is provided
+        if(this.label) {
+          this.label.innerHTML = this.options_.label;
+        }
+      },
+      onClick: function(customSourcePicker){
+        this.onClickListener(this);
+        this.showAsLabel();
+        this.addClass('vjs-selected');
+        console.log('this.options_', this.options_);
+        setSourcesSanitized(this.player_, this.options_.val);
+        }
+      });
 
-         for (var key in labels) {
-           if (labels.hasOwnProperty(key)) {
-            menuItems.push(new ResolutionMenuItem(
-              this.player_,
-              {
-                label: key,
-                src: labels[key],
-                initialySelected: key === this.options_.initialySelectedLabel,
-                customSourcePicker: this.options_.customSourcePicker
-              },
-              onClickUnselectOthers,
-              this.label));
-             // Store menu item for API calls
-             menuItemsHolder[key] = menuItems[menuItems.length - 1];
-            }
+      /*
+      * Resolution menu button
+      */
+      var MenuButton = videojs.getComponent('MenuButton');
+
+     // console.log('init ResolutionMenuButton');
+      var ResolutionMenuButton = videojs.extend(MenuButton, {
+        constructor: function(player, options, settings, label){
+          //console.log('init ResolutionMenuButton / constructor');
+         this.zoom = options.zoom;  // tableau des valeurs possibles
+         this.label = label;  // code HTML pour le bouton '1X'
+         this.label.innerHTML = options.initialySelectedLabel;  //valeur '1X'
+         // Sets this.player_, this.options_ and initializes the component
+         MenuButton.call(this, player, options, settings);
+         this.controlText('Zoom');
+ 
+         if(settings.dynamicLabel){
+           // affiche le label du zoom dans la barre de contrôle
+           this.el().appendChild(label);
+         }else{
+           // affiche l'engrenage
+           var staticLabel = document.createElement('span');
+           videojs.addClass(staticLabel, 'vjs-resolution-button-staticlabel');
+           this.el().appendChild(staticLabel);
          }
-         return menuItems;
-       }
-     });
+        },
+        createItems: function(player, options, settings, label){
+          //console.log('init ResolutionMenuButton / createItem');
+
+          var menuItems = [];
+          var labels = this.zoom; // (this.zoom && this.label) || {};  // tableau des valeurs possibles
+          var onClickUnselectOthers = function(clickedItem) {
+          var monZoom = clickedItem.options_.val.val;
+
+           menuItems.map(function(item) {
+             item.selected(item === clickedItem);
+             item.removeClass('vjs-selected');
+           });
+          };
+ 
+          for (var key in labels) {
+            if (labels.hasOwnProperty(key)) {
+             menuItems.push(new ResolutionMenuItem(
+               this.player_,
+               {
+                 label: labels[key].lab,
+                 val: labels[key],
+                 initialySelected: key === this.options_.initialySelectedLabel 
+               },
+               onClickUnselectOthers,   //code HTML du select
+               this.label));    // code HTML du bouton 1x
+              // Store menu item for API calls
+              menuItemsHolder[key] = menuItems[menuItems.length - 1];
+             }
+          }
+          return menuItems;
+        }
+      });
 
     /**
      * Initialize the plugin.
      * @param {object} [options] configuration for the plugin
      */
     videoJsResolutionSwitcher = function(options) {
+     // console.log('appel videoJsResolutionSwitcher');
+      //
+      // ne passe pas lors de l'INIT mais seulement quand on appel le plugin dans la video
+      //
+
+      // définition des variables
       var settings = videojs.mergeOptions(defaults, options),
           player = this,
           label = document.createElement('span'),
           groupedSrc = {};
 
-			videojs.addClass(label, 'vjs-resolution-button-label');
-			
+      // affectationd e la classe
+      videojs.addClass(label, 'vjs-resolution-button-label');
+      
       /**
        * Updates player sources or returns current source URL
        * @param   {Array}  [src] array of sources [{src: '', type: '', label: '', res: ''}]
        * @returns {Object|String|Array} videojs player object if used as setter or current source URL, object, or array of sources
        */
-      player.updateSrc = function(src){
-        //Return current src if src is not given
-        if(!src){ return player.src(); }
-        // Dispose old resolution menu button before adding new sources
-        if(player.controlBar.resolutionSwitcher){
-          player.controlBar.resolutionSwitcher.dispose();
-          delete player.controlBar.resolutionSwitcher;
-        }
-        //Sort sources
-        src = src.sort(compareResolutions);
-        groupedSrc = bucketSources(src);
-        var choosen = chooseSrc(groupedSrc, src);
-        var menuButton = new ResolutionMenuButton(player, { sources: groupedSrc, initialySelectedLabel: choosen.label , initialySelectedRes: choosen.res , customSourcePicker: settings.customSourcePicker}, settings, label);
-				videojs.addClass(menuButton.el(), 'vjs-resolution-button');
-        player.controlBar.resolutionSwitcher = player.controlBar.el_.insertBefore(menuButton.el_, player.controlBar.getChild('fullscreenToggle').el_);
-        player.controlBar.resolutionSwitcher.dispose = function(){
+      player.updateSrc = function(niveaux){
+       // console.log('appel player.updateSrc');
+
+        if(!niveaux){ return player.niveau(); }
+
+        groupedSrc = bucketSources(niveaux);
+        var choosen = chooseSrc(groupedSrc, niveaux);
+
+        var menuButton = new ResolutionMenuButton(player, { zoom: niveaux, initialySelectedLabel: choosen.lab , initialySelectedRes: choosen.val}, settings, label);
+        
+        videojs.addClass(menuButton.el(), 'vjs-resolution-button');
+        
+        player.controlBar.videoJsResolutionSwitcher = player.controlBar.el_.insertBefore(menuButton.el_, player.controlBar.getChild('fullscreenToggle').el_); // ajout de la liste déroulante
+
+        player.controlBar.videoJsResolutionSwitcher.dispose = function(){
           this.parentNode.removeChild(this);
         };
-        return setSourcesSanitized(player, choosen.sources, choosen.label);
+
+        return setSourcesSanitized(player, choosen);
       };
 
       /**
@@ -195,8 +209,9 @@
        * @param {Function} [customSourcePicker] custom function to choose source. Takes 3 arguments: player, sources, label. Must return player object.
        * @returns {Object}   current resolution object {label: '', sources: []} if used as getter or player object if used as setter
        */
-      player.currentResolution = function(label, customSourcePicker){
-        if(label == null) { return currentResolution; }
+      player.currentZoom = function(label, customSourcePicker){
+        //console.log('appel player.currentZoom', customSourcePicker);
+        if(label == null) { return currentZoom; }
         if(menuItemsHolder[label] != null){
           menuItemsHolder[label].onClick(customSourcePicker);
         }
@@ -218,6 +233,7 @@
        * @returns {Number} result of comparation
        */
       function compareResolutions(a, b){
+        //console.log('appel compareResolutions()');
         if(!a.res || !b.res){ return 0; }
         return (+b.res)-(+a.res);
       }
@@ -227,32 +243,32 @@
        * @param   {Array}  src Array of sources
        * @returns {Object} grouped sources: { label: { key: [] }, res: { key: [] }, type: { key: [] } }
        */
-      function bucketSources(src){
-        var resolutions = {
-          label: {},
-          res: {},
-          type: {}
+      function bucketSources(niveaux){
+        //console.log('appel bucketSources()', niveaux);
+        var niv = {
+          lab: {},
+          val: {}
         };
-        src.map(function(source) {
-          initResolutionKey(resolutions, 'label', source);
-          initResolutionKey(resolutions, 'res', source);
-          initResolutionKey(resolutions, 'type', source);
+        niveaux.map(function(niveaux) {
+          initResolutionKey(niv, 'lab', niveaux);
+          initResolutionKey(niv, 'val', niveaux);
 
-          appendSourceToKey(resolutions, 'label', source);
-          appendSourceToKey(resolutions, 'res', source);
-          appendSourceToKey(resolutions, 'type', source);
+          appendSourceToKey(niv, 'lab', niveaux);
+          appendSourceToKey(niv, 'val', niveaux);
         });
-        return resolutions;
+        return niv;
       }
 
-      function initResolutionKey(resolutions, key, source) {
-        if(resolutions[key][source[key]] == null) {
-          resolutions[key][source[key]] = [];
+      function initResolutionKey(niv, key, niveaux) {
+       // console.log('appel initResolutionKey()');
+        if(niv[key][niveaux[key]] == null) {
+          niv[key][niveaux[key]] = [];
         }
       }
 
-      function appendSourceToKey(resolutions, key, source) {
-        resolutions[key][source[key]].push(source);
+      function appendSourceToKey(niv, key, niveaux) {
+        //console.log('appel appendSourceToKey()');
+        niv[key][niveaux[key]].push(niveaux);
       }
 
       /**
@@ -261,24 +277,15 @@
        * @param   {Array}  src Array of sources sorted by resolution used to find high and low res
        * @returns {Object} {res: string, sources: []}
        */
-      function chooseSrc(groupedSrc, src){
-        var selectedRes = settings['default']; // use array access as default is a reserved keyword
-        var selectedLabel = '';
-        if (selectedRes === 'high') {
-          selectedRes = src[0].res;
-          selectedLabel = src[0].label;
-        } else if (selectedRes === 'low' || selectedRes == null || !groupedSrc.res[selectedRes]) {
-          // Select low-res if default is low or not set
-          selectedRes = src[src.length - 1].res;
-          selectedLabel = src[src.length -1].label;
-        } else if (groupedSrc.res[selectedRes]) {
-          selectedLabel = groupedSrc.res[selectedRes][0].label;
-        }
-				
-        return {res: selectedRes, label: selectedLabel, sources: groupedSrc.res[selectedRes]};
+      function chooseSrc(groupedSrc, niveaux){
+        //console.log('appel chooseSrc()', groupedSrc, niveaux);
+        var selectedLab = niveaux[0].lab;
+        var selectedVal = niveaux[0].val;
+        return {lab: selectedLab, val: selectedVal};
       }
 			
 			function initResolutionForYt(player){
+        console.log('appel initResolutionForYt()');
 				// Init resolution
 				player.tech_.ytPlayer.setPlaybackQuality('default');
 				
@@ -331,26 +338,20 @@
 					}, settings, label);
 
 					menuButton.el().classList.add('vjs-resolution-button');
-					player.controlBar.resolutionSwitcher = player.controlBar.addChild(menuButton);
+					player.controlBar.videoJsResolutionSwitcher = player.controlBar.addChild(menuButton);
 				});
 			}
 			
 			player.ready(function(){
-				if(player.options_.sources.length > 1){
-					// tech: Html5 and Flash
-					// Create resolution switcher for videos form <source> tag inside <video>
-					player.updateSrc(player.options_.sources);
-				}
-				
-				if(player.techName_ === 'Youtube'){
-					// tech: YouTube
-					initResolutionForYt(player);
+        //console.log('appel player.ready', player.options_.plugins.videoJsResolutionSwitcher.niveaux);
+        if(player.options_.plugins.videoJsResolutionSwitcher.niveaux.length >= 1){
+					player.updateSrc(player.options_.plugins.videoJsResolutionSwitcher.niveaux);
 				}
 			});
-
     };
 
-    // register the plugin
-    videojs.plugin('videoJsResolutionSwitcher', videoJsResolutionSwitcher);
-  })(window, videojs);
+      // register the plugin
+      videojs.plugin('videoJsResolutionSwitcher', videoJsResolutionSwitcher);
+    }
+  )(window, videojs);
 })();

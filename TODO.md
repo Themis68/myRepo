@@ -262,3 +262,59 @@ Center le lanceur de la vidéo
 Développé maison 
 
 
+***************************************************************************
+CONTROL DE LA VIDEO
+***************************************************************************
+La vidéo possède ses propres contrôles :
+- vjs-tech
+- vjs-poster
+- vjs-track
+- vjs-spinner
+- vjs-big-play-button
+- vjs-control-bar
+- vjs-error
+- vjs-captions-settings
+
+
+vjs-control-bar : La barre contient tous les éléments de contrôle par défaut mais ne les affiche que si on a clairement demandé dans l'appel ou les CSS
+- vjs-play
+- vjs-volume
+- vjs-current-time
+- vjs-time
+- vjs-duration
+- vjs-progress
+- vjs-live
+- vjs-ramining-time
+- vjs-spacer
+- vjs-playback-rate
+- vjs-chapters
+- vjs-description
+- vjs-subtitles
+- vjs-captions
+- vjs-audio
+- vjs-fullscreen
+
+Les plugins sont ajoutés à vjs-control-bar
+- vjs-brand
+- vjs-resolution-button-label : bouton qui s'affiche sur le control-bar
+
+
+************************************
+           ZOOM
+************************************
+On doit passer la vidéo avec les attributs suivants :
+
+	myVideo = videojs('myVideo', {
+				controls: true,
+				...
+				sources: [{
+					src: "./videos/" + video[0].fichier,
+					res: 460,
+					type: "video/mp4",
+					label: "low"
+				}],
+
+videoJsResolutionSwitcher: {
+						default: 'high',
+						dynamicLabel: false	// false affiche l'icone du bouton et pas true
+}
