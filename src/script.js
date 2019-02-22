@@ -324,7 +324,7 @@ function switchVideo(n) {
 						default: 'low',
 						dynamicLabel: true,	// false affiche l'icone du bouton sinon on a le label directement
 						niveaux: [
-								{lab: '1x', val: 1}, {lab: '1.5x', val: 1.5}, {lab: '2x', val: 2}, {lab: '2.5x', val: 2.5}
+								{lab: '2.5x', val: 2.5}, {lab: '2x', val: 2}, {lab: '1.5x', val: 1.5}, {lab: '1x', val: 1}
 						]
 					}/*,
 					declencheur: {
@@ -344,7 +344,7 @@ function switchVideo(n) {
 						dynamicLabel: true
 					}
 				*/		
-			}, function(){
+				}/*, function(){
   
 				// Add dynamically sources via updateSrc method
 				myVideo.updateSrc([
@@ -365,7 +365,7 @@ function switchVideo(n) {
 					myVideo.on('resolutionchange', function(){
 						console.info('Source changed to %s', myVideo.src())
 					})
-			}
+			}*/
 			});
 		}
 		isDefineBVideoJS = true;

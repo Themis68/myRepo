@@ -1,15 +1,15 @@
-.vjs-resolution-button {
+.vjs-zoom-button {
   color: #ccc;
   font-family: VideoJS;
 }
 
-.vjs-resolution-button .vjs-resolution-button-staticlabel:before {
+.vjs-zoom-button .vjs-zoom-button-staticlabel:before {
   content: '\f110';
   font-size: 1.8em;
-  line-height: 1.67;
+  line-height: 1.67;*
 }
 
-.vjs-resolution-button .vjs-resolution-button-label {
+.vjs-zoom-button .vjs-zoom-button-label {
     font-size: 1em;
     line-height: 3em;
     position: absolute;
@@ -22,15 +22,15 @@
 		font-family: Arial, Helvetica, sans-serif;
 }
 
-.vjs-resolution-button ul.vjs-menu-content {
+.vjs-zoom-button ul.vjs-menu-content {
   width: 4em !important;
 }
 
-.vjs-resolution-button .vjs-menu {
+.vjs-zoom-button .vjs-menu {
   left: 0;
 }
 
-.vjs-resolution-button .vjs-menu li {
+.vjs-zoom-button .vjs-menu li {
   text-transform: none;
 	font-size: 1em;
 	font-family: Arial, Helvetica, sans-serif;

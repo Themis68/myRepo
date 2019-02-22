@@ -5,7 +5,15 @@ https://www.w3.org/2010/05/video/mediaevents.html
 **************************************
                A FAIRE
 **************************************
-- comment gérer la récupération des données d'un plugin ?
+- insérer les logos Ligue et District
+- centrer verticalement le logo Mouzillon
+- intercepter le fullscreen
+- préparer un gestionnaire pour la gténération du scénario
+- afficher le zoom 1x au départ
+- cacher le menu si on choisi une valeur
+- revoir le margin dans le menu car quand on clique sur la ligne ce n'est pas beau le cadre blanc
+- nettoyer le code du plugin et renommer js
+
 - le titre est masqué quand on n'a pas la frame du developpement ouverte (F12)
 - revoir le skin pour rendre transparent la barre de progression
 - saisir le temps "00:00" et non en nombre de secondes car cela oblige à convertir

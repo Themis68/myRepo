@@ -94,7 +94,6 @@
         this.onClickListener(this);
         this.showAsLabel();
         this.addClass('vjs-selected');
-        console.log('this.options_', this.options_);
         setSourcesSanitized(this.player_, this.options_.val);
         }
       });
@@ -121,7 +120,7 @@
          }else{
            // affiche l'engrenage
            var staticLabel = document.createElement('span');
-           videojs.addClass(staticLabel, 'vjs-resolution-button-staticlabel');
+           videojs.addClass(staticLabel, 'vjs-zoom-button-staticlabel');
            this.el().appendChild(staticLabel);
          }
         },
@@ -175,7 +174,7 @@
           groupedSrc = {};
 
       // affectationd e la classe
-      videojs.addClass(label, 'vjs-resolution-button-label');
+      videojs.addClass(label, 'vjs-zoom-button-label');
       
       /**
        * Updates player sources or returns current source URL
@@ -192,7 +191,7 @@
 
         var menuButton = new ResolutionMenuButton(player, { zoom: niveaux, initialySelectedLabel: choosen.lab , initialySelectedRes: choosen.val}, settings, label);
         
-        videojs.addClass(menuButton.el(), 'vjs-resolution-button');
+        videojs.addClass(menuButton.el(), 'vjs-zoom-button');
         
         player.controlBar.videoJsResolutionSwitcher = player.controlBar.el_.insertBefore(menuButton.el_, player.controlBar.getChild('fullscreenToggle').el_); // ajout de la liste déroulante
 
@@ -285,7 +284,7 @@
       }
 			
 			function initResolutionForYt(player){
-        console.log('appel initResolutionForYt()');
+        //console.log('appel initResolutionForYt()');
 				// Init resolution
 				player.tech_.ytPlayer.setPlaybackQuality('default');
 				
@@ -337,7 +336,7 @@
 						customSourcePicker: _customSourcePicker
 					}, settings, label);
 
-					menuButton.el().classList.add('vjs-resolution-button');
+					menuButton.el().classList.add('vjs-zoom-button');
 					player.controlBar.videoJsResolutionSwitcher = player.controlBar.addChild(menuButton);
 				});
 			}
