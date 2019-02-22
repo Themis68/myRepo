@@ -6,7 +6,7 @@
 .vjs-zoom-button .vjs-zoom-button-staticlabel:before {
   content: '\f110';
   font-size: 1.8em;
-  line-height: 1.67;*
+  line-height: 1.67;
 }
 
 .vjs-zoom-button .vjs-zoom-button-label {
@@ -30,8 +30,11 @@
   left: 0;
 }
 
+/* item du menu */
 .vjs-zoom-button .vjs-menu li {
   text-transform: none;
 	font-size: 1em;
-	font-family: Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: right;
+  padding-right: 5px;
 }

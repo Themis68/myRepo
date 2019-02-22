@@ -321,7 +321,7 @@ function switchVideo(n) {
 						height: 20
 					},
 					videoJsZoom: {
-						default: 'low',
+						default: true,
 						dynamicLabel: true,	// false affiche l'icone du bouton sinon on a le label directement
 						niveaux: [
 								{lab: '2.5x', val: 2.5}, {lab: '2x', val: 2}, {lab: '1.5x', val: 1.5}, {lab: '1x', val: 1}
