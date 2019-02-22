@@ -1,7 +1,10 @@
-/*! videojs-resolution-switcher - 2015-7-26
+/*! videojs-zoom - 2015-7-26
  * Copyright (c) 2016 Kasper Moskwiak
  * Modified by Pierre Kraft
- * Licensed under the Apache-2.0 license. */
+ * Licensed under the Apache-2.0 license. 
+ * Modfied by Paulo Pires Seixas
+ * Version 1.0
+ * */
 
 (function() {
   'use strict';
@@ -15,7 +18,7 @@
   (function(window, videojs) {
    // console.log('init 1');
     var defaults = {},
-      videoJsResolutionSwitcher,
+      videoJsZoom,
         currentZoom = {}, 
         menuItemsHolder = {}; // stores menuItems
 
@@ -161,8 +164,8 @@
      * Initialize the plugin.
      * @param {object} [options] configuration for the plugin
      */
-    videoJsResolutionSwitcher = function(options) {
-     // console.log('appel videoJsResolutionSwitcher');
+    videoJsZoom = function(options) {
+     // console.log('appel videoJsZoom');
       //
       // ne passe pas lors de l'INIT mais seulement quand on appel le plugin dans la video
       //
@@ -193,9 +196,9 @@
         
         videojs.addClass(menuButton.el(), 'vjs-zoom-button');
         
-        player.controlBar.videoJsResolutionSwitcher = player.controlBar.el_.insertBefore(menuButton.el_, player.controlBar.getChild('fullscreenToggle').el_); // ajout de la liste déroulante
+        player.controlBar.videoJsZoom = player.controlBar.el_.insertBefore(menuButton.el_, player.controlBar.getChild('fullscreenToggle').el_); // ajout de la liste déroulante
 
-        player.controlBar.videoJsResolutionSwitcher.dispose = function(){
+        player.controlBar.videoJsZoom.dispose = function(){
           this.parentNode.removeChild(this);
         };
 
@@ -337,20 +340,20 @@
 					}, settings, label);
 
 					menuButton.el().classList.add('vjs-zoom-button');
-					player.controlBar.videoJsResolutionSwitcher = player.controlBar.addChild(menuButton);
+					player.controlBar.videoJsZoom = player.controlBar.addChild(menuButton);
 				});
 			}
 			
 			player.ready(function(){
-        //console.log('appel player.ready', player.options_.plugins.videoJsResolutionSwitcher.niveaux);
-        if(player.options_.plugins.videoJsResolutionSwitcher.niveaux.length >= 1){
-					player.updateSrc(player.options_.plugins.videoJsResolutionSwitcher.niveaux);
+        //console.log('appel player.ready', player.options_.plugins.videoJsZoom.niveaux);
+        if(player.options_.plugins.videoJsZoom.niveaux.length >= 1){
+					player.updateSrc(player.options_.plugins.videoJsZoom.niveaux);
 				}
 			});
     };
 
       // register the plugin
-      videojs.plugin('videoJsResolutionSwitcher', videoJsResolutionSwitcher);
+      videojs.plugin('videoJsZoom', videoJsZoom);
     }
   )(window, videojs);
 })();

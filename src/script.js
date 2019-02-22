@@ -320,52 +320,14 @@ function switchVideo(n) {
 						width: 20,
 						height: 20
 					},
-					videoJsResolutionSwitcher: {
+					videoJsZoom: {
 						default: 'low',
 						dynamicLabel: true,	// false affiche l'icone du bouton sinon on a le label directement
 						niveaux: [
 								{lab: '2.5x', val: 2.5}, {lab: '2x', val: 2}, {lab: '1.5x', val: 1.5}, {lab: '1x', val: 1}
 						]
-					}/*,
-					declencheur: {
-						image: "https://etoile-mouzillon.footeo.com/",
-						fonction: "zoom(1);"
-					}/*,
-					zoomrotate: {
-						level: 1,
-						rotate: 0
-					},
-					zoom: {
-						level: 1,
-						rotate: 0
-					},
-					videoJsResolutionSwitcher: {
-						default: 'high',
-						dynamicLabel: true
-					}
-				*/		
-				}/*, function(){
-  
-				// Add dynamically sources via updateSrc method
-				myVideo.updateSrc([
-						{
-							src: './videos/EM_Bauge.mp4',
-							type: 'video/mp4',
-							res: 480,
-							label: '360'
-						},
-						{
-							src: './videos/EM_Herbiers.mp4',
-							type: 'video/mp4',
-							res: 480,
-							label: '720'
-						}
-					])
-		
-					myVideo.on('resolutionchange', function(){
-						console.info('Source changed to %s', myVideo.src())
-					})
-			}*/
+					}	
+				}
 			});
 		}
 		isDefineBVideoJS = true;
