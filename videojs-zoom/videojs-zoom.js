@@ -9,11 +9,12 @@
 (function() {
   'use strict';
   var videojs = null;
+  var first = true; // permet de gérer le zoom pour le premier tour
   if(typeof window.videojs === 'undefined' && typeof require === 'function') {
     videojs = require('video.js');
   } else {
     videojs = window.videojs;
-  }
+  };
 
   (function(window, videojs) {
    // console.log('init 1');
@@ -77,75 +78,75 @@
         this.showAsLabel();
         this.addClass('vjs-selected');
         setSourcesSanitized(this.player_, this.options_.val);
+      }
+    });
+
+    /*
+    * Resolution menu button
+    */
+    var MenuButton = videojs.getComponent('MenuButton');
+
+    console.log('init ZoomMenuButton');
+    var ZoomMenuButton = videojs.extend(MenuButton, {
+      constructor: function(player, options, settings, label){
+        console.log('init ZoomMenuButton / constructor');
+        this.zoom = options.zoom;  // tableau des valeurs possibles
+        this.label = label;  // code HTML pour le bouton '1X'
+        this.label.innerHTML = options.initialySelectedLabel;  //valeur '1X'
+        // Sets this.player_, this.options_ and initializes the component
+        MenuButton.call(this, player, options, settings);
+        this.controlText('Zoom');
+
+        if(settings.dynamicLabel){
+          // affiche le label du zoom dans la barre de contrôle
+          this.el().appendChild(label);
+        } else {
+          // affiche l'engrenage
+          var staticLabel = document.createElement('span');
+          videojs.addClass(staticLabel, 'vjs-zoom-button-staticlabel');
+          this.el().appendChild(staticLabel);
         }
-      });
+      },
+      createItems: function(player, options, settings, label){
+        console.log('init ZoomMenuButton / createItem');
 
-      /*
-      * Resolution menu button
-      */
-      var MenuButton = videojs.getComponent('MenuButton');
-
-      console.log('init ZoomMenuButton');
-      var ZoomMenuButton = videojs.extend(MenuButton, {
-        constructor: function(player, options, settings, label){
-          console.log('init ZoomMenuButton / constructor');
-         this.zoom = options.zoom;  // tableau des valeurs possibles
-         this.label = label;  // code HTML pour le bouton '1X'
-         this.label.innerHTML = options.initialySelectedLabel;  //valeur '1X'
-         // Sets this.player_, this.options_ and initializes the component
-         MenuButton.call(this, player, options, settings);
-         this.controlText('Zoom');
- 
-         if(settings.dynamicLabel){
-           // affiche le label du zoom dans la barre de contrôle
-           this.el().appendChild(label);
-         }else{
-           // affiche l'engrenage
-           var staticLabel = document.createElement('span');
-           videojs.addClass(staticLabel, 'vjs-zoom-button-staticlabel');
-           this.el().appendChild(staticLabel);
-         }
-        },
-        createItems: function(player, options, settings, label){
-          console.log('init ZoomMenuButton / createItem');
-
-          var menuItems = [];
-          var labels = this.zoom; // (this.zoom && this.label) || {};  // tableau des valeurs possibles
-          var onClickUnselectOthers = function(clickedItem) {
+        var menuItems = [];
+        var labels = this.zoom; // (this.zoom && this.label) || {};  // tableau des valeurs possibles
+        var onClickUnselectOthers = function(clickedItem) {
           var monZoom = clickedItem.options_.val.val;
 
-           menuItems.map(function(item) {
-             item.selected(item === clickedItem);
-             item.removeClass('vjs-selected');
-           });
-          };
- 
-          for (var key in labels) {
-            if (labels.hasOwnProperty(key)) {
-             menuItems.push(new ZoomMenuItem(
-               this.player_,
-               {
-                 label: labels[key].lab,
-                 val: labels[key],
-                 initialySelected: key === this.options_.initialySelectedLabel 
-               },
-               onClickUnselectOthers,   //code HTML du select
-               this.label));    // code HTML du bouton 1x
-              // Store menu item for API calls
-              menuItemsHolder[key] = menuItems[menuItems.length - 1];
-              console.log('menuItemsHolder['+key+']', menuItemsHolder[key]);
-             }
+          menuItems.map(function(item) {
+            item.selected(item === clickedItem);
+            item.removeClass('vjs-selected');
+          });
+        };
+
+        for (var key in labels) {
+          if (labels.hasOwnProperty(key)) {
+            menuItems.push(new ZoomMenuItem(
+              this.player_,
+              {
+                label: labels[key].lab,
+                val: labels[key],
+                initialySelected: key === this.options_.initialySelectedLabel 
+              },
+              onClickUnselectOthers,   //code HTML du select
+              this.label));    // code HTML du bouton 1x
+            // Store menu item for API calls
+            menuItemsHolder[key] = menuItems[menuItems.length - 1];
+            console.log('menuItemsHolder['+key+']', menuItemsHolder[key]);
           }
-          return menuItems;
         }
-      });
+        return menuItems;
+      }
+    });
 
     /**
      * Initialize the plugin.
      * @param {object} [options] configuration for the plugin
      */
     videoJsZoom = function(options) {
-     // console.log('appel videoJsZoom');
+      // console.log('appel videoJsZoom');
       //
       // ne passe pas lors de l'INIT mais seulement quand on appel le plugin dans la video
       //
@@ -155,31 +156,25 @@
           player = this,
           label = document.createElement('span');
 
-      // affectationd e la classe
+      // affectation de la classe
       videojs.addClass(label, 'vjs-zoom-button-label');
-      
+        
       /**
        * Updates player sources or returns current source URL
        * @param   {Array}  [src] array of sources [{src: '', type: '', label: '', res: ''}]
        * @returns {Object|String|Array} videojs player object if used as setter or current source URL, object, or array of sources
        */
       player.updateSrc = function(niveaux){
-       console.log('appel player.updateSrc');
-
+        console.log('appel player.updateSrc');
         if(!niveaux){ return player.niveau(); }
 
-        // on prend le zoom = 1 pour le début
-        // récupère l'id de l'objet DOM
-        var def = player.options_.plugins.videoJsZoom.default;
-        var choosen = {lab:'1x', val:1};
-        /*if (def) {
-          choosen = {lab:'1x', val:1};
-          player.options_.plugins.videoJsZoom.default = false;
+        // nécessaire pour mettre à jour la valeur à l'écran
+        if (first) {
+          var choosen = {lab: '1x', val: 1};
         } else {
-          choosen = chooseSrc(niveaux);
-        }*/
+          choosen = {lab: niveaux[0].lab, val: niveaux[0].val};
+        }
 
-       // var choosen = chooseSrc(niveaux);
         var menuButton = new ZoomMenuButton(player, { zoom: niveaux, initialySelectedLabel: choosen.lab , initialySelectedRes: choosen.val}, settings, label);
 
         videojs.addClass(menuButton.el(), 'vjs-zoom-button');
@@ -188,18 +183,21 @@
         player.controlBar.videoJsZoom.dispose = function(){
           this.parentNode.removeChild(this);
         };
+
         return setSourcesSanitized(player, choosen);
       };
 
       function setSourcesSanitized(player, zoom) {
+        console.log('setSourcesSanitized');
         // récupère l'id de l'objet DOM
         var playerDOM = player.el(); 
         var video = playerDOM.getElementsByTagName('video')[0];
-  
+        // var def = player.options_.plugins.videoJsZoom.default;
+
         /* Array of possible browser specific sources for transformation */
         var properties = ['transform', 'WebkitTransform', 'MozTransform',
                           'msTransform', 'OTransform'],
-                         prop = properties[0];
+                          prop = properties[0];
         var i,j;
         /* Find out which CSS transform the browser supports */
         for(i=0,j=properties.length;i<j;i++){
@@ -211,37 +209,7 @@
         playerDOM.style.overflow = 'hidden';
         video.style[prop]='scale('+zoom.val+')';  // effectue la transformation
         return true;
-      }
-
-      function setSourcesSanitized2(player, zoom) {
-        // récupère l'id de l'objet DOM
-        var playerDOM = player.el(); 
-        var video = playerDOM.getElementsByTagName('video')[0];
-        var def = player.options_.plugins.videoJsZoom.default;
-        console.log('def', player.options_.plugins.videoJsZoom.default);
-  
-        /* Array of possible browser specific sources for transformation */
-        var properties = ['transform', 'WebkitTransform', 'MozTransform',
-                          'msTransform', 'OTransform'],
-                         prop = properties[0];
-        var i,j;
-        /* Find out which CSS transform the browser supports */
-        for(i=0,j=properties.length;i<j;i++){
-          if(typeof playerDOM.style[properties[i]] !== 'undefined'){
-            prop = properties[i];
-            break;
-          }
-        }
-        playerDOM.style.overflow = 'hidden';
-        if (def) {
-          video.style[prop]='scale(1)';
-          player.options_.plugins.videoJsZoom.default = false;
-          console.log('def', player.options_.plugins.videoJsZoom.default);
-        } else {
-          video.style[prop]='scale('+zoom.val+')';  // effectue la transformation
-        }
-        return true;
-      }
+      };
 
       /**
        * Returns current resolution or sets one when label is specified
@@ -265,10 +233,7 @@
        */
       function bucketSources(niveaux){
         console.log('appel bucketSources()', niveaux);
-        var niv = {
-          lab: {},
-          val: {}
-        };
+        var niv = {lab: {}, val: {}};
         niveaux.map(function(niveaux) {
           initResolutionKey(niv, 'lab', niveaux);
           initResolutionKey(niv, 'val', niveaux);
@@ -277,40 +242,28 @@
           appendSourceToKey(niv, 'val', niveaux);
         });
         return niv;
-      }
+      };
 
       function initResolutionKey(niv, key, niveaux) {
        // console.log('appel initResolutionKey()');
         if(niv[key][niveaux[key]] == null) {
           niv[key][niveaux[key]] = [];
         }
-      }
+      };
 
       function appendSourceToKey(niv, key, niveaux) {
-        console.log('appel appendSourceToKey()');
+        //console.log('appel appendSourceToKey()');
         niv[key][niveaux[key]].push(niveaux);
-      }
-
-      /**
-       * Choose src if option.default is specified
-       * @param   {Array}  src Array of sources sorted by resolution used to find high and low res
-       * @returns {Object} {res: string, sources: []}
-       */
-      function chooseSrc(niveaux){
-        console.log('appel chooseSrc()', niveaux);
-        var selectedLab = niveaux[0].lab;
-        var selectedVal = niveaux[0].val;
-        return {lab: selectedLab, val: selectedVal};
-      }
+      };
 			
 			player.ready(function(){
         console.log('appel player.ready', player.options_.plugins.videoJsZoom.niveaux);
 				player.updateSrc(player.options_.plugins.videoJsZoom.niveaux);
 			});
-      };
+    };
 
-      // register the plugin
-      videojs.plugin('videoJsZoom', videoJsZoom);
-    }
-  )(window, videojs);
+    // register the plugin
+    videojs.plugin('videoJsZoom', videoJsZoom);
+  }
+)(window, videojs);
 })();
