@@ -20,8 +20,9 @@
    // console.log('init 1');
     var defaults = {},
       videoJsZoom,
-        currentZoom = {}, 
         menuItemsHolder = {}; // stores menuItems
+
+   //     var         currentZoom = {};
 
     var extend = function() {
       var args, target, i, object, property;
@@ -216,6 +217,7 @@
        * @param {Function} [customSourcePicker] custom function to choose source. Takes 3 arguments: player, sources, label. Must return player object.
        * @returns {Object}   current resolution object {label: '', sources: []} if used as getter or player object if used as setter
        */
+      /*
       player.currentZoom = function(label, customSourcePicker){
         console.log('appel player.currentZoom', customSourcePicker);
         if(label == null) { return currentZoom; }
@@ -224,6 +226,7 @@
         }
         return player;
       };
+*/
 
       /**
        * Group sources by label, resolution and type
