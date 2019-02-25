@@ -22,7 +22,7 @@
       videoJsZoom,
         menuItemsHolder = {}; // stores menuItems
 
-   //     var         currentZoom = {};
+   //var currentZoom = {};
 
     var extend = function() {
       var args, target, i, object, property;
@@ -43,6 +43,9 @@
       return target;
     };
 
+    /*****************************************************************************************
+    // ATTENTION : ne pas déplacer cette fonction plus bas car sinon elle n'est pas reconnue
+    ******************************************************************************************/
     function setSourcesSanitized(player, zoom) {
       //   if (defaults.debug) console.log('zoomrotate: Register init');
 
