@@ -18,14 +18,12 @@ var scenario = [
         [               
             {
                 step: 3,
-                step2: '00:00:03',
                 act: "allerA",
                 niveau: "CONFIRME",
                 indice: 16
             },
             {
                 step: 5,
-                step2: '00:00:05',
                 act: "question",
                 niveau: "DEBUTANT",
                 libelle: "Selon vous y-a-t-il hors-jeu des blanches ? ",
@@ -37,7 +35,6 @@ var scenario = [
             },
             {
                 step: 15,
-                step2: '00:00:15',
                 act: "bonus",
                 niveau: "DEBUTANT",
                 libelle: "Quel est le carton que sort l'arbitre lorsqu'il autorise le soigneur à entrer ? ",
@@ -49,14 +46,12 @@ var scenario = [
             },
             {
                 step: 17,
-                step2: '00:00:17',
                 act: "allerA",
                 niveau: "DEBUTANT",
                 indice: 42
             },
             {
                 step: 21,
-                step2: '00:00:21',
                 act: "question",
                 niveau: "CONFIRME",
                 libelle: "Le but n'est pas validé. Pour quelle raison ? ",
@@ -68,14 +63,12 @@ var scenario = [
             },
             {
                 step: 37,
-                step2: '00:00:37',
                 act: "information",
                 niveau: "CONFIRME",
                 libelle: "Le jeu reprend à la position signalée du hors-jeu"
             },
             {
                 step: 40,
-                step2: '00:00:40',
                 act: "bonus",
                 niveau: "CONFIRME",
                 libelle: "Quel est le bon geste pour que l'arbitre assistant indique un coup de pied de coin ?",
@@ -88,7 +81,6 @@ var scenario = [
             },
             {
                 step: 44,
-                step2: '00:00:44',
                 act: "question",
                 niveau: "DEBUTANT",
                 libelle: "La remise en jeu s'est-elle effectuée correctement ? ",
@@ -100,7 +92,6 @@ var scenario = [
             },
             {
                 step: 54,
-                step2: '00:00:54',
                 act: "question",
                 niveau: "CONFIRME",
                 libelle: "Selon vous l'arbitre va-t-il siffler un coup-franc ? ",
@@ -112,7 +103,6 @@ var scenario = [
             },
             {
                 step: 58,
-                step2: '00:00:58',
                 act: "information",
                 niveau: "DEBUTANT",
                 libelle: "La joueuse en rouge fait preuve de fair-play en allant aider à se relever la joueuse blanche",
@@ -121,7 +111,6 @@ var scenario = [
             },
             {
                 step: 60,
-                step2: '00:01:00',
                 act: "bonus",
                 niveau: "CONFIRME",
                 libelle: "Quel est le bon geste pour que l'arbitre indique un coup-franc indirect ?",
@@ -134,7 +123,6 @@ var scenario = [
             },
             {
                 step: 75,
-                step2: '00:01:15',
                 act: "question",
                 niveau: "DEBUTANT",
                 libelle: "L'arbitre a sifflé un coup-franc en faveur des : ",
@@ -146,7 +134,6 @@ var scenario = [
             },
             {
                 step: 81,
-                step2: '00:01:21',
                 act: "question",
                 niveau: "CONFIRME",
                 libelle: "A quoi correspond le geste de l'arbitre ? ",
@@ -158,7 +145,6 @@ var scenario = [
             },
             {
                 step: 100,
-                step2: '00:01:40',
                 act: "question",
                 niveau: "DEBUTANT",
                 libelle: "L'arbitre a sifflé une faute. Laquelle ?",
@@ -170,7 +156,6 @@ var scenario = [
             },
             {
                 step: 113,
-                step2: '00:01:53',
                 act: "question",
                 niveau: "DEBUTANT",
                 libelle: "La touche sera en faveur des joueuses de l'équipe : ",
@@ -182,7 +167,6 @@ var scenario = [
             },
             {
                 step: 135,
-                step2: '00:02:15',
                 act: "question",
                 niveau: "DEBUTANT",
                 libelle: "Comment l'arbitre confirme-t-il le but ?",
@@ -195,7 +179,6 @@ var scenario = [
             },
             {
                 step: 150,
-                step2: '00:02:30',
                 act: "question",
                 niveau: "CONFIRME",
                 libelle: "Quelles sont les informations que note l'arbitre ?",
@@ -206,7 +189,6 @@ var scenario = [
             },
             {
                 step: 161,
-                step2: '00:02:41',
                 act: "question",
                 niveau: "DEBUTANT",
                 libelle: "Quelles sont les conditions pour valider la remise en jeu dans le rond central ?",
@@ -218,7 +200,6 @@ var scenario = [
             },
             {
                 step: 173,
-                step2: '00:02:53',
                 act: "question",
                 niveau: "DEBUTANT",
                 libelle: "Comment l'arbitre indique-t-il l'inversion de la touche ?",
@@ -230,7 +211,6 @@ var scenario = [
             },
             {
                 step: 183,
-                step2: '00:03:03',
                 act: "question",
                 niveau: "CONFIRME",
                 libelle: "Que signifie le geste de l'arbitre ?",
@@ -241,7 +221,6 @@ var scenario = [
             },
             {
                 step: 190,
-                step2: '00:03:10',
                 act: "bonus",
                 niveau: "DEBUTANT",
                 libelle: "Quel est le bon geste pour que l'arbitre assistant indique la rentrée de touche ?",
@@ -254,7 +233,6 @@ var scenario = [
             },
             {
                 step: 197,
-                step2: '00:03:17',
                 act: "question",
                 niveau: "CONFIRME",
                 libelle: "Il y a un tirage de maillot. Que fait l'arbitre ?",
@@ -266,7 +244,6 @@ var scenario = [
             },
             {
                 step: 207,
-                step2: '00:03:27',
                 act: "question",
                 niveau: "CONFIRME",
                 libelle: "L'arbitre lève ses deux bras pour",
@@ -277,7 +254,6 @@ var scenario = [
             },
             {
                 step: 210,
-                step2: '00:03:30',
                 act: "information",
                 niveau: "DEBUTANT",
                 libelle: "Les co-équipières applaudissent la joueuse qui sort pour la remercier pour sa prestation",
@@ -286,14 +262,12 @@ var scenario = [
             },
             {
                 step: 228,
-                step2: '00:03:48',
                 act: "information",
                 niveau: "DEBUTANT",
                 libelle: "L'arbitre note alors le changement et peut vérifer les équipements éventuellement"
             },
             {
                 step: 263,
-                step2: '00:04:23',
                 act: "question",
                 niveau: "CONFIRME",
                 libelle: "Selon vous quelle faute va siffler l'arbitre ?",
@@ -305,7 +279,6 @@ var scenario = [
             },
             {
                 step: 291,
-                step2: '00:04:51',
                 act: "question",
                 niveau: "CONFIRME",
                 libelle: "A quelle distance doit se trouver le mur sur un coup-franc direct ?",
@@ -316,7 +289,6 @@ var scenario = [
             },
             {
                 step: 296,
-                step2: '00:05:16',
                 act: "question",
                 niveau: "DEBUTANT",
                 libelle: "Comment l'arbitre assistant va-t-il signaler le coup de pied de coin ?",
@@ -329,7 +301,6 @@ var scenario = [
             },
             {
                 step: 307,
-                step2: '00:05:27',
                 act: "question",
                 niveau: "DEBUTANT",
                 libelle: "Comment l'arbitre va-t-il signaler la relance aux 6 mètres ?",
@@ -342,7 +313,6 @@ var scenario = [
             },
             {
                 step: 313,
-                step2: '00:05:36',
                 act: "fin"
             }
         ]
@@ -366,14 +336,12 @@ var scenario = [
         [               
             {
                 step: 3,
-                step2: '00:00:03',
                 act: "allerA",
                 niveau: "CONFIRME",
                 indice: 2506
             },
             {
                 step: 307,
-                step2: '00:05:27',
                 act: "question",
                 niveau: "DEBUTANT",
                 libelle: "Comment l'arbitre va-t-il signaler la relance aux 6 mètres ?",
@@ -386,7 +354,6 @@ var scenario = [
             },
             {
                 step: 2508,
-                step2: '00:41:40',
                 act: "fin"
             }
         ]
