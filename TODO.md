@@ -8,8 +8,7 @@ https://www.w3.org/2010/05/video/mediaevents.html
 - insérer les logos Ligue et District
 - centrer verticalement le logo Mouzillon
 - intercepter le fullscreen
-- préparer un gestionnaire pour la gténération du scénario
-- afficher le zoom 1x au départ
+- préparer un gestionnaire pour la génération du scénario
 - cacher le menu si on choisi une valeur
 - revoir le margin dans le menu car quand on clique sur la ligne ce n'est pas beau le cadre blanc
 - nettoyer le code du plugin et renommer js
@@ -25,16 +24,15 @@ https://www.w3.org/2010/05/video/mediaevents.html
 - afficher des messages lorsqu'on est en zoom écran
 - formule quizz : questions et timer
 - gérer automatiquement la fin de la vidéo
-- page accueil : intégrer des photos d'arbitres
 - page de démarrage de la vidéo : afficher en pleine image le nom des équipes et leurs fanions
 - rendre reactif une plage de vidéo pour donner des points à l'utilisateur
 
 **************************************
               ZOOM
 **************************************
-le plugin a été akjouté avec succès mais aura fallu des adpatations du controleur
-Pour l'instant il reste à ajouter deux boutons sur la vidéo pour les changements directs
-J'ai essayé de récupérer Brand mais pas bon. Du coup je vais m'appuyer sur le code de Brand pour ajouter un bouton
+une liste déroulante autorise un zoom sur la vidéo en mode pause ou lecture
+par défaut le zoom est à 1
+La vidéo se centre lors du zoom
 
 
 **************************************

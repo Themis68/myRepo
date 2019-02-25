@@ -6,8 +6,15 @@ L'arrivée sur la page débute par la saisie du prénom de l'utilisateur :
 Il est possible de saisir 3 à 20 caractères qui seront affichés pendant la partie en majuscule.
 Cette saisie est obligatoire.
 
-Plusieurs zones sont alors proposées : 
+**************************************
+        PAGE ACCUEIL
+**************************************
+- Affiche le nom du joueur
+- une série de photos d'arbitres (promotion, pub)
 - liste des vidéos des matchs proposés
+
+Plusieurs zones sont alors proposées : 
+- liste des vidéos des matchs proposés reste affichée
 - zone d'information sur la vidéo qui comprend : les équipes, le sens du jeu, la vidéo ainsi qu'une jauge de progression dans les questions
 - zone d'intéraction avec le joueur qui comprend les zones : niveau, score, message, les boutons d'action ainsi qu'une zone CONSEILLER
 - zone d'information générale
@@ -43,6 +50,7 @@ La jauge de progression affiche :
 - le timing en cours
 - le timing correspondant à la position de la souris sur la jauge
 
+Le zoom propose une liste déroulante
 Attention : le zoom masque toutes les autres zones rendant impossible l'intéraction avec le joueur
 
 **  jauge des question  **
