@@ -65,7 +65,12 @@
         }
       }
       player.style.overflow = 'hidden';
-      video.style[prop]='scale('+zoom.val+')';  // effectue la transformation
+
+      decalage = {hor:10, vert:20};
+      if (zoom.val > 1) {
+        // matrix(scaleX(),skewY(),skewX(),scaleY(),translateX(),translateY())
+        video.style[prop]='matrix(' + zoom.val + ', 0, 0, ' + zoom.val + ', ' + decalage.hor + ', ' + decalage.vert + ')';  // effectue la transformation combinée
+      }
       return true;
     }
 
