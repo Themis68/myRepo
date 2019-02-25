@@ -42,6 +42,29 @@
       return target;
     };
 
+    function setSourcesSanitized(player, zoom) {
+      //   if (defaults.debug) console.log('zoomrotate: Register init');
+
+      /* Grab the necessary DOM elements */
+      player = player.el();
+      var video = player.getElementsByTagName('video')[0];
+      /* Array of possible browser specific sources for transformation */
+      var properties = ['transform', 'WebkitTransform', 'MozTransform',
+                        'msTransform', 'OTransform'],
+                       prop = properties[0];
+      var i,j;
+      /* Find out which CSS transform the browser supports */
+      for(i=0,j=properties.length;i<j;i++){
+        if(typeof player.style[properties[i]] !== 'undefined'){
+          prop = properties[i];
+          break;
+        }
+      }
+      player.style.overflow = 'hidden';
+      video.style[prop]='scale('+zoom.val+')';  // effectue la transformation
+      return true;
+    }
+
     /*
     * Resolution menu item
     */
@@ -185,30 +208,6 @@
         };
 
         return setSourcesSanitized(player, choosen);
-      };
-
-      function setSourcesSanitized(player, zoom) {
-        console.log('setSourcesSanitized');
-        // récupère l'id de l'objet DOM
-        var playerDOM = player.el(); 
-        var video = playerDOM.getElementsByTagName('video')[0];
-        // var def = player.options_.plugins.videoJsZoom.default;
-
-        /* Array of possible browser specific sources for transformation */
-        var properties = ['transform', 'WebkitTransform', 'MozTransform',
-                          'msTransform', 'OTransform'],
-                          prop = properties[0];
-        var i,j;
-        /* Find out which CSS transform the browser supports */
-        for(i=0,j=properties.length;i<j;i++){
-          if(typeof playerDOM.style[properties[i]] !== 'undefined'){
-            prop = properties[i];
-            break;
-          }
-        }
-        playerDOM.style.overflow = 'hidden';
-        video.style[prop]='scale('+zoom.val+')';  // effectue la transformation
-        return true;
       };
 
       /**
