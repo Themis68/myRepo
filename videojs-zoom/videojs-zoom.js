@@ -230,7 +230,7 @@
        * @param   {Array}  src Array of sources
        * @returns {Object} grouped sources: { label: { key: [] }, res: { key: [] }, type: { key: [] } }
        */
-      function bucketSources(niveaux){
+      /*function bucketSources(niveaux){
         console.log('appel bucketSources()', niveaux);
         var niv = {lab: {}, val: {}};
         niveaux.map(function(niveaux) {
@@ -253,7 +253,7 @@
       function appendSourceToKey(niv, key, niveaux) {
         //console.log('appel appendSourceToKey()');
         niv[key][niveaux[key]].push(niveaux);
-      };
+      };*/
 			
 			player.ready(function(){
         console.log('appel player.ready', player.options_.plugins.videoJsZoom.niveaux);
