@@ -150,10 +150,31 @@ function listeEvents(id, arrayEventDef) {
 	}
 }
 
+function convertInTimeCode(myStep) {
+	var heures='', minutes='', secondes='', timeCode= '', loc = myStep;
+	switch (myStep) {
+		case (myStep < 60):				// entre 1 et 59 secondes
+			secondes = myStep.toString();
+			break;
+
+		case (myStep >=60 && myStep<212400):	// entre 1 et 59 minutes
+			minutes = Math.trunc(myStep/60);
+			secondes = myStep % 60;
+			break;
+		
+		default:
+			heures= Math.trunc(myStep/212400);
+			minutes = Math.trunc((myStep % 212400)/60);
+			secondes = (myStep % 212400) / 60;
+	}
+	console.log(timeCode);
+}
+
 function capture(event) {
 	// attention : si l'on change les ligne sde place dans cette fonction, on peut être dans la situation de gérer deux appels  àun même évènement
 	if (event.type === 'timeupdate') {
 		// recherche s'il existe un traitement a effectuer
+		convertInTimeCode(seq);
 		var seq = Math.trunc(document._video.currentTime);	// on récupère la partie entière du pointeur temps
 		if (seq !== seqUsed) {			
 			seqUsed = seq;	// évite de jouer deux fois le traitement
