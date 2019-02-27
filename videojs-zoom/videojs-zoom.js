@@ -66,10 +66,12 @@
       }
       player.style.overflow = 'hidden';
 
-      decalage = {hor:10, vert:20};
+      var decalage = {hor:10, vert:20};
       if (zoom.val > 1) {
         // matrix(scaleX(),skewY(),skewX(),scaleY(),translateX(),translateY())
         video.style[prop]='matrix(' + zoom.val + ', 0, 0, ' + zoom.val + ', ' + decalage.hor + ', ' + decalage.vert + ')';  // effectue la transformation combinée
+      } else {
+        video.style[prop]='matrix(' + zoom.val + ', 0, 0, ' + zoom.val + ', 0, 0)';
       }
       return true;
     }
@@ -218,53 +220,6 @@
 
         return setSourcesSanitized(player, choosen);
       };
-
-      /**
-       * Returns current resolution or sets one when label is specified
-       * @param {String}   [label]         label name
-       * @param {Function} [customSourcePicker] custom function to choose source. Takes 3 arguments: player, sources, label. Must return player object.
-       * @returns {Object}   current resolution object {label: '', sources: []} if used as getter or player object if used as setter
-       */
-      /*
-      player.currentZoom = function(label, customSourcePicker){
-        console.log('appel player.currentZoom', customSourcePicker);
-        if(label == null) { return currentZoom; }
-        if(menuItemsHolder[label] != null){
-          menuItemsHolder[label].onClick(customSourcePicker);
-        }
-        return player;
-      };
-*/
-
-      /**
-       * Group sources by label, resolution and type
-       * @param   {Array}  src Array of sources
-       * @returns {Object} grouped sources: { label: { key: [] }, res: { key: [] }, type: { key: [] } }
-       */
-      /*function bucketSources(niveaux){
-        console.log('appel bucketSources()', niveaux);
-        var niv = {lab: {}, val: {}};
-        niveaux.map(function(niveaux) {
-          initResolutionKey(niv, 'lab', niveaux);
-          initResolutionKey(niv, 'val', niveaux);
-
-          appendSourceToKey(niv, 'lab', niveaux);
-          appendSourceToKey(niv, 'val', niveaux);
-        });
-        return niv;
-      };
-
-      function initResolutionKey(niv, key, niveaux) {
-       // console.log('appel initResolutionKey()');
-        if(niv[key][niveaux[key]] == null) {
-          niv[key][niveaux[key]] = [];
-        }
-      };
-
-      function appendSourceToKey(niv, key, niveaux) {
-        //console.log('appel appendSourceToKey()');
-        niv[key][niveaux[key]].push(niveaux);
-      };*/
 			
 			player.ready(function(){
         console.log('appel player.ready', player.options_.plugins.videoJsZoom.niveaux);

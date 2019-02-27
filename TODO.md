@@ -282,6 +282,7 @@ La vidéo possède ses propres contrôles :
 
 vjs-control-bar : La barre contient tous les éléments de contrôle par défaut mais ne les affiche que si on a clairement demandé dans l'appel ou les CSS
 - vjs-play
+- vjs-play-progress : timer en fonction de la position de la souris
 - vjs-volume
 - vjs-current-time
 - vjs-time
