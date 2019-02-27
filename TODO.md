@@ -7,13 +7,11 @@ https://www.w3.org/2010/05/video/mediaevents.html
 **************************************
 - insérer les logos Ligue et District
 - centrer verticalement le logo Mouzillon
-- intercepter le fullscreen
 - préparer un gestionnaire pour la génération du scénario
 - cacher le menu si on choisi une valeur
 - proposer une valeur pour le replay
 - le titre est masqué quand on n'a pas la frame du developpement ouverte (F12)
 - revoir le skin pour rendre transparent la barre de progression
-- saisir le temps "00:00" et non en nombre de secondes car cela oblige à convertir
 - Lire les actions depuis un fichier du même nom que la vidéo
 - Gérer une action qui attend une clic du joueur
 - Gérer une action qui affiche une faute que le joueur n'a pas vu

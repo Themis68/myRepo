@@ -152,11 +152,11 @@ function listeEvents(id, arrayEventDef) {
 }
 
 function convertInTimeCode(myStep) {
-	var step1 = myStep;		
-	var heures = Math.trunc(step1 / 3600);
-	step1 = step1 - (heures * 3600);
-	var minutes = Math.trunc(step1 / 60);
-	var secondes = Math.trunc(step1 - (minutes * 60));
+	var step = myStep;		
+	var heures = Math.trunc(step / 3600);
+	step = step - (heures * 3600);
+	var minutes = Math.trunc(step / 60);
+	var secondes = Math.trunc(step - (minutes * 60));
 	return timeCode = ('0' + heures).substr(-2) + ':' + ('0' + minutes).substr(-2) + ':' + ('0' + secondes).substr(-2);
 }
 
@@ -235,7 +235,7 @@ function arrayAssoSize(arr) {
 function arrayAssoSearch(arr, valObject) {
 	var nbEl = arrayAssoSize(arr);
 	for (let ind = 0; ind < nbEl; ind++) {
-		if (arr[ind].step2 === valObject) {
+		if (arr[ind].step === valObject) {
 			return ind;	// retourne l'indice du tableau
 		}
 	}

@@ -160,7 +160,7 @@ Le scénario accepte plusieurs opérations :
 - question : intéraction avec le joueur permettant de répondre à des questions avec des points à gagner. La vidéo s'arrête pour permettre de répondre.
     - sans image
     {
-        step: 5,
+        step: "00:00:10",
         act: "question",
         niveau: "DEBUTANT",
         libelle: "Selon vous y-a-t-il hors-jeu des blanches ? ",
@@ -173,7 +173,7 @@ Le scénario accepte plusieurs opérations :
 
     - avec image
     {
-        step: 40,
+        step: "00:00:10",
         act: "bonus",
         niveau: "CONFIRME",
         libelle: "Quel est le bon geste pour que l'arbitre assistant indique un coup de pied de coin ?",
@@ -187,7 +187,7 @@ Le scénario accepte plusieurs opérations :
 
 - bonus : même type que 'question' mais les points sont donnés en plus des points prévus par les questions
     {
-        step: 15,
+        step: "00:00:10",
         act: "bonus",
         niveau: "DEBUTANT",
         libelle: "Quel est le carton que sort l'arbitre lorsqu'il autorise le soigneur à entrer ? ",
@@ -200,7 +200,7 @@ Le scénario accepte plusieurs opérations :
 - information : affichage d'une information. Dans le cas d'un Fair-Play il y a la possibilité d'interagir avec le joueur via un bouton qui rapporte des points
     - avec image
     {
-        step: 58,
+        step: "00:00:10",
         act: "information",
         niveau: "DEBUTANT",
         libelle: "La joueuse en rouge fait preuve de fair-play en allant aider à se relever la joueuse blanche",
@@ -210,26 +210,26 @@ Le scénario accepte plusieurs opérations :
 
     - sans image
     {
-    step: 228,
+    step: "00:00:10",
     act: "information",
     niveau: "DEBUTANT",
     libelle: "L'arbitre note alors le changement et peut vérifer les équipements éventuellement"
     },
 - allerA : permet de faire des sauts dans la vidéo. Il est possible de programmer un saut vers l'arrière
     {
-        step: 3,
+        step: "00:00:10",
         act: "allerA",
         niveau: "CONFIRME",
         indice: 2506
     },
 - fin : permet de préciser que l'on arrive à la fin de la vidéo
     {
-        step: 2508,
+        step: "00:00:10",
         act: "fin"
     }
 - mitemps : inverse les équipes sur la page
     {
-        step: 10,
+        step: "00:00:10",
         act: "mitemps"
     },
 
