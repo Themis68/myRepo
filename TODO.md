@@ -321,3 +321,27 @@ videoJsResolutionSwitcher: {
 						default: 'high',
 						dynamicLabel: false	// false affiche l'icone du bouton et pas true
 }
+
+************************************
+           Objets sur la vidéo
+************************************
+https://www.npmjs.com/package/videojs-bug 
+
+Adds a logo bug to your videojs player with adjustable position, size, link, and opacity.
+
+Example de code :
+<script src="//path/to/video.min.js"></script>
+<script src="//path/to/videojs-bug.min.js"></script>
+<script>
+  var player = videojs('my-video');
+ 
+  player.bug({
+    height: 50,
+    imgSrc: 'http://cdn.teamcococdn.com/image/frame:1/teamcoco_twitter_128x128.png',
+    link: "http://www.teamcoco.com",
+    opacity: 0.5,
+    padding: '8px',
+    position: 'br',
+    width: 50
+  });
+</script> 

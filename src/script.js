@@ -341,7 +341,16 @@ function switchVideo(n) {
 						niveaux: [
 								{lab: '2.5x', val: 2.5}, {lab: '2x', val: 2}, {lab: '1.5x', val: 1.5}, {lab: '1x', val: 1}
 						]
-					}	
+					},
+					bug: {
+						height: 30,
+						width: 30,
+						imgSrc: "./images/fanions/EMouz.png",
+						link: "http://www.apple.fr",
+						opacity: 0.7,
+						padding: '10px',	// top et bottom + right et left
+						position: 'tl'
+					}
 				}
 			});
 		}
