@@ -161,6 +161,12 @@ function convertInTimeCode(myStep) {
 }
 
 function capture(event) {
+	if (myVideo.isFullscreen()){
+		// la vidéo est en fullscreen
+	} else {
+		// la vidéo est en mode normal
+	}
+
 	// attention : si l'on change les ligne sde place dans cette fonction, on peut être dans la situation de gérer deux appels  àun même évènement
 	if (event.type === 'timeupdate') {
 		var seq = Math.trunc(document._video.currentTime);	// on récupère la partie entière du pointeur temps
