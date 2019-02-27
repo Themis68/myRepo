@@ -30,6 +30,7 @@ var nivZoom = 1;
 var video = [];
 var actions = [];
 var isDefineBVideoJS = false;
+var timeCode = '';
 
 var avatar = '';
 
@@ -151,32 +152,19 @@ function listeEvents(id, arrayEventDef) {
 }
 
 function convertInTimeCode(myStep) {
-	var heures='', minutes='', secondes='', timeCode= '', loc = myStep;
-	switch (myStep) {
-		case (myStep < 60):				// entre 1 et 59 secondes
-			secondes = myStep.toString();
-			break;
-
-		case (myStep >=60 && myStep<212400):	// entre 1 et 59 minutes
-			minutes = Math.trunc(myStep/60);
-			secondes = myStep % 60;
-			break;
-		
-		default:
-			heures= Math.trunc(myStep/212400);
-			minutes = Math.trunc((myStep % 212400)/60);
-			secondes = (myStep % 212400) / 60;
-	}
-	console.log(timeCode);
+	var step1 = myStep;		
+	var heures = Math.trunc(step1 / 3600);
+	step1 = step1 - (heures * 3600);
+	var minutes = Math.trunc(step1 / 60);
+	var secondes = Math.trunc(step1 - (minutes * 60));
+	return timeCode = ('0' + heures).substr(-2) + ':' + ('0' + minutes).substr(-2) + ':' + ('0' + secondes).substr(-2);
 }
 
 function capture(event) {
 	// attention : si l'on change les ligne sde place dans cette fonction, on peut être dans la situation de gérer deux appels  àun même évènement
 	if (event.type === 'timeupdate') {
-		// recherche s'il existe un traitement a effectuer
-		convertInTimeCode(seq);
 		var seq = Math.trunc(document._video.currentTime);	// on récupère la partie entière du pointeur temps
-		if (seq !== seqUsed) {			
+		if (seq !== seqUsed) {	
 			seqUsed = seq;	// évite de jouer deux fois le traitement
 			if (seq < oldStep) {
 				// on recule
@@ -185,8 +173,8 @@ function capture(event) {
     			encadreVideo(false);
     			showZone("zConseiller", false);
 			} else {
-				var asWork = arrayAssoSearch(actions, seq);	// renvoi l'indice de l'action si elle existe pour cette séquence
-
+				timeCode = convertInTimeCode(seq);
+				var asWork = arrayAssoSearch(actions, timeCode);	// renvoi l'indice de l'action si elle existe pour cette séquence
 				// on teste si on doit jouer ou pas
 				if (asWork > -1) {
 					switch(actions[asWork].act) {
@@ -241,7 +229,7 @@ function arrayAssoSize(arr) {
 function arrayAssoSearch(arr, valObject) {
 	var nbEl = arrayAssoSize(arr);
 	for (let ind = 0; ind < nbEl; ind++) {
-		if (arr[ind].step === valObject) {
+		if (arr[ind].step2 === valObject) {
 			return ind;	// retourne l'indice du tableau
 		}
 	}
