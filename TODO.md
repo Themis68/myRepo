@@ -5,7 +5,8 @@ https://www.w3.org/2010/05/video/mediaevents.html
 **************************************
                A FAIRE
 **************************************
-- insérer les logos Ligue et District
+- insérer les fanions Ligue et District
+- afficher la ves versions techniques des modules
 - centrer verticalement le logo Mouzillon
 - préparer un gestionnaire pour la génération du scénario
 - cacher le menu si on choisi une valeur

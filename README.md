@@ -148,15 +148,31 @@ var scenario = [
                 opérations à effectuer (structure nommée spécifique)
             }
 
-        ]
+        ]- 
     ],
     [
         vidéo n°2
     ]
 ]
 
+** Match ***
+- Chaque match possède des caractéristiques
+id: 2,
+titre: "EM/Baugé",
+poster: "./videos/EMouz_Bauge.png",
+fichier: "EM_Bauge.mp4",
+description: "Match opposant Baugé à l'Etoile Mouzillon en championnat u18F Région",
+gauche: {
+    nom: "Baugé (Orange)",
+    fanion: "Bauge.png"
+},
+droite: {
+    nom: "Etoile Mouzillon (Blanc)",
+    fanion: "EMouz.png"
+}
+
 ** Opérations **
-Le scénario accepte plusieurs opérations :
+- Le scénario accepte plusieurs opérations :
 - question : intéraction avec le joueur permettant de répondre à des questions avec des points à gagner. La vidéo s'arrête pour permettre de répondre.
     - sans image
     {

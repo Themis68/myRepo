@@ -100,8 +100,8 @@ function listeVideos(id) {
 		td2.setAttribute("width", larg);
 		td2.setAttribute("height", haut);
 		td2.setAttribute("title", scenario[i][0].description);
-		let content = '<img src="'+ myURL + '/images/fanions/'+ scenario[i][0].gauche.fanion +'" width="30%" height="30%"/>';
-		content += '&nbsp;&nbsp;<img src="'+ myURL + '/images/fanions/'+ scenario[i][0].droite.fanion +'" width="30%" height="30%"/>';
+		let content = '<img src="'+ myURL + '/images/fanions/'+ (scenario[i][0].gauche.fanion || 'fff.png') +'" width="30%" height="30%"/>';
+		content += '&nbsp;&nbsp;<img src="'+ myURL + '/images/fanions/'+ (scenario[i][0].droite.fanion || 'fff.png') +'" width="30%" height="30%"/>';
 		td2.innerHTML = content;
 		td2.style.backgroundSize = larg + " " + haut;
 		td2.style.backgroundRepeat = "no-repeat";
@@ -431,16 +431,16 @@ function gestionCamps(mitemps) {
 
 	switch (mitemps) {
 		case 1:
-			codeG = '<img src="'+ myURL + '/images/fanions/'+ video[0].gauche.fanion +'" width="20%" height="20%"/>';
+			codeG = '<img src="'+ myURL + '/images/fanions/'+ (video[0].gauche.fanion || 'fff.png') +'" width="20%" height="20%"/>';
 			codeG+= '<span class="fanion">' + video[0].gauche.nom + '</span>';
 			codeD = '<span class="fanion">' + video[0].droite.nom + '</span>';
-			codeD+= '<img src="'+ myURL + '/images/fanions/'+ video[0].droite.fanion +'" width="20%" height="20%" />';
+			codeD+= '<img src="'+ myURL + '/images/fanions/'+ (video[0].droite.fanion || 'fff.png') +'" width="20%" height="20%" />';
 			break;
 		case 2:
-			codeG = '<img src="'+ myURL + '/images/fanions/'+ video[0].droite.fanion +'" width="20%" height="20%"/>';
+			codeG = '<img src="'+ myURL + '/images/fanions/'+ (video[0].droite.fanion || 'fff.png') +'" width="20%" height="20%"/>';
 			codeG+= '<span class="fanion">' + video[0].droite.nom + '</span>';
 			codeD = '<span class="fanion">' + video[0].gauche.nom + '</span>';
-			codeD+= '<img src="'+ myURL + '/images/fanions/'+ video[0].gauche.fanion +'" width="20%" height="20%" />';
+			codeD+= '<img src="'+ myURL + '/images/fanions/'+ (video[0].gauche.fanion || 'fff.png') +'" width="20%" height="20%" />';
 			break;
 	}
 
