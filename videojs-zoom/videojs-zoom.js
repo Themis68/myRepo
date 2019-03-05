@@ -81,7 +81,7 @@
     */
     var MenuItem = videojs.getComponent('MenuItem');
 
-    console.log('init ZoomMenuItem');
+    //console.log('init ZoomMenuItem');
     var ZoomMenuItem = videojs.extend(MenuItem, {
       constructor: function(player, options, onClickListener, label){
         this.onClickListener = onClickListener;
@@ -107,7 +107,7 @@
       },
       // fonction qui gère le clic sur un item du menu
       onClick: function(customSourcePicker){
-        console.log('click', this.options_.val);
+        //console.log('click', this.options_.val);
         this.onClickListener(this);
         this.showAsLabel();
         this.addClass('vjs-selected');
@@ -120,10 +120,10 @@
     */
     var MenuButton = videojs.getComponent('MenuButton');
 
-    console.log('init ZoomMenuButton');
+    //console.log('init ZoomMenuButton');
     var ZoomMenuButton = videojs.extend(MenuButton, {
       constructor: function(player, options, settings, label){
-        console.log('init ZoomMenuButton / constructor');
+        //console.log('init ZoomMenuButton / constructor');
         this.zoom = options.zoom;  // tableau des valeurs possibles
         this.label = label;  // code HTML pour le bouton '1X'
         this.label.innerHTML = options.initialySelectedLabel;  //valeur '1X'
@@ -142,7 +142,7 @@
         }
       },
       createItems: function(player, options, settings, label){
-        console.log('init ZoomMenuButton / createItem');
+        //console.log('init ZoomMenuButton / createItem');
 
         var menuItems = [];
         var labels = this.zoom; // (this.zoom && this.label) || {};  // tableau des valeurs possibles
@@ -168,7 +168,7 @@
               this.label));    // code HTML du bouton 1x
             // Store menu item for API calls
             menuItemsHolder[key] = menuItems[menuItems.length - 1];
-            console.log('menuItemsHolder['+key+']', menuItemsHolder[key]);
+            //console.log('menuItemsHolder['+key+']', menuItemsHolder[key]);
           }
         }
         return menuItems;
@@ -199,7 +199,7 @@
        * @returns {Object|String|Array} videojs player object if used as setter or current source URL, object, or array of sources
        */
       player.updateSrc = function(niveaux){
-        console.log('appel player.updateSrc');
+        //console.log('appel player.updateSrc');
         if(!niveaux){ return player.niveau(); }
 
         // nécessaire pour mettre à jour la valeur à l'écran
@@ -222,7 +222,7 @@
       };
 			
 			player.ready(function(){
-        console.log('appel player.ready', player.options_.plugins.videoJsZoom.niveaux);
+        //console.log('appel player.ready', player.options_.plugins.videoJsZoom.niveaux);
 				player.updateSrc(player.options_.plugins.videoJsZoom.niveaux);
 			});
     };
