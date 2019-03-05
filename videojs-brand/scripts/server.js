@@ -86,7 +86,7 @@ Promise.all([bundle('js'), bundle('tests')]).then(() => {
      * @param  {String} file
      */
     '^src/.+\.scss$'(event, file) {
-      console.log('re-compiling sass');
+      //console.log('re-compiling sass');
       let result = sass.renderSync({file: srces.css, outputStyle: 'compressed'});
 
       fs.writeFileSync(dests.css, result.css);
@@ -100,7 +100,7 @@ Promise.all([bundle('js'), bundle('tests')]).then(() => {
      * @param  {String} file
      */
     '^src/.+\.js$'(event, file) {
-      console.log('re-bundling javascript and tests');
+      //console.log('re-bundling javascript and tests');
       Promise.all([bundle('js'), bundle('tests')]).then(() => server.reload());
     },
 
@@ -111,7 +111,7 @@ Promise.all([bundle('js'), bundle('tests')]).then(() => {
      * @param  {String} file
      */
     '^test/.+\.test\.js$'(event, file) {
-      console.log('re-bundling tests');
+      //console.log('re-bundling tests');
       bundle('tests').then(() => server.reload());
     }
   };
@@ -146,7 +146,7 @@ Promise.all([bundle('js'), bundle('tests')]).then(() => {
     .on('watch', (event, file) => {
       const handler = findHandler(file);
 
-      console.log(`detected a "${event}" event in "${file}"`);
+      //console.log(`detected a "${event}" event in "${file}"`);
 
       if (handler) {
         handler(event, file);
