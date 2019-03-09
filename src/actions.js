@@ -274,9 +274,16 @@ function addScore(value) {
     } else {
         videoNbPoint = videoNbPoint + value;
     }
+    var score = ('0' + videoNbPoint.toString()).substr(-2);       // on a le score avec deux digits
+    var scoreMax = ('0' + nbQuests[0].points.toString()).substr(-2);
+
     let myColor = ((videoNbPoint / nbQuests[0].points) > 0.5 ? 'green' : 'white');
     let myScore = '<span style="color:'+ myColor +';">' + videoNbPoint.toString() + '</span>';
-    document.getElementById("scoreBoard").innerHTML = myScore + ' : ' + (nbQuests[0].points).toString();
+    document.getElementById("scoreBoard").innerHTML = myScore + ' : ' + scoreMax; //+ (nbQuests[0].points).toString();    // score dans la zone à droite
+    if(document.getElementById('scoreBug')) {
+        //le contrôle est nécessaire car l'objet est créé plus tard dans le process
+        document.getElementById("scoreBug").innerHTML = score + ' : ' + scoreMax;     // score sur la vidéo
+    }
 }
 
 function showConseiller(rubrique, resultat, points) {

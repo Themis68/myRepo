@@ -5,6 +5,7 @@ https://www.w3.org/2010/05/video/mediaevents.html
 **************************************
                A FAIRE
 **************************************
+- afficher le score avec le nombre max de points dès le départ
 - insérer les fanions Ligue et District
 - afficher la ves versions techniques des modules
 - centrer verticalement le logo Mouzillon
@@ -324,7 +325,7 @@ videoJsResolutionSwitcher: {
 }
 
 ************************************
-           Objets sur la vidéo
+           Objets BUG
 ************************************
 https://www.npmjs.com/package/videojs-bug 
 
@@ -345,4 +346,9 @@ Example de code :
     position: 'br',
     width: 50
   });
-</script> 
+</script>
+
+si on a un item dans script alors il est le seul dans la variable options().
+si on en a plusieurs via un tableau il ajoute un objet nommé Bugcomponent
+
+
