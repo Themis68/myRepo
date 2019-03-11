@@ -22,7 +22,7 @@ var mesActions = {
         }
 
         // gestion de l'image
-        showPict(monJob.pict, 'myPict');
+        showPict((monJob.pict || null), 'myPict');
 
         var maQuestion = document.getElementById("zPropositions");
         for (let i=1; i <= monJob.attributs.length; i++) { 
@@ -189,8 +189,11 @@ function mesReponses(ind) {
     }
 
     // on complète le message
-    document.getElementById("message").innerHTML +=  "<br><br>Réponse : " +  actions[ind].attributs[repOk - 1];
-    document.getElementById("message").innerHTML +=  "<br>Explication : " + actions[ind].libRep;
+    document.getElementById("message").innerHTML +=  "<br><br>Réponse : " + actions[ind].attributs[repOk - 1];
+    if (actions[ind].libRep) {
+        // optionnel
+        document.getElementById("message").innerHTML +=  "<br>Explication : " + actions[ind].libRep;
+    }
     document.getElementById("message").innerHTML +=  "<br>";
     
     if (questionsFaites.indexOf(actions[ind].step) < 0) {

@@ -157,14 +157,23 @@ var scenario = [
 
 ** Match ***
 - Chaque match possède des caractéristiques
+    - id : permet d'idntifier la vidéo : il doit êre unique et de préférence doit suivre le précédent
+    - rencontre : nom de la rencontre
+    - poster : image a affi her dans la vignette du match
+    - fichier : chemin d'accès au fichier vidéo
+    - description : dexription de la rencontre qui sera affiché dans le cartouche d'informations
+    - gauche : infos sur l'équipe jouant côté gauche
+        - nom : nom de l'équipe
+        - le fanion : optionnel (si absent on prend le fanion de la FFF)
+    - droite : idem que pour "gauche"
+
 id: 2,
-titre: "EM/Baugé",
+rencontre: "EM/Baugé",
 poster: "./videos/EMouz_Bauge.png",
 fichier: "EM_Bauge.mp4",
 description: "Match opposant Baugé à l'Etoile Mouzillon en championnat u18F Région",
 gauche: {
-    nom: "Baugé (Orange)",
-    fanion: "Bauge.png"
+    nom: "Baugé (Orange)"
 },
 droite: {
     nom: "Etoile Mouzillon (Blanc)",
@@ -174,20 +183,7 @@ droite: {
 ** Opérations **
 - Le scénario accepte plusieurs opérations :
 - question : intéraction avec le joueur permettant de répondre à des questions avec des points à gagner. La vidéo s'arrête pour permettre de répondre.
-    - sans image
-    {
-        step: "00:00:10",
-        act: "question",
-        niveau: "DEBUTANT",
-        libelle: "Selon vous y-a-t-il hors-jeu des blanches ? ",
-        attributs: ["Oui", "Non"],
-        reponse: 1,
-        libRep:"La joueuse de l'équipe Blanche qui reçoit le ballon est en position de hors-jeu",
-        loi: "Loi_11",
-        points: 2
-    },
 
-    - avec image
     {
         step: "00:00:10",
         act: "bonus",
@@ -196,10 +192,12 @@ droite: {
         pict:"gestes_assistant.png",
         attributs: ["A", "B", "C"],
         reponse: 2,
-        libRep:"",
+        libRep:"explication pour la réponse",
         loi: "Loi_17",
         points: 3
     },
+
+    - Lignes optionnelles : pict, libRep, loi
 
 - bonus : même type que 'question' mais les points sont donnés en plus des points prévus par les questions
     {

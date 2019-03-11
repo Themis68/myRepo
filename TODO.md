@@ -5,13 +5,12 @@ https://www.w3.org/2010/05/video/mediaevents.html
 **************************************
                A FAIRE
 **************************************
-- insérer les fanions Ligue et District
 - afficher la ves versions techniques des modules
 - centrer verticalement le logo Mouzillon
 - préparer un gestionnaire pour la génération du scénario
 - cacher le menu si on choisi une valeur
 - proposer une valeur pour le replay
-- le titre est masqué quand on n'a pas la frame du developpement ouverte (F12)
+- le titre "arret sur image" est masqué quand on n'a pas la frame du developpement ouverte (F12)
 - revoir le skin pour rendre transparent la barre de progression
 - Lire les actions depuis un fichier du même nom que la vidéo
 - Gérer une action qui attend une clic du joueur
