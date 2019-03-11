@@ -5,167 +5,272 @@
  * @license MIT
  * Modified by Paulo Pires Seixas
  */
-(function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.videojsBug = f()}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-// Check for videojs before doing anything else:
-function VideojsUndefinedException(message) {
-  this.message = message;
-}
-
-var videojs = window.videojs;
-
-if (!videojs) {
-  throw new VideojsUndefinedException('video-bug: "videojs" is undefined!');
-}
-var VjsClickableComponent = videojs.getComponent('ClickableComponent');
-
-/**
- * Bug UI Component class
- */
-
-var BugComponent = function (_VjsClickableComponen) {
-  _inherits(BugComponent, _VjsClickableComponen);
-
-  function BugComponent(player, options) {
-    _classCallCheck(this, BugComponent);
-
-    return _possibleConstructorReturn(this, (BugComponent.__proto__ || Object.getPrototypeOf(BugComponent)).call(this, player, options));
+(function(f){
+  // INIT PAGE 1
+  if(typeof exports==="object" && typeof module!=="undefined"){
+    module.exports=f()
+  } else if(typeof define==="function"&&define.amd){
+    define([],f)
+  } else {
+    var g;
+    if(typeof window!=="undefined"){
+      g=window
+    } else if (typeof global!=="undefined"){
+      g=global
+    } else if (typeof self!=="undefined"){
+      g=self
+    } else {
+      g=this
+    }
+    g.videojsBug = f()
+    console.log('INIT1', g);
   }
+})
+    
+(function(){
+  // INIT PAGE 2
+  var define,module,exports;
+  return (function e(t,n,r){
+    function s(o,u){
+      if(!n[o]){
+        if(!t[o]){
+          var a=typeof require=="function" && require;
+          if(!u&&a)return a(o,!0);
+          if(i)return i(o,!0);
+          var f=new Error("Cannot find module '"+o+"'");
+          throw f.code="MODULE_NOT_FOUND",f
+        }
+        var l=n[o]={exports:{}};
+        t[o][0].call(l.exports,function(e){
+          var n=t[o][1][e];
+          return s(n?n:e)},l,l.exports,e,t,n,r)
+      }
+      return n[o].exports
+    }
+    var i=typeof require=="function"&&require;
+    for(var o=0;o<r.length;o++)s(r[o]);
+    console.log('INIT2', s);
+    return s
+  })
 
-  // The `createEl` function of a component creates its DOM element.
+  ({1:[function(require,module,exports){
+  
+    'use strict';
 
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
 
-  _createClass(BugComponent, [{
-    key: 'createEl',
-    value: function createEl() {
-      var options = this.options();
-      // We'll add our bug content to this element:
-      var bugElement = videojs.createEl('span', {
-        className: 'vjs-bug vjs-bug-' + options.position
-      });
-      // Create the image:
-      var imgElement = videojs.createEl('img', {}, {
-        src: options.imgSrc,
-        width: options.width,
-        height: options.height
-      });
+    var _createClass = function () {
+      // INIT PAGE 3
+      function defineProperties(target, props) { 
+        for (var i = 0; i < props.length; i++) { 
+          var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; 
+          if ("value" in descriptor) descriptor.writable = true; 
+          Object.defineProperty(target, descriptor.key, descriptor); 
+        } 
+      } 
+      return function (Constructor, protoProps, staticProps) { 
+        if (protoProps) defineProperties(Constructor.prototype, protoProps); 
+        if (staticProps) defineProperties(Constructor, staticProps); 
+        console.log('INIT3', Constructor);
+        return Constructor; 
+      }; 
+    }();
 
-      // Possibly make it a link
-      if (options.link) {
-        var linkElement = videojs.createEl('a', {}, {
-          href: options.link,
-          target: '_blank'
-        });
+    function _classCallCheck(instance, Constructor) { 
+      console.log('CLIC4', instance, Constructor);
+      // CLIC 4
+      if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } 
+    }
 
-        linkElement.appendChild(imgElement);
-        bugElement.appendChild(linkElement);
-      } else {
-        bugElement.className += ' no-link';
-        bugElement.appendChild(imgElement);
+    function _possibleConstructorReturn(self, call) { 
+      // JAMAIS
+      if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } 
+      return call && (typeof call === "object" || typeof call === "function") ? call : self; 
+    }
+
+    function _inherits(subClass, superClass) { 
+      // INIT PAGE 5
+      if (typeof superClass !== "function" && superClass !== null) { 
+        throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); 
+      } 
+      subClass.prototype = Object.create(superClass && superClass.prototype, { 
+        constructor: { value: subClass, enumerable: false, writable: true, configurable: true } 
+      }); 
+      if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; 
+    }
+
+    // Check for videojs before doing anything else:
+    function VideojsUndefinedException(message) {
+      // JAMAIS
+      this.message = message;
+    }
+
+    var videojs = window.videojs;
+
+    if (!videojs) {
+      // JAMAIS
+      throw new VideojsUndefinedException('video-bug: "videojs" is undefined!');
+    }
+    var VjsClickableComponent = videojs.getComponent('ClickableComponent');
+
+    /**
+    * Bug UI Component class
+    */
+
+    var BugComponent = function (_VjsClickableComponen) {
+      // INIT PAGE 4
+
+      _inherits(BugComponent, _VjsClickableComponen);
+
+      function BugComponent(player, options) {
+        _classCallCheck(this, BugComponent);
+        return _possibleConstructorReturn(this, (BugComponent.__proto__ || Object.getPrototypeOf(BugComponent)).call(this, player, options));
       }
 
-      // Styling
-      bugElement.style.opacity = options.opacity;
-      bugElement.style.padding = options.padding;
-      bugElement.style.padding = options.padding;
-      return bugElement;
-    }
-  }]);
+      // The `createEl` function of a component creates its DOM element.
+      _createClass(BugComponent, [{
+        key: 'createEl',
+        value: function createEl() {
+          
+          var options = this.options();
 
-  return BugComponent;
-}(VjsClickableComponent);
+          var bugElement = videojs.createEl('span', {         // element container
+            className: 'vjs-bug vjs-bug-' + options.position
+          });
 
-// Default options for the plugin.
+          // We'll add our bug content to this element:
 
+          // Create the element
+          switch (options.type) {
+            case "pict":
+            console.log("pict");
+              var element = videojs.createEl('img', {
+                src: options.imgSrc,
+                width: options.width,
+                height: options.height,
+                className: (options.visibility ? "vjs-bug-show" : "vjs-bug-hide")
+              });
+              break;
 
-var defaults = {
-  height: false,
-  imgSrc: '',
-  link: null,
-  opacity: 0.7,
-  padding: '0px',
-  position: 'br',
-  width: false
-};
-// Cross-compatibility for Video.js 5 and 6.
-var registerPlugin = videojs.registerPlugin || videojs.plugin;
+            case "text":
+            console.log("pict");
+              var element = videojs.createEl('span', {
+                width: options.width,
+                height: options.height,
+                className: options.classeCSS + " " + (options.visibility ? "vjs-bug-show" : "vjs-bug-hide")
+              });
+              element.innerHTML = options.libelle;
+              element.id = options.id;
+              break;
 
-var validateOptions = function validateOptions(options) {
-  switch (options.position) {
-    case 'tl':
-    case 'tr':
-    case 'bl':
-    case 'br':
-      break;
-    default:
-      options.position = 'br';
-  }
+            default:
+            console.log("inconnu");
+          }
+        
+          // Possibly make it a link
+          if (options.link) {
+            var linkElement = videojs.createEl('a', {}, {
+              href: options.link,
+              target: '_blank'
+            });
 
-  if (options.opacity > 1) {
-    options.opacity = 1;
-  }
-  if (options.opacity < 0) {
-    options.opacity = 0;
-  }
-};
+            linkElement.appendChild(element);
+            bugElement.appendChild(linkElement);
+          } else {
+            bugElement.className += ' no-link';
+            bugElement.appendChild(element);
+          }
 
-/**
- * Function to invoke when the player is ready.
- *
- * This is a great place for your plugin to initialize itself. When this
- * function is called, the player will have its DOM and child components
- * in place.
- *
- * @function onPlayerReady
- * @param    {Player} player
- * @param    {Object} [options={}]
- */
-var onPlayerReady = function onPlayerReady(player, options) {
-  validateOptions(options);
-  videojs.registerComponent('BugComponent', BugComponent);
-  // Insert bug as first item after <video>:
-  player.addChild('BugComponent', options, 1);
-};
+          // Styling
+          bugElement.style.opacity = options.opacity;
+          bugElement.style.padding = options.padding;
 
-/**
- * A video.js plugin.
- *
- * In the plugin function, the value of `this` is a video.js `Player`
- * instance. You cannot rely on the player being in a "ready" state here,
- * depending on how the plugin is invoked. This may or may not be important
- * to you; if not, remove the wait for "ready"!
- *
- * @function bug
- * @param    {Object} [options={}]
- *           An object of options left to the plugin author to define.
- */
-var bug = function bug(options) {
-  var _this2 = this;
+          return bugElement;
+        }
+      }]);
+      return BugComponent;
+    }(VjsClickableComponent);
 
-  this.ready(function () {
-    onPlayerReady(_this2, videojs.mergeOptions(defaults, options));
-  });
-};
+    // Cross-compatibility for Video.js 5 and 6.
+    var registerPlugin = videojs.registerPlugin || videojs.plugin;
 
-// Register the plugin with video.js.
-registerPlugin('bug', bug);
+    var validateOptions = function validateOptions(options) {
+      // CLIC 3
+      console.log('CLIC3', options);
+      // traitement éventuel de la position
+     // for (var i=0; i < options.length; i++) {
+        switch (options.position) {
+          case 'tl':
+          case 'tr':
+          case 'bl':
+          case 'br':
+            break;
+          default:
+            options.position = 'br';
+        }
 
-// Include the version number.
-bug.VERSION = '1.0.1';  // version avec modification de Paulo
+        if (options.opacity > 1) {
+          options.opacity = 1;    // corerction en cas de dépassement de la valeur
+        }
+        if (options.opacity < 0) {
+          options.opacity = 0;  // corerction en cas de dépassement de la valeur
+        }
+      //}
+    };
 
-exports.default = bug;
-},{}]},{},[1])(1)
+    /**
+     * Function to invoke when the player is ready.
+     *
+     * This is a great place for your plugin to initialize itself. When this
+     * function is called, the player will have its DOM and child components
+     * in place.
+     *
+     * @function onPlayerReady
+     * @param    {Player} player
+     * @param    {Object} [options={}]
+     */
+    var onPlayerReady = function onPlayerReady(player, options) {
+      // CLIC 2
+      console.log('CLIC2', BugComponent);
+       for (var i=0 ; i < options.length; i++) {
+        validateOptions(options[i]);
+        console.log("options4", options[i]);
+        videojs.registerComponent('BugComponent', BugComponent);  // MAJ faite pour gérer le tableau
+        player.addChild('BugComponent', options[i], 1);  // Insert bug as first item after <video>:
+       }
+    };
+
+    /**
+     * A video.js plugin.
+     *
+     * In the plugin function, the value of `this` is a video.js `Player`
+     * instance. You cannot rely on the player being in a "ready" state here,
+     * depending on how the plugin is invoked. This may or may not be important
+     * to you; if not, remove the wait for "ready"!
+     *
+     * @function bug
+     * @param    {Object} [options={}]
+     *           An object of options left to the plugin author to define.
+     */
+    var bug = function bug(options) {
+      // CLIC 1
+      console.log('CLIC1', options);
+      var _this2 = this;  // structure de "video"
+
+      // options = les objets passés par Bug (tableau)
+      this.ready(function () {
+        onPlayerReady(_this2, options); //videojs.mergeOptions(defaults, options)); // appel fonction onPlayerReady()
+      });
+    };
+
+    // Register the plugin with video.js.
+    registerPlugin('bug', bug);
+
+    // Include the version number.
+    bug.VERSION = '1.0.1';  // version avec modification de Paulo
+
+    exports.default = bug;
+  },{}]},{},[1])(1)
 });

@@ -143,3 +143,42 @@ MIT. Copyright (c) johndanek &lt;john.danek@teamcoco.com&gt;
 
 
 [videojs]: http://videojs.com/
+
+
+/*******************************************************************
+ADATATION AU BESOIN : PAULO PIRES SEIXAS
+*******************************************************************+
+
+La structure a été modifiée et est désormais intégrée dans un tableau :
+
+bug : [{
+						..element 1
+					}, 
+					{
+						..element 2
+					}, 
+					{
+						..element n
+					}]
+
+on peut embarquer deux types d'éléments : les images et les textes
+Ils ongt des attributs communs et spécifiques
+
+- attributs communs
+  id:"scoreBug",          // identifiant DOM
+  visibility: true,       // affiche au pas au départ
+  height: 30,             // largeur de la zone
+  width: 30,              // hauteur de la zone
+  padding: '10px 10px',	  // positionnement en pixels
+
+- attributs pour les images :
+  type: "pict",           // type
+  imgSrc: "./images/fanions/Bauge.png",   // chemin d'accès à l'image
+  link: "http://www.fnac.fr",   // lien si on veut ativer le clic sur l'image
+  opacity: 0.7,           // opacité : 1 = opaque, 0 transparent
+
+- les textes
+  type: "text",           // type
+  libelle: "0:0",         // libellé à embarquer
+  opacity: 1,             // opaciét obligatoire à 1
+}

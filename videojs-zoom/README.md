@@ -53,7 +53,7 @@ bower install videojs-resolution-switcher
       ])
 
       player.on('resolutionchange', function(){
-        console.info('Source changed to %s', player.src())
+        //console.info('Source changed to %s', player.src())
       })
       
   })
@@ -96,7 +96,7 @@ YouTube tech form https://github.com/eXon/videojs-youtube
 	}, function(){
 		var player = this;
 		player.on('resolutionchange', function(){
-			console.info('Source changed')
+			//console.info('Source changed')
 		})
 	});
 

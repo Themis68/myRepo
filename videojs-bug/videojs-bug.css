@@ -4,4 +4,21 @@
  * @copyright 2017 johndanek <john.danek@teamcoco.com>
  * @license MIT
  */
+
+ .vjs-bug-text{
+    color:white;
+    background-color: blue;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 18pt;
+ }
+
+ .vjs-bug-show {
+   display: block;
+ }
+ 
+ .vjs-bug-hide {
+   display: none;
+ }
+
+
 .video-js .vjs-bug{display:inline-block;position:absolute}.video-js .vjs-bug.no-link{pointer-events:none}.video-js .vjs-bug.vjs-bug-tl{top:0;left:0}.video-js .vjs-bug.vjs-bug-tr{top:0;right:0}.video-js .vjs-bug.vjs-bug-bl{bottom:0;left:0}.video-js .vjs-bug.vjs-bug-br{bottom:0;right:0}

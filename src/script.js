@@ -342,15 +342,42 @@ function switchVideo(n) {
 								{lab: '2.5x', val: 2.5}, {lab: '2x', val: 2}, {lab: '1.5x', val: 1.5}, {lab: '1x', val: 1}
 						]
 					},
-					bug: {
+					bug: [{
+						type: "pict",
+						id:"pictEquipeB",
+						visibility: true,
+						height: 30,
+						width: 30,
+						imgSrc: "./images/fanions/Bauge.png",
+						link: "http://www.fnac.fr",
+						opacity: 0.7,
+						padding: '10px 10px',	// top et bottom + right et left
+						position: 'tl'
+					}, 
+					{
+						type: "pict",
+						id:"pictEquipeA",
+						visibility: true,
 						height: 30,
 						width: 30,
 						imgSrc: "./images/fanions/EMouz.png",
 						link: "http://www.apple.fr",
 						opacity: 0.7,
-						padding: '10px',	// top et bottom + right et left
+						padding: '10px 130px',	// top et bottom + right et left
 						position: 'tl'
-					}
+					}, 
+					{
+						type: "text",
+						id:"scoreBug",
+						visibility: true,
+						height: 30,
+						width: 80,
+						libelle: "00:00",
+						classeCSS: "vjs-bug-text",
+						opacity: 0.7,
+						padding: '10px 60px',	// top et bottom + right et left
+						position: 'tl'
+					}]
 				}
 			});
 		}
