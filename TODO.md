@@ -5,13 +5,8 @@ https://www.w3.org/2010/05/video/mediaevents.html
 **************************************
                A FAIRE
 **************************************
-<<<<<<< HEAD
-=======
-- afficher le score avec le nombre max de points dès le départ
-- insérer les fanions Ligue et District
->>>>>>> 30bc85de5b0871e94cdca702354d6fd9c746122e
 - afficher la ves versions techniques des modules
-- centrer verticalement le logo Mouzillon
+- centrer verticalement le logo Mouzillon dans la barre de contrôle
 - préparer un gestionnaire pour la génération du scénario
 - cacher le menu si on choisi une valeur
 - proposer une valeur pour le replay
@@ -354,4 +349,44 @@ Example de code :
 si on a un item dans script alors il est le seul dans la variable options().
 si on en a plusieurs via un tableau il ajoute un objet nommé Bugcomponent
 
+********************************
+INFORMATIONS TECHNIQUES
+********************************
+Ne pas envoyer de données statistiques à google :
+<script>window.HELP_IMPROVE_VIDEOJS = false;</script>
 
+Liaison avec le site de video.js :
+<link href="http://vjs.zencdn.net/7.0/video-js.min.css" rel="stylesheet">
+<script src="http://vjs.zencdn.net/7.0/video.min.js"></script>
+
+ou en local :
+
+
+*************************************
+              PLUGIN BUG
+*************************************
+{
+						type: "pict",
+						id:"vjs-bug-pictEquipeA",
+						visibility: true,
+						height: 30,
+						width: 30,
+						imgSrc: "./images/fanions/EMouz.png",
+						alt: "Etoile Mouzillonnaise",
+						link: "http://www.apple.fr",
+						opacity: 0.7,
+						padding: '10px 10px',	// top et bottom + right et left
+						position: 'tl'
+					}, 
+					{
+						type: "text",
+						id:"vjs-bug-scoreBug",
+						visibility: true,
+						height: 30,
+						width: 80,
+						libelle: "00:" + nbQuests[0].points,
+						classeCSS: "vjs-bug-text",
+						opacity: 1,
+						padding: '10px 50px',	// top et bottom + right et left
+						position: 'tl'
+					}

@@ -272,6 +272,7 @@ function fairplay(ind) {
 }
 
 function addScore(value) {
+    console.log("coucou");
     if (value === 0) {
         videoNbPoint = 0;
     } else {
@@ -280,12 +281,14 @@ function addScore(value) {
     var score = ('0' + videoNbPoint.toString()).substr(-2);       // on a le score avec deux digits
     var scoreMax = ('0' + nbQuests[0].points.toString()).substr(-2);
 
+    console.log('score', score, scoreMax);
+
     let myColor = ((videoNbPoint / nbQuests[0].points) > 0.5 ? 'green' : 'white');
-    let myScore = '<span style="color:'+ myColor +';">' + videoNbPoint.toString() + '</span>';
-    document.getElementById("scoreBoard").innerHTML = myScore + ' : ' + scoreMax; //+ (nbQuests[0].points).toString();    // score dans la zone à droite
-    if(document.getElementById('scoreBug')) {
+    let myScore = '<span style="color:'+ myColor +';">' + score + '</span>';
+    document.getElementById("scoreBoard").innerHTML = myScore + ':' + scoreMax;    // score dans la zone à droite
+    if(document.getElementById('vjs-bug-scoreBug')) {
         //le contrôle est nécessaire car l'objet est créé plus tard dans le process
-        document.getElementById("scoreBug").innerHTML = score + ' : ' + scoreMax;     // score sur la vidéo
+        document.getElementById("vjs-bug-scoreBug").innerHTML = score + ':' + scoreMax;     // score sur la vidéo
     }
 }
 

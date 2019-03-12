@@ -145,17 +145,17 @@
           // Create the element
           switch (options.type) {
             case "pict":
-            console.log("pict");
               var element = videojs.createEl('img', {
                 src: options.imgSrc,
                 width: options.width,
                 height: options.height,
+                title: options.alt,
                 className: (options.visibility ? "vjs-bug-show" : "vjs-bug-hide")
               });
+              element.id = options.id;
               break;
 
             case "text":
-            console.log("pict");
               var element = videojs.createEl('span', {
                 width: options.width,
                 height: options.height,

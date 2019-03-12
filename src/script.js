@@ -29,7 +29,7 @@ media_events["currentTime"] = 0;
 var nivZoom = 1;
 var video = [];
 var actions = [];
-var isDefineBVideoJS = false;
+var isDefineBVideoJS = false;		// permet de gérer la délcaration de videoJS au premier tour
 var timeCode = '';
 
 var avatar = '';
@@ -263,16 +263,17 @@ function init_barre() {
 function scanQuestion() {
 	let niv = 0;
 	// init
-	nbQuests[1].nb = 0;
-	nbQuests[2].nb = 0;
-	nbQuests[1].points = 0;
-	nbQuests[2].points = 0;
+	nbQuests[1].nb = 0;		// niveau débutant
+	nbQuests[2].nb = 0;		// niveau confirmé
+	nbQuests[1].points = 0;	// niveau débutant
+	nbQuests[2].points = 0;	// niveau confirmé
 	// scanne des actions et imputation des points ou pas
 	for (let ind = 0; ind < arrayAssoSize(actions); ind++) {
 		if(actions[ind].act === "question") {
+			// calcul du compteur
 				niv = (actions[ind].niveau === "DEBUTANT" ? 1: actions[ind].niveau === "CONFIRME" ? 2 : 0);
-				nbQuests[niv].nb++;
-				nbQuests[niv].points+= actions[ind].points;
+				nbQuests[niv].nb++;	// nombre de questions
+				nbQuests[niv].points+= actions[ind].points;	// nombre de points MAX
 		}
 	}
 }
@@ -301,6 +302,50 @@ function switchVideo(n) {
 		// MAJ videos
 		idVideo = n;		// maj de l'indice de la vidéo en cours
 		video = scenario[n-1];    // recup données de la vidéo
+		
+		//
+		// travail sur les actions et l'IHM associée
+		//
+		actions = video[1];    // recup tableau des actions (position 3)
+		scanQuestion();		// scanne des actions du niveau et met à jour le tableau des niveaux
+		// le niveau est pris en charge par la fonction appelante changeLevel et la fonction INIT pour le premier tour
+		nbQuests[0].nb = nbQuests[niveauQuest].nb;
+		nbQuests[0].points = nbQuests[niveauQuest].points;
+		// tableaux du jeu
+		questionsFaites.splice(0, questionsFaites.length);	// efface le contenu
+
+		// Score
+		document.getElementById("textBoard").innerHTML = "SCORE DE " + avatar.toUpperCase();
+		addScore(0);
+
+		// barre de progression (après score sinon on n'a pas l'init des valeurs)
+		stepBarre = Math.trunc(100 / nbQuests[0].nb);		// valeur pour une tranche de progression
+		stepDone = 0;
+		init_barre();
+		// titre cartouche message
+		document.getElementById("quest").innerHTML = "INFORMATION";
+		document.getElementById("message").innerHTML = video[0].description + "<br><br> Vous pouvez lancer la vidéo";
+
+		listeEvents("events", media_events);	// créé le tableau des évènements vidéos
+		setInterval(update_properties, 200);	// lance le process de MAJ des évènements	
+
+		// NIVEAUX
+		let myB = null;
+		switch (niveauQuest) {
+			case 1:
+			myB = document.getElementById("btnLevel1");
+			myB.setAttribute("style", "background-color:limegreen");
+			myB = document.getElementById("btnLevel2");
+			myB.setAttribute("style", "background-color:buttonface");
+			break;
+	
+			case 2:
+			myB = document.getElementById("btnLevel2");
+			myB.setAttribute("style", "background-color:limegreen");
+			myB = document.getElementById("btnLevel1");
+			myB.setAttribute("style", "background-color:buttonface");
+			break;
+		}
 
 		if (isDefineBVideoJS) {
 			myVideo.src({src: "./videos/" + video[0].fichier , type: "video/mp4"});
@@ -344,38 +389,40 @@ function switchVideo(n) {
 					},
 					bug: [{
 						type: "pict",
-						id:"pictEquipeB",
+						id:"vjs-bug-pictEquipeA",
 						visibility: true,
 						height: 30,
 						width: 30,
-						imgSrc: "./images/fanions/Bauge.png",
-						link: "http://www.fnac.fr",
+						imgSrc: "./images/fanions/EMouz.png",
+						alt: "Etoile Mouzillonnaise",
+						link: "http://www.apple.fr",
 						opacity: 0.7,
 						padding: '10px 10px',	// top et bottom + right et left
 						position: 'tl'
 					}, 
 					{
-						type: "pict",
-						id:"pictEquipeA",
-						visibility: true,
-						height: 30,
-						width: 30,
-						imgSrc: "./images/fanions/EMouz.png",
-						link: "http://www.apple.fr",
-						opacity: 0.7,
-						padding: '10px 130px',	// top et bottom + right et left
-						position: 'tl'
-					}, 
-					{
 						type: "text",
-						id:"scoreBug",
+						id:"vjs-bug-scoreBug",
 						visibility: true,
 						height: 30,
 						width: 80,
-						libelle: "00:00",
+						libelle: "00:" + nbQuests[0].points,
 						classeCSS: "vjs-bug-text",
+						opacity: 1,
+						padding: '10px 50px',	// top et bottom + right et left
+						position: 'tl'
+					},
+					{
+						type: "pict",
+						id:"vjs-bug-pictEquipeB",
+						visibility: true,
+						height: 25,
+						width: 25,
+						imgSrc: "./images/fanions/Bauge.png",
+						alt: "Baugé",
+						link: "http://www.fnac.fr",
 						opacity: 0.7,
-						padding: '10px 60px',	// top et bottom + right et left
+						padding: '10px 130px',	// top et bottom + right et left
 						position: 'tl'
 					}]
 				}
@@ -384,51 +431,8 @@ function switchVideo(n) {
 		isDefineBVideoJS = true;
 
 		myVideo.load();
-		//
-		// travail sur les actions et l'IHM associée
-		//
-		actions = video[1];    // recup tableau des actions (position 3)
-		scanQuestion();		// scanne des actions du niveau et met à jour le tableau des niveaux
-		// le niveau est pris en charge par la fonction appelante changeLevel et la fonction INIT pour le premier tour
-		nbQuests[0].nb = nbQuests[niveauQuest].nb;
-		nbQuests[0].points = nbQuests[niveauQuest].points;
-		// tableaux du jeu
-		questionsFaites.splice(0, questionsFaites.length);	// efface le contenu
-		// Score
-		//videoNbPoint = 0;						// nb points en cours
-		document.getElementById("textBoard").innerHTML = "SCORE DE " + avatar.toUpperCase();
-		addScore(0);
-		//document.getElementById("scoreBoard").innerHTML = videoNbPoint.toString() + ' / ' + (nbQuests[0].points).toString();
-		// barre de progression (après score sinon on n'a pas l'init des valeurs)
-		stepBarre = Math.trunc(100 / nbQuests[0].nb);		// valeur pour une tranche de progression
-		stepDone = 0;
-		init_barre();
-		// titre cartouche message
-		document.getElementById("quest").innerHTML = "INFORMATION";
-		document.getElementById("message").innerHTML = video[0].description + "<br><br> Vous pouvez lancer la vidéo";
 
-		listeEvents("events", media_events);	// créé le tableau des évènements vidéos
-		setInterval(update_properties, 200);	// lance le process de MAJ des évènements	
-
-		// NIVEAUX
-		let myB = null;
-		switch (niveauQuest) {
-			case 1:
-			myB = document.getElementById("btnLevel1");
-			myB.setAttribute("style", "background-color:limegreen");
-			myB = document.getElementById("btnLevel2");
-			myB.setAttribute("style", "background-color:buttonface");
-			break;
-	
-			case 2:
-			myB = document.getElementById("btnLevel2");
-			myB.setAttribute("style", "background-color:limegreen");
-			myB = document.getElementById("btnLevel1");
-			myB.setAttribute("style", "background-color:buttonface");
-			break;
-		}
-
-		// EQUIPES
+		// EQUIPES : doit être après le chargement des plugins videos
 		gestionCamps(1);	// affichage des informations sur l'équipe pour la première mi-temps
 		
 		showItem("fondVideo", false);
@@ -449,6 +453,7 @@ function switchVideo(n) {
 		msg.style.color = "white";
 		msg.style.textAlign = "center";
 		msg.innerHTML = "Arrêt sur image !";
+
 	}
 }
 
@@ -471,9 +476,18 @@ function gestionCamps(mitemps) {
 			break;
 	}
 
-	document.getElementById("gauche").innerHTML = codeG;
+	document.getElementById("gauche").innerHTML = codeG;	// fanions bande haute
 	document.getElementById("droite").innerHTML = codeD;
+
+	// fanions incrustés
+	// en première mi-temps c'est l'init du plugin qui affiche les infos
+	if (mitemps===2) {
+        document.getElementById("vjs-bug-pictEquipeA").src = myURL + '/images/fanions/'+ (video[0].droite.fanion || 'fff.png');
+        document.getElementById("vjs-bug-pictEquipeB").src = myURL + '/images/fanions/'+ (video[0].gauche.fanion || 'fff.png');
+    }
+
 }
+
 function encadreVideo(state) {
 	let myState = (state === true ? "videoEncadre" : "videoNonEncadre");
 	const el = document.getElementById("myVideo");
