@@ -32,6 +32,7 @@ var actions = [];
 var isDefineBVideoJS = false;		// permet de gérer la délcaration de videoJS au premier tour
 var timeCode = '';
 
+
 var avatar = '';
 
 var oldStep = null;	// conserve la valeur de step pour gérer le replay
@@ -63,11 +64,28 @@ function chargeImgConseiller() {
 var seqUsed = -1;	// valeur de l'étape de la séquence qui a été traitée
 
 document.addEventListener("DOMContentLoaded", init, false);	// lance l'écoute des évènements
+document.addEventListener("fullscreenchange", function( event ) {
+	showIncrust(document.fullscreen);	// gère l'état de l'écran et donc l'incrustation
+});
 
 function init() {
 	showZone("zConseiller", false);
 	document._video = document.getElementById("myVideo");
 	listeVideos("videos");					// créé la barre des vidéos disponibles
+}
+
+function showIncrust(value) {
+	//if (myVideo.isFullscreen() && showIncrustFullScreen){
+		// la vidéo est en fullscreen
+	let el = "";
+	for (var i=0; i < myVideo.options_.plugins.bug.length; i++) {
+		el = document.getElementById(myVideo.options_.plugins.bug[i].id);
+		if (value) {
+			el.classList.replace("vjs-bug-hide", "vjs-bug-show");
+		} else {
+			el.classList.replace("vjs-bug-show", "vjs-bug-hide");
+		}
+	}
 }
 
 function showZone(id, state, isEnd) {
@@ -111,7 +129,6 @@ function listeVideos(id) {
 		td2.setAttribute("onclick", 'switchVideo('+ scenario[i][0].id +');');	
 		tr2.appendChild(td2);
 	}
-	//tbody2.appendChild(tr2);
 }
 
 function listeEvents(id, arrayEventDef) {
@@ -161,11 +178,11 @@ function convertInTimeCode(myStep) {
 }
 
 function capture(event) {
-	if (myVideo.isFullscreen()){
-		// la vidéo est en fullscreen
-	} else {
-		// la vidéo est en mode normal
-	}
+	// attention cette fonction n'est appelée que si la vidéo est en marche !!
+	// la pause arrête le passage de l'event
+
+	// on a deux fonctions : document.fullscreenElement et myVideo.isFullscreen()
+	// Cette dernière est dépréciée sauf pour videoJs
 
 	// attention : si l'on change les ligne sde place dans cette fonction, on peut être dans la situation de gérer deux appels  àun même évènement
 	if (event.type === 'timeupdate') {
@@ -390,7 +407,7 @@ function switchVideo(n) {
 					bug: [{
 						type: "pict",
 						id:"vjs-bug-pictEquipeA",
-						visibility: true,
+						visibility: false,
 						height: 30,
 						width: 30,
 						imgSrc: "./images/fanions/EMouz.png",
@@ -403,7 +420,7 @@ function switchVideo(n) {
 					{
 						type: "text",
 						id:"vjs-bug-scoreBug",
-						visibility: true,
+						visibility: false,
 						height: 30,
 						width: 80,
 						libelle: "00:" + nbQuests[0].points,
@@ -415,7 +432,7 @@ function switchVideo(n) {
 					{
 						type: "pict",
 						id:"vjs-bug-pictEquipeB",
-						visibility: true,
+						visibility: false,
 						height: 25,
 						width: 25,
 						imgSrc: "./images/fanions/Bauge.png",
