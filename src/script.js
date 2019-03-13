@@ -90,12 +90,20 @@ function showIncrust(value) {
 		let padBug = myVideo.options_.plugins.bug[i].padding;
 		if (value) {
 			// PLEIN ECRAN
-			if (myVideo.options_.plugins.bug[i].position.indexOf('c', 1) > 0) {
+			let first = myVideo.options_.plugins.bug[i].position.substr(0,1);
+			let second = myVideo.options_.plugins.bug[i].position.substr(1,1);
+			if (first === 'c') {
 				// center horizontal
 				console.log('avant', padBug);
 				el2.style.padding = padBug + " " + (middleX + 100) + "px " + padBug + " " + (middleX - 100) + "px";	
 				console.log('après', padBug);
-		}
+			}
+			if (second === 'c') {
+				// center vertical
+				console.log('avant', padBug);
+				el2.style.padding = (middleY + 100) + "px " + padBug + " " + (middleY + 100) + "px " + padBug;	
+				console.log('après', padBug);
+			}
 			el.classList.replace("vjs-bug-hide", "vjs-bug-show");
 		} else {
 			// ECRAN NORMAL

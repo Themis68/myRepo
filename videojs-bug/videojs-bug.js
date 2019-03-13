@@ -207,6 +207,10 @@
           case 'bl':
           case 'br':
           case 'tc':  // horizontal center et top
+          case 'cc':  // centrage total
+          case 'bc':  // horizontal center et bottom
+          case 'cl':  // vertical center et left
+          case 'cr':  // vertical center et right
           break;
           default:
             options.position = 'br';
