@@ -50,8 +50,14 @@ La jauge de progression affiche :
 - le timing en cours
 - le timing correspondant à la position de la souris sur la jauge
 
-Le zoom propose une liste déroulante
-Attention : le zoom masque toutes les autres zones rendant impossible l'intéraction avec le joueur
+Le zoom propose une liste déroulante pour définir le niveau de zoom
+ATTENTION : il n'y a pas de scroll possible sur l'image actuellement
+
+La fonction de FULLSCREEN permet de passer en mode plein écran
+Cette fonction affiche en surimpression des informations :
+- fanions des clubs
+- score du joueur
+Attention : Aucune intéraction avec le joueur n'est dés lors possible
 
 **  jauge des question  **
 Cette jauge affichera le nombre de questions prévues par le match et son niveau

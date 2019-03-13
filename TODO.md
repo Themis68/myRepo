@@ -6,6 +6,8 @@ https://www.w3.org/2010/05/video/mediaevents.html
                A FAIRE
 **************************************
 - afficher la ves versions techniques des modules
+- positionner les fanions et le score sur la vidéo
+- scroll sur une video qui est zoomée
 - centrer verticalement le logo Mouzillon dans la barre de contrôle
 - préparer un gestionnaire pour la génération du scénario
 - cacher le menu si on choisi une valeur
@@ -20,8 +22,90 @@ https://www.w3.org/2010/05/video/mediaevents.html
 - afficher des messages lorsqu'on est en zoom écran
 - formule quizz : questions et timer
 - gérer automatiquement la fin de la vidéo
-- page de démarrage de la vidéo : afficher en pleine image le nom des équipes et leurs fanions
 - rendre reactif une plage de vidéo pour donner des points à l'utilisateur
+
+**************************************
+calcul hauteur
+**************************************
+var el = document.getElementById('tonID');
+ 
+// inclu les padding, border & scrollbar.
+console.log(el.offsetHeight);
+ 
+// inclu les padding.
+console.log(el.clientHeight);
+
+var style = el.getAttribute('style'); // On récupère l'attribut « style »
+el.setAttribute('style', '--hauteur:'+el.clientHeight+'px;'); // On édite l'attribut « style »
+
+**************************************
+Element <progress>
+**************************************
+https://www.alsacreations.com/article/lire/1416-html5-meter-progress.html
+
+- HTML
+<p>Avancement de la tâche à effectuer :
+       <progress id="avancement" value="50" max="100"></progress>
+       <span id="pourcentage"></span>
+       <input type="button" onclick="modif(-10);" value="-">
+       <input type="button" onclick="modif(10);" value="+">
+</p>
+
+- JAVASCRIPT
+function avancement() {
+  var ava = document.getElementById("avancement");
+  var prc = document.getElementById("pourcentage");
+  prc.innerHTML = ava.value + "%";
+}
+
+avancement(); //Initialisation
+
+function modif(val) {
+  var ava = document.getElementById("avancement");
+  if((ava.value+val)<=ava.max && (ava.value+val)>0) {
+     ava.value += val;
+  }
+  avancement();
+}
+
+- CSS
+progress {}
+	/* ici les styles généraux */
+
+progress::-webkit-progress-bar { 
+	/* ici les styles généraux pour Webkit */
+}
+progress::-webkit-progress-value {  
+	/* styles de barre d'avancement pour Webkit */
+}  
+progress::-moz-progress-bar { 
+	/* styles de barre d'avancement pour Firefox */
+}
+
+**************************************
+              HAUTEUR DIV
+**************************************
+Tu peux recupere la hauteur d'un div par :
+
+var hauteur=document.getElementById("maDiv").offsetHeight;
+
+Et tu peux la placer par :
+
+document.getElementById("maDiv").style.height=hauteur+"px";
+
+**********************************************************
+              CALCUL CSS avec compatibilité navigateur
+**********************************************************
+https://www.zonecss.fr/proprietes-css/calc-css-fonction.html
+
+.elem{
+    height: -moz-calc(100% - 50px);
+    height: -webkit-calc(100% - 50px);
+    height: -o-calc(100% - 50px);
+    height: -ms-calc(100% - 50px);
+    height: calc(100% - 50px);
+}
+
 
 **************************************
               ZOOM

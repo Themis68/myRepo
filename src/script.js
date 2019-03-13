@@ -75,14 +75,30 @@ function init() {
 }
 
 function showIncrust(value) {
+	// calcul pour centrage 
+	// elVideo.offsetHeight = hauteur
+	// elVideo.clientHeight = hauteur + border
+	let el2 = document.getElementById('vjs-bug-scoreBug');
+	let elVideo = document.getElementById('myVideo');
+	let middleY = Math.trunc(elVideo.offsetHeight/2,0);
+	let middleX = Math.trunc(elVideo.offsetWidth/2,0);
 	//if (myVideo.isFullscreen() && showIncrustFullScreen){
 		// la vidéo est en fullscreen
 	let el = "";
 	for (var i=0; i < myVideo.options_.plugins.bug.length; i++) {
 		el = document.getElementById(myVideo.options_.plugins.bug[i].id);
+		let padBug = myVideo.options_.plugins.bug[i].padding;
 		if (value) {
+			// PLEIN ECRAN
+			if (myVideo.options_.plugins.bug[i].position.indexOf('c', 1) > 0) {
+				// center horizontal
+				console.log('avant', padBug);
+				el2.style.padding = padBug + " " + (middleX + 100) + "px " + padBug + " " + (middleX - 100) + "px";	
+				console.log('après', padBug);
+		}
 			el.classList.replace("vjs-bug-hide", "vjs-bug-show");
 		} else {
+			// ECRAN NORMAL
 			el.classList.replace("vjs-bug-show", "vjs-bug-hide");
 		}
 	}
@@ -180,9 +196,6 @@ function convertInTimeCode(myStep) {
 function capture(event) {
 	// attention cette fonction n'est appelée que si la vidéo est en marche !!
 	// la pause arrête le passage de l'event
-
-	// on a deux fonctions : document.fullscreenElement et myVideo.isFullscreen()
-	// Cette dernière est dépréciée sauf pour videoJs
 
 	// attention : si l'on change les ligne sde place dans cette fonction, on peut être dans la situation de gérer deux appels  àun même évènement
 	if (event.type === 'timeupdate') {
@@ -410,8 +423,8 @@ function switchVideo(n) {
 						visibility: false,
 						height: 30,
 						width: 30,
-						imgSrc: "./images/fanions/EMouz.png",
-						alt: "Etoile Mouzillonnaise",
+						imgSrc: "./images/fanions/" + video[0].gauche.fanion,
+						alt: video[0].droite.nom,
 						link: "http://www.apple.fr",
 						opacity: 0.7,
 						padding: '10px 10px',	// top et bottom + right et left
@@ -426,8 +439,8 @@ function switchVideo(n) {
 						libelle: "00:" + nbQuests[0].points,
 						classeCSS: "vjs-bug-text",
 						opacity: 1,
-						padding: '10px 50px',	// top et bottom + right et left
-						position: 'tl'
+						padding: '10px',	// top et se combine avec le centrage horizontal
+						position: 'tc'
 					},
 					{
 						type: "pict",
@@ -435,12 +448,12 @@ function switchVideo(n) {
 						visibility: false,
 						height: 25,
 						width: 25,
-						imgSrc: "./images/fanions/Bauge.png",
-						alt: "Baugé",
+						imgSrc: "./images/fanions/" + video[0].droite.fanion,
+						alt: video[0].droite.nom,
 						link: "http://www.fnac.fr",
 						opacity: 0.7,
 						padding: '10px 130px',	// top et bottom + right et left
-						position: 'tl'
+						position: 'tr'
 					}]
 				}
 			});

@@ -206,7 +206,8 @@
           case 'tr':
           case 'bl':
           case 'br':
-            break;
+          case 'tc':  // horizontal center et top
+          break;
           default:
             options.position = 'br';
         }
