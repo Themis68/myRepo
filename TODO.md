@@ -5,6 +5,7 @@ https://www.w3.org/2010/05/video/mediaevents.html
 **************************************
                A FAIRE
 **************************************
+- le centrage vertical des incrustations est trop bas alors qu'on met 50%
 - afficher la ves versions techniques des modules
 - positionner les fanions et le score sur la vidéo
 - scroll sur une video qui est zoomée

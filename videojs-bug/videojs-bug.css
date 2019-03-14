@@ -9,8 +9,17 @@
     color:white;
     font-family: scoreboardregular;
     font-size: 20pt;
+    width: max-content;
  }
 
+ .vjs-bug-textScoreBug{
+  font-family: passion_oneregular;
+  font-size: 18pt;
+  color: white;
+  font-weight: bold;
+  width: max-content;
+ }
+ 
  .vjs-bug-show {
    display: block;
  }
@@ -26,3 +35,7 @@
 .video-js .vjs-bug.vjs-bug-tr{top:0;right:0}
 .video-js .vjs-bug.vjs-bug-bl{bottom:0;left:0}
 .video-js .vjs-bug.vjs-bug-br{bottom:0;right:0}
+.video-js .vjs-bug.vjs-bug-tc{top:0}
+.video-js .vjs-bug.vjs-bug-bc{bottom:0}
+.video-js .vjs-bug.vjs-bug-cl{left:0}
+.video-js .vjs-bug.vjs-bug-cr{right:0}

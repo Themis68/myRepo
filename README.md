@@ -39,7 +39,7 @@ Nom des équipes, leur fanion, les couleurs principales
 
 ** vidéo  **
 Zone principale qui affiche le match.
-Possède ses propres boutons de contrôles : lecture, pause, son, zoom, jauge de progression
+Possède ses propres boutons de contrôles : lecture, pause, son, zoom, jauge de progression, FULLSCREEN
 
 Un bouton PLAY s'affiche initialement au centre de la vidéo pour lancer le match
 Ensuite on peut utiliser le bouton PLAY/PAUSE sur la barre de contrôle
@@ -54,9 +54,25 @@ Le zoom propose une liste déroulante pour définir le niveau de zoom
 ATTENTION : il n'y a pas de scroll possible sur l'image actuellement
 
 La fonction de FULLSCREEN permet de passer en mode plein écran
-Cette fonction affiche en surimpression des informations :
-- fanions des clubs
-- score du joueur
+Cette fonction affiche en surimpression des :
+- images
+- textes
+Ces zones peuvent êtres positionnées comme suit :
+
+tl  tc  tr
+cl  cc  cr
+bl  bc  br
+
+- tl : top left / avec un padding possible haut et gauche
+- cl : centrage vertical left avec un padding possible gauche
+- bl : bottom left / avec un padding possible gauche et bas
+- tc : centrage horizontal top avec un padding possible haut
+- cc : centrage total sans padding
+- bc : centrage horizontal bottom avec un padding possible bas
+- tr : top right / avec un padding possible haut et droite
+- cr : centrage vertical right avec un padding possible droit
+- br : bottom right / avec un padding possible droit et bas
+
 Attention : Aucune intéraction avec le joueur n'est dés lors possible
 
 **  jauge des question  **

@@ -185,7 +185,12 @@
 
           // Styling
           bugElement.style.opacity = options.opacity;
-          bugElement.style.padding = options.padding;
+
+        //  if(options.padding.indexOf('c' < 0)) {
+          //  console.log("esd");
+            // on ne traite pas le padding pour les centrage horizontaux et verticaux
+            bugElement.style.padding = options.padding;
+         // }
 
           return bugElement;
         }
@@ -212,6 +217,7 @@
           case 'cl':  // vertical center et left
           case 'cr':  // vertical center et right
           break;
+
           default:
             options.position = 'br';
         }

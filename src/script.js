@@ -75,6 +75,18 @@ function init() {
 }
 
 function showIncrust(value) {
+	for (var i=0; i < myVideo.options_.plugins.bug.length; i++) {
+		el = document.getElementById(myVideo.options_.plugins.bug[i].id);
+		if (value) {
+			el.classList.replace("vjs-bug-hide", "vjs-bug-show");
+		} else {
+			// ECRAN NORMAL
+			el.classList.replace("vjs-bug-show", "vjs-bug-hide");
+		}
+	}
+}
+
+function showIncrust2(value) {
 	// calcul pour centrage 
 	// elVideo.offsetHeight = hauteur
 	// elVideo.clientHeight = hauteur + border
@@ -93,15 +105,17 @@ function showIncrust(value) {
 			let first = myVideo.options_.plugins.bug[i].position.substr(0,1);
 			let second = myVideo.options_.plugins.bug[i].position.substr(1,1);
 			if (first === 'c') {
-				// center horizontal
-				console.log('avant', padBug);
-				el2.style.padding = padBug + " " + (middleX + 100) + "px " + padBug + " " + (middleX - 100) + "px";	
-				console.log('après', padBug);
-			}
-			if (second === 'c') {
 				// center vertical
 				console.log('avant', padBug);
-				el2.style.padding = (middleY + 100) + "px " + padBug + " " + (middleY + 100) + "px " + padBug;	
+				el2.style.padding = (middleY + 15) + "px " + padBug + " " + (middleY + 15) + "px " + padBug;	
+				console.log('après', padBug);
+				
+			}
+
+			if (second === 'c') {
+				// centrage horizontal
+				console.log('avant', padBug);
+				el2.style.padding = padBug + " " + (middleX + 100) + "px " + padBug + " " + (middleX - 100) + "px";	
 				console.log('après', padBug);
 			}
 			el.classList.replace("vjs-bug-hide", "vjs-bug-show");
@@ -435,8 +449,20 @@ function switchVideo(n) {
 						alt: video[0].droite.nom,
 						link: "http://www.apple.fr",
 						opacity: 0.7,
-						padding: '10px 10px',	// top et bottom + right et left
+						padding: '10px',	// top et bottom + right et left
 						position: 'tl'
+					}, 
+					{
+						type: "text",
+						id:"vjs-bug-textScoreBug",
+						visibility: false,
+						height: "30px",
+						width: "300px",
+						libelle: "Score de " + avatar.toUpperCase(),
+						classeCSS: "vjs-bug-textScoreBug",
+						opacity: 1,
+						padding: '10px 50%',	// top et se combine avec le centrage horizontal
+						position: 'tc'
 					}, 
 					{
 						type: "text",
@@ -447,7 +473,7 @@ function switchVideo(n) {
 						libelle: "00:" + nbQuests[0].points,
 						classeCSS: "vjs-bug-text",
 						opacity: 1,
-						padding: '10px',	// top et se combine avec le centrage horizontal
+						padding: '50px 50%',	// top et se combine avec le centrage horizontal
 						position: 'tc'
 					},
 					{
@@ -460,7 +486,7 @@ function switchVideo(n) {
 						alt: video[0].droite.nom,
 						link: "http://www.fnac.fr",
 						opacity: 0.7,
-						padding: '10px 130px',	// top et bottom + right et left
+						padding: '10px',	// top et bottom + right et left
 						position: 'tr'
 					}]
 				}
