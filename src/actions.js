@@ -286,9 +286,9 @@ function addScore(value) {
     let myColor = ((videoNbPoint / nbQuests[0].points) > 0.5 ? 'green' : 'white');
     let myScore = '<span style="color:'+ myColor +';">' + score + '</span>';
     document.getElementById("scoreBoard").innerHTML = myScore + ':' + scoreMax;    // score dans la zone à droite
-    if(document.getElementById('vjs-bug-scoreBug')) {
+    if(document.getElementById('vjs-bug-textScoreBug')) {
         //le contrôle est nécessaire car l'objet est créé plus tard dans le process
-        document.getElementById("vjs-bug-scoreBug").innerHTML = score + ':' + scoreMax;     // score sur la vidéo
+        document.getElementById("vjs-bug-textScoreBug").innerHTML = "SCORE DE " + avatar.toUpperCase() + "  <span id='scoreBoard'>" + score + ':' + scoreMax + "</span>";     // score sur la vidéo
     }
 }
 

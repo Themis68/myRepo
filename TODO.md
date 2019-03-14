@@ -474,4 +474,6 @@ ou en local :
 						opacity: 1,
 						padding: '10px 50px',	// top et bottom + right et left
 						position: 'tl'
-					}
+					},
+					
+- max-content permet de ne pas renseigner la largeur de la zone

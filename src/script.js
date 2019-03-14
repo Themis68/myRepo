@@ -443,50 +443,49 @@ function switchVideo(n) {
 						type: "pict",
 						id:"vjs-bug-pictEquipeA",
 						visibility: false,
-						height: 30,
-						width: 30,
+						height: 40,
+						width: 40,
 						imgSrc: "./images/fanions/" + video[0].gauche.fanion,
 						alt: video[0].droite.nom,
 						link: "http://www.apple.fr",
 						opacity: 0.7,
-						padding: '10px',	// top et bottom + right et left
+						padding: '20px',	// top et bottom + right et left
 						position: 'tl'
 					}, 
+					{
+						type: "text",
+						id:"vjs-bug-titreAppBug",
+						visibility: false,
+						height: "30px",
+						libelle: "<span>Arrêt sur Image !</span>",
+						classeCSS: "vjs-bug-titreAppBug",
+						opacity: 1,
+						padding: '10px 50%',	// top et se combine avec le centrage horizontal
+						position: 'tc'
+					}, 
+					
 					{
 						type: "text",
 						id:"vjs-bug-textScoreBug",
 						visibility: false,
 						height: "30px",
-						width: "300px",
-						libelle: "Score de " + avatar.toUpperCase(),
+						libelle: "SCORE DE " + avatar.toUpperCase() + "<br><span id='scoreBoard'>00 : " + nbQuests[0].points + "</span>",
 						classeCSS: "vjs-bug-textScoreBug",
-						opacity: 1,
-						padding: '10px 50%',	// top et se combine avec le centrage horizontal
-						position: 'tc'
-					}, 
-					{
-						type: "text",
-						id:"vjs-bug-scoreBug",
-						visibility: false,
-						height: 30,
-						width: 80,
-						libelle: "00:" + nbQuests[0].points,
-						classeCSS: "vjs-bug-text",
 						opacity: 1,
 						padding: '50px 50%',	// top et se combine avec le centrage horizontal
 						position: 'tc'
-					},
+					}, 
 					{
 						type: "pict",
 						id:"vjs-bug-pictEquipeB",
 						visibility: false,
-						height: 25,
-						width: 25,
+						height: 35,
+						width: 35,
 						imgSrc: "./images/fanions/" + video[0].droite.fanion,
 						alt: video[0].droite.nom,
 						link: "http://www.fnac.fr",
 						opacity: 0.7,
-						padding: '10px',	// top et bottom + right et left
+						padding: '20px',	// top et bottom + right et left
 						position: 'tr'
 					}]
 				}

@@ -5,21 +5,29 @@
  * @license MIT
  */
 
+ .vjs-bug-titreAppBug {
+  font-family: scoreboardregular;
+  font-size: 24pt;
+  color: white;
+  width: max-content;
+  text-align: center;
+}
+
  .vjs-bug-text{
-    color:white;
-    font-family: scoreboardregular;
-    font-size: 20pt;
-    width: max-content;
+  color:white;
+  font-family: scoreboardregular;
+  font-size: 14pt;
+  width: max-content;
  }
 
  .vjs-bug-textScoreBug{
   font-family: passion_oneregular;
-  font-size: 18pt;
+  font-size: 14pt;
   color: white;
-  font-weight: bold;
   width: max-content;
+  text-align: center;
  }
- 
+
  .vjs-bug-show {
    display: block;
  }
