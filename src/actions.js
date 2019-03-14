@@ -288,7 +288,7 @@ function addScore(value) {
     document.getElementById("scoreBoard").innerHTML = myScore + ':' + scoreMax;    // score dans la zone à droite
     if(document.getElementById('vjs-bug-textScoreBug')) {
         //le contrôle est nécessaire car l'objet est créé plus tard dans le process
-        document.getElementById("vjs-bug-textScoreBug").innerHTML = "SCORE DE " + avatar.toUpperCase() + "  <span id='scoreBoard'>" + score + ':' + scoreMax + "</span>";     // score sur la vidéo
+        document.getElementById("vjs-bug-textScoreBug").innerHTML = "SCORE DE " + avatar.toUpperCase() + "<br><span id='scoreBoard'>" + score + ':' + scoreMax + "</span>";     // score sur la vidéo
     }
 }
 
