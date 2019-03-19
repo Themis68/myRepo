@@ -5,6 +5,7 @@ https://www.w3.org/2010/05/video/mediaevents.html
 **************************************
                A FAIRE
 **************************************
+- comment afficher un objet de videojs qui existe déjà par défaut
 - peut-on ajouter le register du plug seulement quand on en a besoin ?
 - gérer un peu mieux l'attribut "visibility" des éléments à incruster
 - le centrage vertical des incrustations est trop bas alors qu'on met 50%
@@ -481,3 +482,21 @@ ou en local :
 					},
 					
 - max-content permet de ne pas renseigner la largeur de la zone
+
+*************************************
+switcher un icone de controle
+*************************************
+
+In the default LESS file there are two states for the play button:
+
+.vjs-default-skin .vjs-play-control:before {
+  content: @play-icon;
+}
+.vjs-default-skin.vjs-playing .vjs-play-control:before {
+  content: @pause-icon;
+}
+You just need to add a third state when the video has ended. There is already a CSS class for that. You'll end up with something that looks like:
+
+.vjs-default-skin.vjs-ended .vjs-play-control:before {
+   content: "YOUR REPLY ICON";
+ }

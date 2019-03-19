@@ -139,6 +139,11 @@ function showItem(id, state) {
 	const el = document.getElementById(id);
 	if (myState === "show") {
 		(el.classList.contains("hide") ? el.classList.replace("hide", "show") : el.classList.add("show"));
+		if (id === "btnReplay") {
+			console.log("esd2");
+			myVideo.show("vjs-icon-replay");
+			console.log("esd");
+		}
 	} else {
 		(el.classList.contains("show") ? el.classList.replace("show", "hide") : el.classList.add("hide"));	
 	}
