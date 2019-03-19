@@ -10,9 +10,10 @@ https://www.w3.org/2010/05/video/mediaevents.html
 - le centrage vertical des incrustations est trop bas alors qu'on met 50%
 - le centrage horizontal des incrustations ne tient pas compte de la largeur de l'objet
 - afficher la ves versions techniques des modules
-- positionner les fanions et le score sur la vidéo
+x ajouter le nom des équipes en incrustation
+x positionner les fanions et le score sur la vidéo
 - scroll sur une video qui est zoomée
-- centrer verticalement le logo Mouzillon dans la barre de contrôle
+x centrer verticalement le logo Mouzillon dans la barre de contrôle
 - préparer un gestionnaire pour la génération du scénario
 - cacher le menu si on choisi une valeur
 - proposer une valeur pour le replay

@@ -12,10 +12,10 @@
   <script type="text/javascript" src="./video.js/dist/video.min.js"></script>
   <link href="./video.js/dist/video-js.css" rel="stylesheet" type="text/css">
 
-  <script type="text/javascript" src="./videojs-brand/dist/videojs-brand.min.js">
+  <script type="text/javascript" src="./videojs-brand/videojs-brand.js">
     videojs.registerPlugin('brand', videojs-brand);
   </script>
-  <link href="./videojs-brand/dist/videojs-brand.css" rel="stylesheet" type="text/css">
+  <link href="./videojs-brand/videojs-brand.css" rel="stylesheet" type="text/css">
 
   <script type="text/javascript" src="./videojs-zoom/videojs-zoom.js">
     videojs.registerPlugin('videoJsZoom', videojs-zoom);
@@ -86,7 +86,7 @@
         </div>
         <div class="zBoard" id="score">
           <p id="textBoard">SCORE</p>
-          <p id="scoreBoard"></p>
+          <p id="scoreBoard" class="scoreBoard"></p>
         </div>
         <div class="zBoard" id="echange">
           <div class="numQuest" id="chapeau">

@@ -5,3 +5,7 @@
  * @license MIT
  */
 .video-js.vjs-brand{display:block}
+
+.vjs-brand-container{
+    padding-top: 10px;  /* alignement du logo */
+}

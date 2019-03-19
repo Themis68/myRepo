@@ -470,7 +470,7 @@ function switchVideo(n) {
 						libelle: "<span>Arrêt sur Image !</span>",
 						classeCSS: "vjs-bug-titreAppBug",
 						opacity: 1,
-						padding: '10px 42%',	// top et se combine avec le centrage horizontal
+						padding: '10px 40%',	// top et se combine avec le centrage horizontal
 						position: 'tc'
 					}, 					
 					{
@@ -478,7 +478,7 @@ function switchVideo(n) {
 						id:"vjs-bug-textScoreBug",
 						visibility: false,
 						height: "30px",
-						libelle: "SCORE DE " + avatar.toUpperCase() + "<br><span id='scoreBoard'>00 : " + nbQuests[0].points + "</span>",
+						libelle: "SCORE DE " + avatar.toUpperCase() + "<br><span class=\"scoreBoard\">00 : " + nbQuests[0].points + "</span>",
 						classeCSS: "vjs-bug-textScoreBug",
 						opacity: 1,
 						padding: '50px 45%',	// top et se combine avec le centrage horizontal
