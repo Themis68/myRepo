@@ -5,7 +5,10 @@ https://www.w3.org/2010/05/video/mediaevents.html
 **************************************
                A FAIRE
 **************************************
+- peut-on ajouter le register du plug seulement quand on en a besoin ?
+- gérer un peu mieux l'attribut "visibility" des éléments à incruster
 - le centrage vertical des incrustations est trop bas alors qu'on met 50%
+- le centrage horizontal des incrustations ne tient pas compte de la largeur de l'objet
 - afficher la ves versions techniques des modules
 - positionner les fanions et le score sur la vidéo
 - scroll sur une video qui est zoomée

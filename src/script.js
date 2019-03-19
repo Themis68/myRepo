@@ -451,6 +451,16 @@ function switchVideo(n) {
 						opacity: 0.7,
 						padding: '20px',	// top et bottom + right et left
 						position: 'tl'
+					},{
+						type: "text",
+						id:"vjs-bug-titreEquipeA",
+						visibility: false,
+						height: 40,
+						libelle: "<span>"+ video[0].gauche.nom +"</span>",
+						classeCSS: "vjs-bug-titreEquipBug",
+						opacity: 1,
+						padding: '30px 70px',	// top et bottom + right et left
+						position: 'tl'
 					}, 
 					{
 						type: "text",
@@ -460,10 +470,9 @@ function switchVideo(n) {
 						libelle: "<span>Arrêt sur Image !</span>",
 						classeCSS: "vjs-bug-titreAppBug",
 						opacity: 1,
-						padding: '10px 50%',	// top et se combine avec le centrage horizontal
+						padding: '10px 42%',	// top et se combine avec le centrage horizontal
 						position: 'tc'
-					}, 
-					
+					}, 					
 					{
 						type: "text",
 						id:"vjs-bug-textScoreBug",
@@ -472,9 +481,20 @@ function switchVideo(n) {
 						libelle: "SCORE DE " + avatar.toUpperCase() + "<br><span id='scoreBoard'>00 : " + nbQuests[0].points + "</span>",
 						classeCSS: "vjs-bug-textScoreBug",
 						opacity: 1,
-						padding: '50px 50%',	// top et se combine avec le centrage horizontal
+						padding: '50px 45%',	// top et se combine avec le centrage horizontal
 						position: 'tc'
 					}, 
+					{
+						type: "text",
+						id:"vjs-bug-titreEquipeB",
+						visibility: false,
+						height: 40,
+						libelle: "<span>"+ video[0].droite.nom +"</span>",
+						classeCSS: "vjs-bug-titreEquipBug",
+						opacity: 1,
+						padding: '30px 80px',	// top et bottom + right et left
+						position: 'tr'
+					},
 					{
 						type: "pict",
 						id:"vjs-bug-pictEquipeB",
