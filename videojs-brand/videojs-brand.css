@@ -9,3 +9,10 @@
 .vjs-brand-container{
     padding-top: 10px;  /* alignement du logo */
 }
+
+.vjs-brand-container-pict {
+    font-family: VideoJS;
+    font-weight: normal;
+    font-style: normal; 
+}
+

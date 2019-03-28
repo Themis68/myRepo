@@ -357,5 +357,39 @@ var scenario = [
                 act: "fin"
             }
         ]
+    ],
+    [
+        {
+            id: 3,
+            rencontre: "EM/Baugé",
+            fichier: "MAH00063.mp4",
+            description: "Match opposant Baugé à l'Etoile Mouzillon en championnat u18F Région",
+            gauche: {
+                nom: "Baugé (Orange)",
+                fanion: "Bauge.png"
+            },
+            droite: {
+                nom: "Etoile Mouzillon (Blanc)",
+                fanion: "EMouz.png"
+            }
+        },
+        [               
+            {
+                step: '00:05:27',
+                act: "question",
+                niveau: "DEBUTANT",
+                libelle: "Comment l'arbitre va-t-il signaler la relance aux 6 mètres ?",
+                pict: "gestes_arbitre.png",
+                attributs: ["F", "A", "C"],
+                reponse: 3,
+                libRep:"L'arbitre se re-positionne pour suivre le jeu",
+                loi: "Loi_8",
+                points: 2
+            },
+            {
+                step: '00:41:40',
+                act: "fin"
+            }
+        ]
     ]
 ]

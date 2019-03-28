@@ -166,7 +166,7 @@ function listeVideos(id) {
 		td2.innerHTML = content;
 		td2.style.backgroundSize = larg + " " + haut;
 		td2.style.backgroundRepeat = "no-repeat";
-		td2.style.backgroundImage = "url("+ scenario[i][0].poster +")";
+		td2.style.backgroundImage = "url("+ (scenario[i][0].poster || "./images/pelouses/pelousemini.png") +")";
 		td2.style.border = "white 3px solid";
 		td2.className = "thumb";
 		td2.setAttribute("onclick", 'switchVideo('+ scenario[i][0].id +');');	
@@ -413,7 +413,7 @@ function switchVideo(n) {
 				preload:  'none',
 				loop: false,
 				fluid: true,
-				poster: video[0].poster,
+				poster: (video[0].poster || "./images/pelouses/pelousemini.png"),
 				controlBar: {
 					volumeMenuButton: {
 					inline: false,
