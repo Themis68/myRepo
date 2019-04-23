@@ -357,5 +357,429 @@ var scenario = [
                 act: "fin"
             }
         ]
+    ],
+    [
+        {
+            id: 3,
+            rencontre: "Bretagne/PDLL",
+            poster: "./videos/EMouz_Bauge.png",
+            fichier: "EM_Bauge.mp4",
+            description: "Match amical opposant Les Pôles espoirs des Ligues de Bretagne et des Pays de La Loire",
+            gauche: {
+                nom: "Ligue de Bretagne (Marron)",
+                fanion: "Bauge.png"
+            },
+            droite: {
+                nom: "Ligue Pays de La Loire (Bleu)",
+                fanion: "EMouz.png"
+            }
+        },
+        [               
+            {
+                step: '00:00:03',
+                act: "allerA",
+                niveau: "DEBUTANT",
+                indice: 3
+            },
+            {
+                step: '00:02:06',
+                act: "question/information/allerA/bonus",
+                niveau: "DEBUTANT/CONFIRME",
+                libelle: "Touche",
+                pict: "<nom>.png",
+                attributs: [val1, val2, valn],
+                reponse: numero_de_la_bonne_reponse,
+                libRep:"description réponse",
+                loi: "Loi_<numero>",
+                points: nombre
+            },
+            {
+                step: '00:02:06',
+                act: "question/information/allerA/bonus",
+                niveau: "DEBUTANT/CONFIRME",
+                libelle: "Touche",
+                pict: "<nom>.png",
+                attributs: [val1, val2, valn],
+                reponse: numero_de_la_bonne_reponse,
+                libRep:"description réponse",
+                loi: "Loi_<numero>",
+                points: nombre
+            },
+            {
+                step: '00:03:20',
+                act: "question/information/allerA/bonus",
+                niveau: "DEBUTANT/CONFIRME",
+                libelle: "Avantage : geste",
+                pict: "<nom>.png",
+                attributs: [val1, val2, valn],
+                reponse: numero_de_la_bonne_reponse,
+                libRep:"description réponse",
+                loi: "Loi_<numero>",
+                points: nombre
+            },
+            {
+                step: '00:05:35',
+                act: "question/information/allerA/bonus",
+                niveau: "DEBUTANT/CONFIRME",
+                libelle: "Touche : mal faite",
+                pict: "<nom>.png",
+                attributs: [val1, val2, valn],
+                reponse: numero_de_la_bonne_reponse,
+                libRep:"description réponse",
+                loi: "Loi_<numero>",
+                points: nombre
+            },
+            {
+                step: '00:06:29',
+                act: "question/information/allerA/bonus",
+                niveau: "DEBUTANT/CONFIRME",
+                libelle: "Intervention soigneur",
+                pict: "<nom>.png",
+                attributs: [val1, val2, valn],
+                reponse: numero_de_la_bonne_reponse,
+                libRep:"description réponse",
+                loi: "Loi_<numero>",
+                points: nombre
+            },
+            {
+                step: '00:08:02',
+                act: "question/information/allerA/bonus",
+                niveau: "DEBUTANT/CONFIRME",
+                libelle: "Coup-Franc : position arbitre",
+                pict: "<nom>.png",
+                attributs: [val1, val2, valn],
+                reponse: numero_de_la_bonne_reponse,
+                libRep:"description réponse",
+                loi: "Loi_<numero>",
+                points: nombre
+            },
+            {
+                step: '00:10:06',
+                act: "question/information/allerA/bonus",
+                niveau: "DEBUTANT/CONFIRME",
+                libelle: "Coup-Franc : intervention arbitre assistant",
+                pict: "<nom>.png",
+                attributs: [val1, val2, valn],
+                reponse: numero_de_la_bonne_reponse,
+                libRep:"description réponse",
+                loi: "Loi_<numero>",
+                points: nombre
+            },
+            {
+                step: '00:12:03',
+                act: "question/information/allerA/bonus",
+                niveau: "DEBUTANT/CONFIRME",
+                libelle: "Avantage : jouer",
+                pict: "<nom>.png",
+                attributs: [val1, val2, valn],
+                reponse: numero_de_la_bonne_reponse,
+                libRep:"description réponse",
+                loi: "Loi_<numero>",
+                points: nombre
+            },
+            {
+                step: '00:13:16',
+                act: "question/information/allerA/bonus",
+                niveau: "DEBUTANT/CONFIRME",
+                libelle: "Coup-Franc",
+                pict: "<nom>.png",
+                attributs: [val1, val2, valn],
+                reponse: numero_de_la_bonne_reponse,
+                libRep:"description réponse",
+                loi: "Loi_<numero>",
+                points: nombre
+            },
+            {
+                step: '00:17:51',
+                act: "question/information/allerA/bonus",
+                niveau: "DEBUTANT/CONFIRME",
+                libelle: "6 mètres",
+                pict: "<nom>.png",
+                attributs: [val1, val2, valn],
+                reponse: numero_de_la_bonne_reponse,
+                libRep:"description réponse",
+                loi: "Loi_<numero>",
+                points: nombre
+            },
+            {
+                step: '00:24:13',
+                act: "question/information/allerA/bonus",
+                niveau: "DEBUTANT/CONFIRME",
+                libelle: "Engagement : pas bien fait",
+                pict: "<nom>.png",
+                attributs: [val1, val2, valn],
+                reponse: numero_de_la_bonne_reponse,
+                libRep:"description réponse",
+                loi: "Loi_<numero>",
+                points: nombre
+            },
+            {
+                step: '00:25:20',
+                act: "question/information/allerA/bonus",
+                niveau: "DEBUTANT/CONFIRME",
+                libelle: "Engagement : pas bien fait",
+                pict: "<nom>.png",
+                attributs: [val1, val2, valn],
+                reponse: numero_de_la_bonne_reponse,
+                libRep:"description réponse",
+                loi: "Loi_<numero>",
+                points: nombre
+            },
+            {
+                step: '00:30:10',
+                act: "question/information/allerA/bonus",
+                niveau: "DEBUTANT/CONFIRME",
+                libelle: "Entre deux",
+                pict: "<nom>.png",
+                attributs: [val1, val2, valn],
+                reponse: numero_de_la_bonne_reponse,
+                libRep:"description réponse",
+                loi: "Loi_<numero>",
+                points: nombre
+            },
+            {
+                step: '00:32:36',
+                act: "question/information/allerA/bonus",
+                niveau: "DEBUTANT/CONFIRME",
+                libelle: "Coup-franc : intervention asiistant ++",
+                pict: "<nom>.png",
+                attributs: [val1, val2, valn],
+                reponse: numero_de_la_bonne_reponse,
+                libRep:"description réponse",
+                loi: "Loi_<numero>",
+                points: nombre
+            },
+            {
+                step: '00:33:30',
+                act: "question/information/allerA/bonus",
+                niveau: "DEBUTANT/CONFIRME",
+                libelle: "Main ? (utiliser ralentit)",
+                pict: "<nom>.png",
+                attributs: [val1, val2, valn],
+                reponse: numero_de_la_bonne_reponse,
+                libRep:"description réponse",
+                loi: "Loi_<numero>",
+                points: nombre
+            },
+            {
+                step: '00:34:35',
+                act: "question/information/allerA/bonus",
+                niveau: "DEBUTANT/CONFIRME",
+                libelle: "Pedagogie : position des bras dans le mur",
+                pict: "<nom>.png",
+                attributs: [val1, val2, valn],
+                reponse: numero_de_la_bonne_reponse,
+                libRep:"description réponse",
+                loi: "Loi_<numero>",
+                points: nombre
+            },
+            {
+                step: '00:35:00',
+                act: "question/information/allerA/bonus",
+                niveau: "DEBUTANT/CONFIRME",
+                libelle: "Corner",
+                pict: "<nom>.png",
+                attributs: [val1, val2, valn],
+                reponse: numero_de_la_bonne_reponse,
+                libRep:"description réponse",
+                loi: "Loi_<numero>",
+                points: nombre
+            },
+            {
+                step: '00:35:21',
+                act: "fin"
+            }
+        ]
+    ],
+    [
+        {
+            id: 4,
+            rencontre: "PDLL/Bretagne",
+            poster: "./videos/EMouz_Bauge.png",
+            fichier: "EM_Bauge.mp4",
+            description: "Match amical opposant Les Pôles espoirs des Ligues de Bretagne et des Pays de La Loire",
+            gauche: {
+                nom: "Ligue Pays de La Loire (Bleu)",
+                fanion: "Bauge.png"
+            },
+            droite: {
+                nom: "Ligue de Bretagne (Marron)",
+                fanion: "EMouz.png"
+            }
+        },
+        [               
+            {
+                step: '00:00:28',
+                act: "question/information/allerA/bonus",
+                niveau: "DEBUTANT/CONFIRME",
+                libelle: "Choc sur gardien",
+                pict: "<nom>.png",
+                attributs: [val1, val2, valn],
+                reponse: numero_de_la_bonne_reponse,
+                libRep:"description réponse",
+                loi: "Loi_<numero>",
+                points: nombre
+            },
+            {
+                step: '00:02:20',
+                act: "question/information/allerA/bonus",
+                niveau: "DEBUTANT/CONFIRME",
+                libelle: "Faute signaléee (--)",
+                pict: "<nom>.png",
+                attributs: [val1, val2, valn],
+                reponse: numero_de_la_bonne_reponse,
+                libRep:"description réponse",
+                loi: "Loi_<numero>",
+                points: nombre
+            },
+            {
+                step: '00:05:22',
+                act: "question/information/allerA/bonus",
+                niveau: "DEBUTANT/CONFIRME",
+                libelle: "Avertissement (n°3)",
+                pict: "<nom>.png",
+                attributs: [val1, val2, valn],
+                reponse: numero_de_la_bonne_reponse,
+                libRep:"description réponse",
+                loi: "Loi_<numero>",
+                points: nombre
+            },
+            {
+                step: '00:06:44',
+                act: "question/information/allerA/bonus",
+                niveau: "DEBUTANT/CONFIRME",
+                libelle: "Choc gardien",
+                pict: "<nom>.png",
+                attributs: [val1, val2, valn],
+                reponse: numero_de_la_bonne_reponse,
+                libRep:"description réponse",
+                loi: "Loi_<numero>",
+                points: nombre
+            },
+            {
+                step: '00:09:14',
+                act: "question/information/allerA/bonus",
+                niveau: "DEBUTANT/CONFIRME",
+                libelle: "Coup-Franc : tirage de maillot : avertissement ?",
+                pict: "<nom>.png",
+                attributs: [val1, val2, valn],
+                reponse: numero_de_la_bonne_reponse,
+                libRep:"description réponse",
+                loi: "Loi_<numero>",
+                points: nombre
+            },
+            {
+                step: '00:10:56',
+                act: "question/information/allerA/bonus",
+                niveau: "DEBUTANT/CONFIRME",
+                libelle: "Touche : retour position ++",
+                pict: "<nom>.png",
+                attributs: [val1, val2, valn],
+                reponse: numero_de_la_bonne_reponse,
+                libRep:"description réponse",
+                loi: "Loi_<numero>",
+                points: nombre
+            },
+            {
+                step: '00:11:55',
+                act: "question/information/allerA/bonus",
+                niveau: "DEBUTANT/CONFIRME",
+                libelle: "Corner",
+                pict: "<nom>.png",
+                attributs: [val1, val2, valn],
+                reponse: numero_de_la_bonne_reponse,
+                libRep:"description réponse",
+                loi: "Loi_<numero>",
+                points: nombre
+            },
+            {
+                step: '00:13:59',
+                act: "question/information/allerA/bonus",
+                niveau: "DEBUTANT/CONFIRME",
+                libelle: "Changement de joueur",
+                pict: "<nom>.png",
+                attributs: [val1, val2, valn],
+                reponse: numero_de_la_bonne_reponse,
+                libRep:"description réponse",
+                loi: "Loi_<numero>",
+                points: nombre
+            },
+            {
+                step: '00:15:05',
+                act: "question/information/allerA/bonus",
+                niveau: "DEBUTANT/CONFIRME",
+                libelle: "Touche : position ",
+                pict: "<nom>.png",
+                attributs: [val1, val2, valn],
+                reponse: numero_de_la_bonne_reponse,
+                libRep:"description réponse",
+                loi: "Loi_<numero>",
+                points: nombre
+            },
+            {
+                step: '00:17:07',
+                act: "question/information/allerA/bonus",
+                niveau: "DEBUTANT/CONFIRME",
+                libelle: "Changement de joueur",
+                pict: "<nom>.png",
+                attributs: [val1, val2, valn],
+                reponse: numero_de_la_bonne_reponse,
+                libRep:"description réponse",
+                loi: "Loi_<numero>",
+                points: nombre
+            },
+            {
+                step: '00:19:24',
+                act: "question/information/allerA/bonus",
+                niveau: "DEBUTANT/CONFIRME",
+                libelle: "Hors-jeu",
+                pict: "<nom>.png",
+                attributs: [val1, val2, valn],
+                reponse: numero_de_la_bonne_reponse,
+                libRep:"description réponse",
+                loi: "Loi_<numero>",
+                points: nombre
+            },
+            {
+                step: '00:21:02',
+                act: "question/information/allerA/bonus",
+                niveau: "DEBUTANT/CONFIRME",
+                libelle: "Obstruction ?",
+                pict: "<nom>.png",
+                attributs: [val1, val2, valn],
+                reponse: numero_de_la_bonne_reponse,
+                libRep:"description réponse",
+                loi: "Loi_<numero>",
+                points: nombre
+            },
+            {
+                step: '00:24:44',
+                act: "question/information/allerA/bonus",
+                niveau: "DEBUTANT/CONFIRME",
+                libelle: "Coup-Franc avec carton jaune",
+                pict: "<nom>.png",
+                attributs: [val1, val2, valn],
+                reponse: numero_de_la_bonne_reponse,
+                libRep:"description réponse",
+                loi: "Loi_<numero>",
+                points: nombre
+            },
+            {
+                step: '00:32:50',
+                act: "question/information/allerA/bonus",
+                niveau: "DEBUTANT/CONFIRME",
+                libelle: "Coup-Franc avec carton jaune",
+                pict: "<nom>.png",
+                attributs: [val1, val2, valn],
+                reponse: numero_de_la_bonne_reponse,
+                libRep:"description réponse",
+                loi: "Loi_<numero>",
+                points: nombre
+            },
+            {
+                step: '00:35:48',
+                act: "fin"
+            }
+        ]
     ]
 ]
