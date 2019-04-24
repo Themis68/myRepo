@@ -7,7 +7,8 @@ https://www.w3.org/2010/05/video/mediaevents.html
 **************************************
 - ajouter un accès direct aux lois du jeu
 - ajouter un accès direct aux pictogrammes
-comment afficher un objet de videojs qui existe déjà par défaut
+x affecter un niveau de competition au match
+- comment afficher un objet de videojs qui existe déjà par défaut
 - peut-on ajouter le register du plug seulement quand on en a besoin ?
 - gérer un peu mieux l'attribut "visibility" des éléments à incruster
 - le centrage vertical des incrustations est trop bas alors qu'on met 50%
