@@ -303,13 +303,20 @@ video {
   margin-bottom: 6px;
 }
 
-#scoreBoard {
+#scoreBoard { /* panneau droit */
   font-family: scoreboardregular;
   font-size: 38pt;
   color: white;
   margin-left: 6px;
   margin-right: 6px;
   margin-bottom: 6px;
+  margin-top: 6px;
+}
+
+.scoreBoard { /* incrustation */
+  font-family: scoreboardregular;
+  font-size: 24pt;
+  color: white;
   margin-top: 6px;
 }
 

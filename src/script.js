@@ -139,6 +139,11 @@ function showItem(id, state) {
 	const el = document.getElementById(id);
 	if (myState === "show") {
 		(el.classList.contains("hide") ? el.classList.replace("hide", "show") : el.classList.add("show"));
+		if (id === "btnReplay") {
+			console.log("esd2");
+			myVideo.show("vjs-icon-replay");
+			console.log("esd");
+		}
 	} else {
 		(el.classList.contains("show") ? el.classList.replace("show", "hide") : el.classList.add("hide"));	
 	}
@@ -161,7 +166,7 @@ function listeVideos(id) {
 		td2.innerHTML = content;
 		td2.style.backgroundSize = larg + " " + haut;
 		td2.style.backgroundRepeat = "no-repeat";
-		td2.style.backgroundImage = "url("+ scenario[i][0].poster +")";
+		td2.style.backgroundImage = "url("+ (scenario[i][0].poster || "./images/pelouses/pelousemini.png") +")";
 		td2.style.border = "white 3px solid";
 		td2.className = "thumb";
 		td2.setAttribute("onclick", 'switchVideo('+ scenario[i][0].id +');');	
@@ -408,7 +413,7 @@ function switchVideo(n) {
 				preload:  'none',
 				loop: false,
 				fluid: true,
-				poster: video[0].poster,
+				poster: (video[0].poster || "./images/pelouses/pelousemini.png"),
 				controlBar: {
 					volumeMenuButton: {
 					inline: false,
@@ -451,6 +456,16 @@ function switchVideo(n) {
 						opacity: 0.7,
 						padding: '20px',	// top et bottom + right et left
 						position: 'tl'
+					},{
+						type: "text",
+						id:"vjs-bug-titreEquipeA",
+						visibility: false,
+						height: 40,
+						libelle: "<span>"+ video[0].gauche.nom +"</span>",
+						classeCSS: "vjs-bug-titreEquipBug",
+						opacity: 1,
+						padding: '30px 70px',	// top et bottom + right et left
+						position: 'tl'
 					}, 
 					{
 						type: "text",
@@ -460,21 +475,31 @@ function switchVideo(n) {
 						libelle: "<span>Arrêt sur Image !</span>",
 						classeCSS: "vjs-bug-titreAppBug",
 						opacity: 1,
-						padding: '10px 50%',	// top et se combine avec le centrage horizontal
+						padding: '10px 40%',	// top et se combine avec le centrage horizontal
 						position: 'tc'
-					}, 
-					
+					}, 					
 					{
 						type: "text",
 						id:"vjs-bug-textScoreBug",
 						visibility: false,
 						height: "30px",
-						libelle: "SCORE DE " + avatar.toUpperCase() + "<br><span id='scoreBoard'>00 : " + nbQuests[0].points + "</span>",
+						libelle: "SCORE DE " + avatar.toUpperCase() + "<br><span class=\"scoreBoard\">00 : " + nbQuests[0].points + "</span>",
 						classeCSS: "vjs-bug-textScoreBug",
 						opacity: 1,
-						padding: '50px 50%',	// top et se combine avec le centrage horizontal
+						padding: '50px 45%',	// top et se combine avec le centrage horizontal
 						position: 'tc'
 					}, 
+					{
+						type: "text",
+						id:"vjs-bug-titreEquipeB",
+						visibility: false,
+						height: 40,
+						libelle: "<span>"+ video[0].droite.nom +"</span>",
+						classeCSS: "vjs-bug-titreEquipBug",
+						opacity: 1,
+						padding: '30px 80px',	// top et bottom + right et left
+						position: 'tr'
+					},
 					{
 						type: "pict",
 						id:"vjs-bug-pictEquipeB",

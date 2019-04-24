@@ -5,11 +5,19 @@ https://www.w3.org/2010/05/video/mediaevents.html
 **************************************
                A FAIRE
 **************************************
+- ajouter un accès direct aux lois du jeu
+- ajouter un accès direct aux pictogrammes
+x affecter un niveau de competition au match
+- comment afficher un objet de videojs qui existe déjà par défaut
+- peut-on ajouter le register du plug seulement quand on en a besoin ?
+- gérer un peu mieux l'attribut "visibility" des éléments à incruster
 - le centrage vertical des incrustations est trop bas alors qu'on met 50%
+- le centrage horizontal des incrustations ne tient pas compte de la largeur de l'objet
 - afficher la ves versions techniques des modules
-- positionner les fanions et le score sur la vidéo
+x ajouter le nom des équipes en incrustation
+x positionner les fanions et le score sur la vidéo
 - scroll sur une video qui est zoomée
-- centrer verticalement le logo Mouzillon dans la barre de contrôle
+x centrer verticalement le logo Mouzillon dans la barre de contrôle
 - préparer un gestionnaire pour la génération du scénario
 - cacher le menu si on choisi une valeur
 - proposer une valeur pour le replay
@@ -477,3 +485,21 @@ ou en local :
 					},
 					
 - max-content permet de ne pas renseigner la largeur de la zone
+
+*************************************
+switcher un icone de controle
+*************************************
+
+In the default LESS file there are two states for the play button:
+
+.vjs-default-skin .vjs-play-control:before {
+  content: @play-icon;
+}
+.vjs-default-skin.vjs-playing .vjs-play-control:before {
+  content: @pause-icon;
+}
+You just need to add a third state when the video has ended. There is already a CSS class for that. You'll end up with something that looks like:
+
+.vjs-default-skin.vjs-ended .vjs-play-control:before {
+   content: "YOUR REPLY ICON";
+ }

@@ -12,10 +12,10 @@
   <script type="text/javascript" src="./video.js/dist/video.min.js"></script>
   <link href="./video.js/dist/video-js.css" rel="stylesheet" type="text/css">
 
-  <script type="text/javascript" src="./videojs-brand/dist/videojs-brand.min.js">
+  <script type="text/javascript" src="./videojs-brand/videojs-brand.js">
     videojs.registerPlugin('brand', videojs-brand);
   </script>
-  <link href="./videojs-brand/dist/videojs-brand.css" rel="stylesheet" type="text/css">
+  <link href="./videojs-brand/videojs-brand.css" rel="stylesheet" type="text/css">
 
   <script type="text/javascript" src="./videojs-zoom/videojs-zoom.js">
     videojs.registerPlugin('videoJsZoom', videojs-zoom);
@@ -81,12 +81,14 @@
       <div id="goulotte"></div>
       <div id="board" class="hide">
         <div class="zBoard">
-          <input id="btnLevel1" type="button" value="DEBUTANT" onclick="changeLevel(1);">
-          <input id="btnLevel2" type="button" value="CONFIRME" onclick="changeLevel(2);">
+            <img id="btnLevel1" src="images/siffletOn.png" width="15%" height="15%" onclick="changeLevel(1);" />
+            <img id="btnLevel2" src="images/siffletOff.png" width="15%" height="15%" onclick="changeLevel(2);" />
+          <!--<input id="btnLevel1" type="button" value="DEBUTANT" onclick="changeLevel(1);">
+          <input id="btnLevel2" type="button" value="CONFIRME" onclick="changeLevel(2);">-->
         </div>
         <div class="zBoard" id="score">
           <p id="textBoard">SCORE</p>
-          <p id="scoreBoard"></p>
+          <p id="scoreBoard" class="scoreBoard"></p>
         </div>
         <div class="zBoard" id="echange">
           <div class="numQuest" id="chapeau">

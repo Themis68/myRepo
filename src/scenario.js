@@ -6,6 +6,7 @@ var scenario = [
             poster: "./videos/EMouz_Herbiers.png",
             fichier: "EM_Herbiers.mp4",
             description: "Match opposant Les Herbiers à l'Etoile Mouzillon en championnat R2F",
+            competition: "R2F",
             gauche: {
                 nom: "Les Herbiers (Rouge)",
                 fanion: "LHerbiers.png"
@@ -319,18 +320,61 @@ var scenario = [
     ],
     [
         {
-            id: 2,
-            rencontre: "EM/Baugé",
-            poster: "./videos/EMouz_Bauge.png",
-            fichier: "EM_Bauge.mp4",
-            description: "Match opposant Baugé à l'Etoile Mouzillon en championnat u18F Région",
+            id: 3,
+            rencontre: "Pole/Ploufragan",
+            poster: "./videos/Pole_PloufraganMT1.png",
+            fichier: "Pole_PloufraganMT1.mp4",
+            description: "Match opposant Les pôles espoirs Pays de la loire et Bretagne - 1ère mi-temps",
+            competition: "interpôles",
             gauche: {
-                nom: "Baugé (Orange)",
-                fanion: "Bauge.png"
+                nom: "Pôle Bretagne",
+                fanion: "ligueBretagne.png"
             },
             droite: {
-                nom: "Etoile Mouzillon (Blanc)",
-                fanion: "EMouz.png"
+                nom: "Pôle Pays de la Loire",
+                fanion: "ligue2.png"
+            }
+        },
+        [               
+            {
+                step: '00:00:03',
+                act: "allerA",
+                niveau: "CONFIRME",
+                indice: 2506
+            },
+            {
+                step: '00:05:27',
+                act: "question",
+                niveau: "DEBUTANT",
+                libelle: "Comment l'arbitre va-t-il signaler la relance aux 6 mètres ?",
+                pict: "gestes_arbitre.png",
+                attributs: ["F", "A", "C"],
+                reponse: 3,
+                libRep:"L'arbitre se re-positionne pour suivre le jeu",
+                loi: "Loi_8",
+                points: 2
+            },
+            {
+                step: '00:41:40',
+                act: "fin"
+            }
+        ]
+    ],
+    [
+        {
+            id: 4,
+            rencontre: "Pole/Ploufragan",
+            poster: "./videos/Pole_PloufraganMT2.png",
+            fichier: "Pole_PloufraganMT2.mp4",
+            description: "Match opposant Les pôles espoirs Pays de la loire et Bretagne - 2ème mi-temps",
+            competition: "interpôles",
+            gauche: {
+                nom: "Pôle Pays de la Loire",
+                fanion: "ligue2.png"
+            },
+            droite: {
+                nom: "Pôle Bretagne",
+                fanion: "ligueBretagne.png"
             }
         },
         [               

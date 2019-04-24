@@ -181,7 +181,7 @@ var scenario = [
 - Chaque match possède des caractéristiques
     - id : permet d'idntifier la vidéo : il doit êre unique et de préférence doit suivre le précédent
     - rencontre : nom de la rencontre
-    - poster : image a affi her dans la vignette du match
+    - poster : image a afficher dans la vignette du match (si absent on prend l'image d'une pelouse)
     - fichier : chemin d'accès au fichier vidéo
     - description : dexription de la rencontre qui sera affiché dans le cartouche d'informations
     - gauche : infos sur l'équipe jouant côté gauche

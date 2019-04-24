@@ -53,7 +53,7 @@ var onPlayerReady = function onPlayerReady(player, options) {
   linkElement.appendChild(imageElement);
   containerElement.appendChild(linkElement);
 
-  player.controlBar.el().insertBefore(containerElement, player.controlBar.fullscreenToggle.el());
+  player.controlBar.el().insertBefore(containerElement, player.controlBar.fullscreenToggle.el()); // ajout de la liste déroulante
   player.addClass('vjs-brand');
 };
 
