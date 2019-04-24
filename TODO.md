@@ -5,6 +5,11 @@ https://www.w3.org/2010/05/video/mediaevents.html
 **************************************
                A FAIRE
 **************************************
+- intégrer un allerA dans la question ?
+x gérer l'indice 'allerA' au format 00:00:00
+- avoir une animation pour les buts
+- avoir une animation pour la mi-temps (sifflet)
+- préparer la silhouette de l'équipement
 - ajouter un accès direct aux lois du jeu
 - ajouter un accès direct aux pictogrammes
 x affecter un niveau de competition au match
@@ -13,7 +18,6 @@ x affecter un niveau de competition au match
 - gérer un peu mieux l'attribut "visibility" des éléments à incruster
 - le centrage vertical des incrustations est trop bas alors qu'on met 50%
 - le centrage horizontal des incrustations ne tient pas compte de la largeur de l'objet
-- afficher la ves versions techniques des modules
 x ajouter le nom des équipes en incrustation
 x positionner les fanions et le score sur la vidéo
 - scroll sur une video qui est zoomée
@@ -22,7 +26,7 @@ x centrer verticalement le logo Mouzillon dans la barre de contrôle
 - cacher le menu si on choisi une valeur
 - proposer une valeur pour le replay
 - le titre "arret sur image" est masqué quand on n'a pas la frame du developpement ouverte (F12)
-- revoir le skin pour rendre transparent la barre de progression
+- Revoir le skin pour rendre transparent la barre de progression
 - Lire les actions depuis un fichier du même nom que la vidéo
 - Gérer une action qui attend une clic du joueur
 - Gérer une action qui affiche une faute que le joueur n'a pas vu

@@ -156,7 +156,8 @@ var mesActions = {
 
     allerA: function (ind) {
         encadreVideo(false);
-        getVideo().currentTime = actions[ind].indice;
+        seqCode = convertInSeqCode(actions[ind].indice);
+        getVideo().currentTime = seqCode;
     },
 
     fin: function (ind) {
@@ -168,6 +169,15 @@ var mesActions = {
         gestionCamps(2);	// changement de camp
     }
 
+}
+
+function convertInSeqCode(myTimeCode) {
+    var seqTab = myTimeCode.split(':');
+    var seq = parseFloat(seqTab[0]) * 3600;
+    seq += parseFloat(seqTab[1]) * 60;
+    seq += parseFloat(seqTab[2])
+    //console.log("seq", seq);
+	return seq;
 }
 
 // est appelé depuis l'IHM pour remonter la réponse
@@ -272,7 +282,7 @@ function fairplay(ind) {
 }
 
 function addScore(value) {
-    console.log("coucou");
+    //console.log("coucou");
     if (value === 0) {
         videoNbPoint = 0;
     } else {
@@ -281,7 +291,7 @@ function addScore(value) {
     var score = ('0' + videoNbPoint.toString()).substr(-2);       // on a le score avec deux digits
     var scoreMax = ('0' + nbQuests[0].points.toString()).substr(-2);
 
-    console.log('score', score, scoreMax);
+    //console.log('score', score, scoreMax);
 
     let myColor = ((videoNbPoint / nbQuests[0].points) > 0.5 ? 'green' : 'white');
     let myScore = '<span style="color:'+ myColor +';">' + score + '</span>';

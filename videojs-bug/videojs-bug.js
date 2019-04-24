@@ -23,7 +23,7 @@
       g=this
     }
     g.videojsBug = f()
-    console.log('INIT1', g);
+    //console.log('INIT1', g);
   }
 })
     
@@ -49,7 +49,7 @@
     }
     var i=typeof require=="function"&&require;
     for(var o=0;o<r.length;o++)s(r[o]);
-    console.log('INIT2', s);
+    //console.log('INIT2', s);
     return s
   })
 
@@ -73,13 +73,13 @@
       return function (Constructor, protoProps, staticProps) { 
         if (protoProps) defineProperties(Constructor.prototype, protoProps); 
         if (staticProps) defineProperties(Constructor, staticProps); 
-        console.log('INIT3', Constructor);
+        //console.log('INIT3', Constructor);
         return Constructor; 
       }; 
     }();
 
     function _classCallCheck(instance, Constructor) { 
-      console.log('CLIC4', instance, Constructor);
+      //console.log('CLIC4', instance, Constructor);
       // CLIC 4
       if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } 
     }
@@ -166,7 +166,7 @@
               break;
 
             default:
-            console.log("inconnu");
+            //console.log("inconnu");
           }
         
           // Possibly make it a link
@@ -187,7 +187,7 @@
           bugElement.style.opacity = options.opacity;
 
         //  if(options.padding.indexOf('c' < 0)) {
-          //  console.log("esd");
+          //  //console.log("esd");
             // on ne traite pas le padding pour les centrage horizontaux et verticaux
             bugElement.style.padding = options.padding;
          // }
@@ -203,7 +203,7 @@
 
     var validateOptions = function validateOptions(options) {
       // CLIC 3
-      console.log('CLIC3', options);
+      //console.log('CLIC3', options);
       // traitement éventuel de la position
      // for (var i=0; i < options.length; i++) {
         switch (options.position) {
@@ -244,10 +244,10 @@
      */
     var onPlayerReady = function onPlayerReady(player, options) {
       // CLIC 2
-      console.log('CLIC2', BugComponent);
+      //console.log('CLIC2', BugComponent);
        for (var i=0 ; i < options.length; i++) {
         validateOptions(options[i]);
-        console.log("options4", options[i]);
+        //console.log("options4", options[i]);
         videojs.registerComponent('BugComponent', BugComponent);  // MAJ faite pour gérer le tableau
         player.addChild('BugComponent', options[i], 1);  // Insert bug as first item after <video>:
        }
@@ -267,7 +267,7 @@
      */
     var bug = function bug(options) {
       // CLIC 1
-      console.log('CLIC1', options);
+      //console.log('CLIC1', options);
       var _this2 = this;  // structure de "video"
 
       // options = les objets passés par Bug (tableau)

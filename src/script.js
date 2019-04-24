@@ -106,17 +106,17 @@ function showIncrust2(value) {
 			let second = myVideo.options_.plugins.bug[i].position.substr(1,1);
 			if (first === 'c') {
 				// center vertical
-				console.log('avant', padBug);
+				//console.log('avant', padBug);
 				el2.style.padding = (middleY + 15) + "px " + padBug + " " + (middleY + 15) + "px " + padBug;	
-				console.log('après', padBug);
+				//console.log('après', padBug);
 				
 			}
 
 			if (second === 'c') {
 				// centrage horizontal
-				console.log('avant', padBug);
+				//console.log('avant', padBug);
 				el2.style.padding = padBug + " " + (middleX + 100) + "px " + padBug + " " + (middleX - 100) + "px";	
-				console.log('après', padBug);
+				//console.log('après', padBug);
 			}
 			el.classList.replace("vjs-bug-hide", "vjs-bug-show");
 		} else {
@@ -140,9 +140,9 @@ function showItem(id, state) {
 	if (myState === "show") {
 		(el.classList.contains("hide") ? el.classList.replace("hide", "show") : el.classList.add("show"));
 		if (id === "btnReplay") {
-			console.log("esd2");
+			//console.log("esd2");
 			myVideo.show("vjs-icon-replay");
-			console.log("esd");
+			//console.log("esd");
 		}
 	} else {
 		(el.classList.contains("show") ? el.classList.replace("show", "hide") : el.classList.add("hide"));	
@@ -166,7 +166,7 @@ function listeVideos(id) {
 		td2.innerHTML = content;
 		td2.style.backgroundSize = larg + " " + haut;
 		td2.style.backgroundRepeat = "no-repeat";
-		td2.style.backgroundImage = "url("+ (scenario[i][0].poster || "./images/pelouses/pelousemini.png") +")";
+		td2.style.backgroundImage = "url("+ ("./videos/" + scenario[i][0].poster || "./images/pelouses/pelousemini.png") +")";
 		td2.style.border = "white 3px solid";
 		td2.className = "thumb";
 		td2.setAttribute("onclick", 'switchVideo('+ scenario[i][0].id +');');	
@@ -406,14 +406,14 @@ function switchVideo(n) {
 
 		if (isDefineBVideoJS) {
 			myVideo.src({src: "./videos/" + video[0].fichier , type: "video/mp4"});
-			myVideo.poster(video[0].poster);
+			myVideo.poster("./videos/" + video[0].poster);
 		} else {
 			myVideo = videojs('myVideo', {
 				controls: true,
 				preload:  'none',
 				loop: false,
 				fluid: true,
-				poster: (video[0].poster || "./images/pelouses/pelousemini.png"),
+				poster: ("./videos/" + video[0].poster || "./images/pelouses/pelousemini.png"),
 				controlBar: {
 					volumeMenuButton: {
 					inline: false,
@@ -595,4 +595,19 @@ function user() {
 	}
 	while (!avatarOk);
 	document.getElementById("msgVideo").innerHTML = "Bonjour "+ avatar.toUpperCase() + ". Merci de sélectionner une vidéo ci-dessous";
+/*
+	var position=0;
+    var msg="Découvrir l'arbitrage en s'amusant";
+    var msg="     "+msg;
+    var longue=msg.length;
+    var fois=(70/msg.length)+1;
+    for(i=0;i<=fois;i++) msg+=msg;
+    function textdefil() {
+    document.form1.deftext.value=msg.substring(position,position+70);
+    position++;
+    if(position == longue) position=0;
+    setTimeout("textdefil()",100); 
+    }
+	window.onload = textdefil;
+	*/
 }
