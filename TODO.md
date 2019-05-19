@@ -5,26 +5,19 @@ https://www.w3.org/2010/05/video/mediaevents.html
 **************************************
                A FAIRE
 **************************************
-- intégrer un allerA dans la question ?
-x gérer l'indice 'allerA' au format 00:00:00
+- scroll sur une video qui est zoomée
 - avoir une animation pour les buts
 - avoir une animation pour la mi-temps (sifflet)
 - préparer la silhouette de l'équipement
 - ajouter un accès direct aux lois du jeu
 - ajouter un accès direct aux pictogrammes
-x affecter un niveau de competition au match
 - comment afficher un objet de videojs qui existe déjà par défaut
 - peut-on ajouter le register du plug seulement quand on en a besoin ?
 - gérer un peu mieux l'attribut "visibility" des éléments à incruster
 - le centrage vertical des incrustations est trop bas alors qu'on met 50%
 - le centrage horizontal des incrustations ne tient pas compte de la largeur de l'objet
-x ajouter le nom des équipes en incrustation
-x positionner les fanions et le score sur la vidéo
-- scroll sur une video qui est zoomée
-x centrer verticalement le logo Mouzillon dans la barre de contrôle
 - préparer un gestionnaire pour la génération du scénario
 - cacher le menu si on choisi une valeur
-- proposer une valeur pour le replay
 - le titre "arret sur image" est masqué quand on n'a pas la frame du developpement ouverte (F12)
 - Revoir le skin pour rendre transparent la barre de progression
 - Lire les actions depuis un fichier du même nom que la vidéo
@@ -36,6 +29,15 @@ x centrer verticalement le logo Mouzillon dans la barre de contrôle
 - formule quizz : questions et timer
 - gérer automatiquement la fin de la vidéo
 - rendre reactif une plage de vidéo pour donner des points à l'utilisateur
+
+x gérer l'indice 'allerA' au format 00:00:00
+x ajouter le nom des équipes en incrustation
+x positionner les fanions et le score sur la vidéo
+x centrer verticalement le logo Mouzillon dans la barre de contrôle
+x récupération de la position xy sur la zone de la vidéo
+x affecter un niveau de competition au match
+x intégrer un allerA dans la question et aux bonus
+x proposer une valeur pour le replay pour les questions (devient optionnel selon le type de question)
 
 **************************************
 calcul hauteur

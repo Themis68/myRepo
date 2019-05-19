@@ -207,19 +207,21 @@ droite: {
 - question : intéraction avec le joueur permettant de répondre à des questions avec des points à gagner. La vidéo s'arrête pour permettre de répondre.
 
     {
-        step: "00:00:10",
-        act: "bonus",
-        niveau: "CONFIRME",
-        libelle: "Quel est le bon geste pour que l'arbitre assistant indique un coup de pied de coin ?",
-        pict:"gestes_assistant.png",
-        attributs: ["A", "B", "C"],
-        reponse: 2,
-        libRep:"explication pour la réponse",
-        loi: "Loi_17",
-        points: 3
+        step: '00:00:05',
+        act: "question",
+        niveau: "DEBUTANT",
+        libelle: "Selon vous y-a-t-il hors-jeu des blanches ? ",
+        pict: "cartons.png",
+        attributs: ["Oui", "Non"],
+        reponse: 1,
+        libRep:"La joueuse de l'équipe Blanche qui reçoit le ballon est en position de hors-jeu",
+        loi: "Loi_11",
+        allerA: '00:00:50',
+        reculReplay: 2,
+        points: 2
     },
 
-    - Lignes optionnelles : pict, libRep, loi
+    - Lignes optionnelles : pict, libRep, loi, allerA, reculReplay
 
 - bonus : même type que 'question' mais les points sont donnés en plus des points prévus par les questions
     {
@@ -231,8 +233,13 @@ droite: {
         attributs: ["A", "C", "F", "D"],
         reponse: 4,
         libRep:"L'arbitre peut également lever le bras en direction du banc de touche",
+        loi: "Loi_11",
+        allerA: '00:00:50',
         points: 2
     },
+
+    - Lignes optionnelles : pict, libRep, loi, allerA
+
 - information : affichage d'une information. Dans le cas d'un Fair-Play il y a la possibilité d'interagir avec le joueur via un bouton qui rapporte des points
     - avec image
     {
@@ -246,18 +253,20 @@ droite: {
 
     - sans image
     {
-    step: "00:00:10",
-    act: "information",
-    niveau: "DEBUTANT",
-    libelle: "L'arbitre note alors le changement et peut vérifer les équipements éventuellement"
-    },
-- allerA : permet de faire des sauts dans la vidéo. Il est possible de programmer un saut vers l'arrière
-    {
         step: "00:00:10",
-        act: "allerA",
-        niveau: "CONFIRME",
-        indice: 2506
+        act: "information",
+        niveau: "DEBUTANT",
+        libelle: "L'arbitre note alors le changement et peut vérifer les équipements éventuellement"
     },
+
+- allerA : permet de faire un saut en fonction du niveau des questions
+    {
+        step: '00:00:03',
+        act: "allerA",
+        niveau: "DEBUTANT",
+        indice: '00:00:16'
+    },
+
 - fin : permet de préciser que l'on arrive à la fin de la vidéo
     {
         step: "00:00:10",

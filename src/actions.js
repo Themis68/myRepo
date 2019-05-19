@@ -58,7 +58,7 @@ var mesActions = {
         showZone("zSuite", true);
         showItem("btnContinuer", false);
         showItem("btnRepondre", true);
-        showItem("btnReplay", true);
+        showItem("btnReplay", (actions[ind].reculReplay || false));
         showItem("btnFairPlay", false);
     },
     
@@ -231,7 +231,7 @@ function mesReponses(ind) {
     showItem("zPropositions", false);
     showItem("btnRepondre", false);
     showItem("btnReplay", false);
-    showItem("btnContinuer", true);
+    showItem("btnContinuer", (actions[ind].allerA || true));
 }
 
 function changeLevel(level) {
@@ -248,22 +248,29 @@ function returnSelRadio(nbEl){
 	}
 }
 
-function continuer() {
+function continuer(param) {
     showItem("echange", false);
     showZone("zSuite", false); 
     encadreVideo(false);
     showZone("zConseiller", false);
     document._video.playbackRate = 1;   // vitesse normale
-    document._video.play(); // on reprend la lecture de la vidéo
+    if (param) {
+        // allerA
+        encadreVideo(false);
+        seqCode = convertInSeqCode(param);
+        getVideo().currentTime = seqCode;
+    }
+    document._video.play(); // on relance la video
 }
 
-function replay() {
+function replay(param) {
+    // param est le nombre de secondes à reculer sinon on prend la valeur par défaut
     addScore(-1);   // MAJ score
     showItem("echange", false);
     showZone("zSuite", false); 
     showZone("zConseiller", false);
     encadreVideo(true);
-    getVideo().currentTime = getVideo().currentTime - 2;    // on recule de 2 secondes
+    getVideo().currentTime = getVideo().currentTime - (param || 2); // on recule de X secondes
     document._video.playbackRate = 0.2; // on active le ralentis
     document._video.play(); // on reprend la lecture de la vidéo
 }

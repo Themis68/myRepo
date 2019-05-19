@@ -71,7 +71,7 @@ document.addEventListener("fullscreenchange", function( event ) {
 document.addEventListener("mousemove", function(event) {
 	// version simple
 	//document.addEventListener("mousemove", mouseHandler);	// suivi de la souris
-	
+
 	// suivi de la souris sur un objet particulier
 	if(event.srcElement.id === "myVideo_html5_api") { mouseHandler(event)};
 });
@@ -165,16 +165,27 @@ function showZone(id, state, isEnd) {
 	el.setAttribute("style","visibility:"+ myState +";" + (isEnd ? "border: solid chocolate 10px;" : "border:"));
 }
 
-function showItem(id, state) {
+function showItem(id, param) {
 	// gère les DIV qui ont "display:block"
-	let myState = (state === true ? "show" : "hide");
+	let myState = (param === false ? "hide" : "show");	// si on embarque une valeur particulière alors on met à true (cas de btnContinuer)
 	const el = document.getElementById(id);
 	if (myState === "show") {
 		(el.classList.contains("hide") ? el.classList.replace("hide", "show") : el.classList.add("show"));
-		if (id === "btnReplay") {
+		/*if (id === "btnReplay") {
 			//console.log("esd2");
 			myVideo.show("vjs-icon-replay");
 			//console.log("esd");
+		}*/
+
+		switch(id) {
+			case "btnReplay":
+				myVideo.show("vjs-icon-replay");
+				el.setAttribute("onclick", 'replay('+ (typeof param === "number" ? param : '') +');');
+				break;
+			
+			case "btnContinuer":
+				el.setAttribute("onclick", 'continuer('+ (typeof param === "string" ? "'" + param + "'": '') +');');	
+				break;
 		}
 	} else {
 		(el.classList.contains("show") ? el.classList.replace("show", "hide") : el.classList.add("hide"));	
