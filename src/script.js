@@ -532,10 +532,10 @@ function switchVideo(n) {
 						id:"vjs-bug-textScoreBug",
 						visibility: false,
 						height: "30px",
-						libelle: "SCORE DE " + avatar.toUpperCase() + "<br><span class=\"scoreBoard\">00 : " + nbQuests[0].points + "</span>",
+						libelle: "SCORE DE " + avatar.toUpperCase() + "&nbsp;&nbsp;<span class=\"scoreBoard\">00 : " + nbQuests[0].points + "</span>&nbsp;&nbsp;niveau " + nbQuests[niveauQuest].niv,
 						classeCSS: "vjs-bug-textScoreBug",
 						opacity: 1,
-						padding: '50px 45%',	// top et se combine avec le centrage horizontal
+						padding: '50px 38%',	// top et se combine avec le centrage horizontal
 						position: 'tc'
 					}, 
 					{

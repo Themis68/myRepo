@@ -306,7 +306,7 @@ function addScore(value) {
 
     if(document.getElementById('vjs-bug-textScoreBug')) {
         //le contrôle est nécessaire car l'objet est créé plus tard dans le process
-        document.getElementById("vjs-bug-textScoreBug").innerHTML = "SCORE DE " + avatar.toUpperCase() + "<br><span class=\"scoreBoard\">" + score + ':' + scoreMax + "</span>";     // score sur la vidéo
+        document.getElementById("vjs-bug-textScoreBug").innerHTML = "SCORE DE " + avatar.toUpperCase() + "&nbsp;&nbsp;<span class=\"scoreBoard\">" + score + ':' + scoreMax + "</span>&nbsp;&nbsp;niveau " + nbQuests[niveauQuest].niv;     // score sur la vidéo
     }
 }
 
