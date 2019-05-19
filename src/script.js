@@ -88,7 +88,7 @@ function init() {
 function getElementCSSSize(el) {
     var cs = window.getComputedStyle(el);
     var w = parseInt(cs.getPropertyValue("width"), 10);
-    var h = parseInt(cs.getPropertyValue("height"), 10);
+	var h = parseInt(cs.getPropertyValue("height"), 10);
     return {width: w, height: h}
 }
 
@@ -103,6 +103,10 @@ function mouseHandler(event) {
 		var y = ((event.clientY - rect.top ) * scaleY + 0.5)|0;
 			
 		console.log('x:', x, 'y:', y);
+
+		/*
+		ATTENTION : les zones superposées se retouvent au-dessus de la vidéo du coup quand on passe dessus on n'est plus sur la vidéo
+		*/
 }
 /*******************************************************/
 

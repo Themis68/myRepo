@@ -40,6 +40,11 @@ x intégrer un allerA dans la question et aux bonus
 x proposer une valeur pour le replay pour les questions (devient optionnel selon le type de question)
 
 **************************************
+URLs
+**************************************
+https://stackoverflow.com/questions/29522895/javascript-track-mouse-position-within-video
+
+**************************************
 calcul hauteur
 **************************************
 var el = document.getElementById('tonID');
