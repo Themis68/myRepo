@@ -68,11 +68,43 @@ document.addEventListener("fullscreenchange", function( event ) {
 	showIncrust(document.fullscreen);	// gère l'état de l'écran et donc l'incrustation
 });
 
+document.addEventListener("mousemove", function(event) {
+	// version simple
+	//document.addEventListener("mousemove", mouseHandler);	// suivi de la souris
+	
+	// suivi de la souris sur un objet particulier
+	if(event.srcElement.id === "myVideo_html5_api") { mouseHandler(event)};
+});
+
 function init() {
 	showZone("zConseiller", false);
 	document._video = document.getElementById("myVideo");
 	listeVideos("videos");					// créé la barre des vidéos disponibles
 }
+
+/*******************************************************/
+// gestion de la position de la souris
+
+function getElementCSSSize(el) {
+    var cs = window.getComputedStyle(el);
+    var w = parseInt(cs.getPropertyValue("width"), 10);
+    var h = parseInt(cs.getPropertyValue("height"), 10);
+    return {width: w, height: h}
+}
+
+function mouseHandler(event) {
+		var vd = document._video;
+		var size = getElementCSSSize(vd);
+		var scaleX = vd.videoWidth / size.width;
+		var scaleY = vd.videoHeight / size.height;
+
+		var rect = vd.getBoundingClientRect();  // absolute position of element
+		var x = ((event.clientX - rect.left) * scaleX + 0.5)|0; // round to integer
+		var y = ((event.clientY - rect.top ) * scaleY + 0.5)|0;
+			
+		console.log('x:', x, 'y:', y);
+}
+/*******************************************************/
 
 function showIncrust(value) {
 	for (var i=0; i < myVideo.options_.plugins.bug.length; i++) {
@@ -175,7 +207,7 @@ function listeVideos(id) {
 }
 
 function listeEvents(id, arrayEventDef) {
-	// intercepte tous les évènements pour les renseigner
+	// intercepte tous les évènements vidéos pour les renseigner
     for (let key in arrayEventDef) {
 		document._video.addEventListener(key, capture, false);
     }
@@ -259,6 +291,12 @@ function capture(event) {
 			}
 		}
 		media_events["currentTime"] = seq;	// MAJ de la valeur dans le scenario (pour info)
+		media_events["playing"] = 1;		// active la gestion de la souris
+		// contrôle déplacement souris
+
+	} else 
+	{
+		media_events["playing"] = 0;	// désactive la gestion de la souris
 	}
 	media_events[event.type]++;		// traitement : on augmente de 1
 	oldStep = seq;
