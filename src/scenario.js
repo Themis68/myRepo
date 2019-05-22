@@ -3,7 +3,7 @@ var scenario = [
         {
             id: 1,
             rencontre: "EM/Herbiers",
-            poster: "./videos/EMouz_Herbiers.png",
+            poster: "EMouz_Herbiers.png",
             fichier: "EM_Herbiers.mp4",
             description: "Match opposant Les Herbiers à l'Etoile Mouzillon en championnat R2F",
             competition: "R2F",
@@ -20,8 +20,8 @@ var scenario = [
             {
                 step: '00:00:03',
                 act: "allerA",
-                niveau: "CONFIRME",
-                indice: 16
+                niveau: "CONFIRMER",
+                indice: '00:00:18'
             },
             {
                 step: '00:00:05',
@@ -32,6 +32,7 @@ var scenario = [
                 reponse: 1,
                 libRep:"La joueuse de l'équipe Blanche qui reçoit le ballon est en position de hors-jeu",
                 loi: "Loi_11",
+                reculReplay: 2,
                 points: 2
             },
             {
@@ -43,13 +44,8 @@ var scenario = [
                 attributs: ["A", "C", "F", "D"],
                 reponse: 4,
                 libRep:"L'arbitre peut également lever le bras en direction du banc de touche",
+                allerA: '00:00:42',
                 points: 2
-            },
-            {
-                step: '00:00:17',
-                act: "allerA",
-                niveau: "DEBUTANT",
-                indice: 42
             },
             {
                 step: '00:00:21',
@@ -60,6 +56,7 @@ var scenario = [
                 reponse: 2,
                 libRep:"La joueuse de l'équipe Blanche qui transmet le ballon du but est en position de hors-jeu.",
                 loi: "Loi_11",
+                reculReplay: 3,
                 points: 2
             },
             {
@@ -89,6 +86,7 @@ var scenario = [
                 reponse: 1,
                 libRep:"Lors de la remise en jeu suite à une touche, la joueuse doit avoir les talons au sol et le ballon doit être placé dans le dos au départ du mouvement.",
                 loi: "Loi_15",
+                reculReplay: 2,
                 points: 3
             },
             {
@@ -100,6 +98,7 @@ var scenario = [
                 reponse: 2,
                 libRep:"Il indique de poursuire le jeu car il n'y a pas de faute caractérisée",
                 loi: "Loi_13",
+                reculReplay: 3,
                 points: 3
             },
             {
@@ -142,6 +141,7 @@ var scenario = [
                 reponse: 1,
                 libRep:"L'arbitre définit s'il y a besoin ou pas du soigneur auprès de la joueuse",
                 loi: "Loi_5",
+                reculReplay: 2,
                 points: 3
             },
             {
@@ -153,6 +153,7 @@ var scenario = [
                 reponse: 1,
                 libRep:"L'arbitre considère qu'il y a obstruction",
                 loi: "Loi_12",
+                reculReplay: 3,
                 points: 3
             },
             {
@@ -164,6 +165,7 @@ var scenario = [
                 reponse: 1,
                 libRep:"L'arbitre assistant tend son drapeau en direction du camp sanctionné. L'arbitre central confirme.",
                 loi: "Loi_15",
+                reculReplay: 3,
                 points: 2
             },
             {
@@ -218,6 +220,7 @@ var scenario = [
                 attributs: ["indique qu'il n'y a pas faute", "indique l'avantage aux blanches"],
                 reponse: 2,
                 libRep:"L'arbitre peu laisser le jeu se dérouler suite à une faute si le bénéficiaire est en possession du ballon",
+                reculReplay: 2,
                 points: 2
             },
             {
@@ -276,6 +279,7 @@ var scenario = [
                 reponse: 2,
                 libRep:"L'arbitre a d'abord vérifié si les rouges conservaient le ballon",
                 loi: "Loi_12",
+                reculReplay: 2,
                 points: 2
             },
             {
@@ -314,90 +318,6 @@ var scenario = [
             },
             {
                 step: '00:05:36',
-                act: "fin"
-            }
-        ]
-    ],
-    [
-        {
-            id: 3,
-            rencontre: "Pole/Ploufragan",
-            poster: "./videos/Pole_PloufraganMT1.png",
-            fichier: "Pole_PloufraganMT1.mp4",
-            description: "Match opposant Les pôles espoirs Pays de la loire et Bretagne - 1ère mi-temps",
-            competition: "interpôles",
-            gauche: {
-                nom: "Pôle Bretagne",
-                fanion: "ligueBretagne.png"
-            },
-            droite: {
-                nom: "Pôle Pays de la Loire",
-                fanion: "ligue2.png"
-            }
-        },
-        [               
-            {
-                step: '00:00:03',
-                act: "allerA",
-                niveau: "CONFIRME",
-                indice: 2506
-            },
-            {
-                step: '00:05:27',
-                act: "question",
-                niveau: "DEBUTANT",
-                libelle: "Comment l'arbitre va-t-il signaler la relance aux 6 mètres ?",
-                pict: "gestes_arbitre.png",
-                attributs: ["F", "A", "C"],
-                reponse: 3,
-                libRep:"L'arbitre se re-positionne pour suivre le jeu",
-                loi: "Loi_8",
-                points: 2
-            },
-            {
-                step: '00:41:40',
-                act: "fin"
-            }
-        ]
-    ],
-    [
-        {
-            id: 4,
-            rencontre: "Pole/Ploufragan",
-            poster: "./videos/Pole_PloufraganMT2.png",
-            fichier: "Pole_PloufraganMT2.mp4",
-            description: "Match opposant Les pôles espoirs Pays de la loire et Bretagne - 2ème mi-temps",
-            competition: "interpôles",
-            gauche: {
-                nom: "Pôle Pays de la Loire",
-                fanion: "ligue2.png"
-            },
-            droite: {
-                nom: "Pôle Bretagne",
-                fanion: "ligueBretagne.png"
-            }
-        },
-        [               
-            {
-                step: '00:00:03',
-                act: "allerA",
-                niveau: "CONFIRME",
-                indice: 2506
-            },
-            {
-                step: '00:05:27',
-                act: "question",
-                niveau: "DEBUTANT",
-                libelle: "Comment l'arbitre va-t-il signaler la relance aux 6 mètres ?",
-                pict: "gestes_arbitre.png",
-                attributs: ["F", "A", "C"],
-                reponse: 3,
-                libRep:"L'arbitre se re-positionne pour suivre le jeu",
-                loi: "Loi_8",
-                points: 2
-            },
-            {
-                step: '00:41:40',
                 act: "fin"
             }
         ]

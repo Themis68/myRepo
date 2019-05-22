@@ -58,7 +58,7 @@ var mesActions = {
         showZone("zSuite", true);
         showItem("btnContinuer", false);
         showItem("btnRepondre", true);
-        showItem("btnReplay", true);
+        showItem("btnReplay", (actions[ind].reculReplay || false));
         showItem("btnFairPlay", false);
     },
     
@@ -156,7 +156,8 @@ var mesActions = {
 
     allerA: function (ind) {
         encadreVideo(false);
-        getVideo().currentTime = actions[ind].indice;
+        seqCode = convertInSeqCode(actions[ind].indice);
+        getVideo().currentTime = seqCode;
     },
 
     fin: function (ind) {
@@ -168,6 +169,15 @@ var mesActions = {
         gestionCamps(2);	// changement de camp
     }
 
+}
+
+function convertInSeqCode(myTimeCode) {
+    var seqTab = myTimeCode.split(':');
+    var seq = parseFloat(seqTab[0]) * 3600;
+    seq += parseFloat(seqTab[1]) * 60;
+    seq += parseFloat(seqTab[2])
+    //console.log("seq", seq);
+	return seq;
 }
 
 // est appelé depuis l'IHM pour remonter la réponse
@@ -221,7 +231,7 @@ function mesReponses(ind) {
     showItem("zPropositions", false);
     showItem("btnRepondre", false);
     showItem("btnReplay", false);
-    showItem("btnContinuer", true);
+    showItem("btnContinuer", (actions[ind].allerA || true));
 }
 
 function changeLevel(level) {
@@ -238,22 +248,29 @@ function returnSelRadio(nbEl){
 	}
 }
 
-function continuer() {
+function continuer(param) {
     showItem("echange", false);
     showZone("zSuite", false); 
     encadreVideo(false);
     showZone("zConseiller", false);
     document._video.playbackRate = 1;   // vitesse normale
-    document._video.play(); // on reprend la lecture de la vidéo
+    if (param) {
+        // allerA
+        encadreVideo(false);
+        seqCode = convertInSeqCode(param);
+        getVideo().currentTime = seqCode;
+    }
+    document._video.play(); // on relance la video
 }
 
-function replay() {
+function replay(param) {
+    // param est le nombre de secondes à reculer sinon on prend la valeur par défaut
     addScore(-1);   // MAJ score
     showItem("echange", false);
     showZone("zSuite", false); 
     showZone("zConseiller", false);
     encadreVideo(true);
-    getVideo().currentTime = getVideo().currentTime - 2;    // on recule de 2 secondes
+    getVideo().currentTime = getVideo().currentTime - (param || 2); // on recule de X secondes
     document._video.playbackRate = 0.2; // on active le ralentis
     document._video.play(); // on reprend la lecture de la vidéo
 }
@@ -272,7 +289,7 @@ function fairplay(ind) {
 }
 
 function addScore(value) {
-    console.log("coucou");
+    //console.log("coucou");
     if (value === 0) {
         videoNbPoint = 0;
     } else {
@@ -281,7 +298,7 @@ function addScore(value) {
     var score = ('0' + videoNbPoint.toString()).substr(-2);       // on a le score avec deux digits
     var scoreMax = ('0' + nbQuests[0].points.toString()).substr(-2);
 
-    console.log('score', score, scoreMax);
+    //console.log('score', score, scoreMax);
 
     let myColor = ((videoNbPoint / nbQuests[0].points) > 0.5 ? 'green' : 'white');
     let myScore = '<span style="color:'+ myColor +';">' + score + '</span>';
@@ -289,7 +306,7 @@ function addScore(value) {
 
     if(document.getElementById('vjs-bug-textScoreBug')) {
         //le contrôle est nécessaire car l'objet est créé plus tard dans le process
-        document.getElementById("vjs-bug-textScoreBug").innerHTML = "SCORE DE " + avatar.toUpperCase() + "<br><span class=\"scoreBoard\">" + score + ':' + scoreMax + "</span>";     // score sur la vidéo
+        document.getElementById("vjs-bug-textScoreBug").innerHTML = "SCORE DE " + avatar.toUpperCase() + "&nbsp;&nbsp;<span class=\"scoreBoard\">" + score + ':' + scoreMax + "</span>&nbsp;&nbsp;niveau " + nbQuests[niveauQuest].niv;     // score sur la vidéo
     }
 }
 

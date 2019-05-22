@@ -31,6 +31,7 @@
   <script src="./src/actions.js"></script>
   <script src="./src/scenario.js"></script>
   <link href="./src/style.css" rel="stylesheet" type="text/css">
+
   
 </head>
 
@@ -55,6 +56,13 @@
     </div>
     <div class="zone">
       <div id="fondVideo">
+        <!--
+          <form name="form1">
+              <div align="center"> 
+              <input type="text" name="deftext" size=35>
+              </div>
+              </form>
+        -->
         <p class="accueil">
             <span class="titreAccueil">Arrêt sur Image !</span>
             <br>
@@ -81,10 +89,10 @@
       <div id="goulotte"></div>
       <div id="board" class="hide">
         <div class="zBoard">
-            <img id="btnLevel1" src="images/siffletOn.png" width="15%" height="15%" onclick="changeLevel(1);" />
-            <img id="btnLevel2" src="images/siffletOff.png" width="15%" height="15%" onclick="changeLevel(2);" />
-          <!--<input id="btnLevel1" type="button" value="DEBUTANT" onclick="changeLevel(1);">
-          <input id="btnLevel2" type="button" value="CONFIRME" onclick="changeLevel(2);">-->
+          <!--  <img id="btnLevel1" src="images/siffletOn.png" width="15%" height="15%" onclick="changeLevel(1);" />
+            <img id="btnLevel2" src="images/siffletOff.png" width="15%" height="15%" onclick="changeLevel(2);" />-->
+          <input id="btnLevel1" type="button" value="DEBUTANT" onclick="changeLevel(1);">
+          <input id="btnLevel2" type="button" value="CONFIRME" onclick="changeLevel(2);">
         </div>
         <div class="zBoard" id="score">
           <p id="textBoard">SCORE</p>
