@@ -11,6 +11,271 @@ var scenario = [
                 fanion: "ligueBretagne.png"
             },
             droite: {
+                nom: "Ligue Pays de La Loire (Bleu/Bleu)",
+                fanion: "Ligue2.png"
+            }
+        },
+        [               
+            {
+                step: '00:00:03',
+                act: "allerA",
+                niveau: "DEBUTANT",
+                indice: '00:02:00'
+            },
+            {
+                step: '00:02:06',
+                act: "question",
+                niveau: "DEBUTANT/CONFIRME",
+                libelle: "Touche",
+                pict: "<nom>.png",
+                attributs: ["val1", "val2", "valn"],
+                reponse: 1,
+                libRep:"description réponse",
+                loi: "Loi_15",
+                points: 1
+            },
+            {
+                step: '00:03:20',
+                act: "question",
+                niveau: "DEBUTANT/CONFIRME",
+                libelle: "Avantage : geste",
+                pict: "<nom>.png",
+                attributs: ["val1", "val2", "valn"],
+                reponse: 1,
+                libRep:"description réponse",
+                loi: "Loi_5",
+                points: 1
+            },
+            {
+                step: '00:03:25',
+                act: "allerA",
+                niveau: "DEBUTANT",
+                indice: '00:06:25'
+            },
+            {
+                step: '00:05:35',
+                act: "question",
+                niveau: "DEBUTANT/CONFIRME",
+                libelle: "Touche : mal faite",
+                pict: "<nom>.png",
+                attributs: ["val1", "val2", "valn"],
+                reponse: 1,
+                libRep:"description réponse",
+                loi: "Loi_15",
+                points: 1
+            },
+            {
+                step: '00:06:29',
+                act: "question",
+                niveau: "DEBUTANT/CONFIRME",
+                libelle: "Intervention soigneur",
+                pict: "<nom>.png",
+                attributs: ["val1", "val2", "valn"],
+                reponse: 1,
+                libRep:"description réponse",
+                loi: "Loi_5",
+                points: 1
+            },
+            {
+                step: '00:08:02',
+                act: "question",
+                niveau: "DEBUTANT/CONFIRME",
+                libelle: "Coup-Franc : position arbitre",
+                pict: "<nom>.png",
+                attributs: ["val1", "val2", "valn"],
+                reponse: 1,
+                libRep:"description réponse",
+                loi: "Loi_13",
+                points: 1
+            },
+            {
+                step: '00:10:06',
+                act: "question",
+                niveau: "DEBUTANT/CONFIRME",
+                libelle: "Coup-Franc : intervention arbitre assistant",
+                pict: "<nom>.png",
+                attributs: ["val1", "val2", "valn"],
+                reponse: 1,
+                libRep:"description réponse",
+                loi: "Loi_13",
+                points: 1
+            },
+            {
+                step: '00:12:03',
+                act: "question",
+                niveau: "DEBUTANT/CONFIRME",
+                libelle: "Avantage : jouer",
+                pict: "<nom>.png",
+                attributs: ["val1", "val2", "valn"],
+                reponse: 1,
+                libRep:"description réponse",
+                loi: "Loi_5",
+                points: 1
+            },
+            {
+                step: '00:13:16',
+                act: "question",
+                niveau: "DEBUTANT/CONFIRME",
+                libelle: "Coup-Franc",
+                pict: "<nom>.png",
+                attributs: ["val1", "val2", "valn"],
+                reponse: 1,
+                libRep:"description réponse",
+                loi: "Loi_13",
+                points: 1
+            },
+            {
+                step: '00:13:20',
+                act: "allerA",
+                niveau: "DEBUTANT",
+                indice: '00:17:40'
+            },
+            {
+                step: '00:17:51',
+                act: "question",
+                niveau: "DEBUTANT/CONFIRME",
+                libelle: "6 mètres",
+                pict: "<nom>.png",
+                attributs: ["val1", "val2", "valn"],
+                reponse: 1,
+                libRep:"description réponse",
+                loi: "Loi_16",
+                points: 1
+            },
+            {
+                step: '00:17:60',
+                act: "allerA",
+                niveau: "DEBUTANT",
+                indice: '00:23:35'
+            },
+            {
+                step: '00:23:45',
+                act: "information",
+                niveau: "DEBUTANT",
+                libelle: "BUT",
+                pict: "<nom>.png",
+                type: 'fairplay'
+            },
+            {
+                step: '00:24:13',
+                act: "question",
+                niveau: "DEBUTANT/CONFIRME",
+                libelle: "Engagement : pas bien fait",
+                pict: "<nom>.png",
+                attributs: ["val1", "val2", "valn"],
+                reponse: 1,
+                libRep:"description réponse",
+                loi: "Loi_8",
+                points: 1
+            },
+            {
+                step: '00:24:51',
+                act: "information",
+                niveau: "DEBUTANT",
+                libelle: "BUT",
+                pict: "<nom>.png",
+                type: 'fairplay'
+            },
+            {
+                step: '00:25:20',
+                act: "question",
+                niveau: "DEBUTANT/CONFIRME",
+                libelle: "Engagement : pas bien fait",
+                pict: "<nom>.png",
+                attributs: ["val1", "val2", "valn"],
+                reponse: 1,
+                libRep:"description réponse",
+                loi: "Loi_8",
+                points: 1
+            },
+            {
+                step: '00:25:58',
+                act: "information",
+                niveau: "DEBUTANT",
+                libelle: "BUT",
+                pict: "<nom>.png",
+                type: 'fairplay'
+            },
+            {
+                step: '00:26:00',
+                act: "allerA",
+                niveau: "DEBUTANT",
+                indice: '00:30:00'
+            },
+            {
+                step: '00:30:10',
+                act: "question",
+                niveau: "DEBUTANT/CONFIRME",
+                libelle: "Entre deux",
+                pict: "<nom>.png",
+                attributs: ["val1", "val2", "valn"],
+                reponse: 1,
+                libRep:"description réponse",
+                loi: "Loi_5",
+                points: 1
+            },
+            {
+                step: '00:32:36',
+                act: "question",
+                niveau: "DEBUTANT/CONFIRME",
+                libelle: "Coup-franc : intervention asiistant ++",
+                pict: "<nom>.png",
+                attributs: ["val1", "val2", "valn"],
+                reponse: 1,
+                libRep:"description réponse",
+                loi: "Loi_13",
+                points: 1
+            },
+            {
+                step: '00:33:30',
+                act: "question",
+                niveau: "DEBUTANT/CONFIRME",
+                libelle: "Main ? (utiliser ralentit)",
+                pict: "<nom>.png",
+                attributs: ["val1", "val2", "valn"],
+                reponse: 1,
+                libRep:"description réponse",
+                loi: "Loi_12",
+                points: 1
+            },
+            {
+                step: '00:34:35',
+                act: "question",
+                niveau: "DEBUTANT/CONFIRME",
+                libelle: "Pedagogie : position des bras dans le mur",
+                pict: "<nom>.png",
+                attributs: ["val1", "val2", "valn"],
+                reponse: 1,
+                libRep:"description réponse",
+                loi: "Loi_13",
+                points: 1
+            },
+            {
+                step: '00:35:00',
+                act: "question",
+                niveau: "DEBUTANT/CONFIRME",
+                libelle: "Corner",
+                pict: "<nom>.png",
+                attributs: ["val1", "val2", "valn"],
+                reponse: 1,
+                libRep:"description réponse",
+                loi: "Loi_17",
+                points: 1
+            },
+            {
+                step: '00:35:21',
+                act: "fin"
+            }
+        ]
+    ]
+    [
+        {
+            id: 2,
+            gauche: {
+                nom: "Ligue de Bretagne (Blanc/Marron)",
+                fanion: "ligueBretagne.png"
+            },
+            droite: {
                 nom: "Ligue Pays De la Loire (Bleu/Bleu)",
                 fanion: "Ligue2.png"
             }
