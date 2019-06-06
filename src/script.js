@@ -175,11 +175,6 @@ function showItem(id, param) {
 	const el = document.getElementById(id);
 	if (myState === "show") {
 		(el.classList.contains("hide") ? el.classList.replace("hide", "show") : el.classList.add("show"));
-		/*if (id === "btnReplay") {
-			//console.log("esd2");
-			myVideo.show("vjs-icon-replay");
-			//console.log("esd");
-		}*/
 
 		switch(id) {
 			case "btnReplay":
@@ -289,6 +284,7 @@ function capture(event) {
 				if (asWork > -1) {
 					switch(actions[asWork].act) {
 						case "question":
+						case "question2":
 						case "bonus":
 						case "information":
 						case "allerA":
@@ -379,11 +375,11 @@ function scanQuestion() {
 	nbQuests[2].points = 0;	// niveau confirmé
 	// scanne des actions et imputation des points ou pas
 	for (let ind = 0; ind < arrayAssoSize(actions); ind++) {
-		if(actions[ind].act === "question") {
+		if((actions[ind].act === "question") || (actions[ind].act === "question2")) {
 			// calcul du compteur
 				niv = (actions[ind].niveau === "DEBUTANT" ? 1: actions[ind].niveau === "CONFIRME" ? 2 : 0);
 				nbQuests[niv].nb++;	// nombre de questions
-				nbQuests[niv].points+= actions[ind].points;	// nombre de points MAX
+				nbQuests[niv].points+= actions[ind].reponse.points;	// nombre de points MAX
 		}
 	}
 }

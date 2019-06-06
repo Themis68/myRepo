@@ -5,12 +5,23 @@ https://www.w3.org/2010/05/video/mediaevents.html
 **************************************
                A FAIRE
 **************************************
+- prévoir un mode CREATION
+- afficher le score et le nom des équipe dnas le BOARD
+- paramétrer la couleur des incrustations (texte)
+- affeter un niveau de zoom aux questions
+- en replay ajouter un logo à l'écran
+- proposer un zoom auto lors d'une question sur une zone isolée
+- lors d'un allerA afficher une marque sur la vidéo pour indiquer le saut
+- lors d'un allerA intégré il faut le faire mais seulement après quelques secondes de films
+- cacher le bouton des points si on a une Information de type "but"
+- pour un but prévoir une animation et non une image
+
+- prévoir une porésentation vidéo au départ
+- proposer un QUIZZ sur la base de questions du fascicule
 - scroll sur une video qui est zoomée
-- avoir une animation pour les buts
 - avoir une animation pour la mi-temps (sifflet)
 - préparer la silhouette de l'équipement
 - ajouter un accès direct aux lois du jeu
-- ajouter un accès direct aux pictogrammes
 - comment afficher un objet de videojs qui existe déjà par défaut
 - peut-on ajouter le register du plug seulement quand on en a besoin ?
 - gérer un peu mieux l'attribut "visibility" des éléments à incruster
@@ -26,10 +37,10 @@ https://www.w3.org/2010/05/video/mediaevents.html
 - Gérer l'affichage des contrôles selon les besoins
 - information : Reste le problème de cacher le message et le bouton au bout d'un certain temps
 - afficher des messages lorsqu'on est en zoom écran
-- formule quizz : questions et timer
 - gérer automatiquement la fin de la vidéo
 - rendre reactif une plage de vidéo pour donner des points à l'utilisateur
 
+x prévoir une image pour la réponse différente que celle de la question
 x gérer l'indice 'allerA' au format 00:00:00
 x ajouter le nom des équipes en incrustation
 x positionner les fanions et le score sur la vidéo
