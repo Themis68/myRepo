@@ -68,11 +68,47 @@ document.addEventListener("fullscreenchange", function( event ) {
 	showIncrust(document.fullscreen);	// gère l'état de l'écran et donc l'incrustation
 });
 
+document.addEventListener("mousemove", function(event) {
+	// version simple
+	//document.addEventListener("mousemove", mouseHandler);	// suivi de la souris
+
+	// suivi de la souris sur un objet particulier
+	if(event.srcElement.id === "myVideo_html5_api") { mouseHandler(event)};
+});
+
 function init() {
 	showZone("zConseiller", false);
 	document._video = document.getElementById("myVideo");
 	listeVideos("videos");					// créé la barre des vidéos disponibles
 }
+
+/*******************************************************/
+// gestion de la position de la souris
+
+function getElementCSSSize(el) {
+    var cs = window.getComputedStyle(el);
+    var w = parseInt(cs.getPropertyValue("width"), 10);
+	var h = parseInt(cs.getPropertyValue("height"), 10);
+    return {width: w, height: h}
+}
+
+function mouseHandler(event) {
+		var vd = document._video;
+		var size = getElementCSSSize(vd);
+		var scaleX = vd.videoWidth / size.width;
+		var scaleY = vd.videoHeight / size.height;
+
+		var rect = vd.getBoundingClientRect();  // absolute position of element
+		var x = ((event.clientX - rect.left) * scaleX + 0.5)|0; // round to integer
+		var y = ((event.clientY - rect.top ) * scaleY + 0.5)|0;
+			
+		console.log('x:', x, 'y:', y);
+
+		/*
+		ATTENTION : les zones superposées se retouvent au-dessus de la vidéo du coup quand on passe dessus on n'est plus sur la vidéo
+		*/
+}
+/*******************************************************/
 
 function showIncrust(value) {
 	for (var i=0; i < myVideo.options_.plugins.bug.length; i++) {
@@ -106,17 +142,17 @@ function showIncrust2(value) {
 			let second = myVideo.options_.plugins.bug[i].position.substr(1,1);
 			if (first === 'c') {
 				// center vertical
-				console.log('avant', padBug);
+				//console.log('avant', padBug);
 				el2.style.padding = (middleY + 15) + "px " + padBug + " " + (middleY + 15) + "px " + padBug;	
-				console.log('après', padBug);
+				//console.log('après', padBug);
 				
 			}
 
 			if (second === 'c') {
 				// centrage horizontal
-				console.log('avant', padBug);
+				//console.log('avant', padBug);
 				el2.style.padding = padBug + " " + (middleX + 100) + "px " + padBug + " " + (middleX - 100) + "px";	
-				console.log('après', padBug);
+				//console.log('après', padBug);
 			}
 			el.classList.replace("vjs-bug-hide", "vjs-bug-show");
 		} else {
@@ -133,16 +169,22 @@ function showZone(id, state, isEnd) {
 	el.setAttribute("style","visibility:"+ myState +";" + (isEnd ? "border: solid chocolate 10px;" : "border:"));
 }
 
-function showItem(id, state) {
+function showItem(id, param) {
 	// gère les DIV qui ont "display:block"
-	let myState = (state === true ? "show" : "hide");
+	let myState = (param === false ? "hide" : "show");	// si on embarque une valeur particulière alors on met à true (cas de btnContinuer)
 	const el = document.getElementById(id);
 	if (myState === "show") {
 		(el.classList.contains("hide") ? el.classList.replace("hide", "show") : el.classList.add("show"));
-		if (id === "btnReplay") {
-			console.log("esd2");
-			myVideo.show("vjs-icon-replay");
-			console.log("esd");
+
+		switch(id) {
+			case "btnReplay":
+				myVideo.show("vjs-icon-replay");
+				el.setAttribute("onclick", 'replay('+ (typeof param === "number" ? param : '') +');');
+				break;
+			
+			case "btnContinuer":
+				el.setAttribute("onclick", 'continuer('+ (typeof param === "string" ? "'" + param + "'": '') +');');	
+				break;
 		}
 	} else {
 		(el.classList.contains("show") ? el.classList.replace("show", "hide") : el.classList.add("hide"));	
@@ -166,7 +208,7 @@ function listeVideos(id) {
 		td2.innerHTML = content;
 		td2.style.backgroundSize = larg + " " + haut;
 		td2.style.backgroundRepeat = "no-repeat";
-		td2.style.backgroundImage = "url("+ (scenario[i][0].poster || "./images/pelouses/pelousemini.png") +")";
+		td2.style.backgroundImage = "url("+ ("./videos/" + scenario[i][0].poster || "./images/pelouses/pelousemini.png") +")";
 		td2.style.border = "white 3px solid";
 		td2.className = "thumb";
 		td2.setAttribute("onclick", 'switchVideo('+ scenario[i][0].id +');');	
@@ -175,7 +217,7 @@ function listeVideos(id) {
 }
 
 function listeEvents(id, arrayEventDef) {
-	// intercepte tous les évènements pour les renseigner
+	// intercepte tous les évènements vidéos pour les renseigner
     for (let key in arrayEventDef) {
 		document._video.addEventListener(key, capture, false);
     }
@@ -242,6 +284,7 @@ function capture(event) {
 				if (asWork > -1) {
 					switch(actions[asWork].act) {
 						case "question":
+						case "question2":
 						case "bonus":
 						case "information":
 						case "allerA":
@@ -259,6 +302,12 @@ function capture(event) {
 			}
 		}
 		media_events["currentTime"] = seq;	// MAJ de la valeur dans le scenario (pour info)
+		media_events["playing"] = 1;		// active la gestion de la souris
+		// contrôle déplacement souris
+
+	} else 
+	{
+		media_events["playing"] = 0;	// désactive la gestion de la souris
 	}
 	media_events[event.type]++;		// traitement : on augmente de 1
 	oldStep = seq;
@@ -326,11 +375,11 @@ function scanQuestion() {
 	nbQuests[2].points = 0;	// niveau confirmé
 	// scanne des actions et imputation des points ou pas
 	for (let ind = 0; ind < arrayAssoSize(actions); ind++) {
-		if(actions[ind].act === "question") {
+		if((actions[ind].act === "question") || (actions[ind].act === "question2")) {
 			// calcul du compteur
 				niv = (actions[ind].niveau === "DEBUTANT" ? 1: actions[ind].niveau === "CONFIRME" ? 2 : 0);
 				nbQuests[niv].nb++;	// nombre de questions
-				nbQuests[niv].points+= actions[ind].points;	// nombre de points MAX
+				nbQuests[niv].points+= actions[ind].reponse.points;	// nombre de points MAX
 		}
 	}
 }
@@ -406,14 +455,14 @@ function switchVideo(n) {
 
 		if (isDefineBVideoJS) {
 			myVideo.src({src: "./videos/" + video[0].fichier , type: "video/mp4"});
-			myVideo.poster(video[0].poster);
+			myVideo.poster("./videos/" + video[0].poster);
 		} else {
 			myVideo = videojs('myVideo', {
 				controls: true,
 				preload:  'none',
 				loop: false,
 				fluid: true,
-				poster: (video[0].poster || "./images/pelouses/pelousemini.png"),
+				poster: ("./videos/" + video[0].poster || "./images/pelouses/pelousemini.png"),
 				controlBar: {
 					volumeMenuButton: {
 					inline: false,
@@ -483,10 +532,10 @@ function switchVideo(n) {
 						id:"vjs-bug-textScoreBug",
 						visibility: false,
 						height: "30px",
-						libelle: "SCORE DE " + avatar.toUpperCase() + "<br><span class=\"scoreBoard\">00 : " + nbQuests[0].points + "</span>",
+						libelle: "SCORE DE " + avatar.toUpperCase() + "&nbsp;&nbsp;<span class=\"scoreBoard\">00 : " + nbQuests[0].points + "</span>&nbsp;&nbsp;niveau " + nbQuests[niveauQuest].niv,
 						classeCSS: "vjs-bug-textScoreBug",
 						opacity: 1,
-						padding: '50px 45%',	// top et se combine avec le centrage horizontal
+						padding: '50px 38%',	// top et se combine avec le centrage horizontal
 						position: 'tc'
 					}, 
 					{
@@ -595,4 +644,19 @@ function user() {
 	}
 	while (!avatarOk);
 	document.getElementById("msgVideo").innerHTML = "Bonjour "+ avatar.toUpperCase() + ". Merci de sélectionner une vidéo ci-dessous";
+/*
+	var position=0;
+    var msg="Découvrir l'arbitrage en s'amusant";
+    var msg="     "+msg;
+    var longue=msg.length;
+    var fois=(70/msg.length)+1;
+    for(i=0;i<=fois;i++) msg+=msg;
+    function textdefil() {
+    document.form1.deftext.value=msg.substring(position,position+70);
+    position++;
+    if(position == longue) position=0;
+    setTimeout("textdefil()",100); 
+    }
+	window.onload = textdefil;
+	*/
 }

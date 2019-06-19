@@ -81,10 +81,10 @@
       <div id="goulotte"></div>
       <div id="board" class="hide">
         <div class="zBoard">
-            <img id="btnLevel1" src="images/siffletOn.png" width="15%" height="15%" onclick="changeLevel(1);" />
-            <img id="btnLevel2" src="images/siffletOff.png" width="15%" height="15%" onclick="changeLevel(2);" />
-          <!--<input id="btnLevel1" type="button" value="DEBUTANT" onclick="changeLevel(1);">
-          <input id="btnLevel2" type="button" value="CONFIRME" onclick="changeLevel(2);">-->
+          <!--  <img id="btnLevel1" src="images/siffletOn.png" width="15%" height="15%" onclick="changeLevel(1);" />
+            <img id="btnLevel2" src="images/siffletOff.png" width="15%" height="15%" onclick="changeLevel(2);" />-->
+          <input id="btnLevel1" type="button" value="DEBUTANT" onclick="changeLevel(1);">
+          <input id="btnLevel2" type="button" value="CONFIRME" onclick="changeLevel(2);">
         </div>
         <div class="zBoard" id="score">
           <p id="textBoard">SCORE</p>
@@ -96,7 +96,8 @@
           </div>
           <div id="zMessage">
             <p id="message"></p>
-            <div class="pict2"><img id="myPict" width="80%" height="80%" src="" /></div>
+            <div class="pict2"><img id="myPictQ" src="" /></div>
+           <!-- <div class="pict2"><img id="myPictR" src="" /></div>-->
             <div id="zPropositions"></div>
             <div id="zLoi">
               <a id="loi"></a>
@@ -106,7 +107,7 @@
         <div class="zBoard" id="zSuite">
           <input id="btnContinuer" type="button" value="CONTINUER" onclick="continuer();">
           <input id="btnReplay" type="button" value="REPLAY (-1 pt)" onclick="replay();">
-          <input id="btnFairPlay" type="button" value="+1 point" onclick="fairplay();">
+          <input id="btnBonus" type="button" value="+1 point" onclick="fairplay();">
           <input id="btnRepondre" type="button" value="REPONDRE">
         </div>
       </div>

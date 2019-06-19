@@ -316,11 +316,12 @@ video {
 .scoreBoard { /* incrustation */
   font-family: scoreboardregular;
   font-size: 24pt;
-  color: white;
   margin-top: 6px;
+  text-transform:none;
+  color: white;
 }
 
-#btnLevel , #btnContinuer, #btnRepondre, #btnReplay, #btnFairPlay {
+#btnLevel , #btnContinuer, #btnRepondre, #btnReplay, #btnBonus {
   font-family: passion_oneregular;
   font-size: 18pt;
   color: white;
