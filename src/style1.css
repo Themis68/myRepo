@@ -1,0 +1,22 @@
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 0 0 0 0;
+}
+
+nav {
+  background-color: beige;
+  margin-bottom: auto;
+}
+
+content {
+  background-color: greenyellow;
+}
+
+footer {
+  background-color: blueviolet;
+  margin-top: auto;
+}
