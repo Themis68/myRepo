@@ -1,22 +1,16 @@
-body {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  margin: 0 0 0 0;
-}
-
 nav {
   background-color: beige;
-  margin-bottom: auto;
+  margin-bottom: auto;    /* cale en haut */
+  height: 100px;          /* hauteur fixe */
 }
 
 content {
   background-color: greenyellow;
+  flex-grow: 1;           /* hauteur restante */
 }
 
 footer {
   background-color: blueviolet;
-  margin-top: auto;
+  margin-top: auto;       /* cale en bas */
+  height: 3em;            /* hauteur fixe */
 }
