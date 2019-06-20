@@ -26,13 +26,7 @@ html, body {
   width: 100%;
   height: 100%;
   margin: 0;
-  padding: 10px;          /* laisse un espace extérieur : pas d'ascenseur du coup verticalement
-
-  display: flex;            /* actice les flexbox */
-  flex-direction: column;   /* affichage en vertical des DIV */
-  justify-content: center;  /* on centre verticalement */
-  align-items: center;      /* on centre horizontalement */
-  flex-wrap: wrap;          /* on autirise à aller à la ligne et on peut gérer les align-item */
+  padding: 10px;          /* laisse un espace extérieur : pas d'ascenseur du coup verticalement*/
 }
 
 .video-js {

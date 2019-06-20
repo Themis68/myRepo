@@ -1,7 +1,17 @@
+body {
+  display: flex;            /* actice les flexbox */
+  flex-direction: column;   /* affichage en vertical des DIV */
+  justify-content: center;  /* on centre verticalement */
+  align-items: center;      /* on centre horizontalement */
+  flex-wrap: wrap;          /* on autirise à aller à la ligne et on peut gérer les align-item */
+}
 nav {
   background-color: beige;
   margin-bottom: auto;    /* cale en haut */
-  height: 100px;          /* hauteur fixe */
+  padding: 5px;           /* prend la hauteur en fonction de la taille des images du carousel*/
+  border-radius: 10px;
+  flex-direction: row;
+  justify-content: center;  /* on centre horizontalement */
 }
 
 content {
