@@ -6,11 +6,11 @@ body {
   flex-wrap: wrap;          /* on autirise à aller à la ligne et on peut gérer les align-item */
 }
 nav {
-  background-color: beige;
-  margin-bottom: auto;    /* cale en haut */
-  padding: 5px;           /* prend la hauteur en fonction de la taille des images du carousel*/
-  border-radius: 10px;
-  flex-direction: row;
+  background-color: transparent;
+  margin-bottom: auto;      /* cale en haut */
+  padding: 5px;             /* créé une marge autour des images*/
+  border-radius: 10px;      /* arrondi les container des images */
+  flex-direction: row;      /* alignement horizontal */
   justify-content: center;  /* on centre horizontalement */
 }
 

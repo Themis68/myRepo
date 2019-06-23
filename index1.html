@@ -6,80 +6,55 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta charset="utf-8" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-  <title>Arrêt sur image !</title>
-  <script>window.HELP_IMPROVE_VIDEOJS = false;</script>
-
-  <script type="text/javascript" src="./video.js/dist/video.min.js"></script>
-  <link href="./video.js/dist/video-js.css" rel="stylesheet" type="text/css">
-
-  <script type="text/javascript" src="./videojs-brand/videojs-brand.js">
-    videojs.registerPlugin('brand', videojs-brand);
-  </script>
-  <link href="./videojs-brand/videojs-brand.css" rel="stylesheet" type="text/css">
-
-  <script type="text/javascript" src="./videojs-zoom/videojs-zoom.js">
-    videojs.registerPlugin('videoJsZoom', videojs-zoom);
-  </script>
-  <link href="./videojs-zoom/videojs-zoom.css" rel="stylesheet" type="text/css">
-
-  <script type="text/javascript" src="./videojs-bug/videojs-bug.js">
-    videojs.registerPlugin('videojs-bug', videojs-bug);
-  </script>
-  <link href="./videojs-bug/videojs-bug.css" rel="stylesheet" type="text/css">
-
-  <script src="./src/script.js"></script>
-  <script src="./src/actions.js"></script>
-  <script src="./src/scenario.js"></script>
-  <link href="./src/style.css" rel="stylesheet" type="text/css">
-
   <!-- Séquence : Conserver l'ordre de chargement ci-dessous -->
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-  
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-  <link href="./src/animate.css" rel="stylesheet" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  
+<script src="./src/carousel.js"></script>
+  <!--<link href="./src/animate.css" rel="stylesheet" type="text/css">-->
   <link href="./src/carousel.css" rel="stylesheet" type="text/css">
   <!-- fin séquence -->
 </head>
 
-<body background="images/stade.jpg" onLoad="user();">
-  <nav>
-        	<div class="container-fluid">
-        		<div id="carousel-example" class="carousel slide" data-ride="carousel">
-        			<div class="carousel-inner row w-100 mx-auto" role="listbox">
-        			<div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3">
-							<img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(63).jpg" class="img-fluid mx-auto d-block" alt="img4">
-						</div><div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3">
-							<img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(8).jpg" class="img-fluid mx-auto d-block" alt="img5">
-						</div><div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3">
-							<img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(26).jpg" class="img-fluid mx-auto d-block" alt="img6">
-						</div><div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3 active">
-							<img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(38).jpg" class="img-fluid mx-auto d-block" alt="img7">
-						</div><div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3">
-							<img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(42).jpg" class="img-fluid mx-auto d-block" alt="img8">
-						</div><div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3">
-							<img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(19).jpg" class="img-fluid mx-auto d-block" alt="img1">
-						</div><div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3">
-							<img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(59).jpg" class="img-fluid mx-auto d-block" alt="img2">
-						</div><div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3">
-							<img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(64).jpg" class="img-fluid mx-auto d-block" alt="img3">
-						</div></div>
-        			<a class="carousel-control-prev" href="#carousel-example" role="button" data-slide="prev">
-						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-						<span class="sr-only">Previous</span>
-					</a>
-					<a class="carousel-control-next" href="#carousel-example" role="button" data-slide="next">
-						<span class="carousel-control-next-icon" aria-hidden="true"></span>
-						<span class="sr-only">Next</span>
-					</a>
-        		</div>
-        	</div>
-</nav>
- 
-   
-   <content>content</content>
-   <footer>footer</footer>
+<body background="images/stade.jpg">
+    <div class="container-fluid">
+      <div id="carousel-example" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner row w-100 mx-auto" role="listbox">
+          <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3">
+          <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(63).jpg" class="img-fluid mx-auto d-block" alt="img4">
+          </div>
+          <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3">
+            <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(8).jpg" class="img-fluid mx-auto d-block" alt="img5">
+          </div>
+          <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3">
+            <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(26).jpg" class="img-fluid mx-auto d-block" alt="img6">
+          </div>
+          <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3 active">
+            <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(38).jpg" class="img-fluid mx-auto d-block" alt="img7">
+          </div>
+          <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3">
+            <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(42).jpg" class="img-fluid mx-auto d-block" alt="img8">
+          </div>
+          <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3">
+            <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(19).jpg" class="img-fluid mx-auto d-block" alt="img1">
+          </div>
+          <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3">
+            <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(59).jpg" class="img-fluid mx-auto d-block" alt="img2">
+          </div>
+          <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3">
+            <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(64).jpg" class="img-fluid mx-auto d-block" alt="img3">
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#carousel-example" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carousel-example" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    </div>
 </body>
 
 </html>
