@@ -13,44 +13,16 @@ Les queries gèrent l'affichage des images
 
 */
 
-@media (min-width: 768px) {
-  
-    /* show 3rd of 3 item slide */
-  .carousel-inner .active + .carousel-item + .carousel-item {
-        display: block;
-    }
- 
-    .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left) + .carousel-item + .carousel-item {
-        transition: none;
-    }
-  
-    
-    .carousel-inner .carousel-item-next {
-      position: relative;
-      transform: translate3d(0, 0, 0);
-    }
-    
-    
-    /* left or forward direction */
-    .carousel-item-next.carousel-item-left + .carousel-item + .carousel-item + .carousel-item {
-        position: relative;
-        transform: translate3d(-100%, 0, 0);
-        visibility: visible;
-    }
-    
-    /* right or prev direction */
-    .carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item + .carousel-item {
-        position: relative;
-        transform: translate3d(100%, 0, 0);
-        visibility: visible;
-        display: block;
-        visibility: visible;
+.carousel {
+    max-width: auto;
+    height: 200px;
     }
 
-}
+.carousel-inner img-fluid {
+    width: 100%;
+    height: auto;
+    }
 
-/* ajouts Paulo */
-/*img { max-width: 100%; }*/
 
 .img-fluid {
     border-radius: 10px;        /* arrondi des images */
