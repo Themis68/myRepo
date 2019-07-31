@@ -1,0 +1,82 @@
+@import url(./src/typo/scoreboard/stylesheet.css);
+@import url(./src/typo/passion_one/stylesheet.css);
+
+/*! minireset.css v0.0.3 | MIT License | github.com/jgthms/minireset.css */html,body,p,ol,ul,li,dl,dt,dd,blockquote,figure,fieldset,legend,textarea,pre,iframe,hr,h1,h2,h3,h4,h5,h6{margin:0;padding:0}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal}ul{list-style:none}button,input,select,textarea{margin:0}html{box-sizing:border-box}*,*:before,*:after{box-sizing:inherit}img,embed,iframe,object,audio,video{height:auto;max-width:100%}iframe{border:0}table{border-collapse:collapse;border-spacing:0}td,th{padding:0;text-align:left}
+
+/* font-size: 100%; // this is usually 16px by default */
+
+/*
+ display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+     width: 100%;
+    margin: 0px;          pas d'ascenseurs du coup 
+    padding: 0px;          on prend toute la surface 
+
+    @media only screen and (max-device-width: 250px) {
+	html { font-size: 150%;  16px  }
+}
+    */
+
+html {
+    font-family: passion_oneregular;    /* police par défaut */
+}
+
+body {
+    min-height: 100vh;      /* hauteur maximum */
+    display: flex;
+    flex-direction: column;     /* alignement vertical des zones */
+}
+
+
+main {
+    display: flex;
+    flex-direction: column;     /* alignement vertical des zones */
+    align-items: center;
+
+    flex: 1;  /* prend toute la hauteur restante */
+
+    background-image: url("./images/pelouses/stade3.jpg");
+    background-repeat: no-repeat;
+    background-position: center; 
+    background-size: cover;     /* couvre tout l'écran */
+}
+
+header {
+    padding-top: 1em;   /* on laisse une heuteur de ligne */
+    font-family: scoreboardregular;
+    font-size: 5vw; /* taille variable selon largeur du viewport */
+    color:white;
+}
+
+section {
+    font-size: 2vw; /* taille variable selon largeur du viewport */
+    color:white;
+}
+
+menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100vw;   /* permet d'étaler la lerageur sur les 3 objets*/
+
+    font-size: 3vw; /* taille variable selon largeur du viewport */
+    color:white;
+}
+
+module {
+    border-radius: 50%;
+    background-color: red;
+    width: 200px;
+    height: 200px;
+}
+
+footer {
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: 2rem;       /* hauteur = 2 lignes de texte */
+    background-color: midnightblue; 
+    color:white;
+}
+
