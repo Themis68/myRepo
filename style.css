@@ -58,8 +58,8 @@ section {
 menu {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
-    width: 100vw;   /* permet d'étaler la lerageur sur les 3 objets*/
+    justify-content: space-evenly;  /* permet d'étaler les objets sur la largeur*/
+    width: 80vw;   /* on limite l'étalement des objets en largeur*/
 
     font-size: 3vw; /* taille variable selon largeur du viewport */
     color:white;
@@ -67,9 +67,15 @@ menu {
 
 module {
     border-radius: 50%;
-    background-color: red;
-    width: 200px;
-    height: 200px;
+    background-image: url("./images/stade.jpg");
+    background-repeat: no-repeat;
+    background-position: center; 
+    background-size: cover;     /* couvre tout l'écran */
+
+    width: 10vw;
+    height: 10vw;
+
+    font-size: 2.5vw; /* taille variable selon largeur du viewport */
 }
 
 footer {
@@ -78,5 +84,6 @@ footer {
     flex-basis: 2rem;       /* hauteur = 2 lignes de texte */
     background-color: midnightblue; 
     color:white;
+    font-size: 1vw; /* taille variable selon largeur du viewport */
 }
 
