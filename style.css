@@ -72,16 +72,19 @@ module a {
 
 module a:hover {
     text-decoration: none;
-    color: yellowgreen;
     font-size: 3vw;
+    font-weight: bolder;
+    color: white;
 }
 
 footer {
     flex-grow: 0;
     flex-shrink: 0;
-    flex-basis: 2rem;       /* hauteur = 2 lignes de texte */
+    flex-basis: 2.5rem;       /* hauteur = 2 lignes de texte */
     background-color: midnightblue; 
     color:white;
+    padding-top: 5px;
+    padding-left: 5px;
     font-size: 1vw; /* taille variable selon largeur du viewport */
 }
 
