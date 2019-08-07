@@ -31,12 +31,12 @@ main {
 }
 
 main.init{
-    padding-top: 1em;   /* on laisse une heuteur de ligne */
+    padding-top: 1em;   /* on laisse une heuteur de ligne haute pour la page d'accueil */
     font-size: 3vw; /* taille variable selon largeur du viewport */
 }
 
 main.video{
-    padding-top: 0.5em;   /* on laisse une heuteur de ligne */
+    padding-top: 0.5em;   /* on laisse une heuteur de ligne plus courte que la page d'accueil */
 }
 
 header {
@@ -60,6 +60,7 @@ menu {
 
 main.video menu {
     width: 50vw;   /* on limite l'étalement des objets en largeur*/
+    padding-inline-start: 0px;  /* centre la zone du carousel */
 }
 
 module {
@@ -90,11 +91,11 @@ module a:hover {
 footer {
     flex-grow: 0;
     flex-shrink: 0;
-    flex-basis: 2.5rem;       /* hauteur = 2 lignes de texte */
     background-color: midnightblue; 
     color:white;
     padding-top: 5px;
     padding-left: 5px;
     font-size: 1vw; /* taille variable selon largeur du viewport */
+    flex-basis: 2.5rem;       /* hauteur = 2 lignes de texte */
 }
 

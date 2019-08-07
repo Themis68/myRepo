@@ -22,6 +22,45 @@ Plusieurs zones sont alors proposées :
 ********************************
 Zone Liste des vidéos
 ********************************
+On utilise un CAROUSEL
+
+CAROUSEL
+********************************
+<div class="container-fluid">   // définition du contenant
+    - définition zone
+    <div id="carousel-example"  // idnetifie le Carousel
+        class="carousel slide"  // définit les transitions
+        data-ride="carousel"    // définit les transitions
+        data-interval="false"> // pas de défilement automatique
+    </div>
+    - indicateurs des vignettes
+    <div class="carousel-indicators">   // affichera des signes qui permettront de sélectionner une des vignettes directement même si elle est masquée
+        <li data-target="#carousel-example" 
+            data-slide-to="0"   // rang de l'image dans la séquence
+            class="active"></li>  // indicateur qui s'affichera le premier à gauche
+        <li data-target="#carousel-example" data-slide-to="1"></li>
+    </div>
+    - vignettes dans le carousel
+    <div class="carousel-inner row w-100 mx-auto"       // orientation et largeur de zone
+        role="listbox">     // ?
+        <div class="carousel-item col-12 col-sm-6 col-md-4 col-lg-3     // attrobuts de taile selon le media-view
+            active">    //  // vignette qui s'affichera la première à gauche
+            <img src="./videos/EMouz_Bauge.png" class="img-fluid mx-auto d-block" alt="img4" title="img4">
+            <div class="carousel-caption d-none d-md-block">    // titre de la vignette
+                <p>Mouzillon<br>Bauge</p>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carousel-example" role="button" data-slide="prev">  // bouton de défilement gauche
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carousel-example" role="button" data-slide="next">  // bouton de défilement droit
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</div>
+
 Affiche le nom du joueur
 Liste les vidéos disponibles en se basant sur le contenu du fichier scenario.js 
 en créant une vignette composée de : fanions des équipes et le poster en miniature

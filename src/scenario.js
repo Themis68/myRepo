@@ -7,11 +7,11 @@ var scenario = [
             fichier: "Pole_PloufraganMT1.mp4",
             description: "Match amical opposant Les Pôles espoirs des Ligues de Bretagne et des Pays de La Loire",
             gauche: {
-                nom: "Ligue de Bretagne (Blanc/Marron)",
+                nom: "Ligue de Bretagne",
                 fanion: "ligueBretagne.png"
             },
             droite: {
-                nom: "Ligue Pays De la Loire (Bleu/Bleu)",
+                nom: "Ligue Pays De la Loire",
                 fanion: "Ligue2.png"
             }
         },
@@ -398,6 +398,108 @@ var scenario = [
             {
                 step: '00:35:16',
                 act: "fin"
+            }
+        ]
+    ],
+    [
+        {
+            id: 2,
+            rencontre: "PDLL/Bretagne",
+            poster: "Pole_PloufraganMT2.png",
+            fichier: "Pole_PloufraganMT2.mp4",
+            description: "Match amical opposant Les Pôles espoirs des Ligues de Bretagne et des Pays de La Loire",
+            gauche: {                
+                nom: "Ligue Pays De la Loire",
+                fanion: "Ligue2.png"
+            },
+            droite: {
+                nom: "Ligue de Bretagne",
+                fanion: "ligueBretagne.png"
+            }
+        },
+        [               
+            {
+                step: '00:00:01',
+                act: "question",
+                niveau: "DEBUTANT",
+                question: {
+                    libelle: "Quelle règle liée à l'équipement des joueurs n'est pas respectée ?"
+                },
+                attributs: ["les maillots doivent êtres dans les shorts", "Les cuissardes doivent êtres de la couleur dominante du short"],
+                reponse: {
+                    solution: 1,
+                    libelle: "Plusieurs joueurs blancs n'ont pas le maillot dans le short",
+                    loi: "Loi_04",
+                    points: 1
+                }
+            }
+        ]
+    ],
+    [
+        {
+            id: 3,
+            rencontre: "Mouzillon/Bauge",
+            poster: "Emouz_Bauge.png",
+            fichier: "EM_Bauge.mp4",
+            description: "Match amical opposant Mouzillon à Baugé",
+            gauche: {
+                nom: "Baugé",
+                fanion: "Bauge.png"
+            },
+            droite: {
+                nom: "Etoile Mouzillon",
+                fanion: "EMouz.png"
+            }
+        },
+        [               
+            {
+                step: '00:00:01',
+                act: "question",
+                niveau: "DEBUTANT",
+                question: {
+                    libelle: "Quelle règle liée à l'équipement des joueurs n'est pas respectée ?"
+                },
+                attributs: ["les maillots doivent êtres dans les shorts", "Les cuissardes doivent êtres de la couleur dominante du short"],
+                reponse: {
+                    solution: 1,
+                    libelle: "Plusieurs joueurs blancs n'ont pas le maillot dans le short",
+                    loi: "Loi_04",
+                    points: 1
+                }
+            }
+        ]
+    ],
+    [
+        {
+            id: 4,
+            rencontre: "Mouzillon/Les Herbiers",
+            poster: "EMouz_Herbiers.png",
+            fichier: "EM_Herbiers.mp4",
+            description: "Match amical opposant Mouzillon aux Herbiers",
+            gauche: {
+                nom: "Les Herbiers",
+                fanion: "LHerbiers.png"
+            },
+            droite: {
+                nom: "Etoile Mouzillon",
+                fanion: "EMouz.png"
+            }
+        },
+        [               
+            {
+                step: '00:00:01',
+                act: "question",
+                niveau: "DEBUTANT",
+                question: {
+                    libelle: "Quelle règle liée à l'équipement des joueurs n'est pas respectée ?"
+                },
+                attributs: ["les maillots doivent êtres dans les shorts", "Les cuissardes doivent êtres de la couleur dominante du short"],
+                reponse: {
+                    solution: 1,
+                    libelle: "Plusieurs joueurs blancs n'ont pas le maillot dans le short",
+                    loi: "Loi_04",
+                    points: 1
+                }
             }
         ]
     ]
