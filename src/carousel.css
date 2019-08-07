@@ -1,5 +1,44 @@
 /* media queries*/
 
+/* alignement du CAPTION de l'image*/
+.carousel-caption {
+    top: 10px;
+    left: 0%;
+    right: 0%;
+    font-size: 1vw; /* taille variable selon largeur du viewport */
+    text-align: center;
+}
+
+/* gestion de l'encadrement des images */
+.carousel-item {
+    padding: 5px;
+    position: relative;
+}
+
+.carousel-item:after {
+    border-color:white;
+    border-style:solid;
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+}
+/* fin gestion de l'encadrement des images */
+
+/* gestion de la position des flèches de défilement */
+.carousel-control-prev {
+    left: -30px;
+    justify-content: end;
+}
+
+.carousel-control-next {
+    right: -30px;
+    justify-content: flex-end;
+}
+/* fin gestion de la position des flèches de défilement */
+
 @media (min-width: 768px) and (max-width: 991px) {
 
     /* show 3 items */

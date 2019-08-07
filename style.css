@@ -30,8 +30,16 @@ main {
     background-size: cover;     /* couvre tout l'écran */
 }
 
-header {
+main.init{
     padding-top: 1em;   /* on laisse une heuteur de ligne */
+    font-size: 3vw; /* taille variable selon largeur du viewport */
+}
+
+main.video{
+    padding-top: 0.5em;   /* on laisse une heuteur de ligne */
+}
+
+header {
     font-family: scoreboardregular;
     font-size: 5vw; /* taille variable selon largeur du viewport */
     color:white;
@@ -46,10 +54,12 @@ menu {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;  /* permet d'étaler les objets sur la largeur*/
-    width: 80vw;   /* on limite l'étalement des objets en largeur*/
-
-    font-size: 3vw; /* taille variable selon largeur du viewport */
     color:white;
+    width: 80vw;   /* on limite l'étalement des objets en largeur*/
+}
+
+main.video menu {
+    width: 50vw;   /* on limite l'étalement des objets en largeur*/
 }
 
 module {
