@@ -100,14 +100,19 @@ module a:hover {
 }
 
 content {
-    flex: 1; /* prend toute la hauteur restante */
+    display : flex;
+    flex-direction: rows;
+    justify-content: space-between;
+    min-height: 100vh;      /* hauteur maximum */
 }
 video {
     background-color: black;
+    flex: 1; /* prend toute la hauteur restante */
 }
 
 interaction {
     background-color: burlywood;
+    flex: 1; /* prend toute la hauteur restante */
 }
 
 footer {
