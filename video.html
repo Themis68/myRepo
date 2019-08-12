@@ -48,7 +48,10 @@
 <body onLoad="user();">
   <main class="video">
     <header>ARRET SUR IMAGE !</header>
-    <section>Analyser l'arbitrage des matchs proposés</section>
+    <section>
+      <p>Bienvenue <span id="avatar"></span> dans le module d'analyse de l'arbitrage</p>
+      <p>Sélectionne un des matchs proposés</p>
+    </section>
     <menu>
       <div class="container-fluid">
         <div id="carousel-example" class="carousel slide" data-ride="carousel" data-interval="false">
@@ -66,6 +69,15 @@
         </div>
       </div>
     </menu>
+    <content>
+      <video id="myVideo" class="video-js vjs-looping vjs-big-play-centered video-js vjs-default-skin">
+        <source id="mp4">
+          <p class="vjs-no-js">Votre navigateur ne supporte pas la gestion des vidéos</p>
+      </video>
+      <interaction>
+        
+      </interaction>
+    </content>
   </main>
   
   <footer>

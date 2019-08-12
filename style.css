@@ -1,5 +1,6 @@
 @import url(./src/typo/scoreboard/stylesheet.css);
 @import url(./src/typo/passion_one/stylesheet.css);
+@import url(./src/styleVideo.css);
 
 /*! minireset.css v0.0.3 | MIT License | github.com/jgthms/minireset.css */
 html,body,p,ol,ul,li,dl,dt,dd,blockquote,figure,fieldset,legend,textarea,pre,iframe,hr,h1,h2,h3,h4,h5,h6{margin:0;padding:0}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal}ul{list-style:none}button,input,select,textarea{margin:0}html{box-sizing:border-box}*,*:before,*:after{box-sizing:inherit}img,embed,iframe,object,audio,video{height:auto;max-width:100%}iframe{border:0}table{border-collapse:collapse;border-spacing:0}td,th{padding:0;text-align:left}
@@ -16,6 +17,13 @@ body {
     flex-direction: column;     /* alignement vertical des zones */
 }
 
+/*    MAIN              */
+/*        HEADER        */
+/*        SECTION       */
+/*        MENU          */
+/*             MODULE   */
+/*        VIDEO         */
+/*    FOOTER            */
 
 main {
     display: flex;
@@ -37,6 +45,7 @@ main.init{
 
 main.video{
     padding-top: 0.5em;   /* on laisse une heuteur de ligne plus courte que la page d'accueil */
+    font-size: 1.5vw; /* taille variable selon largeur du viewport */
 }
 
 header {
@@ -46,7 +55,9 @@ header {
 }
 
 section {
-    font-size: 2vw; /* taille variable selon largeur du viewport */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     color:white;
 }
 
@@ -86,6 +97,17 @@ module a:hover {
     font-size: 3vw;
     font-weight: bolder;
     color: white;
+}
+
+content {
+    flex: 1; /* prend toute la hauteur restante */
+}
+video {
+    background-color: black;
+}
+
+interaction {
+    background-color: burlywood;
 }
 
 footer {

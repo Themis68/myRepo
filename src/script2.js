@@ -618,12 +618,14 @@ function switchVideo(n) {
 		showZone("zConseiller", false);
 
 		// titre de la page
+		/*
 		let msg = document.getElementById("msgVideo");
 		msg.style.fontFamily = "scoreboardregular";
 		msg.style.fontSize = "24pt";
 		msg.style.color = "white";
 		msg.style.textAlign = "center";
 		msg.innerHTML = "Arrêt sur image !";
+		*/
 
 	}
 }
@@ -670,6 +672,7 @@ function encadreVideo(state) {
 }
 
 function user() {
+	// code revu pour FLEXBOX
 	let avatarOk = false;
 	const reg = /^([a-zA-Z]){3,20}$/g;	// accepte des chaines de caractères jusqu'à 5 caractères
 	do {
@@ -677,20 +680,6 @@ function user() {
 		avatarOk = reg.exec(avatar);
 	}
 	while (!avatarOk);
-	document.getElementById("msgVideo").innerHTML = "Bonjour "+ avatar.toUpperCase() + ". Merci de sélectionner une vidéo ci-dessous";
-/*
-	var position=0;
-    var msg="Découvrir l'arbitrage en s'amusant";
-    var msg="     "+msg;
-    var longue=msg.length;
-    var fois=(70/msg.length)+1;
-    for(i=0;i<=fois;i++) msg+=msg;
-    function textdefil() {
-    document.form1.deftext.value=msg.substring(position,position+70);
-    position++;
-    if(position == longue) position=0;
-    setTimeout("textdefil()",100); 
-    }
-	window.onload = textdefil;
-	*/
+	// OBSOLETE : document.getElementById("msgVideo").innerHTML = avatar.toUpperCase() + " analyse l'arbitrage des matchs proposés";
+	document.getElementById("avatar").innerHTML = avatar.toUpperCase();
 }
