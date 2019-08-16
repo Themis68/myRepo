@@ -12,25 +12,30 @@
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" type="text/css">
   <!-- fin séquence -->
   
-  <link href="./style.css" rel="stylesheet" type="text/css">
+  <link href="./index.css" rel="stylesheet" type="text/css">
+  <script type="text/javascript" src="./index.js"></script>
 
 </head>
 
 <body>
-  <main class="init">
+  <main>
     <header>ARRET SUR IMAGE !</header>
-    <section>Redécouvrez les règles du football en vous amusant</section>
+    <section>
+      <div><p>Redécouvrez les règles du football en tant qu'arbitre</p></div>
+      <div><img src="images/bandeauarbitre.png" alt=""/></div>
+    </section>
     <menu>
-        <module><a href="quizz.html">Quizz</a></module>
-        <module><a href="video.html">Vidéo</a></module>
-        <module><a href="lois.html">Lois</a></module>
+        <module><a href="quizz.html" onmouseover="showAlt('quizz')" onmouseout="cleanAlt()">Quizz</a></module>
+        <module><a href="video.html" onmouseover="showAlt('video')" onmouseout="cleanAlt()">Vidéo</a></module>
+        <module><a href="lois.html" onmouseover="showAlt('lois')" onmouseout="cleanAlt()">Lois</a></module>
     </menu>
+    <content>
+      <div><p id="alt"></p></div>
+    </content>
   </main>
-
   <footer>
-    <h2>Photo by Sandro Schuh</a> on <a href="https://unsplash.com">unsplash</a></h2>
+      <h2>Photo by Sandro Schuh</a> on <a href="https://unsplash.com">unsplash</a></h2>
   </footer>
-
 </body>
 
 </html>
