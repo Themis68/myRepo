@@ -14,6 +14,5 @@ function showAlt(id) {
 }
 
 function cleanAlt() {
-    console.log('esd');
     document.getElementById("alt").innerHTML = " ";
 }

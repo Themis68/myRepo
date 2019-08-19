@@ -187,7 +187,7 @@
           bugElement.style.opacity = options.opacity;
 
         //  if(options.padding.indexOf('c' < 0)) {
-          //  //console.log("esd");
+        //console.log("esd");
             // on ne traite pas le padding pour les centrage horizontaux et verticaux
             bugElement.style.padding = options.padding;
          // }

@@ -136,8 +136,6 @@ function switchVideo(n) {
 		listeEvents("events", media_events);	// créé le tableau des évènements vidéos
         setInterval(update_properties, 200);	// lance le process de MAJ des évènements	
         
-        console.log(video[0]);
-        
         //            
         // Gestion du contenu de la vidéo
         //

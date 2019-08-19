@@ -1,5 +1,4 @@
 $('#carousel-example').on('slide.bs.carousel', function (e) {
-    console.log("jQuery");
     var $e = $(e.relatedTarget);
     var idx = $e.index();
     var itemsPerSlide = 4;
