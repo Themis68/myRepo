@@ -132,14 +132,23 @@ main menu {
 main content {
   width: 95vw;
   display: flex;
-  flex-direction: ;
+  flex-direction: row;
   flex-wrap: nowrap;
   justify-content: center;
   min-height: auto;
+  flex: 1;
 }
 main content match {
   display: flex;
+  flex-direction: column;
   flex: 3;
+}
+main content match infos p {
+  flex-grow: 0;
+  background-color: #bde4a5;
+  color: white;
+  font-size: 1vw;
+  flex-basis: 2.5rem;
 }
 main content match video {
   border: 1px;

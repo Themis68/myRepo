@@ -76,15 +76,29 @@ main {
     content {
         width: 95vw;   // on limite l'étalement des objets en largeur
         display: flex;
-        flex-direction: ;
+        flex-direction: row;
         flex-wrap: nowrap;
         justify-content: center;
         min-height: auto;
+
+        flex: 1;        // prend toute la hauteur restante du container parent
        
 
         match {
             display: flex;
+            flex-direction: column;
+
             flex: 3;        // prend les 3/4 de la largeur
+
+            infos {
+                p {
+                    flex-grow: 0;
+                    background-color: rgb(189, 228, 165); 
+                    color: white;
+                    font-size: 1vw; // taille variable selon largeur du viewport
+                    flex-basis: 2.5rem;       // hauteur = 2 lignes de texte
+                }
+            }
 
             video {
                 border: 1px;
@@ -114,4 +128,9 @@ footer {
     padding-left: 5px;
     font-size: 1vw; // taille variable selon largeur du viewport
     flex-basis: 2.5rem;       // hauteur = 2 lignes de texte
+    
+    .events {
+        color: midnightblue;
+        font-size: 0.5vw; // taille variable selon largeur du viewport
+    }
 }

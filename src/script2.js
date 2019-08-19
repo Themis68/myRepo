@@ -53,6 +53,8 @@ var nbQuests = [
 	{niv: "CONFIRME", nb: 0, points: 0}
 ];		// le niveau 0 est le niveau en cours
 var questionsFaites = [];
+var seqUsed = -1;	// valeur de l'étape de la séquence qui a été traitée
+
 
 /* image du conseiller 
 a utiliser après pour avoir une image dynamique
@@ -61,13 +63,12 @@ function chargeImgConseiller() {
 	return myURL + '/images/conseiller/tete'+ Math.floor(Math.random() * Math.floor(4) + 1)+'.png';
 }
 
-var seqUsed = -1;	// valeur de l'étape de la séquence qui a été traitée
 
-document.addEventListener("DOMContentLoaded", init, false);	// lance l'écoute des évènements
 document.addEventListener("fullscreenchange", function( event ) {
 	showIncrust(document.fullscreen);	// gère l'état de l'écran et donc l'incrustation
 });
 
+// suivi du mouvement de la souris
 document.addEventListener("mousemove", function(event) {
 	// version simple
 	//document.addEventListener("mousemove", mouseHandler);	// suivi de la souris

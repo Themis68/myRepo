@@ -5,33 +5,38 @@
 <head>
   <title>Vidéos de matchs</title>
 
+  <script>
+    // nécessaire pour que VIDEO prenne toute la largeur
+    window.VIDEOJS_NO_DYNAMIC_STYLE= true;
+  </script>
+
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta charset="utf-8" />
 
   <title>Arrêt sur image !</title>
-  <script>window.HELP_IMPROVE_VIDEOJS = false;</script>
 
-  <script type="text/javascript" src="./video.js/dist/video.min.js"></script>
-  <link href="./video.js/dist/video-js.css" rel="stylesheet" type="text/css">
+  <script src="./video.js/video.js" type="text/javascript"></script>
+  <link href="./video.js/video-js.css" rel="stylesheet" type="text/css">
 
-  <script type="text/javascript" src="./videojs-brand/videojs-brand.js">
+  <script src="./videojs-brand/videojs-brand.js" type="text/javascript">
     videojs.registerPlugin('brand', videojs-brand);
   </script>
   <link href="./videojs-brand/videojs-brand.css" rel="stylesheet" type="text/css">
 
-  <script type="text/javascript" src="./videojs-zoom/videojs-zoom.js">
+  <script src="./videojs-zoom/videojs-zoom.js" type="text/javascript">
     videojs.registerPlugin('videoJsZoom', videojs-zoom);
   </script>
   <link href="./videojs-zoom/videojs-zoom.css" rel="stylesheet" type="text/css">
 
-  <script type="text/javascript" src="./videojs-bug/videojs-bug.js">
+  <script src="./videojs-bug/videojs-bug.js" type="text/javascript">
     videojs.registerPlugin('videojs-bug', videojs-bug);
   </script>
   <link href="./videojs-bug/videojs-bug.css" rel="stylesheet" type="text/css">
 
-  <script src="./src/script2.js"></script>
-  <script src="./src/actions2.js"></script>
-  <script src="./src/scenario.js"></script>
+  <script src="./video2.js" type="text/javascript"></script>
+  <script src="./src/fonctions.js" type="text/javascript"></script>
+  <script src="./src/actions2.js" type="text/javascript"></script>
+  <script src="./src/scenario.js" type="text/javascript"></script>
 
   <!-- Séquence : Conserver l'ordre de chargement ci-dessous -->
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -43,7 +48,7 @@
   
   <!-- conserver cette ligne en dernier sinon on perd les styles par défaut -->
   <link href="./video.css" rel="stylesheet" type="text/css">
-  <script type="text/javascript" src="./video.js/"></script>
+
 
 </head>
 
@@ -60,7 +65,7 @@
       <div class="container-fluid">
         <div id="carousel-example" class="carousel slide" data-ride="carousel" data-interval="false">
           <div id="vignettes" class="carousel-inner row w-100 mx-auto" role="listbox">
-            <!-- fonction listeVideos3-->
+            <!-- fonction creerVignettes()-->
           </div>
           <a class="carousel-control-prev" href="#carousel-example" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -75,19 +80,27 @@
     </menu>
     <content>
       <match>
+        <infos>
+          <p>Equipes du match</p>
+        </infos>
         <video id="myVideo" class="video-js vjs-looping vjs-big-play-centered video-js vjs-default-skin">
           <source id="mp4">
             <p class="vjs-no-js">Votre navigateur ne supporte pas la gestion des vidéos</p>
         </video>
       </match>
       <inter>
-        <p>AAAAAA</p>
+        <p></p>
       </inter>
     </content>
   </main>
   
   <footer>
-    <h2>Photo by Sandro Schuh</a> on <a href="https://unsplash.com">unsplash</a></h2>
+    <h2>Développé par Paulo Pires Seixas</h2>
+    <div>
+        <table>
+          <tbody id="events"></tbody>
+        </table>
+      </div>
   </footer>
 </body>
 
