@@ -138,14 +138,14 @@ function switchVideo(n) {
         
         //            
         // Gestion du contenu de la vidéo
-        //
+		//
+		console.log(video[0]);
+		
         if (isDefineBVideoJS) {
-            console.log("video initiée");
             // il y a déjà une vidéo
 			myVideo.src({src: "./videos/" + video[0].fichier , type: "video/mp4"});
 			myVideo.poster("./videos/" + video[0].poster);
 		} else {
-            console.log("video créée");
             // on créé la vidéo
 			myVideo = videojs('myVideo', {
 				controls: true,

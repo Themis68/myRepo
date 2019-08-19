@@ -7,7 +7,7 @@
 
   <script>
     // nécessaire pour que VIDEO prenne toute la largeur
-    window.VIDEOJS_NO_DYNAMIC_STYLE= true;
+    window.VIDEOJS_NO_DYNAMIC_STYLE= false;
   </script>
 
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -62,7 +62,8 @@
       </div>
     </section>
     <menu>
-      <div class="container-fluid">
+      <div><img src="./images/fleche_suivant.png" onclick="bascule('carousel');" /></div>
+      <div id="carousel" class="container-fluid" style="visibility:visible">
         <div id="carousel-example" class="carousel slide" data-ride="carousel" data-interval="false">
           <div id="vignettes" class="carousel-inner row w-100 mx-auto" role="listbox">
             <!-- fonction creerVignettes()-->

@@ -17,7 +17,7 @@
   };
 
   (function(window, videojs) {
-   // console.log('init 1');
+   //console.log('init 1');
     var defaults = {},
       videoJsZoom,
         menuItemsHolder = {}; // stores menuItems
@@ -47,7 +47,6 @@
     // ATTENTION : ne pas déplacer cette fonction plus bas car sinon elle n'est pas reconnue
     ******************************************************************************************/
     function setSourcesSanitized(player, zoom) {
-      //   if (defaults.debug) console.log('zoomrotate: Register init');
 
       /* Grab the necessary DOM elements */
       player = player.el();
@@ -180,7 +179,7 @@
      * @param {object} [options] configuration for the plugin
      */
     videoJsZoom = function(options) {
-      // console.log('appel videoJsZoom');
+      //console.log('appel videoJsZoom');
       //
       // ne passe pas lors de l'INIT mais seulement quand on appel le plugin dans la video
       //
