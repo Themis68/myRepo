@@ -35,5 +35,6 @@ function arrayAssoSearch(arr, valObject) {
 //
 function bascule(id) {
 	var obj = document.getElementById(id);
-	obj.setAttribute("style","visibility:"+ (obj.style.visibility === "collapse" ? "visible" : "collapse"));
+	obj.setAttribute("style","visibility:" + (obj.style.visibility === "collapse" ? "visible" : "collapse"));
+	obj.setAttribute("src","./images/" + (obj.style.visibility === "collapse" ? "fleche_fermee.png" : "fleche_ouverte.png"));
 }
