@@ -27,14 +27,3 @@ function arrayAssoSearch(arr, valObject) {
 	}
 	return -1;	// aucun résultat
 }
-
-// affiche/cache un objet repéré par un id
-//
-// exemple appel : bascule(id)
-// - id de l'objet
-//
-function bascule(id) {
-	var obj = document.getElementById(id);
-	obj.setAttribute("style","visibility:" + (obj.style.visibility === "collapse" ? "visible" : "collapse"));
-	obj.setAttribute("src","./images/" + (obj.style.visibility === "collapse" ? "fleche_fermee.png" : "fleche_ouverte.png"));
-}

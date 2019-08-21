@@ -72,7 +72,7 @@ function user() {
 function init() {
     //
     // est appelé en premier par la page lors du chargement
-    //
+	//
     document._video = document.getElementById("myVideo");   // identification de l'objet video
 	creerVignettes("vignettes");					        // générer le vignettes dans le carousel
 }
@@ -120,6 +120,10 @@ function switchVideo(n) {
     // affectation de la nouvelle vidéo et des attributs liés
     //
 	
+	// affichage de la zone CONTENT
+	showContent(true);
+
+
 	if (n > arrayAssoSize(scenario)) {
 		// vérifie si l'index de la vidéo existe dans le fichier tableau.js
 		n = 0;
@@ -139,7 +143,6 @@ function switchVideo(n) {
         //            
         // Gestion du contenu de la vidéo
 		//
-		console.log(video[0]);
 		
         if (isDefineBVideoJS) {
             // il y a déjà une vidéo
@@ -256,7 +259,6 @@ function switchVideo(n) {
 			});
 		}
 		isDefineBVideoJS = true;
-
 		myVideo.load();
 	}
 }
@@ -378,4 +380,54 @@ function convertInTimeCode(myStep) {
 	var minutes = Math.trunc(step / 60);
 	var secondes = Math.trunc(step - (minutes * 60));
 	return timeCode = ('0' + heures).substr(-2) + ':' + ('0' + minutes).substr(-2) + ':' + ('0' + secondes).substr(-2);
+}
+
+function bascule(id) {
+	// affiche/cache un objet repéré par un id
+	//
+	// exemple appel : bascule(id)
+	// - id de l'objet
+	//
+
+	// display:none
+	let bascule_img = document.getElementById("bascule_img");
+
+	let bascule_titre = document.getElementById("bascule_titre");
+
+	let carousel = document.getElementById("carousel");
+
+	let content = document.getElementById("content");
+	content.style.visibility = "collapse";
+	
+	console.log(bascule_img.getAttribute("src"));
+	if (bascule_img.getAttribute("src") === "./images/fleche_fermee.png") {
+		//if (carousel.style.visibility === "collapse") {
+		// carousel est masquée et on veut l'afficher
+		//carousel.style.visibility = "visible";
+		carousel.style.display = "flex";
+		bascule_img.setAttribute("src","./images/fleche_ouverte.png");	// MAJ icone bascule
+		bascule_titre.innerHTML = "cliquez sur la vignette du match que vous souhaitez arbitrer";
+		
+	} else {
+		// carousel est affichée et on veut la masquer
+		//carousel.style.visibility = "collapse";
+		carousel.style.display = "none";
+		bascule_img.setAttribute("src","./images/fleche_fermee.png");	// MAJ icone bascule
+		bascule_titre.innerHTML = "cliquez sur cet icône pour afficher les matchs disponibles";
+	}
+}
+
+function showContent(etat) {
+	let carousel = document.getElementById("carousel");
+	//carousel.style.visibility =  (etat === true ? "collapse" : "visible");
+	carousel.style.display =  (etat === true ? "none" : "flex");
+
+	let content = document.getElementById("content");
+	content.style.visibility = (etat === true ? "visible" : "collapse");
+
+	let bascule_img = document.getElementById("bascule_img");
+	bascule_img.setAttribute("src","./images/" +   (etat === true ? "fleche_fermee.png" : "fleche_ouverte.png"));	// MAJ icone bascule
+
+	let bascule_titre = document.getElementById("bascule_titre");
+	bascule_titre.innerHTML = (etat === true ? "cliquez sur cet icône pour afficher les matchs disponibles" : "cliquez sur la vignette du match que vous souhaitez arbitrer");
 }

@@ -124,19 +124,35 @@ main section div p {
 }
 main menu {
   display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  color: white;
+  flex-direction: column;
   width: 80vw;
+}
+main menu bascule {
+  display: flex;
+  flex-direction: row;
+}
+main menu bascule img {
+  align-self: flex-start;
+  padding-right: 20px;
+}
+main menu bascule span {
+  align-self: flex-start;
+  font-size: 1vw;
+  color: white;
+}
+main menu carousel {
+  display: flex;
+  align-self: center;
 }
 main content {
   width: 95vw;
-  display: flex;
+  display: inline-flex;
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: center;
   min-height: auto;
   flex: 1;
+  visibility: collapse;
 }
 main content match {
   display: flex;
@@ -170,4 +186,8 @@ footer {
   padding-left: 5px;
   font-size: 1vw;
   flex-basis: 2.5rem;
+}
+footer .events {
+  color: midnightblue;
+  font-size: 0.5vw;
 }

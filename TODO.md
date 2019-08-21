@@ -525,3 +525,14 @@ You just need to add a third state when the video has ended. There is already a 
 .vjs-default-skin.vjs-ended .vjs-play-control:before {
    content: "YOUR REPLY ICON";
  }
+
+*************************************
+afficher / masquer une zone
+*************************************
+ carousel.style.visibility = "collapse";
+		//bascule_titre.style.visibility = "visible";
+		bascule_img.setAttribute("src","./images/fleche_fermee.png");	// MAJ icone bascule
+		bascule_titre.innerHTML = "cliquez sur cet icône pour afficher les matchs disponibles";
+		
+		//carousel.style.display = "flex";
+		//carousel.setAttribute("style","display:flex");		// affiche MENU

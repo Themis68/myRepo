@@ -66,23 +66,44 @@ main {
 
     menu {
         display: flex;
-        flex-direction: row;
-        justify-content: space-evenly;  // permet d'étaler les objets sur la largeur
-        color:white;
+        flex-direction: column;
         width: 80vw;   // on limite l'étalement des objets en largeur
-        
+        // pas d'aligneent car on affiche/masque les objets contenus
+
+        bascule {
+            display: flex;
+            flex-direction: row;     // alignement vertical des zones 
+            
+            img {
+                align-self: flex-start; // alignement gauche
+                padding-right: 20px;
+            }
+
+            span {
+                //visibility: collapse;
+                align-self: flex-start; // alignement centré
+                font-size: 1vw; // taille variable selon largeur du viewport
+                color:white;
+            }
+        }
+
+        carousel {
+            display: flex;
+            align-self: center;
+        }
     }
 
     content {
         width: 95vw;   // on limite l'étalement des objets en largeur
-        display: flex;
+        display: inline-flex;
         flex-direction: row;
         flex-wrap: nowrap;
         justify-content: center;
         min-height: auto;
 
         flex: 1;        // prend toute la hauteur restante du container parent
-       
+
+        visibility: collapse;
 
         match {
             display: flex;
@@ -134,28 +155,3 @@ footer {
         font-size: 0.5vw; // taille variable selon largeur du viewport
     }
 }
-
-//
-// surcharge VIDEO-JS
-//
-/*
-.video-js {
-    font-size: 1vw;
-  }
-  
-  .vjs-looping .vjs-loading-spinner {
-    display: none;
-  }
-  
-  .video-js .vjs-big-play-button {
-    background-color: black;
-    opacity: .8;
-    font-size: 5vw;
-  }
-  
-  .video-js .vjs-menu-item2 {
-    text-align: right;
-    margin-right: 3px;
-    width: 80%;
-  }
-  */
