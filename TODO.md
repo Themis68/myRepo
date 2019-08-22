@@ -536,3 +536,8 @@ afficher / masquer une zone
 		
 		//carousel.style.display = "flex";
 		//carousel.setAttribute("style","display:flex");		// affiche MENU
+
+visibility : supprime la place de l'objet sur la page en masquant
+display : cache mais réserve la place de l'objet sur la page
+
+Ces deux attributs se cumulent !!

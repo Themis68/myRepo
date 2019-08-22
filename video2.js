@@ -419,7 +419,6 @@ function bascule(id) {
 
 function showContent(etat) {
 	let carousel = document.getElementById("carousel");
-	//carousel.style.visibility =  (etat === true ? "collapse" : "visible");
 	carousel.style.display =  (etat === true ? "none" : "flex");
 
 	let content = document.getElementById("content");
