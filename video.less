@@ -96,17 +96,15 @@ main {
 
     content {
         width: 95vw;   // on limite l'étalement des objets en largeur
-        display: none;
+        display: flex;
         flex-direction: row;
         flex-wrap: nowrap;
         justify-content: center;
-        flex-shrink:0;
-        overflow: auto;
-       // min-height: auto;
+        min-height: auto;
 
-        //flex: 1;        // prend toute la hauteur restante du container parent
+        flex: 1;        // prend toute la hauteur restante du container parent
 
-       // visibility: collapse;
+        visibility: collapse;
 
         match {
             display: flex;
@@ -128,7 +126,6 @@ main {
                 border: 1px;
                 border-color: white;
                 border-style: solid;
-
                 flex: 1;    // prend la largeur maximum
             }
         }
@@ -157,4 +154,9 @@ footer {
         color: midnightblue;
         font-size: 0.5vw; // taille variable selon largeur du viewport
     }
+}
+
+.video-js {
+    width: auto;    // surcharge nécessaire pour avoir la vidéo en grande largeur
+    height: 100%;
 }

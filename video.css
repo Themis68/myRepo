@@ -146,12 +146,13 @@ main menu carousel {
 }
 main content {
   width: 95vw;
-  display: none;
+  display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: center;
-  flex-shrink: 0;
-  overflow: auto;
+  min-height: auto;
+  flex: 1;
+  visibility: collapse;
 }
 main content match {
   display: flex;
@@ -189,4 +190,8 @@ footer {
 footer .events {
   color: midnightblue;
   font-size: 0.5vw;
+}
+.video-js {
+  width: auto;
+  height: 100%;
 }

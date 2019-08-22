@@ -47,7 +47,7 @@ var nbQuests = [
 ];		// le niveau 0 est le niveau en cours
 var questionsFaites = [];
 var seqUsed = -1;	// valeur de l'étape de la séquence qui a été traitée
-
+var hauteurContent = 0; // hauteur de la zone CONTENT récupérée lors du chargement
 // **********************************************************************************************************
 
 document.addEventListener("DOMContentLoaded", init, false);	// lance l'écoute des évènements et appelle INIT
@@ -73,6 +73,9 @@ function init() {
     //
     // est appelé en premier par la page lors du chargement
 	//
+	
+	//content.style.visibility ="collapse";
+
     document._video = document.getElementById("myVideo");   // identification de l'objet video
 	creerVignettes("vignettes");					        // générer le vignettes dans le carousel
 }
@@ -397,9 +400,8 @@ function bascule(id) {
 	let carousel = document.getElementById("carousel");
 
 	let content = document.getElementById("content");
-	content.style.display = "none";
+	content.style.visibility = "collapse";
 	
-	console.log(bascule_img.getAttribute("src"));
 	if (bascule_img.getAttribute("src") === "./images/fleche_fermee.png") {
 		//if (carousel.style.visibility === "collapse") {
 		// carousel est masquée et on veut l'afficher
@@ -415,18 +417,28 @@ function bascule(id) {
 		bascule_img.setAttribute("src","./images/fleche_fermee.png");	// MAJ icone bascule
 		bascule_titre.innerHTML = "cliquez sur cet icône pour afficher les matchs disponibles";
 	}
+
+	
 }
 
 function showContent(etat) {
+	// ce n'est appelé que si on peut voir les vignettes car c'ets le clic dessus quki affiche !!!!
 	let carousel = document.getElementById("carousel");
-	carousel.style.display =  (etat === true ? "none" : "flex");
-
 	let content = document.getElementById("content");
-	content.style.display = (etat === true ? "inline-flex" : "none");
+	let myVideo = document.getElementById("myVideo");
+
+	let hautContent = content.offsetHeight;
+
+	// le DISPLAY du CAROUSEL a un effet sur la taille de CONTENT qui s'agrandit mais qui dépasse FOOTER
+	carousel.style.display =  (etat === true ? "none" : "flex");
 
 	let bascule_img = document.getElementById("bascule_img");
 	bascule_img.setAttribute("src","./images/" +   (etat === true ? "fleche_fermee.png" : "fleche_ouverte.png"));	// MAJ icone bascule
 
 	let bascule_titre = document.getElementById("bascule_titre");
 	bascule_titre.innerHTML = (etat === true ? "cliquez sur cet icône pour afficher les matchs disponibles" : "cliquez sur la vignette du match que vous souhaitez arbitrer");
+
+	content.style.visibility  = "visible";	
+	myVideo.style.height = hautContent + "px";
+//	}
 }
