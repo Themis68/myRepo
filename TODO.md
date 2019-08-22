@@ -537,7 +537,11 @@ afficher / masquer une zone
 		//carousel.style.display = "flex";
 		//carousel.setAttribute("style","display:flex");		// affiche MENU
 
-visibility : supprime la place de l'objet sur la page en masquant
-display : cache mais réserve la place de l'objet sur la page
+display  : supprime la place de l'objet sur la page en masquant
+visibility : cache mais réserve la place de l'objet sur la page
 
 Ces deux attributs se cumulent !!
+
+carousel est géré avec display pour libérer la place pour la vidéo
+
+content a un souci : il déborde parfois sur le footer ou alors il n'a pas la largeur totale !!

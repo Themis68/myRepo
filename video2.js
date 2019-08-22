@@ -397,7 +397,7 @@ function bascule(id) {
 	let carousel = document.getElementById("carousel");
 
 	let content = document.getElementById("content");
-	content.style.visibility = "collapse";
+	content.style.display = "none";
 	
 	console.log(bascule_img.getAttribute("src"));
 	if (bascule_img.getAttribute("src") === "./images/fleche_fermee.png") {
@@ -422,7 +422,7 @@ function showContent(etat) {
 	carousel.style.display =  (etat === true ? "none" : "flex");
 
 	let content = document.getElementById("content");
-	content.style.visibility = (etat === true ? "visible" : "collapse");
+	content.style.display = (etat === true ? "inline-flex" : "none");
 
 	let bascule_img = document.getElementById("bascule_img");
 	bascule_img.setAttribute("src","./images/" +   (etat === true ? "fleche_fermee.png" : "fleche_ouverte.png"));	// MAJ icone bascule

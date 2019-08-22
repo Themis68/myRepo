@@ -14,6 +14,7 @@ html {
 
 body {
     min-height: 100vh;      // hauteur maximum 
+    width: 100vw;   // on prend la largeur totale
     display: flex;
     flex-direction: column;     // alignement vertical des zones 
 }
@@ -51,7 +52,7 @@ main {
     }
 
     section {
-        width: 80vw;   // on limite l'étalement des objets en largeur
+       // width: 100vw;   // on limite l'étalement des objets en largeur
         display: flex;
         flex-direction: column;
         flex-wrap: wrap;
@@ -95,15 +96,17 @@ main {
 
     content {
         width: 95vw;   // on limite l'étalement des objets en largeur
-        display: inline-flex;
+        display: none;
         flex-direction: row;
         flex-wrap: nowrap;
         justify-content: center;
-        min-height: auto;
+        flex-shrink:0;
+        overflow: auto;
+       // min-height: auto;
 
-        flex: 1;        // prend toute la hauteur restante du container parent
+        //flex: 1;        // prend toute la hauteur restante du container parent
 
-        visibility: collapse;
+       // visibility: collapse;
 
         match {
             display: flex;
