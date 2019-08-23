@@ -73,9 +73,6 @@ function init() {
     //
     // est appelé en premier par la page lors du chargement
 	//
-	
-	//content.style.visibility ="collapse";
-
     document._video = document.getElementById("myVideo");   // identification de l'objet video
 	creerVignettes("vignettes");					        // générer le vignettes dans le carousel
 }
@@ -154,6 +151,7 @@ function switchVideo(n) {
 		} else {
             // on créé la vidéo
 			myVideo = videojs('myVideo', {
+				width: 500,
 				controls: true,
 				preload:  'none',
 				loop: false,
@@ -424,10 +422,11 @@ function bascule(id) {
 function showContent(etat) {
 	// ce n'est appelé que si on peut voir les vignettes car c'ets le clic dessus quki affiche !!!!
 	let carousel = document.getElementById("carousel");
-	let content = document.getElementById("content");
+	let match = document.getElementById("match");
 	let myVideo = document.getElementById("myVideo");
+	let content = document.getElementById("content");
 
-	let hautContent = content.offsetHeight;
+	let hautMatch = match.offsetHeight;
 
 	// le DISPLAY du CAROUSEL a un effet sur la taille de CONTENT qui s'agrandit mais qui dépasse FOOTER
 	carousel.style.display =  (etat === true ? "none" : "flex");
@@ -439,6 +438,6 @@ function showContent(etat) {
 	bascule_titre.innerHTML = (etat === true ? "cliquez sur cet icône pour afficher les matchs disponibles" : "cliquez sur la vignette du match que vous souhaitez arbitrer");
 
 	content.style.visibility  = "visible";	
-	myVideo.style.height = hautContent + "px";
-//	}
+	//myVideo.style.width = "700px";//hautContent + "px";
+
 }

@@ -545,3 +545,31 @@ Ces deux attributs se cumulent !!
 carousel est géré avec display pour libérer la place pour la vidéo
 
 content a un souci : il déborde parfois sur le footer ou alors il n'a pas la largeur totale !!
+
+
+*************************************
+taille vidéo
+*************************************
+
+Default Video Element Sizing
+We’re currently having a discussion around responsive sizing in Video.js. I wanted to have a better understanding around what the video element does by default when you don’t provide width/height values, both before and after metadata is available. So I threw together a JSbin to see the results.
+
+Summary
+If you do not provide values for width and height, the video element will default to 300x150 pixels
+If you provide either a width or a height, but not both, the video element will fill in the missing value to match the same 2:1 ratio*
+Once metadata is available, if you didn’t specify a width or height, the video element will match the dimensions in the metadata
+If you provide either a width or a height, when metadata is available, the video element will use the value you supplied for width or height, and then fill in the missing value by matching the ratio of the source video
+*iOS doesn’t match the 2:1 ratio, but instead keeps the specific default value, 300px for width or 150px for height.
+
+Also, Chrome has issues with these tests because it breaks whenever you use the same source twice on the same page.
+
+
+*************************************
+MAJ videojs
+*************************************
+ : https://www.npmjs.com/package/video.js
+
+instruction : npm i video.js
+
+AVANT : 5.20.5
+23/08/2019 : MAJ 7.6.0
