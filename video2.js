@@ -119,10 +119,6 @@ function switchVideo(n) {
     //
     // affectation de la nouvelle vidéo et des attributs liés
     //
-	
-	// affichage de la zone CONTENT
-	showContent(true);
-
 
 	if (n > arrayAssoSize(scenario)) {
 		// vérifie si l'index de la vidéo existe dans le fichier tableau.js
@@ -151,7 +147,6 @@ function switchVideo(n) {
 		} else {
             // on créé la vidéo
 			myVideo = videojs('myVideo', {
-				width: 500,
 				controls: true,
 				preload:  'none',
 				loop: false,
@@ -261,6 +256,12 @@ function switchVideo(n) {
 		}
 		isDefineBVideoJS = true;
 		myVideo.load();
+
+		// EQUIPES : doit être après le chargement des plugins videos
+		gestionCamps(1);	// affichage des informations sur l'équipe pour la première mi-temps
+
+		// affichage de la zone VIDEO
+		showContent(true);
 	}
 }
 
@@ -419,12 +420,43 @@ function bascule(id) {
 	
 }
 
+function gestionCamps(mitemps) {
+	let codeG = '';
+	let codeD = '';
+
+	switch (mitemps) {
+		case 1:
+			codeG = '<img src="'+ myURL + '/images/fanions/'+ (video[0].gauche.fanion || 'fff.png') +'" width="20%" height="20%"/>';
+			codeG+= '<span class="fanion">' + video[0].gauche.nom + '</span>';
+			codeD = '<span class="fanion">' + video[0].droite.nom + '</span>';
+			codeD+= '<img src="'+ myURL + '/images/fanions/'+ (video[0].droite.fanion || 'fff.png') +'" width="20%" height="20%" />';
+			break;
+		case 2:
+			codeG = '<img src="'+ myURL + '/images/fanions/'+ (video[0].droite.fanion || 'fff.png') +'" width="20%" height="20%"/>';
+			codeG+= '<span class="fanion">' + video[0].droite.nom + '</span>';
+			codeD = '<span class="fanion">' + video[0].gauche.nom + '</span>';
+			codeD+= '<img src="'+ myURL + '/images/fanions/'+ (video[0].gauche.fanion || 'fff.png') +'" width="20%" height="20%" />';
+			break;
+	}
+
+	document.getElementById("gauche").innerHTML = codeG;	// fanions bande haute
+	document.getElementById("droite").innerHTML = codeD;
+
+	// fanions incrustés
+	// en première mi-temps c'est l'init du plugin qui affiche les infos
+	if (mitemps===2) {
+        document.getElementById("vjs-bug-pictEquipeA").src = myURL + '/images/fanions/'+ (video[0].droite.fanion || 'fff.png');
+        document.getElementById("vjs-bug-pictEquipeB").src = myURL + '/images/fanions/'+ (video[0].gauche.fanion || 'fff.png');
+    }
+
+}
+
 function showContent(etat) {
 	// ce n'est appelé que si on peut voir les vignettes car c'ets le clic dessus quki affiche !!!!
 	let carousel = document.getElementById("carousel");
 	let match = document.getElementById("match");
 	let myVideo = document.getElementById("myVideo");
-	let content = document.getElementById("content");
+	let inter = document.getElementById("inter");
 
 	let hautMatch = match.offsetHeight;
 
@@ -437,7 +469,6 @@ function showContent(etat) {
 	let bascule_titre = document.getElementById("bascule_titre");
 	bascule_titre.innerHTML = (etat === true ? "cliquez sur cet icône pour afficher les matchs disponibles" : "cliquez sur la vignette du match que vous souhaitez arbitrer");
 
-	content.style.visibility  = "visible";	
+	myVideo.style.visibility  = "visible";	
 	//myVideo.style.width = "700px";//hautContent + "px";
-
 }

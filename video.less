@@ -104,8 +104,6 @@ main {
 
         flex: 1;        // prend toute la hauteur restante du container parent
 
-        visibility: collapse;
-
         match {
             display: flex;
             flex-direction: column;
@@ -113,12 +111,33 @@ main {
             flex: 3;        // prend les 3/4 de la largeur
 
             infos {
-                p {
-                    flex-grow: 0;
-                    background-color: rgb(189, 228, 165); 
-                    color: white;
-                    font-size: 1vw; // taille variable selon largeur du viewport
-                    flex-basis: 2.5rem;       // hauteur = 2 lignes de texte
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                flex: 1;
+
+                div {
+                    text-align: center;
+
+                    span {
+                        font-size: 1vw; // taille variable selon largeur du viewport
+                        flex-basis: 2.5rem;       // hauteur = 2 lignes de texte
+                        color: white;
+                        padding-left: 5px;
+                        padding-right: 5px;
+
+                        gauche {
+                            display: flex;
+                            align-items: center;
+                            justify-content: flex-start;
+                          }
+                          
+                          droite {
+                            display: flex;
+                            align-items: center;
+                            justify-content: flex-end;
+                          }
+                    } 
                 }
             }
 
@@ -126,7 +145,8 @@ main {
                 border: 1px;
                 border-color: white;
                 border-style: solid;
-                //flex: 1;    // prend la largeur maximum
+                flex: 3;
+                visibility: collapse;
             }
         }
 

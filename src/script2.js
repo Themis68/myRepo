@@ -605,7 +605,7 @@ function switchVideo(n) {
 		myVideo.load();
 
 		// EQUIPES : doit être après le chargement des plugins videos
-		gestionCamps(1);	// affichage des informations sur l'équipe pour la première mi-temps
+		gestionCamps2(1);	// affichage des informations sur l'équipe pour la première mi-temps
 		
 		showItem("fondVideo", false);
 		showItem("videoOn", true);
@@ -631,7 +631,7 @@ function switchVideo(n) {
 	}
 }
 
-function gestionCamps(mitemps) {
+function gestionCamps2(mitemps) {
 	let codeG = '';
 	let codeD = '';
 

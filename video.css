@@ -152,25 +152,44 @@ main content {
   justify-content: center;
   min-height: auto;
   flex: 1;
-  visibility: collapse;
 }
 main content match {
   display: flex;
   flex-direction: column;
   flex: 3;
 }
-main content match infos p {
-  flex-grow: 0;
-  background-color: #bde4a5;
-  color: white;
+main content match infos {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex: 1;
+}
+main content match infos div {
+  text-align: center;
+}
+main content match infos div span {
   font-size: 1vw;
   flex-basis: 2.5rem;
+  color: white;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+main content match infos div span gauche {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+main content match infos div span droite {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 main content match video {
   border: 1px;
   border-color: white;
   border-style: solid;
-  flex: 1;
+  flex: 3;
+  visibility: collapse;
 }
 main content inter {
   margin-left: 7px;
@@ -190,8 +209,4 @@ footer {
 footer .events {
   color: midnightblue;
   font-size: 0.5vw;
-}
-.video-js {
-  width: auto;
-  height: 100%;
 }
