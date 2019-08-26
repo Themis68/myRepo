@@ -444,10 +444,10 @@ function gestionCamps(mitemps) {
 
 	// fanions incrustés
 	// en première mi-temps c'est l'init du plugin qui affiche les infos
-	if (mitemps===2) {
+	//if (mitemps===2) {
         document.getElementById("vjs-bug-pictEquipeA").src = myURL + '/images/fanions/'+ (video[0].droite.fanion || 'fff.png');
         document.getElementById("vjs-bug-pictEquipeB").src = myURL + '/images/fanions/'+ (video[0].gauche.fanion || 'fff.png');
-    }
+    //}
 
 }
 
