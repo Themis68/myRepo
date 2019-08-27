@@ -197,6 +197,7 @@ var mesActions = {
         showItem("btnReplay", false);
 
         // on affiche le bouton répondre si FAIRPLAY et pas encore GAGNE
+        console.log('actions[ind].type', actions[ind].type);
         if ((actions[ind].type === 'fairplay') && (questionsFaites.indexOf(actions[ind].step) < 0)) {
             var btnBonus = document.getElementById("btnBonus");
             btnBonus.onclick = function() 
