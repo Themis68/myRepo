@@ -73,6 +73,13 @@ function init() {
     //
     // est appelé en premier par la page lors du chargement
 	//
+
+	// mettre les listener ici car il faut avoir chargée la page
+
+	// clic sur l'image de bascule
+	var bascule = document.querySelector("bascule img");
+	bascule.addEventListener("click", fBascule);	// de haut en bas
+
     document._video = document.getElementById("myVideo");   // identification de l'objet video
 	creerVignettes("vignettes");					        // générer le vignettes dans le carousel
 }
@@ -384,40 +391,26 @@ function convertInTimeCode(myStep) {
 	return timeCode = ('0' + heures).substr(-2) + ':' + ('0' + minutes).substr(-2) + ':' + ('0' + secondes).substr(-2);
 }
 
-function bascule(id) {
+function fBascule(event) {
 	// affiche/cache un objet repéré par un id
 	//
 	// exemple appel : bascule(id)
 	// - id de l'objet
 	//
+	let carousel = document.querySelector("carousel");
+	let span = document.querySelector("bascule span");
 
-	// display:none
-	let bascule_img = document.getElementById("bascule_img");
-
-	let bascule_titre = document.getElementById("bascule_titre");
-
-	let carousel = document.getElementById("carousel");
-
-	let content = document.getElementById("content");
-	content.style.visibility = "collapse";
-	
-	if (bascule_img.getAttribute("src") === "./images/fleche_fermee.png") {
-		//if (carousel.style.visibility === "collapse") {
-		// carousel est masquée et on veut l'afficher
-		//carousel.style.visibility = "visible";
+	if (this.src.indexOf("fermee") > 0 ){
+		// on ouvre
 		carousel.style.display = "flex";
-		bascule_img.setAttribute("src","./images/fleche_ouverte.png");	// MAJ icone bascule
-		bascule_titre.innerHTML = "cliquez sur la vignette du match que vous souhaitez arbitrer";
-		
+		this.src = "./images/fleche_ouverte.png";
+		span.innerHTML = "cliquez sur la vignette du match que vous souhaitez arbitrer";
 	} else {
-		// carousel est affichée et on veut la masquer
-		//carousel.style.visibility = "collapse";
+		// on ferme
 		carousel.style.display = "none";
-		bascule_img.setAttribute("src","./images/fleche_fermee.png");	// MAJ icone bascule
-		bascule_titre.innerHTML = "cliquez sur cet icône pour afficher les matchs disponibles";
-	}
-
-	
+		this.src = "./images/fleche_fermee.png";
+		span.innerHTML = "cliquez sur cet icône pour afficher les matchs disponibles";
+	}	
 }
 
 function gestionCamps(mitemps) {

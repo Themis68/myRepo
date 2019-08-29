@@ -185,16 +185,11 @@ main content match infos div span droite {
   justify-content: flex-end;
 }
 main content match video {
-  border: 1px;
-  border-color: white;
-  border-style: solid;
   flex: 3;
-  visibility: collapse;
 }
 main content inter {
   margin-left: 7px;
   flex: 1;
-  background-color: antiquewhite;
 }
 footer {
   flex-grow: 0;

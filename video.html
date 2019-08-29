@@ -63,8 +63,8 @@
     </section>
     <menu>
       <bascule>
-        <img id="bascule_img" src="./images/fleche_ouverte.png" onclick="bascule('carousel');" />
-        <span id="bascule_titre">cliquez sur la vignette du match que vous souhaitez arbitrer</span>
+        <img src="./images/fleche_ouverte.png" />
+        <span>cliquez sur la vignette du match que vous souhaitez arbitrer</span>
       </bascule>
       <carousel id="carousel" class="container-fluid">
         <div id="carousel-example" class="carousel slide" data-ride="carousel" data-interval="false">
@@ -85,9 +85,8 @@
     <content id="content">
       <match id="match">
         <infos>
-            <div><gauche id="gauche"></gauche></div>
-            <div><img src="images/sifflet.png" width="70" height="20" /></div>
-            <div><droite id="droite"></droite></div>
+            <gauche></gauche>
+            <droite></droite>
         </infos>
         <video id="myVideo" class="video-js vjs-looping vjs-big-play-centered video-js vjs-default-skin">
           <source id="mp4">
