@@ -334,7 +334,7 @@
 }
 
 .video-js {
-  display: block;
+  display: flex;
   vertical-align: top;
   box-sizing: border-box;
   color: #fff;
