@@ -163,10 +163,11 @@
               });
               element.innerHTML = options.libelle;
               element.id = options.id;
+              element.style = "padding-left: 3px; padding-right: 3px;";
               break;
 
             default:
-            //console.log("inconnu");
+              break;
           }
         
           // Possibly make it a link
@@ -186,10 +187,8 @@
           // Styling
           bugElement.style.opacity = options.opacity;
 
-        //  if(options.padding.indexOf('c' < 0)) {
-        //console.log("esd");
-            // on ne traite pas le padding pour les centrage horizontaux et verticaux
-            bugElement.style.padding = options.padding;
+          // on ne traite pas le padding pour les centrage horizontaux et verticaux
+          bugElement.style.padding = options.padding;
          // }
 
           return bugElement;

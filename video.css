@@ -158,32 +158,6 @@ main content match {
   flex-direction: column;
   flex: 3;
 }
-main content match infos {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  flex: 1;
-}
-main content match infos div {
-  text-align: center;
-}
-main content match infos div span {
-  font-size: 1vw;
-  flex-basis: 2.5rem;
-  color: white;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-main content match infos div span gauche {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-}
-main content match infos div span droite {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-}
 main content match video {
   flex: 3;
 }

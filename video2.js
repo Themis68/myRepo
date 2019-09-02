@@ -161,8 +161,8 @@ function switchVideo(n) {
 				poster: ("./videos/" + video[0].poster || "./images/pelouses/pelousemini.png"),
 				controlBar: {
 					volumeMenuButton: {
-					inline: false,
-					vertical: true
+						inline: false,
+						vertical: true
 					}
 				},
 				sources: [{
@@ -186,13 +186,16 @@ function switchVideo(n) {
 						default: true,
 						dynamicLabel: true,	// false affiche l'icone du bouton sinon on a le label directement
 						niveaux: [
-								{lab: '2.5x', val: 2.5}, {lab: '2x', val: 2}, {lab: '1.5x', val: 1.5}, {lab: '1x', val: 1}
+							{lab: '2.5x', val: 2.5}, 
+							{lab: '2x', val: 2}, 
+							{lab: '1.5x', val: 1.5}, 
+							{lab: '1x', val: 1}
 						]
 					},
 					bug: [{
 						type: "pict",
 						id:"vjs-bug-pictEquipeA",
-						visibility: false,
+						visibility: true,
 						height: 40,
 						width: 40,
 						imgSrc: "./images/fanions/" + video[0].gauche.fanion,
@@ -204,40 +207,29 @@ function switchVideo(n) {
 					},{
 						type: "text",
 						id:"vjs-bug-titreEquipeA",
-						visibility: false,
+						visibility: true,
 						height: 40,
 						libelle: "<span>"+ video[0].gauche.nom +"</span>",
 						classeCSS: "vjs-bug-titreEquipBug",
 						opacity: 1,
 						padding: '30px 70px',	// top et bottom + right et left
 						position: 'tl'
-					}, 
-					{
-						type: "text",
-						id:"vjs-bug-titreAppBug",
-						visibility: false,
-						height: "30px",
-						libelle: "<span>Arrêt sur Image !</span>",
-						classeCSS: "vjs-bug-titreAppBug",
-						opacity: 1,
-						padding: '10px 40%',	// top et se combine avec le centrage horizontal
-						position: 'tc'
-					}, 					
+					}, 				
 					{
 						type: "text",
 						id:"vjs-bug-textScoreBug",
-						visibility: false,
+						visibility: true,
 						height: "30px",
 						libelle: "SCORE DE " + avatar.toUpperCase() + "&nbsp;&nbsp;<span class=\"scoreBoard\">00 : " + nbQuests[0].points + "</span>&nbsp;&nbsp;niveau " + nbQuests[niveauQuest].niv,
 						classeCSS: "vjs-bug-textScoreBug",
 						opacity: 1,
-						padding: '50px 38%',	// top et se combine avec le centrage horizontal
+						padding: '10px 38%',	// top et se combine avec le centrage horizontal
 						position: 'tc'
 					}, 
 					{
 						type: "text",
 						id:"vjs-bug-titreEquipeB",
-						visibility: false,
+						visibility: true,
 						height: 40,
 						libelle: "<span>"+ video[0].droite.nom +"</span>",
 						classeCSS: "vjs-bug-titreEquipBug",
@@ -248,7 +240,7 @@ function switchVideo(n) {
 					{
 						type: "pict",
 						id:"vjs-bug-pictEquipeB",
-						visibility: false,
+						visibility: true,
 						height: 35,
 						width: 35,
 						imgSrc: "./images/fanions/" + video[0].droite.fanion,
@@ -432,15 +424,13 @@ function gestionCamps(mitemps) {
 			break;
 	}
 
-	document.getElementById("gauche").innerHTML = codeG;	// fanions bande haute
-	document.getElementById("droite").innerHTML = codeD;
 
 	// fanions incrustés
 	// en première mi-temps c'est l'init du plugin qui affiche les infos
-	//if (mitemps===2) {
-        document.getElementById("vjs-bug-pictEquipeA").src = myURL + '/images/fanions/'+ (video[0].droite.fanion || 'fff.png');
-        document.getElementById("vjs-bug-pictEquipeB").src = myURL + '/images/fanions/'+ (video[0].gauche.fanion || 'fff.png');
-    //}
+	if (mitemps===2) {
+    	document.getElementById("vjs-bug-pictEquipeA").src = myURL + '/images/fanions/'+ (video[0].droite.fanion || 'fff.png');
+    	document.getElementById("vjs-bug-pictEquipeB").src = myURL + '/images/fanions/'+ (video[0].gauche.fanion || 'fff.png');
+    }
 
 }
 
@@ -456,10 +446,10 @@ function showContent(etat) {
 	// le DISPLAY du CAROUSEL a un effet sur la taille de CONTENT qui s'agrandit mais qui dépasse FOOTER
 	carousel.style.display =  (etat === true ? "none" : "flex");
 
-	let bascule_img = document.getElementById("bascule_img");
+	let bascule_img = document.querySelector("bascule img");
 	bascule_img.setAttribute("src","./images/" +   (etat === true ? "fleche_fermee.png" : "fleche_ouverte.png"));	// MAJ icone bascule
 
-	let bascule_titre = document.getElementById("bascule_titre");
+	let bascule_titre = document.querySelector("bascule span");
 	bascule_titre.innerHTML = (etat === true ? "cliquez sur cet icône pour afficher les matchs disponibles" : "cliquez sur la vignette du match que vous souhaitez arbitrer");
 
 	myVideo.style.visibility  = "visible";	

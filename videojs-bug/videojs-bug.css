@@ -5,6 +5,7 @@
  * @license MIT
  */
 
+ /* gestion des équipes */
  .vjs-bug-titreAppBug {
   font-family: scoreboardregular;
   font-size: 24pt;
@@ -13,6 +14,16 @@
   text-align: center;
 }
 
+.vjs-bug-titreEquipBug {
+  font-family: passion_oneregular;
+  font-size: 14pt;
+  color: white;
+  width: max-content;
+  text-align: center;
+  background-color: midnightblue;
+}
+
+ /* gestion du score */
  .vjs-bug-text{
   color:white;
   font-family: scoreboardregular;
@@ -26,6 +37,7 @@
   color: white;
   width: max-content;
   text-align: center;
+  background-color: midnightblue;
  }
 
  .vjs-bug-show {
