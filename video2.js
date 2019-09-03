@@ -152,8 +152,14 @@ function switchVideo(n) {
 			myVideo.src({src: "./videos/" + video[0].fichier , type: "video/mp4"});
 			myVideo.poster("./videos/" + video[0].poster);
 		} else {
+			// calcul des dimensions en tenant compte du ratio prévu
+			let match = document.querySelector("match");
+			let matchHCalcule = match.offsetWidth / 1.78;	// 1,78 est le ratio accepté par videoJs
+
             // on créé la vidéo
 			myVideo = videojs('myVideo', {
+				width: match.offsetWidth,
+				height: matchHCalcule,
 				controls: true,
 				preload:  'none',
 				loop: false,
@@ -253,6 +259,7 @@ function switchVideo(n) {
 				}
 			});
 		}
+
 		isDefineBVideoJS = true;
 		myVideo.load();
 
@@ -452,6 +459,8 @@ function showContent(etat) {
 	let bascule_titre = document.querySelector("bascule span");
 	bascule_titre.innerHTML = (etat === true ? "cliquez sur cet icône pour afficher les matchs disponibles" : "cliquez sur la vignette du match que vous souhaitez arbitrer");
 
-	myVideo.style.visibility  = "visible";	
-	//myVideo.style.width = "700px";//hautContent + "px";
+	myVideo.style.visibility  = "visible";
+	// la gestion du cadre doit se faire ici et non dans switchVideo sinon cela ne fonctionne pas
+	myVideo.classList.add("cadre");
+
 }
