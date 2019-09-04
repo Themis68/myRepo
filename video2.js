@@ -154,14 +154,17 @@ function switchVideo(n) {
 		} else {
 			// calcul des dimensions en tenant compte du ratio prévu
 			let match = document.querySelector("match");
-			let matchH = match.offsetHeight;
 			let matchWCalcule = match.offsetHeight * 1.78;	// 1,78 est le ratio accepté par videoJs
-			console.log(match.offsetHeight, match.offsetWidth, matchWCalcule);
+			let carousel = document.querySelector("carousel");
+			console.log('lzrgeur', match.offsetWidth);
+			console.log('hauteur', match.offsetHeight);
+			console.log( 'nouvelle largeur', matchWCalcule );
+			console.log( 'nouvelle hauteur', match.offsetHeight + carousel.offsetHeight);
 
             // on créé la vidéo
 			myVideo = videojs('myVideo', {
 				width: matchWCalcule,
-				height: matchH,
+				height: match.offsetHeight + carousel.offsetHeight,
 				controls: true,
 				preload:  'none',
 				loop: false,
@@ -446,11 +449,7 @@ function gestionCamps(mitemps) {
 function showContent(etat) {
 	// ce n'est appelé que si on peut voir les vignettes car c'ets le clic dessus quki affiche !!!!
 	let carousel = document.getElementById("carousel");
-	let match = document.getElementById("match");
 	let myVideo = document.getElementById("myVideo");
-	let inter = document.getElementById("inter");
-
-	let hautMatch = match.offsetHeight;
 
 	// le DISPLAY du CAROUSEL a un effet sur la taille de CONTENT qui s'agrandit mais qui dépasse FOOTER
 	carousel.style.display =  (etat === true ? "none" : "flex");
