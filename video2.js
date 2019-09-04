@@ -154,12 +154,14 @@ function switchVideo(n) {
 		} else {
 			// calcul des dimensions en tenant compte du ratio prévu
 			let match = document.querySelector("match");
-			let matchHCalcule = match.offsetWidth / 1.78;	// 1,78 est le ratio accepté par videoJs
+			let matchH = match.offsetHeight;
+			let matchWCalcule = match.offsetHeight * 1.78;	// 1,78 est le ratio accepté par videoJs
+			console.log(match.offsetHeight, match.offsetWidth, matchWCalcule);
 
             // on créé la vidéo
 			myVideo = videojs('myVideo', {
-				width: match.offsetWidth,
-				height: matchHCalcule,
+				width: matchWCalcule,
+				height: matchH,
 				controls: true,
 				preload:  'none',
 				loop: false,
