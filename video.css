@@ -198,9 +198,9 @@ main content inter tete niveau {
 main content inter jauge {
   background-color: white;
   padding-top: 8px;
-  padding-bottom: 7px;
-  padding-left: 7px;
-  padding-right: 57px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
   flex: 0.4;
 }
 main content inter jauge .progress {
@@ -254,7 +254,7 @@ main content inter complement p {
   padding-left: 5px;
   padding-right: 5px;
   padding-bottom: 5px;
-  padding-top: 10px;
+  padding-top: 20px;
   text-align: left;
   font-size: 1.25vw;
   color: green;
