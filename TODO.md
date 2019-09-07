@@ -577,3 +577,6 @@ instruction : npm i video.js
 
 AVANT : 5.20.5
 23/08/2019 : MAJ 7.6.0
+
+La vidéo conserve un ratio de 1,78 (largeur = hauteur * 1,78)
+Du coup le redimensionnement est auto mais sur la hauteur et recalcule ce ratio systématiquement
