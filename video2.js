@@ -146,6 +146,8 @@ function switchVideo(n) {
         //            
         // Gestion du contenu de la vidéo
 		//
+
+		let hauteur = 0;
 		
         if (isDefineBVideoJS) {
             // il y a déjà une vidéo
@@ -156,15 +158,12 @@ function switchVideo(n) {
 			let match = document.querySelector("match");
 			let matchWCalcule = match.offsetHeight * 1.78;	// 1,78 est le ratio accepté par videoJs
 			let carousel = document.querySelector("carousel");
-			console.log('lzrgeur', match.offsetWidth);
-			console.log('hauteur', match.offsetHeight);
-			console.log( 'nouvelle largeur', matchWCalcule );
-			console.log( 'nouvelle hauteur', match.offsetHeight + carousel.offsetHeight);
+			hauteur = match.offsetHeight + carousel.offsetHeight;
 
             // on créé la vidéo
 			myVideo = videojs('myVideo', {
 				width: matchWCalcule,
-				height: match.offsetHeight + carousel.offsetHeight,
+				height: hauteur,
 				controls: true,
 				preload:  'none',
 				loop: false,
@@ -267,6 +266,12 @@ function switchVideo(n) {
 
 		isDefineBVideoJS = true;
 		myVideo.load();
+
+		let inter = document.getElementById("inter");
+		inter.offsetHeight * hauteur;
+		inter.style.display = "flex";
+
+		match.offsetHeight = hauteur;
 
 		// EQUIPES : doit être après le chargement des plugins videos
 		gestionCamps(1);	// affichage des informations sur l'équipe pour la première mi-temps
