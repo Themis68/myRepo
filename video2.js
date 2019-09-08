@@ -278,6 +278,8 @@ function switchVideo(n) {
 
 		// affichage de la zone VIDEO
 		showContent(true);
+
+		gestionInter("selectVideo");
 	}
 }
 
@@ -471,11 +473,50 @@ function showContent(etat) {
 
 }
 
+function gestJauge(valeur, nbQuestions) {
+	//let jauge = document.querySelector("inter jauge progress progress-bar");
+	let jauge = document.getElementsByClassName("progress-bar");
+	console.log(nbQuestions);
+	pourCent = valeur / nbQuestions * 100;
+	jauge[0].setAttribute("aria-valuenow", valeur);
+	jauge[0].setAttribute("style", "width: " + pourCent + "%");
+	jauge[0].innerHTML = (valeur == 0 ? nbQuestions : valeur);
+}
+
+function scanQuestion() {
+	//let actions = video[1];
+
+	// init
+	nbQuests[1].nb = 0;		// niveau débutant
+	nbQuests[2].nb = 0;		// niveau confirmé
+	nbQuests[1].points = 0;	// niveau débutant
+	nbQuests[2].points = 0;	// niveau confirmé
+
+	// scanne des actions et imputation des points ou pas
+	for (let ind = 0; ind < arrayAssoSize(actions); ind++) {
+		if((actions[ind].act === "question") || (actions[ind].act === "question2")) {
+			// calcul du compteur
+				niv = (actions[ind].niveau === "DEBUTANT" ? 1: actions[ind].niveau === "CONFIRME" ? 2 : 0);
+				nbQuests[niv].nb++;	// nombre de questions
+				nbQuests[niv].points+= actions[ind].reponse.points;	// nombre de points MAX
+		}
+	}
+	return nbQuests;
+}
+
 function gestionInter(etape) {
 	let inter = document.querySelector("inter");
 	switch (etape) {
 		case "selectVideo":
-			inter.
+			document.querySelector("inter tete replay").style.display = "none";
+			document.querySelector("inter tete titre p").innerHTML = "Match";
+			let nbQuest = scanQuestion();
+			console.log(nbQuest[niveauQuest].nb);
+			gestJauge(0, nbQuests[niveauQuest].nb);
+			document.querySelector("inter question p").innerHTML = video[0].description;
+			document.querySelector("inter propositions").style.display = "none";
+			document.querySelector("inter complement").style.display = "none";
+			document.querySelector("inter suite").style.display = "none";
 			break;
 
 		default:
