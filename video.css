@@ -185,15 +185,29 @@ main content inter tete {
 }
 main content inter tete replay {
   flex: 1;
+  padding-left: 10px;
 }
-main content inter tete p {
+main content inter tete titre {
+  flex: 10;
+}
+main content inter tete titre p {
   text-align: center;
   font-size: 1.5vw;
   color: black;
-  flex: 10;
+  flex: 1;
 }
 main content inter tete niveau {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: nowrap;
   flex: 1;
+  padding-right: 17px;
+}
+main content inter tete niveau span {
+  padding-left: 3px;
+  font-size: 1.5vw;
+  color: black;
 }
 main content inter jauge {
   background-color: white;

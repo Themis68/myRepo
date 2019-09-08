@@ -133,15 +133,30 @@ main {
 
                 replay {
                     flex: 1;
+                    padding-left: 10px;
                 }
-                p {
-                    text-align: center;
-                    font-size: 1.5vw; // taille variable selon largeur du viewport
-                    color:black;
+                titre {
                     flex: 10;
+                    p {
+                        text-align: center;
+                        font-size: 1.5vw; // taille variable selon largeur du viewport
+                        color:black;
+                        flex: 1;
+                    }
                 }
                 niveau {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    flex-wrap: nowrap;
                     flex: 1;
+                    padding-right: 17px;
+                    
+                    span {
+                        padding-left: 3px;
+                        font-size: 1.5vw; // taille variable selon largeur du viewport
+                        color:black;
+                    }
                 }
             }
 

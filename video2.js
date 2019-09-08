@@ -470,3 +470,15 @@ function showContent(etat) {
 	myVideo.classList.add("cadre");
 
 }
+
+function gestionInter(etape) {
+	let inter = document.querySelector("inter");
+	switch (etape) {
+		case "selectVideo":
+			inter.
+			break;
+
+		default:
+			inter.display = "none";
+	}
+}
