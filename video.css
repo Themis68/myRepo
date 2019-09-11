@@ -189,12 +189,32 @@ main content inter tete niveau {
   justify-content: center;
   flex-wrap: nowrap;
   flex: 1;
-  padding-right: 17px;
+  padding-left: 15px;
 }
-main content inter tete niveau span {
-  padding-left: 3px;
-  font-size: 1.5vw;
-  color: black;
+main content inter tete niveau .btn {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  background-color: transparent;
+  border-color: transparent;
+}
+main content inter tete niveau .btn:hover {
+  background-color: transparent;
+  border-color: transparent;
+}
+main content inter tete niveau .badge {
+  display: flex;
+  margin-right: 1px;
+  font-weight: 100;
+  font-size: 1vw;
+  text-align: center;
+}
+main content inter tete niveau .badge-current {
+  display: flex;
+  margin-right: 1px;
+  font-weight: 700;
+  font-size: 1.25vw;
+  text-align: center;
 }
 main content inter tete titre {
   flex: 10;
