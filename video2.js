@@ -508,7 +508,7 @@ function gestionInter(etape) {
 	let inter = document.querySelector("inter");
 	switch (etape) {
 		case "selectVideo":
-			document.querySelector("inter tete replay").style.display = "none";
+			document.querySelector("inter tete points").style.display = "none";
 			document.querySelector("inter tete titre p").innerHTML = "Match";
 			let nbQuest = scanQuestion();
 			console.log(nbQuest[niveauQuest].nb);
@@ -516,7 +516,8 @@ function gestionInter(etape) {
 			document.querySelector("inter question p").innerHTML = video[0].description;
 			document.querySelector("inter propositions").style.display = "none";
 			document.querySelector("inter complement").style.display = "none";
-			document.querySelector("inter suite").style.display = "none";
+			document.querySelector("inter tete replay").style.display = "none";
+			document.querySelector("inter tete next").style.display = "none";
 			break;
 
 		default:

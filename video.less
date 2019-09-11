@@ -131,19 +131,6 @@ main {
                 border-top-right-radius: 20px;
                 padding: 5px;
 
-                replay {
-                    flex: 1;
-                    padding-left: 10px;
-                }
-                titre {
-                    flex: 10;
-                    p {
-                        text-align: center;
-                        font-size: 1.5vw; // taille variable selon largeur du viewport
-                        color:black;
-                        flex: 1;
-                    }
-                }
                 niveau {
                     display: flex;
                     flex-direction: row;
@@ -158,6 +145,29 @@ main {
                         color:black;
                     }
                 }
+                
+                titre {
+                    flex: 10;
+                    p {
+                        text-align: center;
+                        font-size: 1.5vw; // taille variable selon largeur du viewport
+                        color:black;
+                        flex: 1;
+                    }
+                }
+
+                points {
+                    display: flex;
+                    flex: 1;
+                    padding-left: 10px;
+
+                    span {
+                        padding-left: 3px;
+                        font-size: 1.5vw; // taille variable selon largeur du viewport
+                        color:black;
+                    }
+                }
+               
             }
 
             jauge {
@@ -242,10 +252,33 @@ main {
                 padding: 10px;
                 background-color: white;
                 flex: 1;
+                -webkit-border-bottom-left-radius: 20px;
+                -webkit-border-bottom-right-radius: 20px;
+                -moz-border-radius-bottomleft: 20px;
+                -moz-border-radius-bottomright: 20px;
+                border-bottom-left-radius: 20px;
+                border-bottom-right-radius: 20px;
 
-                img {
-                    width: 10%;
-                    height: 10%;
+                replay {
+                    display: none;
+                    flex: 1;
+                    padding-left: 10px;
+
+                    img {
+                        width: 10%;
+                        height: 10%;
+                    }
+                }
+
+                next {
+                    display: none;
+                    flex: 1;
+                    padding-left: 10px;
+
+                    img {
+                        width: 10%;
+                        height: 10%;
+                    }
                 }
             }
         }
