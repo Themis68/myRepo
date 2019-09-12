@@ -480,7 +480,7 @@ function gestJauge(valeur, nbQuestions) {
 	pourCent = valeur / nbQuestions * 100;
 	jauge[0].setAttribute("aria-valuenow", valeur);
 	jauge[0].setAttribute("style", "width: " + pourCent + "%");
-	jauge[0].innerHTML = (valeur == 0 ? nbQuestions : valeur);
+	jauge[0].innerHTML = (valeur == 0 ? nbQuestions + " questions" : valeur);
 }
 
 function scanQuestion() {
@@ -516,8 +516,8 @@ function gestionInter(etape) {
 			document.querySelector("inter question p").innerHTML = video[0].description;
 			document.querySelector("inter propositions").style.display = "none";
 			document.querySelector("inter complement").style.display = "none";
-			document.querySelector("inter tete replay").style.display = "none";
-			document.querySelector("inter tete next").style.display = "none";
+			document.querySelector("inter suite replay").style.display = "none";
+			document.querySelector("inter suite next").style.display = "none";
 			break;
 
 		default:
