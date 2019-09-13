@@ -43,7 +43,8 @@ var idVideo = null;		// vidéo en cours
 var nbQuests = [
 	{niv: "COURANT", nb: 0, points: 0},
 	{niv: "DEBUTANT", nb: 0, points: 0},
-	{niv: "CONFIRME", nb: 0, points: 0}
+	{niv: "CONFIRME", nb: 0, points: 0},
+	{niv: "EXPERT", nb: 0, points: 0}
 ];		// le niveau 0 est le niveau en cours
 var questionsFaites = [];
 var seqUsed = -1;	// valeur de l'étape de la séquence qui a été traitée
@@ -424,6 +425,24 @@ function fBascule(event) {
 	}	
 }
 
+function fNiveaux(id) {
+	// changer de niveau
+	//
+	// exemple appel : fNiveaux(id)
+	// - id de l'objet
+	//
+	console.log("clis sur " , id);
+	let span = document.querySelectorAll("inter tete niveau button span");
+	span.forEach( function(a) {
+			a.className = "badge badge-light";
+		}
+	)
+	niveauQuest = id;
+	document.getElementById("level" + id).className = "badge badge-current badge-light";
+	gestJauge(0, nbQuests[niveauQuest].nb);
+
+}
+
 function gestionCamps(mitemps) {
 	let codeG = '';
 	let codeD = '';
@@ -489,8 +508,10 @@ function scanQuestion() {
 	// init
 	nbQuests[1].nb = 0;		// niveau débutant
 	nbQuests[2].nb = 0;		// niveau confirmé
+	nbQuests[3].nb = 0;		// niveau expert
 	nbQuests[1].points = 0;	// niveau débutant
 	nbQuests[2].points = 0;	// niveau confirmé
+	nbQuests[3].points = 0;	// niveau expert
 
 	// scanne des actions et imputation des points ou pas
 	for (let ind = 0; ind < arrayAssoSize(actions); ind++) {
