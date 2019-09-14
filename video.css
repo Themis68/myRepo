@@ -197,6 +197,7 @@ main content inter tete niveau .btn {
   align-items: flex-end;
   background-color: transparent;
   border-color: transparent;
+  padding: 0px;
 }
 main content inter tete niveau .btn:hover {
   background-color: transparent;

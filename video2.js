@@ -209,7 +209,7 @@ function switchVideo(n) {
 						visibility: true,
 						height: 40,
 						width: 40,
-						imgSrc: "./images/fanions/" + video[0].gauche.fanion,
+						imgSrc: "./images/fanions/" + (video[0].gauche.fanion || 'fff.png'),
 						alt: video[0].droite.nom,
 						link: "http://www.apple.fr",
 						opacity: 0.7,
@@ -254,7 +254,7 @@ function switchVideo(n) {
 						visibility: true,
 						height: 35,
 						width: 35,
-						imgSrc: "./images/fanions/" + video[0].droite.fanion,
+						imgSrc: "./images/fanions/" + (video[0].droite.fanion || 'fff.png'),
 						alt: video[0].droite.nom,
 						link: "http://www.fnac.fr",
 						opacity: 0.7,
@@ -337,10 +337,7 @@ function capture(event) {
 			seqUsed = seq;	// évite de jouer deux fois le traitement
 			if (seq < oldStep) {
 				// on recule
-			//	showItem("echange", false);
-    		//	showZone("zSuite", false); 
-    		//	encadreVideo(false);
-    		//	showZone("zConseiller", false);
+
 			} else {
 				timeCode = convertInTimeCode(seq);
 				var asWork = arrayAssoSearch(actions, timeCode);	// renvoi l'indice de l'action si elle existe pour cette séquence
@@ -444,31 +441,40 @@ function fNiveaux(id) {
 }
 
 function gestionCamps(mitemps) {
-	let codeG = '';
-	let codeD = '';
-
-	switch (mitemps) {
-		case 1:
-			codeG = '<img src="'+ myURL + '/images/fanions/'+ (video[0].gauche.fanion || 'fff.png') +'" width="20%" height="20%"/>';
-			codeG+= '<span class="fanion">' + video[0].gauche.nom + '</span>';
-			codeD = '<span class="fanion">' + video[0].droite.nom + '</span>';
-			codeD+= '<img src="'+ myURL + '/images/fanions/'+ (video[0].droite.fanion || 'fff.png') +'" width="20%" height="20%" />';
-			break;
-		case 2:
-			codeG = '<img src="'+ myURL + '/images/fanions/'+ (video[0].droite.fanion || 'fff.png') +'" width="20%" height="20%"/>';
-			codeG+= '<span class="fanion">' + video[0].droite.nom + '</span>';
-			codeD = '<span class="fanion">' + video[0].gauche.nom + '</span>';
-			codeD+= '<img src="'+ myURL + '/images/fanions/'+ (video[0].gauche.fanion || 'fff.png') +'" width="20%" height="20%" />';
-			break;
-	}
-
-
-	// fanions incrustés
+		// fanions incrustés
 	// en première mi-temps c'est l'init du plugin qui affiche les infos
 	if (mitemps===2) {
     	document.getElementById("vjs-bug-pictEquipeA").src = myURL + '/images/fanions/'+ (video[0].droite.fanion || 'fff.png');
     	document.getElementById("vjs-bug-pictEquipeB").src = myURL + '/images/fanions/'+ (video[0].gauche.fanion || 'fff.png');
-    }
+	}
+	
+	//let codeG = '';
+	//let codeD = '';
+
+	/*
+	switch (mitemps) {
+		case 1:
+			/*codeG = '<img src="'+ myURL + '/images/fanions/'+ (video[0].gauche.fanion || 'fff.png') +'" width="20%" height="20%"/>';
+			codeG+= '<span class="fanion">' + video[0].gauche.nom + '</span>';
+			codeD = '<span class="fanion">' + video[0].droite.nom + '</span>';
+			codeD+= '<img src="'+ myURL + '/images/fanions/'+ (video[0].droite.fanion || 'fff.png') +'" width="20%" height="20%" />';
+			document.getElementById("vjs-bug-pictEquipeA").src = myURL + '/images/fanions/'+ (video[0].gauche.fanion || 'fff.png');
+    		document.getElementById("vjs-bug-pictEquipeB").src = myURL + '/images/fanions/'+ (video[0].droite.fanion || 'fff.png');
+			break;
+		case 2:
+			/*codeG = '<img src="'+ myURL + '/images/fanions/'+ (video[0].droite.fanion || 'fff.png') +'" width="20%" height="20%"/>';
+			codeG+= '<span class="fanion">' + video[0].droite.nom + '</span>';
+			codeD = '<span class="fanion">' + video[0].gauche.nom + '</span>';
+			codeD+= '<img src="'+ myURL + '/images/fanions/'+ (video[0].gauche.fanion || 'fff.png') +'" width="20%" height="20%" />';
+			document.getElementById("vjs-bug-pictEquipeA").src = myURL + '/images/fanions/'+ (video[0].droite.fanion || 'fff.png');
+    		document.getElementById("vjs-bug-pictEquipeB").src = myURL + '/images/fanions/'+ (video[0].gauche.fanion || 'fff.png');
+			break;
+	}
+*/
+
+
+
+
 
 }
 
@@ -493,7 +499,7 @@ function showContent(etat) {
 }
 
 function gestJauge(valeur, nbQuestions) {
-	//let jauge = document.querySelector("inter jauge progress progress-bar");
+	//MAJ de la jauge
 	let jauge = document.getElementsByClassName("progress-bar");
 	console.log(nbQuestions);
 	pourCent = valeur / nbQuestions * 100;
@@ -517,12 +523,30 @@ function scanQuestion() {
 	for (let ind = 0; ind < arrayAssoSize(actions); ind++) {
 		if((actions[ind].act === "question") || (actions[ind].act === "question2")) {
 			// calcul du compteur
-				niv = (actions[ind].niveau === "DEBUTANT" ? 1: actions[ind].niveau === "CONFIRME" ? 2 : 0);
-				nbQuests[niv].nb++;	// nombre de questions
-				nbQuests[niv].points+= actions[ind].reponse.points;	// nombre de points MAX
+			switch (actions[ind].niveau) {
+				case "DEBUTANT":
+					niveauQuest = 1;
+					break;
+				case "CONFIRME":
+					niveauQuest = 2;
+					break;
+				case "EXPERT":
+					niveauQuest = 3;
+					break;
+				default:
+					nniveauQuestiv = 0;
+			}
+				//niv = (actions[ind].niveau === "DEBUTANT" ? 1: actions[ind].niveau === "CONFIRME" ? 2 : 0);
+				nbQuests[niveauQuest].nb++;	// nombre de questions du nouveau niveau
+				nbQuests[niveauQuest].points+= actions[ind].reponse.points;	// nombre de points MAX du nouveau niveau
 		}
 	}
-	return nbQuests;
+	// MAJ boutons niveaux
+	document.getElementById("level1").style.display = (nbQuests[1].nb > 0 ? "flex" : "none");
+	document.getElementById("level2").style.display = (nbQuests[2].nb > 0 ? "flex" : "none");
+	document.getElementById("level3").style.display = (nbQuests[3].nb > 0 ? "flex" : "none");
+
+	return nbQuests;	// on renvoi le nombre de question du nouveau niveau
 }
 
 function gestionInter(etape) {
@@ -531,9 +555,9 @@ function gestionInter(etape) {
 		case "selectVideo":
 			document.querySelector("inter tete points").style.display = "none";
 			document.querySelector("inter tete titre p").innerHTML = "Match";
-			let nbQuest = scanQuestion();
-			console.log(nbQuest[niveauQuest].nb);
-			gestJauge(0, nbQuests[niveauQuest].nb);
+			// jauge
+			let nbQuest = scanQuestion();	// analyse du scénario
+			gestJauge(0, nbQuests[niveauQuest].nb);	// MAJ de la jauge
 			document.querySelector("inter question p").innerHTML = video[0].description;
 			document.querySelector("inter propositions").style.display = "none";
 			document.querySelector("inter complement").style.display = "none";

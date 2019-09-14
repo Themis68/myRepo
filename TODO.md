@@ -8,7 +8,6 @@ https://www.w3.org/2010/05/video/mediaevents.html
 - video est ait après qu'on est cliqué dessus ?
 - la hauteur de video n'est toujurs pas bonne
 
-
 - prévoir un mode CREATION
 - afficher le score et le nom des équipe dnas le BOARD
 - paramétrer la couleur des incrustations (texte)
