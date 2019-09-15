@@ -64,10 +64,10 @@ calcul hauteur
 var el = document.getElementById('tonID');
  
 // inclu les padding, border & scrollbar.
-console.log(el.offsetHeight);
+//console.log(el.offsetHeight);
  
 // inclu les padding.
-console.log(el.clientHeight);
+//console.log(el.clientHeight);
 
 var style = el.getAttribute('style'); // On récupère l'attribut « style »
 el.setAttribute('style', '--hauteur:'+el.clientHeight+'px;'); // On édite l'attribut « style »

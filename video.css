@@ -154,7 +154,6 @@ main content {
   flex: 1;
 }
 main content match {
-  background-color: blue;
   display: flex;
   flex-direction: column;
   flex: 3;

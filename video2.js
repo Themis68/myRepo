@@ -431,7 +431,7 @@ function fNiveaux(id) {
 	// exemple appel : fNiveaux(id)
 	// - id de l'objet
 	//
-	console.log("clis sur " , id);
+	//console.log("clis sur " , id);
 	let span = document.querySelectorAll("inter tete niveau button span");
 	span.forEach( function(a) {
 			a.className = "badge badge-light";
@@ -448,7 +448,7 @@ function fProposition(id) {
 }
 
 function fReplay(param) {
-	console.log("esd");
+	//console.log("esd");
     // param est le nombre de secondes à reculer sinon on prend la valeur par défaut
     fAddScore(-1);   // MAJ score
     getVideo().currentTime = getVideo().currentTime - (param); // on recule de X secondes
@@ -496,7 +496,7 @@ function showContent(etat) {
 function gestJauge(valeur, nbQuestions) {
 	//MAJ de la jauge
 	let jauge = document.getElementsByClassName("progress-bar");
-	console.log(nbQuestions);
+	//console.log(nbQuestions);
 	pourCent = valeur / nbQuestions * 100;
 	jauge[0].setAttribute("aria-valuenow", valeur);
 	jauge[0].setAttribute("style", "width: " + pourCent + "%");
@@ -566,7 +566,7 @@ function gestPropositions(etape, attributs) {
 }
 
 function gestionInter(etape, objet) {
-	console.log(objet);
+	//console.log(objet);
 
 	let inter = document.querySelector("inter");
 	switch (etape) {

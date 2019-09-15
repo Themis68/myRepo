@@ -102,7 +102,7 @@ function mouseHandler(event) {
 		var x = ((event.clientX - rect.left) * scaleX + 0.5)|0; // round to integer
 		var y = ((event.clientY - rect.top ) * scaleY + 0.5)|0;
 			
-		console.log('x:', x, 'y:', y);
+		//console.log('x:', x, 'y:', y);
 
 		/*
 		ATTENTION : les zones superposées se retouvent au-dessus de la vidéo du coup quand on passe dessus on n'est plus sur la vidéo
