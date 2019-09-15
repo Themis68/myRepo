@@ -64,11 +64,14 @@ var mesActions = {
     },
 
     question : function (ind) {
-        encadreVideo(false);
+       // encadreVideo(false);
         document._video.pause();    // on pause la vidéo
         // préparation des actions
         var monJob = actions[ind];
 
+        gestionInter("InterQuestion", actions[ind]);
+
+        /*
         document.getElementById("message").innerHTML = actions[ind].question.libelle;
         
         //
@@ -124,6 +127,7 @@ var mesActions = {
         showItem("btnRepondre", true);
         showItem("btnReplay", (actions[ind].reculReplay || false));
         showItem("btnBonus", false);
+        */
     },
     
     bonus : function (ind) {

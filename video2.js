@@ -49,6 +49,7 @@ var nbQuests = [
 var questionsFaites = [];
 var seqUsed = -1;	// valeur de l'étape de la séquence qui a été traitée
 var hauteurContent = 0; // hauteur de la zone CONTENT récupérée lors du chargement
+var numQuestion = 0;	// numero de la question
 // **********************************************************************************************************
 
 document.addEventListener("DOMContentLoaded", init, false);	// lance l'écoute des évènements et appelle INIT
@@ -157,8 +158,10 @@ function switchVideo(n) {
 		} else {
 			// calcul des dimensions en tenant compte du ratio prévu
 			let match = document.querySelector("match");
-			let matchWCalcule = match.offsetHeight * 1.78;	// 1,78 est le ratio accepté par videoJs
 			let carousel = document.querySelector("carousel");
+
+			// taille de la vidéo reclaculée
+			let matchWCalcule = match.offsetHeight * 1.78;	// 1,78 est le ratio accepté par videoJs
 			hauteur = match.offsetHeight + carousel.offsetHeight;
 
             // on créé la vidéo
@@ -272,7 +275,7 @@ function switchVideo(n) {
 		inter.offsetHeight * hauteur;
 		inter.style.display = "flex";
 
-		match.offsetHeight = hauteur;
+		//match.offsetHeight = hauteur;
 
 		// EQUIPES : doit être après le chargement des plugins videos
 		gestionCamps(1);	// affichage des informations sur l'équipe pour la première mi-temps
@@ -440,6 +443,27 @@ function fNiveaux(id) {
 
 }
 
+function fProposition(id) {
+	// gestion des réponses	
+}
+
+function fReplay(param) {
+	console.log("esd");
+    // param est le nombre de secondes à reculer sinon on prend la valeur par défaut
+    fAddScore(-1);   // MAJ score
+    getVideo().currentTime = getVideo().currentTime - (param); // on recule de X secondes
+    document._video.playbackRate = 0.2; // on active le ralentis
+    document._video.play(); // on reprend la lecture de la vidéo
+}
+
+function getVideo() {
+	return document._video;
+}
+
+function fAddScore(valeur) {
+	// à définir
+}
+
 function gestionCamps(mitemps) {
 		// fanions incrustés
 	// en première mi-temps c'est l'init du plugin qui affiche les infos
@@ -447,35 +471,6 @@ function gestionCamps(mitemps) {
     	document.getElementById("vjs-bug-pictEquipeA").src = myURL + '/images/fanions/'+ (video[0].droite.fanion || 'fff.png');
     	document.getElementById("vjs-bug-pictEquipeB").src = myURL + '/images/fanions/'+ (video[0].gauche.fanion || 'fff.png');
 	}
-	
-	//let codeG = '';
-	//let codeD = '';
-
-	/*
-	switch (mitemps) {
-		case 1:
-			/*codeG = '<img src="'+ myURL + '/images/fanions/'+ (video[0].gauche.fanion || 'fff.png') +'" width="20%" height="20%"/>';
-			codeG+= '<span class="fanion">' + video[0].gauche.nom + '</span>';
-			codeD = '<span class="fanion">' + video[0].droite.nom + '</span>';
-			codeD+= '<img src="'+ myURL + '/images/fanions/'+ (video[0].droite.fanion || 'fff.png') +'" width="20%" height="20%" />';
-			document.getElementById("vjs-bug-pictEquipeA").src = myURL + '/images/fanions/'+ (video[0].gauche.fanion || 'fff.png');
-    		document.getElementById("vjs-bug-pictEquipeB").src = myURL + '/images/fanions/'+ (video[0].droite.fanion || 'fff.png');
-			break;
-		case 2:
-			/*codeG = '<img src="'+ myURL + '/images/fanions/'+ (video[0].droite.fanion || 'fff.png') +'" width="20%" height="20%"/>';
-			codeG+= '<span class="fanion">' + video[0].droite.nom + '</span>';
-			codeD = '<span class="fanion">' + video[0].gauche.nom + '</span>';
-			codeD+= '<img src="'+ myURL + '/images/fanions/'+ (video[0].gauche.fanion || 'fff.png') +'" width="20%" height="20%" />';
-			document.getElementById("vjs-bug-pictEquipeA").src = myURL + '/images/fanions/'+ (video[0].droite.fanion || 'fff.png');
-    		document.getElementById("vjs-bug-pictEquipeB").src = myURL + '/images/fanions/'+ (video[0].gauche.fanion || 'fff.png');
-			break;
-	}
-*/
-
-
-
-
-
 }
 
 function showContent(etat) {
@@ -549,21 +544,65 @@ function scanQuestion() {
 	return nbQuests;	// on renvoi le nombre de question du nouveau niveau
 }
 
-function gestionInter(etape) {
+function gestPropositions(etape, attributs) {
+	let proposition = document.querySelector("inter propositions");
+	let button = document.createElement("button");
+
+	deleteChild("inter propositions");	// on supprime l'existant
+
+	switch(etape) {
+		case "afficher":
+			for (i=0; i < attributs.length; i++) {
+				button.id = "proposition" + (i+1);
+				button.className = "btn btn-warning";
+				button.innerHTML = attributs[i];
+				button.setAttribute("onclick","fProposition(" + (i+1) + ");"); 
+				proposition.appendChild(button);
+				button = document.createElement("button");
+			}
+			break;
+	}
+	
+}
+
+function gestionInter(etape, objet) {
+	console.log(objet);
+
 	let inter = document.querySelector("inter");
 	switch (etape) {
 		case "selectVideo":
-			document.querySelector("inter tete points").style.display = "none";
+			numQuestion = 0;		// numero de la question
 			document.querySelector("inter tete titre p").innerHTML = "Match";
-			// jauge
+			document.querySelector("inter tete points").style.display = "none";
+			// jauge et niveaux
 			let nbQuest = scanQuestion();	// analyse du scénario
-			gestJauge(0, nbQuests[niveauQuest].nb);	// MAJ de la jauge
+			gestJauge(numQuestion, nbQuests[niveauQuest].nb);	// MAJ de la jauge
 			document.querySelector("inter question p").innerHTML = video[0].description;
 			document.querySelector("inter propositions").style.display = "none";
 			document.querySelector("inter complement").style.display = "none";
 			document.querySelector("inter suite replay").style.display = "none";
 			document.querySelector("inter suite next").style.display = "none";
 			break;
+		case "InterQuestion":
+			numQuestion++;		// on incrémente le compteur des questions
+			// tete
+			document.querySelector("inter tete titre p").innerHTML = "Question " + numQuestion;
+			document.querySelector("inter tete points").style.display = "flex";
+			document.querySelector("inter tete points span").innerHTML = objet.reponse.points;
+			// jauge et niveaux
+			gestJauge(numQuestion, nbQuests[niveauQuest].nb);	// MAJ de la jauge
+			document.querySelector("inter question p").innerHTML = objet.question.libelle;
+			// gestion des propositions
+			gestPropositions("afficher", objet.attributs);
+			document.querySelector("inter propositions").style.display = "flex";
+			// complement
+			document.querySelector("inter complement").style.display = "none";
+			// replay
+			document.querySelector("inter suite replay").style.display = (objet.reculReplay ? "flex" : "none");
+			document.querySelector("inter suite replay").innerHTML = objet.reculReplay;
+			document.querySelector("inter suite replay").setAttribute("onclick","fReplay(" + (objet.reculReplay) + ");");
+			// next
+			document.querySelector("inter suite next").style.display = "none";
 
 		default:
 			inter.display = "none";

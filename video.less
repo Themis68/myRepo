@@ -100,6 +100,7 @@ main {
         flex: 1;        // prend toute la hauteur restante du container parent
 
         match {
+            background-color: blue;
             display: flex;
             flex-direction: column;
             flex: 3;        // prend les 3/4 de la largeur
@@ -177,7 +178,7 @@ main {
                         text-align: center;
                         font-size: 1.5vw; // taille variable selon largeur du viewport
                         color:black;
-                        flex: 1;
+                        flex: 2;
                     }
                 }
 
@@ -185,9 +186,10 @@ main {
                     display: flex;
                     flex: 1;
                     padding-left: 10px;
+                    justify-content: flex-end;
 
                     span {
-                        padding-left: 3px;
+                        padding-left: 2px;
                         font-size: 1.5vw; // taille variable selon largeur du viewport
                         color:black;
                     }
@@ -247,7 +249,7 @@ main {
                     padding-left: 5px;
                     padding-right: 5px;
                     text-align: left;
-                    font-size: 1.25vw; // taille variable selon largeur du viewport
+                    font-size: 1.1vw; // taille variable selon largeur du viewport
                     -webkit-border-radius: 5px;
                     -moz-border-radius: 5px;
                     border-radius: 5px;
@@ -286,23 +288,33 @@ main {
 
                 replay {
                     display: none;
+                    flex-direction: row;
+                    justify-content: center;
                     flex: 1;
-                    padding-left: 10px;
+
+                    background-image: url("./images/replay.png");
+                    background-repeat: no-repeat;
+                    background-position: center; 
+                    background-size: contain;     // couvre tout l'écran
+
+                    color: black;
+                    font-size: 1vw;
+                    padding-top: 8px;
+                    padding-bottom: 3px;
 
                     img {
                         width: 10%;
-                        height: 10%;
                     }
                 }
 
                 next {
                     display: none;
+                    flex-direction: row;
+                    justify-content: center;
                     flex: 1;
-                    padding-left: 10px;
 
                     img {
                         width: 10%;
-                        height: 10%;
                     }
                 }
             }

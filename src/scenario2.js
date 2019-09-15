@@ -24,6 +24,7 @@ var scenario = [
                     libelle: "Quelle règle liée à l'équipement des joueurs n'est pas respectée ?"
                 },
                 attributs: ["les maillots doivent êtres dans les shorts", "Les cuissardes doivent êtres de la couleur dominante du short"],
+                reculReplay: 2,
                 reponse: {
                     solution: 1,
                     libelle: "Plusieurs joueurs blancs n'ont pas le maillot dans le short",

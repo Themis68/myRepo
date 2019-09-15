@@ -27,3 +27,12 @@ function arrayAssoSearch(arr, valObject) {
 	}
 	return -1;	// aucun résultat
 }
+
+function deleteChild(selector) { 
+	var e = document.querySelector(selector); 
+	var first = e.firstElementChild; 
+	while (first) { 
+		first.remove(); 
+		first = e.firstElementChild; 
+	} 
+} 
