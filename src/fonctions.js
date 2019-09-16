@@ -39,17 +39,27 @@ function deleteChild(selector) {
 
 function classSelector(use, selector, value) {
 	var e = document.querySelector(selector);
+	gestClass(use, e, value);
+}
+
+function classId(use, id, value) {
+	var e = document.getElementById(id);
+	gestClass(use, e, value);
+}
+
+function gestClass(use, objet, value) {
+	console.log(objet);
 	switch (use) {
 		case "set":
-			e.className = value;
+			objet.className = value;
 			break;
 
 		case "add":
-				e.classList.add(value);
+			objet.classList.add(value);
 			break;
 		
 		case "del":
-			e.classList.remove(value);
+			objet.classList.remove(value);
 
 		default:
 

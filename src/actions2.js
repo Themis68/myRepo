@@ -250,6 +250,17 @@ function returnSelRadio(nbEl){
 	}
 }
 
+function continuer2(param) {
+    // MAJ score
+    addScore2(0);
+    document._video.playbackRate = 1;   // vitesse normale
+    if (param) {
+        // allerA intégré
+        allerA(param);
+    }
+    document._video.play(); // on relance la video
+}
+
 function continuer(param) {
     showItem("echange", false);
     showZone("zSuite", false); 
@@ -295,8 +306,22 @@ function fairplay(ind) {
    
 }
 
+function addScore2(value) {
+    if (value === 0) {
+        videoNbPoint = 0;
+    } else {
+        videoNbPoint = videoNbPoint + value;
+    }
+    var score = ('0' + videoNbPoint.toString()).substr(-2);       // on a le score avec deux digits
+    var scoreMax = ('0' + nbQuests[0].points.toString()).substr(-2);
+
+    let myColor = ((videoNbPoint / nbQuests[0].points) > 0.5 ? 'green' : 'black');
+    let myScore = '<span style="color:'+ myColor +';">' + score + '</span>';
+
+    document.querySelector("inter suite score p").innerHTML = myScore + ':' + scoreMax;
+}
+
 function addScore(value) {
-    //console.log("addScore");
     if (value === 0) {
         videoNbPoint = 0;
     } else {

@@ -102,6 +102,12 @@ body {
 .bonus {
   background-color: #64c832;
 }
+.green {
+  background-color: #64c832;
+}
+.rouge {
+  background-color: red;
+}
 main {
   display: flex;
   flex-direction: column;
@@ -321,30 +327,47 @@ main content inter suite {
   border-bottom-right-radius: 20px;
 }
 main content inter suite replay {
-  display: none;
+  display: flex;
   flex-direction: row;
   justify-content: center;
   flex: 1;
+}
+main content inter suite replay span {
+  display: flex;
   background-image: url("images/replay.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
   color: black;
   font-size: 1vw;
-  padding-top: 8px;
   padding-bottom: 3px;
+  padding-top: 8px;
+  flex-direction: row;
+  justify-content: center;
+  height: fit-content;
+  flex: 1;
 }
-main content inter suite replay img {
-  width: 10%;
+main content inter suite score {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex: 2;
+}
+main content inter suite score p {
+  display: flex;
+  font-family: scoreboardregular;
+  font-size: 2vw;
+  color: black;
 }
 main content inter suite next {
-  display: none;
+  display: flex;
   flex-direction: row;
   justify-content: center;
   flex: 1;
 }
 main content inter suite next img {
-  width: 10%;
+  display: flex;
+  width: 50%;
 }
 .cadre {
   border-color: white;

@@ -5,11 +5,13 @@ https://www.w3.org/2010/05/video/mediaevents.html
 **************************************
                A FAIRE V2
 **************************************
+- gérer le HOVER sur les boutons réponses car oin ne voit pas la couleur tant qu'on est dessus
 - video est ait après qu'on est cliqué dessus ?
 - la hauteur de video n'est toujurs pas bonne
 - le numéro de la question est incémenté alors qu'on pose la question sur la JAUGE : il faut le faire seulement après le bouton NEXT
 - masquer INTER quand la vidéo reprend
 
+x gestion du clic réponse et de sa couleur
 x en replay ajouter un logo à l'écran
 x afficher le score et le nom des équipes en incrustation
 x proposer un QUIZZ sur la base de questions du fascicule

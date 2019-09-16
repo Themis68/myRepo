@@ -443,8 +443,53 @@ function fNiveaux(id) {
 
 }
 
-function fProposition(id) {
+function fProposition(code) {
 	// gestion des réponses	
+	let id = code.substr(1, 1);
+	let reponse = code.substr(3, 3);
+	let couleur = "";
+	console.log(id, reponse);
+
+	if (id === reponse) {
+		classId("add", "proposition" + id, "green");
+		fAddScore(0);				// ajouter des points
+	} else {
+		classId("add", "proposition" + id, "rouge");
+		classId("add", "proposition" + reponse, "green");
+	}
+	// afficher la lois sur le bouton vert
+
+	// gerer la réponse
+	gestionInter("reponse");
+
+}
+
+function gestPropositions(etape, attributs, reponse) {
+	console.log(reponse);
+	let proposition = document.querySelector("inter propositions");
+	let button = document.createElement("button");
+
+	deleteChild("inter propositions");	// on supprime l'existant
+
+	switch(etape) {
+		case "afficher":
+			for (i=0; i < attributs.length; i++) {
+				button.id = "proposition" + (i+1);
+				button.className = "btn btn-warning";
+				button.innerHTML = attributs[i];
+				button.setAttribute("onclick","fProposition('" + (i*2) + "" + (i+1) + "" + (i+2) + "" + reponse.solution +"');"); 
+				proposition.appendChild(button);
+				button = document.createElement("button");
+			}
+			// zone complement
+			document.querySelector("inter complement p").innerHTML = reponse.libelle;
+			// bouton next
+			/*let next = document.querySelector("suite next img");
+			let img = document.createElement("img");
+			img.setAttribute("onclick", "continuer();");
+			next.appendChild(img);*/
+			break;
+	}
 }
 
 function fReplay(param) {
@@ -458,10 +503,6 @@ function fReplay(param) {
 
 function getVideo() {
 	return document._video;
-}
-
-function fAddScore(valeur) {
-	// à définir
 }
 
 function gestionCamps(mitemps) {
@@ -544,27 +585,6 @@ function scanQuestion() {
 	return nbQuests;	// on renvoi le nombre de question du nouveau niveau
 }
 
-function gestPropositions(etape, attributs) {
-	let proposition = document.querySelector("inter propositions");
-	let button = document.createElement("button");
-
-	deleteChild("inter propositions");	// on supprime l'existant
-
-	switch(etape) {
-		case "afficher":
-			for (i=0; i < attributs.length; i++) {
-				button.id = "proposition" + (i+1);
-				button.className = "btn btn-warning";
-				button.innerHTML = attributs[i];
-				button.setAttribute("onclick","fProposition(" + (i+1) + ");"); 
-				proposition.appendChild(button);
-				button = document.createElement("button");
-			}
-			break;
-	}
-	
-}
-
 function gestionInter(etape, objet) {
 	//console.log(objet);
 
@@ -580,8 +600,12 @@ function gestionInter(etape, objet) {
 			document.querySelector("inter question p").innerHTML = video[0].description;
 			document.querySelector("inter propositions").style.display = "none";
 			document.querySelector("inter complement").style.display = "none";
-			document.querySelector("inter suite replay").style.display = "none";
-			document.querySelector("inter suite next").style.display = "none";
+			// replay
+			document.querySelector("inter suite replay span").style.display = "none";
+			// score
+			document.querySelector("inter suite score p").style.display = "none";
+			// next
+			document.querySelector("inter suite next img").style.display = "none";
 			break;
 
 		case "InterQuestion":
@@ -594,19 +618,23 @@ function gestionInter(etape, objet) {
 			gestJauge(numQuestion, nbQuests[niveauQuest].nb);	// MAJ de la jauge
 			document.querySelector("inter question p").innerHTML = objet.question.libelle;
 			// gestion des propositions
-			gestPropositions("afficher", objet.attributs);
+			gestPropositions("afficher", objet.attributs, objet.reponse);
 			document.querySelector("inter propositions").style.display = "flex";
 			// complement
 			document.querySelector("inter complement").style.display = "none";
+			// Suite
+			//document.querySelector("inter suite").style.display = "flex";
 			// replay
-			document.querySelector("inter suite replay").style.display = (objet.reculReplay ? "flex" : "none");
-			document.querySelector("inter suite replay").innerHTML = objet.reculReplay;
-			document.querySelector("inter suite replay").setAttribute("onclick","fReplay(" + (objet.reculReplay) + ");");
+			document.querySelector("inter suite replay span").style.display = (objet.reculReplay ? "flex" : "none");
+			document.querySelector("inter suite replay span").innerHTML = objet.reculReplay;
+			document.querySelector("inter suite replay span").setAttribute("onclick","fReplay(" + (objet.reculReplay) + ");");
+			// score
+			document.querySelector("inter suite score p").style.display = "flex";
 			// next
-			document.querySelector("inter suite next").style.display = "none";
+			document.querySelector("inter suite next img").style.display = "none";
 			break;
 		
-			case "InterBonus":
+		case "InterBonus":
 			// tete
 			classSelector("set", "inter tete", objet.act);
 			document.querySelector("inter tete titre p").innerHTML = objet.act;
@@ -616,15 +644,29 @@ function gestionInter(etape, objet) {
 			gestJauge(numQuestion, nbQuests[niveauQuest].nb);	// MAJ de la jauge
 			document.querySelector("inter question p").innerHTML = objet.question.libelle;
 			// gestion des propositions
-			gestPropositions("afficher", objet.attributs);
+			gestPropositions("afficher", objet.attributs, objet.reponse);
 			document.querySelector("inter propositions").style.display = "flex";
 			// complement
 			document.querySelector("inter complement").style.display = "none";
 			// replay
-			document.querySelector("inter suite replay").style.display = "none";
+			document.querySelector("inter suite replay span").style.display = "none";
+			// score
+			document.querySelector("inter suite score p").style.display = "flex";
 			// next
-			document.querySelector("inter suite next").style.display = "none";
+			document.querySelector("inter suite next img").style.display = "none";
 			break;
+
+		case "reponse":
+			// complement
+			document.querySelector("inter complement").style.display = (document.querySelector("inter complement p").innerHTML != "" ? "flex" : "none");
+			// replay
+			document.querySelector("inter suite replay span").style.display = "none";
+			// score
+			document.querySelector("inter suite score p").style.display = "flex";
+			// next
+			document.querySelector("inter suite next img").style.display = "flex";
+			break;
+
 		default:
 			inter.display = "none";
 	}

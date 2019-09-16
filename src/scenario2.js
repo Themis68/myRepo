@@ -66,7 +66,7 @@ var scenario = [
                 question: {
                     libelle: "L'arbitre utilise une gestuelle pour indiquer"
                 },
-                attributs: ["une faute", "une situation d'avantage"],
+                attributs: ["une faute", "une situation d'avantage, le joueur fautif"],
                 reculReplay: 3,
                 reponse: {
                     solution: 2,
