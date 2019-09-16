@@ -36,3 +36,22 @@ function deleteChild(selector) {
 		first = e.firstElementChild; 
 	} 
 } 
+
+function classSelector(use, selector, value) {
+	var e = document.querySelector(selector);
+	switch (use) {
+		case "set":
+			e.className = value;
+			break;
+
+		case "add":
+				e.classList.add(value);
+			break;
+		
+		case "del":
+			e.classList.remove(value);
+
+		default:
+
+	}
+}

@@ -586,7 +586,7 @@ function gestionInter(etape, objet) {
 
 		case "InterQuestion":
 			// tete
-			document.querySelector("inter tete").className = objet.act;
+			classSelector("set", "inter tete", objet.act);
 			document.querySelector("inter tete titre p").innerHTML = objet.act;
 			document.querySelector("inter tete points").style.display = "flex";
 			document.querySelector("inter tete points span").innerHTML = objet.reponse.points;
@@ -608,7 +608,7 @@ function gestionInter(etape, objet) {
 		
 			case "InterBonus":
 			// tete
-			document.querySelector("inter tete").className = objet.act;
+			classSelector("set", "inter tete", objet.act);
 			document.querySelector("inter tete titre p").innerHTML = objet.act;
 			document.querySelector("inter tete points").style.display = "flex";
 			document.querySelector("inter tete points span").innerHTML = objet.reponse.points;
