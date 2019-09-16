@@ -583,10 +583,11 @@ function gestionInter(etape, objet) {
 			document.querySelector("inter suite replay").style.display = "none";
 			document.querySelector("inter suite next").style.display = "none";
 			break;
+
 		case "InterQuestion":
-			numQuestion++;		// on incrémente le compteur des questions
 			// tete
-			document.querySelector("inter tete titre p").innerHTML = "Question " + numQuestion;
+			document.querySelector("inter tete").className = objet.act;
+			document.querySelector("inter tete titre p").innerHTML = objet.act;
 			document.querySelector("inter tete points").style.display = "flex";
 			document.querySelector("inter tete points span").innerHTML = objet.reponse.points;
 			// jauge et niveaux
@@ -603,7 +604,27 @@ function gestionInter(etape, objet) {
 			document.querySelector("inter suite replay").setAttribute("onclick","fReplay(" + (objet.reculReplay) + ");");
 			// next
 			document.querySelector("inter suite next").style.display = "none";
-
+			break;
+		
+			case "InterBonus":
+			// tete
+			document.querySelector("inter tete").className = objet.act;
+			document.querySelector("inter tete titre p").innerHTML = objet.act;
+			document.querySelector("inter tete points").style.display = "flex";
+			document.querySelector("inter tete points span").innerHTML = objet.reponse.points;
+			// jauge et niveaux
+			gestJauge(numQuestion, nbQuests[niveauQuest].nb);	// MAJ de la jauge
+			document.querySelector("inter question p").innerHTML = objet.question.libelle;
+			// gestion des propositions
+			gestPropositions("afficher", objet.attributs);
+			document.querySelector("inter propositions").style.display = "flex";
+			// complement
+			document.querySelector("inter complement").style.display = "none";
+			// replay
+			document.querySelector("inter suite replay").style.display = "none";
+			// next
+			document.querySelector("inter suite next").style.display = "none";
+			break;
 		default:
 			inter.display = "none";
 	}

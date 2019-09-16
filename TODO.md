@@ -3,55 +3,56 @@ https://www.w3.org/2010/05/video/mediaevents.html
 
 
 **************************************
-               A FAIRE
+               A FAIRE V2
 **************************************
 - video est ait après qu'on est cliqué dessus ?
 - la hauteur de video n'est toujurs pas bonne
+- le numéro de la question est incémenté alors qu'on pose la question sur la JAUGE : il faut le faire seulement après le bouton NEXT
+- masquer INTER quand la vidéo reprend
 
-- prévoir un mode CREATION
-- afficher le score et le nom des équipe dnas le BOARD
+x en replay ajouter un logo à l'écran
+x afficher le score et le nom des équipes en incrustation
+x proposer un QUIZZ sur la base de questions du fascicule
+x ajouter un accès direct aux lois du jeu
+x afficher des messages lorsqu'on est en zoom écran
+x gérer l'indice 'allerA' au format 00:00:00
+x ajouter le nom des équipes en incrustation
+x positionner les fanions et le score sur la vidéo
+x proposer une valeur pour le replay pour les questions (devient optionnel selon le type de question)
+
+**************************************
+               A FAIRE
+**************************************
 - paramétrer la couleur des incrustations (texte)
 - affeter un niveau de zoom aux questions
-- en replay ajouter un logo à l'écran
 - proposer un zoom auto lors d'une question sur une zone isolée
 - lors d'un allerA afficher une marque sur la vidéo pour indiquer le saut
 - lors d'un allerA intégré il faut le faire mais seulement après quelques secondes de films
 - cacher le bouton des points si on a une Information de type "but"
 - pour un but prévoir une animation et non une image
-
-- prévoir une porésentation vidéo au départ
-- proposer un QUIZZ sur la base de questions du fascicule
+- prévoir une présentation vidéo au départ
 - scroll sur une video qui est zoomée
 - avoir une animation pour la mi-temps (sifflet)
 - préparer la silhouette de l'équipement
-- ajouter un accès direct aux lois du jeu
+
 - comment afficher un objet de videojs qui existe déjà par défaut
 - peut-on ajouter le register du plug seulement quand on en a besoin ?
 - gérer un peu mieux l'attribut "visibility" des éléments à incruster
 - le centrage vertical des incrustations est trop bas alors qu'on met 50%
 - le centrage horizontal des incrustations ne tient pas compte de la largeur de l'objet
 - préparer un gestionnaire pour la génération du scénario
-- cacher le menu si on choisi une valeur
-- le titre "arret sur image" est masqué quand on n'a pas la frame du developpement ouverte (F12)
 - Revoir le skin pour rendre transparent la barre de progression
-- Lire les actions depuis un fichier du même nom que la vidéo
 - Gérer une action qui attend une clic du joueur
 - Gérer une action qui affiche une faute que le joueur n'a pas vu
-- Gérer l'affichage des contrôles selon les besoins
 - information : Reste le problème de cacher le message et le bouton au bout d'un certain temps
-- afficher des messages lorsqu'on est en zoom écran
 - gérer automatiquement la fin de la vidéo
 - rendre reactif une plage de vidéo pour donner des points à l'utilisateur
 
 x prévoir une image pour la réponse différente que celle de la question
-x gérer l'indice 'allerA' au format 00:00:00
-x ajouter le nom des équipes en incrustation
-x positionner les fanions et le score sur la vidéo
 x centrer verticalement le logo Mouzillon dans la barre de contrôle
 x récupération de la position xy sur la zone de la vidéo
 x affecter un niveau de competition au match
 x intégrer un allerA dans la question et aux bonus
-x proposer une valeur pour le replay pour les questions (devient optionnel selon le type de question)
 
 **************************************
 URLs

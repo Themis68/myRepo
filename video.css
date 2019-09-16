@@ -96,6 +96,12 @@ body {
              INTERACTION  
     FOOTER
 */
+.question {
+  background-color: #e0a47b;
+}
+.bonus {
+  background-color: #64c832;
+}
 main {
   display: flex;
   flex-direction: column;
@@ -174,7 +180,6 @@ main content inter tete {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  background-color: #e0a47b;
   -webkit-border-top-left-radius: 20px;
   -webkit-border-top-right-radius: 20px;
   -moz-border-radius-topleft: 20px;

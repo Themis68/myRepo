@@ -67,7 +67,7 @@ var scenario = [
                     libelle: "L'arbitre utilise une gestuelle pour indiquer"
                 },
                 attributs: ["une faute", "une situation d'avantage"],
-                reculReplay: 2,
+                reculReplay: 3,
                 reponse: {
                     solution: 2,
                     libelle: "L'arbitre indique par un geste des bras en avant ou en criant 'Avantage'",
@@ -111,7 +111,7 @@ var scenario = [
                     libelle: "L'arbitre siffle un coup-franc. Sa gestuelle indique su'il s'agit d'un :"
                 },
                 attributs: ["coup-franc direct", "coup-franc indirect"],
-                reculReplay: 2,
+                reculReplay: 3,
                 reponse: {
                     solution: 1,
                     libelle: "Dans le cas d'un coup-franc indirect, l'arbitre maintiendrai son bras levé jusqu'au tir du coup-franc",
@@ -349,6 +349,20 @@ var scenario = [
             },
             {
                 step: '00:32:39',
+                act: "bonus",
+                niveau: "DEBUTANT",
+                question: {
+                    libelle: "le temps additionnel indiqué par l'arbitre correspond à :"
+                },
+                attributs: ["Temps minimum à jouer", "Temps maximum à jouer"],
+                reponse: {
+                    solution: 1,
+                    loi: "Loi_13",
+                    points: 3
+                }
+            },
+            {
+                step: '00:32:42',
                 act: "allerA",
                 niveau: "DEBUTANT",
                 indice: '00:34:32'

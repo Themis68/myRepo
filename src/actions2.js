@@ -64,78 +64,26 @@ var mesActions = {
     },
 
     question : function (ind) {
-       // encadreVideo(false);
         document._video.pause();    // on pause la vidéo
         // préparation des actions
-        var monJob = actions[ind];
 
         gestionInter("InterQuestion", actions[ind]);
-
-        /*
-        document.getElementById("message").innerHTML = actions[ind].question.libelle;
-        
-        //
-        // PROPOSITIONS
-        // on construit dPropositions       
-        // retirer les elements de la réponse du DOM
-        // sinon on les aura à la prochaine question
-        if (document.getElementById("R1") !== null) {
-            var parent = document.getElementById("R1").parentNode;
-            while( parent.firstChild) {
-                // La liste n'est pas une copie, elle sera donc réindexée à chaque appel
-                parent.removeChild( parent.firstChild);
-            }
-        }
-
-        // gestion de l'image
-        showPict((actions[ind].question.pict || null), 'myPictQ');
-        //showPict(null, 'myPictR');
-
-        var maQuestion = document.getElementById("zPropositions");
-        for (let i=1; i <= monJob.attributs.length; i++) { 
-            // construction du input
-            var monInput = document.createElement("input");
-            if (i===1) {monInput.checked = true;}
-            monInput.name = 'Q1';
-            monInput.id = 'R' + i;
-            monInput.type = 'radio';
-            monInput.value = i;
-            maQuestion.appendChild(monInput);
-            // construction du label
-            var monLabel = document.createElement("label");
-            monLabel.id = 'L' + i;
-            monLabel.innerHTML = monJob.attributs[i-1];
-            maQuestion.appendChild(monLabel);
-            // saut de lignes
-            var lig = document.createElement("br");
-            lig.id = "br" + i;
-            maQuestion.appendChild(lig);
-        }
+/*
         // on affiche le bouton répondre
         var btnRepondre = document.getElementById("btnRepondre");
         btnRepondre.onclick = function() 
         {
           mesReponses(ind); 
         };        
-
-        document.getElementById("quest").innerHTML = (actions[ind].act).toUpperCase() + " " + (questionsFaites.length + 1);
-        setMessage("question");
-        showItem("zPropositions", true);
-        showItem("zLoi", false);
-        showZone("zSuite", true);
-        showItem("btnContinuer", false);
-        showItem("btnRepondre", true);
-        showItem("btnReplay", (actions[ind].reculReplay || false));
-        showItem("btnBonus", false);
         */
     },
     
     bonus : function (ind) {
-        encadreVideo(false);
         document._video.pause();    // on pause la vidéo
         // préparation des actions
-        var monJob = actions[ind];
+        gestionInter("InterBonus", actions[ind]);
 
+/*
         document.getElementById("message").innerHTML = monJob.libelle;
         
         //
@@ -180,25 +128,12 @@ var mesActions = {
         };
 
         document.getElementById("quest").innerHTML = (actions[ind].act).toUpperCase();
-
-        setMessage("bonus");
-        showItem("zPropositions", true);
-        showItem("zLoi", false);
-        showZone("zSuite", true);
-        showItem("btnContinuer", false);
-        showItem("btnRepondre", true);
-        showItem("btnReplay", false);
-        showItem("btnBonus", false);
+*/
     },
 
     information : function (ind) {
         setMessage("information");
-        showItem("zPropositions", false);
-        showItem("zLoi", false);
-        showZone("zSuite", true);
-        showItem("btnContinuer", false);
-        showItem("btnRepondre", false);
-        showItem("btnReplay", false);
+
 
         // on affiche le bouton répondre si FAIRPLAY et pas encore GAGNE
         if ((actions[ind].type === 'fairplay') && (questionsFaites.indexOf(actions[ind].step) < 0)) {
@@ -219,15 +154,14 @@ var mesActions = {
         showPict(actions[ind].pict, 'myPict');
 
         showItem("message", true);
-        encadreVideo(true);
     },
 
     allerA: function (ind) {
+        // vérifié pour la version 2
         allerA(actions[ind].indice);
     },
 
     fin: function (ind) {
-        encadreVideo(false);
         showConseiller('fin', ((videoNbPoint / nbQuests[0].points) > 0.5));
     },
 
@@ -330,7 +264,7 @@ function continuer(param) {
 }
 
 function allerA(param) {
-    encadreVideo(false);
+    // vérifié pour la version 2
     seqCode = convertInSeqCode(param);
     getVideo().currentTime = seqCode;
 }
