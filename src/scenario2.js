@@ -18,9 +18,9 @@ var scenario = [
         [               
             {
                 step: '00:00:01',
-                act: "question",
+                act: "Question",
                 niveau: "DEBUTANT",
-                question: {
+                Question: {
                     libelle: "Quelle règle liée à l'équipement des joueurs n'est pas respectée ?"
                 },
                 attributs: ["les maillots doivent êtres dans les shorts", "Les cuissardes doivent êtres de la couleur dominante du short"],
@@ -34,15 +34,15 @@ var scenario = [
             },
             {
                 step: '00:00:07',
-                act: "allerA",
+                act: "AllerA",
                 niveau: "DEBUTANT",
                 indice: '00:02:00'
             },
             {
                 step: '00:02:08',
-                act: "question",
+                act: "Question",
                 niveau: "DEBUTANT",
-                question: {
+                Question: {
                     libelle: "L'arbitre assistant a indiqué que la touche est en faveur de l'équipe ?"
                 },
                 attributs: ["Ligue Pays De la Loire", "Ligue de Bretagne"],
@@ -55,15 +55,15 @@ var scenario = [
             },
             {
                 step: '00:02:10',
-                act: "allerA",
+                act: "AllerA",
                 niveau: "DEBUTANT",
                 indice: "00:03:10"
             },
             {
                 step: '00:03:20',
-                act: "question",
+                act: "Question",
                 niveau: "DEBUTANT",
-                question: {
+                Question: {
                     libelle: "L'arbitre utilise une gestuelle pour indiquer"
                 },
                 attributs: ["une faute", "une situation d'avantage, le joueur fautif"],
@@ -77,15 +77,15 @@ var scenario = [
             },
             {
                 step: '00:03:22',
-                act: "allerA",
+                act: "AllerA",
                 niveau: "DEBUTANT",
                 indice: "00:06:23"
             },
             {
                 step: '00:06:29',
-                act: "question",
+                act: "Question",
                 niveau: "DEBUTANT",
-                question: {
+                Question: {
                     libelle: "Comment l'arbitre signale-t-il au banc que le soigneur peut entrer sur le terrain ?"
                 },
                 attributs: ["Il lève le bras en direction du banc et crie 'soigneur'", "Il lève le bras en direction du banc et siffle"],
@@ -99,15 +99,15 @@ var scenario = [
             },
             {
                 step: '00:06:32',
-                act: "allerA",
+                act: "AllerA",
                 niveau: "DEBUTANT",
                 indice: "00:07:55"
             },
             {
                 step: '00:08:02',
-                act: "question",
+                act: "Question",
                 niveau: "DEBUTANT",
-                question: {
+                Question: {
                     libelle: "L'arbitre siffle un coup-franc. Sa gestuelle indique su'il s'agit d'un :"
                 },
                 attributs: ["coup-franc direct", "coup-franc indirect"],
@@ -121,15 +121,15 @@ var scenario = [
             },
             {
                 step: '00:08:12',
-                act: "allerA",
+                act: "AllerA",
                 niveau: "DEBUTANT",
                 indice: "00:10:02"
             },
             {
                 step: '00:10:08',
-                act: "question",
+                act: "Question",
                 niveau: "DEBUTANT",
-                question: {
+                Question: {
                     libelle: "L'arbitre central siffle un coup-franc. Comment l'arbitre assistant a-t-il confirmé la faute ?"
                 },
                 attributs: ["En levant son drapeau, en le secouant, puis en le dirigeant vers le camp fautif", "En levant son drapeau, en le secouant"],
@@ -143,15 +143,15 @@ var scenario = [
             },
             {
                 step: '00:10:10',
-                act: "allerA",
+                act: "AllerA",
                 niveau: "DEBUTANT",
                 indice: "00:11:55"
             },
             {
                 step: '00:12:03',
-                act: "question",
+                act: "Question",
                 niveau: "DEBUTANT",
-                question: {
+                Question: {
                     libelle: "Au vue de la gestuelle de l'arbitre, quelle a été l:a décision de l'arbitre sur cette situation ?"
                 },
                 attributs: ["coup-franc", "avantage"],
@@ -165,15 +165,15 @@ var scenario = [
             },
             {
                 step: '00:12:05',
-                act: "allerA",
+                act: "AllerA",
                 niveau: "DEBUTANT",
                 indice: "00:13:05"
             },
             {
                 step: '00:13:15',
-                act: "question",
+                act: "Question",
                 niveau: "DEBUTANT",
-                question: {
+                Question: {
                     libelle: "Au vue de l'action, l'arbitre va-t-il :"
                 },
                 attributs: ["siffler un coup-franc", "laisser l'avantage"],
@@ -187,15 +187,15 @@ var scenario = [
             },
             {
                 step: '00:13:18',
-                act: "allerA",
+                act: "AllerA",
                 niveau: "DEBUTANT",
                 indice: "00:17:40"
             },
             {
                 step: '00:17:51',
-                act: "question",
+                act: "Question",
                 niveau: "DEBUTANT",
-                question: {
+                Question: {
                     libelle: "Quelle est la décision de l'arbitre ?"
                 },
                 attributs: ["corner", "dégagement 6 mètres"],
@@ -209,22 +209,22 @@ var scenario = [
             },
             {
                 step: '00:17:55',
-                act: "allerA",
+                act: "AllerA",
                 niveau: "DEBUTANT",
                 indice: "00:23:40"
             },
             {
                 step: '00:23:45',
-                act: "information",
+                act: "Information",
                 niveau: "DEBUTANT",
                 libelle: "BUT",
                 type: 'but'
             },
             {
                 step: '00:24:13',
-                act: "question",
+                act: "Question",
                 niveau: "DEBUTANT",
-                question: {
+                Question: {
                     libelle: "L'angagement est-il fait dans les règles ?"
                 },
                 attributs: ["Oui", "Non"],
@@ -238,28 +238,28 @@ var scenario = [
             },
             {
                 step: '00:24:16',
-                act: "allerA",
+                act: "AllerA",
                 niveau: "DEBUTANT",
                 indice: "00:24:47"
             },
             {
                 step: '00:24:51',
-                act: "information",
+                act: "Information",
                 niveau: "DEBUTANT",
                 libelle: "BUT",
                 type: 'but'
             },
             {
                 step: '00:24:55',
-                act: "allerA",
+                act: "AllerA",
                 niveau: "DEBUTANT",
                 indice: "00:25:16"
             },
             {
                 step: '00:25:20',
-                act: "question",
+                act: "Question",
                 niveau: "DEBUTANT",
-                question: {
+                Question: {
                     libelle: "L'angagement est-il fait dans les règles ?"
                 },
                 attributs: ["Oui", "Non"],
@@ -272,28 +272,28 @@ var scenario = [
             },
             {
                 step: '00:24:23',
-                act: "allerA",
+                act: "AllerA",
                 niveau: "DEBUTANT",
                 indice: "00:25:54"
             },
             {
                 step: '00:25:58',
-                act: "information",
+                act: "Information",
                 niveau: "DEBUTANT",
                 libelle: "BUT",
                 type: 'but'
             },
             {
                 step: '00:26:02',
-                act: "allerA",
+                act: "AllerA",
                 niveau: "DEBUTANT",
                 indice: '00:30:05'
             },
             {
                 step: '00:30:10',
-                act: "question",
+                act: "Question",
                 niveau: "DEBUTANT",
-                question: {
+                Question: {
                     libelle: "L'abitre arrête l'action car il y a eu une faute sur un joueur Bleu lors du contact précédent."
                 },
                 attributs: ["Il revient à la faute", "Il décide une balle à terre"],
@@ -306,15 +306,15 @@ var scenario = [
             },
             {
                 step: '00:30:13',
-                act: "allerA",
+                act: "AllerA",
                 niveau: "DEBUTANT",
                 indice: '00:30:33'
             },
             {
                 step: '00:30:39',
-                act: "question",
+                act: "Question",
                 niveau: "DEBUTANT",
-                question: {
+                Question: {
                     libelle: "Le coup-franc n'a pas lieu à l'endroit de la faute"
                 },
                 attributs: ["l'arbitre laisse faire", "l'arbitre siffle et fait rejouer"],
@@ -327,15 +327,15 @@ var scenario = [
             },
             {
                 step: '00:30:42',
-                act: "allerA",
+                act: "AllerA",
                 niveau: "DEBUTANT",
                 indice: '00:32:33'
             },
             {
                 step: '00:32:36',
-                act: "question",
+                act: "Question",
                 niveau: "DEBUTANT",
-                question: {
+                Question: {
                     libelle: "L'arbitre assistant lève son drapeau et le secoue pour indiquer une faute"
                 },
                 attributs: ["L'arbitre peut siffler une faute", "L'abitre n'a pas à en tenir compte"],
@@ -349,9 +349,9 @@ var scenario = [
             },
             {
                 step: '00:32:39',
-                act: "bonus",
+                act: "Bonus",
                 niveau: "DEBUTANT",
-                question: {
+                Question: {
                     libelle: "le temps additionnel indiqué par l'arbitre correspond à :"
                 },
                 attributs: ["Temps minimum à jouer", "Temps maximum à jouer"],
@@ -363,22 +363,22 @@ var scenario = [
             },
             {
                 step: '00:32:42',
-                act: "allerA",
+                act: "AllerA",
                 niveau: "DEBUTANT",
                 indice: '00:34:32'
             },
             {
                 step: '00:34:08',
-                act: "information",
+                act: "Information",
                 niveau: "DEBUTANT",
                 libelle: "L'abitre explique la sanction au joueur fautif pour calmer le jeu",
                 type: 'fairplay'
             },
             {
                 step: '00:34:35',
-                act: "question",
+                act: "Question",
                 niveau: "DEBUTANT",
-                question: {
+                Question: {
                     libelle: "Quelles sont les indications que l'arbitre donne aux joueurs qui forment le mur ?"
                 },
                 attributs: ["ne pas bouger lors du tir","position autorisée des bras dans le mur"],
@@ -391,15 +391,15 @@ var scenario = [
             },
             {
                 step: '00:34:39',
-                act: "allerA",
+                act: "AllerA",
                 niveau: "DEBUTANT",
                 indice: '00:34:55'
             },
             {
                 step: '00:34:46',
-                act: "question",
+                act: "Question",
                 niveau: "DEBUTANT",
-                question: {
+                Question: {
                     libelle: "Quelle situation nindique l'arbitre ?"
                 },
                 attributs: ["Un sortie de but", "un corner"],
@@ -412,7 +412,7 @@ var scenario = [
             },
             {
                 step: '00:35:16',
-                act: "fin"
+                act: "Fin"
             }
         ]
     ],
@@ -435,9 +435,9 @@ var scenario = [
         [               
             {
                 step: '00:00:01',
-                act: "question",
+                act: "Question",
                 niveau: "DEBUTANT",
-                question: {
+                Question: {
                     libelle: "Quelle règle liée à l'équipement des joueurs n'est pas respectée ?"
                 },
                 attributs: ["les maillots doivent êtres dans les shorts", "Les cuissardes doivent êtres de la couleur dominante du short"],
@@ -469,9 +469,9 @@ var scenario = [
         [               
             {
                 step: '00:00:01',
-                act: "question",
+                act: "Question",
                 niveau: "DEBUTANT",
-                question: {
+                Question: {
                     libelle: "Quelle règle liée à l'équipement des joueurs n'est pas respectée ?"
                 },
                 attributs: ["les maillots doivent êtres dans les shorts", "Les cuissardes doivent êtres de la couleur dominante du short"],
@@ -503,9 +503,9 @@ var scenario = [
         [               
             {
                 step: '00:00:01',
-                act: "question",
+                act: "Question",
                 niveau: "DEBUTANT",
-                question: {
+                Question: {
                     libelle: "Quelle règle liée à l'équipement des joueurs n'est pas respectée ?"
                 },
                 attributs: ["les maillots doivent êtres dans les shorts", "Les cuissardes doivent êtres de la couleur dominante du short"],
@@ -535,9 +535,9 @@ var scenario = [
         [               
             {
                 step: '00:00:01',
-                act: "question",
+                act: "Question",
                 niveau: "DEBUTANT",
-                question: {
+                Question: {
                     libelle: "Quelle règle liée à l'équipement des joueurs n'est pas respectée ?"
                 },
                 attributs: ["les maillots doivent êtres dans les shorts", "Les cuissardes doivent êtres de la couleur dominante du short"],
@@ -550,9 +550,9 @@ var scenario = [
             },
             {
                 step: '00:00:03',
-                act: "question",
+                act: "Question",
                 niveau: "CONFIRME",
-                question: {
+                Question: {
                     libelle: "Quelle règle liée à l'équipement des joueurs n'est pas respectée ?"
                 },
                 attributs: ["les maillots doivent êtres dans les shorts", "Les cuissardes doivent êtres de la couleur dominante du short"],
@@ -565,9 +565,9 @@ var scenario = [
             },
             {
                 step: '00:00:05',
-                act: "question",
+                act: "Question",
                 niveau: "EXPERT",
-                question: {
+                Question: {
                     libelle: "Quelle règle liée à l'équipement des joueurs n'est pas respectée ?"
                 },
                 attributs: ["les maillots doivent êtres dans les shorts", "Les cuissardes doivent êtres de la couleur dominante du short"],
@@ -580,9 +580,9 @@ var scenario = [
             },
             {
                 step: '00:00:08',
-                act: "question",
+                act: "Question",
                 niveau: "DEBUTANT",
-                question: {
+                Question: {
                     libelle: "Quelle règle liée à l'équipement des joueurs n'est pas respectée ?"
                 },
                 attributs: ["les maillots doivent êtres dans les shorts", "Les cuissardes doivent êtres de la couleur dominante du short"],
@@ -595,9 +595,9 @@ var scenario = [
             },
             {
                 step: '00:00:10',
-                act: "question",
+                act: "Question",
                 niveau: "EXPERT",
-                question: {
+                Question: {
                     libelle: "Quelle règle liée à l'équipement des joueurs n'est pas respectée ?"
                 },
                 attributs: ["les maillots doivent êtres dans les shorts", "Les cuissardes doivent êtres de la couleur dominante du short"],
@@ -610,9 +610,9 @@ var scenario = [
             },
             {
                 step: '00:00:11',
-                act: "question",
+                act: "Question",
                 niveau: "DEBUTANT",
-                question: {
+                Question: {
                     libelle: "Quelle règle liée à l'équipement des joueurs n'est pas respectée ?"
                 },
                 attributs: ["les maillots doivent êtres dans les shorts", "Les cuissardes doivent êtres de la couleur dominante du short"],

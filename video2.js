@@ -29,6 +29,7 @@ media_events["currentTime"] = 0;
 var nivZoom = 1;
 var video = [];
 var actions = [];
+var actionEnCours = [];
 var isDefineBVideoJS = false;		// permet de gérer la délcaration de videoJS au premier tour
 var timeCode = '';
 var avatar = '';
@@ -36,7 +37,7 @@ var oldStep = null;	// conserve la valeur de step pour gérer le replay
 var myURLcomplete = document.location.href;
 var myURL  = myURLcomplete.substring( 0 ,myURLcomplete.lastIndexOf( "/" ) );
 var videoNbPoint = 0;		// nb points en cours
-var stepBarre = 0;			// % de progression pour une question
+var stepBarre = 0;			// % de progression pour une Question
 var stepDone = 0;			// % de progression effectué
 var niveauQuest = 1		//niveau par défaut au démarrage
 var idVideo = null;		// vidéo en cours
@@ -46,10 +47,10 @@ var nbQuests = [
 	{niv: "CONFIRME", nb: 0, points: 0},
 	{niv: "EXPERT", nb: 0, points: 0}
 ];		// le niveau 0 est le niveau en cours
-var questionsFaites = [];
+var QuestionsFaites = [];
 var seqUsed = -1;	// valeur de l'étape de la séquence qui a été traitée
 var hauteurContent = 0; // hauteur de la zone CONTENT récupérée lors du chargement
-var numQuestion = 0;	// numero de la question
+var numQuestion = 0;	// numero de la Question
 // **********************************************************************************************************
 
 document.addEventListener("DOMContentLoaded", init, false);	// lance l'écoute des évènements et appelle INIT
@@ -67,7 +68,6 @@ function user() {
 		avatarOk = reg.exec(avatar);
 	}
 	while (!avatarOk);
-	// OBSOLETE : document.getElementById("msgVideo").innerHTML = avatar.toUpperCase() + " analyse l'arbitrage des matchs proposés";
 	document.getElementById("avatar").innerHTML = avatar.toUpperCase();
 }
 
@@ -123,7 +123,28 @@ function creerVignettes(id) {
 	}
 }
 
-// changement de vidéo
+function fBascule(event) {
+	// affiche/cache un objet repéré par un id
+	//
+	// exemple appel : bascule(id)
+	// - id de l'objet
+	//
+	let carousel = document.querySelector("carousel");
+	let span = document.querySelector("bascule span");
+
+	if (this.src.indexOf("fermee") > 0 ){
+		// on ouvre
+		carousel.style.display = "flex";
+		this.src = "./images/fleche_ouverte.png";
+		span.innerHTML = "cliquez sur la vignette du match que vous souhaitez arbitrer";
+	} else {
+		// on ferme
+		carousel.style.display = "none";
+		this.src = "./images/fleche_fermee.png";
+		span.innerHTML = "cliquez sur cet icône pour afficher les matchs disponibles";
+	}	
+}
+
 function switchVideo(n) {
     //
     // affectation de la nouvelle vidéo et des attributs liés
@@ -228,7 +249,7 @@ function switchVideo(n) {
 						opacity: 1,
 						padding: '30px 70px',	// top et bottom + right et left
 						position: 'tl'
-					}, 				
+					}/*, 				
 					{
 						type: "text",
 						id:"vjs-bug-textScoreBug",
@@ -239,7 +260,7 @@ function switchVideo(n) {
 						opacity: 1,
 						padding: '10px 38%',	// top et se combine avec le centrage horizontal
 						position: 'tc'
-					}, 
+					}*/, 
 					{
 						type: "text",
 						id:"vjs-bug-titreEquipeB",
@@ -278,7 +299,7 @@ function switchVideo(n) {
 		//match.offsetHeight = hauteur;
 
 		// EQUIPES : doit être après le chargement des plugins videos
-		gestionCamps(1);	// affichage des informations sur l'équipe pour la première mi-temps
+		gestionCamps(1);	// affichage des Informations sur l'équipe pour la première mi-temps
 
 		// affichage de la zone VIDEO
 		showContent(true);
@@ -347,18 +368,18 @@ function capture(event) {
 				// on teste si on doit jouer ou pas
 				if (asWork > -1) {
 					switch(actions[asWork].act) {
-						case "question":
-						case "question2":
-						case "bonus":
-						case "information":
-						case "allerA":
+						case "Question":
+						case "Question2":
+						case "Bonus":
+						case "Information":
+						case "AllerA":
 							if (actions[asWork].niveau === nbQuests[niveauQuest].niv) {
 								mesActions[actions[asWork].act](asWork);	// on appelle le traitement nécessaire
 							}
 							break;
 
-						case "fin":
-						case "mitemps":
+						case "Fin":
+						case "Mitemps":
 							mesActions[actions[asWork].act](asWork);	// on appelle le traitement nécessaire
 							break;
 					}
@@ -389,116 +410,6 @@ function update_properties() {
 		    if (media_events[key] > 0) e.className = "true";
 		}
 	}
-}
-
-function convertInTimeCode(myStep) {
-    //
-    // tra,sforme un code numérique secondes en format mm:ss
-    //
-	var step = myStep;		
-	var heures = Math.trunc(step / 3600);
-	step = step - (heures * 3600);
-	var minutes = Math.trunc(step / 60);
-	var secondes = Math.trunc(step - (minutes * 60));
-	return timeCode = ('0' + heures).substr(-2) + ':' + ('0' + minutes).substr(-2) + ':' + ('0' + secondes).substr(-2);
-}
-
-function fBascule(event) {
-	// affiche/cache un objet repéré par un id
-	//
-	// exemple appel : bascule(id)
-	// - id de l'objet
-	//
-	let carousel = document.querySelector("carousel");
-	let span = document.querySelector("bascule span");
-
-	if (this.src.indexOf("fermee") > 0 ){
-		// on ouvre
-		carousel.style.display = "flex";
-		this.src = "./images/fleche_ouverte.png";
-		span.innerHTML = "cliquez sur la vignette du match que vous souhaitez arbitrer";
-	} else {
-		// on ferme
-		carousel.style.display = "none";
-		this.src = "./images/fleche_fermee.png";
-		span.innerHTML = "cliquez sur cet icône pour afficher les matchs disponibles";
-	}	
-}
-
-function fNiveaux(id) {
-	// changer de niveau
-	//
-	// exemple appel : fNiveaux(id)
-	// - id de l'objet
-	//
-	//console.log("clis sur " , id);
-	let span = document.querySelectorAll("inter tete niveau button span");
-	span.forEach( function(a) {
-			a.className = "badge badge-light";
-		}
-	)
-	niveauQuest = id;
-	document.getElementById("level" + id).className = "badge badge-current badge-light";
-	gestJauge(0, nbQuests[niveauQuest].nb);
-
-}
-
-function fProposition(code) {
-	// gestion des réponses	
-	let id = code.substr(1, 1);
-	let reponse = code.substr(3, 3);
-	let couleur = "";
-	console.log(id, reponse);
-
-	if (id === reponse) {
-		classId("add", "proposition" + id, "green");
-		fAddScore(0);				// ajouter des points
-	} else {
-		classId("add", "proposition" + id, "rouge");
-		classId("add", "proposition" + reponse, "green");
-	}
-	// afficher la lois sur le bouton vert
-
-	// gerer la réponse
-	gestionInter("reponse");
-
-}
-
-function gestPropositions(etape, attributs, reponse) {
-	console.log(reponse);
-	let proposition = document.querySelector("inter propositions");
-	let button = document.createElement("button");
-
-	deleteChild("inter propositions");	// on supprime l'existant
-
-	switch(etape) {
-		case "afficher":
-			for (i=0; i < attributs.length; i++) {
-				button.id = "proposition" + (i+1);
-				button.className = "btn btn-warning";
-				button.innerHTML = attributs[i];
-				button.setAttribute("onclick","fProposition('" + (i*2) + "" + (i+1) + "" + (i+2) + "" + reponse.solution +"');"); 
-				proposition.appendChild(button);
-				button = document.createElement("button");
-			}
-			// zone complement
-			document.querySelector("inter complement p").innerHTML = reponse.libelle;
-			// bouton next
-			/*let next = document.querySelector("suite next img");
-			let img = document.createElement("img");
-			img.setAttribute("onclick", "continuer();");
-			next.appendChild(img);*/
-			break;
-	}
-}
-
-function fReplay(param) {
-	//console.log("esd");
-    // param est le nombre de secondes à reculer sinon on prend la valeur par défaut
-    fAddScore(-1);   // MAJ score
-    getVideo().currentTime = getVideo().currentTime - (param); // on recule de X secondes
-    document._video.playbackRate = 0.2; // on active le ralentis
-    document._video.play(); // on reprend la lecture de la vidéo
 }
 
 function getVideo() {
@@ -534,16 +445,6 @@ function showContent(etat) {
 
 }
 
-function gestJauge(valeur, nbQuestions) {
-	//MAJ de la jauge
-	let jauge = document.getElementsByClassName("progress-bar");
-	//console.log(nbQuestions);
-	pourCent = valeur / nbQuestions * 100;
-	jauge[0].setAttribute("aria-valuenow", valeur);
-	jauge[0].setAttribute("style", "width: " + pourCent + "%");
-	jauge[0].innerHTML = (valeur == 0 ? nbQuestions + " questions" : valeur);
-}
-
 function scanQuestion() {
 	//let actions = video[1];
 
@@ -557,7 +458,7 @@ function scanQuestion() {
 
 	// scanne des actions et imputation des points ou pas
 	for (let ind = 0; ind < arrayAssoSize(actions); ind++) {
-		if((actions[ind].act === "question") || (actions[ind].act === "question2")) {
+		if((actions[ind].act === "Question") || (actions[ind].act === "Question2")) {
 			// calcul du compteur
 			switch (actions[ind].niveau) {
 				case "DEBUTANT":
@@ -573,7 +474,7 @@ function scanQuestion() {
 					nniveauQuestiv = 0;
 			}
 				//niv = (actions[ind].niveau === "DEBUTANT" ? 1: actions[ind].niveau === "CONFIRME" ? 2 : 0);
-				nbQuests[niveauQuest].nb++;	// nombre de questions du nouveau niveau
+				nbQuests[niveauQuest].nb++;	// nombre de Questions du nouveau niveau
 				nbQuests[niveauQuest].points+= actions[ind].reponse.points;	// nombre de points MAX du nouveau niveau
 		}
 	}
@@ -582,92 +483,5 @@ function scanQuestion() {
 	document.getElementById("level2").style.display = (nbQuests[2].nb > 0 ? "flex" : "none");
 	document.getElementById("level3").style.display = (nbQuests[3].nb > 0 ? "flex" : "none");
 
-	return nbQuests;	// on renvoi le nombre de question du nouveau niveau
-}
-
-function gestionInter(etape, objet) {
-	//console.log(objet);
-
-	let inter = document.querySelector("inter");
-	switch (etape) {
-		case "selectVideo":
-			numQuestion = 0;		// numero de la question
-			document.querySelector("inter tete titre p").innerHTML = "Match";
-			document.querySelector("inter tete points").style.display = "none";
-			// jauge et niveaux
-			let nbQuest = scanQuestion();	// analyse du scénario
-			gestJauge(numQuestion, nbQuests[niveauQuest].nb);	// MAJ de la jauge
-			document.querySelector("inter question p").innerHTML = video[0].description;
-			document.querySelector("inter propositions").style.display = "none";
-			document.querySelector("inter complement").style.display = "none";
-			// replay
-			document.querySelector("inter suite replay span").style.display = "none";
-			// score
-			document.querySelector("inter suite score p").style.display = "none";
-			// next
-			document.querySelector("inter suite next img").style.display = "none";
-			break;
-
-		case "InterQuestion":
-			// tete
-			classSelector("set", "inter tete", objet.act);
-			document.querySelector("inter tete titre p").innerHTML = objet.act;
-			document.querySelector("inter tete points").style.display = "flex";
-			document.querySelector("inter tete points span").innerHTML = objet.reponse.points;
-			// jauge et niveaux
-			gestJauge(numQuestion, nbQuests[niveauQuest].nb);	// MAJ de la jauge
-			document.querySelector("inter question p").innerHTML = objet.question.libelle;
-			// gestion des propositions
-			gestPropositions("afficher", objet.attributs, objet.reponse);
-			document.querySelector("inter propositions").style.display = "flex";
-			// complement
-			document.querySelector("inter complement").style.display = "none";
-			// Suite
-			//document.querySelector("inter suite").style.display = "flex";
-			// replay
-			document.querySelector("inter suite replay span").style.display = (objet.reculReplay ? "flex" : "none");
-			document.querySelector("inter suite replay span").innerHTML = objet.reculReplay;
-			document.querySelector("inter suite replay span").setAttribute("onclick","fReplay(" + (objet.reculReplay) + ");");
-			// score
-			document.querySelector("inter suite score p").style.display = "flex";
-			// next
-			document.querySelector("inter suite next img").style.display = "none";
-			break;
-		
-		case "InterBonus":
-			// tete
-			classSelector("set", "inter tete", objet.act);
-			document.querySelector("inter tete titre p").innerHTML = objet.act;
-			document.querySelector("inter tete points").style.display = "flex";
-			document.querySelector("inter tete points span").innerHTML = objet.reponse.points;
-			// jauge et niveaux
-			gestJauge(numQuestion, nbQuests[niveauQuest].nb);	// MAJ de la jauge
-			document.querySelector("inter question p").innerHTML = objet.question.libelle;
-			// gestion des propositions
-			gestPropositions("afficher", objet.attributs, objet.reponse);
-			document.querySelector("inter propositions").style.display = "flex";
-			// complement
-			document.querySelector("inter complement").style.display = "none";
-			// replay
-			document.querySelector("inter suite replay span").style.display = "none";
-			// score
-			document.querySelector("inter suite score p").style.display = "flex";
-			// next
-			document.querySelector("inter suite next img").style.display = "none";
-			break;
-
-		case "reponse":
-			// complement
-			document.querySelector("inter complement").style.display = (document.querySelector("inter complement p").innerHTML != "" ? "flex" : "none");
-			// replay
-			document.querySelector("inter suite replay span").style.display = "none";
-			// score
-			document.querySelector("inter suite score p").style.display = "flex";
-			// next
-			document.querySelector("inter suite next img").style.display = "flex";
-			break;
-
-		default:
-			inter.display = "none";
-	}
+	return nbQuests;	// on renvoi le nombre de Question du nouveau niveau
 }

@@ -10,7 +10,12 @@ https://www.w3.org/2010/05/video/mediaevents.html
 - la hauteur de video n'est toujurs pas bonne
 - le numéro de la question est incémenté alors qu'on pose la question sur la JAUGE : il faut le faire seulement après le bouton NEXT
 - masquer INTER quand la vidéo reprend
+- fProposition(code) : je dois récupérer le nb points de la bonne réponse
+- le bouton replay ne doit fonctionner qu'une fois
+- quand la question s'affiche (pas la première) on n'a pas la jauge des question qui est juste alors que après continuer c'est bon
+- le total des points ne s'affiche pas
 
+x le bouton replay retire 1 point au compteur
 x gestion du clic réponse et de sa couleur
 x en replay ajouter un logo à l'écran
 x afficher le score et le nom des équipes en incrustation
