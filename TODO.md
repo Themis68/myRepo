@@ -12,7 +12,7 @@ https://www.w3.org/2010/05/video/mediaevents.html
 - masquer INTER quand la vidéo reprend
 - fProposition(code) : je dois récupérer le nb points de la bonne réponse
 - le bouton replay ne doit fonctionner qu'une fois
-- quand la question s'affiche (pas la première) on n'a pas la jauge des question qui est juste alors que après continuer c'est bon
+- quand la question s'affiche (pas la première) on n'a pas la jauge des questions qui est juste alors que après continuer c'est bon
 - le total des points ne s'affiche pas
 
 x le bouton replay retire 1 point au compteur

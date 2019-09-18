@@ -458,7 +458,7 @@ function scanQuestion() {
 
 	// scanne des actions et imputation des points ou pas
 	for (let ind = 0; ind < arrayAssoSize(actions); ind++) {
-		if((actions[ind].act === "Question") || (actions[ind].act === "Question2")) {
+		if((actions[ind].act === "Question")) {
 			// calcul du compteur
 			switch (actions[ind].niveau) {
 				case "DEBUTANT":
@@ -471,7 +471,7 @@ function scanQuestion() {
 					niveauQuest = 3;
 					break;
 				default:
-					nniveauQuestiv = 0;
+					niveauQuest = 0;
 			}
 				//niv = (actions[ind].niveau === "DEBUTANT" ? 1: actions[ind].niveau === "CONFIRME" ? 2 : 0);
 				nbQuests[niveauQuest].nb++;	// nombre de Questions du nouveau niveau

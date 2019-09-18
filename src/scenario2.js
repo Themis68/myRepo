@@ -20,7 +20,7 @@ var scenario = [
                 step: '00:00:01',
                 act: "Question",
                 niveau: "DEBUTANT",
-                Question: {
+                question: {
                     libelle: "Quelle règle liée à l'équipement des joueurs n'est pas respectée ?"
                 },
                 attributs: ["les maillots doivent êtres dans les shorts", "Les cuissardes doivent êtres de la couleur dominante du short"],
@@ -42,7 +42,7 @@ var scenario = [
                 step: '00:02:08',
                 act: "Question",
                 niveau: "DEBUTANT",
-                Question: {
+                question: {
                     libelle: "L'arbitre assistant a indiqué que la touche est en faveur de l'équipe ?"
                 },
                 attributs: ["Ligue Pays De la Loire", "Ligue de Bretagne"],
@@ -63,10 +63,10 @@ var scenario = [
                 step: '00:03:20',
                 act: "Question",
                 niveau: "DEBUTANT",
-                Question: {
+                question: {
                     libelle: "L'arbitre utilise une gestuelle pour indiquer"
                 },
-                attributs: ["une faute", "une situation d'avantage, le joueur fautif"],
+                attributs: ["une faute", "une situation d'avantage", "le joueur fautif"],
                 reculReplay: 3,
                 reponse: {
                     solution: 2,
@@ -85,7 +85,7 @@ var scenario = [
                 step: '00:06:29',
                 act: "Question",
                 niveau: "DEBUTANT",
-                Question: {
+                question: {
                     libelle: "Comment l'arbitre signale-t-il au banc que le soigneur peut entrer sur le terrain ?"
                 },
                 attributs: ["Il lève le bras en direction du banc et crie 'soigneur'", "Il lève le bras en direction du banc et siffle"],
@@ -107,7 +107,7 @@ var scenario = [
                 step: '00:08:02',
                 act: "Question",
                 niveau: "DEBUTANT",
-                Question: {
+                question: {
                     libelle: "L'arbitre siffle un coup-franc. Sa gestuelle indique su'il s'agit d'un :"
                 },
                 attributs: ["coup-franc direct", "coup-franc indirect"],
@@ -129,7 +129,7 @@ var scenario = [
                 step: '00:10:08',
                 act: "Question",
                 niveau: "DEBUTANT",
-                Question: {
+                question: {
                     libelle: "L'arbitre central siffle un coup-franc. Comment l'arbitre assistant a-t-il confirmé la faute ?"
                 },
                 attributs: ["En levant son drapeau, en le secouant, puis en le dirigeant vers le camp fautif", "En levant son drapeau, en le secouant"],
@@ -151,7 +151,7 @@ var scenario = [
                 step: '00:12:03',
                 act: "Question",
                 niveau: "DEBUTANT",
-                Question: {
+                question: {
                     libelle: "Au vue de la gestuelle de l'arbitre, quelle a été l:a décision de l'arbitre sur cette situation ?"
                 },
                 attributs: ["coup-franc", "avantage"],
@@ -173,13 +173,13 @@ var scenario = [
                 step: '00:13:15',
                 act: "Question",
                 niveau: "DEBUTANT",
-                Question: {
+                question: {
                     libelle: "Au vue de l'action, l'arbitre va-t-il :"
                 },
                 attributs: ["siffler un coup-franc", "laisser l'avantage"],
                 reculReplay: 3,
                 reponse: {
-                    solution: 2,
+                    solution: 1,
                     libelle: "L'arbitre estime qu'il y a bousculade en pleine course",
                     loi: "Loi_13",
                     points: 1
@@ -195,7 +195,7 @@ var scenario = [
                 step: '00:17:51',
                 act: "Question",
                 niveau: "DEBUTANT",
-                Question: {
+                question: {
                     libelle: "Quelle est la décision de l'arbitre ?"
                 },
                 attributs: ["corner", "dégagement 6 mètres"],
@@ -224,8 +224,8 @@ var scenario = [
                 step: '00:24:13',
                 act: "Question",
                 niveau: "DEBUTANT",
-                Question: {
-                    libelle: "L'angagement est-il fait dans les règles ?"
+                question: {
+                    libelle: "L'engagement est-il fait dans les règles ?"
                 },
                 attributs: ["Oui", "Non"],
                 reculReplay: 3,
@@ -256,11 +256,11 @@ var scenario = [
                 indice: "00:25:16"
             },
             {
-                step: '00:25:20',
+                step: '00:25:23',
                 act: "Question",
                 niveau: "DEBUTANT",
-                Question: {
-                    libelle: "L'angagement est-il fait dans les règles ?"
+                question: {
+                    libelle: "L'engagement est-il fait dans les règles ?"
                 },
                 attributs: ["Oui", "Non"],
                 reponse: {
@@ -293,12 +293,12 @@ var scenario = [
                 step: '00:30:10',
                 act: "Question",
                 niveau: "DEBUTANT",
-                Question: {
+                question: {
                     libelle: "L'abitre arrête l'action car il y a eu une faute sur un joueur Bleu lors du contact précédent."
                 },
                 attributs: ["Il revient à la faute", "Il décide une balle à terre"],
                 reponse: {
-                    solution: 1,
+                    solution: 2,
                     libelle: "L'arbitre estime que la faute est sans conséquence sur l'action finale puisque le gardien des bleus a récupéré le ballon",
                     loi: "Loi_08",
                     points: 2
@@ -314,10 +314,11 @@ var scenario = [
                 step: '00:30:39',
                 act: "Question",
                 niveau: "DEBUTANT",
-                Question: {
+                question: {
                     libelle: "Le coup-franc n'a pas lieu à l'endroit de la faute"
                 },
                 attributs: ["l'arbitre laisse faire", "l'arbitre siffle et fait rejouer"],
+                reculReplay: 3,
                 reponse: {
                     solution: 1,
                     libelle: "l'arbitre laisse faire car il est joué avant l'endroit de la faute",
@@ -335,7 +336,7 @@ var scenario = [
                 step: '00:32:36',
                 act: "Question",
                 niveau: "DEBUTANT",
-                Question: {
+                question: {
                     libelle: "L'arbitre assistant lève son drapeau et le secoue pour indiquer une faute"
                 },
                 attributs: ["L'arbitre peut siffler une faute", "L'abitre n'a pas à en tenir compte"],
@@ -351,7 +352,7 @@ var scenario = [
                 step: '00:32:39',
                 act: "Bonus",
                 niveau: "DEBUTANT",
-                Question: {
+                question: {
                     libelle: "le temps additionnel indiqué par l'arbitre correspond à :"
                 },
                 attributs: ["Temps minimum à jouer", "Temps maximum à jouer"],
@@ -378,7 +379,7 @@ var scenario = [
                 step: '00:34:35',
                 act: "Question",
                 niveau: "DEBUTANT",
-                Question: {
+                question: {
                     libelle: "Quelles sont les indications que l'arbitre donne aux joueurs qui forment le mur ?"
                 },
                 attributs: ["ne pas bouger lors du tir","position autorisée des bras dans le mur"],
@@ -399,7 +400,7 @@ var scenario = [
                 step: '00:34:46',
                 act: "Question",
                 niveau: "DEBUTANT",
-                Question: {
+                question: {
                     libelle: "Quelle situation nindique l'arbitre ?"
                 },
                 attributs: ["Un sortie de but", "un corner"],
@@ -437,7 +438,7 @@ var scenario = [
                 step: '00:00:01',
                 act: "Question",
                 niveau: "DEBUTANT",
-                Question: {
+                question: {
                     libelle: "Quelle règle liée à l'équipement des joueurs n'est pas respectée ?"
                 },
                 attributs: ["les maillots doivent êtres dans les shorts", "Les cuissardes doivent êtres de la couleur dominante du short"],
@@ -471,7 +472,7 @@ var scenario = [
                 step: '00:00:01',
                 act: "Question",
                 niveau: "DEBUTANT",
-                Question: {
+                question: {
                     libelle: "Quelle règle liée à l'équipement des joueurs n'est pas respectée ?"
                 },
                 attributs: ["les maillots doivent êtres dans les shorts", "Les cuissardes doivent êtres de la couleur dominante du short"],
@@ -505,7 +506,7 @@ var scenario = [
                 step: '00:00:01',
                 act: "Question",
                 niveau: "DEBUTANT",
-                Question: {
+                question: {
                     libelle: "Quelle règle liée à l'équipement des joueurs n'est pas respectée ?"
                 },
                 attributs: ["les maillots doivent êtres dans les shorts", "Les cuissardes doivent êtres de la couleur dominante du short"],
@@ -537,7 +538,7 @@ var scenario = [
                 step: '00:00:01',
                 act: "Question",
                 niveau: "DEBUTANT",
-                Question: {
+                question: {
                     libelle: "Quelle règle liée à l'équipement des joueurs n'est pas respectée ?"
                 },
                 attributs: ["les maillots doivent êtres dans les shorts", "Les cuissardes doivent êtres de la couleur dominante du short"],
@@ -552,7 +553,7 @@ var scenario = [
                 step: '00:00:03',
                 act: "Question",
                 niveau: "CONFIRME",
-                Question: {
+                question: {
                     libelle: "Quelle règle liée à l'équipement des joueurs n'est pas respectée ?"
                 },
                 attributs: ["les maillots doivent êtres dans les shorts", "Les cuissardes doivent êtres de la couleur dominante du short"],
@@ -567,7 +568,7 @@ var scenario = [
                 step: '00:00:05',
                 act: "Question",
                 niveau: "EXPERT",
-                Question: {
+                question: {
                     libelle: "Quelle règle liée à l'équipement des joueurs n'est pas respectée ?"
                 },
                 attributs: ["les maillots doivent êtres dans les shorts", "Les cuissardes doivent êtres de la couleur dominante du short"],
@@ -582,7 +583,7 @@ var scenario = [
                 step: '00:00:08',
                 act: "Question",
                 niveau: "DEBUTANT",
-                Question: {
+                question: {
                     libelle: "Quelle règle liée à l'équipement des joueurs n'est pas respectée ?"
                 },
                 attributs: ["les maillots doivent êtres dans les shorts", "Les cuissardes doivent êtres de la couleur dominante du short"],
@@ -597,7 +598,7 @@ var scenario = [
                 step: '00:00:10',
                 act: "Question",
                 niveau: "EXPERT",
-                Question: {
+                question: {
                     libelle: "Quelle règle liée à l'équipement des joueurs n'est pas respectée ?"
                 },
                 attributs: ["les maillots doivent êtres dans les shorts", "Les cuissardes doivent êtres de la couleur dominante du short"],
@@ -612,7 +613,7 @@ var scenario = [
                 step: '00:00:11',
                 act: "Question",
                 niveau: "DEBUTANT",
-                Question: {
+                question: {
                     libelle: "Quelle règle liée à l'équipement des joueurs n'est pas respectée ?"
                 },
                 attributs: ["les maillots doivent êtres dans les shorts", "Les cuissardes doivent êtres de la couleur dominante du short"],

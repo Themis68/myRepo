@@ -1,59 +1,5 @@
 // tableau de fonctions pour traiter les arrêts deans la vidéo
 var mesActions = { 
-    Question2 : function (ind) {
-        encadreVideo(false);
-        document._video.pause();    // on pause la vidéo
-        // préparation des actions
-        actionEnCours = actions[ind];
-        document.getElementById("message").innerHTML = monJob.libelle;
-        
-        //
-        // PROPOSITIONS
-        // on construit dPropositions       
-        // retirer les elements de la réponse du DOM
-        // sinon on les aura à la prochaine question
-        if (document.getElementById("R1") !== null) {
-            var parent = document.getElementById("R1").parentNode;
-            while( parent.firstChild) {
-                // La liste n'est pas une copie, elle sera donc réindexée à chaque appel
-                parent.removeChild( parent.firstChild);
-            }
-        }
-
-        // gestion de l'image
-        showPict((monJob.pict || null), 'myPict');
-        showPict((monJob.pict || null), 'myPict');
-
-        var maQuestion = document.getElementById("zPropositions");
-        for (let i=1; i <= monJob.attributs.length; i++) { 
-            // construction du input
-            var monInput = document.createElement("input");
-            if (i===1) {monInput.checked = true;}
-            monInput.name = 'Q1';
-            monInput.id = 'R' + i;
-            monInput.type = 'radio';
-            monInput.value = i;
-            maQuestion.appendChild(monInput);
-            // construction du label
-            var monLabel = document.createElement("label");
-            monLabel.id = 'L' + i;
-            monLabel.innerHTML = monJob.attributs[i-1];
-            maQuestion.appendChild(monLabel);
-            // saut de lignes
-            var lig = document.createElement("br");
-            lig.id = "br" + i;
-            maQuestion.appendChild(lig);
-        }
-        // on affiche le bouton répondre
-        var btnRepondre = document.getElementById("btnRepondre");
-        btnRepondre.onclick = function() 
-        {
-          mesReponses(ind); 
-        };        
-
-        document.getElementById("quest").innerHTML = (actions[ind].act).toUpperCase() + " " + (questionsFaites.length + 1);
-    },
-
     Question : function (ind) {
         document._video.pause();    // on pause la vidéo
         // préparation des actions
@@ -77,9 +23,9 @@ var mesActions = {
             {
                 fairplay(ind); 
             };
-            showItem("btnBonus", true);
+            //showItem("btnBonus", true);
         } else {
-            showItem("btnBonus", false);
+           // .showItem("btnBonus", false);
         }
 
         document.getElementById("quest").innerHTML = (actionEnCours.act).toUpperCase();
@@ -179,8 +125,10 @@ function returnSelRadio(nbEl){
 
 // v2
 function continuer2(param) {
+    document.querySelector("inter suite next img").style.display = "none";
     // MAJ jauge
-    gestJauge(actionEnCours.reponse.points, nbQuests[niveauQuest].nb);
+    numQuestion++;
+    gestJauge();
     document._video.playbackRate = 1;   // vitesse normale
     if (param) {
         // allerA intégré
@@ -197,15 +145,16 @@ function fProposition(code) {
 
 	if (id === reponse) {
 		classId("add", "proposition" + id, "green");
-		addScore(1);				// ajouter des points
+		addScore(actionEnCours.reponse.points);				// ajouter des points
 	} else {
 		classId("add", "proposition" + id, "rouge");
 		classId("add", "proposition" + reponse, "green");
-	}
-	// afficher la lois sur le bouton vert
+    }
+    gestPropositions("bloquer", actionEnCours.attributs);           // enlever le clic sur les boutons
 
-	// gerer la réponse
-	gestionInter("reponse");
+    // afficher la lois sur le bouton vert
+    
+	gestionInter("reponse");    	// gerer la réponse
 
 }
 
@@ -219,7 +168,7 @@ function fairplay(ind) {
     //console.log("fairplay");
     if (questionsFaites.indexOf(actions[ind].step) < 0) {
         // on accorde le point seulement une fois
-        addScore(1);   // MAJ score
+        addScore(actionEnCours.reponse.points);   // MAJ score
         showItem("echange", false);
         showZone("zSuite", false); 
         showZone("zConseiller", false);
@@ -230,21 +179,27 @@ function fairplay(ind) {
 }
 
 // v2
-function gestJauge(valeur, nbQuestions) {
-	//MAJ de la jauge
-	let jauge = document.getElementsByClassName("progress-bar");
-	//console.log(nbQuestions);
-	pourCent = valeur / nbQuestions * 100;
-	jauge[0].setAttribute("aria-valuenow", valeur);
-	jauge[0].setAttribute("style", "width: " + pourCent + "%");
-	jauge[0].innerHTML = (valeur == 0 ? nbQuestions + " questions" : valeur);
+function gestJauge() {
+    //MAJ de la jauge
+    let jauge = document.getElementsByClassName("progress-bar");
+    
+    if (numQuestion == 0) {
+        jauge[0].setAttribute("aria-valuenow", 0);
+        jauge[0].setAttribute("style", "width: 0%");
+        jauge[0].innerHTML = nbQuests[niveauQuest].nb + " questions";
+    } else {
+        jauge[0].setAttribute("aria-valuenow", numQuestion);
+        pourCent = numQuestion / nbQuests[niveauQuest].nb * 100;
+        jauge[0].setAttribute("style", "width: " + pourCent + "%");
+        jauge[0].innerHTML = numQuestion;
+    }
 }
 
 // v2
 function fReplay(param) {
 	//console.log("esd");
     // param est le nombre de secondes à reculer sinon on prend la valeur par défaut
-    addScore2(-1);   // MAJ score
+    addScore(-1);   // MAJ score
     getVideo().currentTime = getVideo().currentTime - (param); // on recule de X secondes
     document._video.playbackRate = 0.2; // on active le ralentis
     document._video.play(); // on reprend la lecture de la vidéo
@@ -258,9 +213,9 @@ function addScore(value) {
         videoNbPoint = videoNbPoint + value;
     }
     var score = ('0' + videoNbPoint.toString()).substr(-2);       // on a le score avec deux digits
-    var scoreMax = ('0' + nbQuests[0].points.toString()).substr(-2);
+    var scoreMax = ('0' + nbQuests[niveauQuest].points.toString()).substr(-2);
 
-    let myColor = ((videoNbPoint / nbQuests[0].points) > 0.5 ? 'green' : 'black');
+    let myColor = ((videoNbPoint / nbQuests[niveauQuest].points) > 0.5 ? 'green' : 'black');
     let myScore = '<span style="color:'+ myColor +';">' + score + '</span>';
 
     document.querySelector("inter suite score p").innerHTML = myScore + ':' + scoreMax;
@@ -322,20 +277,18 @@ function fNiveaux(id) {
 	)
 	niveauQuest = id;
 	document.getElementById("level" + id).className = "badge badge-current badge-light";
-	gestJauge(0, nbQuests[niveauQuest].nb);
+	gestJauge();
 
 }
 
 // v2
 function gestPropositions(etape, attributs, reponse) {
-	console.log(reponse);
 	let proposition = document.querySelector("inter propositions");
-	let button = document.createElement("button");
-
-	deleteChild("inter propositions");	// on supprime l'existant
+    let button = document.createElement("button");
 
 	switch(etape) {
 		case "afficher":
+            deleteChild("inter propositions");	// on supprime l'existant
 			for (i=0; i < attributs.length; i++) {
 				button.id = "proposition" + (i+1);
 				button.className = "btn btn-warning";
@@ -346,6 +299,12 @@ function gestPropositions(etape, attributs, reponse) {
 			}
 			// zone complement : on renseigne mais c'est masqué pour l'instant
 			document.querySelector("inter complement p").innerHTML = reponse.libelle;
+            break;
+
+        case "bloquer":
+			for (i=0; i < attributs.length; i++) {
+                document.getElementById("proposition" + (i+1)).removeAttribute("onClick");
+			}
 			break;
 	}
 }
@@ -357,15 +316,15 @@ function gestionInter(etape, objet) {
 	let inter = document.querySelector("inter");
 	switch (etape) {
 		case "selectVideo":
-			numQuestion = 0;		// numero de la question
 			document.querySelector("inter tete titre p").innerHTML = "Match";
 			document.querySelector("inter tete points").style.display = "none";
 			// jauge et niveaux
 			let nbQuest = scanQuestion();	// analyse du scénario
-			gestJauge(numQuestion, nbQuests[niveauQuest].nb);	// MAJ de la jauge
+			gestJauge();	// MAJ de la jauge
 			document.querySelector("inter question p").innerHTML = video[0].description;
 			document.querySelector("inter propositions").style.display = "none";
-			document.querySelector("inter complement").style.display = "none";
+            document.querySelector("inter complement").style.display = "flex";
+            document.querySelector("inter complement p").innerHTML = "Cliquez sur le bouton Play sur la vidéo pour déclencher le visionnage du match"
 			// replay
 			document.querySelector("inter suite replay span").style.display = "none";
 			// score
@@ -382,7 +341,7 @@ function gestionInter(etape, objet) {
 			document.querySelector("inter tete points").style.display = "flex";
 			document.querySelector("inter tete points span").innerHTML = objet.reponse.points;
 			// jauge et niveaux
-			gestJauge(numQuestion, nbQuests[niveauQuest].nb);	// MAJ de la jauge
+			gestJauge();	// MAJ de la jauge
 			document.querySelector("inter question p").innerHTML = objet.question.libelle;
 			// gestion des propositions
 			gestPropositions("afficher", objet.attributs, objet.reponse);
@@ -407,8 +366,6 @@ function gestionInter(etape, objet) {
 			document.querySelector("inter tete titre p").innerHTML = objet.act;
 			document.querySelector("inter tete points").style.display = "flex";
 			document.querySelector("inter tete points span").innerHTML = objet.reponse.points;
-			// jauge et niveaux
-			gestJauge(numQuestion, nbQuests[niveauQuest].nb);	// MAJ de la jauge
 			document.querySelector("inter question p").innerHTML = objet.question.libelle;
 			// gestion des propositions
 			gestPropositions("afficher", objet.attributs, objet.reponse);
@@ -425,7 +382,7 @@ function gestionInter(etape, objet) {
 
 		case "reponse":
 			// complement
-			document.querySelector("inter complement").style.display = (document.querySelector("inter complement p").innerHTML != "" ? "flex" : "none");
+			document.querySelector("inter complement").style.display = (actionEnCours.reponse.libelle == "" ? "none" : "flex");
 			// replay
 			document.querySelector("inter suite replay span").style.display = "none";
 			// score
