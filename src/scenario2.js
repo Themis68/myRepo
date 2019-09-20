@@ -23,7 +23,7 @@ var scenario = [
                 question: {
                     libelle: "Quelle règle liée à l'équipement des joueurs n'est pas respectée ?"
                 },
-                attributs: ["les maillots doivent êtres dans les shorts", "Les cuissardes doivent êtres de la couleur dominante du short"],
+                attributs: ["les maillots doivent êtres dans les shorts", "Les chaussettes doivent êtres de la même couleur que le maillot"],
                 reculReplay: 2,
                 reponse: {
                     solution: 1,
@@ -66,7 +66,7 @@ var scenario = [
                 question: {
                     libelle: "L'arbitre utilise une gestuelle pour indiquer"
                 },
-                attributs: ["une faute", "une situation d'avantage", "le joueur fautif"],
+                attributs: ["une faute", "une situation d'avantage"],
                 reculReplay: 3,
                 reponse: {
                     solution: 2,
@@ -86,7 +86,7 @@ var scenario = [
                 act: "Question",
                 niveau: "DEBUTANT",
                 question: {
-                    libelle: "Comment l'arbitre signale-t-il au banc que le soigneur peut entrer sur le terrain ?"
+                    libelle: "Comment l'arbitre autorise-t-il le soigneur à entrer sur le terrain ?"
                 },
                 attributs: ["Il lève le bras en direction du banc et crie 'soigneur'", "Il lève le bras en direction du banc et siffle"],
                 reculReplay: 2,
@@ -136,7 +136,7 @@ var scenario = [
                 reculReplay: 2,
                 reponse: {
                     solution: 1,
-                    libelle: "L'arbitre assistant peut signaler à l'arbitre des autes s'il estime être le plus prêt de l'action. L'arbitre central garde la décision finale.",
+                    libelle: "L'arbitre assistant peut signaler à l'arbitre des fautes s'il estime être le plus prêt de l'action. L'arbitre central garde la décision finale.",
                     loi: "Loi_13",
                     points: 1
                 }
@@ -148,7 +148,7 @@ var scenario = [
                 indice: "00:11:55"
             },
             {
-                step: '00:12:03',
+                step: '00:12:02',
                 act: "Question",
                 niveau: "DEBUTANT",
                 question: {
@@ -221,7 +221,7 @@ var scenario = [
                 type: 'but'
             },
             {
-                step: '00:24:13',
+                step: '00:24:16',
                 act: "Question",
                 niveau: "DEBUTANT",
                 question: {
@@ -231,13 +231,13 @@ var scenario = [
                 reculReplay: 3,
                 reponse: {
                     solution: 2,
-                    libelle: "Un joueur de l'équipe adverse a traversé la ligne de mi-terrain alors que le ballon n'a pas été déplacé",
+                    libelle: "2 joueurs de l'équipe adverse ont traversé la ligne de mi-terrain alors que le ballon n'a pas été déplacé",
                     loi: "Loi_08",
                     points: 2
                 }
             },
             {
-                step: '00:24:16',
+                step: '00:24:18',
                 act: "AllerA",
                 niveau: "DEBUTANT",
                 indice: "00:24:47"
@@ -253,10 +253,10 @@ var scenario = [
                 step: '00:24:55',
                 act: "AllerA",
                 niveau: "DEBUTANT",
-                indice: "00:25:16"
+                indice: "00:25:18"
             },
             {
-                step: '00:25:23',
+                step: '00:25:20',
                 act: "Question",
                 niveau: "DEBUTANT",
                 question: {
@@ -271,7 +271,7 @@ var scenario = [
                 }
             },
             {
-                step: '00:24:23',
+                step: '00:25:24',
                 act: "AllerA",
                 niveau: "DEBUTANT",
                 indice: "00:25:54"
@@ -305,13 +305,13 @@ var scenario = [
                 }
             },
             {
-                step: '00:30:13',
+                step: '00:30:11',
                 act: "AllerA",
                 niveau: "DEBUTANT",
-                indice: '00:30:33'
+                indice: '00:30:29'
             },
             {
-                step: '00:30:39',
+                step: '00:30:30',
                 act: "Question",
                 niveau: "DEBUTANT",
                 question: {
@@ -327,7 +327,7 @@ var scenario = [
                 }
             },
             {
-                step: '00:30:42',
+                step: '00:30:35',
                 act: "AllerA",
                 niveau: "DEBUTANT",
                 indice: '00:32:33'
@@ -353,9 +353,9 @@ var scenario = [
                 act: "Bonus",
                 niveau: "DEBUTANT",
                 question: {
-                    libelle: "le temps additionnel indiqué par l'arbitre correspond à :"
+                    libelle: "Dans le cas de temps additionnel, l'arbitre doit :"
                 },
-                attributs: ["Temps minimum à jouer", "Temps maximum à jouer"],
+                attributs: ["jouer au minium ce temps", "jouer au maximum ce temps"],
                 reponse: {
                     solution: 1,
                     loi: "Loi_13",
@@ -366,7 +366,7 @@ var scenario = [
                 step: '00:32:42',
                 act: "AllerA",
                 niveau: "DEBUTANT",
-                indice: '00:34:32'
+                indice: '00:34:02'
             },
             {
                 step: '00:34:08',
@@ -376,7 +376,13 @@ var scenario = [
                 type: 'fairplay'
             },
             {
-                step: '00:34:35',
+                step: '00:34:12',
+                act: "AllerA",
+                niveau: "DEBUTANT",
+                indice: '00:34:30'
+            },
+            {
+                step: '00:34:34',
                 act: "Question",
                 niveau: "DEBUTANT",
                 question: {
@@ -394,19 +400,19 @@ var scenario = [
                 step: '00:34:39',
                 act: "AllerA",
                 niveau: "DEBUTANT",
-                indice: '00:34:55'
+                indice: '00:34:43'
             },
             {
                 step: '00:34:46',
                 act: "Question",
                 niveau: "DEBUTANT",
                 question: {
-                    libelle: "Quelle situation nindique l'arbitre ?"
+                    libelle: "Quelle situation indique l'arbitre ?"
                 },
-                attributs: ["Un sortie de but", "un corner"],
+                attributs: ["un sortie de but", "un corner"],
                 reponse: {
                     solution: 2,
-                    libelle: "L'abitre lève son bras vers le coin de corner",
+                    libelle: "L'arbitre lève son bras vers le coin de corner",
                     loi: "Loi_17",
                     points: 1
                 }

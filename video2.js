@@ -369,7 +369,6 @@ function capture(event) {
 				if (asWork > -1) {
 					switch(actions[asWork].act) {
 						case "Question":
-						case "Question2":
 						case "Bonus":
 						case "Information":
 						case "AllerA":

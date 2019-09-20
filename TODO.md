@@ -1,65 +1,67 @@
 # myRepo
 https://www.w3.org/2010/05/video/mediaevents.html
 
+**************************************
+               A CORRIGER V2
+**************************************
+- les controles vidéos n'apparaissent plus quand le match se déroule
+- gérer le HOVER sur les boutons réponses car oin ne voit pas la couleur tant qu'on est dessus
+- video est ait après qu'on est cliqué dessus ?
+- la hauteur de video n'est toujurs pas bonne
+- le bouton replay ne doit fonctionner qu'une fois
+- affeter un niveau de zoom aux questions (question 3)
+- préparer un gestionnaire pour la génération du scénario
+- gestion des actions "Information", "Fin", "Mitemps"
 
 **************************************
                A FAIRE V2
 **************************************
-- gérer le HOVER sur les boutons réponses car oin ne voit pas la couleur tant qu'on est dessus
-- video est ait après qu'on est cliqué dessus ?
-- la hauteur de video n'est toujurs pas bonne
-- le numéro de la question est incémenté alors qu'on pose la question sur la JAUGE : il faut le faire seulement après le bouton NEXT
-- masquer INTER quand la vidéo reprend
+- masquer INTER quand la vidéo reprend ?
 - fProposition(code) : je dois récupérer le nb points de la bonne réponse
-- le bouton replay ne doit fonctionner qu'une fois
-- quand la question s'affiche (pas la première) on n'a pas la jauge des questions qui est juste alors que après continuer c'est bon
-- le total des points ne s'affiche pas
-
-x le bouton replay retire 1 point au compteur
-x gestion du clic réponse et de sa couleur
-x en replay ajouter un logo à l'écran
-x afficher le score et le nom des équipes en incrustation
-x proposer un QUIZZ sur la base de questions du fascicule
-x ajouter un accès direct aux lois du jeu
-x afficher des messages lorsqu'on est en zoom écran
-x gérer l'indice 'allerA' au format 00:00:00
-x ajouter le nom des équipes en incrustation
-x positionner les fanions et le score sur la vidéo
-x proposer une valeur pour le replay pour les questions (devient optionnel selon le type de question)
-
-**************************************
-               A FAIRE
-**************************************
-- paramétrer la couleur des incrustations (texte)
-- affeter un niveau de zoom aux questions
-- proposer un zoom auto lors d'une question sur une zone isolée
-- lors d'un allerA afficher une marque sur la vidéo pour indiquer le saut
-- lors d'un allerA intégré il faut le faire mais seulement après quelques secondes de films
-- cacher le bouton des points si on a une Information de type "but"
-- pour un but prévoir une animation et non une image
-- prévoir une présentation vidéo au départ
-- scroll sur une video qui est zoomée
+- proposer un QUIZZ sur la base de questions du fascicule
+- ajouter un accès direct aux lois du jeu
+- gestion de la positon de l'arbitre
+- tester l'affichage des Q/R avecd es images
+- prévoir une présentation vidéo au départ (page 1)
+- créer un texte qui défile au départ du match (page du match)
 - avoir une animation pour la mi-temps (sifflet)
 - préparer la silhouette de l'équipement
-
-- comment afficher un objet de videojs qui existe déjà par défaut
-- peut-on ajouter le register du plug seulement quand on en a besoin ?
-- gérer un peu mieux l'attribut "visibility" des éléments à incruster
-- le centrage vertical des incrustations est trop bas alors qu'on met 50%
-- le centrage horizontal des incrustations ne tient pas compte de la largeur de l'objet
-- préparer un gestionnaire pour la génération du scénario
-- Revoir le skin pour rendre transparent la barre de progression
+- pour un but prévoir une animation et non une image
+- lors d'un allerA utiliser une transition
+- lors d'un allerA intégré il faut le faire mais seulement après quelques secondes de films
 - Gérer une action qui attend une clic du joueur
 - Gérer une action qui affiche une faute que le joueur n'a pas vu
 - information : Reste le problème de cacher le message et le bouton au bout d'un certain temps
 - gérer automatiquement la fin de la vidéo
 - rendre reactif une plage de vidéo pour donner des points à l'utilisateur
+- paramétrer la couleur des incrustations (texte)
+- cacher le bouton des points si on a une Information de type "but"
+- scroll sur une video qui est zoomée
+- comment afficher un objet de videojs qui existe déjà par défaut
+- peut-on ajouter le register du plug seulement quand on en a besoin ?
+- le centrage vertical des incrustations est trop bas alors qu'on met 50%
+- le centrage horizontal des incrustations ne tient pas compte de la largeur de l'objet
 
+**************************************
+               A FAIT V2
+**************************************
+x quand la question s'affiche (pas la première) on n'a pas la jauge des questions qui est juste alors que après continuer c'est bon
+x le total des points s'affiche dès le départ
+x le bouton replay retire 1 point au compteur
+x gestion du clic réponse et de sa couleur
+x en replay ajouter un logo à l'écran
+x afficher le score et le nom des équipes en incrustation
+x afficher des messages lorsqu'on est en zoom écran
+x gérer l'indice 'allerA' au format 00:00:00
+x ajouter le nom des équipes en incrustation
+x positionner les fanions et le score sur la vidéo
+x proposer une valeur pour le replay pour les questions (devient optionnel selon le type de question)
 x prévoir une image pour la réponse différente que celle de la question
 x centrer verticalement le logo Mouzillon dans la barre de contrôle
 x récupération de la position xy sur la zone de la vidéo
 x affecter un niveau de competition au match
 x intégrer un allerA dans la question et aux bonus
+
 
 **************************************
 URLs

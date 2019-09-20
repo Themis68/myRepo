@@ -71,3 +71,5 @@ bouton replay qui s'affiche si c'est prévu
 possède un paramètre pour la durée du recul
 
 --- SUITE
+
+- STRUCTURE DU SCENARIO

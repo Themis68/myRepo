@@ -127,8 +127,10 @@ function returnSelRadio(nbEl){
 function continuer2(param) {
     document.querySelector("inter suite next img").style.display = "none";
     // MAJ jauge
-    numQuestion++;
-    gestJauge();
+    if (actionEnCours.act === "Question") { 
+        numQuestion++;
+        gestJauge();
+    }
     document._video.playbackRate = 1;   // vitesse normale
     if (param) {
         // allerA intégré
@@ -381,8 +383,8 @@ function gestionInter(etape, objet) {
 			break;
 
 		case "reponse":
-			// complement
-			document.querySelector("inter complement").style.display = (actionEnCours.reponse.libelle == "" ? "none" : "flex");
+            // complement
+			document.querySelector("inter complement").style.display = (actionEnCours.reponse.libelle === undefined ? "none" : "flex");
 			// replay
 			document.querySelector("inter suite replay span").style.display = "none";
 			// score
