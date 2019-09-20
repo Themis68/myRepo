@@ -11,7 +11,10 @@ https://www.w3.org/2010/05/video/mediaevents.html
 - le bouton replay ne doit fonctionner qu'une fois
 - affeter un niveau de zoom aux questions (question 3)
 - préparer un gestionnaire pour la génération du scénario
-- gestion des actions "Information", "Fin", "Mitemps"
+- gestion des actions "Information"
+- gestion du type pour les actions Informations
+- gestion des actions  "Fin"
+- gestion des actions  "Mitemps"
 
 **************************************
                A FAIRE V2

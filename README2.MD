@@ -73,3 +73,6 @@ possède un paramètre pour la durée du recul
 --- SUITE
 
 - STRUCTURE DU SCENARIO
+
+1 seul BONUS par match max
+2 Informations par match max

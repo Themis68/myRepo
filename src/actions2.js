@@ -18,18 +18,17 @@ var mesActions = {
         actionEnCours = actions[ind];
         // on affiche le bouton répondre si FAIRPLAY et pas encore GAGNE
         if ((actionEnCours.type === 'fairplay') && (questionsFaites.indexOf(actionEnCours.step) < 0)) {
-            var btnBonus = document.getElementById("btnBonus");
+           /* var btnBonus = document.getElementById("btnBonus");
             btnBonus.onclick = function() 
             {
                 fairplay(ind); 
-            };
+            };*/
             //showItem("btnBonus", true);
         } else {
            // .showItem("btnBonus", false);
         }
 
-        document.getElementById("quest").innerHTML = (actionEnCours.act).toUpperCase();
-        document.getElementById("message").innerHTML = actionEnCours.libelle;
+        gestionInter("InterInformation", actionEnCours);
     },
 
     AllerA: function (ind) {
@@ -380,7 +379,19 @@ function gestionInter(etape, objet) {
 			document.querySelector("inter suite score p").style.display = "flex";
 			// next
 			document.querySelector("inter suite next img").style.display = "none";
-			break;
+            break;
+        
+        case "InterInformation":
+            classSelector("set", "inter tete", objet.act);
+            document.querySelector("inter tete titre p").innerHTML = objet.act;
+            document.querySelector("inter tete points").style.display = "none";
+            document.querySelector("inter question p").innerHTML = objet.libelle;
+            document.querySelector("inter propositions").style.display = "none";
+            document.querySelector("inter complement").style.display = "none";
+            document.querySelector("inter suite replay span").style.display = "none";
+			document.querySelector("inter suite score p").style.display = "flex";
+            document.querySelector("inter suite next img").style.display = "none";
+            break;
 
 		case "reponse":
             // complement
