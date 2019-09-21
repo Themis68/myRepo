@@ -47,7 +47,7 @@ var nbQuests = [
 	{niv: "CONFIRME", nb: 0, points: 0},
 	{niv: "EXPERT", nb: 0, points: 0}
 ];		// le niveau 0 est le niveau en cours
-var QuestionsFaites = [];
+var questionsFaites = [];
 var seqUsed = -1;	// valeur de l'étape de la séquence qui a été traitée
 var hauteurContent = 0; // hauteur de la zone CONTENT récupérée lors du chargement
 var numQuestion = 0;	// numero de la Question
@@ -177,6 +177,9 @@ function switchVideo(n) {
 			myVideo.src({src: "./videos/" + video[0].fichier , type: "video/mp4"});
 			myVideo.poster("./videos/" + video[0].poster);
 		} else {
+			// tableau du jeu
+			questionsFaites.splice(0, questionsFaites.length);	// efface le contenu
+
 			// calcul des dimensions en tenant compte du ratio prévu
 			let match = document.querySelector("match");
 			let carousel = document.querySelector("carousel");

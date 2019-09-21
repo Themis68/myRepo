@@ -145,8 +145,19 @@ function fProposition(code) {
 	let reponse = code.substr(3, 3);
 
 	if (id === reponse) {
-		classId("add", "proposition" + id, "green");
-		addScore(actionEnCours.reponse.points);				// ajouter des points
+        classId("add", "proposition" + id, "green");
+        
+        if (questionsFaites.indexOf(actionEnCours.step) < 0) {
+            addScore(actionEnCours.reponse.points);			 // ajouter des points
+            questionsFaites.push(actionEnCours.step);        // on stocke le step qui a été traité
+            // PAS TRAITE
+        } else {
+            // DEJA TRAITE
+        }
+
+
+
+		
 	} else {
 		classId("add", "proposition" + id, "rouge");
 		classId("add", "proposition" + reponse, "green");
@@ -293,8 +304,12 @@ function gestPropositions(etape, attributs, reponse) {
 			for (i=0; i < attributs.length; i++) {
 				button.id = "proposition" + (i+1);
 				button.className = "btn btn-warning";
-				button.innerHTML = attributs[i];
-				button.setAttribute("onclick","fProposition('" + (i*2) + "" + (i+1) + "" + (i+2) + "" + reponse.solution +"');"); 
+                button.innerHTML = attributs[i];
+                
+                if (questionsFaites.indexOf(actionEnCours.step) < 0) {
+                    // pas deja joué
+                    button.setAttribute("onclick","fProposition('" + (i*2) + "" + (i+1) + "" + (i+2) + "" + reponse.solution +"');"); 
+                }
 				proposition.appendChild(button);
 				button = document.createElement("button");
 			}
@@ -337,7 +352,8 @@ function gestionInter(etape, objet) {
 
 		case "InterQuestion":
 			// tete
-			classSelector("set", "inter tete", objet.act);
+            classSelector("set", "inter tete", objet.act);
+           // classSelector("set", "inter suite", objet.act);
 			document.querySelector("inter tete titre p").innerHTML = objet.act;
 			document.querySelector("inter tete points").style.display = "flex";
 			document.querySelector("inter tete points span").innerHTML = objet.reponse.points;
@@ -363,7 +379,8 @@ function gestionInter(etape, objet) {
 		
 		case "InterBonus":
 			// tete
-			classSelector("set", "inter tete", objet.act);
+            classSelector("set", "inter tete", objet.act);
+           // classSelector("set", "inter suite", objet.act);
 			document.querySelector("inter tete titre p").innerHTML = objet.act;
 			document.querySelector("inter tete points").style.display = "flex";
 			document.querySelector("inter tete points span").innerHTML = objet.reponse.points;
@@ -383,6 +400,7 @@ function gestionInter(etape, objet) {
         
         case "InterInformation":
             classSelector("set", "inter tete", objet.act);
+           // classSelector("set", "inter suite", objet.act);
             document.querySelector("inter tete titre p").innerHTML = objet.act;
             document.querySelector("inter tete points").style.display = "none";
             document.querySelector("inter question p").innerHTML = objet.libelle;
@@ -395,13 +413,20 @@ function gestionInter(etape, objet) {
 
 		case "reponse":
             // complement
-			document.querySelector("inter complement").style.display = (actionEnCours.reponse.libelle === undefined ? "none" : "flex");
-			// replay
+            if (actionEnCours.reponse.libelle === undefined && ctionEnCours.reponse.libelle === undefined ) {
+                document.querySelector("inter complement").style.display = "none";    
+            } else {
+                document.querySelector("inter complement").style.display = "flex";
+                document.querySelector("inter complement p").style.display = (actionEnCours.reponse.libelle === undefined ? "none" : "flex");
+                document.querySelector("inter complement img").style.display = (actionEnCours.reponse.pict === undefined ? "none" : "flex");
+                document.querySelector("inter complement img").setAttribute("src",actionEnCours.reponse.pict);
+            }
+            // replay
 			document.querySelector("inter suite replay span").style.display = "none";
 			// score
 			document.querySelector("inter suite score p").style.display = "flex";
 			// next
-			document.querySelector("inter suite next img").style.display = "flex";
+            document.querySelector("inter suite next img").style.display = "flex";
 			break;
 
 		default:

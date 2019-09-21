@@ -6,13 +6,10 @@ https://www.w3.org/2010/05/video/mediaevents.html
 **************************************
 - les controles vidéos n'apparaissent plus quand le match se déroule
 - gérer le HOVER sur les boutons réponses car oin ne voit pas la couleur tant qu'on est dessus
-- video est ait après qu'on est cliqué dessus ?
 - la hauteur de video n'est toujurs pas bonne
 - le bouton replay ne doit fonctionner qu'une fois
 - affeter un niveau de zoom aux questions (question 3)
 - préparer un gestionnaire pour la génération du scénario
-- gestion des actions "Information"
-- gestion du type pour les actions Informations
 - gestion des actions  "Fin"
 - gestion des actions  "Mitemps"
 
@@ -48,6 +45,8 @@ https://www.w3.org/2010/05/video/mediaevents.html
 **************************************
                A FAIT V2
 **************************************
+x gestion de l'obtention des points en doublon (si on recule dans la vidéo)
+x gestion des actions "Information"
 x quand la question s'affiche (pas la première) on n'a pas la jauge des questions qui est juste alors que après continuer c'est bon
 x le total des points s'affiche dès le départ
 x le bouton replay retire 1 point au compteur

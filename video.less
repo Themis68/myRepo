@@ -35,15 +35,15 @@ body {
 
 
 // classes pour la zone TETE
-.Question {
+tete.Question {
     background-color: rgb(224, 164, 123);
 }
 
-.Bonus {
+tete.Bonus {
     background-color: rgb(100, 200, 50);
 }
 
-.Information {
+tete.Information {
     background-color: rgb(150, 225, 241);
 }
 
@@ -55,6 +55,19 @@ body {
 .rouge {
     background-color: red;
 }
+
+// classesp pour la zone suite
+/*suite.Question {
+    border-top-color: rgb(224, 164, 123);
+} 
+
+suite.Bonus {
+    border-top-color: rgb(100, 200, 50);
+} 
+
+suite.Information {
+    border-top-color: rgb(150, 225, 241);
+} */
 
 main {
     display: flex;
@@ -279,6 +292,9 @@ main {
 
             complement {
                 background-color: white;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
                 flex: 0.5;
 
                 p {
@@ -287,9 +303,14 @@ main {
                     padding-bottom: 5px;
                     padding-top: 20px;
                     text-align: left;
-                    font-size: 1.25vw; // taille variable selon largeur du viewport
+                    font-size: 1.12vw; // taille variable selon largeur du viewport
                     color:green;
 
+                }
+
+                img {
+                    display: none;
+                    padding-right: 3px;
                 }
             }
 
@@ -306,6 +327,8 @@ main {
                 -moz-border-radius-bottomright: 20px;
                 border-bottom-left-radius: 20px;
                 border-bottom-right-radius: 20px;
+                // border-top-style: solid;
+                // border-top-width: 3px;
 
                 replay {
                     display: flex;

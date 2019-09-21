@@ -48,6 +48,7 @@ var scenario = [
                 attributs: ["Ligue Pays De la Loire", "Ligue de Bretagne"],
                 reponse: {
                     solution: 2,
+                    pict: "./images/arbitre/touche.png",
                     libelle: "L'arbitre assistant positionne son drapeau en direction du camps qui a provoqué la touche",
                     loi: "Loi_15",
                     points: 1
@@ -70,7 +71,8 @@ var scenario = [
                 reculReplay: 3,
                 reponse: {
                     solution: 2,
-                    libelle: "L'arbitre indique par un geste des bras en avant ou en criant 'Avantage'",
+                    libelle: "En plus de la gestuelle l'arbitre peut compléter par un mot 'jouer' ou 'avantage'",
+                    pict: "./images/arbitre/avantage.png",
                     loi: "Loi_05",
                     points: 1
                 }
@@ -114,7 +116,8 @@ var scenario = [
                 reculReplay: 3,
                 reponse: {
                     solution: 1,
-                    libelle: "Dans le cas d'un coup-franc indirect, l'arbitre maintiendrai son bras levé jusqu'au tir du coup-franc",
+                    libelle: "L'arbitre lève son bras au moment de la faute",
+                    pict: "./images/arbitre/direct.png",
                     loi: "Loi_13",
                     points: 2
                 }
@@ -152,13 +155,14 @@ var scenario = [
                 act: "Question",
                 niveau: "DEBUTANT",
                 question: {
-                    libelle: "Au vue de la gestuelle de l'arbitre, quelle a été l:a décision de l'arbitre sur cette situation ?"
+                    libelle: "Au vue de la gestuelle de l'arbitre, quelle a été la décision de l'arbitre sur cette situation ?"
                 },
                 attributs: ["coup-franc", "avantage"],
                 reculReplay: 2,
                 reponse: {
                     solution: 2,
                     libelle: "L'arbitre signale l'avantage avec son bras et crie 'jouer'",
+                    pict: "./images/arbitre/avantage.png",
                     loi: "Loi_05",
                     points: 1
                 }
@@ -181,6 +185,7 @@ var scenario = [
                 reponse: {
                     solution: 1,
                     libelle: "L'arbitre estime qu'il y a bousculade en pleine course",
+                    pict: "./images/arbitre/direct.png",
                     loi: "Loi_13",
                     points: 1
                 }
@@ -372,7 +377,7 @@ var scenario = [
                 step: '00:34:08',
                 act: "Information",
                 niveau: "DEBUTANT",
-                libelle: "L'abitre explique la sanction au joueur fautif pour calmer le jeu",
+                libelle: "L'arbitre explique la sanction au joueur fautif pour calmer le jeu",
                 type: 'fairplay'
             },
             {
