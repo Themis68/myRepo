@@ -48,6 +48,7 @@ var nbQuests = [
 	{niv: "EXPERT", nb: 0, points: 0}
 ];		// le niveau 0 est le niveau en cours
 var questionsFaites = [];
+var replaysFaits = [];	// on ne peut faire le replay q'une fois
 var seqUsed = -1;	// valeur de l'étape de la séquence qui a été traitée
 var hauteurContent = 0; // hauteur de la zone CONTENT récupérée lors du chargement
 var numQuestion = 0;	// numero de la Question

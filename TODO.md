@@ -5,9 +5,8 @@ https://www.w3.org/2010/05/video/mediaevents.html
                A CORRIGER V2
 **************************************
 - les controles vidéos n'apparaissent plus quand le match se déroule
-- gérer le HOVER sur les boutons réponses car oin ne voit pas la couleur tant qu'on est dessus
+- gérer le HOVER sur les boutons réponses car on ne voit pas la couleur tant qu'on est dessus
 - la hauteur de video n'est toujurs pas bonne
-- le bouton replay ne doit fonctionner qu'une fois
 - affeter un niveau de zoom aux questions (question 3)
 - préparer un gestionnaire pour la génération du scénario
 - gestion des actions  "Fin"
@@ -16,35 +15,31 @@ https://www.w3.org/2010/05/video/mediaevents.html
 **************************************
                A FAIRE V2
 **************************************
+- ajouter les couleurs des équipements en mode stylisé
+- ajouter les lois sur la PROPOSITION gagnante ou sur COMPLEMENT
 - masquer INTER quand la vidéo reprend ?
 - fProposition(code) : je dois récupérer le nb points de la bonne réponse
 - proposer un QUIZZ sur la base de questions du fascicule
 - ajouter un accès direct aux lois du jeu
 - gestion de la positon de l'arbitre
-- tester l'affichage des Q/R avecd es images
-- prévoir une présentation vidéo au départ (page 1)
+- tester l'affichage des questions avecd es images
 - créer un texte qui défile au départ du match (page du match)
 - avoir une animation pour la mi-temps (sifflet)
 - préparer la silhouette de l'équipement
 - pour un but prévoir une animation et non une image
 - lors d'un allerA utiliser une transition
 - lors d'un allerA intégré il faut le faire mais seulement après quelques secondes de films
-- Gérer une action qui attend une clic du joueur
-- Gérer une action qui affiche une faute que le joueur n'a pas vu
 - information : Reste le problème de cacher le message et le bouton au bout d'un certain temps
 - gérer automatiquement la fin de la vidéo
 - rendre reactif une plage de vidéo pour donner des points à l'utilisateur
 - paramétrer la couleur des incrustations (texte)
 - cacher le bouton des points si on a une Information de type "but"
-- scroll sur une video qui est zoomée
-- comment afficher un objet de videojs qui existe déjà par défaut
-- peut-on ajouter le register du plug seulement quand on en a besoin ?
-- le centrage vertical des incrustations est trop bas alors qu'on met 50%
-- le centrage horizontal des incrustations ne tient pas compte de la largeur de l'objet
 
 **************************************
                A FAIT V2
 **************************************
+x le bouton replay ne doit fonctionner qu'une fois
+x tester l'affichage des réponses avecd es images
 x gestion de l'obtention des points en doublon (si on recule dans la vidéo)
 x gestion des actions "Information"
 x quand la question s'affiche (pas la première) on n'a pas la jauge des questions qui est juste alors que après continuer c'est bon
@@ -64,6 +59,17 @@ x récupération de la position xy sur la zone de la vidéo
 x affecter un niveau de competition au match
 x intégrer un allerA dans la question et aux bonus
 
+**************************************
+               A FAIRE BACKLOG
+**************************************
+- prévoir une présentation vidéo au départ (page 1)
+- Gérer une action qui attend une clic du joueur
+- Gérer une action qui affiche une faute que le joueur n'a pas vu
+- scroll sur une video qui est zoomée
+- comment afficher un objet de videojs qui existe déjà par défaut
+- peut-on ajouter le register du plug seulement quand on en a besoin ?
+- le centrage vertical des incrustations est trop bas alors qu'on met 50%
+- le centrage horizontal des incrustations ne tient pas compte de la largeur de l'objet
 
 **************************************
 URLs

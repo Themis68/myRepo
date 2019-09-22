@@ -212,6 +212,7 @@ function fReplay(param) {
 	//console.log("esd");
     // param est le nombre de secondes à reculer sinon on prend la valeur par défaut
     addScore(-1);   // MAJ score
+    replaysFaits.push(actionEnCours.step);    // on enbregistre l'opération
     getVideo().currentTime = getVideo().currentTime - (param); // on recule de X secondes
     document._video.playbackRate = 0.2; // on active le ralentis
     document._video.play(); // on reprend la lecture de la vidéo
@@ -367,10 +368,15 @@ function gestionInter(etape, objet) {
 			document.querySelector("inter complement").style.display = "none";
 			// Suite
 			//document.querySelector("inter suite").style.display = "flex";
-			// replay
-			document.querySelector("inter suite replay span").style.display = (objet.reculReplay ? "flex" : "none");
-			document.querySelector("inter suite replay span").innerHTML = objet.reculReplay;
-			document.querySelector("inter suite replay span").setAttribute("onclick","fReplay(" + (objet.reculReplay) + ");");
+            // replay
+            if (replaysFaits.indexOf(objet.step) < 0) {
+                // pas traité encore
+                document.querySelector("inter suite replay span").style.display = (objet.reculReplay ? "flex" : "none");
+                document.querySelector("inter suite replay span").innerHTML = objet.reculReplay;
+                document.querySelector("inter suite replay span").setAttribute("onclick","fReplay(" + (objet.reculReplay) + ");");
+            } else {
+                document.querySelector("inter suite replay span").style.display = "none";
+            }
 			// score
 			document.querySelector("inter suite score p").style.display = "flex";
 			// next
