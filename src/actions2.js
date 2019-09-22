@@ -154,10 +154,6 @@ function fProposition(code) {
         } else {
             // DEJA TRAITE
         }
-
-
-
-		
 	} else {
 		classId("add", "proposition" + id, "rouge");
 		classId("add", "proposition" + reponse, "green");
@@ -165,9 +161,7 @@ function fProposition(code) {
     gestPropositions("bloquer", actionEnCours.attributs);           // enlever le clic sur les boutons
 
     // afficher la lois sur le bouton vert
-    
-	gestionInter("reponse");    	// gerer la réponse
-
+	gestionInter("reponse", actionEnCours);    	// gerer la réponse
 }
 
 function allerA(param) {
@@ -419,16 +413,22 @@ function gestionInter(etape, objet) {
 
 		case "reponse":
             // complement
-            if (actionEnCours.reponse.libelle === undefined && ctionEnCours.reponse.libelle === undefined ) {
+            if ((objet.reponse.libelle === undefined) && (objet.reponse.pict === undefined)) {
                 document.querySelector("inter complement").style.display = "none";    
             } else {
                 document.querySelector("inter complement").style.display = "flex";
-                document.querySelector("inter complement p").style.display = (actionEnCours.reponse.libelle === undefined ? "none" : "flex");
-                document.querySelector("inter complement img").style.display = (actionEnCours.reponse.pict === undefined ? "none" : "flex");
-                document.querySelector("inter complement img").setAttribute("src",actionEnCours.reponse.pict);
+                document.querySelector("inter complement p").style.display = (objet.reponse.libelle === undefined ? "none" : "flex");
+                document.querySelector("inter complement img").style.display = (objet.reponse.pict === undefined ? "none" : "flex");
+                if (objet.reponse.pict !== undefined) {
+                    // on doit avoir le IF car sinon ca généère un message d'eereur lors de l'affectation de l'image  
+                    document.querySelector("inter complement img").setAttribute("src",objet.reponse.pict);
+                }
             }
             // replay
-			document.querySelector("inter suite replay span").style.display = "none";
+            // on teste si le bouton replay est encore à l'écran
+            if (document.querySelector("inter suite replay span") !== undefined) {
+                document.querySelector("inter suite replay span").style.display = "none";
+            }
 			// score
 			document.querySelector("inter suite score p").style.display = "flex";
 			// next

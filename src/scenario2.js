@@ -446,19 +446,115 @@ var scenario = [
         },
         [               
             {
-                step: '00:00:01',
+                step: '00:00:03',
+                act: "AllerA",
+                niveau: "CONFIRME",
+                indice: '00:01:55'
+            },
+            {
+                step: '00:00:04',
+                act: "AllerA",
+                niveau: "DEBUTANT",
+                indice: '00:08:09'
+            },
+            {
+                step: '00:02:00',
+                act: "Question",
+                niveau: "CONFIRME",
+                question: {
+                    libelle: "Lors de l'exécution d'un coup de pied de but par le gardien, un partenaire peut-il jouer le ballon avant que celui-ci soit sorti de la surface de réparation ?"
+                },
+                attributs: ["Oui", "Non, tous les joueurs doivent se trouver à l'extérieur de la surface"],
+                reponse: {
+                    solution: 1,
+                    libelle: "Modification des lois du jeu 2019/2020",
+                    loi: "Loi_16",
+                    points: 2
+                }
+            },
+            {
+                step: '00:02:06',
+                act: "AllerA",
+                niveau: "CONFIRME",
+                indice: '00:09:03'
+            },
+            {
+                step: '00:08:12',
                 act: "Question",
                 niveau: "DEBUTANT",
                 question: {
-                    libelle: "Quelle règle liée à l'équipement des joueurs n'est pas respectée ?"
+                    libelle: "Comment l'arbitre doit-il notifier que lebut est accordé après que le ballon ait pénétré dans le but ?"
                 },
-                attributs: ["les maillots doivent êtres dans les shorts", "Les cuissardes doivent êtres de la couleur dominante du short"],
+                attributs: ["L'arbitre indique le rond central et doit obligatoirement siffler", "L'arbitre indique le rond central sans obligatoirement siffler"],
+                reponse: {
+                    solution: 2,
+                    loi: "Loi_08",
+                    points: 2
+                }
+            },
+            {
+                step: '00:08:15',
+                act: "AllerA",
+                niveau: "DEBUTANT",
+                indice: '00:09:15'
+            },
+            {
+                step: '00:09:06',
+                act: "Question",
+                niveau: "CONFIRME",
+                question: {
+                    libelle: "Sur la situation présentée, le coup-franc est-il joué régulièrement ?"
+                },
+                attributs: ["Oui, si le joueur joue rapidement", "le joueur doit attendre que les joueurs adverses soient à 9m15"],
                 reponse: {
                     solution: 1,
-                    libelle: "Plusieurs joueurs blancs n'ont pas le maillot dans le short",
-                    loi: "Loi_04",
+                    loi: "Loi_13",
+                    points: 3
+                }
+            },
+            {
+                step: '00:09:10',
+                act: "AllerA",
+                niveau: "CONFIRME",
+                indice: '00:12:14'
+            },
+            {
+                step: '00:09:19',
+                act: "Question",
+                niveau: "DEBUTANT",
+                question: {
+                    libelle: "Sur une passe en retrait volonaire à son gardien, si le gardien touche le ballon avec les mains, quelle est la décision ?"
+                },
+                attributs: ["CFI à l'endroit où le gardien touche le ballon des mains", "Penalty accordé","CFD à l'endroit où le gardien touche le ballon des mains"],
+                reponse: {
+                    solution: 1,
+                    loi: "Loi_13",
                     points: 1
                 }
+            },
+            {
+                step: '00:09:23',
+                act: "AllerA",
+                niveau: "DEBUTANT",
+                indice: '00:12:22'
+            },
+            {
+                step: '00:12:19',
+                act: "Question",
+                niveau: "CONFIRME",
+                question: {
+                    libelle: "Sur la situation présentée l'arbitre siffle faute alors que le joueur allait se présenter seukl face au gardien, quelle sera la décision ?"
+                },
+                attributs: ["Excusion du joueur", "Avertissement au joueur"],
+                reponse: {
+                    solution: 1,
+                    loi: "Loi_12",
+                    points: 2
+                }
+            },
+            {
+                step: '00:12:25',
+                act: "Fin"
             }
         ]
     ],
