@@ -180,6 +180,7 @@ function switchVideo(n) {
 		} else {
 			// tableau du jeu
 			questionsFaites.splice(0, questionsFaites.length);	// efface le contenu
+			replaysFaits.splice(0, replaysFaits.length);	// efface le contenu
 
 			// calcul des dimensions en tenant compte du ratio prévu
 			let match = document.querySelector("match");
