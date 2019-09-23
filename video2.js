@@ -194,8 +194,8 @@ function switchVideo(n) {
 
             // on créé la vidéo
 			myVideo = videojs('myVideo', {
-				width: matchWCalcule,
-				height: hauteur,
+				width: 800,//matchWCalcule,
+				//height: hauteur-100,
 				controls: true,
 				preload:  'none',
 				loop: false,
@@ -312,9 +312,6 @@ function switchVideo(n) {
 		showContent(true);
 
 		gestionInter("selectVideo");
-
-		console.log("match", match.offsetWidth, match.offsetHeight);
-		console.log("carousel", carousel.offsetWidth, carousel.offsetHeight);
 	}
 }
 
