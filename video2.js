@@ -105,7 +105,7 @@ function creerVignettes(id) {
 		myImg.className = "img-fluid mx-auto d-block";
 		myImg.setAttribute("alt", "img" + i);
 		myImg.setAttribute("title", "img" + i);
-		myImg.setAttribute("src", "./videos/" +(scenario[i][0].poster || "./images/pelouses/pelousemini.png"));
+		myImg.setAttribute("src", "./videos/" +(scenario[i][0].poster || "./stade.jpg"));
 
 		// caption
 		let myCaption = document.createElement("div");
@@ -172,6 +172,7 @@ function switchVideo(n) {
 		//
 
 		let hauteur = 0;
+		let matchWCalcule = 0;
 		
         if (isDefineBVideoJS) {
             // il y a déjà une vidéo
@@ -185,10 +186,11 @@ function switchVideo(n) {
 			// calcul des dimensions en tenant compte du ratio prévu
 			let match = document.querySelector("match");
 			let carousel = document.querySelector("carousel");
+			console.log("match", match.offsetWidth, match.offsetHeight);
+			console.log("carousel", carousel.offsetWidth, carousel.offsetHeight);
 
-			// taille de la vidéo reclaculée
-			let matchWCalcule = match.offsetHeight * 1.78;	// 1,78 est le ratio accepté par videoJs
 			hauteur = match.offsetHeight + carousel.offsetHeight;
+			matchWCalcule = hauteur  * 1.75;	// 1,78 est le ratio accepté par videoJs
 
             // on créé la vidéo
 			myVideo = videojs('myVideo', {
@@ -310,6 +312,9 @@ function switchVideo(n) {
 		showContent(true);
 
 		gestionInter("selectVideo");
+
+		console.log("match", match.offsetWidth, match.offsetHeight);
+		console.log("carousel", carousel.offsetWidth, carousel.offsetHeight);
 	}
 }
 
