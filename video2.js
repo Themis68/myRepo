@@ -195,17 +195,18 @@ function switchVideo(n) {
             // on créé la vidéo
 			myVideo = videojs('myVideo', {
 				width: matchWCalcule,
-				height: 500, //hauteur,
+				height: hauteur,
 				controls: true,
 				preload:  'none',
 				loop: false,
 				fluid: true,
 				poster: ("./videos/" + video[0].poster || "./images/pelouses/pelousemini.png"),
 				controlBar: {
-					volumeMenuButton: {
+					volumePanel: {	// avec l'ancienne version de video-js on appelait volumeMenuButton
 						inline: false,
 						vertical: true
-					}
+					},
+					pictureInPictureToggle: false	// nouveau : gère l'image par image
 				},
 				sources: [{
 					src: "./videos/" + video[0].fichier,
