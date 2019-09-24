@@ -630,7 +630,6 @@ var scenario = [
         {
             id: 5,
             rencontre: "Match témoin",
-            poster: "match_temoin.jpg",
             fichier: "match_temoin.mp4",
             description: "Match amical opposant A à B",
             gauche: {
