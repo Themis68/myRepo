@@ -194,8 +194,8 @@ function switchVideo(n) {
 
             // on créé la vidéo
 			myVideo = videojs('myVideo', {
-				width: 800,//matchWCalcule,
-				//height: hauteur-100,
+				width: matchWCalcule,
+				height: 500, //hauteur,
 				controls: true,
 				preload:  'none',
 				loop: false,
@@ -312,6 +312,8 @@ function switchVideo(n) {
 		showContent(true);
 
 		gestionInter("selectVideo");
+
+		console.log("match", myVideo.width(), myVideo.height());
 	}
 }
 
