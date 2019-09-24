@@ -7,7 +7,9 @@
 .video-js.vjs-brand{display:block}
 
 .vjs-brand-container{
-    padding-top: 10px;  /* alignement du logo */
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
 }
 
 .vjs-brand-container-pict {
