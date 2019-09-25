@@ -13,25 +13,24 @@ https://www.w3.org/2010/05/video/mediaevents.html
 - préparer un gestionnaire pour la génération du scénario
 - gestion des actions  "Fin"
 - gestion des actions  "Mitemps"
+- information : Reste le problème de cacher le message et le bouton au bout d'un certain tempss
 
 **************************************
                A FAIRE V2
 **************************************
 - ajouter les couleurs des équipements en mode stylisé
-- ajouter les lois sur la PROPOSITION gagnante ou sur COMPLEMENT
 - masquer INTER quand la vidéo reprend ?
 - fProposition(code) : je dois récupérer le nb points de la bonne réponse
 - proposer un QUIZZ sur la base de questions du fascicule
 - ajouter un accès direct aux lois du jeu
 - gestion de la positon de l'arbitre
-- tester l'affichage des questions avecd es images
+- tester l'affichage des questions avec des images
 - créer un texte qui défile au départ du match (page du match)
 - avoir une animation pour la mi-temps (sifflet)
 - préparer la silhouette de l'équipement
 - pour un but prévoir une animation et non une image
 - lors d'un allerA utiliser une transition
 - lors d'un allerA intégré il faut le faire mais seulement après quelques secondes de films
-- information : Reste le problème de cacher le message et le bouton au bout d'un certain temps
 - gérer automatiquement la fin de la vidéo
 - rendre reactif une plage de vidéo pour donner des points à l'utilisateur
 - paramétrer la couleur des incrustations (texte)
@@ -40,6 +39,8 @@ https://www.w3.org/2010/05/video/mediaevents.html
 **************************************
                A FAIT V2
 **************************************
+x le panneau QUESTION et PROPOSITIONS est caché u bout de 2 secondes
+x ajouter les lois sur la PROPOSITION gagnante ou sur COMPLEMENT
 x le bouton replay ne doit fonctionner qu'une fois
 x tester l'affichage des réponses avecd es images
 x gestion de l'obtention des points en doublon (si on recule dans la vidéo)
