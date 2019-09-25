@@ -172,7 +172,15 @@ function fProposition(code) {
 
 function allerA(param) {
     // vérifié pour la version 2
+    // classSelector("add", "video", "allera");
     seqCode = convertInSeqCode(param);
+    classId("add", "myVideo", "allera", seqCode);
+    var timeout1 = setTimeout(normal, 1000); 
+
+}
+
+function normal() {
+    classId("del", "myVideo", "allera");
     getVideo().currentTime = seqCode;
 }
 
