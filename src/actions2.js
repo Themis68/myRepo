@@ -17,6 +17,7 @@ var mesActions = {
     Information : function (ind) {
         actionEnCours = actions[ind];
         // on affiche le bouton répondre si FAIRPLAY et pas encore GAGNE
+        var timeout = setTimeout(gestionInter("FermeInfo", actionEnCours), 2000); 
         if ((actionEnCours.type === 'fairplay') && (questionsFaites.indexOf(actionEnCours.step) < 0)) {
            /* var btnBonus = document.getElementById("btnBonus");
             btnBonus.onclick = function() 
@@ -343,7 +344,17 @@ function gestionInter(etape, objet) {
 			addScore(0);	// on init même si c'est masqué
 			// next
 			document.querySelector("inter suite next img").style.display = "none";
-			break;
+            break;
+        
+        case "FermeInfo":
+            document.querySelector("inter tete titre p").innerHTML = "Match";
+            document.querySelector("inter question p").style.display = "none";
+            document.querySelector("inter propositions").style.display = "none";
+            document.querySelector("inter complement").style.display = "none";
+            document.querySelector("inter suite replay span").style.display = "none";
+            document.querySelector("inter suite score p").style.display = "none";
+            document.querySelector("inter suite next img").style.display = "none";
+            break;
 
 		case "InterQuestion":
 			// tete
