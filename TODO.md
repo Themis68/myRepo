@@ -4,6 +4,7 @@ https://www.w3.org/2010/05/video/mediaevents.html
 **************************************
                A CORRIGER V2
 **************************************
+- VIDEOJS: WARN: videojs.createEl() is deprecated; use videojs.dom.createEl() instead
 - sur chrome apple le logo mouzillon est bien centré verticalement mais sur le chrome windows : column-reverse est compatible ?
 - les controles vidéos n'apparaissent plus quand le match se déroule
 - gérer le HOVER sur les boutons réponses car on ne voit pas la couleur tant qu'on est dessus

@@ -2,7 +2,7 @@
 @import url(./src/typo/passion_one/stylesheet.css);
 
 // minireset.css v0.0.3 | MIT License | github.com/jgthms/minireset.css 
-html,body,p,ol,ul,li,dl,dt,dd,blockquote,figure,fieldset,legend,textarea,pre,iframe,hr,h1,h2,h3,h4,h5,h6{margin:0;padding:0}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal}ul{list-style:none}button,input,select,textarea{margin:0}html{box-sizing:border-box}*,*:before,*:after{box-sizing:inherit}img,embed,iframe,object,audio,video{height:auto;max-width:100%}iframe{border:0}table{border-collapse:collapse;border-spacing:0}td,th{padding:0;text-align:left}
+html,body,p,ol,ul,li,dl,dt,dd,blockquote,figure,fieldset,legend,textarea,pre,iframe,hr,h1,h2,h3,h4,h5,h6{margin:0;padding:0}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal}ul{list-style:none}button,input,select,textarea{margin:0}html{box-sizing:border-box}*,*:before,*:after{box-sizing:inherit}embed,iframe,object,audio,video{height:auto;max-width:100%}img{max-width:100%}iframe{border:0}table{border-collapse:collapse;border-spacing:0}td,th{padding:0;text-align:left}
 
 /* 
 font-size: 100%; // this is usually 16px by default 
@@ -274,19 +274,37 @@ main {
                 padding-right: 7px;
                 flex: 4;
 
-                .btn {
-                    margin-top: 5px;
-                    margin-left: 5px;
-                    margin-right: 5px;
-                    padding-top: 2px;
-                    padding-bottom: 2px;
-                    padding-left: 5px;
-                    padding-right: 5px;
-                    text-align: left;
-                    font-size: 1.1vw; // taille variable selon largeur du viewport
-                    -webkit-border-radius: 5px;
-                    -moz-border-radius: 5px;
-                    border-radius: 5px;
+                proposition {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: start;
+                    flex: 1;
+                    margin-bottom: 5px;
+
+                    a {
+                        flex: 1;
+                        text-decoration: none;
+
+                        img {
+                            display: flex;
+                            flex: 1;
+                            height: 4vh;
+                            padding-right: 6px;
+                        }
+                    }
+
+                    button {
+                        flex: 11;
+
+                        .btn {
+                            text-align: left;
+                            font-size: 1.1vw; // taille variable selon largeur du viewport
+                            line-height: 1.4;
+                            -webkit-border-radius: 5px;
+                            -moz-border-radius: 5px;
+                            border-radius: 5px;
+                        }
+                    }
                 }
             }
 
@@ -327,8 +345,6 @@ main {
                 -moz-border-radius-bottomright: 20px;
                 border-bottom-left-radius: 20px;
                 border-bottom-right-radius: 20px;
-                // border-top-style: solid;
-                // border-top-width: 3px;
 
                 replay {
                     display: flex;

@@ -159,6 +159,8 @@ function fProposition(code) {
 		classId("add", "proposition" + id, "rouge");
 		classId("add", "proposition" + reponse, "green");
     }
+    document.getElementById("loi"+reponse).style.display = "flex";
+
     gestPropositions("bloquer", actionEnCours.attributs);           // enlever le clic sur les boutons
 
     // afficher la lois sur le bouton vert
@@ -291,13 +293,29 @@ function fNiveaux(id) {
 
 // v2
 function gestPropositions(etape, attributs, reponse) {
-	let proposition = document.querySelector("inter propositions");
+    let propositions = document.querySelector("inter propositions");
+    
+    let proposition  = document.createElement("proposition");
+    let loi = document.createElement("a");
+    let img = document.createElement("img");
     let button = document.createElement("button");
 
 	switch(etape) {
 		case "afficher":
             deleteChild("inter propositions");	// on supprime l'existant
+
 			for (i=0; i < attributs.length; i++) {
+                proposition.id = "proposition-div-" + (i+1);
+
+                loi.id = "loi" + (i+1);
+                loi.href = myURL + '/lois/' + actionEnCours.reponse.loi + '.pdf';
+                loi.target = '_blank';
+                img.src = myURL + "/images/lois.png";
+                loi.appendChild(img);
+                loi.setAttribute("style", "display:none");
+
+                proposition.appendChild(loi);
+
 				button.id = "proposition" + (i+1);
 				button.className = "btn btn-warning";
                 button.innerHTML = attributs[i];
@@ -306,8 +324,14 @@ function gestPropositions(etape, attributs, reponse) {
                     // pas deja joué
                     button.setAttribute("onclick","fProposition('" + (i*2) + "" + (i+1) + "" + (i+2) + "" + reponse.solution +"');"); 
                 }
-				proposition.appendChild(button);
-				button = document.createElement("button");
+                proposition.appendChild(button);
+
+                propositions.appendChild(proposition);
+
+                button = document.createElement("button");
+                loi = document.createElement("a");
+                img = document.createElement("img");
+                proposition = document.createElement("proposition");
 			}
 			// zone complement : on renseigne mais c'est masqué pour l'instant
 			document.querySelector("inter complement p").innerHTML = reponse.libelle;
