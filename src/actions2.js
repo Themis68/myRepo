@@ -360,8 +360,7 @@ function gestionInter(etape, objet) {
             document.querySelector("inter suite replay span").style.display = "none";
             document.querySelector("inter suite next img").style.display = "none";
             if (objet.saut !== undefined) {
-                //console.log("saut", objet.saut);
-                allerA(actionEnCours.saut.indice);
+                allerA(objet.saut.indice);
             }
             break;
 
