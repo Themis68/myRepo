@@ -48,7 +48,6 @@ function classId(use, id, value) {
 }
 
 function gestClass(use, objet, value) {
-	console.log(objet);
 	switch (use) {
 		case "set":
 			objet.className = value;

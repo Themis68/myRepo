@@ -105,6 +105,9 @@ tete.Bonus {
 tete.Information {
   background-color: #96e1f1;
 }
+tete.FermeInfo {
+  background-color: #d6c9c0;
+}
 .green {
   background-color: #64c832;
 }

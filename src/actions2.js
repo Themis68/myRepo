@@ -17,7 +17,8 @@ var mesActions = {
     Information : function (ind) {
         actionEnCours = actions[ind];
         // on affiche le bouton répondre si FAIRPLAY et pas encore GAGNE
-        var timeout = setTimeout(gestionInter("FermeInfo", actionEnCours), 2000); 
+        //console.log(actionEnCours.saut);
+        setTimeout(gestionInter, (actionEnCours.saut.attente * 1000), "FermeInfo", actionEnCours); 
         if ((actionEnCours.type === 'fairplay') && (questionsFaites.indexOf(actionEnCours.step) < 0)) {
            /* var btnBonus = document.getElementById("btnBonus");
             btnBonus.onclick = function() 
@@ -49,6 +50,8 @@ var mesActions = {
 
 }
 
+
+// v2
 function convertInSeqCode(myTimeCode) {
     var seqTab = myTimeCode.split(':');
     var seq = parseFloat(seqTab[0]) * 3600;
@@ -132,11 +135,12 @@ function continuer2(param) {
         gestJauge();
     }
     document._video.playbackRate = 1;   // vitesse normale
-    if (param) {
+  /*  if (param) {
         // allerA intégré
         allerA(param);
-    }
+    }*/
     document._video.play(); // on relance la video
+    setTimeout(gestionInter, (actionEnCours.saut.attente * 1000), "FermeInfo", actionEnCours);
 }
 
 // v2
@@ -187,6 +191,7 @@ function fairplay(ind) {
 
 // v2
 function gestJauge() {
+    let pourCent = 0;
     //MAJ de la jauge
     let jauge = document.getElementsByClassName("progress-bar");
     
@@ -297,7 +302,7 @@ function gestPropositions(etape, attributs, reponse) {
 	switch(etape) {
 		case "afficher":
             deleteChild("inter propositions");	// on supprime l'existant
-			for (i=0; i < attributs.length; i++) {
+			for (let i=0; i < attributs.length; i++) {
 				button.id = "proposition" + (i+1);
 				button.className = "btn btn-warning";
                 button.innerHTML = attributs[i];
@@ -314,7 +319,7 @@ function gestPropositions(etape, attributs, reponse) {
             break;
 
         case "bloquer":
-			for (i=0; i < attributs.length; i++) {
+			for (let i=0; i < attributs.length; i++) {
                 document.getElementById("proposition" + (i+1)).removeAttribute("onClick");
 			}
 			break;
@@ -331,7 +336,7 @@ function gestionInter(etape, objet) {
 			document.querySelector("inter tete titre p").innerHTML = "Match";
 			document.querySelector("inter tete points").style.display = "none";
 			// jauge et niveaux
-			let nbQuest = scanQuestion();	// analyse du scénario
+			scanQuestion();	// analyse du scénario
 			gestJauge();	// MAJ de la jauge
 			document.querySelector("inter question p").innerHTML = video[0].description;
 			document.querySelector("inter propositions").style.display = "none";
@@ -347,13 +352,17 @@ function gestionInter(etape, objet) {
             break;
         
         case "FermeInfo":
+            classSelector("set", "inter tete", objet.act);
             document.querySelector("inter tete titre p").innerHTML = "Match";
             document.querySelector("inter question p").style.display = "none";
             document.querySelector("inter propositions").style.display = "none";
             document.querySelector("inter complement").style.display = "none";
             document.querySelector("inter suite replay span").style.display = "none";
-            document.querySelector("inter suite score p").style.display = "none";
             document.querySelector("inter suite next img").style.display = "none";
+            if (objet.saut !== undefined) {
+                //console.log("saut", objet.saut);
+                allerA(actionEnCours.saut.indice);
+            }
             break;
 
 		case "InterQuestion":
@@ -364,7 +373,9 @@ function gestionInter(etape, objet) {
 			document.querySelector("inter tete points").style.display = "flex";
 			document.querySelector("inter tete points span").innerHTML = objet.reponse.points;
 			// jauge et niveaux
-			gestJauge();	// MAJ de la jauge
+            gestJauge();	// MAJ de la jauge
+            // question
+            document.querySelector("inter question p").style.display = "flex";
 			document.querySelector("inter question p").innerHTML = objet.question.libelle;
 			// gestion des propositions
 			gestPropositions("afficher", objet.attributs, objet.reponse);
@@ -394,7 +405,9 @@ function gestionInter(etape, objet) {
            // classSelector("set", "inter suite", objet.act);
 			document.querySelector("inter tete titre p").innerHTML = objet.act;
 			document.querySelector("inter tete points").style.display = "flex";
-			document.querySelector("inter tete points span").innerHTML = objet.reponse.points;
+            document.querySelector("inter tete points span").innerHTML = objet.reponse.points;
+            // question
+            document.querySelector("inter question p").style.display = "flex";
 			document.querySelector("inter question p").innerHTML = objet.question.libelle;
 			// gestion des propositions
 			gestPropositions("afficher", objet.attributs, objet.reponse);
@@ -414,7 +427,10 @@ function gestionInter(etape, objet) {
            // classSelector("set", "inter suite", objet.act);
             document.querySelector("inter tete titre p").innerHTML = objet.act;
             document.querySelector("inter tete points").style.display = "none";
+            // question
+            document.querySelector("inter question p").style.display = "flex";
             document.querySelector("inter question p").innerHTML = objet.libelle;
+
             document.querySelector("inter propositions").style.display = "none";
             document.querySelector("inter complement").style.display = "none";
             document.querySelector("inter suite replay span").style.display = "none";
