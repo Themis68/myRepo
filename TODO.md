@@ -4,6 +4,7 @@ https://www.w3.org/2010/05/video/mediaevents.html
 **************************************
                A CORRIGER V2
 **************************************
+- trouver une bonne transition pour la vidéo
 - VIDEOJS: WARN: videojs.createEl() is deprecated; use videojs.dom.createEl() instead
 - sur chrome apple le logo mouzillon est bien centré verticalement mais sur le chrome windows : column-reverse est compatible ?
 - les controles vidéos n'apparaissent plus quand le match se déroule
@@ -29,7 +30,6 @@ https://www.w3.org/2010/05/video/mediaevents.html
 - avoir une animation pour la mi-temps (sifflet)
 - préparer la silhouette de l'équipement
 - pour un but prévoir une animation et non une image
-- lors d'un allerA utiliser une transition
 - lors d'un allerA intégré il faut le faire mais seulement après quelques secondes de films
 - gérer automatiquement la fin de la vidéo
 - rendre reactif une plage de vidéo pour donner des points à l'utilisateur
@@ -39,6 +39,7 @@ https://www.w3.org/2010/05/video/mediaevents.html
 **************************************
                A FAIT V2
 **************************************
+x lors d'un allerA utiliser une transition
 x le panneau QUESTION et PROPOSITIONS est caché u bout de 2 secondes
 x ajouter les lois sur la PROPOSITION gagnante ou sur COMPLEMENT
 x le bouton replay ne doit fonctionner qu'une fois
