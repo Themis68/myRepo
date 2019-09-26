@@ -1,16 +1,25 @@
 # myRepo
 https://www.w3.org/2010/05/video/mediaevents.html
 
+Effets :
+https://www.creativejuiz.fr/trytotry/css3-soft-animations/
+https://openclassrooms.com/fr/courses/2745636-utilisez-les-effets-avances-de-css-sur-votre-site/3297256-les-transformations-3d
+http://memo-web.fr/categorie-css-164.php
+https://www.css3create.com/Animation-effet-bounce-en-CSS
+https://www.web-eau.net/blog/15-effets-css3-pour-vos-images
+
+
+
 **************************************
                A CORRIGER V2
 **************************************
-- les controles vidéos n'apparaissent plus quand le match se déroule
 - gérer le HOVER sur les boutons réponses car on ne voit pas la couleur tant qu'on est dessus
-- la hauteur de video n'est toujurs pas bonne
-- affeter un niveau de zoom aux questions (question 3)
+- la hauteur de video n'est toujours pas bonne
+- affecter un niveau de zoom aux questions (question 3)
 - préparer un gestionnaire pour la génération du scénario
 - gestion des actions  "Fin"
 - gestion des actions  "Mitemps"
+- gestion des points en plus pour le fair play
 
 **************************************
                A FAIRE V2
@@ -21,8 +30,8 @@ https://www.w3.org/2010/05/video/mediaevents.html
 - fProposition(code) : je dois récupérer le nb points de la bonne réponse
 - proposer un QUIZZ sur la base de questions du fascicule
 - ajouter un accès direct aux lois du jeu
-- gestion de la positon de l'arbitre
-- tester l'affichage des questions avecd es images
+- gestion de la position de l'arbitre
+- tester l'affichage des questions avec des images
 - créer un texte qui défile au départ du match (page du match)
 - avoir une animation pour la mi-temps (sifflet)
 - préparer la silhouette de l'équipement
@@ -38,6 +47,9 @@ https://www.w3.org/2010/05/video/mediaevents.html
 **************************************
                A FAIT V2
 **************************************
+
+x le menu du zoom ne s'affiche pas après le premier clic
+x les controles vidéos n'apparaissent plus quand le match se déroule
 x le bouton replay ne doit fonctionner qu'une fois
 x tester l'affichage des réponses avecd es images
 x gestion de l'obtention des points en doublon (si on recule dans la vidéo)
