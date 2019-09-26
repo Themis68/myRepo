@@ -1,5 +1,14 @@
-# myRepo
+
 https://www.w3.org/2010/05/video/mediaevents.html
+
+Effets :
+https://www.creativejuiz.fr/trytotry/css3-soft-animations/
+https://openclassrooms.com/fr/courses/2745636-utilisez-les-effets-avances-de-css-sur-votre-site/3297256-les-transformations-3d
+http://memo-web.fr/categorie-css-164.php
+https://www.css3create.com/Animation-effet-bounce-en-CSS
+https://www.web-eau.net/blog/15-effets-css3-pour-vos-images
+
+
 
 **************************************
                A CORRIGER V2
@@ -8,13 +17,6 @@ https://www.w3.org/2010/05/video/mediaevents.html
 - VIDEOJS: WARN: videojs.createEl() is deprecated; use videojs.dom.createEl() instead
 - sur chrome apple le logo mouzillon est bien centré verticalement mais sur le chrome windows : column-reverse est compatible ?
 - les controles vidéos n'apparaissent plus quand le match se déroule
-- gérer le HOVER sur les boutons réponses car on ne voit pas la couleur tant qu'on est dessus
-- la hauteur de video n'est toujurs pas bonne
-- affeter un niveau de zoom aux questions (question 3)
-- préparer un gestionnaire pour la génération du scénario
-- gestion des actions  "Fin"
-- gestion des actions  "Mitemps"
-- information : Reste le problème de cacher le message et le bouton au bout d'un certain tempss
 
 **************************************
                A FAIRE V2

@@ -8,6 +8,14 @@
  * Includes vtt.js <https://github.com/mozilla/vtt.js>
  * Available under Apache License Version 2.0
  * <https://github.com/mozilla/vtt.js/blob/master/LICENSE>
+ * 
+ * Modifications : PAULO
+ * 27/09/2019 : 
+ *    _proto.unpressButton = function unpressButtonZoom() : pour ne pas bloquer l'affichage du pop-up menu ZOOM
+ *    _proto.handleTapClick = function handleTapClick(event) : appel la fonction unpressButtonZoom au lieu de unpressButton
+ * 
+ * 
+ * 
  */
 
 (function (global, factory) {
@@ -7898,8 +7906,6 @@
     if (!predicate(ES, value)) {
       throw new $TypeError(argumentName + ' must be a ' + recordType);
     }
-
-    console.log(predicate(ES, value), value);
   };
 
   var _isNaN = Number.isNaN || function isNaN(a) {
@@ -17949,7 +17955,11 @@
     _proto.handleTapClick = function handleTapClick(event) {
       // Unpress the associated MenuButton, and move focus back to it
       if (this.menuButton_) {
-        this.menuButton_.unpressButton();
+        if (this.menuButton_.label === 'span:vjs-zoom-button-label') {
+          this.menuButton_.unpressButtonZoom();
+        } else {
+          this.menuButton_.unpressButton();
+        }
         var childComponents = this.children();
 
         if (!Array.isArray(childComponents)) {
@@ -18423,6 +18433,23 @@
         this.menuButton_.el_.setAttribute('aria-expanded', 'false');
       }
     }
+
+    //
+    // fonction dupliquée pour la gestion du pop-up ZOOM
+    // ajout le 26/09/2019
+    //
+    _proto.unpressButton = function unpressButtonZoom() {
+      if (this.enabled_) {
+        this.buttonPressed_ = false;
+        this.menu.unlockShowing();
+        //this.menu.hide(); // ligne neuytralisée pour la gestion du pop-up ZOOM
+        this.menuButton_.el_.setAttribute('aria-expanded', 'true');
+      }
+    }
+    //
+    // fin ajout
+    //
+
     /**
      * Disable the `MenuButton`. Don't allow it to be clicked.
      */
