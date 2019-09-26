@@ -5,7 +5,7 @@ var scenario = [
             rencontre: "Bretagne/PDLL",
             poster: "Pole_PloufraganMT1.png",
             fichier: "Pole_PloufraganMT1.mp4",
-            description: "Match amical opposant Les Pôles espoirs des Ligues de Bretagne et des Pays de La Loire",
+            description: "Match amical opposant Les Pôles espoirs des Ligues de Bretagne et des Pays de La Loire (1ère mi-temps)",
             gauche: {
                 nom: "Ligue de Bretagne",
                 fanion: "ligueBretagne.png"
@@ -20,6 +20,10 @@ var scenario = [
                 step: '00:00:01',
                 act: "Question",
                 niveau: "DEBUTANT",
+                saut: {
+                    attente: 3,
+                    indice: '00:02:00'
+                },
                 question: {
                     libelle: "Quelle règle liée à l'équipement des joueurs n'est pas respectée ?"
                 },
@@ -33,15 +37,13 @@ var scenario = [
                 }
             },
             {
-                step: '00:00:07',
-                act: "AllerA",
-                niveau: "DEBUTANT",
-                indice: '00:02:00'
-            },
-            {
                 step: '00:02:08',
                 act: "Question",
                 niveau: "DEBUTANT",
+                saut: {
+                    attente: 3,
+                    indice: '00:03:10'
+                },
                 question: {
                     libelle: "L'arbitre assistant a indiqué que la touche est en faveur de l'équipe ?"
                 },
@@ -55,15 +57,13 @@ var scenario = [
                 }
             },
             {
-                step: '00:02:10',
-                act: "AllerA",
-                niveau: "DEBUTANT",
-                indice: "00:03:10"
-            },
-            {
                 step: '00:03:20',
                 act: "Question",
                 niveau: "DEBUTANT",
+                saut: {
+                    attente: 3,
+                    indice: '00:06:23'
+                },
                 question: {
                     libelle: "L'arbitre utilise une gestuelle pour indiquer"
                 },
@@ -78,19 +78,17 @@ var scenario = [
                 }
             },
             {
-                step: '00:03:22',
-                act: "AllerA",
-                niveau: "DEBUTANT",
-                indice: "00:06:23"
-            },
-            {
                 step: '00:06:29',
                 act: "Question",
                 niveau: "DEBUTANT",
+                saut: {
+                    attente: 5,
+                    indice: '00:07:55'
+                },
                 question: {
                     libelle: "Comment l'arbitre autorise-t-il le soigneur à entrer sur le terrain ?"
                 },
-                attributs: ["Il lève le bras en direction du banc et crie 'soigneur'", "Il lève le bras en direction du banc et siffle"],
+                attributs: ["Il lève le bras en direction du banc", "Il lève le bras en direction du banc et doit siffler"],
                 reculReplay: 2,
                 reponse: {
                     solution: 2,
@@ -100,15 +98,13 @@ var scenario = [
                 }
             },
             {
-                step: '00:06:32',
-                act: "AllerA",
-                niveau: "DEBUTANT",
-                indice: "00:07:55"
-            },
-            {
                 step: '00:08:02',
                 act: "Question",
                 niveau: "DEBUTANT",
+                saut: {
+                    attente: 5,
+                    indice: '00:10:02'
+                },
                 question: {
                     libelle: "L'arbitre siffle un coup-franc. Sa gestuelle indique su'il s'agit d'un :"
                 },
@@ -123,19 +119,17 @@ var scenario = [
                 }
             },
             {
-                step: '00:08:12',
-                act: "AllerA",
-                niveau: "DEBUTANT",
-                indice: "00:10:02"
-            },
-            {
                 step: '00:10:08',
                 act: "Question",
                 niveau: "DEBUTANT",
+                saut: {
+                    attente: 3,
+                    indice: '00:11:55'
+                },
                 question: {
                     libelle: "L'arbitre central siffle un coup-franc. Comment l'arbitre assistant a-t-il confirmé la faute ?"
                 },
-                attributs: ["En levant son drapeau, en le secouant, puis en le dirigeant vers le camp fautif", "En levant son drapeau, en le secouant"],
+                attributs: ["En secouant son drapeau puis en le dirigeant vers le camp fautif", "En levant son drapeau et en le secouant"],
                 reculReplay: 2,
                 reponse: {
                     solution: 1,
@@ -145,15 +139,13 @@ var scenario = [
                 }
             },
             {
-                step: '00:10:10',
-                act: "AllerA",
-                niveau: "DEBUTANT",
-                indice: "00:11:55"
-            },
-            {
                 step: '00:12:02',
                 act: "Question",
                 niveau: "DEBUTANT",
+                saut: {
+                    attente: 5,
+                    indice: '00:13:05'
+                },
                 question: {
                     libelle: "Au vue de la gestuelle de l'arbitre, quelle a été la décision de l'arbitre sur cette situation ?"
                 },
@@ -168,15 +160,13 @@ var scenario = [
                 }
             },
             {
-                step: '00:12:05',
-                act: "AllerA",
-                niveau: "DEBUTANT",
-                indice: "00:13:05"
-            },
-            {
                 step: '00:13:15',
                 act: "Question",
                 niveau: "DEBUTANT",
+                saut: {
+                    attente: 3,
+                    indice: '00:17:40'
+                },
                 question: {
                     libelle: "Au vue de l'action, l'arbitre va-t-il :"
                 },
@@ -191,15 +181,13 @@ var scenario = [
                 }
             },
             {
-                step: '00:13:18',
-                act: "AllerA",
-                niveau: "DEBUTANT",
-                indice: "00:17:40"
-            },
-            {
                 step: '00:17:51',
                 act: "Question",
                 niveau: "DEBUTANT",
+                saut: {
+                    attente: 3,
+                    indice: '00:23:40'
+                },
                 question: {
                     libelle: "Quelle est la décision de l'arbitre ?"
                 },
@@ -213,12 +201,6 @@ var scenario = [
                 }
             },
             {
-                step: '00:17:55',
-                act: "AllerA",
-                niveau: "DEBUTANT",
-                indice: "00:23:40"
-            },
-            {
                 step: '00:23:45',
                 act: "Information",
                 niveau: "DEBUTANT",
@@ -229,6 +211,10 @@ var scenario = [
                 step: '00:24:16',
                 act: "Question",
                 niveau: "DEBUTANT",
+                saut: {
+                    attente: 3,
+                    indice: '00:24:47'
+                },
                 question: {
                     libelle: "L'engagement est-il fait dans les règles ?"
                 },
@@ -240,12 +226,6 @@ var scenario = [
                     loi: "Loi_08",
                     points: 2
                 }
-            },
-            {
-                step: '00:24:18',
-                act: "AllerA",
-                niveau: "DEBUTANT",
-                indice: "00:24:47"
             },
             {
                 step: '00:24:51',
@@ -264,6 +244,10 @@ var scenario = [
                 step: '00:25:20',
                 act: "Question",
                 niveau: "DEBUTANT",
+                saut: {
+                    attente: 3,
+                    indice: '00:25:54'
+                },
                 question: {
                     libelle: "L'engagement est-il fait dans les règles ?"
                 },
@@ -274,12 +258,6 @@ var scenario = [
                     loi: "Loi_08",
                     points: 1
                 }
-            },
-            {
-                step: '00:25:24',
-                act: "AllerA",
-                niveau: "DEBUTANT",
-                indice: "00:25:54"
             },
             {
                 step: '00:25:58',
@@ -298,6 +276,10 @@ var scenario = [
                 step: '00:30:10',
                 act: "Question",
                 niveau: "DEBUTANT",
+                saut: {
+                    attente: 5,
+                    indice: '00:30:29'
+                },
                 question: {
                     libelle: "L'abitre arrête l'action car il y a eu une faute sur un joueur Bleu lors du contact précédent."
                 },
@@ -310,15 +292,13 @@ var scenario = [
                 }
             },
             {
-                step: '00:30:11',
-                act: "AllerA",
-                niveau: "DEBUTANT",
-                indice: '00:30:29'
-            },
-            {
                 step: '00:30:30',
                 act: "Question",
                 niveau: "DEBUTANT",
+                saut: {
+                    attente: 3,
+                    indice: '00:32:33'
+                },
                 question: {
                     libelle: "Le coup-franc n'a pas lieu à l'endroit de la faute"
                 },
@@ -330,12 +310,6 @@ var scenario = [
                     loi: "Loi_13",
                     points: 2
                 }
-            },
-            {
-                step: '00:30:35',
-                act: "AllerA",
-                niveau: "DEBUTANT",
-                indice: '00:32:33'
             },
             {
                 step: '00:32:36',
@@ -357,6 +331,10 @@ var scenario = [
                 step: '00:32:39',
                 act: "Bonus",
                 niveau: "DEBUTANT",
+                saut: {
+                    attente: 3,
+                    indice: '00:34:02'
+                },
                 question: {
                     libelle: "Dans le cas de temps additionnel, l'arbitre doit :"
                 },
@@ -366,12 +344,6 @@ var scenario = [
                     loi: "Loi_13",
                     points: 3
                 }
-            },
-            {
-                step: '00:32:42',
-                act: "AllerA",
-                niveau: "DEBUTANT",
-                indice: '00:34:02'
             },
             {
                 step: '00:34:08',
@@ -390,6 +362,10 @@ var scenario = [
                 step: '00:34:34',
                 act: "Question",
                 niveau: "DEBUTANT",
+                saut: {
+                    attente: 5,
+                    indice: '00:34:43'
+                },
                 question: {
                     libelle: "Quelles sont les indications que l'arbitre donne aux joueurs qui forment le mur ?"
                 },
@@ -400,12 +376,6 @@ var scenario = [
                     loi: "Loi_13",
                     points: 2
                 }
-            },
-            {
-                step: '00:34:39',
-                act: "AllerA",
-                niveau: "DEBUTANT",
-                indice: '00:34:43'
             },
             {
                 step: '00:34:46',
@@ -423,7 +393,7 @@ var scenario = [
                 }
             },
             {
-                step: '00:35:16',
+                step: '00:35:00',
                 act: "Fin"
             }
         ]
@@ -434,7 +404,7 @@ var scenario = [
             rencontre: "PDLL/Bretagne",
             poster: "Pole_PloufraganMT2.png",
             fichier: "Pole_PloufraganMT2.mp4",
-            description: "Match amical opposant Les Pôles espoirs des Ligues de Bretagne et des Pays de La Loire",
+            description: "Match amical opposant Les Pôles espoirs des Ligues de Bretagne et des Pays de La Loire (2ème mi-temps)",
             gauche: {                
                 nom: "Ligue Pays De la Loire",
                 fanion: "Ligue2.png"
@@ -446,21 +416,25 @@ var scenario = [
         },
         [               
             {
-                step: '00:00:03',
+                step: '00:00:10',
                 act: "AllerA",
                 niveau: "CONFIRME",
                 indice: '00:01:55'
             },
             {
-                step: '00:00:04',
+                step: '00:00:11',
                 act: "AllerA",
                 niveau: "DEBUTANT",
                 indice: '00:08:09'
             },
             {
                 step: '00:02:00',
-                act: "Question",
+                act: "Bonus",
                 niveau: "CONFIRME",
+                saut: {
+                    attente: 5,
+                    indice: '00:09:03'
+                },
                 question: {
                     libelle: "Lors de l'exécution d'un coup de pied de but par le gardien, un partenaire peut-il jouer le ballon avant que celui-ci soit sorti de la surface de réparation ?"
                 },
@@ -473,17 +447,15 @@ var scenario = [
                 }
             },
             {
-                step: '00:02:06',
-                act: "AllerA",
-                niveau: "CONFIRME",
-                indice: '00:09:03'
-            },
-            {
                 step: '00:08:12',
                 act: "Question",
                 niveau: "DEBUTANT",
+                saut: {
+                    attente: 5,
+                    indice: '00:09:15'
+                },
                 question: {
-                    libelle: "Comment l'arbitre doit-il notifier que lebut est accordé après que le ballon ait pénétré dans le but ?"
+                    libelle: "Comment l'arbitre doit-il notifier que le but est accordé après que le ballon ait pénétré dans le but ?"
                 },
                 attributs: ["L'arbitre indique le rond central et doit obligatoirement siffler", "L'arbitre indique le rond central sans obligatoirement siffler"],
                 reponse: {
@@ -493,15 +465,14 @@ var scenario = [
                 }
             },
             {
-                step: '00:08:15',
-                act: "AllerA",
-                niveau: "DEBUTANT",
-                indice: '00:09:15'
-            },
-            {
                 step: '00:09:06',
                 act: "Question",
                 niveau: "CONFIRME",
+                saut: {
+                    attente: 5,
+                    indice: '00:12:14'
+                },
+                reculReplay: 3,
                 question: {
                     libelle: "Sur la situation présentée, le coup-franc est-il joué régulièrement ?"
                 },
@@ -513,15 +484,13 @@ var scenario = [
                 }
             },
             {
-                step: '00:09:10',
-                act: "AllerA",
-                niveau: "CONFIRME",
-                indice: '00:12:14'
-            },
-            {
                 step: '00:09:19',
                 act: "Question",
                 niveau: "DEBUTANT",
+                saut: {
+                    attente: 5,
+                    indice: '00:12:22'
+                },
                 question: {
                     libelle: "Sur une passe en retrait volonaire à son gardien, si le gardien touche le ballon avec les mains, quelle est la décision ?"
                 },
@@ -533,17 +502,12 @@ var scenario = [
                 }
             },
             {
-                step: '00:09:23',
-                act: "AllerA",
-                niveau: "DEBUTANT",
-                indice: '00:12:22'
-            },
-            {
                 step: '00:12:19',
                 act: "Question",
                 niveau: "CONFIRME",
+                reculReplay: 3,
                 question: {
-                    libelle: "Sur la situation présentée l'arbitre siffle faute alors que le joueur allait se présenter seukl face au gardien, quelle sera la décision ?"
+                    libelle: "Sur la situation présentée l'arbitre siffle faute alors que le joueur allait se présenter seul face au gardien, quelle sera la décision ?"
                 },
                 attributs: ["Excusion du joueur", "Avertissement au joueur"],
                 reponse: {
@@ -610,7 +574,7 @@ var scenario = [
         },
         [               
             {
-                step: '00:00:01',
+                step: '00:00:05',
                 act: "Question",
                 niveau: "DEBUTANT",
                 question: {
