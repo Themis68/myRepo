@@ -3999,7 +3999,6 @@
     ;
 
     _proto.show = function show() {
-      console.log('function show()');
       this.removeClass('vjs-hidden');
     }
     /**
@@ -4009,7 +4008,6 @@
     ;
 
     _proto.hide = function hide() {
-      console.log('function hide()', hide.caller);
       this.addClass('vjs-hidden');
     }
     /**
@@ -5875,7 +5873,6 @@
     ;
 
     _proto.buildCSSClass = function buildCSSClass() {
-      console.log('function buildCSSClass()');
       return MODAL_CLASS_NAME + " vjs-hidden " + _Component.prototype.buildCSSClass.call(this);
     }
     /**
@@ -7909,8 +7906,6 @@
     if (!predicate(ES, value)) {
       throw new $TypeError(argumentName + ' must be a ' + recordType);
     }
-
-    console.log(predicate(ES, value), value);
   };
 
   var _isNaN = Number.isNaN || function isNaN(a) {
@@ -17062,12 +17057,10 @@
   var checkVolumeSupport = function checkVolumeSupport(self, player) {
     // hide volume controls when they're not supported by the current tech
     if (player.tech_ && !player.tech_.featuresVolumeControl) {
-      console.log('function checkVolumeSupport()');
       self.addClass('vjs-hidden');
     }
 
     self.on(player, 'loadstart', function () {
-      console.log('function loadstart()');
       if (!player.tech_.featuresVolumeControl) {
         self.addClass('vjs-hidden');
       } else {
@@ -17480,7 +17473,6 @@
     }
 
     self.on(player, 'loadstart', function () {
-      console.log('function loadstart2()');
       if (!player.tech_.featuresMuteControl) {
         self.addClass('vjs-hidden');
       } else {
@@ -17731,7 +17723,6 @@
     ;
 
     _proto.volumePanelState_ = function volumePanelState_() {
-      console.log('function volumePanelState()');
       // hide volume panel if neither volume control or mute toggle
       // are displayed
       if (this.volumeControl.hasClass('vjs-hidden') && this.muteToggle.hasClass('vjs-hidden')) {
@@ -17965,7 +17956,6 @@
       // Unpress the associated MenuButton, and move focus back to it
       if (this.menuButton_) {
         if (this.menuButton_.label === 'span:vjs-zoom-button-label') {
-          console.log("zoom");
           this.menuButton_.unpressButtonZoom();
         } else {
           this.menuButton_.unpressButton();
@@ -20274,7 +20264,6 @@
     ;
 
     _proto.updateVisibility = function updateVisibility(event) {
-      console.log('function updateVisibility()');
       if (this.playbackRateSupported()) {
         this.removeClass('vjs-hidden');
       } else {
@@ -24384,7 +24373,6 @@
       var links = tag.getElementsByTagName('a');
 
       for (var i = 0; i < links.length; i++) {
-        console.log('boucle linKEl()');
         var linkEl = links.item(i);
         addClass(linkEl, 'vjs-hidden');
         linkEl.setAttribute('hidden', 'hidden');
