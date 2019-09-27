@@ -119,6 +119,27 @@ var scenario = [
                 }
             },
             {
+                step: '00:08:02',
+                act: "Question",
+                niveau: "DEBUTANT",
+                saut: {
+                    attente: 5,
+                    indice: '00:10:02'
+                },
+                question: {
+                    libelle: "L'arbitre siffle un coup-franc. Sa gestuelle indique su'il s'agit d'un :"
+                },
+                attributs: ["coup-franc direct", "coup-franc indirect"],
+                reculReplay: 3,
+                reponse: {
+                    solution: 1,
+                    libelle: "L'arbitre lève son bras au moment de la faute",
+                    pict: "./images/arbitre/direct.png",
+                    loi: "Loi_13",
+                    points: 2
+                }
+            },
+            {
                 step: '00:10:08',
                 act: "Question",
                 niveau: "DEBUTANT",
@@ -414,18 +435,32 @@ var scenario = [
                 fanion: "ligueBretagne.png"
             }
         },
-        [               
+        [ 
             {
-                step: '00:00:10',
+                step: '00:00:01',
                 act: "AllerA",
                 niveau: "CONFIRME",
                 indice: '00:01:55'
             },
             {
-                step: '00:00:11',
-                act: "AllerA",
+                step: '00:00:08',
+                act: "Question",
                 niveau: "DEBUTANT",
-                indice: '00:08:09'
+                saut: {
+                    attente: 3,
+                    indice: '00:08:09'
+                },
+                question: {
+                    libelle: "L'engagement est-il fait dans les règles ?"
+                },
+                attributs: ["Oui", "Non"],
+                reculReplay: 3,
+                reponse: {
+                    solution: 2,
+                    libelle: "1 joueur de l'équipe qui engage a traversé la ligne de mi-terrain alors que le ballon n'a pas été déplacé",
+                    loi: "Loi_08",
+                    points: 2
+                }
             },
             {
                 step: '00:02:00',
@@ -452,7 +487,7 @@ var scenario = [
                 niveau: "DEBUTANT",
                 saut: {
                     attente: 5,
-                    indice: '00:09:15'
+                    indice: '00:05:08'
                 },
                 question: {
                     libelle: "Comment l'arbitre doit-il notifier que le but est accordé après que le ballon ait pénétré dans le but ?"
@@ -484,12 +519,12 @@ var scenario = [
                 }
             },
             {
-                step: '00:09:19',
-                act: "Question",
+                step: '00:05:12',
+                act: "Bonus",
                 niveau: "DEBUTANT",
                 saut: {
                     attente: 5,
-                    indice: '00:12:22'
+                    indice: '00:09:18'
                 },
                 question: {
                     libelle: "Sur une passe en retrait volonaire à son gardien, si le gardien touche le ballon avec les mains, quelle est la décision ?"
@@ -497,6 +532,24 @@ var scenario = [
                 attributs: ["CFI à l'endroit où le gardien touche le ballon des mains", "Penalty accordé","CFD à l'endroit où le gardien touche le ballon des mains"],
                 reponse: {
                     solution: 1,
+                    loi: "Loi_13",
+                    points: 1
+                }
+            },
+            {
+                step: '00:09:21',
+                act: "Question",
+                niveau: "DEBUTANT",
+                saut: {
+                    attente: 5,
+                    indice: '00:12:22'
+                },
+                question: {
+                    libelle: "L'arbitre vient de siffler une faute. Laquelle selon vous ?"
+                },
+                attributs: ["Poussette dans le dos", "Tirage de maillot"],
+                reponse: {
+                    solution: 2,
                     loi: "Loi_13",
                     points: 1
                 }

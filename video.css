@@ -98,9 +98,37 @@ body {
              INTERACTION  
     FOOTER
 */
+@-webkit-keyframes myAnime {
+  /* Safari, Opera, Chrome */
+  0% {
+    transform: rotate(360deg) scale(0.5);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+@keyframes myAnime {
+  /* Tous les autres navigateurs */
+  0% {
+    transform: rotate(360deg) scale(0.5);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
 .allera {
-  transition: transform 2s;
-  transform: rotate(360deg);
+  -webkit-animation: myAnime 1s;
+  animation: myAnime 1s;
+}
+.dea {
+  transition: transform 0.5s;
+  transform: matrix(0.5, 0, 0, 1, 0, 0);
+  -webkit-transform: matrix(0.5, 0, 0, 1, 0, 0);
+}
+.aa {
+  transition: transform 0.5s;
+  transform: matrix(1, 0, 0, 1, 0, 0);
+  -webkit-transform: matrix(0.5, 0, 0, 1, 0, 0);
 }
 tete.Question {
   background-color: #e0a47b;

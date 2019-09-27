@@ -26,6 +26,7 @@ media_events["timeupdate"] = 0;
 media_events["currentTime"] = 0;
 
 // varianbles des videos
+var idVideoOn = 0;	// numero de la vidéo selectionnée
 var nivZoom = 1;
 var video = [];
 var actions = [];
@@ -52,6 +53,7 @@ var replaysFaits = [];	// on ne peut faire le replay q'une fois
 var seqUsed = -1;	// valeur de l'étape de la séquence qui a été traitée
 var hauteurContent = 0; // hauteur de la zone CONTENT récupérée lors du chargement
 var numQuestion = 0;	// numero de la Question
+var transitionTime = 1000;	// durée d'une transition ALLERA en ms
 // **********************************************************************************************************
 
 document.addEventListener("DOMContentLoaded", init, false);	// lance l'écoute des évènements et appelle INIT
@@ -159,6 +161,7 @@ function switchVideo(n) {
 		// MAJ videos
 		idVideo = n;		// maj de l'indice de la vidéo en cours
 		video = scenario[n-1];    // recup données de la vidéo
+		idVideoOn = video[0].id;
 		
 		//
 		// travail sur les actions et l'IHM associée
@@ -304,8 +307,6 @@ function switchVideo(n) {
 		inter.offsetHeight * hauteur;
 		inter.style.display = "flex";
 
-		//match.offsetHeight = hauteur;
-
 		// EQUIPES : doit être après le chargement des plugins videos
 		gestionCamps(1);	// affichage des Informations sur l'équipe pour la première mi-temps
 
@@ -313,8 +314,6 @@ function switchVideo(n) {
 		showContent(true);
 
 		gestionInter("selectVideo");
-
-		console.log("match", myVideo.width(), myVideo.height());
 	}
 }
 

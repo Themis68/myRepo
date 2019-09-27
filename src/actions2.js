@@ -17,7 +17,6 @@ var mesActions = {
     Information : function (ind) {
         actionEnCours = actions[ind];
         // on affiche le bouton répondre si FAIRPLAY et pas encore GAGNE
-        //console.log(actionEnCours.saut);
         setTimeout(gestionInter, (actionEnCours.saut.attente * 1000), "FermeInfo", actionEnCours); 
         if ((actionEnCours.type === 'fairplay') && (questionsFaites.indexOf(actionEnCours.step) < 0)) {
            /* var btnBonus = document.getElementById("btnBonus");
@@ -40,7 +39,7 @@ var mesActions = {
 
     Fin: function (ind) {
         actionEnCours = actions[ind];
-        showConseiller('fin', ((videoNbPoint / nbQuests[0].points) > 0.5));
+        //showConseiller('fin', ((videoNbPoint / nbQuests[0].points) > 0.5));
     },
 
     Mitemps: function (ind) {
@@ -61,6 +60,7 @@ function convertInSeqCode(myTimeCode) {
 }
 
 /******************************* IHM REPONSES **************************/
+/*
 function mesReponses(ind) {
      var repOk = actions[ind].reponse.solution;     // récupère la bonne réponse
 
@@ -111,6 +111,7 @@ function mesReponses(ind) {
     showItem("btnReplay", false);
     showItem("btnContinuer", (actions[ind].allerA || true));
 }
+*/
 
 /*
 function changeLevel(level) {
@@ -118,7 +119,7 @@ function changeLevel(level) {
     switchVideo(idVideo);
 }
 */
-
+/*
 // récupère le bouton radio sélectionné par l'utilisateur
 function returnSelRadio(nbEl){
 	for (let i=1; i <= nbEl; i++) {
@@ -127,6 +128,7 @@ function returnSelRadio(nbEl){
 		}
 	}
 }
+*/
 
 // v2
 function continuer2(param) {
@@ -137,7 +139,7 @@ function continuer2(param) {
         gestJauge();
     }
 
-    var timeout = setTimeout(gestionInter, 2000, "FermeInfo"); 
+    setTimeout(gestionInter, (actionEnCours.saut.attente * 1000), "FermeInfo", actionEnCours); 
 
     document._video.playbackRate = 1;   // vitesse normale
   /*  if (param) {
@@ -145,14 +147,13 @@ function continuer2(param) {
         allerA(param);
     }*/
     document._video.play(); // on relance la video
-    setTimeout(gestionInter, (actionEnCours.saut.attente * 1000), "FermeInfo", actionEnCours);
 }
 
 // v2
 function fProposition(code) {
 	// gestion des réponses	
-	let id = code.substr(1, 1);
-	let reponse = code.substr(3, 3);
+	let id = actionEnCours.reponse.solution; // code.substr(1, 1);
+	let reponse = code; //code.substr(3, 3);
 
 	if (id === reponse) {
         classId("add", "proposition" + id, "green");
@@ -180,16 +181,24 @@ function allerA(param) {
     // vérifié pour la version 2
     // classSelector("add", "video", "allera");
     seqCode = convertInSeqCode(param);
-    classId("add", "myVideo", "allera", seqCode);
-    var timeout1 = setTimeout(normal, 1000); 
+
+    // classId("add", "myVideo", "allera", seqCode);  
+   // classId("add", "myVideo", "allera");       // on ajoute l'effet de transition
+    classId("del", "myVideo", "aa");
+    classId("add", "myVideo", "dea");
+    setTimeout(normal, transitionTime);                  // on lance le timeout avec un temps qui est lié au temps des transitions
 
 }
 
 function normal() {
-    classId("del", "myVideo", "allera");
+    // on est arrivé à la fin de l'effet alors on retire l'effet
+    //classId("del", "myVideo", "allera");
+    classId("del", "myVideo", "dea");
     getVideo().currentTime = seqCode;
+    classId("set", "myVideo", "aa");
 }
 
+/*
 function fairplay(ind) {
     //console.log("fairplay");
     if (questionsFaites.indexOf(actions[ind].step) < 0) {
@@ -201,8 +210,8 @@ function fairplay(ind) {
         encadreVideo(false);
         questionsFaites.push(actions[ind].step);    // on ajoute l'action comme traitée
     }
-   
 }
+*/
 
 // v2
 function gestJauge() {
@@ -250,6 +259,7 @@ function addScore(value) {
 }
 
 // ?? on garde ou pas ?
+/*
 function showConseiller(rubrique, resultat, points) {
      // conseiller
      let monConseiller = document.getElementById("conseiller");
@@ -276,6 +286,7 @@ function showConseiller(rubrique, resultat, points) {
     monConseiller.setAttribute("src", source);
     document.getElementById("rep").innerHTML = text;
 }
+*/
 
 // v2
 function convertInTimeCode(myStep) {
@@ -291,27 +302,99 @@ function convertInTimeCode(myStep) {
 }
 
 // v2
-function fNiveaux(id) {
+function fNiveaux(level, idVideo) {
 	// changer de niveau
 	//
 	// exemple appel : fNiveaux(id)
 	// - id de l'objet
-	//
-	//console.log("clis sur " , id);
+    //
+    
+    // MAJ des boutons
 	let span = document.querySelectorAll("inter tete niveau button span");
 	span.forEach( function(a) {
 			a.className = "badge badge-light";
 		}
     )
-	niveauQuest = id;
-	document.getElementById("level" + id).className = "badge badge-current badge-light";
+	document.getElementById("level" + level).className = "badge badge-current badge-light";
     gestJauge();
-    switchVideo(actionEnCours.id);
 
+    niveauQuest = level;
+    switchVideo(idVideo);
+
+}
+
+function gestNiveaux(idVideo) {
+
+    deleteChild("inter tete niveau button");	// on supprime l'existant
+
+    let button = document.querySelector("inter tete niveau button");
+    let span = document.createElement("span");
+
+    for (let i=0; i < 3; i++) {
+        span.id = "level" + (i+1);
+        span.className = (i === 0 ? "badge badge-current badge-light" : "badge badge-light");
+        span.setAttribute("onclick","fNiveaux("+ (i + 1) + "," + idVideo +");"); 
+        span.innerHTML = (i + 1);
+        button.appendChild(span);
+        span = document.createElement("span");
+    }
 }
 
 // v2
 function gestPropositions(etape, attributs, reponse) {
+    let propositions = document.querySelector("inter propositions");
+    
+    let proposition  = document.createElement("proposition");
+    let loi = document.createElement("a");
+    let img = document.createElement("img");
+    let button = document.createElement("button");
+
+	switch(etape) {
+		case "afficher":
+            deleteChild("inter propositions");	// on supprime l'existant
+
+			for (let i=0; i < attributs.length; i++) {
+                proposition.id = "proposition-div-" + (i+1);
+
+                loi.id = "loi" + (i+1);
+                loi.href = myURL + '/lois/' + actionEnCours.reponse.loi + '.pdf';
+                loi.target = '_blank';
+                img.src = myURL + "/images/lois.png";
+                loi.appendChild(img);
+                loi.setAttribute("style", "display:none");
+
+                proposition.appendChild(loi);
+
+				button.id = "proposition" + (i+1);
+				button.className = "btn btn-warning";
+                button.innerHTML = attributs[i];
+                
+                if (questionsFaites.indexOf(actionEnCours.step) < 0) {
+                    // pas deja joué
+                    button.setAttribute("onclick","fProposition(" + reponse.solution +");"); 
+                }
+                proposition.appendChild(button);
+
+                propositions.appendChild(proposition);
+
+                button = document.createElement("button");
+                loi = document.createElement("a");
+                img = document.createElement("img");
+                proposition = document.createElement("proposition");
+			}
+			// zone complement : on renseigne mais c'est masqué pour l'instant
+			document.querySelector("inter complement p").innerHTML = reponse.libelle;
+            break;
+
+        case "bloquer":
+			for (let i=0; i < attributs.length; i++) {
+                document.getElementById("proposition" + (i+1)).removeAttribute("onClick");
+			}
+			break;
+	}
+}
+
+function gestPropositions2(etape, attributs, reponse) {
     let propositions = document.querySelector("inter propositions");
     
     let proposition  = document.createElement("proposition");
@@ -373,7 +456,7 @@ function gestionInter(etape, objet) {
 		case "selectVideo":
 			document.querySelector("inter tete titre p").innerHTML = "Match";
 			document.querySelector("inter tete points").style.display = "none";
-			// jauge et niveaux
+			gestNiveaux(idVideoOn);
 			scanQuestion();	// analyse du scénario
 			gestJauge();	// MAJ de la jauge
 			document.querySelector("inter question p").innerHTML = video[0].description;
@@ -390,6 +473,7 @@ function gestionInter(etape, objet) {
             break;
         
         case "FermeInfo":
+            console.log(objet);
             classSelector("set", "inter tete", objet.act);
             document.querySelector("inter tete titre p").innerHTML = "Match";
             document.querySelector("inter question p").style.display = "none";

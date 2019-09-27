@@ -2,12 +2,16 @@
 https://www.w3.org/2010/05/video/mediaevents.html
 
 Effets :
-https://www.creativejuiz.fr/trytotry/css3-soft-animations/
-https://openclassrooms.com/fr/courses/2745636-utilisez-les-effets-avances-de-css-sur-votre-site/3297256-les-transformations-3d
-http://memo-web.fr/categorie-css-164.php
-https://www.css3create.com/Animation-effet-bounce-en-CSS
+deux intéressants : https://www.creativejuiz.fr/trytotry/css3-soft-animations/
+très clair : https://openclassrooms.com/fr/courses/2745636-utilisez-les-effets-avances-de-css-sur-votre-site/3296979-les-transitions-css
+3D : https://openclassrooms.com/fr/courses/2745636-utilisez-les-effets-avances-de-css-sur-votre-site/3297256-les-transformations-3d
+ruban : http://memo-web.fr/categorie-css-164.php
+icone sautille : https://www.css3create.com/Animation-effet-bounce-en-CSS
 https://www.web-eau.net/blog/15-effets-css3-pour-vos-images
+matrix : http://www.useragentman.com/blog/2011/01/07/css3-matrix-transform-for-the-mathematically-challenged/
 
+
+step: '00:09:22', : rechercher la loi du jeu pour une poussette dans le dos
 
 
 **************************************
