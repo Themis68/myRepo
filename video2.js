@@ -382,6 +382,7 @@ function capture(event) {
 						case "Bonus":
 						case "Information":
 						case "AllerA":
+							console.log(actions[asWork].niveau, nbQuests[niveauQuest].niv, niveauQuest);
 							if (actions[asWork].niveau === nbQuests[niveauQuest].niv) {
 								mesActions[actions[asWork].act](asWork);	// on appelle le traitement nécessaire
 							}
@@ -465,26 +466,28 @@ function scanQuestion() {
 	nbQuests[2].points = 0;	// niveau confirmé
 	nbQuests[3].points = 0;	// niveau expert
 
+	let niv = 0;
+
 	// scanne des actions et imputation des points ou pas
 	for (let ind = 0; ind < arrayAssoSize(actions); ind++) {
 		if((actions[ind].act === "Question")) {
 			// calcul du compteur
 			switch (actions[ind].niveau) {
 				case "DEBUTANT":
-					niveauQuest = 1;
+					niv = 1;
 					break;
 				case "CONFIRME":
-					niveauQuest = 2;
+					niv = 2;
 					break;
 				case "EXPERT":
-					niveauQuest = 3;
+					niv = 3;
 					break;
 				default:
-					niveauQuest = 0;
+					niv = 0;
 			}
 				//niv = (actions[ind].niveau === "DEBUTANT" ? 1: actions[ind].niveau === "CONFIRME" ? 2 : 0);
-				nbQuests[niveauQuest].nb++;	// nombre de Questions du nouveau niveau
-				nbQuests[niveauQuest].points+= actions[ind].reponse.points;	// nombre de points MAX du nouveau niveau
+				nbQuests[niv].nb++;	// nombre de Questions du nouveau niveau
+				nbQuests[niv].points+= actions[ind].reponse.points;	// nombre de points MAX du nouveau niveau
 		}
 	}
 	// MAJ boutons niveaux

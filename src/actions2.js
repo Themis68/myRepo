@@ -112,10 +112,12 @@ function mesReponses(ind) {
     showItem("btnContinuer", (actions[ind].allerA || true));
 }
 
+/*
 function changeLevel(level) {
     niveauQuest = level;
     switchVideo(idVideo);
 }
+*/
 
 // récupère le bouton radio sélectionné par l'utilisateur
 function returnSelRadio(nbEl){
@@ -211,7 +213,7 @@ function gestJauge() {
     if (numQuestion == 0) {
         jauge[0].setAttribute("aria-valuenow", 0);
         jauge[0].setAttribute("style", "width: 0%");
-        jauge[0].innerHTML = nbQuests[niveauQuest].nb + " questions";
+        jauge[0].innerHTML = nbQuests[niveauQuest].nb + " Questions";
     } else {
         jauge[0].setAttribute("aria-valuenow", numQuestion);
         pourCent = numQuestion / nbQuests[niveauQuest].nb * 100;
@@ -300,10 +302,11 @@ function fNiveaux(id) {
 	span.forEach( function(a) {
 			a.className = "badge badge-light";
 		}
-	)
+    )
 	niveauQuest = id;
 	document.getElementById("level" + id).className = "badge badge-current badge-light";
-	gestJauge();
+    gestJauge();
+    switchVideo(actionEnCours.id);
 
 }
 

@@ -1,468 +1,162 @@
-@import url(typo/scoreboard/stylesheet.css);
-@import url(typo/passion_one/stylesheet.css);
-@import url(./style1.css);
+@import url(./src/typo/scoreboard/stylesheet.css);
+@import url(./src/typo/passion_one/stylesheet.css);
+@import url(./src/styleVideo.css);
 
-/*! minireset.css v0.0.3 | MIT License | github.com/jgthms/minireset.css */html,body,p,ol,ul,li,dl,dt,dd,blockquote,figure,fieldset,legend,textarea,pre,iframe,hr,h1,h2,h3,h4,h5,h6{margin:0;padding:0}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal}ul{list-style:none}button,input,select,textarea{margin:0}html{box-sizing:border-box}*,*:before,*:after{box-sizing:inherit}img,embed,iframe,object,audio,video{height:auto;max-width:100%}iframe{border:0}table{border-collapse:collapse;border-spacing:0}td,th{padding:0;text-align:left}
+/*! minireset.css v0.0.3 | MIT License | github.com/jgthms/minireset.css */
+html,body,p,ol,ul,li,dl,dt,dd,blockquote,figure,fieldset,legend,textarea,pre,iframe,hr,h1,h2,h3,h4,h5,h6{margin:0;padding:0}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal}ul{list-style:none}button,input,select,textarea{margin:0}html{box-sizing:border-box}*,*:before,*:after{box-sizing:inherit}img,embed,iframe,object,audio,video{height:auto;max-width:100%}iframe{border:0}table{border-collapse:collapse;border-spacing:0}td,th{padding:0;text-align:left}
 
-html, body {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 10px;          /* laisse un espace extérieur : pas d'ascenseur du coup verticalement*/
+/* font-size: 100%; // this is usually 16px by default */
+
+html {
+    font-family: passion_oneregular;    /* police par défaut */
 }
 
-body {  
-  background-image: url("../images/stade.jpg");
-  background-repeat: no-repeat;
-  background-position: center; 
-  background-color: black;
-  background-size: cover;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+body {
+    min-height: 100vh;      /* hauteur maximum */
+    display: flex;
+    flex-direction: column;     /* alignement vertical des zones */
 }
 
-button, label {
-  font-family: Arial, Helvetica, sans-serif;
-}
+/*    MAIN                  */
+/*        HEADER            */
+/*        SECTION           */
+/*        MENU              */
+/*             MODULE       */
+/*        CONTENT           */
+/*             VIDEO        */
+/*             INTERACTION  */
+/*    FOOTER                */
 
-label {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 10pt;
-  padding-left: 5px;
-}
+/*
+     la séquence du code est importante car la lecture est linéaire 
+*/
 
-.show {
-  display: block;
-}
+main {
+    display: flex;
+    flex-direction: column;     /* alignement vertical des zones */
+    align-items: center;
 
-.hide {
-  display: none;
-}
+    flex: 1;  /* prend toute la hauteur restante : donc 100% dans ce cas*/
 
-.video-js {
-  font-size: 0.8em;
-}
+    background-image: url("./images/pelouses/stade3.jpg");
+    background-repeat: no-repeat;
+    background-position: center; 
+    background-size: cover;     /* couvre tout l'écran */
 
-.vjs-looping .vjs-loading-spinner {
-  display: none;
-}
+    .init{
+        padding-top: 1em;   /* on laisse une heuteur de ligne haute pour la page d'accueil */
+        font-size: 3vw; /* taille variable selon largeur du viewport */
+    }
 
-.video-js .vjs-big-play-button {
-  background-color: black;
-  opacity: .8;
-  font-size: 5em;
-}
+    .video{
+        padding-top: 0.5em;   /* on laisse une heuteur de ligne plus courte que la page d'accueil */
+        font-size: 1.5vw; /* taille variable selon largeur du viewport */
+    }
 
-.video-js .vjs-menu-item2 {
-  text-align: right;
-  margin-right: 3px;
-  width: 80%;
-}
-
-td.thumb {
-  border: green 5px solid;
-  text-align: center;
-}
-
-.container-content {
-  position: relative;
-  z-index: 30;
-  width:100%;
-}
-
-#zConseiller {
-  visibility: hidden;
-  border-radius: 10px;
-  display: flex;
-  position: absolute;
-  z-index: 100;
-  width: 300px;
-  height: 160px;
-  background-color: whitesmoke;
-  align-items: center;
-}
-
-#pict {
-  display: flex;
-  width: 70%;
-}
-
-#rep {
-  display: flex;
-  justify-content: left;
-  padding: 3px;
-  width: 60%;
-}
-
-/* les zones */
-div.zone {
-  display: flex;
-  justify-content: center;
-  margin: 6px;
-}
-
-#infos{
-  float: left;
-  background-color: green;
-  width: 85%;
-  padding: 6px;
-}
-
-#stage{
-  float: left;
-  width: 85%;
-  padding: 6px;
-  background-color: green;
-}
-
-.arrondiH {
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-}
-
-.arrondiB {
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
-}
-
-#goulotte {
-  width:2%;
-}
-
-#gauche {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-}
-
-#droite {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-}
-
-.fanion {
-  color: white; 
-  font-family: passion_oneregular;
-  font-size: 18pt;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#zCamp {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-left: 2px;
-  padding-right: 2px;
-  padding-top: 0px;
-  padding-bottom: 0px;
-}
-
-#barre {
-  background-color: chocolate;
-  width: 100%;
-  height: 4px;
-}
-
-#questDone {
-  background-color: white;
-  float: left;
-  margin-top: 5px;
-  text-align: right;
-  padding-right: 5px;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 10pt;
-  font-weight: bolder;
-  color: green;
-}
-
-#questDo {
-  background-color: chocolate;
-  float: left;
-  margin-top: 5px;
-  text-align: right;
-  padding-right: 5px;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 10pt;
-  font-weight: bolder;
-  color: white;
-}
-
-#board {
-  align-content: start; /* fixe l'alignement TOP des objets : permet de gérer les espacements*/
-  float: left;          /* place la DIV à la suite de la goulotte*/
-  justify-content: center;
-  width: 23%;
-}
-/* fin des zones */
-
-/* ma vidéo */
-#videoOn {
-  float: left;
-  width: 60%;
-}
-
-#videos {
-text-align: center;
-}
-
-#listVideos, #listVideos2 {
-  display: block;
-}
-
-.cellListVideos {
-  padding: 5px;;
-}
-
-#fondVideo {
-  width: 80%;
-  height: 400px;
-  align-items: center;
-  background-image: url("../images/accueil.jpg");
-  background-repeat: no-repeat;
-  background-position: center; 
-  background-size: contain;
-}
-
-#msgVideo {
-  font-family: passion_oneregular;
-  font-size: 24pt;
-  color: white;
-  text-align: center;
-  padding-bottom: 10px;
-}
-
-#description {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 10pt;
-  color: white;
-  text-align: left;
-  padding: 5px;
-}
-
-.videoNonEncadre {
-  border: 1px solid black;
-}
-
-.videoEncadre {
-  border: 8px solid red;
-}
-
-.zBoard {
-  text-align: center;
-}
-
-.pict2 {
-  padding-top: 3px;
-  padding-bottom: 3px;
-}
-
-#score {
-  background-color: black;
-  border: 5px solid white;
-  height: 110px;
-  margin-top: 8px;
-  margin-bottom: 8px;
-}
-
-.accueil {
-  text-align: center;
-  height: 300px;
-}
-
-.titreAccueil {
-  font-family: scoreboardregular;
-  font-size: 52pt;
-  color: white;
-  line-height:120px; /* centrage vertical */
 }
 
 
-.sloganAccueil {
-  font-family: passion_oneregular;
-  font-size: 24pt;
-  color: white;
+
+header {
+    font-family: scoreboardregular;
+    font-size: 5vw; /* taille variable selon largeur du viewport */
+    color:white;
+    
+    .init {
+
+    }
+
+    .video {
+
+    }
+
 }
 
-#textBoard {
-  font-family: passion_oneregular;
-  font-size: 18pt;
-  color: white;
-  margin-left: 6px;
-  margin-right: 6px;
-  margin-bottom: 6px;
+section {
+    .init {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .video {
+
+    }
 }
 
-#scoreBoard { /* panneau droit */
-  font-family: scoreboardregular;
-  font-size: 38pt;
-  color: white;
-  margin-left: 6px;
-  margin-right: 6px;
-  margin-bottom: 6px;
-  margin-top: 6px;
+menu {
+    .init {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;  /* permet d'étaler les objets sur la largeur*/
+        color:white;
+        width: 80vw;   /* on limite l'étalement des objets en largeur*/
+    }
+
+    .video {
+        width: 50vw;   /* on limite l'étalement des objets en largeur*/
+        padding-inline-start: 0px;  /* centre la zone du carousel */
+    }
+
+module {
+    border-radius: 50%;
+    background-image: url("./images/stade.jpg");
+    background-repeat: no-repeat;
+    background-position: center; 
+    background-size: cover;     /* couvre tout l'écran */
+
+    width: 10vw;
+    height: 10vw;
+
+    font-size: 2.5vw; /* taille variable selon largeur du viewport */
 }
 
-.scoreBoard { /* incrustation */
-  font-family: scoreboardregular;
-  font-size: 24pt;
-  margin-top: 6px;
-  text-transform:none;
-  color: white;
+module a {
+    text-decoration: none;
+    color: white;
 }
 
-#btnLevel , #btnContinuer, #btnRepondre, #btnReplay, #btnBonus {
-  font-family: passion_oneregular;
-  font-size: 18pt;
-  color: white;
-  background-color: chocolate;  
-}
-
-#btnContinuer, #btnRepondre, #btnReplay {
-  margin-bottom: 0px;
-}
-/* fin board */
-
-/*  echange  */
-#echange {
-  float:left;
-  border: 0px;
-  margin-bottom: 8px;
-  width: 100%;
-}
-
-#zSuite {
-  display: flex;
-  justify-content: space-between;
-  float:left;
-  border: 0px;
-  margin-bottom: 8px;
-  width: 100%;
-}
-
-.numQuest {
-  font-family: passion_oneregular;
-  color: white;
-  font-size: 14pt;
-  padding-top: 3px;
-  background-image: url("../images/bandeau.png");
-  background-repeat: no-repeat;
-  background-size: 100%;
-  height: 45px;
-}
-
-#zMessage {
-  background-color: whitesmoke;
-  margin-top: 0px;
-  margin-bottom: 10px;
-  border: 2px solid chocolate;
-  height: 220px;
-}
-
-#zMessage2 {
-  background-color: whitesmoke;
-  margin-top: 0px;
-  margin-bottom: 10px;
-  border: 10px solid green;
-  height: 260px;
-}
-
-#message {
-  color: black;
-  border: 0px;
-  margin-top: 0px; 
-  padding: 4px;
-  text-align: left;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 10pt;
-}
-
-#zPropositions {
-  color: black;
-  border: 0px;
-  padding-left: 3px;
-  padding-bottom: 3px;
-  text-align: left;
-}
-
-#zLoi {
-  color: black;
-  border: 0px;
-  padding-left: 3px;
-  padding-bottom: 3px;
-  text-align: left;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 10pt;
-}
-
-p #message {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 10pt;
-}
-
-.credits {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 8pt;
-  color: white;
-  display:flex;
-  justify-content: space-between 
-}
-
-.event {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 8pt;
-  color: green;
-  display:flex;
-  justify-content: space-between 
-}
-
-/* lois du jeu */
- #loi:link {
-  color: green;
-  text-decoration: none;
-  }
-  #loi:visited {
-  color: green;
-  text-decoration: none;
-  }
-  #loi:active {
-  color: green;
-  text-decoration: none;
- }
- #loi:hover {
-  color: green;
-  text-decoration: none;
- }
-
- /* crédits photos */
- a:link {
-  color: white;
-  text-decoration: none;
-  }
- a:visited {
-  color: yellow;
-  text-decoration: none;
-  }
- a:active {
-  color: white;
-  text-decoration: none;
- }
- a:hover {
-  color: yellow;
-  text-decoration: none;
- }
-
- .gagne {
-  color: green;
- }
-
- .gagne span{
-    font-size: 18pt;
+module a:hover {
+    text-decoration: none;
+    font-size: 3vw;
     font-weight: bolder;
- }
- 
- .perdu {
-  color: black;
- }
+    color: white;
+}
+
+content {
+    .init {
+        background-image: url("./images/bandeauarbitre.png");
+        background-repeat: no-repeat;
+        background-position: center; 
+        background-size: cover;     /* couvre tout l'écran */
+    }
+
+    .video {
+        display : flex;
+        flex-direction: rows;
+        justify-content: space-between;
+        min-height: 100vh;      /* hauteur maximum */
+    }
+}
+
+video {
+    background-color: black;
+    flex: 1; /* prend toute la hauteur restante */
+}
+
+interaction {
+    background-color: burlywood;
+    flex: 1; /* prend toute la hauteur restante */
+}
+
+footer {
+    flex-grow: 0;
+    flex-shrink: 0;
+    background-color: midnightblue; 
+    color:white;
+    padding-top: 5px;
+    padding-left: 5px;
+    font-size: 1vw; /* taille variable selon largeur du viewport */
+    flex-basis: 2.5rem;       /* hauteur = 2 lignes de texte */
+}
+
