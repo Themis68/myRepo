@@ -439,11 +439,26 @@ var scenario = [
             {
                 step: '00:00:01',
                 act: "AllerA",
-                niveau: "CONFIRME",
-                indice: '00:01:55'
+                niveau: "EXPERT",
+                indice: '00:02:07'
             },
             {
                 step: '00:00:08',
+                act: "Question",
+                niveau: "DEBUTANT",
+                question: {
+                    libelle: "Que doit vérifier l'arbitre juste avant l'engagement ?"
+                },
+                attributs: ["Il doit vérifier que les arbitres aassistants et les gardiens sont prêts", "Il doit vérifier que les arbitres aassistants sont prêts"],
+                reponse: {
+                    solution: 1,
+                    libelle: "1 joueur de l'équipe qui engage a traversé la ligne de mi-terrain alors que le ballon n'a pas été déplacé",
+                    loi: "Loi_08",
+                    points: 2
+                }
+            },
+            {
+                step: '00:00:19',
                 act: "Question",
                 niveau: "DEBUTANT",
                 saut: {
@@ -463,12 +478,12 @@ var scenario = [
                 }
             },
             {
-                step: '00:02:00',
+                step: '00:02:11',
                 act: "Bonus",
-                niveau: "CONFIRME",
+                niveau: "EXPERT",
                 saut: {
                     attente: 5,
-                    indice: '00:09:03'
+                    indice: '00:09:14'
                 },
                 question: {
                     libelle: "Lors de l'exécution d'un coup de pied de but par le gardien, un partenaire peut-il jouer le ballon avant que celui-ci soit sorti de la surface de réparation ?"
@@ -482,12 +497,12 @@ var scenario = [
                 }
             },
             {
-                step: '00:08:12',
+                step: '00:08:23',
                 act: "Question",
-                niveau: "DEBUTANT",
+                niveau: "EXPERT",
                 saut: {
                     attente: 5,
-                    indice: '00:05:08'
+                    indice: '00:05:19'
                 },
                 question: {
                     libelle: "Comment l'arbitre doit-il notifier que le but est accordé après que le ballon ait pénétré dans le but ?"
@@ -500,12 +515,12 @@ var scenario = [
                 }
             },
             {
-                step: '00:09:06',
+                step: '00:09:17',
                 act: "Question",
-                niveau: "CONFIRME",
+                niveau: "EXPERT",
                 saut: {
                     attente: 5,
-                    indice: '00:12:14'
+                    indice: '00:12:25'
                 },
                 reculReplay: 3,
                 question: {
@@ -519,12 +534,12 @@ var scenario = [
                 }
             },
             {
-                step: '00:05:12',
+                step: '00:05:23',
                 act: "Bonus",
-                niveau: "DEBUTANT",
+                niveau: "EXPERT",
                 saut: {
                     attente: 5,
-                    indice: '00:09:18'
+                    indice: '00:09:29'
                 },
                 question: {
                     libelle: "Sur une passe en retrait volonaire à son gardien, si le gardien touche le ballon avec les mains, quelle est la décision ?"
@@ -537,12 +552,12 @@ var scenario = [
                 }
             },
             {
-                step: '00:09:21',
+                step: '00:09:32',
                 act: "Question",
-                niveau: "DEBUTANT",
+                niveau: "CONFIRME",
                 saut: {
                     attente: 5,
-                    indice: '00:12:22'
+                    indice: '00:12:33'
                 },
                 question: {
                     libelle: "L'arbitre vient de siffler une faute. Laquelle selon vous ?"
@@ -555,14 +570,14 @@ var scenario = [
                 }
             },
             {
-                step: '00:12:19',
+                step: '00:12:30',
                 act: "Question",
-                niveau: "CONFIRME",
+                niveau: "EXPERT",
                 reculReplay: 3,
                 question: {
                     libelle: "Sur la situation présentée l'arbitre siffle faute alors que le joueur allait se présenter seul face au gardien, quelle sera la décision ?"
                 },
-                attributs: ["Excusion du joueur", "Avertissement au joueur"],
+                attributs: ["Exclusion du joueur", "Avertissement au joueur"],
                 reponse: {
                     solution: 1,
                     loi: "Loi_12",
@@ -570,7 +585,7 @@ var scenario = [
                 }
             },
             {
-                step: '00:12:25',
+                step: '00:12:36',
                 act: "Fin"
             }
         ]
