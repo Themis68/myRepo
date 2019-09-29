@@ -439,13 +439,23 @@ var scenario = [
             {
                 step: '00:00:01',
                 act: "AllerA",
+                niveau: "DEBUTANT",
+                indice: '00:00:14'
+            },
+            {
+                step: '00:00:01',
+                act: "AllerA",
                 niveau: "EXPERT",
                 indice: '00:02:07'
             },
             {
                 step: '00:00:07',
                 act: "Question",
-                niveau: "DEBUTANT",
+                niveau: "CONFIRME",
+                saut: {
+                    attente: 3,
+                    indice: '00:09:25'
+                },
                 question: {
                     libelle: "Que doit vérifier l'arbitre juste avant l'engagement ?"
                 },
@@ -462,7 +472,7 @@ var scenario = [
                 niveau: "DEBUTANT",
                 saut: {
                     attente: 3,
-                    indice: '00:08:09'
+                    indice: '00:08:55'
                 },
                 question: {
                     libelle: "L'engagement est-il fait dans les règles ?"
@@ -482,7 +492,7 @@ var scenario = [
                 niveau: "EXPERT",
                 saut: {
                     attente: 5,
-                    indice: '00:09:14'
+                    indice: '00:08:20'
                 },
                 question: {
                     libelle: "Lors de l'exécution d'un coup de pied de but par le gardien, un partenaire peut-il jouer le ballon avant que celui-ci soit sorti de la surface de réparation ?"
@@ -501,7 +511,7 @@ var scenario = [
                 niveau: "EXPERT",
                 saut: {
                     attente: 5,
-                    indice: '00:05:19'
+                    indice: '00:09:12'
                 },
                 question: {
                     libelle: "Comment l'arbitre doit-il notifier que le but est accordé après que le ballon ait pénétré dans le but ?"
@@ -514,12 +524,32 @@ var scenario = [
                 }
             },
             {
+                step: '00:08:57',
+                act: "Question",
+                niveau: "DEBUTANT",
+                saut: {
+                    attente: 3,
+                    indice: '00:12:32'
+                },
+                question: {
+                    libelle: "L'engagement est-il fait dans les règles ?"
+                },
+                attributs: ["Oui", "Non"],
+                reculReplay: 3,
+                reponse: {
+                    solution: 2,
+                    libelle: "1 joueur de l'équipe qui engage a traversé la ligne de mi-terrain alors que le ballon n'a pas été déplacé",
+                    loi: "Loi_08",
+                    points: 2
+                }
+            },
+            {
                 step: '00:09:17',
                 act: "Question",
                 niveau: "EXPERT",
                 saut: {
                     attente: 5,
-                    indice: '00:12:25'
+                    indice: '00:09:23'
                 },
                 reculReplay: 3,
                 question: {
@@ -533,12 +563,12 @@ var scenario = [
                 }
             },
             {
-                step: '00:05:23',
+                step: '00:09:27',
                 act: "Bonus",
                 niveau: "EXPERT",
                 saut: {
                     attente: 5,
-                    indice: '00:09:29'
+                    indice: '00:12:27'
                 },
                 question: {
                     libelle: "Sur une passe en retrait volonaire à son gardien, si le gardien touche le ballon avec les mains, quelle est la décision ?"
@@ -556,7 +586,7 @@ var scenario = [
                 niveau: "CONFIRME",
                 saut: {
                     attente: 5,
-                    indice: '00:12:33'
+                    indice: '00:12:32'
                 },
                 question: {
                     libelle: "L'arbitre vient de siffler une faute. Laquelle selon vous ?"
