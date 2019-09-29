@@ -139,24 +139,24 @@ function continuer2(param) {
         gestJauge();
     }
 
-    setTimeout(gestionInter, (actionEnCours.saut.attente * 1000), "FermeInfo", actionEnCours); 
+    if (actionEnCours.saut !== undefined) {
+        setTimeout(gestionInter, (actionEnCours.saut.attente * 1000), "FermeInfo", actionEnCours); 
+    }
 
     document._video.playbackRate = 1;   // vitesse normale
-  /*  if (param) {
-        // allerA intégré
-        allerA(param);
-    }*/
     document._video.play(); // on relance la video
 }
 
 // v2
-function fProposition(code) {
+function fProposition(reponse) {
 	// gestion des réponses	
-	let id = actionEnCours.reponse.solution; // code.substr(1, 1);
-	let reponse = code; //code.substr(3, 3);
+	let bonneReponse = actionEnCours.reponse.solution; // code.substr(1, 1);
+    //let reponse = code; //code.substr(3, 3);
+    
+    console.log(bonneReponse, reponse);
 
-	if (id === reponse) {
-        classId("add", "proposition" + id, "green");
+	if (bonneReponse === reponse) {
+        classId("add", "proposition" + reponse, "green");
         
         if (questionsFaites.indexOf(actionEnCours.step) < 0) {
             addScore(actionEnCours.reponse.points);			 // ajouter des points
@@ -166,8 +166,8 @@ function fProposition(code) {
             // DEJA TRAITE
         }
 	} else {
-		classId("add", "proposition" + id, "rouge");
-		classId("add", "proposition" + reponse, "green");
+		classId("add", "proposition" + reponse, "rouge");
+		classId("add", "proposition" + bonneReponse, "green");
     }
     document.getElementById("loi"+reponse).style.display = "flex";
 
@@ -198,21 +198,6 @@ function normal() {
     classId("set", "myVideo", "aa");
 }
 
-/*
-function fairplay(ind) {
-    //console.log("fairplay");
-    if (questionsFaites.indexOf(actions[ind].step) < 0) {
-        // on accorde le point seulement une fois
-        addScore(actionEnCours.reponse.points);   // MAJ score
-        showItem("echange", false);
-        showZone("zSuite", false); 
-        showZone("zConseiller", false);
-        encadreVideo(false);
-        questionsFaites.push(actions[ind].step);    // on ajoute l'action comme traitée
-    }
-}
-*/
-
 // v2
 function gestJauge() {
     let pourCent = 0;
@@ -233,7 +218,6 @@ function gestJauge() {
 
 // v2
 function fReplay(param) {
-	//console.log("esd");
     // param est le nombre de secondes à reculer sinon on prend la valeur par défaut
     addScore(-1);   // MAJ score
     replaysFaits.push(actionEnCours.step);    // on enbregistre l'opération
@@ -371,7 +355,7 @@ function gestPropositions(etape, attributs, reponse) {
                 
                 if (questionsFaites.indexOf(actionEnCours.step) < 0) {
                     // pas deja joué
-                    button.setAttribute("onclick","fProposition(" + reponse.solution +");"); 
+                    button.setAttribute("onclick","fProposition(" + (i+1) +");"); 
                 }
                 proposition.appendChild(button);
 
@@ -449,7 +433,6 @@ function gestPropositions2(etape, attributs, reponse) {
 
 // v2
 function gestionInter(etape, objet) {
-	//console.log(objet);
 
 	let inter = document.querySelector("inter");
 	switch (etape) {
@@ -473,7 +456,6 @@ function gestionInter(etape, objet) {
             break;
         
         case "FermeInfo":
-            console.log(objet);
             classSelector("set", "inter tete", objet.act);
             document.querySelector("inter tete titre p").innerHTML = "Match";
             document.querySelector("inter question p").style.display = "none";

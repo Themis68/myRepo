@@ -381,7 +381,6 @@ function capture(event) {
 						case "Bonus":
 						case "Information":
 						case "AllerA":
-							console.log(actions[asWork].niveau, nbQuests[niveauQuest].niv, niveauQuest);
 							if (actions[asWork].niveau === nbQuests[niveauQuest].niv) {
 								mesActions[actions[asWork].act](asWork);	// on appelle le traitement nécessaire
 							}

@@ -443,7 +443,7 @@ var scenario = [
                 indice: '00:02:07'
             },
             {
-                step: '00:00:08',
+                step: '00:00:07',
                 act: "Question",
                 niveau: "DEBUTANT",
                 question: {
@@ -452,7 +452,6 @@ var scenario = [
                 attributs: ["Il doit vérifier que les arbitres aassistants et les gardiens sont prêts", "Il doit vérifier que les arbitres aassistants sont prêts"],
                 reponse: {
                     solution: 1,
-                    libelle: "1 joueur de l'équipe qui engage a traversé la ligne de mi-terrain alors que le ballon n'a pas été déplacé",
                     loi: "Loi_08",
                     points: 2
                 }
