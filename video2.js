@@ -26,6 +26,7 @@ media_events["timeupdate"] = 0;
 media_events["currentTime"] = 0;
 
 // varianbles des videos
+var timeOut = 0;	// pointe sur le timeout
 var idVideoOn = 0;	// numero de la vidéo selectionnée
 var nivZoom = 1;
 var video = [];

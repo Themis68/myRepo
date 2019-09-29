@@ -443,7 +443,7 @@ var scenario = [
                 indice: '00:00:14'
             },
             {
-                step: '00:00:01',
+                step: '00:00:02',
                 act: "AllerA",
                 niveau: "EXPERT",
                 indice: '00:02:07'
@@ -454,7 +454,7 @@ var scenario = [
                 niveau: "CONFIRME",
                 saut: {
                     attente: 3,
-                    indice: '00:09:25'
+                    indice: '00:00:35'
                 },
                 question: {
                     libelle: "Que doit vérifier l'arbitre juste avant l'engagement ?"
@@ -483,6 +483,25 @@ var scenario = [
                     solution: 2,
                     libelle: "1 joueur de l'équipe qui engage a traversé la ligne de mi-terrain alors que le ballon n'a pas été déplacé",
                     loi: "Loi_08",
+                    points: 2
+                }
+            },
+            {
+                step: '00:00:42',
+                act: "Question",
+                niveau: "CONFIRME",
+                saut: {
+                    attente: 7,
+                    indice: '00:09:25'
+                },
+                question: {
+                    libelle: "Au vue de la situation, l'arbitre va-til ?"
+                },
+                attributs: ["Siffler un CDI", "Laisser l'avantage", "Arrête le jeu et met une balle entre deux"],
+                reponse: {
+                    solution: 3,
+                    libelle: "l'arbitre revient sur sa decision d'avantage pour vérifier l'état du gardien suite à ce contact",
+                    loi: "Loi_13",
                     points: 2
                 }
             },

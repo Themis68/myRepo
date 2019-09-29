@@ -34,6 +34,7 @@ var mesActions = {
 
     AllerA: function (ind) {
         actionEnCours = actions[ind];
+        console.log("indiece", actionEnCours.indice);
         allerA(actionEnCours.indice);
     },
 
@@ -59,80 +60,9 @@ function convertInSeqCode(myTimeCode) {
 	return seq;
 }
 
-/******************************* IHM REPONSES **************************/
-/*
-function mesReponses(ind) {
-     var repOk = actions[ind].reponse.solution;     // récupère la bonne réponse
-
-    if (actions[ind].reponse.loi) {
-        // afficher l'accès à la règle du jeu
-        var maLoi = document.getElementById("loi");
-        // imbriquer l'icone dans le lien hypertexte
-        maLoi.setAttribute("href", myURL + '/lois/' + actions[ind].reponse.loi + '.pdf');
-        maLoi.setAttribute("target",'_blank');
-        maLoi.innerHTML = "Relire la loi du jeu";
-        showItem("zLoi", true);
-    } else {
-        showItem("zLoi", false);
-    }
-
-    // on complète le message
-    document.getElementById("message").innerHTML +=  "<br><br>Réponse : " + actions[ind].attributs[repOk - 1];
-    if (actions[ind].reponse.libelle) {
-        // optionnel
-        document.getElementById("message").innerHTML +=  "<br>Explication : " + actions[ind].reponse.libelle;
-    }
-    document.getElementById("message").innerHTML +=  "<br>";
-    
-    if (questionsFaites.indexOf(actions[ind].step) < 0) {
-        // MAJ score
-        if (maRep === repOk) {
-            addScore(maRep === repOk ? actions[ind].reponse.points : 0);
-        }
-
-        // MAJ Barre progression
-        if(actions[ind].act === 'question') {
-            stepDone++;
-            init_barre();
-        }
-        // on stocke le step qui a été traité
-        questionsFaites.push(actions[ind].step);
-        // PAS TRAITE
-        //ne pas mettre cette appel à showConseiller avant le if(questionsFaites...
-        showConseiller('reponse', (maRep === repOk), actions[ind].reponse.points);
-    } else {
-        // DEJA TRAITE
-        showConseiller('traite', (maRep === repOk));
-    }
-
-    // MAJ interface
-    showItem("zPropositions", false);
-    showItem("btnRepondre", false);
-    showItem("btnReplay", false);
-    showItem("btnContinuer", (actions[ind].allerA || true));
-}
-*/
-
-/*
-function changeLevel(level) {
-    niveauQuest = level;
-    switchVideo(idVideo);
-}
-*/
-/*
-// récupère le bouton radio sélectionné par l'utilisateur
-function returnSelRadio(nbEl){
-	for (let i=1; i <= nbEl; i++) {
-		if (document.getElementById("R" + i).checked) {
-			return i;
-		}
-	}
-}
-*/
-
 // v2
 function continuer2(param) {
-  //  document.querySelector("inter suite next img").style.display = "none";
+    console.log("continuer");
     // MAJ jauge
     if (actionEnCours.act === "Question") { 
         numQuestion++;
@@ -140,7 +70,7 @@ function continuer2(param) {
     }
 
     if (actionEnCours.saut !== undefined) {
-        setTimeout(gestionInter, (actionEnCours.saut.attente * 1000), "FermeInfo", actionEnCours); 
+        var timeOut = setTimeout(gestionInter, (actionEnCours.saut.attente * 1000), "FermeInfo", actionEnCours); 
     }
 
     document._video.playbackRate = 1;   // vitesse normale
@@ -178,24 +108,17 @@ function fProposition(reponse) {
 }
 
 function allerA(param) {
-    // vérifié pour la version 2
-    // classSelector("add", "video", "allera");
     seqCode = convertInSeqCode(param);
-
-    // classId("add", "myVideo", "allera", seqCode);  
-   // classId("add", "myVideo", "allera");       // on ajoute l'effet de transition
-    classId("del", "myVideo", "aa");
-    classId("add", "myVideo", "dea");
-    setTimeout(normal, transitionTime);                  // on lance le timeout avec un temps qui est lié au temps des transitions
-
+    getVideo().currentTime = seqCode;
+    clearTimeout(timeOut);
+    
 }
 
 function normal() {
     // on est arrivé à la fin de l'effet alors on retire l'effet
-    //classId("del", "myVideo", "allera");
     getVideo().currentTime = seqCode;
     classId("del", "myVideo", "dea");
-    classId("add", "myVideo", "aa");
+    //classId("add", "myVideo", "aa");    // transition fin
 }
 
 // v2
@@ -378,59 +301,6 @@ function gestPropositions(etape, attributs, reponse) {
 	}
 }
 
-function gestPropositions2(etape, attributs, reponse) {
-    let propositions = document.querySelector("inter propositions");
-    
-    let proposition  = document.createElement("proposition");
-    let loi = document.createElement("a");
-    let img = document.createElement("img");
-    let button = document.createElement("button");
-
-	switch(etape) {
-		case "afficher":
-            deleteChild("inter propositions");	// on supprime l'existant
-
-			for (let i=0; i < attributs.length; i++) {
-                proposition.id = "proposition-div-" + (i+1);
-
-                loi.id = "loi" + (i+1);
-                loi.href = myURL + '/lois/' + actionEnCours.reponse.loi + '.pdf';
-                loi.target = '_blank';
-                img.src = myURL + "/images/lois.png";
-                loi.appendChild(img);
-                loi.setAttribute("style", "display:none");
-
-                proposition.appendChild(loi);
-
-				button.id = "proposition" + (i+1);
-				button.className = "btn btn-warning";
-                button.innerHTML = attributs[i];
-                
-                if (questionsFaites.indexOf(actionEnCours.step) < 0) {
-                    // pas deja joué
-                    button.setAttribute("onclick","fProposition('" + (i*2) + "" + (i+1) + "" + (i+2) + "" + reponse.solution +"');"); 
-                }
-                proposition.appendChild(button);
-
-                propositions.appendChild(proposition);
-
-                button = document.createElement("button");
-                loi = document.createElement("a");
-                img = document.createElement("img");
-                proposition = document.createElement("proposition");
-			}
-			// zone complement : on renseigne mais c'est masqué pour l'instant
-			document.querySelector("inter complement p").innerHTML = reponse.libelle;
-            break;
-
-        case "bloquer":
-			for (let i=0; i < attributs.length; i++) {
-                document.getElementById("proposition" + (i+1)).removeAttribute("onClick");
-			}
-			break;
-	}
-}
-
 // v2
 function gestionInter(etape, objet) {
 
@@ -456,6 +326,7 @@ function gestionInter(etape, objet) {
             break;
         
         case "FermeInfo":
+            console.log("fermeInfo");
             classSelector("set", "inter tete", objet.act);
             document.querySelector("inter tete titre p").innerHTML = "Match";
             document.querySelector("inter question p").style.display = "none";
@@ -464,9 +335,7 @@ function gestionInter(etape, objet) {
             document.querySelector("inter suite replay span").style.display = "none";
             document.querySelector("inter suite score p").style.display = "flex";
             document.querySelector("inter suite next img").style.display = "none";
-            if (objet.saut !== undefined) {
-                allerA(objet.saut.indice);
-            }
+            allerA(objet.saut.indice);
             break;
 
 		case "InterQuestion":
