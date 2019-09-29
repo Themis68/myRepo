@@ -169,7 +169,7 @@ function fProposition(reponse) {
 		classId("add", "proposition" + reponse, "rouge");
 		classId("add", "proposition" + bonneReponse, "green");
     }
-    document.getElementById("loi"+reponse).style.display = "flex";
+    document.getElementById("loi"+bonneReponse).style.display = "flex";
 
     gestPropositions("bloquer", actionEnCours.attributs);           // enlever le clic sur les boutons
 
@@ -193,9 +193,9 @@ function allerA(param) {
 function normal() {
     // on est arrivé à la fin de l'effet alors on retire l'effet
     //classId("del", "myVideo", "allera");
-    classId("del", "myVideo", "dea");
     getVideo().currentTime = seqCode;
-    classId("set", "myVideo", "aa");
+    classId("del", "myVideo", "dea");
+    classId("add", "myVideo", "aa");
 }
 
 // v2
