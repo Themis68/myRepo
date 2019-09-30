@@ -45,6 +45,7 @@ step: '00:09:22', : rechercher la loi du jeu pour une poussette dans le dos
 **************************************
                A FAIT V2
 **************************************
+x les points ont la couleur de fond du cartouche (informations, Bonus, Questions)
 x récupération locale des sources bootstrap
 x récupération locale des sources jQuery 
 x lors d'un allerA utiliser une transition
