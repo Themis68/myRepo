@@ -98,7 +98,6 @@ body {
              INTERACTION  
     FOOTER
 */
-
 tete.Question {
   background-color: #e0a47b;
 }
@@ -113,9 +112,11 @@ tete.FermeInfo {
 }
 .green {
   background-color: #a7d092;
+  border-color: transparent;
 }
 .rouge {
   background-color: #eea1a1;
+  border-color: transparent;
 }
 .btn-warning {
   border-color: transparent;
@@ -267,8 +268,8 @@ main content inter tete points {
 main content inter tete points p {
   display: flex;
   font-family: scoreboardregular;
-  font-size: 2vw; 
-  color:black;
+  font-size: 2vw;
+  color: black;
 }
 main content inter jauge {
   background-color: white;
@@ -279,7 +280,7 @@ main content inter jauge {
   flex: 0.4;
 }
 main content inter jauge .progress {
-  background-color: #ddcdc3;
+  background-color: antiquewhite;
   font-size: 1vw;
 }
 main content inter jauge .progress .progress-bar {
@@ -334,6 +335,10 @@ main content inter propositions proposition button .btn {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
+  padding-left: 0.50rem;
+  padding-right: 0.50rem;
+  padding-top: 0.20rem;
+  padding-bottom: 0.20rem;
 }
 main content inter complement {
   background-color: white;
