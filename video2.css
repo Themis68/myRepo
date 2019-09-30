@@ -322,14 +322,13 @@ main content inter tete titre p {
 }
 main content inter tete points {
   display: flex;
-  flex: 1;
-  padding-left: 10px;
-  justify-content: flex-end;
+  flex: 2;
 }
-main content inter tete points span {
-  padding-left: 2px;
-  font-size: 1.5vw;
-  color: black;
+main content inter tete points p {
+  display: flex;
+  font-family: scoreboardregular;
+  font-size: 2vw; 
+  color:black;
 }
 main content inter jauge {
   background-color: white;

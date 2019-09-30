@@ -334,6 +334,7 @@ function gestionInter(etape, objet) {
             console.log("fermeInfo");
             classSelector("set", "inter tete", "Information");
             document.querySelector("inter tete titre p").innerHTML = "Match";
+            document.querySelector("inter tete points").style.display = "none";
             document.querySelector("inter question p").style.display = "none";
             document.querySelector("inter propositions").style.display = "none";
             document.querySelector("inter complement").style.display = "none";
@@ -347,8 +348,9 @@ function gestionInter(etape, objet) {
             classSelector("set", "inter tete", objet.act);
            // classSelector("set", "inter suite", objet.act);
 			document.querySelector("inter tete titre p").innerHTML = objet.act;
-			document.querySelector("inter tete points").style.display = "flex";
-			document.querySelector("inter tete points span").innerHTML = objet.reponse.points;
+            document.querySelector("inter tete points").style.display = "flex";
+            classSelector("set", "inter tete points p",  objet.act);
+			document.querySelector("inter tete points p").innerHTML = "0" + objet.reponse.points;
 			// jauge et niveaux
             gestJauge();	// MAJ de la jauge
             // question
@@ -381,8 +383,9 @@ function gestionInter(etape, objet) {
             classSelector("set", "inter tete", objet.act);
            // classSelector("set", "inter suite", objet.act);
 			document.querySelector("inter tete titre p").innerHTML = objet.act;
-			document.querySelector("inter tete points").style.display = "flex";
-            document.querySelector("inter tete points span").innerHTML = objet.reponse.points;
+            document.querySelector("inter tete points").style.display = "flex";
+            classSelector("set", "inter tete points p",  objet.act);
+            document.querySelector("inter tete points p").innerHTML = "0" + objet.reponse.points;
             // question
             document.querySelector("inter question p").style.display = "flex";
 			document.querySelector("inter question p").innerHTML = objet.question.libelle;
