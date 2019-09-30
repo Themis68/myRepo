@@ -98,7 +98,7 @@ var scenario = [
                 }
             },
             {
-                step: '00:08:02',
+                step: '00:08:03',
                 act: "Question",
                 niveau: "DEBUTANT",
                 saut: {
@@ -155,6 +155,7 @@ var scenario = [
                 reponse: {
                     solution: 1,
                     libelle: "L'arbitre assistant peut signaler à l'arbitre des fautes s'il estime être le plus prêt de l'action. L'arbitre central garde la décision finale.",
+                    pict: "./images/arbitre/fauteassistant.png",
                     loi: "Loi_13",
                     points: 1
                 }
@@ -299,7 +300,7 @@ var scenario = [
                 niveau: "DEBUTANT",
                 saut: {
                     attente: 5,
-                    indice: '00:30:29'
+                    indice: '00:30:22'
                 },
                 question: {
                     libelle: "L'abitre arrête l'action car il y a eu une faute sur un joueur Bleu lors du contact précédent."
@@ -313,12 +314,12 @@ var scenario = [
                 }
             },
             {
-                step: '00:30:30',
+                step: '00:30:40',
                 act: "Question",
                 niveau: "DEBUTANT",
                 saut: {
                     attente: 3,
-                    indice: '00:32:33'
+                    indice: '00:31:53'
                 },
                 question: {
                     libelle: "Le coup-franc n'a pas lieu à l'endroit de la faute"
@@ -333,6 +334,13 @@ var scenario = [
                 }
             },
             {
+                step: '00:31:57',
+                act: "Information",
+                niveau: "DEBUTANT",
+                libelle: "L'arbitre s'enquiert de l'état du/des joueur(s) lorsqu'il y a un contact",
+                type: 'but'
+            },
+            {
                 step: '00:32:36',
                 act: "Question",
                 niveau: "DEBUTANT",
@@ -344,6 +352,7 @@ var scenario = [
                 reponse: {
                     solution: 1,
                     libelle: "L'abritre assistant peut faire part de ses observations lorsqu'il estime être plus près de l'action que l'abitre ",
+                    pict: "./images/arbitre/fauteassistant.png",
                     loi: "Loi_13",
                     points: 1
                 }
@@ -438,18 +447,6 @@ var scenario = [
         [ 
             {
                 step: '00:00:01',
-                act: "AllerA",
-                niveau: "DEBUTANT",
-                indice: '00:00:14'
-            },
-            {
-                step: '00:00:02',
-                act: "AllerA",
-                niveau: "EXPERT",
-                indice: '00:02:07'
-            },
-            {
-                step: '00:00:07',
                 act: "Question",
                 niveau: "CONFIRME",
                 saut: {
@@ -459,7 +456,7 @@ var scenario = [
                 question: {
                     libelle: "Que doit vérifier l'arbitre juste avant l'engagement ?"
                 },
-                attributs: ["Il doit vérifier que les arbitres aassistants et les gardiens sont prêts", "Il doit vérifier que les arbitres aassistants sont prêts"],
+                attributs: ["Il doit vérifier que les arbitres assistants et les gardiens sont prêts", "Il doit vérifier que les arbitres assistants sont prêts"],
                 reponse: {
                     solution: 1,
                     loi: "Loi_08",
@@ -467,12 +464,18 @@ var scenario = [
                 }
             },
             {
-                step: '00:00:19',
+                step: '00:00:02',
+                act: "AllerA",
+                niveau: "EXPERT",
+                indice: '00:02:07'
+            },
+            {
+                step: '00:00:08',
                 act: "Question",
                 niveau: "DEBUTANT",
                 saut: {
                     attente: 3,
-                    indice: '00:08:55'
+                    indice: '00:08:40'
                 },
                 question: {
                     libelle: "L'engagement est-il fait dans les règles ?"
@@ -492,7 +495,7 @@ var scenario = [
                 niveau: "CONFIRME",
                 saut: {
                     attente: 7,
-                    indice: '00:09:25'
+                    indice: '00:09:16'
                 },
                 question: {
                     libelle: "Au vue de la situation, l'arbitre va-til ?"
@@ -543,7 +546,7 @@ var scenario = [
                 }
             },
             {
-                step: '00:08:57',
+                step: '00:08:46',
                 act: "Question",
                 niveau: "DEBUTANT",
                 saut: {
@@ -582,6 +585,24 @@ var scenario = [
                 }
             },
             {
+                step: '00:09:20',
+                act: "Question",
+                niveau: "CONFIRME",
+                saut: {
+                    attente: 5,
+                    indice: '00:12:32'
+                },
+                question: {
+                    libelle: "L'arbitre vient de siffler une faute. Laquelle selon vous ?"
+                },
+                attributs: ["Poussette dans le dos", "Tirage de maillot"],
+                reponse: {
+                    solution: 2,
+                    loi: "Loi_13",
+                    points: 1
+                }
+            },
+            {
                 step: '00:09:27',
                 act: "Bonus",
                 niveau: "EXPERT",
@@ -600,24 +621,6 @@ var scenario = [
                 }
             },
             {
-                step: '00:09:32',
-                act: "Question",
-                niveau: "CONFIRME",
-                saut: {
-                    attente: 5,
-                    indice: '00:12:32'
-                },
-                question: {
-                    libelle: "L'arbitre vient de siffler une faute. Laquelle selon vous ?"
-                },
-                attributs: ["Poussette dans le dos", "Tirage de maillot"],
-                reponse: {
-                    solution: 2,
-                    loi: "Loi_13",
-                    points: 1
-                }
-            },
-            {
                 step: '00:12:30',
                 act: "Question",
                 niveau: "EXPERT",
@@ -630,6 +633,26 @@ var scenario = [
                     solution: 1,
                     loi: "Loi_12",
                     points: 2
+                }
+            },
+            {
+                step: '00:12:36',
+                act: "Question",
+                niveau: "DEBUTANT",
+                saut: {
+                    attente: 3,
+                    indice: '00:12:27'
+                },
+                question: {
+                    libelle: "Quelle situation indique l'arbitre ?"
+                },
+                attributs: ["un sortie de but", "un corner"],
+                reponse: {
+                    solution: 2,
+                    libelle: "L'arbitre lève son bras vers le coin de corner",
+                    pict: "./images/arbitre/corner.png",
+                    loi: "Loi_17",
+                    points: 1
                 }
             },
             {

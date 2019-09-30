@@ -163,7 +163,7 @@ tete.Question {
   background-color: #e0a47b;
 }
 tete.Bonus {
-  background-color: #64c832;
+  background-color: #cb81ac;
 }
 tete.Information {
   background-color: #96e1f1;
@@ -172,10 +172,13 @@ tete.FermeInfo {
   background-color: #d6c9c0;
 }
 .green {
-  background-color: #64c832;
+  background-color: #a7d092;
 }
 .rouge {
-  background-color: red;
+  background-color: #eea1a1;
+}
+.btn-warning {
+  border-color: transparent;
 }
 /*suite.Question {
     border-top-color: rgb(224, 164, 123);

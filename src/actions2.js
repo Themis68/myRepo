@@ -17,7 +17,7 @@ var mesActions = {
     Information : function (ind) {
         actionEnCours = actions[ind];
         // on affiche le bouton répondre si FAIRPLAY et pas encore GAGNE
-        setTimeout(gestionInter, (actionEnCours.saut.attente * 1000), "FermeInfo", actionEnCours); 
+        setTimeout(gestionInter, 2000, "FermeInfo", actionEnCours); 
         if ((actionEnCours.type === 'fairplay') && (questionsFaites.indexOf(actionEnCours.step) < 0)) {
            /* var btnBonus = document.getElementById("btnBonus");
             btnBonus.onclick = function() 
@@ -34,7 +34,7 @@ var mesActions = {
 
     AllerA: function (ind) {
         actionEnCours = actions[ind];
-        console.log("indiece", actionEnCours.indice);
+        console.log("aller à SIMPLE", actionEnCours.indice);
         allerA(actionEnCours.indice);
     },
 
@@ -63,6 +63,10 @@ function convertInSeqCode(myTimeCode) {
 // v2
 function continuer2(param) {
     console.log("continuer");
+
+    document.querySelector("inter suite next img").style.display = "none";  // masquer bouton CONTINUER
+
+
     // MAJ jauge
     if (actionEnCours.act === "Question") { 
         numQuestion++;
@@ -110,7 +114,7 @@ function fProposition(reponse) {
 function allerA(param) {
     seqCode = convertInSeqCode(param);
     getVideo().currentTime = seqCode;
-    clearTimeout(timeOut);
+    //clearTimeout(timeOut);
     
 }
 
@@ -239,7 +243,7 @@ function gestNiveaux(idVideo) {
 
     for (let i=0; i < 3; i++) {
         span.id = "level" + (i+1);
-        span.className = (i === 0 ? "badge badge-current badge-light" : "badge badge-light");
+        span.className = ((i+1) === niveauQuest ? "badge badge-current badge-light" : "badge badge-light");
         span.setAttribute("onclick","fNiveaux("+ (i + 1) + "," + idVideo +");"); 
         span.innerHTML = (i + 1);
         button.appendChild(span);
@@ -307,6 +311,7 @@ function gestionInter(etape, objet) {
 	let inter = document.querySelector("inter");
 	switch (etape) {
 		case "selectVideo":
+            classSelector("set", "inter tete", "Information");
 			document.querySelector("inter tete titre p").innerHTML = "Match";
 			document.querySelector("inter tete points").style.display = "none";
 			gestNiveaux(idVideoOn);
@@ -327,14 +332,13 @@ function gestionInter(etape, objet) {
         
         case "FermeInfo":
             console.log("fermeInfo");
-            classSelector("set", "inter tete", objet.act);
+            classSelector("set", "inter tete", "Information");
             document.querySelector("inter tete titre p").innerHTML = "Match";
             document.querySelector("inter question p").style.display = "none";
             document.querySelector("inter propositions").style.display = "none";
             document.querySelector("inter complement").style.display = "none";
             document.querySelector("inter suite replay span").style.display = "none";
             document.querySelector("inter suite score p").style.display = "flex";
-            document.querySelector("inter suite next img").style.display = "none";
             allerA(objet.saut.indice);
             break;
 

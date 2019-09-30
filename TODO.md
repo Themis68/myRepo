@@ -45,6 +45,8 @@ step: '00:09:22', : rechercher la loi du jeu pour une poussette dans le dos
 **************************************
                A FAIT V2
 **************************************
+x récupération locale des sources bootstrap
+x récupération locale des sources jQuery 
 x lors d'un allerA utiliser une transition
 x le panneau QUESTION et PROPOSITIONS est caché u bout de 2 secondes
 x ajouter les lois sur la PROPOSITION gagnante ou sur COMPLEMENT
