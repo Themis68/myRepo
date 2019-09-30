@@ -17,34 +17,34 @@ step: '00:09:22', : rechercher la loi du jeu pour une poussette dans le dos
 **************************************
                A CORRIGER V2
 **************************************
-- trouver une bonne transition pour la vidéo
 - VIDEOJS: WARN: videojs.createEl() is deprecated; use videojs.dom.createEl() instead
 - sur chrome apple le logo mouzillon est bien centré verticalement mais sur le chrome windows : column-reverse est compatible ?
-- les controles vidéos n'apparaissent plus quand le match se déroule
+
 
 **************************************
                A FAIRE V2
 **************************************
-- ajouter les couleurs des équipements en mode stylisé
-- masquer INTER quand la vidéo reprend ?
-- fProposition(code) : je dois récupérer le nb points de la bonne réponse
 - proposer un QUIZZ sur la base de questions du fascicule
 - ajouter un accès direct aux lois du jeu
-- gestion de la positon de l'arbitre
+- gestion de la position de l'arbitre
 - tester l'affichage des questions avec des images
 - créer un texte qui défile au départ du match (page du match)
 - avoir une animation pour la mi-temps (sifflet)
 - préparer la silhouette de l'équipement
 - pour un but prévoir une animation et non une image
-- lors d'un allerA intégré il faut le faire mais seulement après quelques secondes de films
 - gérer automatiquement la fin de la vidéo
 - rendre reactif une plage de vidéo pour donner des points à l'utilisateur
 - paramétrer la couleur des incrustations (texte)
 - cacher le bouton des points si on a une Information de type "but"
 
 **************************************
-               A FAIT V2
+                FAIT V2
 **************************************
+x les controles vidéos n'apparaissent plus quand le match se déroule
+x lors d'un allerA intégré il faut le faire mais seulement après quelques secondes de films
+x fProposition(code) : je dois récupérer le nb points de la bonne réponse
+x masquer INTER quand la vidéo reprend
+x effet flou pour les allera
 x les points ont la couleur de fond du cartouche (informations, Bonus, Questions)
 x récupération locale des sources bootstrap
 x récupération locale des sources jQuery 
