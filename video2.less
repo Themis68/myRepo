@@ -33,75 +33,6 @@ body {
 
 // la séquence du code est importante car la lecture est linéaire 
 
-@-webkit-keyframes myAnime {    /* Safari, Opera, Chrome */
-    0% {
-        width: 200px;
-        height: 150px;
-        -webkit-filter: grayscale(0) blur(0px);
-        filter: grayscale(0) blur(0px);
-        -webkit-transition: all 0.5s ease;
-        transition: all 0.5s ease;
-    }
-
-    100% {
-        width: 200px;
-        height: 150px;
-        -webkit-filter: grayscale(0) blur(0px);
-        filter: grayscale(0) blur(0px);
-        -webkit-transition: all 0.5s ease;
-        transition: all 0.5s ease;
-    }
-}
-
-@keyframes myAnime {    /* Tous les autres navigateurs */
-    0% {
-        width: 200px;
-        height: 150px;
-        -webkit-filter: grayscale(0) blur(0px);
-        filter: grayscale(0) blur(0px);
-        -webkit-transition: all 0.5s ease;
-        transition: all 0.5s ease;
-    }
-
-    100% {
-        width: 200px;
-        height: 150px;
-        -webkit-filter: grayscale(0) blur(0px);
-        filter: grayscale(0) blur(0px);
-        -webkit-transition: all 0.5s ease;
-        transition: all 0.5s ease;
-    }
-}
-
-.allera2 {
-    -webkit-animation: myAnime 1s;
-    animation: myAnime 1s;
-}
-
-
-.allera {
-    -webkit-animation: myAnime 1s;
-    animation: myAnime 1s;
-}
-
-.dea {
-    transition: transform 0.5s;
-    -webkit-filter: blur(1.5rem);
-    filter: blur(1.5rem);
-}
-
-.aa {
-    transition: transform 0.5s;
-    -webkit-filter: blur(0px);
-    filter: blur(0px);
-}
-
-.aa2 {
-    transition: transform 0.5s;
-    transform: matrix(1,0,0,1,0,0);
-    -webkit-transform: matrix(0.5,0,0,1,0,0);
-}
-
 // classes pour la zone TETE
 tete.Question {
     background-color: rgb(224, 164, 123);
@@ -380,6 +311,10 @@ main {
                             -webkit-border-radius: 5px;
                             -moz-border-radius: 5px;
                             border-radius: 5px;
+                            padding-left: 0.50rem;
+                            padding-right: 0.50rem;
+                            padding-top: 0.20rem;
+                            padding-bottom: 0.20rem;
                         }
                     }
                 }

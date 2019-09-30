@@ -1,15 +1,6 @@
 
 https://www.w3.org/2010/05/video/mediaevents.html
 
-Effets :
-deux intéressants : https://www.creativejuiz.fr/trytotry/css3-soft-animations/
-très clair : https://openclassrooms.com/fr/courses/2745636-utilisez-les-effets-avances-de-css-sur-votre-site/3296979-les-transitions-css
-3D : https://openclassrooms.com/fr/courses/2745636-utilisez-les-effets-avances-de-css-sur-votre-site/3297256-les-transformations-3d
-ruban : http://memo-web.fr/categorie-css-164.php
-icone sautille : https://www.css3create.com/Animation-effet-bounce-en-CSS
-https://www.web-eau.net/blog/15-effets-css3-pour-vos-images
-matrix : http://www.useragentman.com/blog/2011/01/07/css3-matrix-transform-for-the-mathematically-challenged/
-
 
 step: '00:09:22', : rechercher la loi du jeu pour une poussette dans le dos
 
@@ -20,13 +11,11 @@ step: '00:09:22', : rechercher la loi du jeu pour une poussette dans le dos
 - VIDEOJS: WARN: videojs.createEl() is deprecated; use videojs.dom.createEl() instead
 - sur chrome apple le logo mouzillon est bien centré verticalement mais sur le chrome windows : column-reverse est compatible ?
 
-
 **************************************
                A FAIRE V2
 **************************************
 - proposer un QUIZZ sur la base de questions du fascicule
 - ajouter un accès direct aux lois du jeu
-- gestion de la position de l'arbitre
 - tester l'affichage des questions avec des images
 - créer un texte qui défile au départ du match (page du match)
 - avoir une animation pour la mi-temps (sifflet)
@@ -75,6 +64,7 @@ x intégrer un allerA dans la question et aux bonus
 **************************************
                A FAIRE BACKLOG
 **************************************
+- gestion de la position de l'arbitre
 - prévoir une présentation vidéo au départ (page 1)
 - Gérer une action qui attend une clic du joueur
 - Gérer une action qui affiche une faute que le joueur n'a pas vu
@@ -88,6 +78,15 @@ x intégrer un allerA dans la question et aux bonus
 URLs
 **************************************
 https://stackoverflow.com/questions/29522895/javascript-track-mouse-position-within-video
+
+Effets :
+deux intéressants : https://www.creativejuiz.fr/trytotry/css3-soft-animations/
+très clair : https://openclassrooms.com/fr/courses/2745636-utilisez-les-effets-avances-de-css-sur-votre-site/3296979-les-transitions-css
+3D : https://openclassrooms.com/fr/courses/2745636-utilisez-les-effets-avances-de-css-sur-votre-site/3297256-les-transformations-3d
+ruban : http://memo-web.fr/categorie-css-164.php
+icone sautille : https://www.css3create.com/Animation-effet-bounce-en-CSS
+https://www.web-eau.net/blog/15-effets-css3-pour-vos-images
+matrix : http://www.useragentman.com/blog/2011/01/07/css3-matrix-transform-for-the-mathematically-challenged/
 
 **************************************
 calcul hauteur
