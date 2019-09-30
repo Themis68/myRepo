@@ -114,6 +114,7 @@ function fProposition(reponse) {
 function allerA(param) {
     seqCode = convertInSeqCode(param);
     timeOut = setTimeout(endTimeOut, 500, seqCode);
+    classId("del", "myVideo", "vjs-blurOff");
     classId("add", "myVideo", "vjs-blurOn");
     
 }
@@ -122,6 +123,7 @@ function endTimeOut(seqCod) {
     // on est arrivé à la fin de l'effet alors on retire l'effet
     getVideo().currentTime = seqCod;
     classId("del", "myVideo", "vjs-blurOn");
+    classId("add", "myVideo", "vjs-blurOff");
     clearTimeout(timeOut);
     //classId("add", "myVideo", "video-js.vjs-blurOn");
    // classId("del", "myVideo", "dea");

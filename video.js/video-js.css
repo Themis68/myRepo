@@ -370,11 +370,13 @@
 }
 
 .video-js.vjs-blurOn {
+  transition: 0.5s;
   filter: blur(1rem);
   -webkit-filter: blur(1rem);
 }
 
 .video-js.vjs-blurOff {
+  transition: 0.5s;
   filter: blur(0);
   -webkit-filter: blur(0);
 }
