@@ -98,6 +98,10 @@ body {
              INTERACTION  
     FOOTER
 */
+#grey {
+  filter: url(#grayscale);
+  fill: red;
+}
 tete.Question {
   background-color: #e0a47b;
 }
@@ -120,18 +124,10 @@ tete.FermeInfo {
 }
 .btn-warning {
   border-color: transparent;
+  padding-left: 35px;
+  width: -webkit-fill-available;
+  padding-right: 5px;
 }
-/*suite.Question {
-    border-top-color: rgb(224, 164, 123);
-} 
-
-suite.Bonus {
-    border-top-color: rgb(100, 200, 50);
-} 
-
-suite.Information {
-    border-top-color: rgb(150, 225, 241);
-} */
 main {
   display: flex;
   flex-direction: column;
@@ -217,6 +213,10 @@ main content inter tete {
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   padding: 5px;
+  background-image: url("images/stade.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 main content inter tete niveau {
   display: flex;
@@ -258,8 +258,9 @@ main content inter tete titre {
 main content inter tete titre p {
   text-align: center;
   font-size: 1.5vw;
-  color: black;
+  font-weight: 500;
   flex: 2;
+  text-shadow: 1px 2px 0 rgba(0, 0, 0, 0.4), -1px -2px 0 #ffffff;
 }
 main content inter tete points {
   display: flex;
@@ -309,14 +310,13 @@ main content inter propositions {
   flex: 4;
 }
 main content inter propositions proposition {
-  display: flex;
-  flex-direction: row;
-  justify-content: start;
-  flex: 1;
+  display: block;
   margin-bottom: 5px;
 }
 main content inter propositions proposition a {
-  flex: 1;
+  position: absolute;
+  padding: 4px;
+  padding-left: 10px;
   text-decoration: none;
 }
 main content inter propositions proposition a img {

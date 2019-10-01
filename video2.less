@@ -34,6 +34,11 @@ body {
 // la séquence du code est importante car la lecture est linéaire 
 
 // classes pour la zone TETE
+#grey {
+    filter:url(#grayscale);
+    fill: red;
+ }
+
 tete.Question {
     background-color: rgb(224, 164, 123);
 }
@@ -63,20 +68,11 @@ tete.FermeInfo {
 
 .btn-warning {
     border-color: transparent;
+    padding-left: 35px;
+    width: -webkit-fill-available;
+    padding-right: 5px;
 }
 
-// classesp pour la zone suite
-/*suite.Question {
-    border-top-color: rgb(224, 164, 123);
-} 
-
-suite.Bonus {
-    border-top-color: rgb(100, 200, 50);
-} 
-
-suite.Information {
-    border-top-color: rgb(150, 225, 241);
-} */
 
 main {
     display: flex;
@@ -175,6 +171,13 @@ main {
                 border-top-right-radius: 20px;
                 padding: 5px;
 
+                background-image: url("./images/stade.jpg");
+                background-repeat: no-repeat;
+                background-position: center; 
+                background-size: cover;
+            
+
+
                 niveau {
                     display: flex;
                     flex-direction: row;
@@ -220,8 +223,10 @@ main {
                     p {
                         text-align: center;
                         font-size: 1.5vw; // taille variable selon largeur du viewport
-                        color:black;
+                        //color:black;
+                        font-weight: 500;
                         flex: 2;
+                        text-shadow: 1px 2px 0 rgba(0,0,0,0.4),-1px -2px 0 rgba(255,255,255,1);
                     }
                 }
 
@@ -283,14 +288,13 @@ main {
                 flex: 4;
 
                 proposition {
-                    display: flex;
-                    flex-direction: row;
-                    justify-content: start;
-                    flex: 1;
+                    display: block;
                     margin-bottom: 5px;
 
                     a {
-                        flex: 1;
+                        position: absolute;
+                        padding: 4px;
+                        padding-left: 10px;
                         text-decoration: none;
 
                         img {
