@@ -27,6 +27,8 @@ media_events["currentTime"] = 0;
 
 // varianbles des videos
 var timeOut = 0;	// pointe sur le timeout
+var timeOutEffet = 0; // pointe sur le timeout
+
 var idVideoOn = 0;	// numero de la vidéo selectionnée
 var nivZoom = 1;
 var video = [];
@@ -162,7 +164,7 @@ function switchVideo(n) {
 		// MAJ videos
 		idVideo = n;		// maj de l'indice de la vidéo en cours
 		video = scenario[n-1];    // recup données de la vidéo
-		idVideoOn = video[0].id;
+		idVideoOn = n; //video[0].id;
 		
 		//
 		// travail sur les actions et l'IHM associée
@@ -190,8 +192,8 @@ function switchVideo(n) {
 			// calcul des dimensions en tenant compte du ratio prévu
 			let match = document.querySelector("match");
 			let carousel = document.querySelector("carousel");
-			console.log("match", match.offsetWidth, match.offsetHeight);
-			console.log("carousel", carousel.offsetWidth, carousel.offsetHeight);
+			//console.log("match", match.offsetWidth, match.offsetHeight);
+			//console.log("carousel", carousel.offsetWidth, carousel.offsetHeight);
 
 			hauteur = match.offsetHeight + carousel.offsetHeight;
 			matchWCalcule = hauteur  * 1.75;	// 1,78 est le ratio accepté par videoJs
@@ -261,18 +263,18 @@ function switchVideo(n) {
 						opacity: 1,
 						padding: '30px 70px',	// top et bottom + right et left
 						position: 'tl'
-					}/*, 				
-					{
+					}, 				
+					/*{
 						type: "text",
 						id:"vjs-bug-textScoreBug",
 						visibility: true,
 						height: "30px",
-						libelle: "SCORE DE " + avatar.toUpperCase() + "&nbsp;&nbsp;<span class=\"scoreBoard\">00 : " + nbQuests[0].points + "</span>&nbsp;&nbsp;niveau " + nbQuests[niveauQuest].niv,
+						libelle: "<span class=\"scoreBoard\">00 : " + nbQuests[0].points + "</span>",
 						classeCSS: "vjs-bug-textScoreBug",
 						opacity: 1,
-						padding: '10px 38%',	// top et se combine avec le centrage horizontal
-						position: 'tc'
-					}*/, 
+						padding: '40px 38%',	// top et se combine avec le centrage horizontal
+						position: 'bc'
+					}, */
 					{
 						type: "text",
 						id:"vjs-bug-titreEquipeB",
@@ -301,6 +303,8 @@ function switchVideo(n) {
 			});
 		}
 
+		numQuestion = 0;	// on ré-initialise le nombre e questions
+		
 		isDefineBVideoJS = true;
 		myVideo.load();
 
@@ -377,6 +381,7 @@ function capture(event) {
 				var asWork = arrayAssoSearch(actions, timeCode);	// renvoi l'indice de l'action si elle existe pour cette séquence
 				// on teste si on doit jouer ou pas
 				if (asWork > -1) {
+					//console.log("timing", timeCode);
 					switch(actions[asWork].act) {
 						case "Question":
 						case "Bonus":

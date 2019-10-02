@@ -9,11 +9,11 @@ step: '00:09:22', : rechercher la loi du jeu pour une poussette dans le dos
                A CORRIGER V2
 **************************************
 - VIDEOJS: WARN: videojs.createEl() is deprecated; use videojs.dom.createEl() instead
-- sur chrome apple le logo mouzillon est bien centré verticalement mais sur le chrome windows : column-reverse est compatible ?
 
 **************************************
                A FAIRE V2
 **************************************
+- un allerA dans une INFORMATION ?
 - proposer un QUIZZ sur la base de questions du fascicule
 - ajouter un accès direct aux lois du jeu
 - tester l'affichage des questions avec des images
