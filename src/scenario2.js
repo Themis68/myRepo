@@ -483,27 +483,26 @@ var scenario = [
                 attributs: ["Oui", "Non"],
                 reculReplay: 3,
                 reponse: {
-                    solution: 2,
-                    libelle: "1 joueur de l'équipe qui engage a traversé la ligne de mi-terrain alors que le ballon n'a pas été déplacé",
+                    solution: 1,
                     loi: "Loi_08",
                     points: 2
                 }
             },
             {
-                step: '00:00:42',
+                step: '00:00:56',
                 act: "Question",
                 niveau: "CONFIRME",
                 saut: {
-                    attente: 7,
+                    attente: 10,
                     indice: '00:09:16'
                 },
                 question: {
                     libelle: "Au vue de la situation, l'arbitre va-til ?"
                 },
-                attributs: ["Siffler un CDI", "Laisser l'avantage", "Arrête le jeu et met une balle entre deux"],
+                attributs: ["Siffler un CDI", "dégagement en 6 mètres", "Arrête le jeu et mettre une balle entre deux"],
                 reponse: {
                     solution: 3,
-                    libelle: "l'arbitre revient sur sa decision d'avantage pour vérifier l'état du gardien suite à ce contact",
+                    libelle: "l'arbitre revient sur sa decision d'avantage pour vérifier l'état des joueurs suite à ce contact",
                     loi: "Loi_13",
                     points: 2
                 }
@@ -526,6 +525,13 @@ var scenario = [
                     loi: "Loi_16",
                     points: 2
                 }
+            },
+            {
+                step: '00:08:12',
+                act: "Information",
+                niveau: "EXPERT",
+                libelle: "BUT",
+                type: 'but'
             },
             {
                 step: '00:08:23',
@@ -571,7 +577,7 @@ var scenario = [
                 niveau: "EXPERT",
                 saut: {
                     attente: 5,
-                    indice: '00:09:23'
+                    indice: '00:12:25'
                 },
                 reculReplay: 3,
                 question: {
@@ -585,12 +591,12 @@ var scenario = [
                 }
             },
             {
-                step: '00:09:20',
+                step: '00:09:21',
                 act: "Question",
                 niveau: "CONFIRME",
                 saut: {
                     attente: 5,
-                    indice: '00:12:32'
+                    indice: '00:14:32'
                 },
                 question: {
                     libelle: "L'arbitre vient de siffler une faute. Laquelle selon vous ?"
@@ -603,27 +609,13 @@ var scenario = [
                 }
             },
             {
-                step: '00:09:27',
-                act: "Bonus",
-                niveau: "EXPERT",
-                saut: {
-                    attente: 5,
-                    indice: '00:12:27'
-                },
-                question: {
-                    libelle: "Sur une passe en retrait volonaire à son gardien, si le gardien touche le ballon avec les mains, quelle est la décision ?"
-                },
-                attributs: ["CFI à l'endroit où le gardien touche le ballon des mains", "Penalty accordé","CFD à l'endroit où le gardien touche le ballon des mains"],
-                reponse: {
-                    solution: 1,
-                    loi: "Loi_13",
-                    points: 1
-                }
-            },
-            {
                 step: '00:12:30',
                 act: "Question",
                 niveau: "EXPERT",
+                saut: {
+                    attente: 3,
+                    indice: '00:15:34'
+                },
                 reculReplay: 3,
                 question: {
                     libelle: "Sur la situation présentée l'arbitre siffle faute alors que le joueur allait se présenter seul face au gardien, quelle sera la décision ?"
@@ -636,12 +628,12 @@ var scenario = [
                 }
             },
             {
-                step: '00:12:36',
+                step: '00:12:38',
                 act: "Question",
                 niveau: "DEBUTANT",
                 saut: {
                     attente: 3,
-                    indice: '00:12:27'
+                    indice: '00:17:12'
                 },
                 question: {
                     libelle: "Quelle situation indique l'arbitre ?"
@@ -649,14 +641,111 @@ var scenario = [
                 attributs: ["un sortie de but", "un corner"],
                 reponse: {
                     solution: 2,
-                    libelle: "L'arbitre lève son bras vers le coin de corner",
+                    libelle: "L'arbitre assistant signale la sortie de jeu en levant son bras puis dirige son bras son bras vers le coin de corner",
                     pict: "./images/arbitre/corner.png",
                     loi: "Loi_17",
                     points: 1
                 }
             },
             {
-                step: '00:12:36',
+                step: '00:14:35',
+                act: "Question",
+                niveau: "CONFIRME",
+                saut: {
+                    attente: 3,
+                    indice: '00:20:55'
+                },
+                question: {
+                    libelle: "A quoi correspoind le geste de l'arbitre ?"
+                },
+                attributs: ["Pause fraicheur", "remplacement de joueur autorisé", "rappel au calme sur le banc"],
+                reponse: {
+                    solution: 2,
+                    libelle: "L'arbitre assistant signale la demande de remplacement de la même façon",
+                    pict: "./images/arbitre/remplacement.png",
+                    loi: "Loi_03",
+                    points: 2
+                }
+            },
+            {
+                step: '00:15:39',
+                act: "Question",
+                niveau: "EXPERT",
+                saut: {
+                    attente: 8,
+                    indice: '00:19:50'
+                },
+                reculReplay: 3,
+                question: {
+                    libelle: "Sur la situation présentée l'arbitre siffle. Selon vous pourquoi ?"
+                },
+                attributs: ["Il décide que la touche est pour l'autre équipe", "La touche n'est pas jouée au point de sortie"],
+                reponse: {
+                    solution: 2,
+                    loi: "Loi_15",
+                    points: 2
+                }
+            },
+            {
+                step: '00:17:14',
+                act: "Bonus",
+                niveau: "DEBUTANT",
+                saut: {
+                    attente: 3,
+                    indice: '00:17:40'
+                },
+                question: {
+                    libelle: "Sur une passe en retrait volontaire à son gardien, si le gardien touche le ballon avec les mains, quelle est la décision ?"
+                },
+                attributs: ["CFI à l'endroit où le gardien touche le ballon des mains","CFD à l'endroit où le gardien touche le ballon des mains"],
+                reponse: {
+                    solution: 1,
+                    loi: "Loi_13",
+                    points: 1
+                }
+            },
+            {
+                step: '00:17:45',
+                act: "Question",
+                niveau: "DEBUTANT",
+                saut: {
+                    attente: 3,
+                    indice: '00:20:55'
+                },
+                question: {
+                    libelle: "A quoi correspond le geste de l'arbitre ?"
+                },
+                attributs: ["remplacement de joueur autorisé", "rappel au calme sur le banc"],
+                reponse: {
+                    solution: 1,
+                    libelle: "L'arbitre assistant signale la demande de remplacement de la même façon",
+                    pict: "./images/arbitre/remplacement.png",
+                    loi: "Loi_03",
+                    points: 2
+                }
+            },
+            {
+                step: '00:20:00',
+                act: "Question",
+                niveau: "EXPERT",
+                saut: {
+                    attente: 12,
+                    indice: '00:20:55'
+                },
+                question: {
+                    libelle: "Selon vous, quelle faute siffle l'arbitre ?"
+                },
+                attributs: ["Charge sur le gardien", "Contact avec le défenseur", "Hors-jeu"],
+                reponse: {
+                    solution: 3,
+                    libelle: "L'arbitre assistant signale le hors-jeu (hors vidéo)",
+                    pict: "./images/arbitre/hors-jeu.png",
+                    loi: "Loi_11",
+                    points: 2
+                }
+            },
+            {
+                step: '00:21:00',
                 act: "Fin"
             }
         ]
