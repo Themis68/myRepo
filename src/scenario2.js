@@ -464,7 +464,7 @@ var scenario = [
                 }
             },
             {
-                step: '00:00:02',
+                step: '00:00:11',
                 act: "AllerA",
                 niveau: "EXPERT",
                 indice: '00:02:07'
@@ -513,7 +513,7 @@ var scenario = [
                 niveau: "EXPERT",
                 saut: {
                     attente: 5,
-                    indice: '00:08:20'
+                    indice: '00:08:08'
                 },
                 question: {
                     libelle: "Lors de l'exécution d'un coup de pied de but par le gardien, un partenaire peut-il jouer le ballon avant que celui-ci soit sorti de la surface de réparation ?"
@@ -528,13 +528,6 @@ var scenario = [
             },
             {
                 step: '00:08:12',
-                act: "Information",
-                niveau: "EXPERT",
-                libelle: "BUT",
-                type: 'but'
-            },
-            {
-                step: '00:08:23',
                 act: "Question",
                 niveau: "EXPERT",
                 saut: {
@@ -633,7 +626,7 @@ var scenario = [
                 niveau: "DEBUTANT",
                 saut: {
                     attente: 3,
-                    indice: '00:17:12'
+                    indice: '00:17:40'
                 },
                 question: {
                     libelle: "Quelle situation indique l'arbitre ?"
@@ -673,7 +666,7 @@ var scenario = [
                 niveau: "EXPERT",
                 saut: {
                     attente: 8,
-                    indice: '00:19:50'
+                    indice: '00:17:10'
                 },
                 reculReplay: 3,
                 question: {
@@ -688,16 +681,16 @@ var scenario = [
             },
             {
                 step: '00:17:14',
-                act: "Bonus",
-                niveau: "DEBUTANT",
+                act: "Question",
+                niveau: "EXPERT",
                 saut: {
                     attente: 3,
-                    indice: '00:17:40'
+                    indice: '00:19:50'
                 },
                 question: {
                     libelle: "Sur une passe en retrait volontaire à son gardien, si le gardien touche le ballon avec les mains, quelle est la décision ?"
                 },
-                attributs: ["CFI à l'endroit où le gardien touche le ballon des mains","CFD à l'endroit où le gardien touche le ballon des mains"],
+                attributs: ["CFI à l'endroit où le gardien touche le ballon des mains","Penalty","CFD à l'endroit où le gardien touche le ballon des mains"],
                 reponse: {
                     solution: 1,
                     loi: "Loi_13",
@@ -735,6 +728,7 @@ var scenario = [
                 question: {
                     libelle: "Selon vous, quelle faute siffle l'arbitre ?"
                 },
+                reculReplay: 3,
                 attributs: ["Charge sur le gardien", "Contact avec le défenseur", "Hors-jeu"],
                 reponse: {
                     solution: 3,
