@@ -61,7 +61,6 @@ var transitionTime = 1000;	// durée d'une transition ALLERA en ms
 
 document.addEventListener("DOMContentLoaded", init, false);	// lance l'écoute des évènements et appelle INIT
 
-
 function user() {
     //
     // demande le nom de l'utilisateur
@@ -70,7 +69,7 @@ function user() {
 	let avatarOk = false;
 	const reg = /^([a-zA-Z]){3,20}$/g;	// accepte des chaines de caractères jusqu'à 5 caractères
 	do {
-		avatar = prompt("Indique ton prénom s'il te plait (3 à 20 lettres maximum)");
+		avatar = window.prompt("Indique ton prénom s'il te plait (3 à 20 lettres maximum)");
 		avatarOk = reg.exec(avatar);
 	}
 	while (!avatarOk);
@@ -142,11 +141,13 @@ function fBascule(event) {
 		// on ouvre
 		carousel.style.display = "flex";
 		this.src = "./images/fleche_ouverte.png";
+		this.alt = "affiche la liste des matchs";
 		span.innerHTML = "cliquez sur la vignette du match que vous souhaitez arbitrer";
 	} else {
 		// on ferme
 		carousel.style.display = "none";
 		this.src = "./images/fleche_fermee.png";
+		this.alt = "masque la liste des matchs";
 		span.innerHTML = "cliquez sur cet icône pour afficher les matchs disponibles";
 	}	
 }
@@ -180,11 +181,8 @@ function switchVideo(n) {
 		let hauteur = 0;
 		let matchWCalcule = 0;
 		
-        if (isDefineBVideoJS) {
-            // il y a déjà une vidéo
-			myVideo.src({src: "./videos/" + video[0].fichier , type: "video/mp4"});
-			myVideo.poster("./videos/" + video[0].poster);
-		} else {
+        if (!isDefineBVideoJS) {
+            
 			// tableau du jeu
 			questionsFaites.splice(0, questionsFaites.length);	// efface le contenu
 			replaysFaits.splice(0, replaysFaits.length);	// efface le contenu
@@ -199,7 +197,7 @@ function switchVideo(n) {
 			matchWCalcule = hauteur  * 1.75;	// 1,78 est le ratio accepté par videoJs
 
             // on créé la vidéo
-			myVideo = videojs('myVideo', {
+			var myVideo = videojs('myVideo', {
 				width: matchWCalcule,
 				height: hauteur,
 				controls: true,
@@ -301,16 +299,19 @@ function switchVideo(n) {
 					}]
 				}
 			});
-		}
+		} else {
+			myVideo.src({src: "./videos/" + video[0].fichier , type: "video/mp4"});
+			myVideo.poster("./videos/" + video[0].poster);
+		} 
 
 		numQuestion = 0;	// on ré-initialise le nombre e questions
 		
 		isDefineBVideoJS = true;
 		myVideo.load();
 
-		let inter = document.getElementById("inter");
-		inter.offsetHeight * hauteur;
-		inter.style.display = "flex";
+		//let inter = document.getElementById("inter");
+		//inter.offsetHeight * hauteur;
+		//inter.style.display = "flex";
 
 		// EQUIPES : doit être après le chargement des plugins videos
 		gestionCamps(1);	// affichage des Informations sur l'équipe pour la première mi-temps

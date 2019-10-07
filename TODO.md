@@ -1,6 +1,10 @@
 
 https://www.w3.org/2010/05/video/mediaevents.html
 
+URL ressources externes
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" type="text/css"
+
 
 step: '00:09:22', : rechercher la loi du jeu pour une poussette dans le dos
 
