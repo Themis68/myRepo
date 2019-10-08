@@ -26,7 +26,6 @@
     //console.log('INIT1', g);
   }
 })
-    
 (function(){
   // INIT PAGE 2
   var define,module,exports;

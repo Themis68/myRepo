@@ -109,7 +109,7 @@ function creerVignettes(id) {
 		myImg.className = "img-fluid mx-auto d-block";
 		myImg.setAttribute("alt", "img" + i);
 		myImg.setAttribute("title", "img" + i);
-		myImg.setAttribute("src", "./videos/" +(scenario[i][0].poster || "./stade.jpg"));
+		myImg.setAttribute("src", "../videos/" +(scenario[i][0].poster || "./stade.jpg"));
 
 		// caption
 		let myCaption = document.createElement("div");
@@ -140,13 +140,13 @@ function fBascule(event) {
 	if (this.src.indexOf("fermee") > 0 ){
 		// on ouvre
 		carousel.style.display = "flex";
-		this.src = "./images/fleche_ouverte.png";
+		this.src = "../images/fleche_ouverte.png";
 		this.alt = "affiche la liste des matchs";
 		span.innerHTML = "cliquez sur la vignette du match que vous souhaitez arbitrer";
 	} else {
 		// on ferme
 		carousel.style.display = "none";
-		this.src = "./images/fleche_fermee.png";
+		this.src = "../images/fleche_fermee.png";
 		this.alt = "masque la liste des matchs";
 		span.innerHTML = "cliquez sur cet icône pour afficher les matchs disponibles";
 	}	
@@ -181,8 +181,11 @@ function switchVideo(n) {
 		let hauteur = 0;
 		let matchWCalcule = 0;
 		
-        if (!isDefineBVideoJS) {
-            
+        if (isDefineBVideoJS) {
+            // il y a déjà une vidéo
+           	myVideo.src({src: "../videos/" + video[0].fichier , type: "video/mp4"});
+			myVideo.poster("../videos/" + video[0].poster); 
+		} else {
 			// tableau du jeu
 			questionsFaites.splice(0, questionsFaites.length);	// efface le contenu
 			replaysFaits.splice(0, replaysFaits.length);	// efface le contenu
@@ -204,7 +207,7 @@ function switchVideo(n) {
 				preload:  'none',
 				loop: false,
 				fluid: true,
-				poster: ("./videos/" + video[0].poster || "./images/pelouses/pelousemini.png"),
+				poster: ("../videos/" + video[0].poster || "../images/pelouses/pelousemini.png"),
 				controlBar: {
 					volumePanel: {	// avec l'ancienne version de video-js on appelait volumeMenuButton
 						inline: false,
@@ -213,7 +216,7 @@ function switchVideo(n) {
 					pictureInPictureToggle: false	// nouveau : gère l'image par image
 				},
 				sources: [{
-					src: "./videos/" + video[0].fichier,
+					src: "../videos/" + video[0].fichier,
 					type: "video/mp4"
 				}],
 				zoom: {
@@ -222,7 +225,7 @@ function switchVideo(n) {
 				},
 				plugins: {
 					brand: {
-						image: myURL + '/images/EMouzmini.png',
+						image: '../images/EMouzmini.png',
 						title: "club Etoile Mouzillonnaise de football",
 						destination: "https://etoile-mouzillon.footeo.com/",
 						destinationTarget: "_blank",
@@ -245,7 +248,7 @@ function switchVideo(n) {
 						visibility: true,
 						height: 40,
 						width: 40,
-						imgSrc: "./images/fanions/" + (video[0].gauche.fanion || 'fff.png'),
+						imgSrc: "../images/fanions/" + (video[0].gauche.fanion || 'fff.png'),
 						alt: video[0].droite.nom,
 						link: "http://www.apple.fr",
 						opacity: 0.7,
@@ -290,7 +293,7 @@ function switchVideo(n) {
 						visibility: true,
 						height: 35,
 						width: 35,
-						imgSrc: "./images/fanions/" + (video[0].droite.fanion || 'fff.png'),
+						imgSrc: "../images/fanions/" + (video[0].droite.fanion || 'fff.png'),
 						alt: video[0].droite.nom,
 						link: "http://www.fnac.fr",
 						opacity: 0.7,
@@ -299,19 +302,12 @@ function switchVideo(n) {
 					}]
 				}
 			});
-		} else {
-			myVideo.src({src: "./videos/" + video[0].fichier , type: "video/mp4"});
-			myVideo.poster("./videos/" + video[0].poster);
-		} 
+		}
 
 		numQuestion = 0;	// on ré-initialise le nombre e questions
 		
 		isDefineBVideoJS = true;
 		myVideo.load();
-
-		//let inter = document.getElementById("inter");
-		//inter.offsetHeight * hauteur;
-		//inter.style.display = "flex";
 
 		// EQUIPES : doit être après le chargement des plugins videos
 		gestionCamps(1);	// affichage des Informations sur l'équipe pour la première mi-temps
@@ -435,8 +431,8 @@ function gestionCamps(mitemps) {
 		// fanions incrustés
 	// en première mi-temps c'est l'init du plugin qui affiche les infos
 	if (mitemps===2) {
-    	document.getElementById("vjs-bug-pictEquipeA").src = myURL + '/images/fanions/'+ (video[0].droite.fanion || 'fff.png');
-    	document.getElementById("vjs-bug-pictEquipeB").src = myURL + '/images/fanions/'+ (video[0].gauche.fanion || 'fff.png');
+    	document.getElementById("vjs-bug-pictEquipeA").src = '../images/fanions/'+ (video[0].droite.fanion || 'fff.png'); //myURL + '/images/fanions/'+ (video[0].droite.fanion || 'fff.png');
+    	document.getElementById("vjs-bug-pictEquipeB").src = '../images/fanions/'+ (video[0].droite.fanion || 'fff.png'); //myURL + '/images/fanions/'+ (video[0].gauche.fanion || 'fff.png');
 	}
 }
 
@@ -449,7 +445,7 @@ function showContent(etat) {
 	carousel.style.display =  (etat === true ? "none" : "flex");
 
 	let bascule_img = document.querySelector("bascule img");
-	bascule_img.setAttribute("src","./images/" +   (etat === true ? "fleche_fermee.png" : "fleche_ouverte.png"));	// MAJ icone bascule
+	bascule_img.setAttribute("src","../images/" +   (etat === true ? "fleche_fermee.png" : "fleche_ouverte.png"));	// MAJ icone bascule
 
 	let bascule_titre = document.querySelector("bascule span");
 	bascule_titre.innerHTML = (etat === true ? "cliquez sur cet icône pour afficher les matchs disponibles" : "cliquez sur la vignette du match que vous souhaitez arbitrer");

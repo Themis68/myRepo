@@ -13,6 +13,7 @@ step: '00:09:22', : rechercher la loi du jeu pour une poussette dans le dos
                A CORRIGER V2
 **************************************
 - VIDEOJS: WARN: videojs.createEl() is deprecated; use videojs.dom.createEl() instead
+- le clic sur le fanion n'exécute pas l'appel au site car le clic est considéré comme PAUSE de la vidéo
 
 **************************************
                A FAIRE V2

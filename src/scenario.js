@@ -8,11 +8,13 @@ var scenario = [
             description: "Match amical opposant Les Pôles espoirs des Ligues de Bretagne et des Pays de La Loire (1ère mi-temps)",
             gauche: {
                 nom: "Ligue de Bretagne",
-                fanion: "ligueBretagne.png"
+                fanion: "ligueBretagne.png",
+                site: "https://footbretagne.fff.fr"
             },
             droite: {
                 nom: "Ligue Pays De la Loire",
-                fanion: "Ligue2.png"
+                fanion: "Ligue2.png",
+                site: "https://lfpl.fff.fr"
             }
         },
         [               

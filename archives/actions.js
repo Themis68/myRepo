@@ -1,383 +1,178 @@
 // tableau de fonctions pour traiter les arrêts deans la vidéo
 var mesActions = { 
-    question2 : function (ind) {
-        encadreVideo(false);
+    Question : function (ind) {
         document._video.pause();    // on pause la vidéo
         // préparation des actions
-        var monJob = actions[ind];
-
-        document.getElementById("message").innerHTML = monJob.libelle;
-        
-        //
-        // PROPOSITIONS
-        // on construit dPropositions       
-        // retirer les elements de la réponse du DOM
-        // sinon on les aura à la prochaine question
-        if (document.getElementById("R1") !== null) {
-            var parent = document.getElementById("R1").parentNode;
-            while( parent.firstChild) {
-                // La liste n'est pas une copie, elle sera donc réindexée à chaque appel
-                parent.removeChild( parent.firstChild);
-            }
-        }
-
-        // gestion de l'image
-        showPict((monJob.pict || null), 'myPict');
-        showPict((monJob.pict || null), 'myPict');
-
-        var maQuestion = document.getElementById("zPropositions");
-        for (let i=1; i <= monJob.attributs.length; i++) { 
-            // construction du input
-            var monInput = document.createElement("input");
-            if (i===1) {monInput.checked = true;}
-            monInput.name = 'Q1';
-            monInput.id = 'R' + i;
-            monInput.type = 'radio';
-            monInput.value = i;
-            maQuestion.appendChild(monInput);
-            // construction du label
-            var monLabel = document.createElement("label");
-            monLabel.id = 'L' + i;
-            monLabel.innerHTML = monJob.attributs[i-1];
-            maQuestion.appendChild(monLabel);
-            // saut de lignes
-            var lig = document.createElement("br");
-            lig.id = "br" + i;
-            maQuestion.appendChild(lig);
-        }
-        // on affiche le bouton répondre
-        var btnRepondre = document.getElementById("btnRepondre");
-        btnRepondre.onclick = function() 
-        {
-          mesReponses(ind); 
-        };        
-
-        document.getElementById("quest").innerHTML = (actions[ind].act).toUpperCase() + " " + (questionsFaites.length + 1);
-        setMessage("question");
-        showItem("zPropositions", true);
-        showItem("zLoi", false);
-        showZone("zSuite", true);
-        showItem("btnContinuer", false);
-        showItem("btnRepondre", true);
-        showItem("btnReplay", (actions[ind].reculReplay || false));
-        showItem("btnBonus", false);
-    },
-
-    question : function (ind) {
-        encadreVideo(false);
-        document._video.pause();    // on pause la vidéo
-        // préparation des actions
-        var monJob = actions[ind];
-
-        document.getElementById("message").innerHTML = actions[ind].question.libelle;
-        
-        //
-        // PROPOSITIONS
-        // on construit dPropositions       
-        // retirer les elements de la réponse du DOM
-        // sinon on les aura à la prochaine question
-        if (document.getElementById("R1") !== null) {
-            var parent = document.getElementById("R1").parentNode;
-            while( parent.firstChild) {
-                // La liste n'est pas une copie, elle sera donc réindexée à chaque appel
-                parent.removeChild( parent.firstChild);
-            }
-        }
-
-        // gestion de l'image
-        showPict((actions[ind].question.pict || null), 'myPictQ');
-        //showPict(null, 'myPictR');
-
-        var maQuestion = document.getElementById("zPropositions");
-        for (let i=1; i <= monJob.attributs.length; i++) { 
-            // construction du input
-            var monInput = document.createElement("input");
-            if (i===1) {monInput.checked = true;}
-            monInput.name = 'Q1';
-            monInput.id = 'R' + i;
-            monInput.type = 'radio';
-            monInput.value = i;
-            maQuestion.appendChild(monInput);
-            // construction du label
-            var monLabel = document.createElement("label");
-            monLabel.id = 'L' + i;
-            monLabel.innerHTML = monJob.attributs[i-1];
-            maQuestion.appendChild(monLabel);
-            // saut de lignes
-            var lig = document.createElement("br");
-            lig.id = "br" + i;
-            maQuestion.appendChild(lig);
-        }
-        // on affiche le bouton répondre
-        var btnRepondre = document.getElementById("btnRepondre");
-        btnRepondre.onclick = function() 
-        {
-          mesReponses(ind); 
-        };        
-
-        document.getElementById("quest").innerHTML = (actions[ind].act).toUpperCase() + " " + (questionsFaites.length + 1);
-        setMessage("question");
-        showItem("zPropositions", true);
-        showItem("zLoi", false);
-        showZone("zSuite", true);
-        showItem("btnContinuer", false);
-        showItem("btnRepondre", true);
-        showItem("btnReplay", (actions[ind].reculReplay || false));
-        showItem("btnBonus", false);
+        actionEnCours = actions[ind];
+        gestionInter("InterQuestion", actionEnCours);
     },
     
-    bonus : function (ind) {
-        encadreVideo(false);
+    Bonus : function (ind) {
         document._video.pause();    // on pause la vidéo
         // préparation des actions
-        var monJob = actions[ind];
-
-        document.getElementById("message").innerHTML = monJob.libelle;
-        
-        //
-        // PROPOSITIONS
-        // on construct dPropositions
-        if (document.getElementById("R1") !== null) {
-            var parent = document.getElementById("R1").parentNode;
-            while( parent.firstChild) {
-                // La liste n'est pas une copie, elle sera donc réindexée à chaque appel
-                parent.removeChild( parent.firstChild);
-            }
-        }
-
-        // gestion de l'image
-        showPict(monJob.pict, 'myPict');
-
-        var maQuestion = document.getElementById("zPropositions");
-        for (let i=1; i <= monJob.attributs.length; i++) { 
-            // construction du input
-            var monInput = document.createElement("input");
-            if (i===1) {monInput.checked = true;}
-            monInput.name = 'Q1';
-            monInput.id = 'R' + i;
-            monInput.type = 'radio';
-            monInput.value = i;
-            maQuestion.appendChild(monInput);
-            // construction du label
-            var monLabel = document.createElement("label");
-            monLabel.id = 'L' + i;
-            monLabel.innerHTML = monJob.attributs[i-1];
-            maQuestion.appendChild(monLabel);
-            // saut de lignes
-            var lig = document.createElement("br");
-            lig.id = "br" + i;
-            maQuestion.appendChild(lig);
-        }
-        // on affiche le bouton répondre
-        var btnRepondre = document.getElementById("btnRepondre");
-        btnRepondre.onclick = function() 
-        {
-          mesReponses(ind); 
-        };
-
-        document.getElementById("quest").innerHTML = (actions[ind].act).toUpperCase();
-
-        setMessage("bonus");
-        showItem("zPropositions", true);
-        showItem("zLoi", false);
-        showZone("zSuite", true);
-        showItem("btnContinuer", false);
-        showItem("btnRepondre", true);
-        showItem("btnReplay", false);
-        showItem("btnBonus", false);
+        actionEnCours = actions[ind];
+        gestionInter("InterBonus", actionEnCours);
     },
 
-    information : function (ind) {
-        setMessage("information");
-        showItem("zPropositions", false);
-        showItem("zLoi", false);
-        showZone("zSuite", true);
-        showItem("btnContinuer", false);
-        showItem("btnRepondre", false);
-        showItem("btnReplay", false);
-
+    Information : function (ind) {
+        actionEnCours = actions[ind];
         // on affiche le bouton répondre si FAIRPLAY et pas encore GAGNE
-        console.log('actions[ind].type', actions[ind].type);
-        if ((actions[ind].type === 'fairplay') && (questionsFaites.indexOf(actions[ind].step) < 0)) {
-            var btnBonus = document.getElementById("btnBonus");
+        timeOut = setTimeout(gestionInter, 2000, "FermeInfo", actionEnCours); 
+        if ((actionEnCours.type === 'fairplay') && (questionsFaites.indexOf(actionEnCours.step) < 0)) {
+           /* var btnBonus = document.getElementById("btnBonus");
             btnBonus.onclick = function() 
             {
                 fairplay(ind); 
-            };
-            showItem("btnBonus", true);
+            };*/
+            //showItem("btnBonus", true);
         } else {
-            showItem("btnBonus", false);
+           // .showItem("btnBonus", false);
         }
 
-        document.getElementById("quest").innerHTML = (actions[ind].act).toUpperCase();
-        document.getElementById("message").innerHTML = actions[ind].libelle;
-
-        // gestion de l'image
-        showPict(actions[ind].pict, 'myPict');
-
-        showItem("message", true);
-        encadreVideo(true);
+        gestionInter("InterInformation", actionEnCours);
     },
 
-    allerA: function (ind) {
-        allerA(actions[ind].indice);
+    AllerA: function (ind) {
+        actionEnCours = actions[ind];
+        //console.log("aller à SIMPLE", actionEnCours.indice);
+        allerA(actionEnCours.indice);
     },
 
-    fin: function (ind) {
-        encadreVideo(false);
-        showConseiller('fin', ((videoNbPoint / nbQuests[0].points) > 0.5));
+    Fin: function (ind) {
+        actionEnCours = actions[ind];
+        //showConseiller('fin', ((videoNbPoint / nbQuests[0].points) > 0.5));
     },
 
-    mitemps: function (ind) {
+    Mitemps: function (ind) {
+        actionEnCours = actions[ind];
         gestionCamps(2);	// changement de camp
     }
 
 }
 
+
+// v2
 function convertInSeqCode(myTimeCode) {
     var seqTab = myTimeCode.split(':');
     var seq = parseFloat(seqTab[0]) * 3600;
     seq += parseFloat(seqTab[1]) * 60;
     seq += parseFloat(seqTab[2])
-    //console.log("seq", seq);
 	return seq;
 }
 
-/******************************* IHM REPONSES **************************/
-function mesReponses(ind) {
-    showPict((actions[ind].reponse.pict || null), 'myPictQ');
-    //showPict(null, 'myPictQ');
-    // n'a pas encore été joué
-    var maRep = returnSelRadio(actions[ind].attributs.length);   // récupère le bouton radio sélectionné par l'utilisateur
-    var repOk = actions[ind].reponse.solution;     // récupère la bonne réponse
+// v2
+function continuer2(param) {
+    //console.log("continuer");
 
-    if (actions[ind].reponse.loi) {
-        // afficher l'accès à la règle du jeu
-        var maLoi = document.getElementById("loi");
-        // imbriquer l'icone dans le lien hypertexte
-        maLoi.setAttribute("href", myURL + '/lois/' + actions[ind].reponse.loi + '.pdf');
-        maLoi.setAttribute("target",'_blank');
-        maLoi.innerHTML = "Relire la loi du jeu";
-        showItem("zLoi", true);
-    } else {
-        showItem("zLoi", false);
+    document.querySelector("inter suite next img").style.display = "none";  // masquer bouton CONTINUER
+
+    // MAJ jauge
+    if (actionEnCours.act === "Question") { 
+        numQuestion++;
+        gestJauge();
     }
 
-    // on complète le message
-    document.getElementById("message").innerHTML +=  "<br><br>Réponse : " + actions[ind].attributs[repOk - 1];
-    if (actions[ind].reponse.libelle) {
-        // optionnel
-        document.getElementById("message").innerHTML +=  "<br>Explication : " + actions[ind].reponse.libelle;
-    }
-    document.getElementById("message").innerHTML +=  "<br>";
-    
-    if (questionsFaites.indexOf(actions[ind].step) < 0) {
-        // MAJ score
-        if (maRep === repOk) {
-            addScore(maRep === repOk ? actions[ind].reponse.points : 0);
-        }
-
-        // MAJ Barre progression
-        if(actions[ind].act === 'question') {
-            stepDone++;
-            init_barre();
-        }
-        // on stocke le step qui a été traité
-        questionsFaites.push(actions[ind].step);
-        // PAS TRAITE
-        //ne pas mettre cette appel à showConseiller avant le if(questionsFaites...
-        showConseiller('reponse', (maRep === repOk), actions[ind].reponse.points);
-    } else {
-        // DEJA TRAITE
-        showConseiller('traite', (maRep === repOk));
-    }
-
-    // MAJ interface
-    showItem("zPropositions", false);
-    showItem("btnRepondre", false);
-    showItem("btnReplay", false);
-    showItem("btnContinuer", (actions[ind].allerA || true));
-}
-
-function changeLevel(level) {
-    niveauQuest = level;
-    switchVideo(idVideo);
-}
-
-// récupère le bouton radio sélectionné par l'utilisateur
-function returnSelRadio(nbEl){
-	for (let i=1; i <= nbEl; i++) {
-		if (document.getElementById("R" + i).checked) {
-			return i;
-		}
-	}
-}
-
-function continuer(param) {
-    showItem("echange", false);
-    showZone("zSuite", false); 
-    encadreVideo(false);
-    showZone("zConseiller", false);
     document._video.playbackRate = 1;   // vitesse normale
-    if (param) {
-        // allerA intégré
-        allerA(param);
-    }
     document._video.play(); // on relance la video
+
+    if (actionEnCours.saut !== undefined) {
+        timeOut = setTimeout(gestionInter, (actionEnCours.saut.attente * 1500), "FermeInfo", actionEnCours); 
+    } else {
+        gestionInter("FermeInfo", actionEnCours);
+    }
+}
+
+// v2
+function fProposition(reponse) {
+	// gestion des réponses	
+	let bonneReponse = actionEnCours.reponse.solution; // code.substr(1, 1);
+    //let reponse = code; //code.substr(3, 3);
+    
+    //console.log(bonneReponse, reponse);
+
+	if (bonneReponse === reponse) {
+        classId("add", "proposition" + reponse, "green");
+        
+        if (questionsFaites.indexOf(actionEnCours.step) < 0) {
+            addScore(actionEnCours.reponse.points);			 // ajouter des points
+            questionsFaites.push(actionEnCours.step);        // on stocke le step qui a été traité
+            // PAS TRAITE
+        } else {
+            // DEJA TRAITE
+        }
+	} else {
+		classId("add", "proposition" + reponse, "rouge");
+		classId("add", "proposition" + bonneReponse, "green");
+    }
+    document.getElementById("loi"+bonneReponse).style.display = "flex";
+
+    gestPropositions("bloquer", actionEnCours.attributs);           // enlever le clic sur les boutons
+
+    // afficher la lois sur le bouton vert
+	gestionInter("reponse", actionEnCours);    	// gerer la réponse
 }
 
 function allerA(param) {
-    encadreVideo(false);
     seqCode = convertInSeqCode(param);
-    getVideo().currentTime = seqCode;
+    timeOutEffet = setTimeout(endTimeOut, 500, seqCode); // effet de transition
+    classId("del", "myVideo", "vjs-blurOff");
+    classId("add", "myVideo", "vjs-blurOn"); 
 }
 
-function replay(param) {
+function endTimeOut(seqCod) {
+    // on est arrivé à la fin de l'effet alors on retire l'effet
+    getVideo().currentTime = seqCod;
+    classId("del", "myVideo", "vjs-blurOn");
+    classId("add", "myVideo", "vjs-blurOff");
+    clearTimeout(timeOutEffet);
+}
+
+// v2
+function gestJauge() {
+    let pourCent = 0;
+    //MAJ de la jauge
+    let jauge = document.getElementsByClassName("progress-bar");
+    
+    if (numQuestion == 0) {
+        jauge[0].setAttribute("aria-valuenow", 0);
+        jauge[0].setAttribute("style", "width: 0%");
+        jauge[0].innerHTML = nbQuests[niveauQuest].nb + " Questions";
+    } else {
+        jauge[0].setAttribute("aria-valuenow", numQuestion);
+        pourCent = numQuestion / nbQuests[niveauQuest].nb * 100;
+        jauge[0].setAttribute("style", "width: " + pourCent + "%");
+        jauge[0].innerHTML = numQuestion;
+    }
+}
+
+// v2
+function fReplay(param) {
     // param est le nombre de secondes à reculer sinon on prend la valeur par défaut
     addScore(-1);   // MAJ score
-    showItem("echange", false);
-    showZone("zSuite", false); 
-    showZone("zConseiller", false);
-    encadreVideo(true);
-    getVideo().currentTime = getVideo().currentTime - (param || 2); // on recule de X secondes
+    replaysFaits.push(actionEnCours.step);    // on enbregistre l'opération
+    getVideo().currentTime = getVideo().currentTime - (param); // on recule de X secondes
     document._video.playbackRate = 0.2; // on active le ralentis
     document._video.play(); // on reprend la lecture de la vidéo
 }
 
-function fairplay(ind) {
-    //console.log("fairplay");
-    if (questionsFaites.indexOf(actions[ind].step) < 0) {
-        // on accorde le point seulement une fois
-        addScore(1);   // MAJ score
-        showItem("echange", false);
-        showZone("zSuite", false); 
-        showZone("zConseiller", false);
-        encadreVideo(false);
-        questionsFaites.push(actions[ind].step);    // on ajoute l'action comme traitée
-    }
-   
-}
-
+// v2
 function addScore(value) {
-    //console.log("addScore");
     if (value === 0) {
         videoNbPoint = 0;
     } else {
         videoNbPoint = videoNbPoint + value;
     }
     var score = ('0' + videoNbPoint.toString()).substr(-2);       // on a le score avec deux digits
-    var scoreMax = ('0' + nbQuests[0].points.toString()).substr(-2);
+    var scoreMax = ('0' + nbQuests[niveauQuest].points.toString()).substr(-2);
 
-    let myColor = ((videoNbPoint / nbQuests[0].points) > 0.5 ? 'green' : 'white');
+    let myColor = ((videoNbPoint / nbQuests[niveauQuest].points) > 0.5 ? 'green' : 'black');
     let myScore = '<span style="color:'+ myColor +';">' + score + '</span>';
-    document.getElementById("scoreBoard").innerHTML = myScore + ':' + scoreMax;    // score dans la zone à droite
 
-    if(document.getElementById('vjs-bug-textScoreBug')) {
-        //le contrôle est nécessaire car l'objet est créé plus tard dans le process
-        document.getElementById("vjs-bug-textScoreBug").innerHTML = "SCORE DE " + avatar.toUpperCase() + "&nbsp;&nbsp;<span class=\"scoreBoard\">" + score + ':' + scoreMax + "</span>&nbsp;&nbsp;niveau " + nbQuests[niveauQuest].niv;     // score sur la vidéo
-    }
+    document.querySelector("inter suite score p").innerHTML = myScore + ':' + scoreMax;
 }
 
+// ?? on garde ou pas ?
+/*
 function showConseiller(rubrique, resultat, points) {
      // conseiller
      let monConseiller = document.getElementById("conseiller");
@@ -404,29 +199,246 @@ function showConseiller(rubrique, resultat, points) {
     monConseiller.setAttribute("src", source);
     document.getElementById("rep").innerHTML = text;
 }
+*/
 
-function setMessage(rubrique) {
-    let monMessage = document.getElementById("zMessage");
-    let monTitre = document.getElementById("chapeau");
-
-    if (rubrique === 'bonus') {
-        monTitre.style.backgroundImage="url("+ myURL +"/images/bandeau2.png)";
-        monMessage.style.border= "4px solid #32CD32";
-    } else {
-        monTitre.style.backgroundImage="url("+ myURL +"/images/bandeau.png)";
-        monMessage.style.border= "2px solid chocolate";
-    }
-    showItem("echange", true);
+// v2
+function convertInTimeCode(myStep) {
+    //
+    // tra,sforme un code numérique secondes en format mm:ss
+    //
+	var step = myStep;		
+	var heures = Math.trunc(step / 3600);
+	step = step - (heures * 3600);
+	var minutes = Math.trunc(step / 60);
+	var secondes = Math.trunc(step - (minutes * 60));
+	return timeCode = ('0' + heures).substr(-2) + ':' + ('0' + minutes).substr(-2) + ':' + ('0' + secondes).substr(-2);
 }
 
-function showPict(pict, id) {
-    if (pict) {
-        let myPict = document.getElementById(id);
-        let source = myURL + '/images/'+ pict;
-        myPict.setAttribute("src", source);
-        myPict.setAttribute("style", "width:40%;height:60%");
-        showItem(id, true);
-    } else {
-        showItem(id, false);
+// v2
+function fNiveaux(level, idVideo) {
+	// changer de niveau
+	//
+	// exemple appel : fNiveaux(id)
+	// - id de l'objet
+    //
+    clearTimeout(timeOutEffet);
+    niveauQuest = level;
+    switchVideo(idVideo);
+
+}
+
+function gestNiveaux(idVideo) {
+
+    deleteChild("inter tete niveau button");	// on supprime l'existant
+
+    let button = document.querySelector("inter tete niveau button");
+    let span = document.createElement("span");
+
+    for (let i=0; i < 3; i++) {
+        span.id = "level" + (i+1);
+        span.className = ((i+1) === niveauQuest ? "badge badge-current badge-light" : "badge badge-light");
+        span.setAttribute("onclick","fNiveaux("+ (i + 1) + "," + idVideo +");"); 
+        span.innerHTML = (i + 1);
+        button.appendChild(span);
+        span = document.createElement("span");
     }
+}
+
+// v2
+function gestPropositions(etape, attributs, reponse) {
+    let propositions = document.querySelector("inter propositions");
+    
+    let proposition  = document.createElement("proposition");
+    let loi = document.createElement("a");
+    let img = document.createElement("img");
+    let button = document.createElement("button");
+
+	switch(etape) {
+		case "afficher":
+            deleteChild("inter propositions");	// on supprime l'existant
+
+			for (let i=0; i < attributs.length; i++) {
+                proposition.id = "proposition-div-" + (i+1);
+
+                loi.id = "loi" + (i+1);
+                loi.href = '../lois/' + actionEnCours.reponse.loi + '.pdf'; //myURL + '/lois/' + actionEnCours.reponse.loi + '.pdf';
+                loi.target = '_blank';
+                img.src = "../images/lois.png"; // myURL + "/images/lois.png";
+                loi.appendChild(img);
+                loi.setAttribute("style", "display:none");
+
+                proposition.appendChild(loi);
+
+				button.id = "proposition" + (i+1);
+				button.className = "btn btn-warning";
+                button.innerHTML = attributs[i];
+                
+                if (questionsFaites.indexOf(actionEnCours.step) < 0) {
+                    // pas deja joué
+                    button.setAttribute("onclick","fProposition(" + (i+1) +");"); 
+                }
+                proposition.appendChild(button);
+
+                propositions.appendChild(proposition);
+
+                button = document.createElement("button");
+                loi = document.createElement("a");
+                img = document.createElement("img");
+                proposition = document.createElement("proposition");
+			}
+			// zone complement : on renseigne mais c'est masqué pour l'instant
+			document.querySelector("inter complement p").innerHTML = reponse.libelle;
+            break;
+
+        case "bloquer":
+			for (let i=0; i < attributs.length; i++) {
+                document.getElementById("proposition" + (i+1)).removeAttribute("onClick");
+			}
+			break;
+	}
+}
+
+// v2
+function gestionInter(etape, objet) {
+
+	let inter = document.querySelector("inter");
+	switch (etape) {
+		case "selectVideo":
+            console.log(video);
+           // classSelector("set", "inter tete", "Information");
+			document.querySelector("inter tete titre p").innerHTML = "Match";
+			document.querySelector("inter tete points").style.display = "none";
+			gestNiveaux(idVideoOn);
+			scanQuestion();	// analyse du scénario
+            gestJauge();	// MAJ de la jauge
+            document.querySelector("inter question p").style.display = "flex";
+			document.querySelector("inter question p").innerHTML = video[0].description;
+			document.querySelector("inter propositions").style.display = "none";
+            document.querySelector("inter complement").style.display = "flex";
+            document.querySelector("inter complement p").innerHTML = "Vous allez analyser le match avec des questions de niveau " + nbQuests[niveauQuest].niv + ".<br><br>Cliquez sur le bouton Play sur la vidéo pour déclencher le visionnage du match"
+            document.querySelector("inter complement img").style.display = "none";
+			// replay
+			document.querySelector("inter suite replay span").style.display = "none";
+			// score
+			document.querySelector("inter suite score p").style.display = "none";
+			addScore(0);	// on init même si c'est masqué
+			// next
+			document.querySelector("inter suite next img").style.display = "none";
+            break;
+        
+        case "FermeInfo":
+            //console.log("fermeInfo");
+          //  classSelector("set", "inter tete", "Information");
+            document.querySelector("inter tete titre p").innerHTML = "Match";
+            document.querySelector("inter tete points").style.display = "none";
+            document.querySelector("inter question p").style.display = "none";
+            document.querySelector("inter propositions").style.display = "none";
+            document.querySelector("inter complement").style.display = "none";
+            document.querySelector("inter suite replay span").style.display = "none";
+            document.querySelector("inter suite score p").style.display = "flex";
+            allerA(objet.saut.indice);
+            break;
+
+		case "InterQuestion":
+			// tete
+            //classSelector("set", "inter tete", objet.act);
+           // classSelector("set", "inter suite", objet.act);
+			document.querySelector("inter tete titre p").innerHTML = objet.act;
+            document.querySelector("inter tete points").style.display = "flex";
+            classSelector("set", "inter tete points p",  objet.act);
+			document.querySelector("inter tete points p").innerHTML = "0" + objet.reponse.points;
+			// jauge et niveaux
+            gestJauge();	// MAJ de la jauge
+            // question
+            document.querySelector("inter question p").style.display = "flex";
+			document.querySelector("inter question p").innerHTML = objet.question.libelle;
+			// gestion des propositions
+			gestPropositions("afficher", objet.attributs, objet.reponse);
+			document.querySelector("inter propositions").style.display = "flex";
+			// complement
+			document.querySelector("inter complement").style.display = "none";
+			// Suite
+			//document.querySelector("inter suite").style.display = "flex";
+            // replay
+            if (replaysFaits.indexOf(objet.step) < 0) {
+                // pas traité encore
+                document.querySelector("inter suite replay span").style.display = (objet.reculReplay ? "flex" : "none");
+                document.querySelector("inter suite replay span").innerHTML = objet.reculReplay;
+                document.querySelector("inter suite replay span").setAttribute("onclick","fReplay(" + (objet.reculReplay) + ");");
+            } else {
+                document.querySelector("inter suite replay span").style.display = "none";
+            }
+			// score
+			document.querySelector("inter suite score p").style.display = "flex";
+			// next
+			document.querySelector("inter suite next img").style.display = "none";
+			break;
+		
+		case "InterBonus":
+			// tete
+            //classSelector("set", "inter tete", objet.act);
+           // classSelector("set", "inter suite", objet.act);
+			document.querySelector("inter tete titre p").innerHTML = objet.act;
+            document.querySelector("inter tete points").style.display = "flex";
+            classSelector("set", "inter tete points p",  objet.act);
+            document.querySelector("inter tete points p").innerHTML = "0" + objet.reponse.points;
+            // question
+            document.querySelector("inter question p").style.display = "flex";
+			document.querySelector("inter question p").innerHTML = objet.question.libelle;
+			// gestion des propositions
+			gestPropositions("afficher", objet.attributs, objet.reponse);
+			document.querySelector("inter propositions").style.display = "flex";
+			// complement
+			document.querySelector("inter complement").style.display = "none";
+			// replay
+			document.querySelector("inter suite replay span").style.display = "none";
+			// score
+			document.querySelector("inter suite score p").style.display = "flex";
+			// next
+			document.querySelector("inter suite next img").style.display = "none";
+            break;
+        
+        case "InterInformation":
+         //   classSelector("set", "inter tete", objet.act);
+           // classSelector("set", "inter suite", objet.act);
+            document.querySelector("inter tete titre p").innerHTML = objet.act;
+            document.querySelector("inter tete points").style.display = "none";
+            // question
+            document.querySelector("inter question p").style.display = "flex";
+            document.querySelector("inter question p").innerHTML = objet.libelle;
+
+            document.querySelector("inter propositions").style.display = "none";
+            document.querySelector("inter complement").style.display = "none";
+            document.querySelector("inter suite replay span").style.display = "none";
+			document.querySelector("inter suite score p").style.display = "flex";
+            document.querySelector("inter suite next img").style.display = "none";
+            break;
+
+		case "reponse":
+            // complement
+            if ((objet.reponse.libelle === undefined) && (objet.reponse.pict === undefined)) {
+                document.querySelector("inter complement").style.display = "none";    
+            } else {
+                document.querySelector("inter complement").style.display = "flex";
+                document.querySelector("inter complement p").style.display = (objet.reponse.libelle === undefined ? "none" : "flex");
+                document.querySelector("inter complement img").style.display = (objet.reponse.pict === undefined ? "none" : "flex");
+                if (objet.reponse.pict !== undefined) {
+                    // on doit avoir le IF car sinon ca généère un message d'eereur lors de l'affectation de l'image  
+                    document.querySelector("inter complement img").setAttribute("src",objet.reponse.pict);
+                }
+            }
+            // replay
+            // on teste si le bouton replay est encore à l'écran
+            if (document.querySelector("inter suite replay span") !== undefined) {
+                document.querySelector("inter suite replay span").style.display = "none";
+            }
+			// score
+			document.querySelector("inter suite score p").style.display = "flex";
+			// next
+            document.querySelector("inter suite next img").style.display = "flex";
+			break;
+
+		default:
+			inter.display = "none";
+	}
 }
