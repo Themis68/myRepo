@@ -20,7 +20,6 @@ step: '00:09:22', : rechercher la loi du jeu pour une poussette dans le dos
 **************************************
 - un allerA dans une INFORMATION ?
 - proposer un QUIZZ sur la base de questions du fascicule
-- ajouter un accès direct aux lois du jeu
 - tester l'affichage des questions avec des images
 - créer un texte qui défile au départ du match (page du match)
 - avoir une animation pour la mi-temps (sifflet)
@@ -34,6 +33,7 @@ step: '00:09:22', : rechercher la loi du jeu pour une poussette dans le dos
 **************************************
                 FAIT V2
 **************************************
+x ajouter un accès direct aux lois du jeu
 x les controles vidéos n'apparaissent plus quand le match se déroule
 x lors d'un allerA intégré il faut le faire mais seulement après quelques secondes de films
 x fProposition(code) : je dois récupérer le nb points de la bonne réponse
