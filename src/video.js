@@ -70,6 +70,54 @@ function user() {
 	}
 	while (!avatarOk);
 	document.getElementById("avatar").innerHTML = avatar.toUpperCase();
+
+	draw();
+
+}
+
+function draw() {
+	var canvas = document.getElementById("canvas");
+    	if (canvas.getContext) {
+        	var ctx = canvas.getContext("2d");
+
+			ctx.beginPath();
+  			ctx.lineWidth="1";
+  			ctx.arc(10, 8, 6, 0, 2 * Math.PI);		// X rayon, Y rayon, rayon, angle de départ, 2*PI pour le cercle complet
+  			ctx.fillStyle = "white";	// couleur de fond
+			ctx.fill();		// ordre de remplissage
+			ctx.closePath();
+
+			ctx.beginPath();
+			ctx.fillStyle = 'rgb(255, 0, 0)';
+			ctx.moveTo(2, 13);
+			ctx.lineTo(10, 23);
+			ctx.lineTo(20, 13);
+			ctx.fill();		// ordre de remplissage
+
+			ctx.fillRect(1, 13, 4, 8);
+			ctx.fill();		// ordre de remplissage
+
+			ctx.fillRect(16, 13, 4, 8);
+			ctx.fill();		// ordre de remplissage
+			ctx.closePath();
+			
+			ctx.beginPath();
+        	ctx.fillStyle = 'rgb(0, 255, 0)';
+			ctx.fillRect(5, 23, 12, 8);
+			ctx.fill();		// ordre de remplissage
+			ctx.closePath();
+
+			
+			ctx.beginPath();
+			ctx.fillStyle = 'rgb(255, 255, 0)';
+			ctx.fillRect(5, 33, 4, 10);
+			ctx.fill();		// ordre de remplissage
+
+
+			ctx.fillRect(13, 33, 4, 10);
+			ctx.fill();		// ordre de remplissage
+			ctx.closePath();		
+    }
 }
 
 function init() {
