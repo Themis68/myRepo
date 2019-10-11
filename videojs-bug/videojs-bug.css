@@ -14,13 +14,28 @@
   text-align: center;
 }
 
+/* gestion des zone d'infos sur les équipes */
 .vjs-bug-titreEquipBug {
+  display:flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+
+.vjs-bug-titreEquipBug span {
+  flex: 5;
+  align-self: baseline;
   font-family: passion_oneregular;
   font-size: 14pt;
   color: white;
   width: max-content;
   text-align: center;
   background-color: midnightblue;
+}
+
+.vjs-bug-silhEquipBug {
+  flex: 1;
+  background-color: transparent;
 }
 
  /* gestion du score */
@@ -41,7 +56,7 @@
  }
 
  .vjs-bug-show {
-   display: block;
+   display: flex;
  }
  
  .vjs-bug-hide {

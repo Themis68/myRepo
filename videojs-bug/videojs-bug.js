@@ -25,8 +25,7 @@
     g.videojsBug = f()
     //console.log('INIT1', g);
   }
-})
-(function(){
+})(function(){
   // INIT PAGE 2
   var define,module,exports;
   return (function e(t,n,r){
@@ -156,13 +155,22 @@
 
             case "text":
               var element = videojs.createEl('span', {
-                width: options.width,
+                width: options.width, 
                 height: options.height,
-                className: options.classeCSS + " " + (options.visibility ? "vjs-bug-show" : "vjs-bug-hide")
+                className: options.classeCSS + " " + (options.visibility ? "vjs-bug-show" : "vjs-bug-hide"),
               });
               element.innerHTML = options.libelle;
               element.id = options.id;
               element.style = "padding-left: 3px; padding-right: 3px;";
+              break;
+            
+            case "canvas":
+            var element = videojs.createEl('canvas', {
+                width: options.width,
+                height: options.height,
+                className: options.classeCSS + " " + (options.visibility ? "vjs-bug-show" : "vjs-bug-hide")
+              });
+              element.id = options.id;
               break;
 
             default:

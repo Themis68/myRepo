@@ -172,9 +172,6 @@ main menu bascule span {
   font-size: 1vw;
   color: white;
 }
-main menu canvas {
-  padding-left: 20px;
-}
 main menu carousel {
   display: flex;
   align-self: center;

@@ -9,12 +9,22 @@ var scenario = [
             gauche: {
                 nom: "Ligue de Bretagne",
                 fanion: "ligueBretagne.png",
-                site: "https://footbretagne.fff.fr"
+                site: "https://footbretagne.fff.fr",
+                couleur: {
+                    maillot: "red",
+                    short: "green",
+                    chaussettes: "blue"
+                }
             },
             droite: {
                 nom: "Ligue Pays De la Loire",
                 fanion: "Ligue2.png",
-                site: "https://lfpl.fff.fr"
+                site: "https://lfpl.fff.fr",
+                couleur: {
+                    maillot: "red",
+                    short: "green",
+                    chaussettes: "blue"
+                }
             }
         },
         [               

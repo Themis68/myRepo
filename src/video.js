@@ -3,7 +3,7 @@ var media_events = new Array();
 media_events["loadstart"] = 0;
 //media_events["progress"] = 0;
 //media_events["suspend"] = 0;
-//media_events["abort"] = 0;
+//media_events["abort"] = 0;t
 //media_events["error"] = 0;
 //media_events["emptied"] = 0;
 //media_events["stalled"] = 0;
@@ -60,6 +60,26 @@ var transitionTime = 1000;	// durée d'une transition ALLERA en ms
 // **********************************************************************************************************
 
 document.addEventListener("DOMContentLoaded", init, false);	// lance l'écoute des évènements et appelle INIT
+document.addEventListener("click", central, false);	// lance l'écoute des évènements et appelle INIT
+
+function central(event) {
+	var target = event.target || event.srcElement; // ce dernier pour compatibilité IE
+	console.log(target);
+	if(target.getAttribute('class') == 'vjs-icon-placeholder') {
+		console.log("clic sur big play");
+		draw("vjs-bug-silhEquipeA", video[0].gauche.couleur.maillot, video[0].gauche.couleur.short, video[0].gauche.couleur.chaussettes);
+    }
+}
+
+/*
+contentButtons.onclick = function(event) {
+    var event = event || window.event;
+    var target = event.target || event.srcElement;
+    if(target.getAttribute('name') == 'add-order') {
+        addRow();
+    }
+}
+*/
 
 function user() {
 	let avatarOk = false;
@@ -70,16 +90,15 @@ function user() {
 	}
 	while (!avatarOk);
 	document.getElementById("avatar").innerHTML = avatar.toUpperCase();
-
-	draw();
-
 }
 
-function draw() {
-	var canvas = document.getElementById("canvas");
+function draw(id, maillotCouleur, shortCouleur, chaussettesCouleur) {
+	let canvas = document.getElementById(id);
+	console.log(canvas);
     	if (canvas.getContext) {
-        	var ctx = canvas.getContext("2d");
+        	let ctx = canvas.getContext("2d");
 
+			// tete
 			ctx.beginPath();
   			ctx.lineWidth="1";
   			ctx.arc(10, 8, 6, 0, 2 * Math.PI);		// X rayon, Y rayon, rayon, angle de départ, 2*PI pour le cercle complet
@@ -87,34 +106,34 @@ function draw() {
 			ctx.fill();		// ordre de remplissage
 			ctx.closePath();
 
+			// corps
 			ctx.beginPath();
-			ctx.fillStyle = 'rgb(255, 0, 0)';
+			ctx.fillStyle = maillotCouleur;
 			ctx.moveTo(2, 13);
 			ctx.lineTo(10, 23);
 			ctx.lineTo(20, 13);
 			ctx.fill();		// ordre de remplissage
 
+			//bras
 			ctx.fillRect(1, 13, 4, 8);
 			ctx.fill();		// ordre de remplissage
-
 			ctx.fillRect(16, 13, 4, 8);
 			ctx.fill();		// ordre de remplissage
 			ctx.closePath();
-			
+
+			//short
 			ctx.beginPath();
-        	ctx.fillStyle = 'rgb(0, 255, 0)';
+        	ctx.fillStyle = shortCouleur;
 			ctx.fillRect(5, 23, 12, 8);
 			ctx.fill();		// ordre de remplissage
 			ctx.closePath();
 
-			
+			//chaussettes
 			ctx.beginPath();
-			ctx.fillStyle = 'rgb(255, 255, 0)';
-			ctx.fillRect(5, 33, 4, 10);
+			ctx.fillStyle = chaussettesCouleur;
+			ctx.fillRect(5, 32, 3, 8);
 			ctx.fill();		// ordre de remplissage
-
-
-			ctx.fillRect(13, 33, 4, 10);
+			ctx.fillRect(14, 32, 3, 8);
 			ctx.fill();		// ordre de remplissage
 			ctx.closePath();		
     }
@@ -243,6 +262,8 @@ function switchVideo(n) {
 			hauteur = match.offsetHeight + carousel.offsetHeight;
 			matchWCalcule = hauteur  * 1.75;	// 1,78 est le ratio accepté par videoJs
 
+			code = ""; //"<script> alert(\"esd\"); </script>";
+
             // on créé la vidéo
 			var myVideo = videojs('myVideo', {
 				width: matchWCalcule,
@@ -298,7 +319,8 @@ function switchVideo(n) {
 						opacity: 0.7,
 						padding: '20px',	// top et bottom + right et left
 						position: 'tl'
-					},{
+					},
+					{
 						type: "text",
 						id:"vjs-bug-titreEquipeA",
 						visibility: true,
@@ -308,18 +330,18 @@ function switchVideo(n) {
 						opacity: 1,
 						padding: '30px 70px',	// top et bottom + right et left
 						position: 'tl'
-					}, 				
-					/*{
-						type: "text",
-						id:"vjs-bug-textScoreBug",
+					}, 
+					{
+						type: "canvas",
+						id:"vjs-bug-silhEquipeA",
 						visibility: true,
-						height: "30px",
-						libelle: "<span class=\"scoreBoard\">00 : " + nbQuests[0].points + "</span>",
-						classeCSS: "vjs-bug-textScoreBug",
+						height: 50,
+						width: 50,
+						classeCSS: "vjs-bug-silhEquipBug",
 						opacity: 1,
-						padding: '40px 38%',	// top et se combine avec le centrage horizontal
-						position: 'bc'
-					}, */
+						padding: '20px 205px',	// top et bottom + right et left
+						position: 'tl'
+					},
 					{
 						type: "text",
 						id:"vjs-bug-titreEquipeB",
@@ -328,15 +350,15 @@ function switchVideo(n) {
 						libelle: "<span>"+ video[0].droite.nom +"</span>",
 						classeCSS: "vjs-bug-titreEquipBug",
 						opacity: 1,
-						padding: '30px 80px',	// top et bottom + right et left
+						padding: '30px 70px',	// top et bottom + right et left
 						position: 'tr'
-					},
+					}, 
 					{
 						type: "pict",
-						id:"vjs-bug-pictEquipeB",
+						id:"vjs-bug-pictEquipeA",
 						visibility: true,
-						height: 35,
-						width: 35,
+						height: 40,
+						width: 40,
 						imgSrc: "../images/fanions/" + (video[0].droite.fanion || 'fff.png'),
 						alt: video[0].droite.nom,
 						link: video[0].droite.site,
@@ -348,10 +370,14 @@ function switchVideo(n) {
 			});
 		}
 
+
 		numQuestion = 0;	// on ré-initialise le nombre e questions
 		
 		isDefineBVideoJS = true;
 		myVideo.load();
+
+		// zone canvas
+	//	draw("canvasG", video[0].gauche.couleur.maillot, video[0].gauche.couleur.short, video[0].gauche.couleur.chaussettes);
 
 		let inter = document.getElementById("inter");
 		inter.offsetHeight * hauteur;
@@ -865,6 +891,8 @@ function gestionInter(etape, objet) {
 			addScore(0);	// on init même si c'est masqué
 			// next
 			document.querySelector("inter suite next img").style.display = "none";
+
+			//draw("canvasG", video[0].gauche.couleur.maillot, video[0].gauche.couleur.short, video[0].gauche.couleur.chaussettes);
             break;
         
         case "FermeInfo":
