@@ -66,8 +66,9 @@ function central(event) {
 	var target = event.target || event.srcElement; // ce dernier pour compatibilité IE
 	console.log(target);
 	if(target.getAttribute('class') == 'vjs-icon-placeholder') {
-		console.log("clic sur big play");
-		draw("vjs-bug-silhEquipeA", video[0].gauche.couleur.maillot, video[0].gauche.couleur.short, video[0].gauche.couleur.chaussettes);
+		// clic sur big play
+		draw("vjs-bug-silhEquipeA", video[0].gauche.maillotCouleur);
+		draw("vjs-bug-silhEquipeB", video[0].droite.maillotCouleur);
     }
 }
 
@@ -92,50 +93,47 @@ function user() {
 	document.getElementById("avatar").innerHTML = avatar.toUpperCase();
 }
 
-function draw(id, maillotCouleur, shortCouleur, chaussettesCouleur) {
+function draw(id, maillotCouleur) {
 	let canvas = document.getElementById(id);
 	console.log(canvas);
     	if (canvas.getContext) {
-        	let ctx = canvas.getContext("2d");
+			let ctx = canvas.getContext("2d");
+			
+			// fond
+			ctx.beginPath();
+  			ctx.lineWidth="1";
+  			ctx.arc(14, 14, 14, 0, 2 * Math.PI);		// X rayon, Y rayon, rayon, angle de départ, 2*PI pour le cercle complet
+  			ctx.fillStyle = "black";	// couleur de fond
+			ctx.fill();		// ordre de remplissage
+			ctx.closePath();
 
 			// tete
 			ctx.beginPath();
   			ctx.lineWidth="1";
-  			ctx.arc(10, 8, 6, 0, 2 * Math.PI);		// X rayon, Y rayon, rayon, angle de départ, 2*PI pour le cercle complet
-  			ctx.fillStyle = "white";	// couleur de fond
+  			ctx.arc(14, 8, 5, 0, 2 * Math.PI);		// X rayon, Y rayon, rayon, angle de départ, 2*PI pour le cercle complet
+  			ctx.fillStyle = maillotCouleur;	// couleur de fond
 			ctx.fill();		// ordre de remplissage
 			ctx.closePath();
 
 			// corps
+			let rectWidth = 18;
+      		let rectHeight = 8;
+      		let rectX = 5;
+      		let rectY = 15; //12;
+      		let cornerRadius = 5;
+
 			ctx.beginPath();
 			ctx.fillStyle = maillotCouleur;
-			ctx.moveTo(2, 13);
-			ctx.lineTo(10, 23);
-			ctx.lineTo(20, 13);
-			ctx.fill();		// ordre de remplissage
-
-			//bras
-			ctx.fillRect(1, 13, 4, 8);
-			ctx.fill();		// ordre de remplissage
-			ctx.fillRect(16, 13, 4, 8);
-			ctx.fill();		// ordre de remplissage
-			ctx.closePath();
-
-			//short
-			ctx.beginPath();
-        	ctx.fillStyle = shortCouleur;
-			ctx.fillRect(5, 23, 12, 8);
+			ctx.lineWidth = 1;
+			ctx.moveTo(rectX + cornerRadius, rectY);
+			ctx.lineTo(rectX + rectWidth - cornerRadius, rectY);
+			ctx.arcTo(rectX + rectWidth, rectY, rectX + rectWidth, rectY + cornerRadius, cornerRadius);	// arrondi droite
+			ctx.lineTo(rectX + rectWidth, rectY + rectHeight);	// descendre
+			ctx.lineTo(rectX, rectY + rectHeight);	// horizontale basse
+			ctx.lineTo(rectX, rectY + cornerRadius);	// remonter
+			ctx.arcTo(rectX, rectY, rectX + cornerRadius, rectY, cornerRadius);	// arrondi gauche
 			ctx.fill();		// ordre de remplissage
 			ctx.closePath();
-
-			//chaussettes
-			ctx.beginPath();
-			ctx.fillStyle = chaussettesCouleur;
-			ctx.fillRect(5, 32, 3, 8);
-			ctx.fill();		// ordre de remplissage
-			ctx.fillRect(14, 32, 3, 8);
-			ctx.fill();		// ordre de remplissage
-			ctx.closePath();		
     }
 }
 
@@ -339,8 +337,19 @@ function switchVideo(n) {
 						width: 50,
 						classeCSS: "vjs-bug-silhEquipBug",
 						opacity: 1,
-						padding: '20px 205px',	// top et bottom + right et left
+						padding: '27px 205px',	// top et bottom + right et left
 						position: 'tl'
+					},
+					{
+						type: "canvas",
+						id:"vjs-bug-silhEquipeB",
+						visibility: true,
+						height: 50,
+						width: 50,
+						classeCSS: "vjs-bug-silhEquipBug",
+						opacity: 1,
+						padding: '27px 205px',	// top et bottom + right et left
+						position: 'tr'
 					},
 					{
 						type: "text",
@@ -504,8 +513,13 @@ function gestionCamps(mitemps) {
 		// fanions incrustés
 	// en première mi-temps c'est l'init du plugin qui affiche les infos
 	if (mitemps===2) {
-    	document.getElementById("vjs-bug-pictEquipeA").src = '../images/fanions/'+ (video[0].droite.fanion || 'fff.png');
-    	document.getElementById("vjs-bug-pictEquipeB").src = '../images/fanions/'+ (video[0].droite.fanion || 'fff.png');
+		document.getElementById("vjs-bug-titreEquipeA").innerHTML = "<span>" + video[0].droite.nom + "</span>";
+		document.getElementById("vjs-bug-titreEquipeB").innerHTML = "<span>" + video[0].gauche.nom + "</span>";
+		draw("vjs-bug-silhEquipeA", video[0].droite.maillotCouleur);
+		draw("vjs-bug-silhEquipeB", video[0].gauche.maillotCouleur);
+		document.getElementById("vjs-bug-pictEquipeA").setAttribute("src", "../images/fanions/"+ (video[0].droite.fanion || "fff.png"));
+		document.getElementById("vjs-bug-pictEquipeB").setAttribute("src", "../images/fanions/"+ (video[0].gauche.fanion || "fff.png"));
+
 	}
 }
 
