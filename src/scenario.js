@@ -10,21 +10,13 @@ var scenario = [
                 nom: "Ligue de Bretagne",
                 fanion: "ligueBretagne.png",
                 site: "https://footbretagne.fff.fr",
-                couleur: {
-                    maillot: "red",
-                    short: "green",
-                    chaussettes: "blue"
-                }
+                maillotCouleur: "rgb(255, 255, 255)"
             },
             droite: {
                 nom: "Ligue Pays De la Loire",
                 fanion: "Ligue2.png",
                 site: "https://lfpl.fff.fr",
-                couleur: {
-                    maillot: "red",
-                    short: "green",
-                    chaussettes: "blue"
-                }
+                maillotCouleur: "rgb(65, 107, 236)"
             }
         },
         [               
@@ -62,11 +54,15 @@ var scenario = [
                 attributs: ["Ligue Pays De la Loire", "Ligue de Bretagne"],
                 reponse: {
                     solution: 2,
-                    pict: "./images/arbitre/touche.png",
+                    pict: "../images/arbitre/touche.png",
                     libelle: "L'arbitre assistant positionne son drapeau en direction du camps qui a provoqué la touche",
                     loi: "Loi_15",
                     points: 1
                 }
+            },
+            {
+                step: '00:03:12',
+                act: "Mitemps",
             },
             {
                 step: '00:03:20',
@@ -84,7 +80,7 @@ var scenario = [
                 reponse: {
                     solution: 2,
                     libelle: "En plus de la gestuelle l'arbitre peut compléter par un mot 'jouer' ou 'avantage'",
-                    pict: "./images/arbitre/avantage.png",
+                    pict: "../images/arbitre/avantage.png",
                     loi: "Loi_05",
                     points: 1
                 }
@@ -125,7 +121,7 @@ var scenario = [
                 reponse: {
                     solution: 1,
                     libelle: "L'arbitre lève son bras au moment de la faute",
-                    pict: "./images/arbitre/direct.png",
+                    pict: "../images/arbitre/direct.png",
                     loi: "Loi_13",
                     points: 2
                 }
@@ -146,7 +142,7 @@ var scenario = [
                 reponse: {
                     solution: 1,
                     libelle: "L'arbitre lève son bras au moment de la faute",
-                    pict: "./images/arbitre/direct.png",
+                    pict: "../images/arbitre/direct.png",
                     loi: "Loi_13",
                     points: 2
                 }
@@ -167,7 +163,7 @@ var scenario = [
                 reponse: {
                     solution: 1,
                     libelle: "L'arbitre assistant peut signaler à l'arbitre des fautes s'il estime être le plus prêt de l'action. L'arbitre central garde la décision finale.",
-                    pict: "./images/arbitre/fauteassistant.png",
+                    pict: "../images/arbitre/fauteassistant.png",
                     loi: "Loi_13",
                     points: 1
                 }
@@ -188,7 +184,7 @@ var scenario = [
                 reponse: {
                     solution: 2,
                     libelle: "L'arbitre signale l'avantage avec son bras et crie 'jouer'",
-                    pict: "./images/arbitre/avantage.png",
+                    pict: "../images/arbitre/avantage.png",
                     loi: "Loi_05",
                     points: 1
                 }
@@ -209,7 +205,7 @@ var scenario = [
                 reponse: {
                     solution: 1,
                     libelle: "L'arbitre estime qu'il y a bousculade en pleine course",
-                    pict: "./images/arbitre/direct.png",
+                    pict: "../images/arbitre/direct.png",
                     loi: "Loi_13",
                     points: 1
                 }
@@ -364,7 +360,7 @@ var scenario = [
                 reponse: {
                     solution: 1,
                     libelle: "L'abritre assistant peut faire part de ses observations lorsqu'il estime être plus près de l'action que l'abitre ",
-                    pict: "./images/arbitre/fauteassistant.png",
+                    pict: "../images/arbitre/fauteassistant.png",
                     loi: "Loi_13",
                     points: 1
                 }
@@ -647,7 +643,7 @@ var scenario = [
                 reponse: {
                     solution: 2,
                     libelle: "L'arbitre assistant signale la sortie de jeu en levant son bras puis dirige son bras son bras vers le coin de corner",
-                    pict: "./images/arbitre/corner.png",
+                    pict: "../images/arbitre/corner.png",
                     loi: "Loi_17",
                     points: 1
                 }
@@ -667,7 +663,7 @@ var scenario = [
                 reponse: {
                     solution: 2,
                     libelle: "L'arbitre assistant signale la demande de remplacement de la même façon",
-                    pict: "./images/arbitre/remplacement.png",
+                    pict: "../images/arbitre/remplacement.png",
                     loi: "Loi_03",
                     points: 2
                 }
@@ -724,7 +720,7 @@ var scenario = [
                 reponse: {
                     solution: 1,
                     libelle: "L'arbitre assistant signale la demande de remplacement de la même façon",
-                    pict: "./images/arbitre/remplacement.png",
+                    pict: "../images/arbitre/remplacement.png",
                     loi: "Loi_03",
                     points: 2
                 }
@@ -745,7 +741,7 @@ var scenario = [
                 reponse: {
                     solution: 3,
                     libelle: "L'arbitre assistant signale le hors-jeu (hors vidéo)",
-                    pict: "./images/arbitre/hors-jeu.png",
+                    pict: "../images/arbitre/hors-jeu.png",
                     loi: "Loi_11",
                     points: 2
                 }
