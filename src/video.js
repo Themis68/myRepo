@@ -364,7 +364,7 @@ function switchVideo(n) {
 					}, 
 					{
 						type: "pict",
-						id:"vjs-bug-pictEquipeA",
+						id:"vjs-bug-pictEquipeB",
 						visibility: true,
 						height: 40,
 						width: 40,
@@ -515,11 +515,11 @@ function gestionCamps(mitemps) {
 	if (mitemps===2) {
 		document.getElementById("vjs-bug-titreEquipeA").innerHTML = "<span>" + video[0].droite.nom + "</span>";
 		document.getElementById("vjs-bug-titreEquipeB").innerHTML = "<span>" + video[0].gauche.nom + "</span>";
-		draw("vjs-bug-silhEquipeA", video[0].droite.maillotCouleur);
-		draw("vjs-bug-silhEquipeB", video[0].gauche.maillotCouleur);
+		console.log(document.getElementById("vjs-bug-pictEquipeA"));
 		document.getElementById("vjs-bug-pictEquipeA").setAttribute("src", "../images/fanions/"+ (video[0].droite.fanion || "fff.png"));
 		document.getElementById("vjs-bug-pictEquipeB").setAttribute("src", "../images/fanions/"+ (video[0].gauche.fanion || "fff.png"));
-
+		draw("vjs-bug-silhEquipeA", video[0].droite.maillotCouleur);
+		draw("vjs-bug-silhEquipeB", video[0].gauche.maillotCouleur);
 	}
 }
 
