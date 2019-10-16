@@ -14,6 +14,7 @@ step: '00:09:22', : rechercher la loi du jeu pour une poussette dans le dos
 **************************************
 - VIDEOJS: WARN: videojs.createEl() is deprecated; use videojs.dom.createEl() instead
 - le clic sur le fanion n'exécute pas l'appel au site car le clic est considéré comme PAUSE de la vidéo
+- position des module BUG sur la vidéo : les silhouettes se superposent au titre des équipes
 
 **************************************
                A FAIRE V2
@@ -23,7 +24,6 @@ step: '00:09:22', : rechercher la loi du jeu pour une poussette dans le dos
 - tester l'affichage des questions avec des images
 - créer un texte qui défile au départ du match (page du match)
 - avoir une animation pour la mi-temps (sifflet)
-- préparer la silhouette de l'équipement
 - pour un but prévoir une animation et non une image
 - gérer automatiquement la fin de la vidéo
 - rendre reactif une plage de vidéo pour donner des points à l'utilisateur
@@ -33,6 +33,7 @@ step: '00:09:22', : rechercher la loi du jeu pour une poussette dans le dos
 **************************************
                 FAIT V2
 **************************************
+x préparer la silhouette de l'équipement
 x ajouter un accès direct aux lois du jeu
 x les controles vidéos n'apparaissent plus quand le match se déroule
 x lors d'un allerA intégré il faut le faire mais seulement après quelques secondes de films
