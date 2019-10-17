@@ -4,6 +4,13 @@
  * @copyright 2017 johndanek <john.danek@teamcoco.com>
  * @license MIT
  * Modified by Paulo Pires Seixas
+ -- version 1.0.0-ps.1 : 
+      gestion de plusieurs objets
+      gestion de plusieurs types d'objets : pict, texte, canvas
+-- version 1.0.0-ps.2 : 
+      gestion de la position de l'objet (left, top, right et bootom)
+ 
+ 
  */
 (function(f){
   // INIT PAGE 1
@@ -147,7 +154,7 @@
                 src: options.imgSrc,
                 width: options.width,
                 height: options.height,
-                title: options.alt,
+                title: options.alt  || "",
                 className: (options.visibility ? "vjs-bug-show" : "vjs-bug-hide")
               });
               element.id = options.id;
@@ -161,7 +168,7 @@
               });
               element.innerHTML = options.libelle;
               element.id = options.id;
-              element.style = "padding-left: 3px; padding-right: 3px;";
+             // element.style = "padding-left: 3px; padding-right: 3px;";
               break;
             
             case "canvas":
@@ -195,7 +202,11 @@
           bugElement.style.opacity = options.opacity;
 
           // on ne traite pas le padding pour les centrage horizontaux et verticaux
-          bugElement.style.padding = options.padding;
+          bugElement.style.padding = options.padding || "";
+          bugElement.style.left = options.left || "";
+          bugElement.style.top = options.top || "";
+          bugElement.style.right = options.right || "";
+          bugElement.style.bottom = options.bottom || "";
          // }
 
           return bugElement;

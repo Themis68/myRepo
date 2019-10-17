@@ -12,6 +12,9 @@ step: '00:09:22', : rechercher la loi du jeu pour une poussette dans le dos
 **************************************
                A CORRIGER V2
 **************************************
+- erreur sur clic de deuxième vidéo après avoir visionné la première
+- même erreur en changeant de niveau de question
+
 - VIDEOJS: WARN: videojs.createEl() is deprecated; use videojs.dom.createEl() instead
 - le clic sur le fanion n'exécute pas l'appel au site car le clic est considéré comme PAUSE de la vidéo
 - position des module BUG sur la vidéo : les silhouettes se superposent au titre des équipes
@@ -19,6 +22,7 @@ step: '00:09:22', : rechercher la loi du jeu pour une poussette dans le dos
 **************************************
                A FAIRE V2
 **************************************
+- bouron BIG PLAY en fond rouge
 - un allerA dans une INFORMATION ?
 - proposer un QUIZZ sur la base de questions du fascicule
 - tester l'affichage des questions avec des images

@@ -1,4 +1,4 @@
-var pathImages = "../images";
+var pathLocalImages = "../images/";
 var scenario = [
     [
         {
@@ -55,7 +55,7 @@ var scenario = [
                 attributs: ["Ligue Pays De la Loire", "Ligue de Bretagne"],
                 reponse: {
                     solution: 2,
-                    pict: pathImages + "/arbitre/touche.png",
+                    pict: pathLocalImages + "arbitre/touche.png",
                     libelle: "L'arbitre assistant positionne son drapeau en direction du camps qui a provoqué la touche",
                     loi: "Loi_15",
                     points: 1
@@ -77,7 +77,7 @@ var scenario = [
                 reponse: {
                     solution: 2,
                     libelle: "En plus de la gestuelle l'arbitre peut compléter par un mot 'jouer' ou 'avantage'",
-                    pict: pathImages + "/arbitre/avantage.png",
+                    pict: pathLocalImages + "arbitre/avantage.png",
                     loi: "Loi_05",
                     points: 1
                 }
@@ -118,7 +118,7 @@ var scenario = [
                 reponse: {
                     solution: 1,
                     libelle: "L'arbitre lève son bras au moment de la faute",
-                    pict: pathImages + "/arbitre/direct.png",
+                    pict: pathLocalImages + "arbitre/direct.png",
                     loi: "Loi_13",
                     points: 2
                 }
@@ -139,7 +139,7 @@ var scenario = [
                 reponse: {
                     solution: 1,
                     libelle: "L'arbitre lève son bras au moment de la faute",
-                    pict: pathImages + "/arbitre/direct.png",
+                    pict: pathLocalImages + "arbitre/direct.png",
                     loi: "Loi_13",
                     points: 2
                 }
@@ -160,7 +160,7 @@ var scenario = [
                 reponse: {
                     solution: 1,
                     libelle: "L'arbitre assistant peut signaler à l'arbitre des fautes s'il estime être le plus prêt de l'action. L'arbitre central garde la décision finale.",
-                    pict: pathImages + "/arbitre/fauteassistant.png",
+                    pict: pathLocalImages + "arbitre/fauteassistant.png",
                     loi: "Loi_13",
                     points: 1
                 }
@@ -181,7 +181,7 @@ var scenario = [
                 reponse: {
                     solution: 2,
                     libelle: "L'arbitre signale l'avantage avec son bras et crie 'jouer'",
-                    pict: pathImages + "/arbitre/avantage.png",
+                    pict: pathLocalImages + "arbitre/avantage.png",
                     loi: "Loi_05",
                     points: 1
                 }
@@ -202,7 +202,7 @@ var scenario = [
                 reponse: {
                     solution: 1,
                     libelle: "L'arbitre estime qu'il y a bousculade en pleine course",
-                    pict: pathImages + "/arbitre/direct.png",
+                    pict: pathLocalImages + "arbitre/direct.png",
                     loi: "Loi_13",
                     points: 1
                 }
@@ -357,7 +357,7 @@ var scenario = [
                 reponse: {
                     solution: 1,
                     libelle: "L'abritre assistant peut faire part de ses observations lorsqu'il estime être plus près de l'action que l'abitre ",
-                    pict: pathImages + "/arbitre/fauteassistant.png",
+                    pict: pathLocalImages + "arbitre/fauteassistant.png",
                     loi: "Loi_13",
                     points: 1
                 }
@@ -440,13 +440,17 @@ var scenario = [
             poster: "Pole_PloufraganMT2.png",
             fichier: "Pole_PloufraganMT2.mp4",
             description: "Match amical opposant Les Pôles espoirs des Ligues de Bretagne et des Pays de La Loire (2ème mi-temps)",
-            gauche: {                
+            gauche: {
                 nom: "Ligue Pays De la Loire",
-                fanion: "Ligue2.png"
+                fanion: "Ligue2.png",
+                site: "https://lfpl.fff.fr",
+                maillotCouleur: "rgb(65, 107, 236)"
             },
             droite: {
                 nom: "Ligue de Bretagne",
-                fanion: "ligueBretagne.png"
+                fanion: "ligueBretagne.png",
+                site: "https://footbretagne.fff.fr",
+                maillotCouleur: "rgb(255, 255, 255)"
             }
         },
         [ 
@@ -621,6 +625,7 @@ var scenario = [
                 attributs: ["Exclusion du joueur", "Avertissement au joueur"],
                 reponse: {
                     solution: 1,
+                    pict: pathLocalImages + "cartons.png",
                     loi: "Loi_12",
                     points: 2
                 }
@@ -640,7 +645,7 @@ var scenario = [
                 reponse: {
                     solution: 2,
                     libelle: "L'arbitre assistant signale la sortie de jeu en levant son bras puis dirige son bras son bras vers le coin de corner",
-                    pict: pathImages + "/arbitre/corner.png",
+                    pict: pathLocalImages + "arbitre/corner.png",
                     loi: "Loi_17",
                     points: 1
                 }
@@ -660,7 +665,7 @@ var scenario = [
                 reponse: {
                     solution: 2,
                     libelle: "L'arbitre assistant signale la demande de remplacement de la même façon",
-                    pict: pathImages + "/arbitre/remplacement.png",
+                    pict: pathLocalImages + "arbitre/remplacement.png",
                     loi: "Loi_03",
                     points: 2
                 }
@@ -717,7 +722,7 @@ var scenario = [
                 reponse: {
                     solution: 1,
                     libelle: "L'arbitre assistant signale la demande de remplacement de la même façon",
-                    pict: pathImages + "/arbitre/remplacement.png",
+                    pict: pathLocalImages + "arbitre/remplacement.png",
                     loi: "Loi_03",
                     points: 2
                 }
@@ -738,7 +743,7 @@ var scenario = [
                 reponse: {
                     solution: 3,
                     libelle: "L'arbitre assistant signale le hors-jeu (hors vidéo)",
-                    pict: pathImages + "/arbitre/hors-jeu.png",
+                    pict: pathLocalImages + "arbitre/hors-jeu.png",
                     loi: "Loi_11",
                     points: 2
                 }
