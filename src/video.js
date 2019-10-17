@@ -57,6 +57,11 @@ var seqUsed = -1;	// valeur de l'étape de la séquence qui a été traitée
 var hauteurContent = 0; // hauteur de la zone CONTENT récupérée lors du chargement
 var numQuestion = 0;	// numero de la Question
 var transitionTime = 1000;	// durée d'une transition ALLERA en ms
+
+var pathImages = "../images/";
+var pathVideos = "../videos/";
+
+var myVideo = "";
 // **********************************************************************************************************
 
 document.addEventListener("DOMContentLoaded", init, false);	// lance l'écoute des évènements et appelle INIT
@@ -170,7 +175,7 @@ function creerVignettes(id) {
 		myImg.className = "img-fluid mx-auto d-block";
 		myImg.setAttribute("alt", "img" + i);
 		myImg.setAttribute("title", "img" + i);
-		myImg.setAttribute("src", "../videos/" +(scenario[i][0].poster || "./stade.jpg"));
+		myImg.setAttribute("src", pathVideos + (scenario[i][0].poster || "./stade.jpg"));
 
 		// caption
 		let myCaption = document.createElement("div");
@@ -201,13 +206,13 @@ function fBascule(event) {
 	if (this.src.indexOf("fermee") > 0 ){
 		// on ouvre
 		carousel.style.display = "flex";
-		this.src = "../images/fleche_ouverte.png";
+		this.src = pathImages + "fleche_ouverte.png";
 		this.alt = "affiche la liste des matchs";
 		span.innerHTML = "cliquez sur la vignette du match que vous souhaitez arbitrer";
 	} else {
 		// on ferme
 		carousel.style.display = "none";
-		this.src = "../images/fleche_fermee.png";
+		this.src = pathImages + "fleche_fermee.png";
 		this.alt = "masque la liste des matchs";
 		span.innerHTML = "cliquez sur cet icône pour afficher les matchs disponibles";
 	}	
@@ -217,6 +222,8 @@ function switchVideo(n) {
     //
     // affectation de la nouvelle vidéo et des attributs liés
     //
+console.log('myVideo avant ',myVideo);
+
 
 	if (n > arrayAssoSize(scenario)) {
 		// vérifie si l'index de la vidéo existe dans le fichier tableau.js
@@ -224,9 +231,12 @@ function switchVideo(n) {
 		return false;
 	} else {
 		// MAJ videos
-		idVideo = n;		// maj de l'indice de la vidéo en cours
-		video = scenario[n-1];    // recup données de la vidéo
+		idVideo = n;		// 1 = première vidéo
+		video = scenario[n-1];    // recup scénario de la vidéo
 		idVideoOn = n; //video[0].id;
+		console.log('idVideo', idVideo);
+		console.log('idVideoOn', idVideoOn);
+		console.log("video0", video[0].fichier);
 		
 		//
 		// travail sur les actions et l'IHM associée
@@ -243,9 +253,12 @@ function switchVideo(n) {
 		let matchWCalcule = 0;
 		
         if (isDefineBVideoJS) {
-            // il y a déjà une vidéo
-           	myVideo.src({src: "../videos/" + video[0].fichier , type: "video/mp4"});
-			myVideo.poster("../videos/" + video[0].poster); 
+			// il y a déjà une vidéo
+			myVideo.src({
+				   src: pathVideos + video[0].fichier , 
+				   type: "video/mp4"
+				});
+			myVideo.poster(pathVideos + video[0].poster); 
 		} else {
 			// tableau du jeu
 			questionsFaites.splice(0, questionsFaites.length);	// efface le contenu
@@ -270,7 +283,7 @@ function switchVideo(n) {
 				preload:  'none',
 				loop: false,
 				fluid: true,
-				poster: ("../videos/" + video[0].poster || "../images/pelouses/pelousemini.png"),
+				poster: (pathVideos + video[0].poster || pathImages + "pelouses/pelousemini.png"),
 				controlBar: {
 					volumePanel: {	// avec l'ancienne version de video-js on appelait volumeMenuButton
 						inline: false,
@@ -279,7 +292,7 @@ function switchVideo(n) {
 					pictureInPictureToggle: false	// nouveau : gère l'image par image
 				},
 				sources: [{
-					src: "../videos/" + video[0].fichier,
+					src: pathVideos + video[0].fichier,
 					type: "video/mp4"
 				}],
 				zoom: {
@@ -288,7 +301,7 @@ function switchVideo(n) {
 				},
 				plugins: {
 					brand: {
-						image: '../images/EMouzmini.png',
+						image: pathImages + "EMouzmini.png",
 						title: "club Etoile Mouzillonnaise de football",
 						destination: "https://etoile-mouzillon.footeo.com/",
 						destinationTarget: "_blank",
@@ -309,76 +322,79 @@ function switchVideo(n) {
 						type: "pict",
 						id:"vjs-bug-pictEquipeA",
 						visibility: true,
-						height: 40,
-						width: 40,
-						imgSrc: "../images/fanions/" + (video[0].gauche.fanion || 'fff.png'),
-						alt: video[0].gauche.nom,
+						height: 30,
+						width: 30,
+						imgSrc: pathImages + "fanions/" + (video[0].gauche.fanion || 'fff.png'),
+						alt: video[0].gauche.nom  || "fanion par défaut",
 						link: video[0].gauche.site,
 						opacity: 0.7,
-						padding: '20px',	// top et bottom + right et left
+						left: "20px",
+						top: "20px",
 						position: 'tl'
 					},
 					{
 						type: "text",
 						id:"vjs-bug-titreEquipeA",
 						visibility: true,
-						height: 40,
 						libelle: "<span>"+ video[0].gauche.nom +"</span>",
 						classeCSS: "vjs-bug-titreEquipBug",
 						opacity: 1,
-						padding: '30px 70px',	// top et bottom + right et left
+						left: (30 + 20 + 5) + "px",
+						top: "25px",
 						position: 'tl'
 					}, 
 					{
 						type: "canvas",
 						id:"vjs-bug-silhEquipeA",
 						visibility: true,
-						height: 50,
-						width: 50,
+						height: 30,
+						width: 30,
 						classeCSS: "vjs-bug-silhEquipBug",
 						opacity: 1,
-						padding: '27px 205px',	// top et bottom + right et left
+						left: (30 + 20 + 160 + 5) + "px",
+						top: "20px",
 						position: 'tl'
 					},
 					{
 						type: "canvas",
 						id:"vjs-bug-silhEquipeB",
 						visibility: true,
-						height: 50,
-						width: 50,
+						height: 30,
+						width: 30,
 						classeCSS: "vjs-bug-silhEquipBug",
 						opacity: 1,
-						padding: '27px 205px',	// top et bottom + right et left
+						right: (30 + 20 + 160 + 5) + "px",
+						top: "20px",
 						position: 'tr'
 					},
 					{
 						type: "text",
 						id:"vjs-bug-titreEquipeB",
 						visibility: true,
-						height: 40,
 						libelle: "<span>"+ video[0].droite.nom +"</span>",
 						classeCSS: "vjs-bug-titreEquipBug",
 						opacity: 1,
-						padding: '30px 70px',	// top et bottom + right et left
+						right: (30 + 20 + 5) + "px",
+						top: "25px",
 						position: 'tr'
 					}, 
 					{
 						type: "pict",
 						id:"vjs-bug-pictEquipeB",
 						visibility: true,
-						height: 40,
-						width: 40,
-						imgSrc: "../images/fanions/" + (video[0].droite.fanion || 'fff.png'),
-						alt: video[0].droite.nom,
+						height: 30,
+						width: 30,
+						imgSrc: pathImages + "fanions/" + (video[0].droite.fanion || 'fff.png'),
+						alt: video[0].droite.nom || "fanion par défaut",
 						link: video[0].droite.site,
 						opacity: 0.7,
-						padding: '20px',	// top et bottom + right et left
+						right: "20px",
+						top: "20px",
 						position: 'tr'
 					}]
 				}
 			});
 		}
-
 
 		numQuestion = 0;	// on ré-initialise le nombre e questions
 		
@@ -399,6 +415,8 @@ function switchVideo(n) {
 
 		gestionInter("selectVideo");
 	}
+
+	console.log('myVideo après ',myVideo);
 }
 
 function listeEvents(id, arrayEventDef) {
@@ -516,8 +534,8 @@ function gestionCamps(mitemps) {
 		document.getElementById("vjs-bug-titreEquipeA").innerHTML = "<span>" + video[0].droite.nom + "</span>";
 		document.getElementById("vjs-bug-titreEquipeB").innerHTML = "<span>" + video[0].gauche.nom + "</span>";
 		console.log(document.getElementById("vjs-bug-pictEquipeA"));
-		document.getElementById("vjs-bug-pictEquipeA").setAttribute("src", "../images/fanions/"+ (video[0].droite.fanion || "fff.png"));
-		document.getElementById("vjs-bug-pictEquipeB").setAttribute("src", "../images/fanions/"+ (video[0].gauche.fanion || "fff.png"));
+		document.getElementById("vjs-bug-pictEquipeA").setAttribute("src", pathImages + "fanions/"+ (video[0].droite.fanion || "fff.png"));
+		document.getElementById("vjs-bug-pictEquipeB").setAttribute("src", pathImages + "fanions/"+ (video[0].gauche.fanion || "fff.png"));
 		draw("vjs-bug-silhEquipeA", video[0].droite.maillotCouleur);
 		draw("vjs-bug-silhEquipeB", video[0].gauche.maillotCouleur);
 	}
@@ -532,7 +550,7 @@ function showContent(etat) {
 	carousel.style.display =  (etat === true ? "none" : "flex");
 
 	let bascule_img = document.querySelector("bascule img");
-	bascule_img.setAttribute("src","../images/" +   (etat === true ? "fleche_fermee.png" : "fleche_ouverte.png"));	// MAJ icone bascule
+	bascule_img.setAttribute("src",pathImages  +   (etat === true ? "fleche_fermee.png" : "fleche_ouverte.png"));	// MAJ icone bascule
 
 	let bascule_titre = document.querySelector("bascule span");
 	bascule_titre.innerHTML = (etat === true ? "cliquez sur cet icône pour afficher les matchs disponibles" : "cliquez sur la vignette du match que vous souhaitez arbitrer");
@@ -844,7 +862,7 @@ function gestPropositions(etape, attributs, reponse) {
                 loi.id = "loi" + (i+1);
                 loi.href = '../lois/' + actionEnCours.reponse.loi + '.pdf'; //myURL + '/lois/' + actionEnCours.reponse.loi + '.pdf';
                 loi.target = '_blank';
-                img.src = "../images/lois.png"; // myURL + "/images/lois.png";
+                img.src = pathImages + "lois.png"; // myURL + "/images/lois.png";
                 loi.appendChild(img);
                 loi.setAttribute("style", "display:none");
 
