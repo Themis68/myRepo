@@ -61,7 +61,7 @@ var transitionTime = 1000;	// durée d'une transition ALLERA en ms
 var pathImages = "../images/";
 var pathVideos = "../videos/";
 
-var myVideo = "";
+
 // **********************************************************************************************************
 
 document.addEventListener("DOMContentLoaded", init, false);	// lance l'écoute des évènements et appelle INIT
@@ -69,7 +69,6 @@ document.addEventListener("click", central, false);	// lance l'écoute des évè
 
 function central(event) {
 	var target = event.target || event.srcElement; // ce dernier pour compatibilité IE
-	console.log(target);
 	if(target.getAttribute('class') == 'vjs-icon-placeholder') {
 		// clic sur big play
 		draw("vjs-bug-silhEquipeA", video[0].gauche.maillotCouleur);
@@ -100,7 +99,6 @@ function user() {
 
 function draw(id, maillotCouleur) {
 	let canvas = document.getElementById(id);
-	console.log(canvas);
     	if (canvas.getContext) {
 			let ctx = canvas.getContext("2d");
 			
@@ -221,8 +219,7 @@ function fBascule(event) {
 function switchVideo(n) {
     //
     // affectation de la nouvelle vidéo et des attributs liés
-    //
-console.log('myVideo avant ',myVideo);
+    //;
 
 
 	if (n > arrayAssoSize(scenario)) {
@@ -234,9 +231,6 @@ console.log('myVideo avant ',myVideo);
 		idVideo = n;		// 1 = première vidéo
 		video = scenario[n-1];    // recup scénario de la vidéo
 		idVideoOn = n; //video[0].id;
-		console.log('idVideo', idVideo);
-		console.log('idVideoOn', idVideoOn);
-		console.log("video0", video[0].fichier);
 		
 		//
 		// travail sur les actions et l'IHM associée
@@ -267,8 +261,6 @@ console.log('myVideo avant ',myVideo);
 			// calcul des dimensions en tenant compte du ratio prévu
 			let match = document.querySelector("match");
 			let carousel = document.querySelector("carousel");
-			//console.log("match", match.offsetWidth, match.offsetHeight);
-			//console.log("carousel", carousel.offsetWidth, carousel.offsetHeight);
 
 			hauteur = match.offsetHeight + carousel.offsetHeight;
 			matchWCalcule = hauteur  * 1.75;	// 1,78 est le ratio accepté par videoJs
@@ -276,7 +268,7 @@ console.log('myVideo avant ',myVideo);
 			code = ""; //"<script> alert(\"esd\"); </script>";
 
             // on créé la vidéo
-			var myVideo = videojs('myVideo', {
+			 myVideo = videojs('myVideo', {
 				width: matchWCalcule,
 				height: hauteur,
 				controls: true,
@@ -415,8 +407,6 @@ console.log('myVideo avant ',myVideo);
 
 		gestionInter("selectVideo");
 	}
-
-	console.log('myVideo après ',myVideo);
 }
 
 function listeEvents(id, arrayEventDef) {
@@ -478,7 +468,6 @@ function capture(event) {
 				var asWork = arrayAssoSearch(actions, timeCode);	// renvoi l'indice de l'action si elle existe pour cette séquence
 				// on teste si on doit jouer ou pas
 				if (asWork > -1) {
-					//console.log("timing", timeCode);
 					switch(actions[asWork].act) {
 						case "Question":
 						case "Bonus":
@@ -533,7 +522,6 @@ function gestionCamps(mitemps) {
 	if (mitemps===2) {
 		document.getElementById("vjs-bug-titreEquipeA").innerHTML = "<span>" + video[0].droite.nom + "</span>";
 		document.getElementById("vjs-bug-titreEquipeB").innerHTML = "<span>" + video[0].gauche.nom + "</span>";
-		console.log(document.getElementById("vjs-bug-pictEquipeA"));
 		document.getElementById("vjs-bug-pictEquipeA").setAttribute("src", pathImages + "fanions/"+ (video[0].droite.fanion || "fff.png"));
 		document.getElementById("vjs-bug-pictEquipeB").setAttribute("src", pathImages + "fanions/"+ (video[0].gauche.fanion || "fff.png"));
 		draw("vjs-bug-silhEquipeA", video[0].droite.maillotCouleur);
@@ -686,9 +674,6 @@ function continuer2() {
 function fProposition(reponse) {
 	// gestion des réponses	
 	let bonneReponse = actionEnCours.reponse.solution; // code.substr(1, 1);
-    //let reponse = code; //code.substr(3, 3);
-    
-    //console.log(bonneReponse, reponse);
 
 	if (bonneReponse === reponse) {
         classId("add", "proposition" + reponse, "green");
@@ -903,7 +888,6 @@ function gestionInter(etape, objet) {
 	let inter = document.querySelector("inter");
 	switch (etape) {
 		case "selectVideo":
-            console.log(video);
            // classSelector("set", "inter tete", "Information");
 			document.querySelector("inter tete titre p").innerHTML = "Match";
 			document.querySelector("inter tete points").style.display = "none";
@@ -928,7 +912,6 @@ function gestionInter(etape, objet) {
             break;
         
         case "FermeInfo":
-            //console.log("fermeInfo");
           //  classSelector("set", "inter tete", "Information");
             document.querySelector("inter tete titre p").innerHTML = "Match";
             document.querySelector("inter tete points").style.display = "none";
