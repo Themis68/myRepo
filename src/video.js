@@ -265,8 +265,6 @@ function switchVideo(n) {
 			hauteur = match.offsetHeight + carousel.offsetHeight;
 			matchWCalcule = hauteur  * 1.75;	// 1,78 est le ratio accepté par videoJs
 
-			code = ""; //"<script> alert(\"esd\"); </script>";
-
             // on créé la vidéo
 			 myVideo = videojs('myVideo', {
 				width: matchWCalcule,
@@ -673,7 +671,7 @@ function continuer2() {
 // v2
 function fProposition(reponse) {
 	// gestion des réponses	
-	let bonneReponse = actionEnCours.reponse.solution; // code.substr(1, 1);
+	let bonneReponse = actionEnCours.reponse.solution;
 
 	if (bonneReponse === reponse) {
         classId("add", "proposition" + reponse, "green");
