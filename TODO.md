@@ -19,7 +19,7 @@ step: '00:09:22', : rechercher la loi du jeu pour une poussette dans le dos
 **************************************
                EVOLs
 **************************************
-- bouron BIG PLAY en fond rouge
+- bouton BIG PLAY en fond rouge
 - un allerA dans une INFORMATION ?
 - proposer un QUIZZ sur la base de questions du fascicule
 - tester l'affichage des questions avec des images
@@ -41,7 +41,7 @@ step: '00:09:22', : rechercher la loi du jeu pour une poussette dans le dos
 - le centrage horizontal des incrustations ne tient pas compte de la largeur de l'objet
 
 **************************************
-    		v1.1.1
+    		v1.1.1 en cours
 **************************************
 x erreur sur clic de deuxième vidéo après avoir visionné la première
 x erreur sur clic de deuxième vidéo : même erreur en changeant de niveau de question

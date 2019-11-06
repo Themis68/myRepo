@@ -101,11 +101,11 @@ function draw(id, maillotCouleur) {
 	let canvas = document.getElementById(id);
     	if (canvas.getContext) {
 			let ctx = canvas.getContext("2d");
-			
+
 			// fond
 			ctx.beginPath();
   			ctx.lineWidth="1";
-  			ctx.arc(14, 14, 14, 0, 2 * Math.PI);		// X rayon, Y rayon, rayon, angle de départ, 2*PI pour le cercle complet
+  			ctx.arc(14, 14, 14, 0, 2 * Math.PI);	// X rayon, Y rayon, rayon, angle de départ, 2*PI pour le cercle complet
   			ctx.fillStyle = "black";	// couleur de fond
 			ctx.fill();		// ordre de remplissage
 			ctx.closePath();
@@ -353,7 +353,7 @@ function switchVideo(n) {
 						width: 30,
 						classeCSS: "vjs-bug-silhEquipBug",
 						opacity: 1,
-						right: (30 + 20 + 160 + 5) + "px",
+						right: (30 + 20 + 170 + 5) + "px",
 						top: "20px",
 						position: 'tr'
 					},

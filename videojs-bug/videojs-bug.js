@@ -145,8 +145,6 @@
             className: 'vjs-bug vjs-bug-' + options.position
           });
 
-          // We'll add our bug content to this element:
-
           // Create the element
           switch (options.type) {
             case "pict":
