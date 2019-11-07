@@ -62,6 +62,7 @@ var transitionTime = 1000;	// durée d'une transition ALLERA en ms
 var pathImagesScenario = "../images/";		// images pour scénario
 var pathImages = "../images/";		// autres images
 var pathVideos = "../videos/";		// vidéos des matchs
+var pathFanions = "../images/fanions/";		// fanions des equipes
 
 
 // **********************************************************************************************************
@@ -179,6 +180,22 @@ function creerVignettes(id) {
 
 		// caption
 		let myCaption = document.createElement("div");
+
+		// fanion
+		let myF = document.createElement("img");
+		myF.className = "carouselFanion";
+		myF.setAttribute("alt", "fanionG" + i);
+		myF.setAttribute("title", "fanionG" + i);
+		myF.setAttribute("src", pathFanions + (scenario[i][0].gauche.fanion || "fff.png'"));
+		myCaption.appendChild(myF);
+
+		// fanion
+		myF = document.createElement("img");
+		myF.className = "carouselFanion";
+		myF.setAttribute("alt", "fanionD" + i);
+		myF.setAttribute("title", "fanionD" + i);
+		myF.setAttribute("src", pathFanions + (scenario[i][0].droite.fanion || "fff.png'"));
+		myCaption.appendChild(myF);
 		
         let myP = document.createElement("p");        
 		myP.innerHTML = scenario[i][0].gauche.nom + "<br>" + scenario[i][0].droite.nom;

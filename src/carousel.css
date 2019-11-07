@@ -1,5 +1,13 @@
 /* media queries*/
 
+/* ajout Paulo */
+.carouselFanion {
+    width: 15%;
+    padding-left: 3px;
+    padding-right: 3px;
+}
+
+
 /* alignement du CAPTION de l'image*/
 .carousel-caption {
     top: 10px;
