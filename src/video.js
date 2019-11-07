@@ -58,8 +58,10 @@ var hauteurContent = 0; // hauteur de la zone CONTENT récupérée lors du charg
 var numQuestion = 0;	// numero de la Question
 var transitionTime = 1000;	// durée d'une transition ALLERA en ms
 
-var pathImages = "../images/";
-var pathVideos = "../videos/";
+// chemins
+var pathImagesScenario = "../images/";		// images pour scénario
+var pathImages = "../images/";		// autres images
+var pathVideos = "../videos/";		// vidéos des matchs
 
 
 // **********************************************************************************************************
@@ -944,9 +946,9 @@ function gestionInter(etape, objet) {
             // replay
             if (replaysFaits.indexOf(objet.step) < 0) {
                 // pas traité encore
-                document.querySelector("inter suite replay span").style.display = (objet.reculReplay ? "flex" : "none");
-                document.querySelector("inter suite replay span").innerHTML = objet.reculReplay;
-                document.querySelector("inter suite replay span").setAttribute("onclick","fReplay(" + (objet.reculReplay) + ");");
+                document.querySelector("inter suite replay span").style.display = (objet.question.reculReplay ? "flex" : "none");
+                document.querySelector("inter suite replay span").innerHTML = objet.question.reculReplay;
+                document.querySelector("inter suite replay span").setAttribute("onclick","fReplay(" + (objet.question.reculReplay) + ");");
             } else {
                 document.querySelector("inter suite replay span").style.display = "none";
             }
@@ -1006,7 +1008,7 @@ function gestionInter(etape, objet) {
                 document.querySelector("inter complement img").style.display = (objet.reponse.pict === undefined ? "none" : "flex");
                 if (objet.reponse.pict !== undefined) {
                     // on doit avoir le IF car sinon ca généère un message d'eereur lors de l'affectation de l'image  
-                    document.querySelector("inter complement img").setAttribute("src",objet.reponse.pict);
+                    document.querySelector("inter complement img").setAttribute("src",pathImagesScenario + objet.reponse.pict);
                 }
             }
             // replay
