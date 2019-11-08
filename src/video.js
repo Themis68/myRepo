@@ -188,7 +188,6 @@ function creerVignettes(id) {
 		myF.setAttribute("title", "fanionG" + i);
 		myF.setAttribute("src", pathFanions + (scenario[i][0].gauche.fanion || "fff.png'"));
 		myCaption.appendChild(myF);
-
 		// fanion
 		myF = document.createElement("img");
 		myF.className = "carouselFanion";
