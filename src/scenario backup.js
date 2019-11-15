@@ -17,7 +17,7 @@ var scenario = [
                 nom: "Ligue Pays De la Loire",
                 fanion: "Ligue2.png",
                 site: "https://lfpl.fff.fr",
-                maillotCouleur: "rgb(65, 107, 236)"
+                maillotCouleur: "rgb(67, 76, 108)"
             }
         },
         [               
@@ -423,7 +423,7 @@ var scenario = [
                 nom: "Ligue Pays De la Loire",
                 fanion: "Ligue2.png",
                 site: "https://lfpl.fff.fr",
-                maillotCouleur: "rgb(65, 107, 236)"
+                maillotCouleur: "rgb(67, 76, 108)"
             },
             droite: {
                 nom: "Ligue de Bretagne",
@@ -742,11 +742,15 @@ var scenario = [
             description: "Match amical opposant Mouzillon à Baugé",
             gauche: {
                 nom: "Baugé",
-                fanion: "Bauge.png"
+                fanion: "Bauge.png",
+                site: "https://www.enavantbaugeois.net",
+                maillotCouleur: "rgb(255, 152, 117)"
             },
             droite: {
                 nom: "Etoile Mouzillon",
-                fanion: "EMouz.png"
+                fanion: "EMouz.png",
+                site: "https://etoile-mouzillon.footeo.com",
+                maillotCouleur: "rgb(255, 255, 255)"
             }
         },
         [               
@@ -776,11 +780,15 @@ var scenario = [
             description: "Match amical opposant Mouzillon aux Herbiers",
             gauche: {
                 nom: "Les Herbiers",
-                fanion: "LHerbiers.png"
+                fanion: "LHerbiers.png",
+                site: "https://www.vendeelesherbiersfootball.fr/pages/index.php",
+                maillotCouleur: "rgb(94, 83, 52)"
             },
             droite: {
                 nom: "Etoile Mouzillon",
-                fanion: "EMouz.png"
+                fanion: "EMouz.png",
+                site: "https://etoile-mouzillon.footeo.com",
+                maillotCouleur: "rgb(255, 255, 255)"
             }
         },
         [               
@@ -808,10 +816,16 @@ var scenario = [
             fichier: "match_temoin.mp4",
             description: "Match amical opposant A à B",
             gauche: {
-                nom: "Equipe A"
+                nom: "Les Herbiers",
+                fanion: "LHerbiers.png",
+                site: "https://www.enavantbaugeois.net",
+                maillotCouleur: "rgb(255, 0, 0)"
             },
             droite: {
-                nom: "Equipe B"
+                nom: "Etoile Mouzillon",
+                fanion: "EMouz.png",
+                site: "https://etoile-mouzillon.footeo.com",
+                maillotCouleur: "rgb(255, 255, 255)"
             }
         },
         [               

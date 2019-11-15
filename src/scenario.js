@@ -1,4 +1,3 @@
-var pathLocalImages = "../images/";
 var scenario = [
     [
         {
@@ -17,7 +16,7 @@ var scenario = [
                 nom: "Ligue Pays De la Loire",
                 fanion: "Ligue2.png",
                 site: "https://lfpl.fff.fr",
-                maillotCouleur: "rgb(65, 107, 236)"
+                maillotCouleur: "rgb(67, 76, 108)"
             }
         },
         [               
@@ -26,7 +25,7 @@ var scenario = [
                 act: "Question",
                 niveau: "DEBUTANT",
                 saut: {
-                    attente: 3,
+                    attente: 4,
                     indice: '00:02:00'
                 },
                 question: {
@@ -42,12 +41,23 @@ var scenario = [
                 }
             },
             {
+                step: '00:00:07',
+                act: "AllerA",
+                niveau: "CONFIRME",
+                indice: "00:03:15"
+            },            {
+                step: '00:00:08',
+                act: "AllerA",
+                niveau: "EXPERT",
+                indice: "00:34:22"
+            },
+            {
                 step: '00:02:08',
                 act: "Question",
                 niveau: "DEBUTANT",
                 saut: {
                     attente: 3,
-                    indice: '00:03:10'
+                    indice: '00:06:24'
                 },
                 question: {
                     libelle: "L'arbitre assistant a indiqué que la touche est en faveur de l'équipe ?"
@@ -55,7 +65,7 @@ var scenario = [
                 attributs: ["Ligue Pays De la Loire", "Ligue de Bretagne"],
                 reponse: {
                     solution: 2,
-                    pict: pathLocalImages + "arbitre/touche.png",
+                    pict: "arbitre/touche.png",
                     libelle: "L'arbitre assistant positionne son drapeau en direction du camps qui a provoqué la touche",
                     loi: "Loi_15",
                     points: 1
@@ -64,10 +74,10 @@ var scenario = [
             {
                 step: '00:03:20',
                 act: "Question",
-                niveau: "DEBUTANT",
+                niveau: "CONFIRME",
                 saut: {
                     attente: 3,
-                    indice: '00:06:23'
+                    indice: '00:13:10'
                 },
                 question: {
                     libelle: "L'arbitre utilise une gestuelle pour indiquer"
@@ -76,8 +86,8 @@ var scenario = [
                 reculReplay: 3,
                 reponse: {
                     solution: 2,
-                    libelle: "En plus de la gestuelle l'arbitre peut compléter par un mot 'jouer' ou 'avantage'",
-                    pict: pathLocalImages + "arbitre/avantage.png",
+                    libelle: "En plus de la gestuelle l'arbitre peut compléter par un mot 'avantage'",
+                    pict: "arbitre/avantage.png",
                     loi: "Loi_05",
                     points: 1
                 }
@@ -103,7 +113,7 @@ var scenario = [
                 }
             },
             {
-                step: '00:08:03',
+                step: '00:08:04',
                 act: "Question",
                 niveau: "DEBUTANT",
                 saut: {
@@ -111,14 +121,14 @@ var scenario = [
                     indice: '00:10:02'
                 },
                 question: {
-                    libelle: "L'arbitre siffle un coup-franc. Sa gestuelle indique su'il s'agit d'un :"
+                    libelle: "L'arbitre siffle un coup-franc. Sa gestuelle indique qu'il s'agit d'un :"
                 },
                 attributs: ["coup-franc direct", "coup-franc indirect"],
                 reculReplay: 3,
                 reponse: {
                     solution: 1,
-                    libelle: "L'arbitre lève son bras au moment de la faute",
-                    pict: pathLocalImages + "arbitre/direct.png",
+                    libelle: "L'arbitre garde le bras levé jusqu'à l'exécution du coup-franc s'il s'agit d'un coup-franc indirect",
+                    pict: "arbitre/direct.png",
                     loi: "Loi_13",
                     points: 2
                 }
@@ -139,7 +149,7 @@ var scenario = [
                 reponse: {
                     solution: 1,
                     libelle: "L'arbitre assistant peut signaler à l'arbitre des fautes s'il estime être le plus prêt de l'action. L'arbitre central garde la décision finale.",
-                    pict: pathLocalImages + "arbitre/fauteassistant.png",
+                    pict: "arbitre/fauteassistant.png",
                     loi: "Loi_13",
                     points: 1
                 }
@@ -150,7 +160,7 @@ var scenario = [
                 niveau: "DEBUTANT",
                 saut: {
                     attente: 5,
-                    indice: '00:13:05'
+                    indice: '00:17:47'
                 },
                 question: {
                     libelle: "Au vue de la gestuelle de l'arbitre, quelle a été la décision de l'arbitre sur cette situation ?"
@@ -160,7 +170,7 @@ var scenario = [
                 reponse: {
                     solution: 2,
                     libelle: "L'arbitre signale l'avantage avec son bras et crie 'jouer'",
-                    pict: pathLocalImages + "arbitre/avantage.png",
+                    pict: "arbitre/avantage.png",
                     loi: "Loi_05",
                     points: 1
                 }
@@ -168,20 +178,20 @@ var scenario = [
             {
                 step: '00:13:15',
                 act: "Question",
-                niveau: "DEBUTANT",
+                niveau: "CONFIRME",
                 saut: {
                     attente: 3,
-                    indice: '00:17:40'
+                    indice: '00:32:32'
                 },
                 question: {
-                    libelle: "Au vue de l'action, l'arbitre va-t-il :"
+                    libelle: "Selon vous, au vue de l'action, l'arbitre va-t-il :"
                 },
                 attributs: ["siffler un coup-franc", "laisser l'avantage"],
                 reculReplay: 3,
                 reponse: {
                     solution: 1,
                     libelle: "L'arbitre estime qu'il y a bousculade en pleine course",
-                    pict: pathLocalImages + "arbitre/direct.png",
+                    pict: "arbitre/direct.png",
                     loi: "Loi_13",
                     points: 1
                 }
@@ -202,6 +212,7 @@ var scenario = [
                 reponse: {
                     solution: 2,
                     libelle: "L'arbitre indique le point des 6 mètres avec son bras",
+                    pict: "arbitre/direct.png",
                     loi: "Loi_16",
                     points: 1
                 }
@@ -212,6 +223,12 @@ var scenario = [
                 niveau: "DEBUTANT",
                 libelle: "BUT",
                 type: 'but'
+            },
+            {
+                step: '00:23:48',
+                act: "AllerA",
+                niveau: "DEBUTANT",
+                indice: "00:24:12",
             },
             {
                 step: '00:24:16',
@@ -284,7 +301,7 @@ var scenario = [
                 niveau: "DEBUTANT",
                 saut: {
                     attente: 5,
-                    indice: '00:30:22'
+                    indice: '00:30:35'
                 },
                 question: {
                     libelle: "L'abitre arrête l'action car il y a eu une faute sur un joueur Bleu lors du contact précédent."
@@ -318,16 +335,26 @@ var scenario = [
                 }
             },
             {
-                step: '00:31:57',
+                step: '00:31:58',
                 act: "Information",
                 niveau: "DEBUTANT",
                 libelle: "L'arbitre s'enquiert de l'état du/des joueur(s) lorsqu'il y a un contact",
                 type: 'but'
             },
             {
+                step: '00:31:60',
+                act: "AllerA",
+                niveau: "DEBUTANT",
+                indice: '00:32:35'
+            },
+            {
                 step: '00:32:36',
                 act: "Question",
-                niveau: "DEBUTANT",
+                niveau: "CONFIRME",
+                saut: {
+                    attente: 3,
+                    indice: '00:34:55'
+                },
                 question: {
                     libelle: "L'arbitre assistant lève son drapeau et le secoue pour indiquer une faute"
                 },
@@ -336,7 +363,7 @@ var scenario = [
                 reponse: {
                     solution: 1,
                     libelle: "L'abritre assistant peut faire part de ses observations lorsqu'il estime être plus près de l'action que l'abitre ",
-                    pict: pathLocalImages + "arbitre/fauteassistant.png",
+                    pict: "arbitre/fauteassistant.png",
                     loi: "Loi_13",
                     points: 1
                 }
@@ -360,7 +387,7 @@ var scenario = [
                 }
             },
             {
-                step: '00:34:08',
+                step: '00:34:07',
                 act: "Information",
                 niveau: "DEBUTANT",
                 libelle: "L'arbitre explique la sanction au joueur fautif pour calmer le jeu",
@@ -370,7 +397,24 @@ var scenario = [
                 step: '00:34:12',
                 act: "AllerA",
                 niveau: "DEBUTANT",
-                indice: '00:34:30'
+                indice: '00:34:31'
+            },
+            {
+                step: '00:34:30',
+                act: "Question",
+                niveau: "EXPERT",
+                saut: {
+                    attente: 7,
+                    indice: '00:34:55'
+                },
+                question: {
+                    libelle: "Que doit faire l'arbitre pour suivre le coup-franc dans de bonnes conditions ?"
+                },
+                attributs: ["rester à côté du tireur","se positionner de façon à voir le tireur, son assistant et la surface de réparation", "se mettre au niveau du mur"],
+                reponse: {
+                    solution: 2,
+                    points: 3
+                }
             },
             {
                 step: '00:34:34',
@@ -395,6 +439,10 @@ var scenario = [
                 step: '00:34:46',
                 act: "Question",
                 niveau: "DEBUTANT",
+                saut: {
+                    attente: 5,
+                    indice: '00:34:55'
+                },
                 question: {
                     libelle: "Quelle situation indique l'arbitre ?"
                 },
@@ -423,7 +471,7 @@ var scenario = [
                 nom: "Ligue Pays De la Loire",
                 fanion: "Ligue2.png",
                 site: "https://lfpl.fff.fr",
-                maillotCouleur: "rgb(65, 107, 236)"
+                maillotCouleur: "rgb(67, 76, 108)"
             },
             droite: {
                 nom: "Ligue de Bretagne",
@@ -604,7 +652,7 @@ var scenario = [
                 attributs: ["Exclusion du joueur", "Avertissement au joueur"],
                 reponse: {
                     solution: 1,
-                    pict: pathLocalImages + "cartons.png",
+                    pict: "cartons.png",
                     loi: "Loi_12",
                     points: 2
                 }
@@ -624,7 +672,7 @@ var scenario = [
                 reponse: {
                     solution: 2,
                     libelle: "L'arbitre assistant signale la sortie de jeu en levant son bras puis dirige son bras son bras vers le coin de corner",
-                    pict: pathLocalImages + "arbitre/corner.png",
+                    pict: "arbitre/corner.png",
                     loi: "Loi_17",
                     points: 1
                 }
@@ -644,7 +692,7 @@ var scenario = [
                 reponse: {
                     solution: 2,
                     libelle: "L'arbitre assistant signale la demande de remplacement de la même façon",
-                    pict: pathLocalImages + "arbitre/remplacement.png",
+                    pict: "arbitre/remplacement.png",
                     loi: "Loi_03",
                     points: 2
                 }
@@ -701,7 +749,7 @@ var scenario = [
                 reponse: {
                     solution: 1,
                     libelle: "L'arbitre assistant signale la demande de remplacement de la même façon",
-                    pict: pathLocalImages + "arbitre/remplacement.png",
+                    pict: "arbitre/remplacement.png",
                     loi: "Loi_03",
                     points: 2
                 }
@@ -722,7 +770,7 @@ var scenario = [
                 reponse: {
                     solution: 3,
                     libelle: "L'arbitre assistant signale le hors-jeu (hors vidéo)",
-                    pict: pathLocalImages + "arbitre/hors-jeu.png",
+                    pict: "arbitre/hors-jeu.png",
                     loi: "Loi_11",
                     points: 2
                 }
@@ -742,11 +790,15 @@ var scenario = [
             description: "Match amical opposant Mouzillon à Baugé",
             gauche: {
                 nom: "Baugé",
-                fanion: "Bauge.png"
+                fanion: "Bauge.png",
+                site: "https://www.enavantbaugeois.net",
+                maillotCouleur: "rgb(255, 152, 117)"
             },
             droite: {
                 nom: "Etoile Mouzillon",
-                fanion: "EMouz.png"
+                fanion: "EMouz.png",
+                site: "https://etoile-mouzillon.footeo.com",
+                maillotCouleur: "rgb(255, 255, 255)"
             }
         },
         [               
@@ -776,11 +828,15 @@ var scenario = [
             description: "Match amical opposant Mouzillon aux Herbiers",
             gauche: {
                 nom: "Les Herbiers",
-                fanion: "LHerbiers.png"
+                fanion: "LHerbiers.png",
+                site: "https://www.vendeelesherbiersfootball.fr/pages/index.php",
+                maillotCouleur: "rgb(120, 83, 52)"
             },
             droite: {
                 nom: "Etoile Mouzillon",
-                fanion: "EMouz.png"
+                fanion: "EMouz.png",
+                site: "https://etoile-mouzillon.footeo.com",
+                maillotCouleur: "rgb(255, 255, 255)"
             }
         },
         [               
@@ -808,10 +864,16 @@ var scenario = [
             fichier: "match_temoin.mp4",
             description: "Match amical opposant A à B",
             gauche: {
-                nom: "Equipe A"
+                nom: "Les Herbiers",
+                fanion: "LHerbiers.png",
+                site: "https://www.enavantbaugeois.net",
+                maillotCouleur: "rgb(255, 0, 0)"
             },
             droite: {
-                nom: "Equipe B"
+                nom: "Etoile Mouzillon",
+                fanion: "EMouz.png",
+                site: "https://etoile-mouzillon.footeo.com",
+                maillotCouleur: "rgb(255, 255, 255)"
             }
         },
         [               
