@@ -1,5 +1,12 @@
 /* media queries*/
 
+/* ajout Paulo */
+.carouselFanion {
+    width: 15%;
+    padding-left: 3px;
+    padding-right: 3px;
+}
+
 /* alignement du CAPTION de l'image*/
 .carousel-caption {
     top: 10px;
@@ -7,7 +14,6 @@
     right: 0%;
     font-size: 1vw; /* taille variable selon largeur du viewport */
     text-align: center;
-    flex:1;
 }
 
 /* gestion de l'encadrement des images */
