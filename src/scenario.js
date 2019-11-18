@@ -785,7 +785,7 @@ var scenario = [
         {
             id: 3,
             rencontre: "Mouzillon/Bauge",
-            poster: "Emouz_Bauge.png",
+            poster: "EM_Bauge.png",
             fichier: "EM_Bauge.mp4",
             description: "Match amical opposant Mouzillon à Baugé",
             gauche: {
@@ -823,7 +823,7 @@ var scenario = [
         {
             id: 4,
             rencontre: "Mouzillon/Les Herbiers",
-            poster: "EMouz_Herbiers.png",
+            poster: "EM_Herbiers.png",
             fichier: "EM_Herbiers.mp4",
             description: "Match amical opposant Mouzillon aux Herbiers",
             gauche: {
