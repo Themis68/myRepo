@@ -25,7 +25,7 @@ media_events["timeupdate"] = 0;
 //media_events["volumechange"] = 0;
 media_events["currentTime"] = 0;
 
-// varianbles des videos
+// variables des videos
 var timeOut = 0;	// pointe sur le timeout
 var timeOutEffet = 0; // pointe sur le timeout
 
@@ -59,10 +59,9 @@ var numQuestion = 0;	// numero de la Question
 var transitionTime = 1000;	// durée d'une transition ALLERA en ms
 
 // chemins
-var pathImagesScenario = "../images/";		// images pour scénario
 var pathImages = "../images/";		// autres images
-var pathVideos = "../videos/";		// vidéos des matchs
-var pathFanions = "../images/fanions/";		// fanions des equipes
+var pathVideos = "../rencontres/";		// vidéos des matchs
+var pathFanions = pathImages + "fanions/";		// fanions des equipes
 
 // **********************************************************************************************************
 
@@ -164,7 +163,7 @@ function creerVignettes(id) {
     let bloc = document.getElementById(id);
 
 			// création des vignettes
-	for (let i = 0; i < arrayAssoSize(scenario); i++) {
+	for (let i = 0; i < arrayAssoSize(rencontres); i++) {
 
 		// div
 		let myDiv = document.createElement("div");
@@ -173,9 +172,9 @@ function creerVignettes(id) {
 		// img
 		let myImg = document.createElement("img");
 		myImg.className = "img-fluid mx-auto d-block";
-		myImg.setAttribute("alt", "img" + i);
+		myImg.setAttribute("alt", rencontres[i][0].rencontre);
 		myImg.setAttribute("title", "img" + i);
-		myImg.setAttribute("src", pathVideos + (scenario[i][0].poster || "./stade.jpg"));
+		myImg.setAttribute("src", pathVideos + (rencontres[i][0].poster || "./pelouses/stade.jpg"));
 
 		// caption
 		let myCaption = document.createElement("div");
@@ -185,21 +184,21 @@ function creerVignettes(id) {
 		myF.className = "carouselFanion";
 		myF.setAttribute("alt", "fanionG" + i);
 		myF.setAttribute("title", "fanionG" + i);
-		myF.setAttribute("src", pathFanions + (scenario[i][0].gauche.fanion || "fff.png'"));
+		myF.setAttribute("src", pathFanions + (rencontres[i][0].gauche.fanion || "fff.png'"));
 		myCaption.appendChild(myF);
 		// fanion
 		myF = document.createElement("img");
 		myF.className = "carouselFanion";
 		myF.setAttribute("alt", "fanionD" + i);
 		myF.setAttribute("title", "fanionD" + i);
-		myF.setAttribute("src", pathFanions + (scenario[i][0].droite.fanion || "fff.png'"));
+		myF.setAttribute("src", pathFanions + (rencontres[i][0].droite.fanion || "fff.png'"));
 		myCaption.appendChild(myF);
 		
         let myP = document.createElement("p");        
-		myP.innerHTML = scenario[i][0].gauche.nom + "<br>" + scenario[i][0].droite.nom;
+		myP.innerHTML = rencontres[i][0].gauche.nom + "<br>" + rencontres[i][0].droite.nom;
 		myCaption.appendChild(myP);
 		myCaption.className = "carousel-caption d-none d-md-block";
-		myCaption.setAttribute("onclick", 'javascript:switchVideo('+ scenario[i][0].id +');');	// mettre ici car cette DIV est au-dessus de l'image
+		myCaption.setAttribute("onclick", 'javascript:switchVideo('+ rencontres[i][0].id +');');	// mettre ici car cette DIV est au-dessus de l'image
 
 		myDiv.appendChild(myImg);
 		myDiv.appendChild(myCaption);
@@ -239,14 +238,14 @@ function switchVideo(n) {
     //;
 
 
-	if (n > arrayAssoSize(scenario)) {
+	if (n > arrayAssoSize(rencontres)) {
 		// vérifie si l'index de la vidéo existe dans le fichier tableau.js
 		n = 0;
 		return false;
 	} else {
 		// MAJ videos
 		idVideo = n;		// 1 = première vidéo
-		video = scenario[n-1];    // recup scénario de la vidéo
+		video = rencontres[n-1];    // recup scénario de la vidéo
 		idVideoOn = n; //video[0].id;
 		
 		//
@@ -1023,7 +1022,7 @@ function gestionInter(etape, objet) {
                 document.querySelector("inter complement img").style.display = (objet.reponse.pict === undefined ? "none" : "flex");
                 if (objet.reponse.pict !== undefined) {
                     // on doit avoir le IF car sinon ca généère un message d'eereur lors de l'affectation de l'image  
-                    document.querySelector("inter complement img").setAttribute("src",pathImagesScenario + objet.reponse.pict);
+                    document.querySelector("inter complement img").setAttribute("src",pathImages + objet.reponse.pict);
                 }
             }
             // replay
