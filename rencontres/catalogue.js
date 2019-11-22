@@ -44,15 +44,15 @@ var scenario = [
     [
         {
             id: 3,
-            rencontre: "Mouzillon/Bauge",
-            poster: "EM_Bauge.png",
-            fichier: "EM_Bauge.mp4",
-            description: "Match amical opposant Mouzillon à Baugé",
+            rencontre: "Mouzillon/Les Herbiers",
+            poster: "EM_Herbiers.png",
+            fichier: "EM_Herbiers.mp4",
+            description: "Match amical opposant Mouzillon aux Herbiers",
             gauche: {
-                nom: "Baugé",
-                fanion: "Bauge.png",
-                site: "https://www.enavantbaugeois.net",
-                maillotCouleur: "rgb(255, 152, 117)"
+                nom: "Les Herbiers",
+                fanion: "LHerbiers.png",
+                site: "https://www.vendeelesherbiersfootball.fr/pages/index.php",
+                maillotCouleur: "rgb(120, 83, 52)"
             },
             droite: {
                 nom: "Etoile Mouzillon",
@@ -65,15 +65,15 @@ var scenario = [
     [
         {
             id: 4,
-            rencontre: "Mouzillon/Les Herbiers",
-            poster: "EM_Herbiers.png",
-            fichier: "EM_Herbiers.mp4",
-            description: "Match amical opposant Mouzillon aux Herbiers",
+            rencontre: "Mouzillon/Bauge",
+            poster: "EM_Bauge.png",
+            fichier: "EM_Bauge.mp4",
+            description: "Match amical opposant Mouzillon à Baugé",
             gauche: {
-                nom: "Les Herbiers",
-                fanion: "LHerbiers.png",
-                site: "https://www.vendeelesherbiersfootball.fr/pages/index.php",
-                maillotCouleur: "rgb(120, 83, 52)"
+                nom: "Baugé",
+                fanion: "Bauge.png",
+                site: "https://www.enavantbaugeois.net",
+                maillotCouleur: "rgb(255, 152, 117)"
             },
             droite: {
                 nom: "Etoile Mouzillon",
