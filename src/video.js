@@ -60,7 +60,7 @@ var transitionTime = 1000;	// durée d'une transition ALLERA en ms
 
 // chemins
 var pathImages = "../images/";		// autres images
-var pathVideos = "../videos/";		// vidéos des matchs
+var pathVideos = "../rencontres/";		// vidéos des matchs
 var pathFanions = pathImages + "fanions/";		// fanions des equipes
 
 // **********************************************************************************************************
