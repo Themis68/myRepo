@@ -59,10 +59,9 @@ var numQuestion = 0;	// numero de la Question
 var transitionTime = 1000;	// durée d'une transition ALLERA en ms
 
 // chemins
-var pathImagesScenario = "../images/";		// images pour scénario
 var pathImages = "../images/";		// autres images
 var pathVideos = "../videos/";		// vidéos des matchs
-var pathFanions = "../images/fanions/";		// fanions des equipes
+var pathFanions = pathImages + "fanions/";		// fanions des equipes
 
 // **********************************************************************************************************
 
@@ -175,7 +174,7 @@ function creerVignettes(id) {
 		myImg.className = "img-fluid mx-auto d-block";
 		myImg.setAttribute("alt", "img" + i);
 		myImg.setAttribute("title", "img" + i);
-		myImg.setAttribute("src", pathVideos + (scenario[i][0].poster || "./stade.jpg"));
+		myImg.setAttribute("src", pathVideos + (scenario[i][0].poster || pathImages + "stade.jpg"));
 
 		// caption
 		let myCaption = document.createElement("div");
@@ -183,14 +182,12 @@ function creerVignettes(id) {
 		// fanion
 		let myF = document.createElement("img");
 		myF.className = "carouselFanion";
-		myF.setAttribute("alt", "fanionG" + i);
 		myF.setAttribute("title", "fanionG" + i);
 		myF.setAttribute("src", pathFanions + (scenario[i][0].gauche.fanion || "fff.png'"));
 		myCaption.appendChild(myF);
 		// fanion
 		myF = document.createElement("img");
 		myF.className = "carouselFanion";
-		myF.setAttribute("alt", "fanionD" + i);
 		myF.setAttribute("title", "fanionD" + i);
 		myF.setAttribute("src", pathFanions + (scenario[i][0].droite.fanion || "fff.png'"));
 		myCaption.appendChild(myF);
@@ -200,6 +197,8 @@ function creerVignettes(id) {
 		myCaption.appendChild(myP);
 		myCaption.className = "carousel-caption d-none d-md-block";
 		myCaption.setAttribute("onclick", 'javascript:switchVideo('+ scenario[i][0].id +');');	// mettre ici car cette DIV est au-dessus de l'image
+		myCaption.setAttribute("title", (scenario[i][0].rencontre));
+		myCaption.setAttribute("alt", (scenario[i][0].rencontre));
 
 		myDiv.appendChild(myImg);
 		myDiv.appendChild(myCaption);
@@ -1023,7 +1022,7 @@ function gestionInter(etape, objet) {
                 document.querySelector("inter complement img").style.display = (objet.reponse.pict === undefined ? "none" : "flex");
                 if (objet.reponse.pict !== undefined) {
                     // on doit avoir le IF car sinon ca généère un message d'eereur lors de l'affectation de l'image  
-                    document.querySelector("inter complement img").setAttribute("src",pathImagesScenario + objet.reponse.pict);
+                    document.querySelector("inter complement img").setAttribute("src",pathImages + objet.reponse.pict);
                 }
             }
             // replay
