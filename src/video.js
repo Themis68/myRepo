@@ -154,6 +154,24 @@ function init() {
 
     document._video = document.getElementById("myVideo");   // identification de l'objet video
 	creerVignettes("vignettes");					        // générer le vignettes dans le carousel
+
+	//var selectedFile = document.getElementById('input').files[0];
+var content = "";
+var reader = new FileReader();
+reader.onload = function(event) { content = reader.result; };
+console.log(reader.readAsText("../rencontres/Pole_PloufraganMT2.js"));
+
+	/*fetch('../rencontres/Pole_PloufraganMT2.js')
+	  .then(response => response.text())
+	  .then(text => console.log(text)) */
+
+	//var parser = new DOMParser();
+	//var doc = parser.parseFromString("../rencontres/Pole_PloufraganMT2.xml", "application/xml");
+	//console.log(doc);
+
+
+//	performSignIn();
+//	lireXML();
 }
 
 function creerVignettes(id) {
@@ -232,30 +250,48 @@ function fBascule(event) {
 	}	
 }
 
-function lireXML(){
-if (window.XMLHttpRequest)
-  {// code for IE7+, Firefox, Chrome, Opera, Safari
-  xmlhttp=new XMLHttpRequest();
-  }
-else
-  {// code for IE6, IE5
-  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-  }
-xmlhttp.open("GET","catalogue.xml",false);
-xmlhttp.send();
-xmlDoc=xmlhttp.responseXML; 
+function performSignIn() {
+    let headers = new Headers();
 
-document.write("<table border='1'>");
-var x=xmlDoc.getElementsByTagName("CD");
-for (i=0;i<x.length;i++)
-  { 
-  document.write("<tr><td>");
-  document.write(x[i].getElementsByTagName("ARTIST")[0].childNodes[0].nodeValue);
-  document.write("</td><td>");
-  document.write(x[i].getElementsByTagName("TITLE")[0].childNodes[0].nodeValue);
-  document.write("</td></tr>");
-  }
-document.write("</table>");
+    headers.append('Content-Type', 'application/json');
+    headers.append('Accept', 'application/json');
+    headers.append('Authorization', 'Basic ' + base64.encode(username + ":" +  password));
+    headers.append('Origin','file:///D:/outils/NodeJs/Ateliers/myRepo/rencontres/*.xml');
+
+    fetch(sign_in, {
+        mode: 'cors',
+        method: 'POST',
+        headers: headers
+    })
+    .then(response => response.json())
+    .then(json => console.log(json))
+    .catch(error => console.log('Authorization failed : ' + error.message));
+}
+
+function lireXML(){
+	if (window.XMLHttpRequest){// code for IE7+, Firefox, Chrome, Opera, Safari
+		var xmlhttp = new XMLHttpRequest();
+	} else {// code for IE6, IE5
+		xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	xmlhttp.open("GET","../rencontres/Pole_PloufraganMT2.xml",false);
+	xmlhttp.send();
+	var xmlDoc =xmlhttp.responseXML; 
+
+	console.log(xmlDoc);
+	/*
+	document.write("<table border='1'>");
+	var x = xmlDoc.getElementsByTagName("CD");
+	for (let i = 0; i < x.length ; i++)
+	{ 
+		document.write("<tr><td>");
+		document.write(x[i].getElementsByTagName("ARTIST")[0].childNodes[0].nodeValue);
+		document.write("</td><td>");
+		document.write(x[i].getElementsByTagName("TITLE")[0].childNodes[0].nodeValue);
+		document.write("</td></tr>");
+	}
+	document.write("</table>");
+	*/
 }
 
 function switchVideo(n) {
