@@ -735,7 +735,7 @@ function gestJauge() {
     if (numQuestion == 0) {
         jauge[0].setAttribute("aria-valuenow", 0);
         jauge[0].setAttribute("style", "width: 0%");
-        jauge[0].innerHTML = nbQuests[niveauQuest].nb + " Questions";
+        jauge[0].innerHTML = nbQuests[niveauQuest].nb + " Question" + (nbQuests[niveauQuest].nb >1 ? "s" : "");
     } else {
         jauge[0].setAttribute("aria-valuenow", numQuestion);
         pourCent = numQuestion / nbQuests[niveauQuest].nb * 100;
@@ -836,7 +836,9 @@ function gestNiveaux(idVideo) {
     for (let i=0; i < 3; i++) {
         span.id = "level" + (i+1);
         span.className = ((i+1) === niveauQuest ? "badge badge-current badge-light" : "badge badge-light");
-        span.setAttribute("onclick","fNiveaux("+ (i + 1) + "," + idVideo +");"); 
+		span.setAttribute("onclick","fNiveaux("+ (i + 1) + "," + idVideo +");"); 
+		span.setAttribute("title", "niveau " + nbQuests[i+1].niv);
+        span.setAttribute("alt", "niveau " + nbQuests[i+1].niv);
         span.innerHTML = (i + 1);
         button.appendChild(span);
         span = document.createElement("span");
