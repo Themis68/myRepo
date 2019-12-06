@@ -78,6 +78,23 @@ th {
 /* 
 font-size: 100%; // this is usually 16px by default 
 */
+
+/**********************************************************
+                      SURCHAGE VIDEO.JS
+***********************************************************/
+.video-js .vjs-big-play-button {
+  background-color: red;
+  background-color: rgba(255, 0, 0, 0.7);
+
+}
+.video-js:hover .vjs-big-play-button,
+.video-js .vjs-big-play-button:focus {
+  background-color: #f3aaaa;
+  background-color: rgba(243, 170, 170, 0.5);
+}
+
+/***********************************************************/
+
 html {
   font-family: passion_oneregular;
 }

@@ -897,7 +897,9 @@ function gestNiveaux(idVideo) {
     for (let i=0; i < 3; i++) {
         span.id = "level" + (i+1);
         span.className = ((i+1) === niveauQuest ? "badge badge-current badge-light" : "badge badge-light");
-        span.setAttribute("onclick","fNiveaux("+ (i + 1) + "," + idVideo +");"); 
+		span.setAttribute("onclick","fNiveaux("+ (i + 1) + "," + idVideo +");"); 
+		span.setAttribute("title", nbQuests[i+1].niv);
+		span.setAttribute("alt", nbQuests[i+1].niv);
         span.innerHTML = (i + 1);
         button.appendChild(span);
         span = document.createElement("span");
