@@ -371,7 +371,7 @@ function switchVideo(n) {
 						width: 30,
 						classeCSS: "vjs-bug-silhEquipBug",
 						opacity: 1,
-						right: (30 + 20 + 170 + 5) + "px",
+						right: (30 + 20 + 170 + 5 + 15) + "px",
 						top: "20px",
 						position: 'tr'
 					},
@@ -771,7 +771,9 @@ function addScore(value) {
     let myColor = ((videoNbPoint / nbQuests[niveauQuest].points) > 0.5 ? 'green' : 'black');
     let myScore = '<span style="color:'+ myColor +';">' + score + '</span>';
 
-    document.querySelector("inter suite score p").innerHTML = myScore + ' ' + scoreMax;
+	document.querySelector("inter suite score").setAttribute("alt", "score de " + avatar);
+	document.querySelector("inter suite score").setAttribute("title", "score de " + avatar);
+    document.querySelector("inter suite score p").innerHTML = myScore + '-' + scoreMax;
 }
 
 // ?? on garde ou pas ?
