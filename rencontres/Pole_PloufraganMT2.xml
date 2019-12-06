@@ -14,10 +14,11 @@
     <attributs>
         <att1>Il doit vérifier que les arbitres assistants et les gardiens sont prêts</att1>
         <att2>Il doit vérifier que les arbitres assistants sont prêts</att2>
+	</attributs>
     <reponse>
         <solution>1</solution>
         <loi>Loi_08</loi>
-        <points>2</points
+        <points>2</points>
     </reponse>
 </action>
 <action>
@@ -34,6 +35,7 @@
     <attributs>
         <att1>rien</att1>
         <att2>tout</att2>
+	</attributs>
     <reponse>
         <solution>2</solution>
         <loi>Loi_07</loi>
