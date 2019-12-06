@@ -20,7 +20,6 @@ step: '00:09:22', : rechercher la loi du jeu pour une poussette dans le dos
 **************************************
                EVOLs
 **************************************
-- bouton BIG PLAY en fond rouge
 - un allerA dans une INFORMATION ?
 - proposer un QUIZZ sur la base de questions du fascicule
 - tester l'affichage des questions avec des images
@@ -40,6 +39,13 @@ step: '00:09:22', : rechercher la loi du jeu pour une poussette dans le dos
 - peut-on ajouter le register du plug seulement quand on en a besoin ?
 - le centrage vertical des incrustations est trop bas alors qu'on met 50%
 - le centrage horizontal des incrustations ne tient pas compte de la largeur de l'objet
+
+**************************************
+    		v1.1.2 en cours
+**************************************
+x mode MUTE en replay
+x bouton BIG PLAY en fond rouge
+
 
 **************************************
     		v1.1.1 en cours
