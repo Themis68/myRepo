@@ -5,6 +5,7 @@ var scenario = [
             rencontre: "Bretagne/PDLL",
             poster: "Pole_PloufraganMT1.png",
             fichier: "Pole_PloufraganMT1.mp4",
+            scenario: "Pole_PloufraganMT1.js",
             description: "Match amical opposant Les Pôles espoirs des Ligues de Bretagne et des Pays de La Loire (1ère mi-temps)",
             gauche: {
                 nom: "Ligue de Bretagne",
@@ -26,6 +27,7 @@ var scenario = [
             rencontre: "PDLL/Bretagne",
             poster: "Pole_PloufraganMT2.png",
             fichier: "Pole_PloufraganMT2.mp4",
+            scenario: "Pole_PloufraganMT2.js",
             description: "Match amical opposant Les Pôles espoirs des Ligues de Bretagne et des Pays de La Loire (2ème mi-temps)",
             gauche: {
                 nom: "Ligue Pays De la Loire",
@@ -47,6 +49,7 @@ var scenario = [
             rencontre: "Mouzillon/Les Herbiers",
             poster: "EMouz_Herbiers.png",
             fichier: "EMouz_Herbiers.mp4",
+            scenario: "EMouz_Herbiers.js",
             description: "Match amical opposant Mouzillon aux Herbiers",
             gauche: {
                 nom: "Les Herbiers",
@@ -68,6 +71,7 @@ var scenario = [
             rencontre: "Mouzillon/Bauge",
             poster: "EMouz_Bauge.png",
             fichier: "EMouz_Bauge.mp4",
+            scenario: "EMouz_Bauge.js",
             description: "Match amical opposant Mouzillon à Baugé",
             gauche: {
                 nom: "Baugé",
@@ -86,8 +90,10 @@ var scenario = [
     [
         {
             id: 5,
-            rencontre: "Match témoin",
-            fichier: "EMouz_Herbiers.mp4",
+            rencontre: "CBAF_Metz",
+            poster: "CBAF_Metz.png",
+            fichier: "CBAF_Metz.mp4",
+            scenario: "CBAF_Metz.js",
             description: "Match amical opposant A à B",
             gauche: {
                 nom: "Les Herbiers",
