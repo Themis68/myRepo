@@ -1,6 +1,46 @@
 /* media queries*/
 
 /* ajout Paulo */
+/* bloc des indicateurs */
+.carousel-indicators {
+    margin: 10px 0 0;
+    overflow: auto;
+    position: static;
+    text-align: left;
+    white-space: nowrap;
+    width: 100%;
+}
+
+/* indicateur circulaire */
+.carousel-indicators li{
+    background: black;
+    border-radius:50%;
+    width:10px;
+    height:10px;
+    border: 1px solid white; 
+  }
+
+  /* indicateur selectionné */
+.carousel-indicators li.active {
+    background-color: RGB(137,162,113);
+  }
+
+/* indicateurs trait */
+.carousel-indicators2 li {
+    background-color: transparent;
+    -webkit-border-radius: 0;
+    border-radius: 0;
+    display: inline-block;
+    height: auto;
+    margin: 0 !important;
+    width: auto;
+}
+
+/* indicateur avec une image dans <li>*/
+.carousel-indicators2 li img {
+    display: block;
+}
+
 .carouselFanion {
     width: 15%;
     padding-left: 3px;

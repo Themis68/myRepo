@@ -32,6 +32,7 @@ var timeOutEffet = 0; // pointe sur le timeout
 var idVideoOn = 0;	// numero de la vidéo selectionnée
 var nivZoom = 1;
 var video = [];
+var scripts = [];
 var actions = [];
 var actionEnCours = [];
 var isDefineBVideoJS = false;		// permet de gérer la délcaration de videoJS au premier tour
@@ -156,10 +157,10 @@ function init() {
 	creerVignettes("vignettes");					        // générer le vignettes dans le carousel
 
 	//var selectedFile = document.getElementById('input').files[0];
-var content = "";
+/*var content = "";
 var reader = new FileReader();
 reader.onload = function(event) { content = reader.result; };
-console.log(reader.readAsText("../rencontres/Pole_PloufraganMT2.js"));
+console.log(reader.readAsText("../rencontres/Pole_PloufraganMT2.js"));*/
 
 	/*fetch('../rencontres/Pole_PloufraganMT2.js')
 	  .then(response => response.text())
@@ -175,12 +176,28 @@ console.log(reader.readAsText("../rencontres/Pole_PloufraganMT2.js"));
 }
 
 function creerVignettes(id) {
-    //
+	//
     // générer le vignettes dans le carousel
-    //
-    let bloc = document.getElementById(id);
+	//
+	
+	// création des indicateurs
+	let ind = document.getElementById("indicateurs");
 
-			// création des vignettes
+	for (let i = 0; i < arrayAssoSize(scenario); i++) {
+		let myInd = document.createElement("li");
+		myInd.setAttribute("data-target", "#carousel-example");
+		myInd.setAttribute("data-slide-to",i+1);
+		if(i === 0) { myInd.setAttribute("class", "active cercle"); } else {myInd.setAttribute("class", "cercle");}
+
+		//let myImg = document.createElement("img");
+		//myImg.setAttribute("src", "../images/fleche_ouverte.png");
+		//myInd.appendChild(myImg);
+		ind.appendChild(myInd);
+	}
+
+	// création des vignettes
+	let bloc = document.getElementById(id);
+	
 	for (let i = 0; i < arrayAssoSize(scenario); i++) {
 
 		// div
@@ -222,6 +239,14 @@ function creerVignettes(id) {
 		myDiv.appendChild(myCaption);
 
 		bloc.appendChild(myDiv);
+
+		let myScript = document.createElement("SCRIPT");
+		myScript.setAttribute("type", "text/javascript");
+		myScript.setAttribute("src", "../rencontres/" + scenario[i][0].scenario);
+		document.head.appendChild(myScript);
+
+		//console.log(script3);
+		//scripts.add(script);
 
 	}
 }
