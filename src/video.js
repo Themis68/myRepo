@@ -186,7 +186,7 @@ function creerVignettes(id) {
 	for (let i = 0; i < arrayAssoSize(scenario); i++) {
 		let myInd = document.createElement("li");
 		myInd.setAttribute("data-target", "#carousel-example");
-		myInd.setAttribute("data-slide-to",i+1);
+		myInd.setAttribute("data-slide-to",i);
 		if(i === 0) { myInd.setAttribute("class", "active cercle"); } else {myInd.setAttribute("class", "cercle");}
 
 		//let myImg = document.createElement("img");
@@ -251,6 +251,81 @@ function creerVignettes(id) {
 	}
 }
 
+function creerVignettesOld(id) {
+	//
+    // générer le vignettes dans le carousel
+	//
+	
+	// création des indicateurs
+	let ind = document.getElementById("indicateurs");
+
+	for (let i = 0; i < arrayAssoSize(scenario); i++) {
+		let myInd = document.createElement("li");
+		myInd.setAttribute("data-target", "#carousel-example");
+		myInd.setAttribute("data-slide-to",i);
+		if(i === 0) { myInd.setAttribute("class", "active cercle"); } else {myInd.setAttribute("class", "cercle");}
+
+		//let myImg = document.createElement("img");
+		//myImg.setAttribute("src", "../images/fleche_ouverte.png");
+		//myInd.appendChild(myImg);
+		ind.appendChild(myInd);
+	}
+
+	// création des vignettes
+	let bloc = document.getElementById(id);
+	
+	for (let i = 0; i < arrayAssoSize(scenario); i++) {
+
+		// div
+		let myDiv = document.createElement("div");
+		myDiv.className = "carousel-item col-12 col-sm-6 col-md-4 col-lg-3" + (i === 0?' active':'');
+
+		// img
+		let myImg = document.createElement("img");
+		myImg.className = "img-fluid mx-auto d-block";
+		myImg.setAttribute("alt", "img" + i);
+		myImg.setAttribute("title", "img" + i);
+		myImg.setAttribute("src", pathVideos + (scenario[i][0].poster || pathImages + "stade.jpg"));
+
+		// caption
+		let myCaption = document.createElement("div");
+
+		// fanion
+		let myF = document.createElement("img");
+		myF.className = "carouselFanion";
+		myF.setAttribute("title", "fanionG" + i);
+		myF.setAttribute("src", pathFanions + (scenario[i][0].gauche.fanion || "fff.png'"));
+		myCaption.appendChild(myF);
+		// fanion
+		myF = document.createElement("img");
+		myF.className = "carouselFanion";
+		myF.setAttribute("title", "fanionD" + i);
+		myF.setAttribute("src", pathFanions + (scenario[i][0].droite.fanion || "fff.png'"));
+		myCaption.appendChild(myF);
+		
+        let myP = document.createElement("p");        
+		myP.innerHTML = scenario[i][0].gauche.nom + "<br>" + scenario[i][0].droite.nom;
+		myCaption.appendChild(myP);
+		myCaption.className = "carousel-caption d-none d-md-block";
+		myCaption.setAttribute("onclick", 'javascript:switchVideo('+ scenario[i][0].id +');');	// mettre ici car cette DIV est au-dessus de l'image
+		myCaption.setAttribute("title", (scenario[i][0].rencontre));
+		myCaption.setAttribute("alt", (scenario[i][0].rencontre));
+
+		myDiv.appendChild(myImg);
+		myDiv.appendChild(myCaption);
+
+		bloc.appendChild(myDiv);
+
+		let myScript = document.createElement("SCRIPT");
+		myScript.setAttribute("type", "text/javascript");
+		myScript.setAttribute("src", "../rencontres/" + scenario[i][0].scenario);
+		document.head.appendChild(myScript);
+
+		//console.log(script3);
+		//scripts.add(script);
+
+	}
+}
 function fBascule(event) {
 	// affiche/cache un objet repéré par un id
 	//

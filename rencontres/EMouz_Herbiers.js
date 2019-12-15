@@ -1,4 +1,4 @@
-var script3 = [             
+var script2 = [             
     {
         step: '00:00:05',
         act: "Question",
