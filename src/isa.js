@@ -309,9 +309,9 @@ function switchVideo(n) {
 				},
 				plugins: {
 					brand: {
-						image: pathImages + "isamini.png",
-						title: "Arrêt sur image!",
-						destination: "isa.html",
+						image: pathImages + "EMouzmini.png",
+						title: "club Etoile Mouzillonnaise de football",
+						destination: "https://etoile-mouzillon.footeo.com/",
 						destinationTarget: "_blank",
 						width: 20,
 						height: 20

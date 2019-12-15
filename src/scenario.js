@@ -128,7 +128,7 @@ var scenario = [
                 question: {
                     libelle: "Au vue de la gestuelle de l'arbitre, quelle a été la décision de l'arbitre sur cette situation ?"
                 },
-                attributs: ["coup-franc", "avantage"],
+                attributs: ["Coup-franc indirect", "Avantage", "Coup-franc direct"],
                 reponse: {
                     solution: 2,
                     libelle: "L'arbitre signale l'avantage avec son bras et crie 'jouer'",
@@ -148,7 +148,7 @@ var scenario = [
                 question: {
                     libelle: "Selon vous, au vue de l'action, l'arbitre va-t-il :"
                 },
-                attributs: ["siffler un coup-franc", "laisser l'avantage"],
+                attributs: ["Siffler un coup-franc", "Laisser l'avantage"],
                 reponse: {
                     solution: 1,
                     libelle: "L'arbitre estime qu'il y a bousculade en pleine course",
@@ -208,12 +208,12 @@ var scenario = [
                 niveau: "DEBUTANT",
                 saut: {
                     attente: 3,
-                    indice: '00:34:56'
+                    indice: '00:34:58'
                 },
                 question: {
                     libelle: "Dans le cas de temps additionnel, l'arbitre doit :"
                 },
-                attributs: ["jouer au minium ce temps", "jouer au maximum ce temps"],
+                attributs: ["Jouer au minium ce temps", "Jouer au maximum ce temps"],
                 reponse: {
                     solution: 1,
                     loi: "Loi_13",
@@ -231,10 +231,10 @@ var scenario = [
                 question: {
                     libelle: "L'arbitre assistant lève son drapeau et le secoue pour indiquer une faute"
                 },
-                attributs: ["L'arbitre peut siffler une faute", "L'abitre n'a pas à en tenir compte"],
+                attributs: ["L'arbitre peut siffler une faute", "L'arbitre n'a pas à en tenir compte"],
                 reponse: {
                     solution: 1,
-                    libelle: "L'abritre assistant peut faire part de ses observations lorsqu'il estime être plus près de l'action que l'abitre ",
+                    libelle: "L'arbitre assistant peut faire part de ses observations lorsqu'il estime être plus près de l'action que l'abitre ",
                     pict: "arbitre/fauteassistant.png",
                     loi: "Loi_13",
                     points: 1
