@@ -51,13 +51,13 @@
     left: 0%;
     right: 0%;
     font-size: 1vw; /* taille variable selon largeur du viewport */
-    text-align: center;
+   /* text-align: center;*/
 }
 
 /* gestion de l'encadrement des images */
 .carousel-item {
     padding: 5px;
-    position: relative;
+    /*position: relative;*/
 }
 
 .carousel-item:after {
