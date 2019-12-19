@@ -75,6 +75,7 @@ function central(event) {
 		// clic sur big play
 		draw("vjs-bug-silhEquipeA", video[0].gauche.maillotCouleur);
 		draw("vjs-bug-silhEquipeB", video[0].droite.maillotCouleur);
+		draw("vjs-bug-silhArbitre", video[0].arbitre.maillotCouleur);
     }
 }
 
@@ -523,6 +524,29 @@ function switchVideo(n) {
 						top: "20px",
 						position: 'tl'
 					},
+					{
+						type: "canvas",
+						id:"vjs-bug-silhArbitre",
+						visibility: true,
+						height: 30,
+						width: 30,
+						classeCSS: "vjs-bug-silhArbitreBug",
+						opacity: 1,
+						left: (30 + 20 + 160 + 5 + 300) + "px",
+						top: "20px",
+						position: 'tc'
+					},
+					{
+						type: "text",
+						id:"vjs-bug-titreArbitre",
+						visibility: true,
+						libelle: "<span>"+ avatar +"</span>",
+						classeCSS: "vjs-bug-titreArbitre",
+						opacity: 1,
+						left: (30 + 20 + 160 + 5 + 200) + "px",
+						top: "25px",
+						position: 'tr'
+					}, 
 					{
 						type: "canvas",
 						id:"vjs-bug-silhEquipeB",

@@ -20,6 +20,7 @@ step: '00:09:22', : rechercher la loi du jeu pour une poussette dans le dos
 **************************************
                EVOLs
 **************************************
+- afficher le nom du joueur sous la silhouette de l'arbitre
 - afficher les points e suite du carousel pour savoir combien de matchs on a
 - un allerA dans une INFORMATION ?
 - proposer un QUIZZ sur la base de questions du fascicule
