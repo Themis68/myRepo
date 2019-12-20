@@ -14,9 +14,10 @@ Le scénario repose sur une structure de données qui permet de jouer des action
 - programmer un saut vers un timecode de la séquence
 - afficher une séquence au ralenti
 
-La vidéo reste utilisable avec les contrôles proposés par le plug-in video-js (lecture/pause, timecode en direct, fullscreen ou
+La vidéo est gérée par <a href="https://videojs.com/">videojs</a> reste utilisable avec les contrôles proposés par le plug-in video-js (lecture/pause, timecode en direct, fullscreen ou
 encore la gestion du volume)
 
 ISA! propose quelques fonctionnalités supplémentaires basées certaines sur le portail de <a href="https://videojs.com/plugins">plug-ins videojs</a> :
 - zoom sélectif sur la séquence (basé sur le plug-in <a href="https://www.npmjs.com/package/videojs-resolution-switcher">videojs-resolution-switcher</a>)
 - incrustation d'informations sur le match (basé sur le plug-in <a href="https://www.npmjs.com/package/videojs-bug">videojs-bug</a>)
+- accès à une page d'information sur ISA! (basé sur le plug-in <a href="https://www.npmjs.com/package/videojs-brand">videojs-brand</a>
