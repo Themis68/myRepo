@@ -1,4 +1,4 @@
-# Arrêt sur image! (ou ISA!)
+# ![Alt text](images/isa.png?raw=true "Arrêt sur image!") Arrêt sur image! (ou ISA!)
 
 Propose de sensibiliser les joueurs à la pratique de l'arbitrage via une approche ludique.
 
