@@ -19,4 +19,4 @@ encore la gestion du volume)
 ISA! propose quelques fonctionnalités supplémentaires basées certaines sur le portail de <a href="https://videojs.com/plugins">plug-ins videojs</a> :
 - zoom sélectif sur la séquence (basé sur le plug-in <a href="https://www.npmjs.com/package/videojs-resolution-switcher">videojs-resolution-switcher</a>)
 - incrustation d'informations sur le match (basé sur le plug-in <a href="https://www.npmjs.com/package/videojs-bug">videojs-bug</a>)
-- accès à une page d'information sur ISA! (basé sur le plug-in <a href="https://www.npmjs.com/package/videojs-brand">videojs-brand</a>
+- accès à une page d'information sur ISA! (basé sur le plug-in <a href="https://www.npmjs.com/package/videojs-brand">videojs-brand</a>)
