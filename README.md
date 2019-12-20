@@ -1,9 +1,9 @@
 <p align="center"><img src="images/isa.png" width="5%" title="Arrêt sur image!" />
-# Arrêt sur image! (ou ISA!)</p>
+  #Arrêt sur image!</p>
 
 Propose de sensibiliser les joueurs à la pratique de l'arbitrage via une approche ludique.
 
-ISA! est une solution qui permet de se sensibiliser à un domaine sportif particulier au travers d'intéractions 
+Arrêt sur images! (ou ISA!) est une solution qui permet de se sensibiliser à un domaine sportif particulier au travers d'intéractions 
 programmées et d'une approche ludique.
 La version proposée ici se base sur le domaine du football et plus précisémment sur l'arbitrage. ISA! vous permet ainsi que vivre un match 
 dans la peau de l'arbitre tout en intéagissant avec un scénario de questions programmées par vous.
