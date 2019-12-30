@@ -17,6 +17,9 @@ var scenario = [
                 fanion: "Ligue2.png",
                 site: "https://lfpl.fff.fr",
                 maillotCouleur: "rgb(67, 76, 108)"
+            },
+            arbitre: {
+                maillotCouleur: "rgb(255, 112, 119)"
             }
         }
     ],
@@ -38,6 +41,9 @@ var scenario = [
                 fanion: "EMouz.png",
                 site: "https://etoile-mouzillon.footeo.com",
                 maillotCouleur: "rgb(255, 255, 255)"
+            },
+            arbitre: {
+                maillotCouleur: "rgb(94, 206, 226)"
             }
         }
     ],
@@ -59,6 +65,9 @@ var scenario = [
                 fanion: "EMouz.png",
                 site: "https://footbretagne.fff.fr",
                 maillotCouleur: "rgb(255, 255, 255)"
+            },
+            arbitre: {
+                maillotCouleur: "rgb(137, 126, 116)"
             }
         }
     ],
@@ -80,6 +89,9 @@ var scenario = [
                 fanion: "fc_metz.png",
                 site: "https://etoile-mouzillon.footeo.com",
                 maillotCouleur: "rgb(107, 4, 4)"
+            },
+            arbitre: {
+                maillotCouleur: "rgb(156, 170, 56)"
             }
         }
     ],
@@ -101,6 +113,9 @@ var scenario = [
                 fanion: "ligueBretagne.png",
                 site: "https://footbretagne.fff.fr",
                 maillotCouleur: "rgb(255, 255, 255)"
+            },
+            arbitre: {
+                maillotCouleur: "rgb(255, 112, 119)"
             }
         }
     ]

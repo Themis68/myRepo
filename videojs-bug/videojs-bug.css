@@ -25,7 +25,7 @@
 }
 
 
-.vjs-bug-titreEquipBug span {
+.vjs-bug-titreEquipBug span, .vjs-bug-titreArbitre span {
   flex: 5;
   align-self: baseline;
   font-family: passion_oneregular;

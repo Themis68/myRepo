@@ -13,6 +13,7 @@ step: '00:09:22', : rechercher la loi du jeu pour une poussette dans le dos
                ANOs
 **************************************
 - les composants BUG sont créés dans une boucle puis inscrits dans le DOM. : comment s'appuyer les uns sur les autres ?
+    créer une zone complex à embarquer avec innerHTML
 - VIDEOJS: WARN: videojs.createEl() is deprecated; use videojs.dom.createEl() instead
 - le clic sur le fanion n'exécute pas l'appel au site car le clic est considéré comme PAUSE de la vidéo
 - position des module BUG sur la vidéo : les silhouettes se superposent au titre des équipes
@@ -20,6 +21,8 @@ step: '00:09:22', : rechercher la loi du jeu pour une poussette dans le dos
 **************************************
                EVOLs
 **************************************
+- afficher le nom du joueur sous la silhouette de l'arbitre
+- masquer la ligne de bienvenue en mode vidéo
 - afficher les points e suite du carousel pour savoir combien de matchs on a
 - un allerA dans une INFORMATION ?
 - proposer un QUIZZ sur la base de questions du fascicule

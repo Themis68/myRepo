@@ -78,22 +78,6 @@ th {
 /* 
 font-size: 100%; // this is usually 16px by default 
 */
-
-/**********************************************************
-                      SURCHAGE VIDEO.JS
-***********************************************************/
-.video-js .vjs-big-play-button {
-  background-color: red;
-  background-color: rgba(255, 0, 0, 0.7);
- 
-}
-.video-js:hover .vjs-big-play-button,
-.video-js .vjs-big-play-button:focus {
-  background-color: #f3aaaa;
-  background-color: rgba(243, 170, 170, 0.5);
-}
-/***********************************************************/
-
 html {
   font-family: passion_oneregular;
 }
@@ -351,10 +335,10 @@ main content inter propositions proposition button .btn {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
-  padding-left: 0.50rem;
-  padding-right: 0.50rem;
-  padding-top: 0.20rem;
-  padding-bottom: 0.20rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
 }
 main content inter complement {
   background-color: white;
@@ -439,6 +423,10 @@ main content inter suite next img {
   border-width: 2px;
 }
 footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
   flex-grow: 0;
   flex-shrink: 1;
   background-color: midnightblue;
@@ -447,6 +435,15 @@ footer {
   padding-left: 5px;
   font-size: 1vw;
   flex-basis: 2.5rem;
+}
+footer img {
+  padding-left: 10px;
+  width: 2.5vw;
+  height: 2vw;
+}
+footer h2 {
+  padding-left: 10px;
+  line-height: 1.5;
 }
 footer .events {
   color: midnightblue;
