@@ -24,7 +24,6 @@ var numQuestion = 0;	// numero de la Question
 // chemins
 var pathImages = "../images/";		// autres images
 var pathQuizz = "../questionnaires/";		// scénarios des quizz
-var pathFanions = pathImages + "fanions/";		// fanions des equipes
 
 // **********************************************************************************************************
 

@@ -6,7 +6,7 @@ var scenario = [
             poster: "bases.png",
             fichier: "bases_01.js",
             description: "Questionnaire sur les bases de l'arbitrage",
-            badge: 1,
+            badge: '01',
             niveau: 1,
             temps: "00:01:00"
         }
@@ -18,7 +18,7 @@ var scenario = [
             poster: "joueurs.png",
             fichier: "bases_02.js",
             description: "Questionnaire sur les bases de l'arbitrage",
-            badge: 1,
+            badge: '01',
             niveau: 2,
             temps: "00:01:00"
         }
@@ -30,8 +30,8 @@ var scenario = [
             poster: "terrain.png",
             fichier: "bases_03.js",
             description: "Questionnaire sur les bases de l'arbitrage (niveau 1)",
-            badge: 1,
-            niveau: 3,
+            badge: '02',
+            niveau: 2,
             temps: "00:01:00"
         }
     ],

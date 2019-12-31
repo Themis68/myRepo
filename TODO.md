@@ -14,8 +14,9 @@ URL ressources externes
 **************************************
                ANOs
 **************************************
+- la silhouette de l'arbitre ne s'affiche pas bien
 - les composants BUG sont créés dans une boucle puis inscrits dans le DOM. : comment s'appuyer les uns sur les autres ?
-    créer une zone complex à embarquer avec innerHTML
+    créer une zone complexe à embarquer avec innerHTML
 - VIDEOJS: WARN: videojs.createEl() is deprecated; use videojs.dom.createEl() instead
 - le clic sur le fanion n'exécute pas l'appel au site car le clic est considéré comme PAUSE de la vidéo
 - position des module BUG sur la vidéo : les silhouettes se superposent au titre des équipes
