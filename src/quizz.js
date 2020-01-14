@@ -24,6 +24,8 @@ var numQuestion = 0;	// numero de la Question
 // chemins
 var pathImages = "../images/";		// autres images
 var pathQuizz = "../questionnaires/";		// scénarios des quizz
+var pathPosters = pathQuizz + "posters/";		//  posters
+var pathBadges = pathQuizz + "badges/";		//  badges
 
 // **********************************************************************************************************
 
@@ -82,7 +84,7 @@ function creerVignettes(id) {
 		myImg.className = "img-fluid mx-auto d-block";
 		myImg.setAttribute("alt", "img" + i);
 		myImg.setAttribute("title", "img" + i);
-		myImg.setAttribute("src", pathQuizz + (scenario[i][0].poster || pathImages + "stade.jpg"));
+		myImg.setAttribute("src", pathPosters + (scenario[i][0].poster || pathImages + "stade.jpg"));
 
 		// caption
 		let myCaption = document.createElement("div");
@@ -91,7 +93,7 @@ function creerVignettes(id) {
 		let myF = document.createElement("img");
 		myF.className = "carouselFanion";
 		myF.setAttribute("title", "badge" + i);
-		myF.setAttribute("src", pathImages + "badge_"+(scenario[i][0].badge || "fff.png'"));
+		myF.setAttribute("src", pathBadges + "badge_"+(scenario[i][0].badge + ".png" || "fff.png'"));
 		myCaption.appendChild(myF);
 		
         let myP = document.createElement("p");        

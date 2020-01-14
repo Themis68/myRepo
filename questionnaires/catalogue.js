@@ -3,10 +3,10 @@ var scenario = [
         {
             id: 1,
             titre: "Bases",
-            poster: "bases.png",
+            poster: "corner.png",
             fichier: "bases_01.js",
             description: "Questionnaire sur les bases de l'arbitrage",
-            badge: '01',
+            badge: 1,
             niveau: 1,
             temps: "00:01:00"
         }
@@ -18,7 +18,7 @@ var scenario = [
             poster: "joueurs.png",
             fichier: "bases_02.js",
             description: "Questionnaire sur les bases de l'arbitrage",
-            badge: '01',
+            badge: 1,
             niveau: 2,
             temps: "00:01:00"
         }
@@ -30,7 +30,7 @@ var scenario = [
             poster: "terrain.png",
             fichier: "bases_03.js",
             description: "Questionnaire sur les bases de l'arbitrage (niveau 1)",
-            badge: '02',
+            badge: 2,
             niveau: 2,
             temps: "00:01:00"
         }
@@ -42,7 +42,7 @@ var scenario = [
             poster: "touche.png",
             fichier: "bases_04.js",
             description: "Questionnaire sur les bases de l'arbitrage (niveau 1)",
-            badge: 1,
+            badge: 3,
             niveau: 1,
             temps: "00:01:00"
         }
@@ -51,7 +51,7 @@ var scenario = [
         {
             id: 5,
             titre: "Bases",
-            poster: "bases.png",
+            poster: "gardien.png",
             fichier: "bases_05.js",
             description: "Questionnaire sur les bases de l'arbitrage (niveau 1)",
             badge: 1,
