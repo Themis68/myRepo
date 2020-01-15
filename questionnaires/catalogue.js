@@ -2,60 +2,60 @@ var scenario = [
     [
         {
             id: 1,
-            titre: "Bases",
+            titre: "Les corners",
             poster: "corner.png",
             fichier: "bases_01.js",
             description: "Questionnaire sur les bases de l'arbitrage",
+            loi: "17",
             badge: 1,
-            niveau: 1,
             temps: "00:01:00"
         }
     ],
     [
         {
             id: 2,
-            titre: "Bases",
+            titre: "Les joueurs",
             poster: "joueurs.png",
             fichier: "bases_02.js",
             description: "Questionnaire sur les bases de l'arbitrage",
+            loi: "03",
             badge: 1,
-            niveau: 2,
             temps: "00:01:00"
         }
     ],
     [
         {
             id: 3,
-            titre: "Bases",
+            titre: "Le terrain de jeu",
             poster: "terrain.png",
             fichier: "bases_03.js",
             description: "Questionnaire sur les bases de l'arbitrage (niveau 1)",
+            loi: "01",
             badge: 2,
-            niveau: 2,
             temps: "00:01:00"
         }
     ],
     [
         {
             id: 4,
-            titre: "Bases",
-            poster: "touche.png",
-            fichier: "bases_04.js",
+            titre: "Les gardiens",
+            poster: "gardien.png",
+            fichier: "bases_05.js",
             description: "Questionnaire sur les bases de l'arbitrage (niveau 1)",
-            badge: 3,
-            niveau: 1,
+            loi: "03",
+            badge: 1,
             temps: "00:01:00"
         }
     ],
     [
         {
             id: 5,
-            titre: "Bases",
-            poster: "gardien.png",
-            fichier: "bases_05.js",
+            titre: "Rentrée de touche",
+            poster: "touche.png",
+            fichier: "bases_04.js",
             description: "Questionnaire sur les bases de l'arbitrage (niveau 1)",
-            badge: 1,
-            niveau: 1,
+            loi: "15",
+            badge: 3,
             temps: "00:01:00"
         }
     ]
