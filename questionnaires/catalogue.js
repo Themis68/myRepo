@@ -5,7 +5,7 @@ var scenario = [
             titre: "Les corners",
             poster: "corner.png",
             fichier: "bases_01.js",
-            description: "Questionnaire sur les bases de l'arbitrage",
+            description: "Questionnaire sur les corners",
             loi: "17",
             badge: 1,
             temps: "00:01:00"
@@ -17,7 +17,7 @@ var scenario = [
             titre: "Les joueurs",
             poster: "joueurs.png",
             fichier: "bases_02.js",
-            description: "Questionnaire sur les bases de l'arbitrage",
+            description: "Questionnaire sur les joueurs",
             loi: "03",
             badge: 1,
             temps: "00:01:00"

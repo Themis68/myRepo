@@ -1,4 +1,4 @@
-var script1 = [               
+var script3 = [               
     {
         number: 1,
         question: {

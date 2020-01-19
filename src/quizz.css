@@ -366,27 +366,6 @@ main content inter suite {
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
 }
-main content inter suite replay {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  flex: 1;
-}
-main content inter suite replay span {
-  display: flex;
-  background-image: url("../images/replay.png");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  color: black;
-  font-size: 1vw;
-  padding-bottom: 3px;
-  padding-top: 8px;
-  flex-direction: row;
-  justify-content: center;
-  height: fit-content;
-  flex: 1;
-}
 main content inter suite score {
   display: flex;
   flex-direction: row;

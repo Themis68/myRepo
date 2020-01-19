@@ -100,7 +100,7 @@ function creerVignettes(id) {
 		myP.innerHTML = scenario[i][0].titre;
 		myCaption.appendChild(myP);
 		myCaption.className = "carousel-caption d-none d-md-block";
-		myCaption.setAttribute("onclick", 'javascript:switchVideo('+ scenario[i][0].id +');');	// mettre ici car cette DIV est au-dessus de l'image
+		myCaption.setAttribute("onclick", 'javascript:switchQuizz('+ scenario[i][0].id +');');	// mettre ici car cette DIV est au-dessus de l'image
 		myCaption.setAttribute("title", (scenario[i][0].titre));
 		myCaption.setAttribute("alt", (scenario[i][0].titre));
 
@@ -117,11 +117,6 @@ function creerVignettes(id) {
 }
 
 function fBascule(event) {
-	// affiche/cache un objet repéré par un id
-	//
-	// exemple appel : bascule(id)
-	// - id de l'objet
-	//
 	let carousel = document.querySelector("carousel");
 	let span = document.querySelector("bascule span");
 
@@ -130,12 +125,163 @@ function fBascule(event) {
 		carousel.style.display = "flex";
 		this.src = pathImages + "fleche_ouverte.png";
 		this.alt = "affiche la liste des matchs";
-		span.innerHTML = "cliquez sur la vignette du match que vous souhaitez arbitrer";
+		span.innerHTML = "cliquez sur la vignette du quizz que vous souhaitez jouer";
 	} else {
 		// on ferme
 		carousel.style.display = "none";
 		this.src = pathImages + "fleche_fermee.png";
 		this.alt = "masque la liste des matchs";
-		span.innerHTML = "cliquez sur cet icône pour afficher les matchs disponibles";
+		span.innerHTML = "cliquez sur cet icône pour afficher les quizz disponibles";
 	}	
+}
+
+function switchQuizz(n) {
+//
+    // affectation de la nouvelle vidéo et des attributs liés
+    //;
+
+
+	if (n > arrayAssoSize(scenario)) {
+		// vérifie si l'index de la vidéo existe dans le fichier tableau.js
+		n = 0;
+		return false;
+	} else {
+		// MAJ videos
+		idQuizz = n;		// 1 = première vidéo
+		quizz = scenario[n-1];    // recup scénario de la vidéo
+		idQuizzOn = n; //video[0].id;
+		
+		//
+		// travail sur les actions et l'IHM associée
+		//
+		actions = quizz[1];    // recup tableau des actions (position 3)
+
+		numQuestion = 0;	// on ré-initialise le nombre e questions
+
+		let inter = document.getElementById("inter");
+		gestionBoard("selectQuizz");
+		document.querySelector("inter").style.display = "flex";
+	}
+}
+
+function gestionBoard(etape, objet) {
+	let inter = document.querySelector("inter");
+	switch (etape) {
+		case "selectQuizz":
+			document.querySelector("inter tete titre p").innerHTML = "Match";
+			document.querySelector("inter tete points").style.display = "none";
+			gestNiveaux(idQuizzOn);
+			scanQuestion();	// analyse du scénario
+            gestJauge();	// MAJ de la jauge
+            document.querySelector("inter question p").style.display = "flex";
+			document.querySelector("inter question p").innerHTML = quizz[0].description;
+			document.querySelector("inter propositions").style.display = "none";
+            document.querySelector("inter complement").style.display = "flex";
+            document.querySelector("inter complement p").innerHTML = "Vous allez analyser le match avec des questions de niveau " + nbQuests[niveauQuest].niv + ".<br><br>Cliquez sur le bouton Play sur la vidéo pour déclencher le visionnage du match"
+            document.querySelector("inter complement img").style.display = "none";
+			// score
+			document.querySelector("inter suite score p").style.display = "none";
+			addScore(0);	// on init même si c'est masqué
+			// next
+			document.querySelector("inter suite next img").style.display = "none";
+            break;
+        
+		default:
+			inter.display = "none";
+	}
+}
+
+function gestNiveaux(idVideo) {
+
+    deleteChild("inter tete niveau button");	// on supprime l'existant
+
+    let button = document.querySelector("inter tete niveau button");
+    let span = document.createElement("span");
+
+    for (let i=0; i < 3; i++) {
+        span.id = "level" + (i+1);
+        span.className = ((i+1) === niveauQuest ? "badge badge-current badge-light" : "badge badge-light");
+		span.setAttribute("onclick","fNiveaux("+ (i + 1) + "," + idVideo +");"); 
+		span.setAttribute("title", nbQuests[i+1].niv);
+		span.setAttribute("alt", nbQuests[i+1].niv);
+        span.innerHTML = (i + 1);
+        button.appendChild(span);
+        span = document.createElement("span");
+    }
+}
+
+
+function scanQuestion() {
+	//let actions = video[1];
+
+	// init
+	nbQuests[1].nb = 0;		// niveau débutant
+	nbQuests[2].nb = 0;		// niveau confirmé
+	nbQuests[3].nb = 0;		// niveau expert
+	nbQuests[1].points = 0;	// niveau débutant
+	nbQuests[2].points = 0;	// niveau confirmé
+	nbQuests[3].points = 0;	// niveau expert
+
+	let niv = 0;
+
+	// scanne des actions et imputation des points ou pas
+	for (let ind = 0; ind < arrayAssoSize(actions); ind++) {
+		if((actions[ind].act === "Question")) {
+			// calcul du compteur
+			switch (actions[ind].niveau) {
+				case "DEBUTANT":
+					niv = 1;
+					break;
+				case "CONFIRME":
+					niv = 2;
+					break;
+				case "EXPERT":
+					niv = 3;
+					break;
+				default:
+					niv = 0;
+			}
+				//niv = (actions[ind].niveau === "DEBUTANT" ? 1: actions[ind].niveau === "CONFIRME" ? 2 : 0);
+				nbQuests[niv].nb++;	// nombre de Questions du nouveau niveau
+				nbQuests[niv].points+= actions[ind].reponse.points;	// nombre de points MAX du nouveau niveau
+		}
+	}
+	// MAJ boutons niveaux
+	document.getElementById("level1").style.display = (nbQuests[1].nb > 0 ? "flex" : "none");
+	document.getElementById("level2").style.display = (nbQuests[2].nb > 0 ? "flex" : "none");
+	document.getElementById("level3").style.display = (nbQuests[3].nb > 0 ? "flex" : "none");
+
+	return nbQuests;	// on renvoi le nombre de Question du nouveau niveau
+}
+
+function gestJauge() {
+    let pourCent = 0;
+    //MAJ de la jauge
+    let jauge = document.getElementsByClassName("progress-bar");
+    
+    if (numQuestion == 0) {
+        jauge[0].setAttribute("aria-valuenow", 0);
+        jauge[0].setAttribute("style", "width: 0%");
+        jauge[0].innerHTML = nbQuests[niveauQuest].nb + " Questions";
+    } else {
+        jauge[0].setAttribute("aria-valuenow", numQuestion);
+        pourCent = numQuestion / nbQuests[niveauQuest].nb * 100;
+        jauge[0].setAttribute("style", "width: " + pourCent + "%");
+        jauge[0].innerHTML = numQuestion;
+    }
+}
+
+function addScore(value) {
+    if (value === 0) {
+        videoNbPoint = 0;
+    } else {
+        videoNbPoint = videoNbPoint + value;
+    }
+    var score = ('0' + videoNbPoint.toString()).substr(-2);       // on a le score avec deux digits
+    var scoreMax = ('0' + nbQuests[niveauQuest].points.toString()).substr(-2);
+
+    let myColor = ((videoNbPoint / nbQuests[niveauQuest].points) > 0.5 ? 'green' : 'black');
+    let myScore = '<span style="color:'+ myColor +';">' + score + '</span>';
+
+    document.querySelector("inter suite score p").innerHTML = myScore + ':' + scoreMax;
 }

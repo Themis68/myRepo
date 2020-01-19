@@ -24,5 +24,18 @@ var script1 = [
             points: 2,
             temps: "00:01:00"
         }
+    },
+    {
+        number: 3,
+        question: {
+            libelle: "Combien de joueurs faut-il sur la feuille de match à une équipe u18 pour pouvoir jouer au minimum ?"
+        },
+        attributs: ["14","7","8","11"],
+        reponse: {
+            solution: 3,
+            loi: "Loi_04",
+            points: 2,
+            temps: "00:01:00"
+        }
     }
 ]
