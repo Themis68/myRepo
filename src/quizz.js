@@ -158,9 +158,9 @@ function gestionBoard(etape, objet) {
 		case "selectQuizz":
 			document.querySelector("inter tete titre p").innerHTML = "Quizz<br>" + objet.description;
 			document.querySelector("inter tete points").style.display = "none";
-			gestNiveaux(objet.badge);
-			/*scanQuestion();	// analyse du scénario
-            gestJauge();	// MAJ de la jauge
+			gestNiveaux(objet);
+			scanQuestion(objet);	// analyse du scénario
+           /* gestJauge();	// MAJ de la jauge
             document.querySelector("inter question p").style.display = "flex";
 			document.querySelector("inter question p").innerHTML = quizz[0].description;
 			document.querySelector("inter propositions").style.display = "none";
@@ -180,58 +180,30 @@ function gestionBoard(etape, objet) {
 	}
 }
 
-function gestNiveaux(id) {
+function gestNiveaux(quizz) {
+	let idBadge = quizz.badge;
 
     let badge = document.querySelector("inter tete niveau");
 	img = document.createElement("img");
-	img.setAttribute("title", nbQuests[id+1].niv);
-	img.setAttribute("alt", nbQuests[id+1].niv);
-	img.setAttribute("src", pathBadges + "badge_"+id+".png");
+	img.setAttribute("title", nbQuests[idBadge+1].niv);
+	img.setAttribute("alt", nbQuests[idBadge+1].niv);
+	img.setAttribute("src", pathBadges + "badge_"+idBadge+".png");
     badge.appendChild(img);
 
 }
 
 
-function scanQuestion() {
-	//let actions = video[1];
-
-	// init
-	nbQuests[1].nb = 0;		// niveau débutant
-	nbQuests[2].nb = 0;		// niveau confirmé
-	nbQuests[3].nb = 0;		// niveau expert
-	nbQuests[1].points = 0;	// niveau débutant
-	nbQuests[2].points = 0;	// niveau confirmé
-	nbQuests[3].points = 0;	// niveau expert
-
+function scanQuestion(fichier) {
+let script = eval("script" + "1");
+console.log(script);
 	let niv = 0;
 
 	// scanne des actions et imputation des points ou pas
-	for (let ind = 0; ind < arrayAssoSize(actions); ind++) {
-		if((actions[ind].act === "Question")) {
-			// calcul du compteur
-			switch (actions[ind].niveau) {
-				case "DEBUTANT":
-					niv = 1;
-					break;
-				case "CONFIRME":
-					niv = 2;
-					break;
-				case "EXPERT":
-					niv = 3;
-					break;
-				default:
-					niv = 0;
-			}
-				//niv = (actions[ind].niveau === "DEBUTANT" ? 1: actions[ind].niveau === "CONFIRME" ? 2 : 0);
-				nbQuests[niv].nb++;	// nombre de Questions du nouveau niveau
-				nbQuests[niv].points+= actions[ind].reponse.points;	// nombre de points MAX du nouveau niveau
-		}
+	for (let ind = 0; ind < arrayAssoSize(script); ind++) {
+				nbQuests[niv].nb++;	// nombre de Questions
+				nbQuests[niv].points+= script[ind].points;	// nombre de points MAX
 	}
-	// MAJ boutons niveaux
-	document.getElementById("level1").style.display = (nbQuests[1].nb > 0 ? "flex" : "none");
-	document.getElementById("level2").style.display = (nbQuests[2].nb > 0 ? "flex" : "none");
-	document.getElementById("level3").style.display = (nbQuests[3].nb > 0 ? "flex" : "none");
-
+	console.log(nbQuests);
 	return nbQuests;	// on renvoi le nombre de Question du nouveau niveau
 }
 
