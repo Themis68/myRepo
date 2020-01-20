@@ -5,7 +5,7 @@ var scenario = [
             titre: "Les corners",
             poster: "corner.png",
             fichier: "bases_01.js",
-            description: "Questionnaire sur les corners",
+            description: "Questionnaire sur les bases du corner",
             loi: "17",
             badge: 1,
             temps: "00:01:00"

@@ -15,9 +15,9 @@ var script1 = [
     {
         number: 2,
         question: {
-            libelle: "Combien de joueurs faut-il sur la feuille de match à une équipe u18 pour pouvoir jouer au minimum ?"
+            libelle: "Où est-il interdit de positionner le ballon ?"
         },
-        attributs: ["14","7","8","11"],
+        attributs: ["sur le quart de cercle","dans le quart de cercle","en-dehors du quart de cercle","sur le trait de touche"],
         reponse: {
             solution: 3,
             loi: "Loi_04",
@@ -28,13 +28,13 @@ var script1 = [
     {
         number: 3,
         question: {
-            libelle: "Combien de joueurs faut-il sur la feuille de match à une équipe u18 pour pouvoir jouer au minimum ?"
+            libelle: "Quand le joueur peut-il jouer le corner ?"
         },
-        attributs: ["14","7","8","11"],
+        attributs: ["au coup de sifflet","quand il veut","après le coup de sifflet","la minute qui suit le coup de sifflet"],
         reponse: {
             solution: 3,
             loi: "Loi_04",
-            points: 2,
+            points: 3,
             temps: "00:01:00"
         }
     }

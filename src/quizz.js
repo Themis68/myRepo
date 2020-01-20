@@ -5,17 +5,18 @@ var timeCode = '';
 var avatar = '';
 var myURLcomplete = document.location.href;
 var myURL  = myURLcomplete.substring( 0 ,myURLcomplete.lastIndexOf( "/" ) );
-var videoNbPoint = 0;		// nb points en cours
+var quizzNbPoint = 0;		// nb points en cours
 var stepBarre = 0;			// % de progression pour une Question
 var stepDone = 0;			// % de progression effectué
-var niveauQuest = 1		//niveau par défaut au démarrage
 var idQuizz = null;		// quizz en cours
 var nbQuests = [
 	{niv: "COURANT", nb: 0, points: 0},
-	{niv: "DEBUTANT", nb: 0, points: 0},
-	{niv: "CONFIRME", nb: 0, points: 0},
-	{niv: "EXPERT", nb: 0, points: 0}
+	{niv: "j'apprends", nb: 0, points: 0},
+	{niv: "je comprends", nb: 0, points: 0},
+	{niv: "j'applique", nb: 0, points: 0},
+	{niv: "j'explique", nb: 0, points: 0}
 ];		// le niveau 0 est le niveau en cours
+var niveauQuest = 1		//niveau par défaut au démarrage
 var questionsFaites = [];
 var seqUsed = -1;	// valeur de l'étape de la séquence qui a été traitée
 var hauteurContent = 0; // hauteur de la zone CONTENT récupérée lors du chargement
@@ -136,31 +137,18 @@ function fBascule(event) {
 }
 
 function switchQuizz(n) {
-//
-    // affectation de la nouvelle vidéo et des attributs liés
-    //;
-
-
 	if (n > arrayAssoSize(scenario)) {
-		// vérifie si l'index de la vidéo existe dans le fichier tableau.js
+		// vérifie si l'index du quizz existe dans le fichier catalogue.js
 		n = 0;
 		return false;
 	} else {
-		// MAJ videos
-		idQuizz = n;		// 1 = première vidéo
-		quizz = scenario[n-1];    // recup scénario de la vidéo
-		idQuizzOn = n; //video[0].id;
-		
-		//
-		// travail sur les actions et l'IHM associée
-		//
-		actions = quizz[1];    // recup tableau des actions (position 3)
+		idQuizz = n;		// 1 = premier quizz
+		quizz = scenario[n-1];    // recup scénario du quizz
+		idQuizzOn = n;
+		actions = quizz.fichier;    // recup tableau des actions (position 3)
+		numQuestion = 0;	// on ré-initialise le nombre de questions
 
-		numQuestion = 0;	// on ré-initialise le nombre e questions
-
-		let inter = document.getElementById("inter");
-		gestionBoard("selectQuizz");
-		document.querySelector("inter").style.display = "flex";
+		gestionBoard("selectQuizz", quizz[0]);	// on passe les infos sur le quizz sélectionné
 	}
 }
 
@@ -168,10 +156,10 @@ function gestionBoard(etape, objet) {
 	let inter = document.querySelector("inter");
 	switch (etape) {
 		case "selectQuizz":
-			document.querySelector("inter tete titre p").innerHTML = "Match";
+			document.querySelector("inter tete titre p").innerHTML = "Quizz<br>" + objet.description;
 			document.querySelector("inter tete points").style.display = "none";
-			gestNiveaux(idQuizzOn);
-			scanQuestion();	// analyse du scénario
+			gestNiveaux(objet.badge);
+			/*scanQuestion();	// analyse du scénario
             gestJauge();	// MAJ de la jauge
             document.querySelector("inter question p").style.display = "flex";
 			document.querySelector("inter question p").innerHTML = quizz[0].description;
@@ -183,7 +171,8 @@ function gestionBoard(etape, objet) {
 			document.querySelector("inter suite score p").style.display = "none";
 			addScore(0);	// on init même si c'est masqué
 			// next
-			document.querySelector("inter suite next img").style.display = "none";
+			document.querySelector("inter suite next img").style.display = "none";*/
+			document.querySelector("inter").style.display = "flex";
             break;
         
 		default:
@@ -191,23 +180,15 @@ function gestionBoard(etape, objet) {
 	}
 }
 
-function gestNiveaux(idVideo) {
+function gestNiveaux(id) {
 
-    deleteChild("inter tete niveau button");	// on supprime l'existant
+    let badge = document.querySelector("inter tete niveau");
+	img = document.createElement("img");
+	img.setAttribute("title", nbQuests[id+1].niv);
+	img.setAttribute("alt", nbQuests[id+1].niv);
+	img.setAttribute("src", pathBadges + "badge_"+id+".png");
+    badge.appendChild(img);
 
-    let button = document.querySelector("inter tete niveau button");
-    let span = document.createElement("span");
-
-    for (let i=0; i < 3; i++) {
-        span.id = "level" + (i+1);
-        span.className = ((i+1) === niveauQuest ? "badge badge-current badge-light" : "badge badge-light");
-		span.setAttribute("onclick","fNiveaux("+ (i + 1) + "," + idVideo +");"); 
-		span.setAttribute("title", nbQuests[i+1].niv);
-		span.setAttribute("alt", nbQuests[i+1].niv);
-        span.innerHTML = (i + 1);
-        button.appendChild(span);
-        span = document.createElement("span");
-    }
 }
 
 
