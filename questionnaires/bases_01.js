@@ -1,6 +1,7 @@
 var script1 = [               
     {
         number: 1,
+        niveau: 1,
         question: {
             libelle: "Combien y-a-t-il de poteaux de corner au minimum pour valider le match ?"
         },
@@ -14,6 +15,7 @@ var script1 = [
     },
     {
         number: 2,
+        niveau: 2,
         question: {
             libelle: "Où est-il interdit de positionner le ballon ?"
         },
@@ -27,6 +29,7 @@ var script1 = [
     },
     {
         number: 3,
+        niveau: 1,
         question: {
             libelle: "Quand le joueur peut-il jouer le corner ?"
         },

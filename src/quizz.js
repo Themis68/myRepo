@@ -158,10 +158,10 @@ function gestionBoard(etape, objet) {
 		case "selectQuizz":
 			document.querySelector("inter tete titre p").innerHTML = "Quizz<br>" + objet.description;
 			document.querySelector("inter tete points").style.display = "none";
-			gestNiveaux(objet);
+			gestNiveaux(objet);		// calcul des niveaux
 			scanQuestion(objet);	// analyse du scénario
-           /* gestJauge();	// MAJ de la jauge
-            document.querySelector("inter question p").style.display = "flex";
+            gestJauge();			// MAJ de la jauge
+            /*document.querySelector("inter question p").style.display = "flex";
 			document.querySelector("inter question p").innerHTML = quizz[0].description;
 			document.querySelector("inter propositions").style.display = "none";
             document.querySelector("inter complement").style.display = "flex";
@@ -188,22 +188,45 @@ function gestNiveaux(quizz) {
 	img.setAttribute("title", nbQuests[idBadge+1].niv);
 	img.setAttribute("alt", nbQuests[idBadge+1].niv);
 	img.setAttribute("src", pathBadges + "badge_"+idBadge+".png");
-    badge.appendChild(img);
+	badge.appendChild(img);
+	
+	deleteChild("inter tete niveau button");	// on supprime l'existant
+
+    let button = document.querySelector("inter tete niveau button");
+	let span = document.createElement("span");
+
+    for (let i=1; i < arrayAssoSize(nbQuests); i++) {
+		console.log(i);
+        span.id = "level" + (i);
+        span.className = ((i) === niveauQuest ? "badge badge-current badge-light" : "badge badge-light");
+		span.setAttribute("onclick","fNiveaux("+ i+ "," + idQuizz +");"); 
+		span.setAttribute("title", nbQuests[i].niv);
+		span.setAttribute("alt", nbQuests[i].niv);
+        span.innerHTML = i ;
+        button.appendChild(span);
+        span = document.createElement("span");
+    }
 
 }
 
-
 function scanQuestion(fichier) {
 let script = eval("script" + "1");
-console.log(script);
-	let niv = 0;
+	// init
+	for (let ind = 0; ind < arrayAssoSize(script); ind++) {
+		//niv = (actions[ind].niveau === "DEBUTANT" ? 1: actions[ind].niveau === "CONFIRME" ? 2 : 0);
+		nbQuests[ind].nb = 0;	// nombre de Questions du nouveau niveau
+		nbQuests[ind].points = 0;	// nombre de points MAX du nouveau niveau
+	}
 
 	// scanne des actions et imputation des points ou pas
 	for (let ind = 0; ind < arrayAssoSize(script); ind++) {
-				nbQuests[niv].nb++;	// nombre de Questions
-				nbQuests[niv].points+= script[ind].points;	// nombre de points MAX
+		nbQuests[script[ind].niveau].nb++;	// nombre de Questions du nouveau niveau
+		nbQuests[script[ind].niveau].points+= script[ind].reponse.points;	// nombre de points MAX du nouveau niveau
 	}
-	console.log(nbQuests);
+
+	nbQuests[0].nb = nbQuests[niveauQuest].nb;	// nombre de Questions du nouveau niveau
+	nbQuests[0].points = nbQuests[niveauQuest].points;
+
 	return nbQuests;	// on renvoi le nombre de Question du nouveau niveau
 }
 
