@@ -19,7 +19,7 @@ var scenario = [
             fichier: "bases_02.js",
             description: "Questionnaire sur les joueurs",
             loi: "03",
-            badge: 1,
+            badge: 3,
             temps: "00:01:00"
         }
     ],
@@ -55,7 +55,7 @@ var scenario = [
             fichier: "bases_04.js",
             description: "Questionnaire sur les bases de l'arbitrage (niveau 1)",
             loi: "15",
-            badge: 3,
+            badge: 1,
             temps: "00:01:00"
         }
     ]

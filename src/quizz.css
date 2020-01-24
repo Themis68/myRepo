@@ -218,31 +218,13 @@ main content inter tete niveau {
   flex: 1;
   padding-left: 15px;
 }
-main content inter tete niveau .btn {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-end;
-  background-color: transparent;
-  border-color: transparent;
-  padding: 0px;
-}
-main content inter tete niveau .btn:hover {
-  background-color: transparent;
-  border-color: transparent;
-}
-main content inter tete niveau .badge {
+main content inter tete niveau img {
   display: flex;
   margin-right: 1px;
   font-weight: 100;
   font-size: 1vw;
   text-align: center;
-}
-main content inter tete niveau .badge-current {
-  display: flex;
-  margin-right: 1px;
-  font-weight: 700;
-  font-size: 1.25vw;
-  text-align: center;
+  width: 70%;
 }
 main content inter tete titre {
   flex: 10;
@@ -254,11 +236,13 @@ main content inter tete titre p {
   flex: 2;
   text-shadow: 1px 2px 0 rgba(0, 0, 0, 0.4), -1px -2px 0 #ffffff;
 }
-main content inter tete points {
+main content inter tete score {
   display: flex;
+  flex-direction: row;
+  justify-content: center;
   flex: 2;
 }
-main content inter tete points p {
+main content inter tete score p {
   display: flex;
   font-family: scoreboardregular;
   font-size: 2vw;
@@ -366,18 +350,6 @@ main content inter suite {
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
 }
-main content inter suite score {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  flex: 2;
-}
-main content inter suite score p {
-  display: flex;
-  font-family: scoreboardregular;
-  font-size: 2vw;
-  color: black;
-}
 main content inter suite next {
   display: flex;
   flex-direction: row;
@@ -386,7 +358,7 @@ main content inter suite next {
 }
 main content inter suite next img {
   display: flex;
-  width: 50%;
+  width: 25%;
 }
 .cadre {
   border-color: white;

@@ -175,36 +175,14 @@ main {
                     flex-wrap: nowrap;
                     flex: 1;
                     padding-left: 15px;
-                    
-                    .btn {
-                        display: flex;
-                        flex-direction: row;
-                        align-items: flex-end;
-                        background-color: transparent;
-                        border-color: transparent;
-                        padding: 0px;
-                    }
 
-                    .btn:hover {
-                        background-color: transparent;
-                        border-color: transparent;
-                    }
-
-                    .badge {
+                    img {
                         display: flex;
                         margin-right: 1px;
                         font-weight: 100;
                         font-size: 1vw;
                         text-align: center;
-                    }
-
-                    .badge-current {
-                        display: flex;
-                        margin-right: 1px;
-                        font-weight: 700;
-                        font-size: 1.25vw;
-                        text-align: center;
-
+                        width: 70%;
                     }
                 }
                 
@@ -220,8 +198,10 @@ main {
                     }
                 }
 
-                points {
+                score {
                     display: flex;
+                    flex-direction: row;
+                    justify-content: center;
                     flex: 2;
 
                     p {
@@ -231,7 +211,6 @@ main {
                         color:black;
                     }
                 }
-               
             }
 
             jauge {
@@ -352,20 +331,6 @@ main {
                 border-bottom-left-radius: 20px;
                 border-bottom-right-radius: 20px;
 
-                score {
-                    display: flex;
-                    flex-direction: row;
-                    justify-content: center;
-                    flex: 2;
-
-                    p {
-                        display: flex;
-                        font-family: scoreboardregular;
-                        font-size: 2vw; // taille variable selon largeur du viewport
-                        color:black;
-                    }
-                }
-
                 next {
                     display: flex;
                     flex-direction: row;
@@ -374,9 +339,8 @@ main {
                     
                     img {
                         display: flex;
-                        width: 50%;
+                        width: 25%;
                     }
-
                 }
             }
         }

@@ -117,6 +117,20 @@ function creerVignettes(id) {
 	}
 }
 
+function showContent(etat) {
+	// ce n'est appelé que si on peut voir les vignettes car c'ets le clic dessus quki affiche !!!!
+	let carousel = document.getElementById("carousel");
+
+	// le DISPLAY du CAROUSEL a un effet sur la taille de CONTENT qui s'agrandit mais qui dépasse FOOTER
+	carousel.style.display =  (etat === true ? "none" : "flex");
+
+	let bascule_img = document.querySelector("bascule img");
+	bascule_img.setAttribute("src",pathImages  +   (etat === true ? "fleche_fermee.png" : "fleche_ouverte.png"));	// MAJ icone bascule
+
+	let bascule_titre = document.querySelector("bascule span");
+	bascule_titre.innerHTML = (etat === true ? "cliquez sur cet icône pour afficher les matchs disponibles" : "cliquez sur la vignette du match que vous souhaitez arbitrer");
+}
+
 function fBascule(event) {
 	let carousel = document.querySelector("carousel");
 	let span = document.querySelector("bascule span");
@@ -148,6 +162,8 @@ function switchQuizz(n) {
 		actions = quizz.fichier;    // recup tableau des actions (position 3)
 		numQuestion = 0;	// on ré-initialise le nombre de questions
 
+		// affichage de la zone VIDEO
+		showContent(true);
 		gestionBoard("selectQuizz", quizz[0]);	// on passe les infos sur le quizz sélectionné
 	}
 }
@@ -157,21 +173,20 @@ function gestionBoard(etape, objet) {
 	switch (etape) {
 		case "selectQuizz":
 			document.querySelector("inter tete titre p").innerHTML = "Quizz<br>" + objet.description;
-			document.querySelector("inter tete points").style.display = "none";
 			gestNiveaux(objet);		// calcul des niveaux
 			scanQuestion(objet);	// analyse du scénario
             gestJauge();			// MAJ de la jauge
             /*document.querySelector("inter question p").style.display = "flex";
 			document.querySelector("inter question p").innerHTML = quizz[0].description;
-			document.querySelector("inter propositions").style.display = "none";
+			document.querySelector("inter propositions").style.display = "none";*/
             document.querySelector("inter complement").style.display = "flex";
-            document.querySelector("inter complement p").innerHTML = "Vous allez analyser le match avec des questions de niveau " + nbQuests[niveauQuest].niv + ".<br><br>Cliquez sur le bouton Play sur la vidéo pour déclencher le visionnage du match"
+            document.querySelector("inter complement p").innerHTML = "Vous allez démarrer le quizz pour obtenir le niveau '" + nbQuests[niveauQuest].niv + "'."
             document.querySelector("inter complement img").style.display = "none";
 			// score
-			document.querySelector("inter suite score p").style.display = "none";
+			document.querySelector("inter tete score p").style.display = "none";
 			addScore(0);	// on init même si c'est masqué
 			// next
-			document.querySelector("inter suite next img").style.display = "none";*/
+			document.querySelector("inter suite next img").style.display = "display";
 			document.querySelector("inter").style.display = "flex";
             break;
         
@@ -185,28 +200,11 @@ function gestNiveaux(quizz) {
 
     let badge = document.querySelector("inter tete niveau");
 	img = document.createElement("img");
+	img.id = "badge"
 	img.setAttribute("title", nbQuests[idBadge+1].niv);
 	img.setAttribute("alt", nbQuests[idBadge+1].niv);
 	img.setAttribute("src", pathBadges + "badge_"+idBadge+".png");
 	badge.appendChild(img);
-	
-	deleteChild("inter tete niveau button");	// on supprime l'existant
-
-    let button = document.querySelector("inter tete niveau button");
-	let span = document.createElement("span");
-
-    for (let i=1; i < arrayAssoSize(nbQuests); i++) {
-		console.log(i);
-        span.id = "level" + (i);
-        span.className = ((i) === niveauQuest ? "badge badge-current badge-light" : "badge badge-light");
-		span.setAttribute("onclick","fNiveaux("+ i+ "," + idQuizz +");"); 
-		span.setAttribute("title", nbQuests[i].niv);
-		span.setAttribute("alt", nbQuests[i].niv);
-        span.innerHTML = i ;
-        button.appendChild(span);
-        span = document.createElement("span");
-    }
-
 }
 
 function scanQuestion(fichier) {
@@ -259,5 +257,5 @@ function addScore(value) {
     let myColor = ((videoNbPoint / nbQuests[niveauQuest].points) > 0.5 ? 'green' : 'black');
     let myScore = '<span style="color:'+ myColor +';">' + score + '</span>';
 
-    document.querySelector("inter suite score p").innerHTML = myScore + ':' + scoreMax;
+    document.querySelector("inter tete score p").innerHTML = myScore + ':' + scoreMax;
 }
