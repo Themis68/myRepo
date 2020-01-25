@@ -176,6 +176,9 @@ main menu carousel {
   display: flex;
   align-self: center;
 }
+main menu carousel .titre {
+  font-size: 1.5vw;
+}
 main content {
   width: 95vw;
   display: flex;
