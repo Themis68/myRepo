@@ -1,6 +1,5 @@
 var scripts = [];
 var actions = [];
-var actionEnCours = [];
 var timeCode = '';
 var avatar = '';
 var myURLcomplete = document.location.href;
@@ -9,6 +8,10 @@ var quizzNbPoint = 0;		// nb points en cours
 var stepBarre = 0;			// % de progression pour une Question
 var stepDone = 0;			// % de progression effectué
 var idQuizz = null;		// quizz en cours
+var tabMessages = [
+	"cliquez sur la vignette du quizz que vous souhaitez jouer",
+	"cliquez sur cet icône pour afficher les quizz disponibles"
+]
 var nbQuests = [
 	{niv: "COURANT", nb: 0, points: 0},
 	{niv: "j'apprends", nb: 0, points: 0},
@@ -93,17 +96,15 @@ function creerVignettes(id) {
 		// badge
 		let myF = document.createElement("img");
 		myF.className = "carouselFanion";
-		myF.setAttribute("title", "badge" + i);
-		myF.setAttribute("src", pathBadges + "badge_"+(scenario[i][0].badge + ".png" || "fff.png'"));
+		myF.setAttribute("title", "niveau : " + nbQuests[scenario[i][0].niveau].niv);
+		myF.setAttribute("src", pathBadges + "badge" +(scenario[i][0].niveau + ".png" || "fff.png'"));
 		myCaption.appendChild(myF);
 		
-        let myP = document.createElement("p");        
+		let myP = document.createElement("p");    
 		myP.innerHTML = scenario[i][0].titre;
 		myCaption.appendChild(myP);
-		myCaption.className = "carousel-caption d-none d-md-block";
+		myCaption.className = "carousel-caption d-none d-md-block titre";
 		myCaption.setAttribute("onclick", 'javascript:switchQuizz('+ scenario[i][0].id +');');	// mettre ici car cette DIV est au-dessus de l'image
-		myCaption.setAttribute("title", (scenario[i][0].titre));
-		myCaption.setAttribute("alt", (scenario[i][0].titre));
 
 		myDiv.appendChild(myImg);
 		myDiv.appendChild(myCaption);
@@ -128,7 +129,7 @@ function showContent(etat) {
 	bascule_img.setAttribute("src",pathImages  +   (etat === true ? "fleche_fermee.png" : "fleche_ouverte.png"));	// MAJ icone bascule
 
 	let bascule_titre = document.querySelector("bascule span");
-	bascule_titre.innerHTML = (etat === true ? "cliquez sur cet icône pour afficher les matchs disponibles" : "cliquez sur la vignette du match que vous souhaitez arbitrer");
+	bascule_titre.innerHTML = (etat === true ? tabMessages[1] : tabMessages[0]);
 }
 
 function fBascule(event) {
@@ -140,13 +141,13 @@ function fBascule(event) {
 		carousel.style.display = "flex";
 		this.src = pathImages + "fleche_ouverte.png";
 		this.alt = "affiche la liste des matchs";
-		span.innerHTML = "cliquez sur la vignette du quizz que vous souhaitez jouer";
+		span.innerHTML = tabMessages[0];
 	} else {
 		// on ferme
 		carousel.style.display = "none";
 		this.src = pathImages + "fleche_fermee.png";
 		this.alt = "masque la liste des matchs";
-		span.innerHTML = "cliquez sur cet icône pour afficher les quizz disponibles";
+		span.innerHTML = tabMessages[1];
 	}	
 }
 
@@ -156,29 +157,26 @@ function switchQuizz(n) {
 		n = 0;
 		return false;
 	} else {
-		idQuizz = n;		// 1 = premier quizz
-		quizz = scenario[n-1];    // recup scénario du quizz
-		idQuizzOn = n;
-		actions = quizz.fichier;    // recup tableau des actions (position 3)
+		quizz = scenario[n-1];    		// recup infos du quizz
+		questions = eval("script" + n);	// recup questions du quizz
 		numQuestion = 0;	// on ré-initialise le nombre de questions
 
-		// affichage de la zone VIDEO
+		// affichage de la zone INTER
 		showContent(true);
 		gestionBoard("selectQuizz", quizz[0]);	// on passe les infos sur le quizz sélectionné
 	}
 }
 
-function gestionBoard(etape, objet) {
+function gestionBoard(etape, infoQuizzSelect) {
 	let inter = document.querySelector("inter");
 	switch (etape) {
 		case "selectQuizz":
-			document.querySelector("inter tete titre p").innerHTML = "Quizz<br>" + objet.description;
-			gestNiveaux(objet);		// calcul des niveaux
-			scanQuestion(objet);	// analyse du scénario
-            gestJauge();			// MAJ de la jauge
-            /*document.querySelector("inter question p").style.display = "flex";
-			document.querySelector("inter question p").innerHTML = quizz[0].description;
-			document.querySelector("inter propositions").style.display = "none";*/
+			document.querySelector("inter tete titre p").innerHTML = "Quizz<br>" + infoQuizzSelect.description;
+			gestNiveaux(infoQuizzSelect.niveau);		// calcul des niveaux
+			scanQuestion(infoQuizzSelect.niveau);	// analyse du scénario
+            gestJauge(0, infoQuizzSelect.niveau);			// MAJ de la jauge
+            document.querySelector("inter question p").style.display = "none";
+			document.querySelector("inter propositions").style.display = "none";
             document.querySelector("inter complement").style.display = "flex";
             document.querySelector("inter complement p").innerHTML = "Vous allez démarrer le quizz pour obtenir le niveau '" + nbQuests[niveauQuest].niv + "'."
             document.querySelector("inter complement img").style.display = "none";
@@ -188,33 +186,63 @@ function gestionBoard(etape, objet) {
 			// next
 			document.querySelector("inter suite next img").style.display = "display";
 			document.querySelector("inter").style.display = "flex";
-            break;
+			break;
+			
+		case "InterQuestion":
+			document.querySelector("inter tete titre p").innerHTML = objet.act;
+            document.querySelector("inter tete points").style.display = "flex";
+            classSelector("set", "inter tete points p",  infoQuizzSelect.act);
+			document.querySelector("inter tete points p").innerHTML = "0" + infoQuizzSelect.reponse.points;
+			// jauge et niveaux
+            gestJauge();	// MAJ de la jauge
+            // question
+            document.querySelector("inter question p").style.display = "flex";
+			document.querySelector("inter question p").innerHTML = infoQuizzSelect.question.libelle;
+			// gestion des propositions
+			gestPropositions("afficher", infoQuizzSelect.attributs, infoQuizzSelect.reponse);
+			document.querySelector("inter propositions").style.display = "flex";
+			// complement
+			document.querySelector("inter complement").style.display = "none";
+			// Suite
+			//document.querySelector("inter suite").style.display = "flex";
+            // replay
+            if (replaysFaits.indexOf(infoQuizzSelect.step) < 0) {
+                // pas traité encore
+                document.querySelector("inter suite replay span").style.display = (infoQuizzSelect.question.reculReplay ? "flex" : "none");
+                document.querySelector("inter suite replay span").innerHTML = infoQuizzSelect.question.reculReplay;
+                document.querySelector("inter suite replay span").setAttribute("onclick","fReplay(" + (infoQuizzSelect.question.reculReplay) + ");");
+            } else {
+                document.querySelector("inter suite replay span").style.display = "none";
+            }
+			// score
+			document.querySelector("inter suite score p").style.display = "flex";
+			// next
+			document.querySelector("inter suite next img").style.display = "none";
+			break;
         
 		default:
 			inter.display = "none";
 	}
 }
 
-function gestNiveaux(quizz) {
-	let idBadge = quizz.badge;
-
-    let badge = document.querySelector("inter tete niveau");
+function gestNiveaux(niveau) {
+    let myBadge = document.querySelector("inter tete niveau");
 	img = document.createElement("img");
 	img.id = "badge"
-	img.setAttribute("title", nbQuests[idBadge+1].niv);
-	img.setAttribute("alt", nbQuests[idBadge+1].niv);
-	img.setAttribute("src", pathBadges + "badge_"+idBadge+".png");
-	badge.appendChild(img);
+	img.setAttribute("title", nbQuests[niveau].niv);
+	img.setAttribute("alt", nbQuests[niveau].niv);
+	img.setAttribute("src", pathBadges + "badge" + niveau + ".png");
+	myBadge.appendChild(img);
 }
 
-function scanQuestion(fichier) {
-let script = eval("script" + "1");
+function scanQuestion(niveau) {
+let script = eval("script" + niveau);
 	// init
-	for (let ind = 0; ind < arrayAssoSize(script); ind++) {
-		//niv = (actions[ind].niveau === "DEBUTANT" ? 1: actions[ind].niveau === "CONFIRME" ? 2 : 0);
+	for (let ind = 0; ind < arrayAssoSize(nbQuests); ind++) {
 		nbQuests[ind].nb = 0;	// nombre de Questions du nouveau niveau
 		nbQuests[ind].points = 0;	// nombre de points MAX du nouveau niveau
 	}
+	console.log(nbQuests);
 
 	// scanne des actions et imputation des points ou pas
 	for (let ind = 0; ind < arrayAssoSize(script); ind++) {
@@ -222,26 +250,27 @@ let script = eval("script" + "1");
 		nbQuests[script[ind].niveau].points+= script[ind].reponse.points;	// nombre de points MAX du nouveau niveau
 	}
 
-	nbQuests[0].nb = nbQuests[niveauQuest].nb;	// nombre de Questions du nouveau niveau
-	nbQuests[0].points = nbQuests[niveauQuest].points;
+	niveauQuest = niveau;
+	nbQuests[0].nb = nbQuests[niveau].nb;	// nombre de Questions du nouveau niveau
+	nbQuests[0].points = nbQuests[niveau].points;
 
 	return nbQuests;	// on renvoi le nombre de Question du nouveau niveau
 }
 
-function gestJauge() {
+function gestJauge(numQuest, niveau) {
     let pourCent = 0;
     //MAJ de la jauge
     let jauge = document.getElementsByClassName("progress-bar");
     
-    if (numQuestion == 0) {
+    if (numQuest == 0) {
         jauge[0].setAttribute("aria-valuenow", 0);
         jauge[0].setAttribute("style", "width: 0%");
-        jauge[0].innerHTML = nbQuests[niveauQuest].nb + " Questions";
+        jauge[0].innerHTML = nbQuests[niveau].nb + " Questions";
     } else {
-        jauge[0].setAttribute("aria-valuenow", numQuestion);
-        pourCent = numQuestion / nbQuests[niveauQuest].nb * 100;
+        jauge[0].setAttribute("aria-valuenow", numQuest);
+        pourCent = numQuest / nbQuests[niveau].nb * 100;
         jauge[0].setAttribute("style", "width: " + pourCent + "%");
-        jauge[0].innerHTML = numQuestion;
+        jauge[0].innerHTML = numQuest;
     }
 }
 
@@ -258,4 +287,23 @@ function addScore(value) {
     let myScore = '<span style="color:'+ myColor +';">' + score + '</span>';
 
     document.querySelector("inter tete score p").innerHTML = myScore + ':' + scoreMax;
+}
+
+function continuer() {
+	document.querySelector("inter suite next img").style.display = "none";  // masquer bouton CONTINUER
+
+
+	// gestion des propositions
+	gestionBoard("InterQuestion", questions[0]);	// on passe les infos sur la question suivante
+
+	/*if (numQuestion == 0) {
+		// démarrer
+		
+	} else {
+		// continuer
+		// MAJ jauge
+			numQuestion++;
+			gestJauge(numQuestion);
+
+	}*/
 }
