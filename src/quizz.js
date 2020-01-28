@@ -23,7 +23,7 @@ var niveauQuest = 1		//niveau par défaut au démarrage
 var questionsFaites = [];
 var seqUsed = -1;	// valeur de l'étape de la séquence qui a été traitée
 var hauteurContent = 0; // hauteur de la zone CONTENT récupérée lors du chargement
-var numQuestion = 0;	// numero de la Question
+var numQuestionOn = 0;	// numero de la Question
 
 // chemins
 var pathImages = "../images/";		// autres images
@@ -159,7 +159,6 @@ function switchQuizz(n) {
 	} else {
 		quizz = scenario[n-1];    		// recup infos du quizz
 		questions = eval("script" + n);	// recup questions du quizz
-		numQuestion = 0;	// on ré-initialise le nombre de questions
 
 		// affichage de la zone INTER
 		showContent(true);
@@ -167,14 +166,13 @@ function switchQuizz(n) {
 	}
 }
 
-function gestionBoard(etape, infoQuizzSelect) {
+function gestionBoard(etape, objet) {
 	let inter = document.querySelector("inter");
 	switch (etape) {
 		case "selectQuizz":
-			document.querySelector("inter tete titre p").innerHTML = "Quizz<br>" + infoQuizzSelect.description;
-			gestNiveaux(infoQuizzSelect.niveau);		// calcul des niveaux
-			scanQuestion(infoQuizzSelect.niveau);	// analyse du scénario
-            gestJauge(0, infoQuizzSelect.niveau);			// MAJ de la jauge
+			gestNiveaux(objet.niveau);		// calcul des niveaux
+			scanQuestion(objet.niveau);	// analyse du scénario
+            gestJauge(0, objet.niveau);			// MAJ de la jauge
             document.querySelector("inter question p").style.display = "none";
 			document.querySelector("inter propositions").style.display = "none";
             document.querySelector("inter complement").style.display = "flex";
@@ -189,20 +187,20 @@ function gestionBoard(etape, infoQuizzSelect) {
 			break;
 			
 		case "InterQuestion":
-			document.querySelector("inter tete titre p").innerHTML = objet.act;
-            document.querySelector("inter tete points").style.display = "flex";
-            classSelector("set", "inter tete points p",  infoQuizzSelect.act);
-			document.querySelector("inter tete points p").innerHTML = "0" + infoQuizzSelect.reponse.points;
-			// jauge et niveaux
-            gestJauge();	// MAJ de la jauge
-            // question
-            document.querySelector("inter question p").style.display = "flex";
-			document.querySelector("inter question p").innerHTML = infoQuizzSelect.question.libelle;
-			// gestion des propositions
-			gestPropositions("afficher", infoQuizzSelect.attributs, infoQuizzSelect.reponse);
-			document.querySelector("inter propositions").style.display = "flex";
 			// complement
 			document.querySelector("inter complement").style.display = "none";
+			// points
+            document.querySelector("inter points").style.display = "flex";
+			document.querySelector("inter points p").innerHTML = "0" + objet.reponse.points;
+			console.log(numQuestionOn, objet.niveau);
+			gestJauge(numQuestionOn, objet.niveau);	// MAJ de la jauge
+            // question
+            document.querySelector("inter question p").style.display = "flex";
+			document.querySelector("inter question p").innerHTML = objet.question.libelle;
+			// gestion des propositions
+			gestPropositions("afficher", objet.attributs, objet.reponse);
+			document.querySelector("inter propositions").style.display = "flex";
+/*
 			// Suite
 			//document.querySelector("inter suite").style.display = "flex";
             // replay
@@ -218,6 +216,7 @@ function gestionBoard(etape, infoQuizzSelect) {
 			document.querySelector("inter suite score p").style.display = "flex";
 			// next
 			document.querySelector("inter suite next img").style.display = "none";
+			*/
 			break;
         
 		default:
@@ -251,6 +250,7 @@ let script = eval("script" + niveau);
 	}
 
 	niveauQuest = niveau;
+	numQuestionOn = 0;
 	nbQuests[0].nb = nbQuests[niveau].nb;	// nombre de Questions du nouveau niveau
 	nbQuests[0].points = nbQuests[niveau].points;
 
@@ -291,19 +291,64 @@ function addScore(value) {
 
 function continuer() {
 	document.querySelector("inter suite next img").style.display = "none";  // masquer bouton CONTINUER
-
-
-	// gestion des propositions
-	gestionBoard("InterQuestion", questions[0]);	// on passe les infos sur la question suivante
-
-	/*if (numQuestion == 0) {
-		// démarrer
-		
+	if(numQuestionOn == nbQuests[niveauQuest].nb) {
+		// c'est la dernière question
+		numQuestionOn = 0;	// on ré-initialise le nombre de questions
 	} else {
-		// continuer
-		// MAJ jauge
-			numQuestion++;
-			gestJauge(numQuestion);
+		index = numQuestionOn;
+		// gestion des questions
+		while (questions[index].niveau != (niveauQuest+1)) {
+			index++;
+		}
+		numQuestionOn = index;	// si c'est la dernière question on aura 
+		gestionBoard("InterQuestion", questions[numQuestionOn-1]);	// on passe les infos sur la question -1 car la première est index 0
+	}
+}
 
-	}*/
+function gestPropositions(etape, attributs, reponse) {
+    let propositions = document.querySelector("inter propositions");
+    
+    let proposition  = document.createElement("proposition");
+    let loi = document.createElement("a");
+    let img = document.createElement("img");
+    let button = document.createElement("button");
+
+	switch(etape) {
+		case "afficher":
+            deleteChild("inter propositions");	// on supprime l'existant
+
+			for (let i=0; i < attributs.length; i++) {
+                proposition.id = "proposition-div-" + (i+1);
+
+                loi.id = "loi" + (i+1);
+                loi.href = '../lois/' + reponse.loi + '.pdf'; //myURL + '/lois/' + actionEnCours.reponse.loi + '.pdf';
+                loi.target = '_blank';
+                img.src = pathImages + "lois.png"; // myURL + "/images/lois.png";
+                loi.appendChild(img);
+                loi.setAttribute("style", "display:none");
+
+                proposition.appendChild(loi);
+
+				button.id = "proposition" + (i+1);
+				button.className = "btn btn-warning";
+                button.innerHTML = attributs[i];
+    
+                proposition.appendChild(button);
+                propositions.appendChild(proposition);
+
+                button = document.createElement("button");
+                loi = document.createElement("a");
+                img = document.createElement("img");
+                proposition = document.createElement("proposition");
+			}
+			// zone complement : on renseigne mais c'est masqué pour l'instant
+			//document.querySelector("inter complement p").innerHTML = reponse.libelle;
+            break;
+
+        case "bloquer":
+			for (let i=0; i < attributs.length; i++) {
+                document.getElementById("proposition" + (i+1)).removeAttribute("onClick");
+			}
+			break;
+	}
 }
