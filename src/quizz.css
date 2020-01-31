@@ -98,6 +98,9 @@ body {
              INTERACTION  
     FOOTER
 */
+.card-header {
+  justify-items: center;
+}
 #grey {
   filter: url(#grayscale);
   fill: red;
@@ -180,7 +183,7 @@ main menu carousel .titre {
   font-size: 1.5vw;
 }
 main content {
-  width: 95vw;
+  width: 60vw;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -274,50 +277,36 @@ main content inter question {
 main content inter question p {
   padding-left: 5px;
   padding-right: 5px;
-  padding-bottom: 10px;
+  padding-bottom: 20px;
   text-align: left;
-  font-size: 1.25vw;
+  font-size: 1.3vw;
   color: black;
 }
 main content inter propositions {
   display: flex;
   flex-direction: column;
-  justify-content: start;
+  justify-content: center;
   background-color: white;
   padding-left: 7px;
   padding-right: 7px;
   flex: 4;
 }
-main content inter propositions proposition {
-  display: block;
-  margin-bottom: 5px;
-}
-main content inter propositions proposition a {
-  position: absolute;
-  padding: 4px;
-  padding-left: 10px;
-  text-decoration: none;
-}
-main content inter propositions proposition a img {
+main content inter propositions div {
   display: flex;
-  flex: 1;
-  height: 4vh;
-  padding-right: 6px;
+  justify-content: space-around;
+  margin: 5px;
 }
-main content inter propositions proposition button {
-  flex: 11;
+main content inter propositions div div {
+  flex: 0.5;
+  max-width: none;
 }
-main content inter propositions proposition button .btn {
-  text-align: left;
-  font-size: 1.1vw;
-  line-height: 1.4;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
-  padding-top: 0.2rem;
-  padding-bottom: 0.2rem;
+main content inter propositions div div .card-header {
+  align-self: flex-start;
+  font-size: 3vw;
+}
+main content inter propositions div div .card-body {
+  align-self: center;
+  font-size: 2.5vw;
 }
 main content inter complement {
   background-color: white;

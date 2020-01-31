@@ -198,7 +198,7 @@ function gestionBoard(etape, objet) {
             document.querySelector("inter question p").style.display = "flex";
 			document.querySelector("inter question p").innerHTML = objet.question.libelle;
 			// gestion des propositions
-			gestPropositions("afficher", objet.attributs, objet.reponse);
+			gestPropositions("afficher", objet.attributs);
 			document.querySelector("inter propositions").style.display = "flex";
 /*
 			// Suite
@@ -305,50 +305,19 @@ function continuer() {
 	}
 }
 
-function gestPropositions(etape, attributs, reponse) {
-    let propositions = document.querySelector("inter propositions");
-    
-    let proposition  = document.createElement("proposition");
-    let loi = document.createElement("a");
-    let img = document.createElement("img");
-    let button = document.createElement("button");
+function gestPropositions(etape, attributs) {
 
-	switch(etape) {
-		case "afficher":
-            deleteChild("inter propositions");	// on supprime l'existant
-
-			for (let i=0; i < attributs.length; i++) {
-                proposition.id = "proposition-div-" + (i+1);
-
-                loi.id = "loi" + (i+1);
-                loi.href = '../lois/' + reponse.loi + '.pdf'; //myURL + '/lois/' + actionEnCours.reponse.loi + '.pdf';
-                loi.target = '_blank';
-                img.src = pathImages + "lois.png"; // myURL + "/images/lois.png";
-                loi.appendChild(img);
-                loi.setAttribute("style", "display:none");
-
-                proposition.appendChild(loi);
-
-				button.id = "proposition" + (i+1);
-				button.className = "btn btn-warning";
-                button.innerHTML = attributs[i];
-    
-                proposition.appendChild(button);
-                propositions.appendChild(proposition);
-
-                button = document.createElement("button");
-                loi = document.createElement("a");
-                img = document.createElement("img");
-                proposition = document.createElement("proposition");
+	//switch(etape) {
+		//case "afficher":
+			for (let i=0; i < 4; i++) {
+				document.getElementById("prop" + (i+1)).innerHTML = attributs[i];
 			}
-			// zone complement : on renseigne mais c'est masqué pour l'instant
-			//document.querySelector("inter complement p").innerHTML = reponse.libelle;
-            break;
+           // break;
 
-        case "bloquer":
+      /*  case "bloquer":
 			for (let i=0; i < attributs.length; i++) {
                 document.getElementById("proposition" + (i+1)).removeAttribute("onClick");
 			}
-			break;
-	}
+			break;*/
+	//}
 }

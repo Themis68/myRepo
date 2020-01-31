@@ -30,8 +30,15 @@ body {
              INTERACTION  
     FOOTER
 */
-
-// la séquence du code est importante car la lecture est linéaire 
+/// surcharge BOOTSTRAP
+.card-header {
+    justify-items: center;
+  }
+  
+  
+  
+  
+  // la séquence du code est importante car la lecture est linéaire 
 
 // classes pour la zone TETE
 #grey {
@@ -136,7 +143,7 @@ main {
     }
 
     content {
-        width: 95vw;   // on limite l'étalement des objets en largeur
+        width: 60vw;   // on limite l'étalement des objets en largeur
         display: flex;
         flex-direction: row;
         flex-wrap: nowrap;
@@ -244,9 +251,9 @@ main {
                 p {
                     padding-left: 5px;
                     padding-right: 5px;
-                    padding-bottom: 10px;
+                    padding-bottom: 20px;
                     text-align: left;
-                    font-size: 1.25vw; // taille variable selon largeur du viewport
+                    font-size: 1.30vw; // taille variable selon largeur du viewport
                     color:black;
                 }
             }
@@ -254,44 +261,30 @@ main {
             propositions {
                 display: flex;
                 flex-direction: column;
-                justify-content: start;
+                justify-content: center;
                 background-color: white;
                 padding-left: 7px;
                 padding-right: 7px;
                 flex: 4;
 
-                proposition {
-                    display: block;
-                    margin-bottom: 5px;
+                div {
+                    display: flex;
+                    justify-content: space-around;
+                    margin: 5px;
 
-                    a {
-                        position: absolute;
-                        padding: 4px;
-                        padding-left: 10px;
-                        text-decoration: none;
+                    div {
+                        flex: 0.5;
+                        max-width: none;
 
-                        img {
-                            display: flex;
-                            flex: 1;
-                            height: 4vh;
-                            padding-right: 6px;
+                        .card-header {
+                            align-self: flex-start;
+                            font-size: 3vw; // taille variable selon largeur du viewport
                         }
-                    }
 
-                    button {
-                        flex: 11;
 
-                        .btn {
-                            text-align: left;
-                            font-size: 1.1vw; // taille variable selon largeur du viewport
-                            line-height: 1.4;
-                            -webkit-border-radius: 5px;
-                            -moz-border-radius: 5px;
-                            border-radius: 5px;
-                            padding-left: 0.50rem;
-                            padding-right: 0.50rem;
-                            padding-top: 0.20rem;
-                            padding-bottom: 0.20rem;
+                        .card-body {
+                            align-self: center;
+                            font-size: 2.5vw; // taille variable selon largeur du viewport
                         }
                     }
                 }
