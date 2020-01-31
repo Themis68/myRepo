@@ -251,7 +251,7 @@ main content inter tete score {
 main content inter tete score p {
   display: flex;
   font-family: scoreboardregular;
-  font-size: 2vw;
+  font-size: 3vw;
   color: black;
 }
 main content inter jauge {
@@ -275,8 +275,8 @@ main content inter question {
   flex: 0.5;
 }
 main content inter question p {
-  padding-left: 5px;
-  padding-right: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
   padding-bottom: 20px;
   text-align: left;
   font-size: 1.3vw;
@@ -349,6 +349,16 @@ main content inter suite next {
   flex: 1;
 }
 main content inter suite next img {
+  display: flex;
+  width: 25%;
+}
+main content inter suite chrono {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex: 1;
+}
+main content inter suite chrono img {
   display: flex;
   width: 25%;
 }

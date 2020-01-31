@@ -183,12 +183,15 @@ function gestionBoard(etape, objet) {
 			addScore(0);	// on init même si c'est masqué
 			// next
 			document.querySelector("inter suite next img").style.display = "display";
+			document.querySelector("inter suite chrono img").style.display = "none";
 			document.querySelector("inter").style.display = "flex";
 			break;
 			
 		case "InterQuestion":
 			// complement
 			document.querySelector("inter complement").style.display = "none";
+			// score
+			document.querySelector("inter tete score p").style.display = "flex";
 			// points
             document.querySelector("inter points").style.display = "flex";
 			document.querySelector("inter points p").innerHTML = "0" + objet.reponse.points;
@@ -200,23 +203,10 @@ function gestionBoard(etape, objet) {
 			// gestion des propositions
 			gestPropositions("afficher", objet.attributs);
 			document.querySelector("inter propositions").style.display = "flex";
-/*
+
 			// Suite
-			//document.querySelector("inter suite").style.display = "flex";
-            // replay
-            if (replaysFaits.indexOf(infoQuizzSelect.step) < 0) {
-                // pas traité encore
-                document.querySelector("inter suite replay span").style.display = (infoQuizzSelect.question.reculReplay ? "flex" : "none");
-                document.querySelector("inter suite replay span").innerHTML = infoQuizzSelect.question.reculReplay;
-                document.querySelector("inter suite replay span").setAttribute("onclick","fReplay(" + (infoQuizzSelect.question.reculReplay) + ");");
-            } else {
-                document.querySelector("inter suite replay span").style.display = "none";
-            }
-			// score
-			document.querySelector("inter suite score p").style.display = "flex";
-			// next
-			document.querySelector("inter suite next img").style.display = "none";
-			*/
+			document.querySelector("inter suite next imp").style.display = "none";
+			document.querySelector("inter suite chrono img").style.display = "flex";
 			break;
         
 		default:

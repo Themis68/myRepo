@@ -218,7 +218,7 @@ main {
                     p {
                         display: flex;
                         font-family: scoreboardregular;
-                        font-size: 2vw; // taille variable selon largeur du viewport
+                        font-size: 3vw; // taille variable selon largeur du viewport
                         color:black;
                     }
                 }
@@ -249,8 +249,8 @@ main {
                 flex: 0.5;
 
                 p {
-                    padding-left: 5px;
-                    padding-right: 5px;
+                    padding-left: 10px;
+                    padding-right: 10px;
                     padding-bottom: 20px;
                     text-align: left;
                     font-size: 1.30vw; // taille variable selon largeur du viewport
@@ -329,6 +329,18 @@ main {
                 border-bottom-right-radius: 20px;
 
                 next {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    flex: 1;
+                    
+                    img {
+                        display: flex;
+                        width: 25%;
+                    }
+                }
+
+                chrono {
                     display: flex;
                     flex-direction: row;
                     justify-content: center;
