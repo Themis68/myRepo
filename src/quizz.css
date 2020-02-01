@@ -346,21 +346,23 @@ main content inter suite next {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  max-width: 15%;
   flex: 1;
-}
-main content inter suite next img {
-  display: flex;
-  width: 25%;
 }
 main content inter suite chrono {
-  display: flex;
-  flex-direction: row;
+  background-image: url("../images/cerclebleu.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
   justify-content: center;
-  flex: 1;
+  width: 60px;
+  height: 60px;
+  flex-grow: 1;
 }
-main content inter suite chrono img {
-  display: flex;
-  width: 25%;
+main content inter suite chrono p {
+  text-align: center;
+  font-size: 3vw;
+  color: white;
 }
 .cadre {
   border-color: white;

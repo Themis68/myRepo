@@ -24,6 +24,7 @@ var questionsFaites = [];
 var seqUsed = -1;	// valeur de l'étape de la séquence qui a été traitée
 var hauteurContent = 0; // hauteur de la zone CONTENT récupérée lors du chargement
 var numQuestionOn = 0;	// numero de la Question
+var tabQuestions = [];
 
 // chemins
 var pathImages = "../images/";		// autres images
@@ -182,8 +183,9 @@ function gestionBoard(etape, objet) {
 			document.querySelector("inter tete score p").style.display = "none";
 			addScore(0);	// on init même si c'est masqué
 			// next
-			document.querySelector("inter suite next img").style.display = "display";
-			document.querySelector("inter suite chrono img").style.display = "none";
+			document.querySelector("inter suite next").style.display = "flex";
+			document.querySelector("inter suite chrono").style.display = "none";
+
 			document.querySelector("inter").style.display = "flex";
 			break;
 			
@@ -192,26 +194,72 @@ function gestionBoard(etape, objet) {
 			document.querySelector("inter complement").style.display = "none";
 			// score
 			document.querySelector("inter tete score p").style.display = "flex";
-			// points
-            document.querySelector("inter points").style.display = "flex";
-			document.querySelector("inter points p").innerHTML = "0" + objet.reponse.points;
-			console.log(numQuestionOn, objet.niveau);
 			gestJauge(numQuestionOn, objet.niveau);	// MAJ de la jauge
             // question
-            document.querySelector("inter question p").style.display = "flex";
+			document.querySelector("inter question p").style.display = "flex";
+			console.log(objet);
 			document.querySelector("inter question p").innerHTML = objet.question.libelle;
 			// gestion des propositions
 			gestPropositions("afficher", objet.attributs);
 			document.querySelector("inter propositions").style.display = "flex";
-
 			// Suite
-			document.querySelector("inter suite next imp").style.display = "none";
-			document.querySelector("inter suite chrono img").style.display = "flex";
+			document.querySelector("inter suite next").style.display = "none";
+			let pChrono = document.querySelector("inter suite chrono p");
+			pChrono.innerHTML = objet.reponse.temps;
+			document.querySelector("inter suite chrono").style.display = "flex";
+			chrono = setInterval(chrono, 1000, objet.reponse); // effet de transition
+
 			break;
         
 		default:
 			inter.display = "none";
 	}
+}
+
+function chrono(reponse) {
+	let pChrono = document.querySelector("inter suite chrono p");
+	let value = parseInt(pChrono.innerHTML,10);
+	if (value == 0) {
+		clearTimeout(chrono);
+		response(reponse);
+	} else {
+		pChrono.innerHTML = (value -1).toString();
+	}
+}
+
+function response(reponse) {
+	// on arrive ici si on a cliqué sur une des propositions OU si on a dépassé le temps
+	for (let i =0; i < 4; i++) {
+		//if (tab[i] != reponse.solution) {
+		if ((i+1) != reponse.solution) {
+			document.getElementsByClassName("prop"+ (i+1))[0].setAttribute("style", "filter:brightness(500%);");
+		} else {
+			document.getElementsByClassName("prop"+ (i+1))[0].setAttribute("style", "filter:drop-shadow(2px 4px 6px black);");
+		}
+	}
+	// controler la réponse
+	addScore(reponse.points);
+	// on prépare la question suivante
+	numQuestionOn++;
+
+	//afficher le bouton suivant pour appelrr la question suivante
+	document.querySelector("inter suite chrono").style.display = "none";
+	document.querySelector("inter suite next").style.display = "flex";
+}
+
+function addScore(value) {
+    if (value === 0) {
+        quizzNbPoint = 0;
+    } else {
+        quizzNbPoint = quizzNbPoint + value;
+    }
+    var score = ('0' + quizzNbPoint.toString()).substr(-2);       // on a le score avec deux digits
+    var scoreMax = ('0' + nbQuests[niveauQuest].points.toString()).substr(-2);
+
+    let myColor = ((quizzNbPoint / nbQuests[niveauQuest].points) > 0.5 ? 'green' : 'black');
+    let myScore = '<span style="color:'+ myColor +';">' + score + '</span>';
+
+    document.querySelector("inter tete score p").innerHTML = myScore + ':' + scoreMax;
 }
 
 function gestNiveaux(niveau) {
@@ -225,7 +273,9 @@ function gestNiveaux(niveau) {
 }
 
 function scanQuestion(niveau) {
-let script = eval("script" + niveau);
+	tabQuestions = [];
+
+	let script = eval("script" + niveau);
 	// init
 	for (let ind = 0; ind < arrayAssoSize(nbQuests); ind++) {
 		nbQuests[ind].nb = 0;	// nombre de Questions du nouveau niveau
@@ -237,6 +287,7 @@ let script = eval("script" + niveau);
 	for (let ind = 0; ind < arrayAssoSize(script); ind++) {
 		nbQuests[script[ind].niveau].nb++;	// nombre de Questions du nouveau niveau
 		nbQuests[script[ind].niveau].points+= script[ind].reponse.points;	// nombre de points MAX du nouveau niveau
+		tabQuestions[ind] = script[ind].number;
 	}
 
 	niveauQuest = niveau;
@@ -264,50 +315,29 @@ function gestJauge(numQuest, niveau) {
     }
 }
 
-function addScore(value) {
-    if (value === 0) {
-        videoNbPoint = 0;
-    } else {
-        videoNbPoint = videoNbPoint + value;
-    }
-    var score = ('0' + videoNbPoint.toString()).substr(-2);       // on a le score avec deux digits
-    var scoreMax = ('0' + nbQuests[niveauQuest].points.toString()).substr(-2);
-
-    let myColor = ((videoNbPoint / nbQuests[niveauQuest].points) > 0.5 ? 'green' : 'black');
-    let myScore = '<span style="color:'+ myColor +';">' + score + '</span>';
-
-    document.querySelector("inter tete score p").innerHTML = myScore + ':' + scoreMax;
-}
-
 function continuer() {
 	document.querySelector("inter suite next img").style.display = "none";  // masquer bouton CONTINUER
 	if(numQuestionOn == nbQuests[niveauQuest].nb) {
 		// c'est la dernière question
 		numQuestionOn = 0;	// on ré-initialise le nombre de questions
+		reponse(questions[tabQuestions[numQuestionOn]])
 	} else {
-		index = numQuestionOn;
+	//	index = numQuestionOn;
 		// gestion des questions
-		while (questions[index].niveau != (niveauQuest+1)) {
+		let index = numQuestionOn;
+		let nbQuestionsMax = arrayAssoSize(questions);
+		while ((numQuestionOn, questions[index].niveau != (niveauQuest+1)) && (index < nbQuestionsMax)) {
+			console.log(index, questions[index].niveau);
 			index++;
 		}
 		numQuestionOn = index;	// si c'est la dernière question on aura 
-		gestionBoard("InterQuestion", questions[numQuestionOn-1]);	// on passe les infos sur la question -1 car la première est index 0
+// 		gestionBoard("InterQuestion", questions[numQuestionOn-1]);	// on passe les infos sur la question -1 car la première est index 0
+		gestionBoard("InterQuestion", questions[tabQuestions[numQuestionOn]]);	// on passe les infos sur la question -1 car la première est index 0
 	}
 }
 
 function gestPropositions(etape, attributs) {
-
-	//switch(etape) {
-		//case "afficher":
-			for (let i=0; i < 4; i++) {
-				document.getElementById("prop" + (i+1)).innerHTML = attributs[i];
-			}
-           // break;
-
-      /*  case "bloquer":
-			for (let i=0; i < attributs.length; i++) {
-                document.getElementById("proposition" + (i+1)).removeAttribute("onClick");
-			}
-			break;*/
-	//}
+	for (let i=0; i < 4; i++) {
+		document.getElementById("prop" + (i+1)).innerHTML = attributs[i];
+	}
 }

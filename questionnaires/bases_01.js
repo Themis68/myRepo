@@ -10,7 +10,7 @@ var script1 = [
             solution: 4,
             loi: "Loi_04",
             points: 1,
-            temps: "00:01:00"
+            temps: 4
         }
     },
     {
@@ -24,7 +24,7 @@ var script1 = [
             solution: 3,
             loi: "Loi_04",
             points: 2,
-            temps: "00:01:00"
+            temps: 10
         }
     },
     {
@@ -38,7 +38,7 @@ var script1 = [
             solution: 3,
             loi: "Loi_04",
             points: 3,
-            temps: "00:01:00"
+            temps: 7
         }
     },
     {
@@ -52,7 +52,7 @@ var script1 = [
             solution: 4,
             loi: "Loi_04",
             points: 1,
-            temps: "00:01:00"
+            temps: 8
         }
     },
     {
@@ -66,7 +66,7 @@ var script1 = [
             solution: 3,
             loi: "Loi_04",
             points: 2,
-            temps: "00:01:00"
+            temps: 12
         }
     },
     {
@@ -79,8 +79,8 @@ var script1 = [
         reponse: {
             solution: 3,
             loi: "Loi_04",
-            points: 3,
-            temps: "00:01:00"
+            points: 8,
+            temps: 11
         }
     }
 ]
