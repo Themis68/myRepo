@@ -23,7 +23,7 @@ var niveauQuest = 1		//niveau par défaut au démarrage
 var questionsFaites = [];
 var seqUsed = -1;	// valeur de l'étape de la séquence qui a été traitée
 var hauteurContent = 0; // hauteur de la zone CONTENT récupérée lors du chargement
-var numQuestionOn = 0;	// numero de la Question
+var questionOn = 0;	// numero de la Question
 var tabQuestions = [];
 
 // chemins
@@ -194,7 +194,7 @@ function gestionBoard(etape, objet) {
 			document.querySelector("inter complement").style.display = "none";
 			// score
 			document.querySelector("inter tete score p").style.display = "flex";
-			gestJauge(numQuestionOn, objet.niveau);	// MAJ de la jauge
+			gestJauge(questionOn, objet.niveau);	// MAJ de la jauge
             // question
 			document.querySelector("inter question p").style.display = "flex";
 			console.log(objet);
@@ -203,6 +203,7 @@ function gestionBoard(etape, objet) {
 			gestPropositions("afficher", objet.attributs);
 			document.querySelector("inter propositions").style.display = "flex";
 			// Suite
+			document.querySelector("inter suite").style.display = "flex";
 			document.querySelector("inter suite next").style.display = "none";
 			let pChrono = document.querySelector("inter suite chrono p");
 			pChrono.innerHTML = objet.reponse.temps;
@@ -240,7 +241,7 @@ function response(reponse) {
 	// controler la réponse
 	addScore(reponse.points);
 	// on prépare la question suivante
-	numQuestionOn++;
+	questionOn++;
 
 	//afficher le bouton suivant pour appelrr la question suivante
 	document.querySelector("inter suite chrono").style.display = "none";
@@ -287,11 +288,11 @@ function scanQuestion(niveau) {
 	for (let ind = 0; ind < arrayAssoSize(script); ind++) {
 		nbQuests[script[ind].niveau].nb++;	// nombre de Questions du nouveau niveau
 		nbQuests[script[ind].niveau].points+= script[ind].reponse.points;	// nombre de points MAX du nouveau niveau
-		tabQuestions[ind] = script[ind].number;
+		tabQuestions[ind] = script[ind];
 	}
 
 	niveauQuest = niveau;
-	numQuestionOn = 0;
+	questionOn = 0;
 	nbQuests[0].nb = nbQuests[niveau].nb;	// nombre de Questions du nouveau niveau
 	nbQuests[0].points = nbQuests[niveau].points;
 
@@ -316,23 +317,26 @@ function gestJauge(numQuest, niveau) {
 }
 
 function continuer() {
-	document.querySelector("inter suite next img").style.display = "none";  // masquer bouton CONTINUER
-	if(numQuestionOn == nbQuests[niveauQuest].nb) {
+	for (let i =0; i < 4; i++) {
+			document.getElementsByClassName("prop"+ (i+1))[0].setAttribute("style", "filter:brightness(100%);");
+	}
+	document.querySelector("inter suite next").style.display = "none";  // masquer bouton CONTINUER
+	if(questionOn == nbQuests[niveauQuest].nb) {
 		// c'est la dernière question
-		numQuestionOn = 0;	// on ré-initialise le nombre de questions
-		reponse(questions[tabQuestions[numQuestionOn]])
+		questionOn = 0;	// on ré-initialise le nombre de questions
+	//	reponse(questions[tabQuestions[questionOn]])
 	} else {
-	//	index = numQuestionOn;
+	//	index = questionOn;
 		// gestion des questions
-		let index = numQuestionOn;
+	/*	let index = questionOn;
 		let nbQuestionsMax = arrayAssoSize(questions);
-		while ((numQuestionOn, questions[index].niveau != (niveauQuest+1)) && (index < nbQuestionsMax)) {
+		while ((questionOn, questions[index].niveau != (niveauQuest+1)) && (index < nbQuestionsMax)) {
 			console.log(index, questions[index].niveau);
 			index++;
 		}
-		numQuestionOn = index;	// si c'est la dernière question on aura 
-// 		gestionBoard("InterQuestion", questions[numQuestionOn-1]);	// on passe les infos sur la question -1 car la première est index 0
-		gestionBoard("InterQuestion", questions[tabQuestions[numQuestionOn]]);	// on passe les infos sur la question -1 car la première est index 0
+		questionOn = index;	// si c'est la dernière question on aura */
+// 		gestionBoard("InterQuestion", questions[questionOn-1]);	// on passe les infos sur la question -1 car la première est index 0
+		gestionBoard("InterQuestion", tabQuestions[questionOn]);	// on passe les infos sur la question -1 car la première est index 0
 	}
 }
 
