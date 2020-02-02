@@ -8,8 +8,29 @@ URL ressources externes
 **************************************
                QUIZZs
 **************************************
-- ajouter un poster enr elation avec le thème du jeu
-- ajouter une image en relation avec le badge et le niveau
+
+**************************************
+               ANOs
+**************************************
+
+- gérer la fin du quizz
+- gérer le clic sur les boutons réponses
+- gérer l'attriobution des points selon bonne ou mauvaise réponse
+- changer la couleur de fond du chrono à 3 secondes
+
+**************************************
+               FAIT
+**************************************
+
+x ajouter un poster enr elation avec le thème du jeu
+x ajouter une image en relation avec le badge et le niveau
+
+
+
+********************************************************************************************************************************
+********************************************************************************************************************************
+
+
 
 **************************************
                ANOs

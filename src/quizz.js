@@ -208,7 +208,7 @@ function gestionBoard(etape, objet) {
 			let pChrono = document.querySelector("inter suite chrono p");
 			pChrono.innerHTML = objet.reponse.temps;
 			document.querySelector("inter suite chrono").style.display = "flex";
-			chrono = setInterval(chrono, 1000, objet.reponse); // effet de transition
+			myChrono = setInterval(chrono, 1000, objet.reponse); // effet de transition
 
 			break;
         
@@ -221,10 +221,12 @@ function chrono(reponse) {
 	let pChrono = document.querySelector("inter suite chrono p");
 	let value = parseInt(pChrono.innerHTML,10);
 	if (value == 0) {
-		clearTimeout(chrono);
+		clearTimeout(myChrono);
 		response(reponse);
 	} else {
+		
 		pChrono.innerHTML = (value -1).toString();
+		PlaySound("comptearebours");
 	}
 }
 
@@ -238,6 +240,9 @@ function response(reponse) {
 			document.getElementsByClassName("prop"+ (i+1))[0].setAttribute("style", "filter:drop-shadow(2px 4px 6px black);");
 		}
 	}
+	PlaySound("bonne");
+	PlaySound("mauvaise");
+
 	// controler la réponse
 	addScore(reponse.points);
 	// on prépare la question suivante
@@ -282,21 +287,22 @@ function scanQuestion(niveau) {
 		nbQuests[ind].nb = 0;	// nombre de Questions du nouveau niveau
 		nbQuests[ind].points = 0;	// nombre de points MAX du nouveau niveau
 	}
-	console.log(nbQuests);
 
 	// scanne des actions et imputation des points ou pas
+	let indexSelQuestions = 0;
 	for (let ind = 0; ind < arrayAssoSize(script); ind++) {
-		nbQuests[script[ind].niveau].nb++;	// nombre de Questions du nouveau niveau
-		nbQuests[script[ind].niveau].points+= script[ind].reponse.points;	// nombre de points MAX du nouveau niveau
-		tabQuestions[ind] = script[ind];
+		if (script[ind].niveau == niveau) {
+			nbQuests[script[ind].niveau].nb++;	// nombre de Questions du nouveau niveau
+			nbQuests[script[ind].niveau].points+= script[ind].reponse.points;	// nombre de points MAX du nouveau niveau	
+			tabQuestions[indexSelQuestions] = script[ind];
+			indexSelQuestions++;
+		}
 	}
 
 	niveauQuest = niveau;
-	questionOn = 0;
-	nbQuests[0].nb = nbQuests[niveau].nb;	// nombre de Questions du nouveau niveau
-	nbQuests[0].points = nbQuests[niveau].points;
+	questionOn = 1;
 
-	return nbQuests;	// on renvoi le nombre de Question du nouveau niveau
+	//return nbQuests;	// on renvoi le nombre de Question du nouveau niveau
 }
 
 function gestJauge(numQuest, niveau) {
@@ -305,27 +311,38 @@ function gestJauge(numQuest, niveau) {
     let jauge = document.getElementsByClassName("progress-bar");
     
     if (numQuest == 0) {
+		// aucune question
         jauge[0].setAttribute("aria-valuenow", 0);
         jauge[0].setAttribute("style", "width: 0%");
         jauge[0].innerHTML = nbQuests[niveau].nb + " Questions";
     } else {
-        jauge[0].setAttribute("aria-valuenow", numQuest);
-        pourCent = numQuest / nbQuests[niveau].nb * 100;
-        jauge[0].setAttribute("style", "width: " + pourCent + "%");
+		// première question
+		jauge[0].setAttribute("aria-valuenow", numQuest);
+		/*
+nbQuests[0].nb = nbQuests[niveau].nb;	// nombre de Questions du nouveau niveau
+	nbQuests[0].points 
+	*/
+		pourCent = numQuest / nbQuests[niveau].nb * 100;
+		console.log(numQuest, nbQuests[niveau].nb);
+		jauge[0].setAttribute("style", "width: " + pourCent + "%");
         jauge[0].innerHTML = numQuest;
     }
 }
 
 function continuer() {
-	for (let i =0; i < 4; i++) {
-			document.getElementsByClassName("prop"+ (i+1))[0].setAttribute("style", "filter:brightness(100%);");
-	}
+	
+
 	document.querySelector("inter suite next").style.display = "none";  // masquer bouton CONTINUER
-	if(questionOn == nbQuests[niveauQuest].nb) {
-		// c'est la dernière question
+
+	if(questionOn > nbQuests[niveauQuest].nb) {
+		// la dernière question est passée
 		questionOn = 0;	// on ré-initialise le nombre de questions
 	//	reponse(questions[tabQuestions[questionOn]])
 	} else {
+		// Affichage  normal des boutons de réponse
+	for (let i =0; i < 4; i++) {
+		document.getElementsByClassName("prop"+ (i+1))[0].setAttribute("style", "filter:brightness(100%);");
+	}
 	//	index = questionOn;
 		// gestion des questions
 	/*	let index = questionOn;
@@ -336,7 +353,7 @@ function continuer() {
 		}
 		questionOn = index;	// si c'est la dernière question on aura */
 // 		gestionBoard("InterQuestion", questions[questionOn-1]);	// on passe les infos sur la question -1 car la première est index 0
-		gestionBoard("InterQuestion", tabQuestions[questionOn]);	// on passe les infos sur la question -1 car la première est index 0
+		gestionBoard("InterQuestion", tabQuestions[questionOn -1 ]);	// on passe les infos sur la question -1 car la première est index 0
 	}
 }
 

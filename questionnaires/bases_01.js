@@ -73,7 +73,7 @@ var script1 = [
         number: 6,
         niveau: 1,
         question: {
-            libelle: "Quand le joueur peut-il jouer le corner ?"
+            libelle: "Quand le joueur peut-il blaba le corner ?"
         },
         attributs: ["au coup de sifflet","quand il veut","après le coup de sifflet","la minute qui suit le coup de sifflet"],
         reponse: {
