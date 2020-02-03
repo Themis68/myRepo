@@ -226,7 +226,7 @@ function chrono(reponse) {
 	} else {
 		
 		pChrono.innerHTML = (value -1).toString();
-		PlaySound("comptearebours");
+		playSound("comptearebours");
 	}
 }
 
@@ -240,8 +240,8 @@ function response(reponse) {
 			document.getElementsByClassName("prop"+ (i+1))[0].setAttribute("style", "filter:drop-shadow(2px 4px 6px black);");
 		}
 	}
-	PlaySound("bonne");
-	PlaySound("mauvaise");
+	playSound("bonne");
+	//playSound("mauvaise");
 
 	// controler la réponse
 	addScore(reponse.points);
