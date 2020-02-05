@@ -25,14 +25,13 @@ media_events["timeupdate"] = 0;
 //media_events["volumechange"] = 0;
 media_events["currentTime"] = 0;
 
-// variables des videos
+// varianbles des videos
 var timeOut = 0;	// pointe sur le timeout
 var timeOutEffet = 0; // pointe sur le timeout
 
 var idVideoOn = 0;	// numero de la vidéo selectionnée
 var nivZoom = 1;
 var video = [];
-var scripts = [];
 var actions = [];
 var actionEnCours = [];
 var isDefineBVideoJS = false;		// permet de gérer la délcaration de videoJS au premier tour
@@ -58,11 +57,13 @@ var seqUsed = -1;	// valeur de l'étape de la séquence qui a été traitée
 var hauteurContent = 0; // hauteur de la zone CONTENT récupérée lors du chargement
 var numQuestion = 0;	// numero de la Question
 var transitionTime = 1000;	// durée d'une transition ALLERA en ms
+var volumeLevel = 0;	// puissance du volume sonore
 
 // chemins
+var pathImagesScenario = "../images/";		// images pour scénario
 var pathImages = "../images/";		// autres images
-var pathVideos = "../rencontres/";		// vidéos des matchs
-var pathFanions = pathImages + "fanions/";		// fanions des equipes
+var pathVideos = "../videos/";		// vidéos des matchs
+var pathFanions = "../images/fanions/";		// fanions des equipes
 
 // **********************************************************************************************************
 
@@ -75,7 +76,6 @@ function central(event) {
 		// clic sur big play
 		draw("vjs-bug-silhEquipeA", video[0].gauche.maillotCouleur);
 		draw("vjs-bug-silhEquipeB", video[0].droite.maillotCouleur);
-		draw("vjs-bug-silhArbitre", video[0].arbitre.maillotCouleur);
     }
 }
 
@@ -156,138 +156,15 @@ function init() {
 
     document._video = document.getElementById("myVideo");   // identification de l'objet video
 	creerVignettes("vignettes");					        // générer le vignettes dans le carousel
-
-	//var selectedFile = document.getElementById('input').files[0];
-/*var content = "";
-var reader = new FileReader();
-reader.onload = function(event) { content = reader.result; };
-console.log(reader.readAsText("../rencontres/Pole_PloufraganMT2.js"));*/
-
-	/*fetch('../rencontres/Pole_PloufraganMT2.js')
-	  .then(response => response.text())
-	  .then(text => console.log(text)) */
-
-	//var parser = new DOMParser();
-	//var doc = parser.parseFromString("../rencontres/Pole_PloufraganMT2.xml", "application/xml");
-	//console.log(doc);
-
-
-//	performSignIn();
-//	lireXML();
 }
 
 function creerVignettes(id) {
-	//
+    //
     // générer le vignettes dans le carousel
-	//
-	
-	// création des indicateurs
-	let ind = document.getElementById("indicateurs");
+    //
+    let bloc = document.getElementById(id);
 
-	for (let i = 0; i < arrayAssoSize(scenario); i++) {
-		let myInd = document.createElement("li");
-		myInd.setAttribute("data-target", "#carousel-example");
-		myInd.setAttribute("data-slide-to",i);
-		if(i === 0) { myInd.setAttribute("class", "active cercle"); } else {myInd.setAttribute("class", "cercle");}
-
-		//let myImg = document.createElement("img");
-		//myImg.setAttribute("src", "../images/fleche_ouverte.png");
-		//myInd.appendChild(myImg);
-		ind.appendChild(myInd);
-	}
-
-<<<<<<< HEAD
 			// création des vignettes
-	for (let i = 0; i < arrayAssoSize(rencontres); i++) {
-=======
-	// création des vignettes
-	let bloc = document.getElementById(id);
-	
-	for (let i = 0; i < arrayAssoSize(scenario); i++) {
->>>>>>> master
-
-		// div
-		let myDiv = document.createElement("div");
-		myDiv.className = "carousel-item col-12 col-sm-6 col-md-4 col-lg-3" + (i === 0?' active':'');
-
-		// img
-		let myImg = document.createElement("img");
-		myImg.className = "img-fluid mx-auto d-block";
-		myImg.setAttribute("alt", rencontres[i][0].rencontre);
-		myImg.setAttribute("title", "img" + i);
-<<<<<<< HEAD
-		myImg.setAttribute("src", pathVideos + (rencontres[i][0].poster || "./pelouses/stade.jpg"));
-=======
-		myImg.setAttribute("src", pathVideos + (scenario[i][0].poster || pathImages + "stade.jpg"));
->>>>>>> master
-
-		// caption
-		let myCaption = document.createElement("div");
-
-		// fanion
-		let myF = document.createElement("img");
-		myF.className = "carouselFanion";
-		myF.setAttribute("title", "fanionG" + i);
-		myF.setAttribute("src", pathFanions + (rencontres[i][0].gauche.fanion || "fff.png'"));
-		myCaption.appendChild(myF);
-		// fanion
-		myF = document.createElement("img");
-		myF.className = "carouselFanion";
-		myF.setAttribute("title", "fanionD" + i);
-		myF.setAttribute("src", pathFanions + (rencontres[i][0].droite.fanion || "fff.png'"));
-		myCaption.appendChild(myF);
-		
-        let myP = document.createElement("p");        
-		myP.innerHTML = rencontres[i][0].gauche.nom + "<br>" + rencontres[i][0].droite.nom;
-		myCaption.appendChild(myP);
-		myCaption.className = "carousel-caption d-none d-md-block";
-<<<<<<< HEAD
-		myCaption.setAttribute("onclick", 'javascript:switchVideo('+ rencontres[i][0].id +');');	// mettre ici car cette DIV est au-dessus de l'image
-=======
-		myCaption.setAttribute("onclick", 'javascript:switchVideo('+ scenario[i][0].id +');');	// mettre ici car cette DIV est au-dessus de l'image
-		myCaption.setAttribute("title", (scenario[i][0].rencontre));
-		myCaption.setAttribute("alt", (scenario[i][0].rencontre));
->>>>>>> master
-
-		myDiv.appendChild(myImg);
-		myDiv.appendChild(myCaption);
-
-		bloc.appendChild(myDiv);
-
-		let myScript = document.createElement("SCRIPT");
-		myScript.setAttribute("type", "text/javascript");
-		myScript.setAttribute("src", "../rencontres/" + scenario[i][0].scenario);
-		document.head.appendChild(myScript);
-
-		//console.log(script3);
-		//scripts.add(script);
-
-	}
-}
-
-function creerVignettesOld(id) {
-	//
-    // générer le vignettes dans le carousel
-	//
-	
-	// création des indicateurs
-	let ind = document.getElementById("indicateurs");
-
-	for (let i = 0; i < arrayAssoSize(scenario); i++) {
-		let myInd = document.createElement("li");
-		myInd.setAttribute("data-target", "#carousel-example");
-		myInd.setAttribute("data-slide-to",i);
-		if(i === 0) { myInd.setAttribute("class", "active cercle"); } else {myInd.setAttribute("class", "cercle");}
-
-		//let myImg = document.createElement("img");
-		//myImg.setAttribute("src", "../images/fleche_ouverte.png");
-		//myInd.appendChild(myImg);
-		ind.appendChild(myInd);
-	}
-
-	// création des vignettes
-	let bloc = document.getElementById(id);
-	
 	for (let i = 0; i < arrayAssoSize(scenario); i++) {
 
 		// div
@@ -299,7 +176,7 @@ function creerVignettesOld(id) {
 		myImg.className = "img-fluid mx-auto d-block";
 		myImg.setAttribute("alt", "img" + i);
 		myImg.setAttribute("title", "img" + i);
-		myImg.setAttribute("src", pathVideos + (scenario[i][0].poster || pathImages + "stade.jpg"));
+		myImg.setAttribute("src", pathVideos + (scenario[i][0].poster || "./stade.jpg"));
 
 		// caption
 		let myCaption = document.createElement("div");
@@ -307,12 +184,14 @@ function creerVignettesOld(id) {
 		// fanion
 		let myF = document.createElement("img");
 		myF.className = "carouselFanion";
+		myF.setAttribute("alt", "fanionG" + i);
 		myF.setAttribute("title", "fanionG" + i);
 		myF.setAttribute("src", pathFanions + (scenario[i][0].gauche.fanion || "fff.png'"));
 		myCaption.appendChild(myF);
 		// fanion
 		myF = document.createElement("img");
 		myF.className = "carouselFanion";
+		myF.setAttribute("alt", "fanionD" + i);
 		myF.setAttribute("title", "fanionD" + i);
 		myF.setAttribute("src", pathFanions + (scenario[i][0].droite.fanion || "fff.png'"));
 		myCaption.appendChild(myF);
@@ -322,24 +201,15 @@ function creerVignettesOld(id) {
 		myCaption.appendChild(myP);
 		myCaption.className = "carousel-caption d-none d-md-block";
 		myCaption.setAttribute("onclick", 'javascript:switchVideo('+ scenario[i][0].id +');');	// mettre ici car cette DIV est au-dessus de l'image
-		myCaption.setAttribute("title", (scenario[i][0].rencontre));
-		myCaption.setAttribute("alt", (scenario[i][0].rencontre));
 
 		myDiv.appendChild(myImg);
 		myDiv.appendChild(myCaption);
 
 		bloc.appendChild(myDiv);
 
-		let myScript = document.createElement("SCRIPT");
-		myScript.setAttribute("type", "text/javascript");
-		myScript.setAttribute("src", "../rencontres/" + scenario[i][0].scenario);
-		document.head.appendChild(myScript);
-
-		//console.log(script3);
-		//scripts.add(script);
-
 	}
 }
+
 function fBascule(event) {
 	// affiche/cache un objet repéré par un id
 	//
@@ -364,64 +234,20 @@ function fBascule(event) {
 	}	
 }
 
-function performSignIn() {
-    let headers = new Headers();
-
-    headers.append('Content-Type', 'application/json');
-    headers.append('Accept', 'application/json');
-    headers.append('Authorization', 'Basic ' + base64.encode(username + ":" +  password));
-    headers.append('Origin','file:///D:/outils/NodeJs/Ateliers/myRepo/rencontres/*.xml');
-
-    fetch(sign_in, {
-        mode: 'cors',
-        method: 'POST',
-        headers: headers
-    })
-    .then(response => response.json())
-    .then(json => console.log(json))
-    .catch(error => console.log('Authorization failed : ' + error.message));
-}
-
-function lireXML(){
-	if (window.XMLHttpRequest){// code for IE7+, Firefox, Chrome, Opera, Safari
-		var xmlhttp = new XMLHttpRequest();
-	} else {// code for IE6, IE5
-		xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-	}
-	xmlhttp.open("GET","../rencontres/Pole_PloufraganMT2.xml",false);
-	xmlhttp.send();
-	var xmlDoc =xmlhttp.responseXML; 
-
-	console.log(xmlDoc);
-	/*
-	document.write("<table border='1'>");
-	var x = xmlDoc.getElementsByTagName("CD");
-	for (let i = 0; i < x.length ; i++)
-	{ 
-		document.write("<tr><td>");
-		document.write(x[i].getElementsByTagName("ARTIST")[0].childNodes[0].nodeValue);
-		document.write("</td><td>");
-		document.write(x[i].getElementsByTagName("TITLE")[0].childNodes[0].nodeValue);
-		document.write("</td></tr>");
-	}
-	document.write("</table>");
-	*/
-}
-
 function switchVideo(n) {
     //
     // affectation de la nouvelle vidéo et des attributs liés
     //;
 
 
-	if (n > arrayAssoSize(rencontres)) {
+	if (n > arrayAssoSize(scenario)) {
 		// vérifie si l'index de la vidéo existe dans le fichier tableau.js
 		n = 0;
 		return false;
 	} else {
 		// MAJ videos
 		idVideo = n;		// 1 = première vidéo
-		video = rencontres[n-1];    // recup scénario de la vidéo
+		video = scenario[n-1];    // recup scénario de la vidéo
 		idVideoOn = n; //video[0].id;
 		
 		//
@@ -483,9 +309,9 @@ function switchVideo(n) {
 				},
 				plugins: {
 					brand: {
-						image: pathImages + "isamini.png",
-						title: "Arrêt sur image!",
-						destination: "isa.html",
+						image: pathImages + "EMouzmini.png",
+						title: "club Etoile Mouzillonnaise de football",
+						destination: "https://etoile-mouzillon.footeo.com/",
 						destinationTarget: "_blank",
 						width: 20,
 						height: 20
@@ -539,36 +365,13 @@ function switchVideo(n) {
 					},
 					{
 						type: "canvas",
-						id:"vjs-bug-silhArbitre",
-						visibility: true,
-						height: 30,
-						width: 30,
-						classeCSS: "vjs-bug-silhArbitreBug",
-						opacity: 1,
-						left: (30 + 20 + 160 + 5 + 300) + "px",
-						top: "20px",
-						position: 'tc'
-					},
-					{
-						type: "text",
-						id:"vjs-bug-titreArbitre",
-						visibility: true,
-						libelle: "<span>"+ avatar +"</span>",
-						classeCSS: "vjs-bug-titreArbitre",
-						opacity: 1,
-						left: (30 + 20 + 160 + 5 + 200) + "px",
-						top: "25px",
-						position: 'tr'
-					}, 
-					{
-						type: "canvas",
 						id:"vjs-bug-silhEquipeB",
 						visibility: true,
 						height: 30,
 						width: 30,
 						classeCSS: "vjs-bug-silhEquipBug",
 						opacity: 1,
-						right: (30 + 20 + 170 + 5) + "px",
+						right: (30 + 20 + 170 + 5 + 15) + "px",
 						top: "20px",
 						position: 'tr'
 					},
@@ -873,7 +676,8 @@ function continuer2() {
         gestJauge();
     }
 
-    document._video.playbackRate = 1;   // vitesse normale
+	document._video.playbackRate = 1;   // vitesse normale
+	document._video.volume = volumeLevel;	//restauration du volume sonore
     document._video.play(); // on relance la video
 
     if (actionEnCours.saut !== undefined) {
@@ -933,7 +737,7 @@ function gestJauge() {
     if (numQuestion == 0) {
         jauge[0].setAttribute("aria-valuenow", 0);
         jauge[0].setAttribute("style", "width: 0%");
-        jauge[0].innerHTML = nbQuests[niveauQuest].nb + " Questions";
+        jauge[0].innerHTML = nbQuests[niveauQuest].nb + " Question" + (nbQuests[niveauQuest].nb >1 ? "s" : "");
     } else {
         jauge[0].setAttribute("aria-valuenow", numQuestion);
         pourCent = numQuestion / nbQuests[niveauQuest].nb * 100;
@@ -948,7 +752,9 @@ function fReplay(param) {
     addScore(-1);   // MAJ score
     replaysFaits.push(actionEnCours.step);    // on enbregistre l'opération
     getVideo().currentTime = getVideo().currentTime - (param); // on recule de X secondes
-    document._video.playbackRate = 0.2; // on active le ralentis
+	document._video.playbackRate = 0.2; // on active le ralentis
+	volumeLevel = document._video.volume;	// on sauvegarde le niveau du volume
+	document._video.volume = 0;	// mode MUTE
     document._video.play(); // on reprend la lecture de la vidéo
 }
 
@@ -965,7 +771,9 @@ function addScore(value) {
     let myColor = ((videoNbPoint / nbQuests[niveauQuest].points) > 0.5 ? 'green' : 'black');
     let myScore = '<span style="color:'+ myColor +';">' + score + '</span>';
 
-    document.querySelector("inter suite score p").innerHTML = myScore + ':' + scoreMax;
+	document.querySelector("inter suite score").setAttribute("alt", "score de " + avatar);
+	document.querySelector("inter suite score").setAttribute("title", "score de " + avatar);
+    document.querySelector("inter suite score p").innerHTML = myScore + '-' + scoreMax;
 }
 
 // ?? on garde ou pas ?
@@ -1035,8 +843,8 @@ function gestNiveaux(idVideo) {
         span.id = "level" + (i+1);
         span.className = ((i+1) === niveauQuest ? "badge badge-current badge-light" : "badge badge-light");
 		span.setAttribute("onclick","fNiveaux("+ (i + 1) + "," + idVideo +");"); 
-		span.setAttribute("title", nbQuests[i+1].niv);
-		span.setAttribute("alt", nbQuests[i+1].niv);
+		span.setAttribute("title", "niveau " + nbQuests[i+1].niv);
+        span.setAttribute("alt", "niveau " + nbQuests[i+1].niv);
         span.innerHTML = (i + 1);
         button.appendChild(span);
         span = document.createElement("span");
@@ -1223,7 +1031,7 @@ function gestionInter(etape, objet) {
                 document.querySelector("inter complement img").style.display = (objet.reponse.pict === undefined ? "none" : "flex");
                 if (objet.reponse.pict !== undefined) {
                     // on doit avoir le IF car sinon ca généère un message d'eereur lors de l'affectation de l'image  
-                    document.querySelector("inter complement img").setAttribute("src",pathImages + objet.reponse.pict);
+                    document.querySelector("inter complement img").setAttribute("src",pathImagesScenario + objet.reponse.pict);
                 }
             }
             // replay

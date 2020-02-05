@@ -13,6 +13,7 @@ step: '00:09:22', : rechercher la loi du jeu pour une poussette dans le dos
                ANOs
 **************************************
 - les composants BUG sont créés dans une boucle puis inscrits dans le DOM. : comment s'appuyer les uns sur les autres ?
+    créer une zone complex à embarquer avec innerHTML
 - VIDEOJS: WARN: videojs.createEl() is deprecated; use videojs.dom.createEl() instead
 - le clic sur le fanion n'exécute pas l'appel au site car le clic est considéré comme PAUSE de la vidéo
 - position des module BUG sur la vidéo : les silhouettes se superposent au titre des équipes
@@ -20,7 +21,9 @@ step: '00:09:22', : rechercher la loi du jeu pour une poussette dans le dos
 **************************************
                EVOLs
 **************************************
-- bouton BIG PLAY en fond rouge
+- afficher le nom du joueur sous la silhouette de l'arbitre
+- masquer la ligne de bienvenue en mode vidéo
+- afficher les points e suite du carousel pour savoir combien de matchs on a
 - un allerA dans une INFORMATION ?
 - proposer un QUIZZ sur la base de questions du fascicule
 - tester l'affichage des questions avec des images
@@ -40,6 +43,13 @@ step: '00:09:22', : rechercher la loi du jeu pour une poussette dans le dos
 - peut-on ajouter le register du plug seulement quand on en a besoin ?
 - le centrage vertical des incrustations est trop bas alors qu'on met 50%
 - le centrage horizontal des incrustations ne tient pas compte de la largeur de l'objet
+
+**************************************
+    		v1.1.2 en cours
+**************************************
+x mode MUTE en replay
+x bouton BIG PLAY en fond rouge
+
 
 **************************************
     		v1.1.1 en cours

@@ -12,6 +12,36 @@ icone sautille : https://www.css3create.com/Animation-effet-bounce-en-CSS
 https://www.web-eau.net/blog/15-effets-css3-pour-vos-images
 matrix : http://www.useragentman.com/blog/2011/01/07/css3-matrix-transform-for-the-mathematically-challenged/
 
+*************************************
+git clone http:........
+*************************************
+
+*************************************
+lecture d'un fichier en javascript : vérifier la compatibilité sur les navigateurs
+*************************************
+function load() {
+var request;
+
+if (window.XMLHttpRequest) { // Firefox
+	request = new XMLHttpRequest();
+}
+else if (window.ActiveXObject) { // IE
+	request = new ActiveXObject("Microsoft.XMLHTTP");
+}
+else {
+	return; // Non supporte
+}	
+
+request.open('GET', 'mon_fichier', false); // Synchro
+request.send(null);
+
+return request.responseText;
+}
+
+Chargera mon_fichier à condition que le fichier soit sur le même serveur
+
+
+
 **************************************
 calcul hauteur
 **************************************
