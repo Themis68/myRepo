@@ -197,16 +197,8 @@ function creerVignettes(id) {
 		ind.appendChild(myInd);
 	}
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-			// création des vignettes
-	for (let i = 0; i < arrayAssoSize(rencontres); i++) {
-=======
 	// création des vignettes
 	let bloc = document.getElementById(id);
-	
-	for (let i = 0; i < arrayAssoSize(scenario); i++) {
->>>>>>> master
 
 		// div
 		let myDiv = document.createElement("div");
@@ -217,11 +209,7 @@ function creerVignettes(id) {
 		myImg.className = "img-fluid mx-auto d-block";
 		myImg.setAttribute("alt", rencontres[i][0].rencontre);
 		myImg.setAttribute("title", "img" + i);
-<<<<<<< HEAD
 		myImg.setAttribute("src", pathVideos + (rencontres[i][0].poster || "./pelouses/stade.jpg"));
-=======
-		myImg.setAttribute("src", pathVideos + (scenario[i][0].poster || pathImages + "stade.jpg"));
->>>>>>> master
 
 		// caption
 		let myCaption = document.createElement("div");
@@ -243,13 +231,9 @@ function creerVignettes(id) {
 		myP.innerHTML = rencontres[i][0].gauche.nom + "<br>" + rencontres[i][0].droite.nom;
 		myCaption.appendChild(myP);
 		myCaption.className = "carousel-caption d-none d-md-block";
-<<<<<<< HEAD
 		myCaption.setAttribute("onclick", 'javascript:switchVideo('+ rencontres[i][0].id +');');	// mettre ici car cette DIV est au-dessus de l'image
-=======
-		myCaption.setAttribute("onclick", 'javascript:switchVideo('+ scenario[i][0].id +');');	// mettre ici car cette DIV est au-dessus de l'image
-		myCaption.setAttribute("title", (scenario[i][0].rencontre));
-		myCaption.setAttribute("alt", (scenario[i][0].rencontre));
->>>>>>> master
+		myCaption.setAttribute("title", (rencontres[i][0].rencontre));
+		myCaption.setAttribute("alt", (rencontres[i][0].rencontre));
 
 		myDiv.appendChild(myImg);
 		myDiv.appendChild(myCaption);
@@ -287,8 +271,6 @@ function creerVignettesOld(id) {
 		ind.appendChild(myInd);
 	}
 
-=======
->>>>>>> 54fa390eff9cf23b1656100509091af3a3a0c2c1
 	// création des vignettes
 	let bloc = document.getElementById(id);
 	
