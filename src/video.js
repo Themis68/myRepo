@@ -67,9 +67,10 @@ var pathFanions = pathImages + "fanions/";		// fanions des equipes
 // **********************************************************************************************************
 
 document.addEventListener("DOMContentLoaded", init, false);	// lance l'écoute des évènements et appelle INIT
-document.addEventListener("click", central, false);	// lance l'écoute des évènements et appelle INIT
+document.addEventListener("click", central, false);	// lance l'écoute des évènements CLIC
 
 function central(event) {
+	// gestion de la position de la souris pour plus tard
 	var target = event.target || event.srcElement; // ce dernier pour compatibilité IE
 	if(target.getAttribute('class') == 'vjs-icon-placeholder') {
 		// clic sur big play
@@ -197,6 +198,7 @@ function creerVignettes(id) {
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 			// création des vignettes
 	for (let i = 0; i < arrayAssoSize(rencontres); i++) {
 =======
@@ -285,6 +287,8 @@ function creerVignettesOld(id) {
 		ind.appendChild(myInd);
 	}
 
+=======
+>>>>>>> 54fa390eff9cf23b1656100509091af3a3a0c2c1
 	// création des vignettes
 	let bloc = document.getElementById(id);
 	
