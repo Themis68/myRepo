@@ -30,7 +30,6 @@
       g=this
     }
     g.videojsBug = f()
-    //console.log('INIT1', g);
   }
 })(function(){
   // INIT PAGE 2
@@ -54,7 +53,6 @@
     }
     var i=typeof require=="function"&&require;
     for(var o=0;o<r.length;o++)s(r[o]);
-    //console.log('INIT2', s);
     return s
   })
 
@@ -78,13 +76,11 @@
       return function (Constructor, protoProps, staticProps) { 
         if (protoProps) defineProperties(Constructor.prototype, protoProps); 
         if (staticProps) defineProperties(Constructor, staticProps); 
-        //console.log('INIT3', Constructor);
         return Constructor; 
       }; 
     }();
 
     function _classCallCheck(instance, Constructor) { 
-      //console.log('CLIC4', instance, Constructor);
       // CLIC 4
       if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } 
     }
@@ -141,14 +137,14 @@
           
           var options = this.options();
 
-          var bugElement = videojs.createEl('span', {         // element container
+          var bugElement = videojs.dom.createEl('span', {         // element container
             className: 'vjs-bug vjs-bug-' + options.position
           });
 
           // Create the element
           switch (options.type) {
             case "pict":
-              var element = videojs.createEl('img', {
+              var element = videojs.dom.createEl('img', {
                 src: options.imgSrc,
                 width: options.width,
                 height: options.height,
@@ -159,7 +155,7 @@
               break;
 
             case "text":
-              var element = videojs.createEl('span', {
+              var element = videojs.dom.createEl('span', {
                 width: options.width, 
                 height: options.height,
                 className: options.classeCSS + " " + (options.visibility ? "vjs-bug-show" : "vjs-bug-hide"),
@@ -170,7 +166,7 @@
               break;
             
             case "canvas":
-            var element = videojs.createEl('canvas', {
+            var element = videojs.dom.createEl('canvas', {
                 width: options.width,
                 height: options.height,
                 className: options.classeCSS + " " + (options.visibility ? "vjs-bug-show" : "vjs-bug-hide")
@@ -184,7 +180,7 @@
         
           // Possibly make it a link
           if (options.link) {
-            var linkElement = videojs.createEl('a', {}, {
+            var linkElement = videojs.dom.createEl('a', {}, {
               href: options.link,
               target: '_blank'
             });
@@ -218,7 +214,6 @@
 
     var validateOptions = function validateOptions(options) {
       // CLIC 3
-      //console.log('CLIC3', options);
       // traitement éventuel de la position
      // for (var i=0; i < options.length; i++) {
         switch (options.position) {
@@ -259,10 +254,8 @@
      */
     var onPlayerReady = function onPlayerReady(player, options) {
       // CLIC 2
-      //console.log('CLIC2', BugComponent);
        for (var i=0 ; i < options.length; i++) {
         validateOptions(options[i]);
-        //console.log("options4", options[i]);
         videojs.registerComponent('BugComponent', BugComponent);  // MAJ faite pour gérer le tableau
         player.addChild('BugComponent', options[i], 1);  // Insert bug as first item after <video>:
        }
@@ -282,7 +275,6 @@
      */
     var bug = function bug(options) {
       // CLIC 1
-      //console.log('CLIC1', options);
       var _this2 = this;  // structure de "video"
 
       // options = les objets passés par Bug (tableau)

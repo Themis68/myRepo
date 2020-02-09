@@ -91,7 +91,7 @@
           this.showAsLabel();
           this.selected(true);
 
-          this.addClass('vjs-selected');
+          this.dom.addClass('vjs-selected');
         }
       },
       showAsLabel: function() {
@@ -104,7 +104,7 @@
       onClick: function(customSourcePicker){
         this.onClickListener(this);
         this.showAsLabel();
-        this.addClass('vjs-selected');
+        this.dom.addClass('vjs-selected');
         setSourcesSanitized(this.player_, this.options_.val);
       }
     });
@@ -129,7 +129,7 @@
         } else {
           // affiche l'engrenage
           var staticLabel = document.createElement('span');
-          videojs.addClass(staticLabel, 'vjs-zoom-button-staticlabel');
+          videojs.dom.addClass(staticLabel, 'vjs-zoom-button-staticlabel');
           this.el().appendChild(staticLabel);
         }
       },
@@ -170,6 +170,11 @@
      * Initialize the plugin.
      * @param {object} [options] configuration for the plugin
      */
+
+         // Cross-compatibility for Video.js 5 and 6.
+    var registerPlugin = videojs.registerPlugin || videojs.plugin;
+
+    
     videoJsZoom = function(options) {
       //
       // ne passe pas lors de l'INIT mais seulement quand on appel le plugin dans la video
@@ -181,7 +186,8 @@
           label = document.createElement('span');
 
       // affectation de la classe
-      videojs.addClass(label, 'vjs-zoom-button-label');
+      // @deprecated : videojs.dom.addClass(label, 'vjs-zoom-button-label');
+      videojs.dom.addClass(label, 'vjs-zoom-button-label');
         
       /**
        * Updates player sources or returns current source URL
@@ -200,7 +206,7 @@
 
         var menuButton = new ZoomMenuButton(player, { zoom: niveaux, initialySelectedLabel: choosen.lab , initialySelectedRes: choosen.val}, settings, label);
 
-        videojs.addClass(menuButton.el(), 'vjs-zoom-button');
+        videojs.dom.addClass(menuButton.el(), 'vjs-zoom-button');
         player.controlBar.videoJsZoom = player.controlBar.el_.insertBefore(menuButton.el_, player.controlBar.getChild('fullscreenToggle').el_); // ajout de la liste déroulante
 
         player.controlBar.videoJsZoom.dispose = function(){
@@ -215,8 +221,11 @@
 			});
     };
 
-    // register the plugin
-    videojs.plugin('videoJsZoom', videoJsZoom);
+    // @deprecated 
+    //videojs.plugin('videoJsZoom', videoJsZoom);
+
+    // Register the plugin with video.js.
+    registerPlugin('videoJsZoom', videoJsZoom);
   }
 )(window, videojs);
 })();

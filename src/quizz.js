@@ -197,7 +197,6 @@ function gestionBoard(etape, objet) {
 			gestJauge(questionOn, objet.niveau);	// MAJ de la jauge
             // question
 			document.querySelector("inter question p").style.display = "flex";
-			console.log(objet);
 			document.querySelector("inter question p").innerHTML = objet.question.libelle;
 			// gestion des propositions
 			gestPropositions("afficher", objet.attributs);
@@ -318,20 +317,13 @@ function gestJauge(numQuest, niveau) {
     } else {
 		// première question
 		jauge[0].setAttribute("aria-valuenow", numQuest);
-		/*
-nbQuests[0].nb = nbQuests[niveau].nb;	// nombre de Questions du nouveau niveau
-	nbQuests[0].points 
-	*/
 		pourCent = numQuest / nbQuests[niveau].nb * 100;
-		console.log(numQuest, nbQuests[niveau].nb);
 		jauge[0].setAttribute("style", "width: " + pourCent + "%");
         jauge[0].innerHTML = numQuest;
     }
 }
 
 function continuer() {
-	
-
 	document.querySelector("inter suite next").style.display = "none";  // masquer bouton CONTINUER
 
 	if(questionOn > nbQuests[niveauQuest].nb) {
@@ -343,16 +335,6 @@ function continuer() {
 	for (let i =0; i < 4; i++) {
 		document.getElementsByClassName("prop"+ (i+1))[0].setAttribute("style", "filter:brightness(100%);");
 	}
-	//	index = questionOn;
-		// gestion des questions
-	/*	let index = questionOn;
-		let nbQuestionsMax = arrayAssoSize(questions);
-		while ((questionOn, questions[index].niveau != (niveauQuest+1)) && (index < nbQuestionsMax)) {
-			console.log(index, questions[index].niveau);
-			index++;
-		}
-		questionOn = index;	// si c'est la dernière question on aura */
-// 		gestionBoard("InterQuestion", questions[questionOn-1]);	// on passe les infos sur la question -1 car la première est index 0
 		gestionBoard("InterQuestion", tabQuestions[questionOn -1 ]);	// on passe les infos sur la question -1 car la première est index 0
 	}
 }
