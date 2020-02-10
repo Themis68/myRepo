@@ -45,9 +45,21 @@ main {
     background-size: cover;     // couvre tout l'écran
 
     header {
-        font-family: scoreboardregular;
-        font-size: 5vw; // taille variable selon largeur du viewport
-        color:white;
+        display:flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+
+        img {
+            width: 3vw;
+            height: 3vw;
+        }
+ 
+        span {
+            font-family: scoreboardregular;
+            font-size: 5vw; // taille variable selon largeur du viewport
+            color:white;
+        }
     }
 
     section {

@@ -83,21 +83,9 @@ html {
 }
 body {
   min-height: 100vh;
-  width: 100vw;
   display: flex;
   flex-direction: column;
 }
-/*
-    MAIN                  
-        HEADER            
-        SECTION           
-        MENU              
-             MODULE       
-        CONTENT           
-             VIDEO        
-             INTERACTION  
-    FOOTER
-*/
 .card-header {
   justify-items: center;
 }
@@ -142,8 +130,18 @@ main {
   background-size: cover;
 }
 main header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+main header img {
+  width: 3vw;
+  height: 3vw;
+}
+main header span {
   font-family: scoreboardregular;
-  font-size: 3vw;
+  font-size: 5vw;
   color: white;
 }
 main section {
@@ -371,6 +369,10 @@ main content inter suite chrono p {
   border-width: 2px;
 }
 footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
   flex-grow: 0;
   flex-shrink: 1;
   background-color: midnightblue;
@@ -380,7 +382,12 @@ footer {
   font-size: 1vw;
   flex-basis: 2.5rem;
 }
-footer .events {
-  color: midnightblue;
-  font-size: 0.5vw;
+footer img {
+  padding-left: 10px;
+  width: 2.5vw;
+  height: 2vw;
+}
+footer h2 {
+  padding-left: 10px;
+  line-height: 1.5;
 }

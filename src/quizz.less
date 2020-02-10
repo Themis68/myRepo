@@ -14,22 +14,9 @@ html {
 
 body {
     min-height: 100vh;      // hauteur maximum 
-    width: 100vw;   // on prend la largeur totale
     display: flex;
     flex-direction: column;     // alignement vertical des zones 
 }
-
-/*
-    MAIN                  
-        HEADER            
-        SECTION           
-        MENU              
-             MODULE       
-        CONTENT           
-             VIDEO        
-             INTERACTION  
-    FOOTER
-*/
 /// surcharge BOOTSTRAP
 .card-header {
     justify-items: center;
@@ -85,16 +72,30 @@ main {
     display: flex;
     flex-direction: column;     // alignement vertical des zones 
     align-items: center;
+
     flex: 1;  // prend toute la hauteur restante : donc 100% dans ce cas
+
     background-image: url("../images/pelouses/stade3.jpg");
     background-repeat: no-repeat;
     background-position: center; 
     background-size: cover;     // couvre tout l'écran
 
     header {
-        font-family: scoreboardregular;
-        font-size: 3vw; // taille variable selon largeur du viewport
-        color:white;
+        display:flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    
+        img {
+            width: 3vw;
+            height: 3vw;
+        }
+    
+        span {
+            font-family: scoreboardregular;
+            font-size: 5vw; // taille variable selon largeur du viewport
+            color:white;
+        }
     }
 
     section {
@@ -365,6 +366,10 @@ main {
 }
 
 footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
     flex-grow: 0;
     flex-shrink: 1; // permet de garder la ligne affichée même si on réduit la taille de la fenêtre
     background-color: midnightblue; 
@@ -373,9 +378,14 @@ footer {
     padding-left: 5px;
     font-size: 1vw; // taille variable selon largeur du viewport
     flex-basis: 2.5rem;       // hauteur = 2 lignes de texte
-    
-    .events {
-        color: midnightblue;
-        font-size: 0.5vw; // taille variable selon largeur du viewport
+
+    img {
+        padding-left: 10px;
+        width: 2.5vw;
+        height: 2vw;
+    }
+    h2 {
+        padding-left: 10px;
+        line-height: 1.5;
     }
 }
