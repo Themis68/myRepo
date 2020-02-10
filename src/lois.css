@@ -122,10 +122,13 @@ main section div p {
 }
 main menu {
   display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  color: white;
+  flex-direction: column;
   width: 80vw;
+}
+main menu span {
+  align-self: flex-start;
+  font-size: 1vw;
+  color: white;
 }
 main content {
   width: 80vw;
@@ -133,7 +136,6 @@ main content {
   flex-direction: column;
   flex-wrap: wrap;
   justify-content: center;
-  padding-top: 4em;
 }
 footer {
   display: flex;

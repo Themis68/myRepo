@@ -2,7 +2,7 @@
 @import url(../src/typo/passion_one/stylesheet.css);
 
 // minireset.css v0.0.3 | MIT License | github.com/jgthms/minireset.css 
-html,body,p,ol,ul,li,dl,dt,dd,blockquote,figure,fieldset,legend,textarea,pre,iframe,hr,h1,h2,h3,h4,h5,h6{margin:0;padding:0}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal}ul{list-style:none}button,input,select,textarea{margin:0}html{box-sizing:border-box}*,*:before,*:after{box-sizing:inherit}embed,iframe,object,audio,video{height:auto;max-width:100%}img{max-width:100%}iframe{border:0}table{border-collapse:collapse;border-spacing:0}td,th{padding:0;text-align:left}
+html,body,p,ol,ul,li,dl,dt,dd,blockquote,figure,fieldset,legend,textarea,pre,iframe,hr,h1,h2,h3,h4,h5,h6{margin:0;padding:0}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal}ul{list-style:none}button,input,select,textarea{margin:0}html{box-sizing:border-box}*,*:before,*:after{box-sizing:inherit}img,embed,iframe,object,audio,video{height:auto;max-width:100%}iframe{border:0}table{border-collapse:collapse;border-spacing:0}td,th{padding:0;text-align:left}
 
 /* 
 font-size: 100%; // this is usually 16px by default 
@@ -17,13 +17,11 @@ body {
     display: flex;
     flex-direction: column;     // alignement vertical des zones 
 }
+
 /// surcharge BOOTSTRAP
 .card-header {
     justify-items: center;
-  }
-  
-  
-  
+}
   
   // la séquence du code est importante car la lecture est linéaire 
 
@@ -359,12 +357,6 @@ main {
 
 }
 
-.cadre {
-    border-color: white;
-    border-style: solid;
-    border-width: 2px;
-}
-
 footer {
     display: flex;
     flex-direction: row;
@@ -388,4 +380,10 @@ footer {
         padding-left: 10px;
         line-height: 1.5;
     }
+}
+
+.cadre {
+    border-color: white;
+    border-style: solid;
+    border-width: 2px;
 }

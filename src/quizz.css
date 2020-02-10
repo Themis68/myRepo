@@ -52,15 +52,13 @@ html {
 *:after {
   box-sizing: inherit;
 }
+img,
 embed,
 iframe,
 object,
 audio,
 video {
   height: auto;
-  max-width: 100%;
-}
-img {
   max-width: 100%;
 }
 iframe {
@@ -363,11 +361,6 @@ main content inter suite chrono p {
   font-size: 3vw;
   color: white;
 }
-.cadre {
-  border-color: white;
-  border-style: solid;
-  border-width: 2px;
-}
 footer {
   display: flex;
   flex-direction: row;
@@ -390,4 +383,9 @@ footer img {
 footer h2 {
   padding-left: 10px;
   line-height: 1.5;
+}
+.cadre {
+  border-color: white;
+  border-style: solid;
+  border-width: 2px;
 }

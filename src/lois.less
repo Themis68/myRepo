@@ -63,10 +63,14 @@ main {
 
     menu {
         display: flex;
-        flex-direction: row;
-        justify-content: space-evenly;  // permet d'étaler les objets sur la largeur
-        color:white;
+        flex-direction: column;
         width: 80vw;   // on limite l'étalement des objets en largeur
+
+        span {
+            align-self: flex-start; // alignement centré
+            font-size: 1vw; // taille variable selon largeur du viewport
+            color:white;
+        }
     }
 
     content {
@@ -75,7 +79,6 @@ main {
         flex-direction: column;
         flex-wrap: wrap;
         justify-content: center;
-        padding-top: 4em;
     }
 }
 
@@ -98,6 +101,7 @@ footer {
         width: 2.5vw;
         height: 2vw;
     }
+
     h2 {
         padding-left: 10px;
         line-height: 1.5;
