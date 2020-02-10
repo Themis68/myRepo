@@ -130,8 +130,10 @@ main section {
 main section div p {
   text-align: center;
   color: white;
-  font-size: 2vw;
-  margin-bottom: 1.5em;
+  font-size: 1.25vw;
+}
+main section div {
+  padding-top: 1em;
 }
 main section div img {
   border: 3px;
