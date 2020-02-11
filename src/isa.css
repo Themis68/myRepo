@@ -127,6 +127,9 @@ main menu {
   color: white;
   width: 80vw;
 }
+main menu div {
+  font-size: 1.3vw;
+}
 main content {
   width: 80vw;
   display: flex;

@@ -182,6 +182,18 @@ main content div p {
   font-size: 1.5vw;
   font-weight: bold;
 }
+main content licence {
+  color: white;
+  text-align: center;
+  font-size: 1.5vw;
+  font-weight: bold;
+}
+main content licence a {
+  color: yellow;
+}
+main content licence a:hover {
+  color: green;
+}
 footer {
   display: flex;
   flex-direction: row;
