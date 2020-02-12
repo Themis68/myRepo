@@ -25,7 +25,7 @@
 }
 
 
-.vjs-bug-titreEquipBug span, .vjs-bug-titreArbitre span {
+.vjs-bug-titreEquipBug span {
   flex: 5;
   align-self: baseline;
   font-family: passion_oneregular;
@@ -34,6 +34,17 @@
   width: max-content;
   text-align: center;
   background-color: midnightblue;
+}
+
+.vjs-bug-titreArbitre span {
+  flex: 5;
+  align-self: baseline;
+  font-family: passion_oneregular;
+  font-size: 1.2vw;
+  color: blue;
+  width: max-content;
+  text-align: left;
+  background-color: none;
 }
 
 .vjs-bug-silhEquipBug {

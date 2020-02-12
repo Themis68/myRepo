@@ -373,8 +373,8 @@ function switchVideo(n) {
 						libelle: "<span>"+ avatar +"</span>",
 						classeCSS: "vjs-bug-titreArbitre",
 						opacity: 1,
-						left: (30 + 20 + 160 + 5 + 200) + "px",
-						top: "25px",
+						left: (30 + 20 + 160 + 5 + 300) + "px",
+						top: "50px",
 						position: 'tr'
 					}, 
 					{
