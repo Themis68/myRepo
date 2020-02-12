@@ -10,14 +10,14 @@ var script1 = [
             solution: 4,
             loi: "Loi_04",
             points: 1,
-            temps: 4
+            temps: 5
         }
     },
     {
         number: 2,
         niveau: 2,
         question: {
-            libelle: "Où est-il interdit de positionner le ballon ?"
+            libelle: "Sur un corner je ne peux pas mettre le ballon ..."
         },
         attributs: ["sur le quart de cercle","dans le quart de cercle","en-dehors du quart de cercle","sur le trait de touche"],
         reponse: {

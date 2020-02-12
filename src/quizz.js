@@ -222,33 +222,36 @@ function chrono(reponse) {
 	if (value == 0) {
 		response(reponse);
 	} else {
-		
+		if (value <= 3) {
+			playSound("comptearebours");
+		}
 		pChrono.innerHTML = (value -1).toString();
-		playSound("comptearebours");
 	}
 }
 
 function response(reponse) {
 	clearTimeout(myChrono);
-	console.log("response");
+	console.log(reponse, reponse.);
 	// on arrive ici si on a cliqué sur une des propositions OU si on a dépassé le temps
 	for (let i =0; i < 4; i++) {
-		//if (tab[i] != reponse.solution) {
-		if ((i+1) != reponse.solution) {
-			document.getElementsByClassName("prop"+ (i+1))[0].setAttribute("style", "filter:brightness(500%);");
-		} else {
-			document.getElementsByClassName("prop"+ (i+1))[0].setAttribute("style", "filter:drop-shadow(2px 4px 6px black);");
-		}
+		document.getElementsByClassName("prop"+ (i+1))[0].setAttribute("style", "filter:brightness(500%);");
 	}
-	playSound("bonne");
-	//playSound("mauvaise");
+	
+	if (reponse != reponse.solution) {
+		// mauvaise réponse
+		playSound("mauvaise");
+	} else {
+		// bonne réponse
+		playSound("bonne");
+		document.getElementsByClassName("prop"+ (reponse+1))[0].setAttribute("style", "filter:drop-shadow(2px 4px 6px black);");
+	}
 
 	// controler la réponse
 	addScore(reponse.points);
 	// on prépare la question suivante
 	questionOn++;
 
-	//afficher le bouton suivant pour appelrr la question suivante
+	//afficher le bouton suivant pour appeler la question suivante
 	document.querySelector("inter suite chrono").style.display = "none";
 	document.querySelector("inter suite next").style.display = "flex";
 }
@@ -330,7 +333,6 @@ function continuer() {
 	if(questionOn > nbQuests[niveauQuest].nb) {
 		// la dernière question est passée
 		questionOn = 0;	// on ré-initialise le nombre de questions
-	//	reponse(questions[tabQuestions[questionOn]])
 	} else {
 		// Affichage  normal des boutons de réponse
 	for (let i =0; i < 4; i++) {
@@ -344,6 +346,6 @@ function gestPropositions(etape, attributs) {
 	for (let i=0; i < 4; i++) {
 		let myProp = document.getElementById("prop" + (i+1));
 		myProp.innerHTML = attributs[i];		// afficher les libellés des propositions
-		myProp.setAttribute("onclick", 'javascript:response("prop'+ (i+1) +'");');
+		//myProp.setAttribute("onclick", 'javascript:response('+ (i+1) +'");');
 	}
 }
