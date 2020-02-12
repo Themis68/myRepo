@@ -179,7 +179,7 @@ main menu carousel .titre {
   font-size: 1.5vw;
 }
 main content {
-  width: 60vw;
+  width: 50vw;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -207,7 +207,7 @@ main content inter tete {
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   padding: 5px;
-  background-image: url("../images/stade.jpg");
+  background-image: url("../images/pelouses/stade.jpg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -285,16 +285,16 @@ main content inter propositions {
   background-color: white;
   padding-left: 7px;
   padding-right: 7px;
-  flex: 4;
+  flex: 1;
 }
 main content inter propositions div {
   display: flex;
   justify-content: space-around;
   margin: 5px;
+  width: 40vw;
 }
 main content inter propositions div div {
   flex: 0.5;
-  max-width: none;
 }
 main content inter propositions div div .card-header {
   align-self: flex-start;

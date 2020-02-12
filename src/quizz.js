@@ -89,7 +89,7 @@ function creerVignettes(id) {
 		myImg.className = "img-fluid mx-auto d-block";
 		myImg.setAttribute("alt", "img" + i);
 		myImg.setAttribute("title", "img" + i);
-		myImg.setAttribute("src", pathPosters + (scenario[i][0].poster || pathImages + "stade.jpg"));
+		myImg.setAttribute("src", pathPosters + (scenario[i][0].poster || pathImages + "pelouses/stade.jpg"));
 
 		// caption
 		let myCaption = document.createElement("div");
@@ -220,7 +220,6 @@ function chrono(reponse) {
 	let pChrono = document.querySelector("inter suite chrono p");
 	let value = parseInt(pChrono.innerHTML,10);
 	if (value == 0) {
-		clearTimeout(myChrono);
 		response(reponse);
 	} else {
 		
@@ -230,6 +229,8 @@ function chrono(reponse) {
 }
 
 function response(reponse) {
+	clearTimeout(myChrono);
+	console.log("response");
 	// on arrive ici si on a cliqué sur une des propositions OU si on a dépassé le temps
 	for (let i =0; i < 4; i++) {
 		//if (tab[i] != reponse.solution) {
@@ -341,6 +342,8 @@ function continuer() {
 
 function gestPropositions(etape, attributs) {
 	for (let i=0; i < 4; i++) {
-		document.getElementById("prop" + (i+1)).innerHTML = attributs[i];
+		let myProp = document.getElementById("prop" + (i+1));
+		myProp.innerHTML = attributs[i];		// afficher les libellés des propositions
+		myProp.setAttribute("onclick", 'javascript:response("prop'+ (i+1) +'");');
 	}
 }
