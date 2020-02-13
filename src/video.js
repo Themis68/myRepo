@@ -240,7 +240,6 @@ function switchVideo(n) {
 		// MAJ videos
 		idVideo = n;		// 1 = première vidéo
 		video = scenario[n-1];    // recup scénario de la vidéo
-		console.log(video);
 		idVideoOn = n; //video[0].id;
 		
 		//

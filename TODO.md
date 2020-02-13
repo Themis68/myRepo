@@ -8,33 +8,32 @@ URL ressources externes
 **************************************
                QUIZZs
 **************************************
-- relier le play de la vidéo avec le bouton suivant
-- gérer le clic sur les boutons réponses
-- gérer l'attribution des points selon bonne ou mauvaise réponse
 
 **************************************
                FAIT
 **************************************
-
+x gérer l'attribution des points selon bonne ou mauvaise réponse
+x gérer le clic sur les boutons réponses
 x ajouter un poster en relation avec le thème du jeu
 x ajouter une image en relation avec le badge et le niveau
 x ajouter un son à 3 secondes de la fin du chrono
 x revoir la gestion du son avec les 3 secondes
 x gérer la fin du quizz
+
+
 ********************************************************************************************************************************
 ********************************************************************************************************************************
 
-
+**************************************
+               MATCHS
+**************************************
 
 **************************************
-               ANOs
+               A FAIRE
 **************************************
+- relier le play de la vidéo avec le bouton suivant
 - le clic sur le fanion n'exécute pas l'appel au site car le clic est considéré comme PAUSE de la vidéo
 - position des module BUG sur la vidéo : les silhouettes se superposent au titre des équipes
-
-**************************************
-               EVOLs
-**************************************
 - masquer la ligne de bienvenue en mode vidéo
 - un allerA dans une INFORMATION ?
 - tester l'affichage des questions avec des images
