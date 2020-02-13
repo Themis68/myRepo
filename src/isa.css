@@ -152,12 +152,21 @@ footer {
   font-size: 1vw;
   flex-basis: 2.5rem;
 }
-footer img {
+footer a {
+  color: yellow;
+  text-decoration: none;
+}
+footer a img {
+  flex: 0.5;
   padding-left: 10px;
   width: 2.5vw;
   height: 2vw;
 }
-footer h2 {
+footer a:hover {
+  color: green;
+}
+footer span {
+  flex: 10;
   padding-left: 10px;
   line-height: 1.5;
 }
