@@ -199,7 +199,7 @@ function gestionBoard(etape, objet) {
 			document.querySelector("inter question p").style.display = "flex";
 			document.querySelector("inter question p").innerHTML = objet.question.libelle;
 			// gestion des propositions
-			gestPropositions("afficher", objet.attributs);
+			gestPropositions("afficher", objet);
 			document.querySelector("inter propositions").style.display = "flex";
 			// Suite
 			document.querySelector("inter suite").style.display = "flex";
@@ -220,7 +220,7 @@ function chrono(reponse) {
 	let pChrono = document.querySelector("inter suite chrono p");
 	let value = parseInt(pChrono.innerHTML,10);
 	if (value == 0) {
-		response(reponse);
+		response(questionOn, -1);
 	} else {
 		if (value <= 3) {
 			playSound("comptearebours");
@@ -229,15 +229,16 @@ function chrono(reponse) {
 	}
 }
 
-function response(reponse) {
+function response(numQ, propSel) {
 	clearTimeout(myChrono);
-	console.log(reponse, reponse.);
+	console.log(numQ, propSel );
 	// on arrive ici si on a cliqué sur une des propositions OU si on a dépassé le temps
 	for (let i =0; i < 4; i++) {
 		document.getElementsByClassName("prop"+ (i+1))[0].setAttribute("style", "filter:brightness(500%);");
 	}
 	
-	if (reponse != reponse.solution) {
+	myQ = questions[numQ];
+	if (propSel != myQ.reponse.solution) {
 		// mauvaise réponse
 		playSound("mauvaise");
 	} else {
@@ -247,7 +248,7 @@ function response(reponse) {
 	}
 
 	// controler la réponse
-	addScore(reponse.points);
+	addScore(myQ.reponse.points);
 	// on prépare la question suivante
 	questionOn++;
 
@@ -314,12 +315,11 @@ function gestJauge(numQuest, niveau) {
     let jauge = document.getElementsByClassName("progress-bar");
     
     if (numQuest == 0) {
-		// aucune question
+		// première question
         jauge[0].setAttribute("aria-valuenow", 0);
         jauge[0].setAttribute("style", "width: 0%");
         jauge[0].innerHTML = nbQuests[niveau].nb + " Questions";
     } else {
-		// première question
 		jauge[0].setAttribute("aria-valuenow", numQuest);
 		pourCent = numQuest / nbQuests[niveau].nb * 100;
 		jauge[0].setAttribute("style", "width: " + pourCent + "%");
@@ -342,10 +342,13 @@ function continuer() {
 	}
 }
 
-function gestPropositions(etape, attributs) {
+function gestPropositions(etape, objet) {
 	for (let i=0; i < 4; i++) {
+		// carte
+		let myCard = document.getElementById("card" + (i+1));
+		myCard.setAttribute("onclick", 'javascript:response('+ objet.number+ ',' + (i+1) +');"');
+		// proposition
 		let myProp = document.getElementById("prop" + (i+1));
-		myProp.innerHTML = attributs[i];		// afficher les libellés des propositions
-		//myProp.setAttribute("onclick", 'javascript:response('+ (i+1) +'");');
+		myProp.innerHTML = objet.question.attributs[i];		// afficher les libellés des propositions
 	}
 }
