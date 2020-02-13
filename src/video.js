@@ -38,6 +38,10 @@ var seqUsed = -1;	// valeur de l'étape de la séquence qui a été traitée
 var hauteurContent = 0; // hauteur de la zone CONTENT récupérée lors du chargement
 var numQuestion = 0;	// numero de la Question
 var transitionTime = 1000;	// durée d'une transition ALLERA en ms
+var tabMessages = [
+	"cliquez sur la vignette du match que vous souhaitez analyser",
+	"cliquez sur cet icône pour afficher les matchs disponibles"
+]
 
 // chemins
 var pathImages = "../images/";		// autres images
@@ -68,7 +72,8 @@ function user() {
 		avatarOk = reg.exec(avatar);
 	}
 	while (!avatarOk);
-	document.getElementById("avatar").innerHTML = avatar.toUpperCase();
+	avatar = avatar.toUpperCase();
+	document.querySelector("bascule span").innerHTML = avatar + " " + tabMessages[0];
 }
 
 function init() {
@@ -159,7 +164,7 @@ function creerVignettes(id) {
 		myImg.className = "img-fluid mx-auto d-block";
 		myImg.setAttribute("alt", "img" + i);
 		myImg.setAttribute("title", "img" + i);
-		myImg.setAttribute("src", pathVideos + (scenario[i][0].poster || pathImages + "stade.jpg"));
+		myImg.setAttribute("src", pathVideos + (scenario[i][0].poster || pathImages + "pelouses/stade.jpg"));
 
 		// caption
 		let myCaption = document.createElement("div");
@@ -211,13 +216,13 @@ function fBascule(event) {
 		carousel.style.display = "flex";
 		this.src = pathImages + "fleche_ouverte.png";
 		this.alt = "affiche la liste des matchs";
-		span.innerHTML = "cliquez sur la vignette du match que vous souhaitez arbitrer";
+		span.innerHTML = avatar + " " + tabMessages[0];
 	} else {
 		// on ferme
 		carousel.style.display = "none";
 		this.src = pathImages + "fleche_fermee.png";
 		this.alt = "masque la liste des matchs";
-		span.innerHTML = "cliquez sur cet icône pour afficher les matchs disponibles";
+		span.innerHTML = avatar + " " + tabMessages[1];
 	}	
 }
 
@@ -571,12 +576,11 @@ function showContent(etat) {
 	bascule_img.setAttribute("src",pathImages  +   (etat === true ? "fleche_fermee.png" : "fleche_ouverte.png"));	// MAJ icone bascule
 
 	let bascule_titre = document.querySelector("bascule span");
-	bascule_titre.innerHTML = (etat === true ? "cliquez sur cet icône pour afficher les matchs disponibles" : "cliquez sur la vignette du match que vous souhaitez arbitrer");
+	bascule_titre.innerHTML = avatar + " " + (etat === true ? tabMessages[1] : tabMessages[0]);
 
 	myVideo.style.visibility  = "visible";
 	// la gestion du cadre doit se faire ici et non dans switchVideo sinon cela ne fonctionne pas
 	myVideo.classList.add("cadre");
-
 }
 
 function scanQuestion() {

@@ -10,7 +10,9 @@ var stepDone = 0;			// % de progression effectué
 var idQuizz = null;		// quizz en cours
 var tabMessages = [
 	"cliquez sur la vignette du quizz que vous souhaitez jouer",
-	"cliquez sur cet icône pour afficher les quizz disponibles"
+	"cliquez sur cet icône pour afficher les quizz disponibles",
+	"vous allez démarrer le quizz pour obtenir le niveau '",
+	"vous venez de terminer le quizz<br>Votre score est de <b>"
 ]
 var nbQuests = [
 	{niv: "COURANT", nb: 0, points: 0},
@@ -44,7 +46,8 @@ function user() {
 		avatarOk = reg.exec(avatar);
 	}
 	while (!avatarOk);
-	document.getElementById("avatar").innerHTML = avatar.toUpperCase();
+	avatar = avatar.toUpperCase();
+	document.querySelector("bascule span").innerHTML = avatar + " " + tabMessages[0];
 }
 
 function init() {
@@ -130,7 +133,7 @@ function showContent(etat) {
 	bascule_img.setAttribute("src",pathImages  +   (etat === true ? "fleche_fermee.png" : "fleche_ouverte.png"));	// MAJ icone bascule
 
 	let bascule_titre = document.querySelector("bascule span");
-	bascule_titre.innerHTML = (etat === true ? tabMessages[1] : tabMessages[0]);
+	bascule_titre.innerHTML = avatar + " " + (etat === true ? tabMessages[1] : tabMessages[0]);
 }
 
 function fBascule(event) {
@@ -141,14 +144,14 @@ function fBascule(event) {
 		// on ouvre
 		carousel.style.display = "flex";
 		this.src = pathImages + "fleche_ouverte.png";
-		this.alt = "affiche la liste des matchs";
-		span.innerHTML = tabMessages[0];
+		this.alt = "affiche la liste des quizz";
+		span.innerHTML = avatar + " " + tabMessages[0];
 	} else {
 		// on ferme
 		carousel.style.display = "none";
 		this.src = pathImages + "fleche_fermee.png";
-		this.alt = "masque la liste des matchs";
-		span.innerHTML = tabMessages[1];
+		this.alt = "masque la liste des quizz";
+		span.innerHTML = avatar + " " + tabMessages[1];
 	}	
 }
 
@@ -159,7 +162,7 @@ function switchQuizz(n) {
 		return false;
 	} else {
 		quizz = scenario[n-1];    		// recup infos du quizz
-		questions = eval("script" + n);	// recup questions du quizz
+		tabQuestions = eval("script" + n);	// recup questions du quizz
 
 		// affichage de la zone INTER
 		showContent(true);
@@ -177,7 +180,7 @@ function gestionBoard(etape, objet) {
             document.querySelector("inter question p").style.display = "none";
 			document.querySelector("inter propositions").style.display = "none";
             document.querySelector("inter complement").style.display = "flex";
-            document.querySelector("inter complement p").innerHTML = "Vous allez démarrer le quizz pour obtenir le niveau '" + nbQuests[niveauQuest].niv + "'."
+            document.querySelector("inter complement p").innerHTML = avatar + " "+ tabMessages[2] + " " + nbQuests[niveauQuest].nivv + "'."
             document.querySelector("inter complement img").style.display = "none";
 			// score
 			document.querySelector("inter tete score p").style.display = "none";
@@ -192,6 +195,8 @@ function gestionBoard(etape, objet) {
 		case "InterQuestion":
 			// complement
 			document.querySelector("inter complement").style.display = "none";
+			document.querySelector("inter complement p").innerHTML = avatar + " " + tabMessages[3] + " " + nbQuests[niveauQuest].points + " points</b>";
+         
 			// score
 			document.querySelector("inter tete score p").style.display = "flex";
 			gestJauge(questionOn, objet.niveau);	// MAJ de la jauge
@@ -210,6 +215,21 @@ function gestionBoard(etape, objet) {
 			myChrono = setInterval(chrono, 1000, objet.reponse); // effet de transition
 
 			break;
+
+		case "QuizzTermine":
+			// complement
+			document.querySelector("inter complement").style.display = "flex";
+			// score
+			document.querySelector("inter tete score p").style.display = "flex";
+            // question
+			document.querySelector("inter question p").style.display = "none";
+			// gestion des propositions
+			document.querySelector("inter propositions").style.display = "none";
+			// Suite
+			document.querySelector("inter suite").style.display = "flex";
+			// Chrono
+			document.querySelector("inter suite chrono").style.display = "none";
+			break;
         
 		default:
 			inter.display = "none";
@@ -222,7 +242,7 @@ function chrono(reponse) {
 	if (value == 0) {
 		response(questionOn, -1);
 	} else {
-		if (value <= 3) {
+		if (value <= 4) {
 			playSound("comptearebours");
 		}
 		pChrono.innerHTML = (value -1).toString();
@@ -231,24 +251,22 @@ function chrono(reponse) {
 
 function response(numQ, propSel) {
 	clearTimeout(myChrono);
-	console.log(numQ, propSel );
 	// on arrive ici si on a cliqué sur une des propositions OU si on a dépassé le temps
 	for (let i =0; i < 4; i++) {
 		document.getElementsByClassName("prop"+ (i+1))[0].setAttribute("style", "filter:brightness(500%);");
 	}
 	
-	myQ = questions[numQ];
+	myQ = tabQuestions[numQ-1];
 	if (propSel != myQ.reponse.solution) {
 		// mauvaise réponse
 		playSound("mauvaise");
 	} else {
 		// bonne réponse
 		playSound("bonne");
-		document.getElementsByClassName("prop"+ (reponse+1))[0].setAttribute("style", "filter:drop-shadow(2px 4px 6px black);");
+		document.getElementsByClassName("prop"+ propSel)[0].setAttribute("style", "filter:drop-shadow(2px 4px 6px black);");
+		addScore(myQ.reponse.points);
 	}
 
-	// controler la réponse
-	addScore(myQ.reponse.points);
 	// on prépare la question suivante
 	questionOn++;
 
@@ -333,11 +351,14 @@ function continuer() {
 	if(questionOn > nbQuests[niveauQuest].nb) {
 		// la dernière question est passée
 		questionOn = 0;	// on ré-initialise le nombre de questions
+		// affichage de la zone INTER
+		showContent(true);
+		gestionBoard("QuizzTermine");	// on passe les infos sur le quizz sélectionné
 	} else {
 		// Affichage  normal des boutons de réponse
-	for (let i =0; i < 4; i++) {
-		document.getElementsByClassName("prop"+ (i+1))[0].setAttribute("style", "filter:brightness(100%);");
-	}
+		for (let i =0; i < 4; i++) {
+			document.getElementsByClassName("prop"+ (i+1))[0].setAttribute("style", "filter:brightness(100%);");
+		}
 		gestionBoard("InterQuestion", tabQuestions[questionOn -1 ]);	// on passe les infos sur la question -1 car la première est index 0
 	}
 }
@@ -346,7 +367,7 @@ function gestPropositions(etape, objet) {
 	for (let i=0; i < 4; i++) {
 		// carte
 		let myCard = document.getElementById("card" + (i+1));
-		myCard.setAttribute("onclick", 'javascript:response('+ objet.number+ ',' + (i+1) +');"');
+		myCard.setAttribute("onclick", 'javascript:response('+ questionOn + ',' + (i+1) +');');
 		// proposition
 		let myProp = document.getElementById("prop" + (i+1));
 		myProp.innerHTML = objet.question.attributs[i];		// afficher les libellés des propositions

@@ -9,12 +9,6 @@ URL ressources externes
                QUIZZs
 **************************************
 - relier le play de la vidéo avec le bouton suivant
-
-**************************************
-               ANOs
-**************************************
-
-- gérer la fin du quizz
 - gérer le clic sur les boutons réponses
 - gérer l'attribution des points selon bonne ou mauvaise réponse
 
@@ -25,8 +19,8 @@ URL ressources externes
 x ajouter un poster en relation avec le thème du jeu
 x ajouter une image en relation avec le badge et le niveau
 x ajouter un son à 3 secondes de la fin du chrono
-
-
+x revoir la gestion du son avec les 3 secondes
+x gérer la fin du quizz
 ********************************************************************************************************************************
 ********************************************************************************************************************************
 
