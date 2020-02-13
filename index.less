@@ -45,9 +45,21 @@ main {
     background-size: cover;     // couvre tout l'écran
 
     header {
-        font-family: scoreboardregular;
-        font-size: 5vw; // taille variable selon largeur du viewport
-        color:white;
+        display:flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+
+        img {
+            width: 3vw;
+            height: 3vw;
+        }
+ 
+        span {
+            font-family: scoreboardregular;
+            font-size: 5vw; // taille variable selon largeur du viewport
+            color:white;
+        }
     }
 
     section {
@@ -57,19 +69,21 @@ main {
         flex-wrap: wrap;
         align-items: center;
 
-
         div p {
             text-align: center;
             color:white;
-            font-size: 2vw; // taille variable selon largeur du viewport
-            margin-bottom: 1.5em;
+            font-size: 1.25vw; // taille variable selon largeur du viewport
         }
 
-        div img {
-            border: 3px;
-            border-color: white;
-            border-style: solid;
-            margin-bottom: 3em;
+        div {
+            padding-top: 1em;
+
+            img {
+                border: 3px;
+                border-color: white;
+                border-style: solid;
+                margin-bottom: 3em;
+            }
         }
     }
 
@@ -82,7 +96,7 @@ main {
         
         module {
             border-radius: 50%;
-            background-image: url("./images/stade.jpg");
+            background-image: url("./images/isa.png");
             background-repeat: no-repeat;
             background-position: center; 
             background-size: cover;     // couvre tout l'écran 
@@ -119,6 +133,21 @@ main {
             text-align: center;
             font-size: 1.5vw; // taille variable selon largeur du viewport
             font-weight: bold;
+        }
+
+        licence {
+            color: white;
+            text-align: center;
+            font-size: 1.5vw; // taille variable selon largeur du viewport
+            font-weight: bold;
+
+            a {
+                color: yellow;
+            }
+
+            a:hover {
+                color: green;
+            }
         }
     }
 

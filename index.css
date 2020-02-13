@@ -106,6 +106,16 @@ main {
   background-size: cover;
 }
 main header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+main header img {
+  width: 3vw;
+  height: 3vw;
+}
+main header span {
   font-family: scoreboardregular;
   font-size: 5vw;
   color: white;
@@ -120,8 +130,10 @@ main section {
 main section div p {
   text-align: center;
   color: white;
-  font-size: 2vw;
-  margin-bottom: 1.5em;
+  font-size: 1.25vw;
+}
+main section div {
+  padding-top: 1em;
 }
 main section div img {
   border: 3px;
@@ -138,7 +150,7 @@ main menu {
 }
 main menu module {
   border-radius: 50%;
-  background-image: url("images/stade.jpg");
+  background-image: url("images/isa.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -169,6 +181,18 @@ main content div p {
   text-align: center;
   font-size: 1.5vw;
   font-weight: bold;
+}
+main content licence {
+  color: white;
+  text-align: center;
+  font-size: 1.5vw;
+  font-weight: bold;
+}
+main content licence a {
+  color: yellow;
+}
+main content licence a:hover {
+  color: green;
 }
 footer {
   display: flex;

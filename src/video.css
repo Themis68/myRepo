@@ -139,8 +139,18 @@ main {
   background-size: cover;
 }
 main header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+main header img {
+  width: 3vw;
+  height: 3vw;
+}
+main header span {
   font-family: scoreboardregular;
-  font-size: 3vw;
+  font-size: 5vw;
   color: white;
 }
 main section {
@@ -152,7 +162,7 @@ main section {
 main section div p {
   text-align: center;
   color: white;
-  font-size: 1.5vw;
+  font-size: 1.25vw;
 }
 main menu {
   display: flex;
@@ -213,7 +223,7 @@ main content inter tete {
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   padding: 5px;
-  background-image: url("../images/stade.jpg");
+  background-image: url("../images/pelouses/stade.jpg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;

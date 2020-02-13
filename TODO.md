@@ -5,31 +5,40 @@ URL ressources externes
 <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" type="text/css"
 
-
-step: '00:09:22', : rechercher la loi du jeu pour une poussette dans le dos
-
+**************************************
+               QUIZZs
+**************************************
 
 **************************************
-               ANOs
+               FAIT
 **************************************
-- les composants BUG sont créés dans une boucle puis inscrits dans le DOM. : comment s'appuyer les uns sur les autres ?
-    créer une zone complex à embarquer avec innerHTML
-- VIDEOJS: WARN: videojs.createEl() is deprecated; use videojs.dom.createEl() instead
+x gérer l'attribution des points selon bonne ou mauvaise réponse
+x gérer le clic sur les boutons réponses
+x ajouter un poster en relation avec le thème du jeu
+x ajouter une image en relation avec le badge et le niveau
+x ajouter un son à 3 secondes de la fin du chrono
+x revoir la gestion du son avec les 3 secondes
+x gérer la fin du quizz
+
+
+********************************************************************************************************************************
+********************************************************************************************************************************
+
+**************************************
+               MATCHS
+**************************************
+
+**************************************
+               A FAIRE
+**************************************
+- relier le play de la vidéo avec le bouton suivant
 - le clic sur le fanion n'exécute pas l'appel au site car le clic est considéré comme PAUSE de la vidéo
 - position des module BUG sur la vidéo : les silhouettes se superposent au titre des équipes
-
-**************************************
-               EVOLs
-**************************************
-- afficher le nom du joueur sous la silhouette de l'arbitre
 - masquer la ligne de bienvenue en mode vidéo
-- afficher les points e suite du carousel pour savoir combien de matchs on a
 - un allerA dans une INFORMATION ?
-- proposer un QUIZZ sur la base de questions du fascicule
 - tester l'affichage des questions avec des images
 - créer un texte qui défile au départ du match (page du match)
 - avoir une animation pour la mi-temps (sifflet)
-- pour un but prévoir une animation et non une image
 - gérer automatiquement la fin de la vidéo
 - rendre reactif une plage de vidéo pour donner des points à l'utilisateur
 - paramétrer la couleur des incrustations (texte)
@@ -47,9 +56,12 @@ step: '00:09:22', : rechercher la loi du jeu pour une poussette dans le dos
 **************************************
     		v1.1.2 en cours
 **************************************
+x VIDEOJS: WARN: videojs.createEl() is deprecated; use videojs.dom.createEl() instead
 x mode MUTE en replay
 x bouton BIG PLAY en fond rouge
-
+x son lors d'un BUT
+x afficher le nom du joueur sous la silhouette de l'arbitre
+x afficher les points de suite du carousel pour savoir combien de matchs on a
 
 **************************************
     		v1.1.1 en cours

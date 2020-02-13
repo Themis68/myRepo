@@ -1,28 +1,8 @@
 // variables EVENTS
 var media_events = new Array();
 media_events["loadstart"] = 0;
-//media_events["progress"] = 0;
-//media_events["suspend"] = 0;
-//media_events["abort"] = 0;t
-//media_events["error"] = 0;
-//media_events["emptied"] = 0;
-//media_events["stalled"] = 0;
-//media_events["loadedmetadata"] = 0;
-//media_events["loadeddata"] = 0;
-//media_events["canplay"] = 0;
-//media_events["canplaythrough"] = 0;
 media_events["playing"] = 0;
-//media_events["waiting"] = 0;
-//media_events["seeking"] = 0;
-//media_events["seeked"] = 0;
-//media_events["ended"] = 0;
-//media_events["durationchange"] = 0;
 media_events["timeupdate"] = 0;
-//media_events["play"] = 0;
-//media_events["pause"] = 0;
-//media_events["ratechange"] = 0;
-//media_events["resize"] = 0;
-//media_events["volumechange"] = 0;
 media_events["currentTime"] = 0;
 
 // varianbles des videos
@@ -58,6 +38,10 @@ var seqUsed = -1;	// valeur de l'étape de la séquence qui a été traitée
 var hauteurContent = 0; // hauteur de la zone CONTENT récupérée lors du chargement
 var numQuestion = 0;	// numero de la Question
 var transitionTime = 1000;	// durée d'une transition ALLERA en ms
+var tabMessages = [
+	"cliquez sur la vignette du match que vous souhaitez analyser",
+	"cliquez sur cet icône pour afficher les matchs disponibles"
+]
 
 // chemins
 var pathImages = "../images/";		// autres images
@@ -67,9 +51,10 @@ var pathFanions = pathImages + "fanions/";		// fanions des equipes
 // **********************************************************************************************************
 
 document.addEventListener("DOMContentLoaded", init, false);	// lance l'écoute des évènements et appelle INIT
-document.addEventListener("click", central, false);	// lance l'écoute des évènements et appelle INIT
+document.addEventListener("click", central, false);	// lance l'écoute des évènements CLIC
 
 function central(event) {
+	// gestion de la position de la souris pour plus tard
 	var target = event.target || event.srcElement; // ce dernier pour compatibilité IE
 	if(target.getAttribute('class') == 'vjs-icon-placeholder') {
 		// clic sur big play
@@ -79,16 +64,6 @@ function central(event) {
     }
 }
 
-/*
-contentButtons.onclick = function(event) {
-    var event = event || window.event;
-    var target = event.target || event.srcElement;
-    if(target.getAttribute('name') == 'add-order') {
-        addRow();
-    }
-}
-*/
-
 function user() {
 	let avatarOk = false;
 	const reg = /^([a-zA-Z]){3,20}$/g;	// accepte des chaines de caractères jusqu'à 5 caractères
@@ -97,7 +72,23 @@ function user() {
 		avatarOk = reg.exec(avatar);
 	}
 	while (!avatarOk);
-	document.getElementById("avatar").innerHTML = avatar.toUpperCase();
+	avatar = avatar.toUpperCase();
+	document.querySelector("bascule span").innerHTML = avatar + " " + tabMessages[0];
+}
+
+function init() {
+    //
+    // est appelé en premier par la page lors du chargement
+	//
+
+	// mettre les listener ici car il faut avoir chargée la page
+
+	// clic sur l'image de bascule
+	var bascule = document.querySelector("bascule img");
+	bascule.addEventListener("click", fBascule);	// de haut en bas
+
+    document._video = document.getElementById("myVideo");   // identification de l'objet video
+	creerVignettes("vignettes");					        // générer la vignettes dans le carousel
 }
 
 function draw(id, maillotCouleur) {
@@ -143,39 +134,6 @@ function draw(id, maillotCouleur) {
     }
 }
 
-function init() {
-    //
-    // est appelé en premier par la page lors du chargement
-	//
-
-	// mettre les listener ici car il faut avoir chargée la page
-
-	// clic sur l'image de bascule
-	var bascule = document.querySelector("bascule img");
-	bascule.addEventListener("click", fBascule);	// de haut en bas
-
-    document._video = document.getElementById("myVideo");   // identification de l'objet video
-	creerVignettes("vignettes");					        // générer le vignettes dans le carousel
-
-	//var selectedFile = document.getElementById('input').files[0];
-/*var content = "";
-var reader = new FileReader();
-reader.onload = function(event) { content = reader.result; };
-console.log(reader.readAsText("../rencontres/Pole_PloufraganMT2.js"));*/
-
-	/*fetch('../rencontres/Pole_PloufraganMT2.js')
-	  .then(response => response.text())
-	  .then(text => console.log(text)) */
-
-	//var parser = new DOMParser();
-	//var doc = parser.parseFromString("../rencontres/Pole_PloufraganMT2.xml", "application/xml");
-	//console.log(doc);
-
-
-//	performSignIn();
-//	lireXML();
-}
-
 function creerVignettes(id) {
 	//
     // générer le vignettes dans le carousel
@@ -189,10 +147,6 @@ function creerVignettes(id) {
 		myInd.setAttribute("data-target", "#carousel-example");
 		myInd.setAttribute("data-slide-to",i);
 		if(i === 0) { myInd.setAttribute("class", "active cercle"); } else {myInd.setAttribute("class", "cercle");}
-
-		//let myImg = document.createElement("img");
-		//myImg.setAttribute("src", "../images/fleche_ouverte.png");
-		//myInd.appendChild(myImg);
 		ind.appendChild(myInd);
 	}
 
@@ -210,7 +164,7 @@ function creerVignettes(id) {
 		myImg.className = "img-fluid mx-auto d-block";
 		myImg.setAttribute("alt", "img" + i);
 		myImg.setAttribute("title", "img" + i);
-		myImg.setAttribute("src", pathVideos + (scenario[i][0].poster || pathImages + "stade.jpg"));
+		myImg.setAttribute("src", pathVideos + (scenario[i][0].poster || pathImages + "pelouses/stade.jpg"));
 
 		// caption
 		let myCaption = document.createElement("div");
@@ -245,88 +199,9 @@ function creerVignettes(id) {
 		myScript.setAttribute("type", "text/javascript");
 		myScript.setAttribute("src", "../rencontres/" + scenario[i][0].scenario);
 		document.head.appendChild(myScript);
-
-		//console.log(script3);
-		//scripts.add(script);
-
 	}
 }
 
-function creerVignettesOld(id) {
-	//
-    // générer le vignettes dans le carousel
-	//
-	
-	// création des indicateurs
-	let ind = document.getElementById("indicateurs");
-
-	for (let i = 0; i < arrayAssoSize(scenario); i++) {
-		let myInd = document.createElement("li");
-		myInd.setAttribute("data-target", "#carousel-example");
-		myInd.setAttribute("data-slide-to",i);
-		if(i === 0) { myInd.setAttribute("class", "active cercle"); } else {myInd.setAttribute("class", "cercle");}
-
-		//let myImg = document.createElement("img");
-		//myImg.setAttribute("src", "../images/fleche_ouverte.png");
-		//myInd.appendChild(myImg);
-		ind.appendChild(myInd);
-	}
-
-	// création des vignettes
-	let bloc = document.getElementById(id);
-	
-	for (let i = 0; i < arrayAssoSize(scenario); i++) {
-
-		// div
-		let myDiv = document.createElement("div");
-		myDiv.className = "carousel-item col-12 col-sm-6 col-md-4 col-lg-3" + (i === 0?' active':'');
-
-		// img
-		let myImg = document.createElement("img");
-		myImg.className = "img-fluid mx-auto d-block";
-		myImg.setAttribute("alt", "img" + i);
-		myImg.setAttribute("title", "img" + i);
-		myImg.setAttribute("src", pathVideos + (scenario[i][0].poster || pathImages + "stade.jpg"));
-
-		// caption
-		let myCaption = document.createElement("div");
-
-		// fanion
-		let myF = document.createElement("img");
-		myF.className = "carouselFanion";
-		myF.setAttribute("title", "fanionG" + i);
-		myF.setAttribute("src", pathFanions + (scenario[i][0].gauche.fanion || "fff.png'"));
-		myCaption.appendChild(myF);
-		// fanion
-		myF = document.createElement("img");
-		myF.className = "carouselFanion";
-		myF.setAttribute("title", "fanionD" + i);
-		myF.setAttribute("src", pathFanions + (scenario[i][0].droite.fanion || "fff.png'"));
-		myCaption.appendChild(myF);
-		
-        let myP = document.createElement("p");        
-		myP.innerHTML = scenario[i][0].gauche.nom + "<br>" + scenario[i][0].droite.nom;
-		myCaption.appendChild(myP);
-		myCaption.className = "carousel-caption d-none d-md-block";
-		myCaption.setAttribute("onclick", 'javascript:switchVideo('+ scenario[i][0].id +');');	// mettre ici car cette DIV est au-dessus de l'image
-		myCaption.setAttribute("title", (scenario[i][0].rencontre));
-		myCaption.setAttribute("alt", (scenario[i][0].rencontre));
-
-		myDiv.appendChild(myImg);
-		myDiv.appendChild(myCaption);
-
-		bloc.appendChild(myDiv);
-
-		let myScript = document.createElement("SCRIPT");
-		myScript.setAttribute("type", "text/javascript");
-		myScript.setAttribute("src", "../rencontres/" + scenario[i][0].scenario);
-		document.head.appendChild(myScript);
-
-		//console.log(script3);
-		//scripts.add(script);
-
-	}
-}
 function fBascule(event) {
 	// affiche/cache un objet repéré par un id
 	//
@@ -341,58 +216,14 @@ function fBascule(event) {
 		carousel.style.display = "flex";
 		this.src = pathImages + "fleche_ouverte.png";
 		this.alt = "affiche la liste des matchs";
-		span.innerHTML = "cliquez sur la vignette du match que vous souhaitez arbitrer";
+		span.innerHTML = avatar + " " + tabMessages[0];
 	} else {
 		// on ferme
 		carousel.style.display = "none";
 		this.src = pathImages + "fleche_fermee.png";
 		this.alt = "masque la liste des matchs";
-		span.innerHTML = "cliquez sur cet icône pour afficher les matchs disponibles";
+		span.innerHTML = avatar + " " + tabMessages[1];
 	}	
-}
-
-function performSignIn() {
-    let headers = new Headers();
-
-    headers.append('Content-Type', 'application/json');
-    headers.append('Accept', 'application/json');
-    headers.append('Authorization', 'Basic ' + base64.encode(username + ":" +  password));
-    headers.append('Origin','file:///D:/outils/NodeJs/Ateliers/myRepo/rencontres/*.xml');
-
-    fetch(sign_in, {
-        mode: 'cors',
-        method: 'POST',
-        headers: headers
-    })
-    .then(response => response.json())
-    .then(json => console.log(json))
-    .catch(error => console.log('Authorization failed : ' + error.message));
-}
-
-function lireXML(){
-	if (window.XMLHttpRequest){// code for IE7+, Firefox, Chrome, Opera, Safari
-		var xmlhttp = new XMLHttpRequest();
-	} else {// code for IE6, IE5
-		xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-	}
-	xmlhttp.open("GET","../rencontres/Pole_PloufraganMT2.xml",false);
-	xmlhttp.send();
-	var xmlDoc =xmlhttp.responseXML; 
-
-	console.log(xmlDoc);
-	/*
-	document.write("<table border='1'>");
-	var x = xmlDoc.getElementsByTagName("CD");
-	for (let i = 0; i < x.length ; i++)
-	{ 
-		document.write("<tr><td>");
-		document.write(x[i].getElementsByTagName("ARTIST")[0].childNodes[0].nodeValue);
-		document.write("</td><td>");
-		document.write(x[i].getElementsByTagName("TITLE")[0].childNodes[0].nodeValue);
-		document.write("</td></tr>");
-	}
-	document.write("</table>");
-	*/
 }
 
 function switchVideo(n) {
@@ -414,7 +245,10 @@ function switchVideo(n) {
 		//
 		// travail sur les actions et l'IHM associée
 		//
-		actions = video[1];    // recup tableau des actions (position 3)
+		// actions = video[1];    // recup tableau des actions (position 3)
+		actions = eval("script" + n);
+		//actions = video[0].scenario;    // recup tableau des actions (position 3)
+
 		listeEvents("events", media_events);	// créé le tableau des évènements vidéos
         setInterval(update_properties, 200);	// lance le process de MAJ des évènements	
         
@@ -543,8 +377,8 @@ function switchVideo(n) {
 						libelle: "<span>"+ avatar +"</span>",
 						classeCSS: "vjs-bug-titreArbitre",
 						opacity: 1,
-						left: (30 + 20 + 160 + 5 + 200) + "px",
-						top: "25px",
+						left: (30 + 20 + 160 + 5 + 300) + "px",
+						top: "50px",
 						position: 'tr'
 					}, 
 					{
@@ -741,12 +575,11 @@ function showContent(etat) {
 	bascule_img.setAttribute("src",pathImages  +   (etat === true ? "fleche_fermee.png" : "fleche_ouverte.png"));	// MAJ icone bascule
 
 	let bascule_titre = document.querySelector("bascule span");
-	bascule_titre.innerHTML = (etat === true ? "cliquez sur cet icône pour afficher les matchs disponibles" : "cliquez sur la vignette du match que vous souhaitez arbitrer");
+	bascule_titre.innerHTML = avatar + " " + (etat === true ? tabMessages[1] : tabMessages[0]);
 
 	myVideo.style.visibility  = "visible";
 	// la gestion du cadre doit se faire ici et non dans switchVideo sinon cela ne fonctionne pas
 	myVideo.classList.add("cadre");
-
 }
 
 function scanQuestion() {
@@ -811,7 +644,11 @@ var mesActions = {
     Information : function (ind) {
         actionEnCours = actions[ind];
         // on affiche le bouton répondre si FAIRPLAY et pas encore GAGNE
-        timeOut = setTimeout(gestionInter, 2000, "FermeInfo", actionEnCours); 
+		timeOut = setTimeout(gestionInter, 2000, "FermeInfo", actionEnCours); 
+		if (actionEnCours.type === 'but'){
+			playSound("goal");
+		}
+
         if ((actionEnCours.type === 'fairplay') && (questionsFaites.indexOf(actionEnCours.step) < 0)) {
            /* var btnBonus = document.getElementById("btnBonus");
             btnBonus.onclick = function() 
@@ -954,36 +791,6 @@ function addScore(value) {
 
     document.querySelector("inter suite score p").innerHTML = myScore + ':' + scoreMax;
 }
-
-// ?? on garde ou pas ?
-/*
-function showConseiller(rubrique, resultat, points) {
-     // conseiller
-     let monConseiller = document.getElementById("conseiller");
-     let source = myURL + '/images/conseiller/tete'+ Math.floor(Math.random() * Math.floor(4) + 1)+'.png';
-
-    let text = '<p style="text-align:center;font-size: 16pt;font-weight: bolder;">' + (resultat ? 'BRAVO !' : 'DOMMAGE') + '<br><br>';    
-    let isEnd = false;
-
-    switch(rubrique) {
-        case 'fin':
-            text+= '<span ' + (resultat ? 'class="gagne">Tu as Plus de<br><span style="font-size: 18pt;font-weight: bolder;">50%</span> de réussite' : 'class="perdu">Reviens vite essayer') +'</span></p>';
-            isEnd = true;
-            break;
-
-        case 'traite':
-            text+=  '<span ' + (resultat ? 'class="gagne">Mais tu as déja tes points' : 'class="perdu">Et pourtant tu l\'as déjà faite') + '</span></p>';
-            break;
-
-        case 'reponse':
-            text+= '<span ' + (resultat ? 'class="gagne">Tu as gagné<br><span style="font-size: 18pt;font-weight: bolder;">' + points + (points>1?' pts':' pt') : 'class="perdu">Essaye encore') + "</span></span></p>";
-            break;
-    }
-    showZone("zConseiller", true, isEnd);
-    monConseiller.setAttribute("src", source);
-    document.getElementById("rep").innerHTML = text;
-}
-*/
 
 // v2
 function convertInTimeCode(myStep) {

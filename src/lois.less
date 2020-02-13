@@ -1,6 +1,109 @@
+@import url(../src/typo/scoreboard/stylesheet.css);
+@import url(../src/typo/passion_one/stylesheet.css);
+
+// minireset.css v0.0.3 | MIT License | github.com/jgthms/minireset.css 
+html,body,p,ol,ul,li,dl,dt,dd,blockquote,figure,fieldset,legend,textarea,pre,iframe,hr,h1,h2,h3,h4,h5,h6{margin:0;padding:0}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal}ul{list-style:none}button,input,select,textarea{margin:0}html{box-sizing:border-box}*,*:before,*:after{box-sizing:inherit}img,embed,iframe,object,audio,video{height:auto;max-width:100%}iframe{border:0}table{border-collapse:collapse;border-spacing:0}td,th{padding:0;text-align:left}
+
+/* 
+font-size: 100%; // this is usually 16px by default 
+*/
+
+html {
+    font-family: passion_oneregular;    // police par défaut 
+}
+
+body {
+    min-height: 100vh;      // hauteur maximum 
+    display: flex;
+    flex-direction: column;     // alignement vertical des zones 
+}
+
 main {
-    background-image: url("./images/stade.jpg");
+    display: flex;
+    flex-direction: column;     // alignement vertical des zones 
+    align-items: center;
+
+    flex: 1;  // prend toute la hauteur restante : donc 100% dans ce cas
+
+    background-image: url("../images/pelouses/stade3.jpg");
     background-repeat: no-repeat;
     background-position: center; 
-    background-size: cover;
+    background-size: cover;     // couvre tout l'écran
+
+    header {
+        display:flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    
+        img {
+            width: 3vw;
+            height: 3vw;
+        }
+    
+        span {
+            font-family: scoreboardregular;
+            font-size: 5vw; // taille variable selon largeur du viewport
+            color:white;
+        }
+    }
+
+    section {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-items: center;
+
+        div p {
+            text-align: center;
+            color:white;
+            font-size: 1.25vw; // taille variable selon largeur du viewport
+        }
+    }
+
+    menu {
+        display: flex;
+        flex-direction: column;
+        width: 80vw;   // on limite l'étalement des objets en largeur
+
+        span {
+            align-self: flex-start; // alignement centré
+            font-size: 1vw; // taille variable selon largeur du viewport
+            color:white;
+        }
+    }
+
+    content {
+        width: 80vw;   // on limite l'étalement des objets en largeur
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    flex-grow: 0;
+    flex-shrink: 1; // permet de garder la ligne affichée même si on réduit la taille de la fenêtre
+    background-color: midnightblue; 
+    color:white;
+    padding-top: 5px;
+    padding-left: 5px;
+    font-size: 1vw; // taille variable selon largeur du viewport
+    flex-basis: 2.5rem;       // hauteur = 2 lignes de texte
+
+    img {
+        padding-left: 10px;
+        width: 2.5vw;
+        height: 2vw;
+    }
+
+    h2 {
+        padding-left: 10px;
+        line-height: 1.5;
+    }
 }

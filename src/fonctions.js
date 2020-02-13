@@ -64,3 +64,8 @@ function gestClass(use, objet, value) {
 
 	}
 }
+
+function playSound(soundObj) {
+  var sound = document.getElementById(soundObj);
+  sound.play();
+}

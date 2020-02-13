@@ -85,9 +85,21 @@ main {
     background-size: cover;     // couvre tout l'écran
 
     header {
-        font-family: scoreboardregular;
-        font-size: 3vw; // taille variable selon largeur du viewport
-        color:white;
+        display:flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    
+        img {
+            width: 3vw;
+            height: 3vw;
+        }
+    
+        span {
+            font-family: scoreboardregular;
+            font-size: 5vw; // taille variable selon largeur du viewport
+            color:white;
+        }
     }
 
     section {
@@ -99,7 +111,7 @@ main {
         div p {
             text-align: center;
             color:white;
-            font-size: 1.5vw; // taille variable selon largeur du viewport
+            font-size: 1.25vw; // taille variable selon largeur du viewport
         }
     }
 
@@ -171,7 +183,7 @@ main {
                 border-top-right-radius: 20px;
                 padding: 5px;
 
-                background-image: url("../images/stade.jpg");
+                background-image: url("../images/pelouses/stade.jpg");
                 background-repeat: no-repeat;
                 background-position: center; 
                 background-size: cover;
@@ -409,7 +421,6 @@ main {
                         display: flex;
                         width: 50%;
                     }
-
                 }
             }
         }
