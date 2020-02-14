@@ -130,6 +130,9 @@ main menu div p {
   font-size: 1.3vw;
   font-family: Arial, Helvetica, sans-serif;
 }
+main menu div p span {
+  justify-items: center;
+}
 main content {
   width: 80vw;
   display: flex;

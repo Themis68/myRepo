@@ -79,7 +79,7 @@ th {
 font-size: 100%; // this is usually 16px by default 
 */
 html {
-  font-family: passion_oneregular;
+  font-family: "passion_oneregular";
 }
 body {
   min-height: 100vh;
@@ -149,7 +149,7 @@ main header img {
   height: 3vw;
 }
 main header span {
-  font-family: scoreboardregular;
+  font-family: "scoreboardregular";
   font-size: 5vw;
   color: white;
 }
@@ -278,7 +278,7 @@ main content inter tete points {
 }
 main content inter tete points p {
   display: flex;
-  font-family: scoreboardregular;
+  font-family: "scoreboardregular";
   font-size: 2vw;
   color: black;
 }
@@ -413,7 +413,7 @@ main content inter suite score {
 }
 main content inter suite score p {
   display: flex;
-  font-family: scoreboardregular;
+  font-family: "scoreboardregular";
   font-size: 2vw;
   color: black;
 }

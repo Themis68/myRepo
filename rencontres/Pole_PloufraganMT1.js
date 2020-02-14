@@ -11,7 +11,6 @@ var script1 = [
             libelle: "Quelle règle liée à l'équipement des joueurs n'est pas respectée ?"
         },
         attributs: ["les maillots doivent êtres dans les shorts", "Les chaussettes doivent êtres de la même couleur que le maillot"],
-        reculReplay: 2,
         reponse: {
             solution: 1,
             libelle: "Plusieurs joueurs blancs n'ont pas le maillot dans le short",
@@ -39,7 +38,7 @@ var script1 = [
             indice: '00:06:24'
         },
         question: {
-            libelle: "L'arbitre assistant a indiqué que la touche est en faveur de l'équipe ?"
+            libelle: "L'arbitre assistant a indiqué que la touche est en faveur de l'équipe?"
         },
         attributs: ["Ligue Pays De la Loire", "Ligue de Bretagne"],
         reponse: {
@@ -56,7 +55,7 @@ var script1 = [
         niveau: "CONFIRME",
         saut: {
             attente: 3,
-            indice: '00:13:10'
+            indice: '00:07:58'
         },
         question: {
             libelle: "L'arbitre utilise une gestuelle pour indiquer"
@@ -77,10 +76,10 @@ var script1 = [
         niveau: "DEBUTANT",
         saut: {
             attente: 5,
-            indice: '00:07:55'
+            indice: '00:10:03'
         },
         question: {
-            libelle: "Comment l'arbitre autorise-t-il le soigneur à entrer sur le terrain ?"
+            libelle: "Comment l'arbitre autorise-t-il le soigneur à entrer sur le terrain (aidez-vous de la fonction zoom de la vidéo)?"
         },
         attributs: ["Il lève le bras en direction du banc", "Il lève le bras en direction du banc et doit siffler"],
         reculReplay: 2,
@@ -94,7 +93,7 @@ var script1 = [
     {
         step: '00:08:04',
         act: "Question",
-        niveau: "DEBUTANT",
+        niveau: "CONFIRME",
         saut: {
             attente: 5,
             indice: '00:10:02'
@@ -127,7 +126,7 @@ var script1 = [
         reculReplay: 2,
         reponse: {
             solution: 1,
-            libelle: "L'arbitre assistant peut signaler à l'arbitre des fautes s'il estime être le plus prêt de l'action. L'arbitre central garde la décision finale.",
+            libelle: "L'arbitre assistant peut signaler à l'arbitre des fautes s'il estime être le plus près de l'action. L'arbitre central garde la décision finale.",
             pict: "arbitre/fauteassistant.png",
             loi: "Loi_13",
             points: 1
@@ -144,11 +143,11 @@ var script1 = [
         question: {
             libelle: "Au vue de la gestuelle de l'arbitre, quelle a été la décision de l'arbitre sur cette situation ?"
         },
-        attributs: ["coup-franc", "avantage"],
+        attributs: ["coup-franc", "laisse jouer"],
         reculReplay: 2,
         reponse: {
             solution: 2,
-            libelle: "L'arbitre signale l'avantage avec son bras et crie 'jouer'",
+            libelle: "L'arbitre estime qu'il n'y a pas faute et crie 'jouer'",
             pict: "arbitre/avantage.png",
             loi: "Loi_05",
             points: 1
@@ -191,7 +190,7 @@ var script1 = [
         reponse: {
             solution: 2,
             libelle: "L'arbitre indique le point des 6 mètres avec son bras",
-            pict: "arbitre/direct.png",
+            pict: "arbitre/sortiebut.png",
             loi: "Loi_16",
             points: 1
         }
@@ -286,6 +285,7 @@ var script1 = [
             libelle: "L'abitre arrête l'action car il y a eu une faute sur un joueur Bleu lors du contact précédent."
         },
         attributs: ["Il revient à la faute", "Il décide une balle à terre"],
+        reculReplay: 2,
         reponse: {
             solution: 2,
             libelle: "L'arbitre estime que la faute est sans conséquence sur l'action finale puisque le gardien des bleus a récupéré le ballon",
