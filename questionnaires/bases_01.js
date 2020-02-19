@@ -9,15 +9,14 @@ var script1 = [
         reponse: {
             solution: 1,
             loi: "Loi_03",
-            points: 1,
-            temps: 5
+            points: 1
         }
     },
     {
         number: 2,
         niveau: 1,
         question: {
-            libelle: "Combien de remplacants inscrits sur la feuille de match peuvent réellement entrer en jeu en football à 11 en France ?",
+            libelle: "Combien de remplaçants inscrits sur la feuille de match peuvent réellement entrer en jeu en football à 11 en France ?",
             attributs: ["4","3","5","6"]
         },
         reponse: {
@@ -31,8 +30,8 @@ var script1 = [
         number: 3,
         niveau: 2,
         question: {
-            libelle: "les remplacants présents sur le banc",
-            attributs: ["ne peuvent pas êtres sanctionnés","ne peuvent recevoir qu'un rappel à l'ordre","peuvent êtres sanctyionnés","ne peuvent recevoir qu'un carton"]
+            libelle: "les remplaçants présents sur le banc",
+            attributs: ["ne peuvent pas êtres sanctionnés","ne peuvent recevoir qu'un rappel à l'ordre","peuvent êtres sanctionnés comme tous les joueurs","ne peuvent recevoir qu'un carton jaune"]
         },
         reponse: {
             solution: 3,
@@ -59,24 +58,8 @@ var script1 = [
         number: 5,
         niveau: 2,
         question: {
-            libelle: "Un joueur pourra jouer s'il est",
-            attributs: ["inscrit sur la feuille de match au plus tard à la mi-temps",
-            "accepté par le capitaine adverse","inscrit sur la feuille de match quel que soit le moment",
-            "inscrit sur la feuille de match au départ du match"]
-        },
-        reponse: {
-            solution: 4,
-            loi: "Loi_03",
-            points: 2,
-            temps: 6
-        }
-    },
-    {
-        number: 6,
-        niveau: 2,
-        question: {
             libelle: "La permutation avec le gardien de but est autorisée si l'arbitre est informé et",
-            attributs: ["à tout moment pendnat le match","seulement lors d'un arrêt de jeu","seulement en cas de blessure du gardien","seulement à la mi-temps"]
+            attributs: ["à tout moment pendant le match","seulement lors d'un arrêt de jeu","seulement en cas de blessure du gardien","seulement à la mi-temps"]
         },
         reponse: {
             solution: 3,

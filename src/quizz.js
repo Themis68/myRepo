@@ -157,23 +157,20 @@ function fBascule(event) {
 	let carousel = document.querySelector("carousel");
 	let span = document.querySelector("bascule span");
 
-	let content = document.getElementById("content");
+	document.getElementById("content").style.display = "none";
 
 	if (this.src.indexOf("fermee") > 0 ){
 		// on ouvre
+
 		carousel.style.display = "flex";
 		this.src = pathImages + "fleche_ouverte.png";
 		this.alt = "affiche la liste des quizz";
 		span.innerHTML = avatar + " " + tabMessages[0];
-		content.style.display = "flex";
 	} else {
-		// on ferme
 		carousel.style.display = "none";
 		this.src = pathImages + "fleche_fermee.png";
 		this.alt = "masque la liste des quizz";
 		span.innerHTML = avatar + " " + tabMessages[1];
-		content.style.display = "none";
-		
 	}	
 }
 
@@ -193,20 +190,25 @@ function switchQuizz(n) {
 }
 
 function gestionBoard(etape, objet) {
-	console.log("objet", objet);
 	let inter = document.querySelector("inter");
 	switch (etape) {
 		case "selectQuizz":
+			//objet = scenario
+			document.getElementById("content").style.display = "flex";
 			document.querySelector("inter tete titre p").innerHTML = objet.titre;
 			gestNiveaux(objet.niveau);		// calcul des niveaux
 			scanQuestion(objet.niveau);	// analyse du scénario
             gestJauge(0, objet.niveau);			// MAJ de la jauge
             document.querySelector("inter question p").style.display = "none";
 			document.querySelector("inter propositions").style.display = "none";
-            document.querySelector("inter complement").style.display = "flex";
-			document.querySelector("inter complement p").innerHTML = avatar + " "+ tabMessages[2] + " " + nbQuests[niveauQuest].niv + 
-			"<br>portant sur la loi " + lois[parseFloat(objet.loi)].libelle + " et constitué de " + nbQuests[niveauQuest].nb + " questions";
-            document.querySelector("inter complement img").style.display = "none";
+			document.querySelector("inter complement").style.display = "flex";
+			
+			let texte = avatar + " "+ tabMessages[2] + " " + nbQuests[niveauQuest].niv + "<br>";
+			texte += (objet.loi !== undefined ? "portant sur la loi " + lois[parseFloat(objet.loi)-1].libelle : "");
+			texte += " et constitué de " + nbQuests[niveauQuest].nb + " questions";
+			document.querySelector("inter complement p").innerHTML = texte;
+
+			document.querySelector("inter complement img").style.display = "none";
 			// score
 			document.querySelector("inter tete score p").style.display = "none";
 			addScore(0);	// on init même si c'est masqué
@@ -218,6 +220,7 @@ function gestionBoard(etape, objet) {
 			break;
 			
 		case "InterQuestion":
+			// objet = question
 			// complement
 			document.querySelector("inter complement").style.display = "none";
          
@@ -234,7 +237,9 @@ function gestionBoard(etape, objet) {
 			document.querySelector("inter suite").style.display = "flex";
 			document.querySelector("inter suite next").style.display = "none";
 			let pChrono = document.querySelector("inter suite chrono p");
-			pChrono.innerHTML = objet.reponse.temps;
+
+			console.log(quizz);
+			pChrono.innerHTML = (objet.reponse.temps !== undefined ? objet.reponse.temps : quizz.temps);
 			document.querySelector("inter suite chrono").style.display = "flex";
 			myChrono = setInterval(chrono, 1000, objet.reponse); // effet de transition
 
@@ -243,7 +248,7 @@ function gestionBoard(etape, objet) {
 		case "QuizzTermine":
 			// complement
 			document.querySelector("inter complement").style.display = "flex";
-			document.querySelector("inter complement p").innerHTML = avatar + " " + tabMessages[3] + " " + quizzNbPoint + " points</b>";
+			document.querySelector("inter complement p").innerHTML = avatar + " " + tabMessages[3] + " " + quizzNbPoint + (quizzNbPoint > 1 ? " points" : " point") +"</b>";
 			// score
 			document.querySelector("inter tete score p").style.display = "flex";
             // question
