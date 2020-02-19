@@ -20,5 +20,15 @@ var scenario = [
             loi: "03",
             niveau: 2,
             temps: 5
+        },
+        {
+            id: 3,
+            titre: "Les bases",
+            poster: "bases.png",
+            fichier: "bases_02.min.js",
+            variable: "script2",
+            description: "Questionnaire sur les bases de l'arbitrage",
+            niveau: 1,
+            temps: 5
         }
 ]
