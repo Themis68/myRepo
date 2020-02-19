@@ -157,18 +157,23 @@ function fBascule(event) {
 	let carousel = document.querySelector("carousel");
 	let span = document.querySelector("bascule span");
 
+	let content = document.getElementById("content");
+
 	if (this.src.indexOf("fermee") > 0 ){
 		// on ouvre
 		carousel.style.display = "flex";
 		this.src = pathImages + "fleche_ouverte.png";
 		this.alt = "affiche la liste des quizz";
 		span.innerHTML = avatar + " " + tabMessages[0];
+		content.style.display = "flex";
 	} else {
 		// on ferme
 		carousel.style.display = "none";
 		this.src = pathImages + "fleche_fermee.png";
 		this.alt = "masque la liste des quizz";
 		span.innerHTML = avatar + " " + tabMessages[1];
+		content.style.display = "none";
+		
 	}	
 }
 
@@ -179,7 +184,6 @@ function switchQuizz(n) {
 		return false;
 	} else {
 		quizz = scenario[n-1];    		// recup infos du quizz
-		console.log(quizz);
 		tabQuestions = eval(quizz.variable);	// recup questions du quizz
 
 		// affichage de la zone INTER
