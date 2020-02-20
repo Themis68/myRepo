@@ -1,5 +1,5 @@
-@import url(../src/typo/scoreboard/stylesheet.css);
-@import url(../src/typo/passion_one/stylesheet.css);
+@import url(./typo/scoreboard/stylesheet.css);
+@import url(./typo/passion_one/stylesheet.css);
 
 // minireset.css v0.0.3 | MIT License | github.com/jgthms/minireset.css 
 html,body,p,ol,ul,li,dl,dt,dd,blockquote,figure,fieldset,legend,textarea,pre,iframe,hr,h1,h2,h3,h4,h5,h6{margin:0;padding:0}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal}ul{list-style:none}button,input,select,textarea{margin:0}html{box-sizing:border-box}*,*:before,*:after{box-sizing:inherit}img,embed,iframe,object,audio,video{height:auto;max-width:100%}iframe{border:0}table{border-collapse:collapse;border-spacing:0}td,th{padding:0;text-align:left}
@@ -70,6 +70,10 @@ main {
         div p {
             font-size: 1.3vw; // taille variable selon largeur du viewport
             font-family: Arial, Helvetica, sans-serif;
+
+            span {
+                justify-items: center;
+            }
         }
     }
 
@@ -97,12 +101,24 @@ footer {
     font-size: 1vw; // taille variable selon largeur du viewport
     flex-basis: 2.5rem;       // hauteur = 2 lignes de texte
 
-    img {
-        padding-left: 10px;
-        width: 2.5vw;
-        height: 2vw;
+    a {
+        color: yellow;
+        text-decoration: none;;
+
+        img {
+            flex: 0.5;
+            padding-left: 10px;
+            width: 2.5vw;
+            height: 2vw;
+        }
     }
-    h2 {
+
+    a:hover {
+        color: green;
+
+    }
+    span {
+        flex: 10;
         padding-left: 10px;
         line-height: 1.5;
     }

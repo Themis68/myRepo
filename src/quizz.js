@@ -8,18 +8,35 @@ var quizzNbPoint = 0;		// nb points en cours
 var stepBarre = 0;			// % de progression pour une Question
 var stepDone = 0;			// % de progression effectué
 var idQuizz = null;		// quizz en cours
+var lois = [
+	{num:1, libelle:"Terrain"},
+	{num:2, libelle:"Ballon"},
+	{num:3, libelle:"Joueurs"},
+	{num:4, libelle:"Equipements"},
+	{num:5, libelle:"Arbitre"},
+	{num:6, libelle:"Autres arbitres"},
+	{num:7, libelle:"Durée d'un match"},
+	{num:8, libelle:"Coup d'envoi et reprise de jeu"},
+	{num:9, libelle:"Ballon en jeu et hors du jeu"},
+	{num:10, libelle:"Issue d'un match"},
+	{num:11, libelle:"Hors-jeu"},
+	{num:12, libelle:"Fautes et incorrections"},
+	{num:13, libelle:"Coups francs"},
+	{num:14, libelle:"Penalty"},
+	{num:15, libelle:"Rentrée de touche"},
+	{num:16, libelle:"Coup de pied de but"},
+	{num:17, libelle:"Corner"}
+]
 var tabMessages = [
 	"cliquez sur la vignette du quizz que vous souhaitez jouer",
 	"cliquez sur cet icône pour afficher les quizz disponibles",
-	"vous allez démarrer le quizz pour obtenir le niveau '",
+	"vous allez démarrer le quizz pour obtenir le niveau ",
 	"vous venez de terminer le quizz<br>Votre score est de <b>"
 ]
 var nbQuests = [
 	{niv: "COURANT", nb: 0, points: 0},
-	{niv: "j'apprends", nb: 0, points: 0},
-	{niv: "je comprends", nb: 0, points: 0},
-	{niv: "j'applique", nb: 0, points: 0},
-	{niv: "j'explique", nb: 0, points: 0}
+	{niv: "1 : j'apprends", nb: 0, points: 0},
+	{niv: "2 : je comprends", nb: 0, points: 0}
 ];		// le niveau 0 est le niveau en cours
 var niveauQuest = 1		//niveau par défaut au démarrage
 var questionsFaites = [];
@@ -92,7 +109,7 @@ function creerVignettes(id) {
 		myImg.className = "img-fluid mx-auto d-block";
 		myImg.setAttribute("alt", "img" + i);
 		myImg.setAttribute("title", "img" + i);
-		myImg.setAttribute("src", pathPosters + (scenario[i][0].poster || pathImages + "pelouses/stade.jpg"));
+		myImg.setAttribute("src", pathPosters + (scenario[i].poster || pathImages + "pelouses/stade.jpg"));
 
 		// caption
 		let myCaption = document.createElement("div");
@@ -100,15 +117,15 @@ function creerVignettes(id) {
 		// badge
 		let myF = document.createElement("img");
 		myF.className = "carouselFanion";
-		myF.setAttribute("title", "niveau : " + nbQuests[scenario[i][0].niveau].niv);
-		myF.setAttribute("src", pathBadges + "badge" +(scenario[i][0].niveau + ".png" || "fff.png'"));
+		myF.setAttribute("title", "niveau : " + nbQuests[scenario[i].niveau].niv);
+		myF.setAttribute("src", pathBadges + "badge" +(scenario[i].niveau + ".png" || "fff.png'"));
 		myCaption.appendChild(myF);
 		
 		let myP = document.createElement("p");    
-		myP.innerHTML = scenario[i][0].titre;
+		myP.innerHTML = scenario[i].titre;
 		myCaption.appendChild(myP);
 		myCaption.className = "carousel-caption d-none d-md-block titre";
-		myCaption.setAttribute("onclick", 'javascript:switchQuizz('+ scenario[i][0].id +');');	// mettre ici car cette DIV est au-dessus de l'image
+		myCaption.setAttribute("onclick", 'javascript:switchQuizz('+ scenario[i].id +');');	// mettre ici car cette DIV est au-dessus de l'image
 
 		myDiv.appendChild(myImg);
 		myDiv.appendChild(myCaption);
@@ -117,7 +134,7 @@ function creerVignettes(id) {
 
 		let myScript = document.createElement("SCRIPT");
 		myScript.setAttribute("type", "text/javascript");
-		myScript.setAttribute("src", pathQuizz + scenario[i][0].fichier);
+		myScript.setAttribute("src", pathQuizz + scenario[i].fichier);
 		document.head.appendChild(myScript);
 	}
 }
@@ -140,14 +157,16 @@ function fBascule(event) {
 	let carousel = document.querySelector("carousel");
 	let span = document.querySelector("bascule span");
 
+	document.getElementById("content").style.display = "none";
+
 	if (this.src.indexOf("fermee") > 0 ){
 		// on ouvre
+
 		carousel.style.display = "flex";
 		this.src = pathImages + "fleche_ouverte.png";
 		this.alt = "affiche la liste des quizz";
 		span.innerHTML = avatar + " " + tabMessages[0];
 	} else {
-		// on ferme
 		carousel.style.display = "none";
 		this.src = pathImages + "fleche_fermee.png";
 		this.alt = "masque la liste des quizz";
@@ -162,11 +181,11 @@ function switchQuizz(n) {
 		return false;
 	} else {
 		quizz = scenario[n-1];    		// recup infos du quizz
-		tabQuestions = eval("script" + n);	// recup questions du quizz
+		tabQuestions = eval(quizz.variable);	// recup questions du quizz
 
 		// affichage de la zone INTER
 		showContent(true);
-		gestionBoard("selectQuizz", quizz[0]);	// on passe les infos sur le quizz sélectionné
+		gestionBoard("selectQuizz", quizz);	// on passe les infos sur le quizz sélectionné
 	}
 }
 
@@ -174,14 +193,22 @@ function gestionBoard(etape, objet) {
 	let inter = document.querySelector("inter");
 	switch (etape) {
 		case "selectQuizz":
+			//objet = scenario
+			document.getElementById("content").style.display = "flex";
+			document.querySelector("inter tete titre p").innerHTML = objet.titre;
 			gestNiveaux(objet.niveau);		// calcul des niveaux
 			scanQuestion(objet.niveau);	// analyse du scénario
             gestJauge(0, objet.niveau);			// MAJ de la jauge
             document.querySelector("inter question p").style.display = "none";
 			document.querySelector("inter propositions").style.display = "none";
-            document.querySelector("inter complement").style.display = "flex";
-            document.querySelector("inter complement p").innerHTML = avatar + " "+ tabMessages[2] + " " + nbQuests[niveauQuest].nivv + "'."
-            document.querySelector("inter complement img").style.display = "none";
+			document.querySelector("inter complement").style.display = "flex";
+			
+			let texte = avatar + " "+ tabMessages[2] + " " + nbQuests[niveauQuest].niv + "<br>";
+			texte += (objet.loi !== undefined ? "portant sur la loi " + lois[parseFloat(objet.loi)-1].libelle : "");
+			texte += " et constitué de " + nbQuests[niveauQuest].nb + " questions";
+			document.querySelector("inter complement p").innerHTML = texte;
+
+			document.querySelector("inter complement img").style.display = "none";
 			// score
 			document.querySelector("inter tete score p").style.display = "none";
 			addScore(0);	// on init même si c'est masqué
@@ -193,9 +220,9 @@ function gestionBoard(etape, objet) {
 			break;
 			
 		case "InterQuestion":
+			// objet = question
 			// complement
 			document.querySelector("inter complement").style.display = "none";
-			document.querySelector("inter complement p").innerHTML = avatar + " " + tabMessages[3] + " " + nbQuests[niveauQuest].points + " points</b>";
          
 			// score
 			document.querySelector("inter tete score p").style.display = "flex";
@@ -210,7 +237,9 @@ function gestionBoard(etape, objet) {
 			document.querySelector("inter suite").style.display = "flex";
 			document.querySelector("inter suite next").style.display = "none";
 			let pChrono = document.querySelector("inter suite chrono p");
-			pChrono.innerHTML = objet.reponse.temps;
+
+			console.log(quizz);
+			pChrono.innerHTML = (objet.reponse.temps !== undefined ? objet.reponse.temps : quizz.temps);
 			document.querySelector("inter suite chrono").style.display = "flex";
 			myChrono = setInterval(chrono, 1000, objet.reponse); // effet de transition
 
@@ -219,6 +248,7 @@ function gestionBoard(etape, objet) {
 		case "QuizzTermine":
 			// complement
 			document.querySelector("inter complement").style.display = "flex";
+			document.querySelector("inter complement p").innerHTML = avatar + " " + tabMessages[3] + " " + quizzNbPoint + (quizzNbPoint > 1 ? " points" : " point") +"</b>";
 			// score
 			document.querySelector("inter tete score p").style.display = "flex";
             // question
@@ -251,9 +281,13 @@ function chrono(reponse) {
 
 function response(numQ, propSel) {
 	clearTimeout(myChrono);
+
 	// on arrive ici si on a cliqué sur une des propositions OU si on a dépassé le temps
+
+	// on neutralise les boutons
 	for (let i =0; i < 4; i++) {
 		document.getElementsByClassName("prop"+ (i+1))[0].setAttribute("style", "filter:brightness(500%);");
+		document.getElementsByClassName("prop"+ (i+1))[0].removeAttribute("onclick");
 	}
 	
 	myQ = tabQuestions[numQ-1];
@@ -280,7 +314,8 @@ function addScore(value) {
         quizzNbPoint = 0;
     } else {
         quizzNbPoint = quizzNbPoint + value;
-    }
+	}
+	console.log(quizzNbPoint);
     var score = ('0' + quizzNbPoint.toString()).substr(-2);       // on a le score avec deux digits
     var scoreMax = ('0' + nbQuests[niveauQuest].points.toString()).substr(-2);
 
@@ -291,19 +326,21 @@ function addScore(value) {
 }
 
 function gestNiveaux(niveau) {
-    let myBadge = document.querySelector("inter tete niveau");
-	img = document.createElement("img");
-	img.id = "badge"
+    //let myBadge = document.querySelector("inter tete niveau");
+	//img = document.createElement("img");
+	//img.id = "badge"
+
+	let img = document.getElementById("badge");
 	img.setAttribute("title", nbQuests[niveau].niv);
 	img.setAttribute("alt", nbQuests[niveau].niv);
 	img.setAttribute("src", pathBadges + "badge" + niveau + ".png");
-	myBadge.appendChild(img);
+	//myBadge.appendChild(img);
 }
 
 function scanQuestion(niveau) {
 	tabQuestions = [];
 
-	let script = eval("script" + niveau);
+	let script = eval(quizz.variable);
 	// init
 	for (let ind = 0; ind < arrayAssoSize(nbQuests); ind++) {
 		nbQuests[ind].nb = 0;	// nombre de Questions du nouveau niveau
@@ -353,7 +390,7 @@ function continuer() {
 		questionOn = 0;	// on ré-initialise le nombre de questions
 		// affichage de la zone INTER
 		showContent(true);
-		gestionBoard("QuizzTermine");	// on passe les infos sur le quizz sélectionné
+		gestionBoard("QuizzTermine");
 	} else {
 		// Affichage  normal des boutons de réponse
 		for (let i =0; i < 4; i++) {

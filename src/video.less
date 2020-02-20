@@ -1,6 +1,5 @@
-@import url(../src/typo/scoreboard/stylesheet.css);
-@import url(../src/typo/passion_one/stylesheet.css);
-
+@import url(./typo/scoreboard/stylesheet.css);
+@import url(./typo/passion_one/stylesheet.css);
 // minireset.css v0.0.3 | MIT License | github.com/jgthms/minireset.css 
 html,body,p,ol,ul,li,dl,dt,dd,blockquote,figure,fieldset,legend,textarea,pre,iframe,hr,h1,h2,h3,h4,h5,h6{margin:0;padding:0}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal}ul{list-style:none}button,input,select,textarea{margin:0}html{box-sizing:border-box}*,*:before,*:after{box-sizing:inherit}embed,iframe,object,audio,video{height:auto;max-width:100%}img{max-width:100%}iframe{border:0}table{border-collapse:collapse;border-spacing:0}td,th{padding:0;text-align:left}
 
@@ -9,7 +8,7 @@ font-size: 100%; // this is usually 16px by default
 */
 
 html {
-    font-family: passion_oneregular;    // police par défaut 
+    font-family: "passion_oneregular";    // police par défaut 
 }
 
 body {
@@ -96,7 +95,7 @@ main {
         }
     
         span {
-            font-family: scoreboardregular;
+            font-family: "scoreboardregular";
             font-size: 5vw; // taille variable selon largeur du viewport
             color:white;
         }
@@ -248,7 +247,7 @@ main {
 
                     p {
                         display: flex;
-                        font-family: scoreboardregular;
+                        font-family: "scoreboardregular";
                         font-size: 2vw; // taille variable selon largeur du viewport
                         color:black;
                     }
@@ -405,7 +404,7 @@ main {
 
                     p {
                         display: flex;
-                        font-family: scoreboardregular;
+                        font-family: "scoreboardregular";
                         font-size: 2vw; // taille variable selon largeur du viewport
                         color:black;
                     }
@@ -449,11 +448,13 @@ footer {
     flex-basis: 2.5rem;       // hauteur = 2 lignes de texte
 
     img {
+        flex: 0.5;
         padding-left: 10px;
         width: 2.5vw;
         height: 2vw;
     }
-    h2 {
+    span {
+        flex: 10;
         padding-left: 10px;
         line-height: 1.5;
     }
