@@ -31,7 +31,8 @@ var tabMessages = [
 	"cliquez sur la vignette du quizz que vous souhaitez jouer",
 	"cliquez sur cet icône pour afficher les quizz disponibles",
 	"vous allez démarrer le quizz pour obtenir le niveau ",
-	"vous venez de terminer le quizz<br>Votre score est de <b>"
+	"vous venez de terminer le quizz<br>Votre score est de <b>",
+	"Sélectionnez un nouveau quizz."
 ]
 var nbQuests = [
 	{niv: "COURANT", nb: 0, points: 0},
@@ -248,7 +249,7 @@ function gestionBoard(etape, objet) {
 		case "QuizzTermine":
 			// complement
 			document.querySelector("inter complement").style.display = "flex";
-			document.querySelector("inter complement p").innerHTML = avatar + " " + tabMessages[3] + " " + quizzNbPoint + (quizzNbPoint > 1 ? " points" : " point") +"</b>";
+			document.querySelector("inter complement p").innerHTML = avatar + " " + tabMessages[3] + " " + quizzNbPoint + (quizzNbPoint > 1 ? " points" : " point") +"</b><br>" +  tabMessages[4];
 			// score
 			document.querySelector("inter tete score p").style.display = "flex";
             // question
