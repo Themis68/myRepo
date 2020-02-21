@@ -713,6 +713,7 @@ function fProposition(reponse) {
 	let bonneReponse = actionEnCours.reponse.solution;
 
 	if (bonneReponse === reponse) {
+		playSound("bonne");
         classId("add", "proposition" + reponse, "green");
         
         if (questionsFaites.indexOf(actionEnCours.step) < 0) {
@@ -723,6 +724,7 @@ function fProposition(reponse) {
             // DEJA TRAITE
         }
 	} else {
+		playSound("mauvaise");
 		classId("add", "proposition" + reponse, "rouge");
 		classId("add", "proposition" + bonneReponse, "green");
     }
