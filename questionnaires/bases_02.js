@@ -3,7 +3,7 @@ var script2 = [
         number: 1,
         niveau: 1,
         question: {
-            libelle: "Le point de penalty se situe à comboien de mètres de la ligne de but",
+            libelle: "Le point de penalty se situe à combien de mètres de la ligne de but",
             attributs: ["11 mètres","9,15 mètres","9,50 mètres","16,50 mètres"]
         },
         reponse: {
@@ -18,7 +18,7 @@ var script2 = [
         niveau: 1,
         question: {
             libelle: "Quel sera le placement de l'arbitre assistant sur le corner ?",
-            attributs: ["à 1m du poteau sur le prolongement de la ligne de touche","à 1m du poteau sur le prolongement de la ligne de but","à 1 m du poteau du côté qu'il veut","où il veut"]
+            attributs: ["à 1m du poteau sur le prolongement de la ligne de touche","à 1m du poteau sur le prolongement de la ligne de but","à 1m du poteau du côté qu'il veut","où il veut"]
         },
         reponse: {
             solution: 2,
@@ -60,8 +60,8 @@ var script2 = [
         niveau: 1,
         question: {
             libelle: "Au sujet des protèges-tibias",
-            attributs: ["ils sont obligatires et peuvent êtres partiellement recouverts",
-        "ne sont pas obligatoires","sont obligatoires et peuvent êtres découverts","sont obligatoires et doivent êtres recouverts"]
+            attributs: ["sont obligatoires et peuvent êtres partiellement recouverts",
+        "ne sont pas obligatoires","sont obligatoires et peuvent êtres découverts","sont obligatoires et doivent êtres recouverts totalement"]
         },
         reponse: {
             solution: 4,
