@@ -179,7 +179,7 @@ main menu carousel .titre {
   font-size: 1.5vw;
 }
 main content {
-  width: 60vw;
+  width: 70vw;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -285,6 +285,8 @@ main content inter propositions {
   background-color: white;
   padding-left: 7px;
   padding-right: 7px;
+  padding-top: 0px;
+  padding-bottom: 0px;
   flex: 1;
 }
 main content inter propositions div {
@@ -297,12 +299,15 @@ main content inter propositions div div {
 }
 main content inter propositions div div .card {
   max-width: 14rem;
+  margin-bottom: 0.5rem !important;
+  margin-top: 0rem!important;
 }
 main content inter propositions div div .card-header {
   align-self: flex-start;
   font-size: 2vw;
 }
 main content inter propositions div div .card-body {
+  padding: 0.5vw;
   align-self: center;
   font-size: 1.75vw;
 }
@@ -330,7 +335,8 @@ main content inter suite {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  padding: 10px;
+  padding: 2px;
+  padding-bottom: 5px;
   background-color: white;
   flex: 1;
   -webkit-border-bottom-left-radius: 20px;
@@ -344,11 +350,11 @@ main content inter suite next {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  max-width: 15%;
+  max-width: 13%;
   flex: 1;
 }
 main content inter suite next img {
-  max-width: 80%;
+  max-width: 60%;
 }
 main content inter suite chrono {
   display: flex;
@@ -357,8 +363,7 @@ main content inter suite chrono {
   background-position: center;
   background-size: contain;
   justify-content: center;
-  width: 60px;
-  height: 60px;
+  max-width: 15%;
   flex-grow: 1;
 }
 main content inter suite chrono p {

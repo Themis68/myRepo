@@ -141,7 +141,7 @@ main {
     }
 
     content {
-        width: 60vw;   // on limite l'étalement des objets en largeur
+        width: 70vw;   // on limite l'étalement des objets en largeur
         display: flex;
         flex-direction: row;
         flex-wrap: nowrap;
@@ -262,6 +262,8 @@ main {
                 background-color: white;
                 padding-left: 7px;
                 padding-right: 7px;
+                padding-top: 0px;
+                padding-bottom: 0px;
                 flex: 1;
 
                 div {
@@ -274,6 +276,8 @@ main {
 
                         .card {
                             max-width: 14rem;
+                            margin-bottom: 0.5rem!important;
+                            margin-top: 0rem!important;
                         }
 
                         .card-header {
@@ -283,6 +287,7 @@ main {
 
 
                         .card-body {
+                            padding: 0.5vw;
                             align-self: center;
                             font-size: 1.75vw; // taille variable selon largeur du viewport
                         }
@@ -318,7 +323,8 @@ main {
                 display: flex;
                 flex-direction: row;
                 justify-content: center;
-                padding: 10px;
+                padding: 2px;
+                padding-bottom: 5px;
                 background-color: white;
                 flex: 1;
                 -webkit-border-bottom-left-radius: 20px;
@@ -332,11 +338,11 @@ main {
                     display: flex;
                     flex-direction: row;
                     justify-content: center;
-                    max-width: 15%;
+                    max-width: 13%;
                     flex: 1;
 
                     img {
-                        max-width: 80%;
+                        max-width: 60%;
                     }
                 }
 
@@ -347,8 +353,9 @@ main {
                     background-position: center; 
                     background-size: contain;
                     justify-content: center;
-                    width: 60px;
-                    height: 60px;
+                    //width: 60px;
+                    //height: 60px;
+                    max-width: 15%;
                     flex-grow: 1;
                     
                     p {
