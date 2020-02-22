@@ -6,7 +6,7 @@ var scenario = [
             fichier: "bases_01.min.js",
             variable: "script1",
             description: "Questionnaire sur les joueurs",
-            loi: "03",
+            loi: 3,
             niveau: 1,
             temps: 5
         },
@@ -17,7 +17,7 @@ var scenario = [
             fichier: "bases_01.min.js",
             variable: "script1",
             description: "Questionnaire sur les joueurs",
-            loi: "03",
+            loi: 3,
             niveau: 2,
             temps: 5
         },

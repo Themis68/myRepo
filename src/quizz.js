@@ -9,31 +9,38 @@ var stepBarre = 0;			// % de progression pour une Question
 var stepDone = 0;			// % de progression effectué
 var idQuizz = null;		// quizz en cours
 var lois = [
-	{num:1, libelle:"Terrain"},
-	{num:2, libelle:"Ballon"},
-	{num:3, libelle:"Joueurs"},
-	{num:4, libelle:"Equipements"},
-	{num:5, libelle:"Arbitre"},
-	{num:6, libelle:"Autres arbitres"},
-	{num:7, libelle:"Durée d'un match"},
-	{num:8, libelle:"Coup d'envoi et reprise de jeu"},
-	{num:9, libelle:"Ballon en jeu et hors du jeu"},
-	{num:10, libelle:"Issue d'un match"},
-	{num:11, libelle:"Hors-jeu"},
-	{num:12, libelle:"Fautes et incorrections"},
-	{num:13, libelle:"Coups francs"},
-	{num:14, libelle:"Penalty"},
-	{num:15, libelle:"Rentrée de touche"},
-	{num:16, libelle:"Coup de pied de but"},
-	{num:17, libelle:"Corner"}
-]
+	{num:1, libelle:"Terrain", fichier="loi_01.pdf"},
+	{num:2, libelle:"Ballon", fichier="loi_02.pdf"},
+	{num:3, libelle:"Joueurs", fichier="loi_03.pdf"},
+	{num:4, libelle:"Equipements", fichier="loi_04.pdf"},
+	{num:5, libelle:"Arbitre", fichier="loi_05.pdf"},
+	{num:6, libelle:"Autres arbitres", fichier="loi_06.pdf"},
+	{num:7, libelle:"Durée d'un match", fichier="loi_07.pdf"},
+	{num:8, libelle:"Coup d'envoi et reprise de jeu", fichier="loi_08.pdf"},
+	{num:9, libelle:"Ballon en jeu et hors du jeu", fichier="loi_09.pdf"},
+	{num:10, libelle:"Issue d'un match", fichier="loi_10.pdf"},
+	{num:11, libelle:"Hors-jeu", fichier="loi_11.pdf"},
+	{num:12, libelle:"Fautes et incorrections", fichier="loi_12.pdf"},
+	{num:13, libelle:"Coups francs", fichier="loi_13.pdf"},
+	{num:14, libelle:"Penalty", fichier="loi_14.pdf"},
+	{num:15, libelle:"Rentrée de touche", fichier="loi_15.pdf"},
+	{num:16, libelle:"Coup de pied de but", fichier="loi_16.pdf"},
+	{num:17, libelle:"Corner", fichier="loi_17.pdf"}
+];
+
+/*var cardIcones = [
+	"fas fa-play",
+	"fas fa-star",
+	"fas fa-circle",
+	"fas fa-square"
+]*/
 var tabMessages = [
 	"cliquez sur la vignette du quizz que vous souhaitez jouer",
 	"cliquez sur cet icône pour afficher les quizz disponibles",
 	"vous allez démarrer le quizz pour obtenir le niveau ",
 	"vous venez de terminer le quizz<br>Votre score est de <b>",
 	"Sélectionnez un nouveau quizz."
-]
+];
 var nbQuests = [
 	{niv: "COURANT", nb: 0, points: 0},
 	{niv: "1 : j'apprends", nb: 0, points: 0},
@@ -278,6 +285,7 @@ function response(numQ, propSel) {
 	for (let i =0; i < 4; i++) {
 		document.getElementsByClassName("prop"+ (i+1))[0].setAttribute("style", "filter:grayscale(100%);");
 		document.getElementsByClassName("prop"+ (i+1))[0].removeAttribute("onclick");
+		document.getElementById("book"+ (i+1)).removeAttribute("onclick");
 	}
 	
 	myQ = tabQuestions[numQ-1];
@@ -290,8 +298,25 @@ function response(numQ, propSel) {
 		addScore(myQ.reponse.points);
 	}
 	
-	document.getElementsByClassName("prop"+ myQ.reponse.solution)[0].setAttribute("style", "filter:drop-shadow(2px 4px 6px);");
+	let loi = "";
 
+	document.getElementsByClassName("prop"+ myQ.reponse.solution)[0].setAttribute("style", "filter:drop-shadow(2px 4px 6px);cursor:pointer");
+	if (myQ.reponse.loi == undefined){
+		// prendre la loi du quizz
+		console.log("loi du quizz", quizz.loi);
+		loi = lois[quizz.loi-1].fichier;
+	} else {
+		// loi de la question
+		console.log("loi de la question", myQ.reponse.loi);
+		loi = lois[(myQ.reponse.loi)-1].fichier;
+	}
+
+	let boutonOk = document.getElementById("book" + myQ.reponse.solution);
+	boutonOk.className = "fas fa-book";
+	boutonOk.setAttribute("onclick", "window.open('../lois/"+ loi + "','_target')");
+	boutonOk.setAttribute("target", "_blank");
+	boutonOk.setAttribute("title", loi);
+	boutonOk.setAttribute("alt", loi);
 	// on prépare la question suivante
 	questionOn++;
 
@@ -305,7 +330,7 @@ function addScore(value) {
         quizzNbPoint = 0;
     } else {
         quizzNbPoint = quizzNbPoint + value;
-	}
+	} 
 	console.log(quizzNbPoint);
     var score = ('0' + quizzNbPoint.toString()).substr(-2);       // on a le score avec deux digits
     var scoreMax = ('0' + nbQuests[niveauQuest].points.toString()).substr(-2);
@@ -394,10 +419,11 @@ function continuer() {
 function gestPropositions(etape, objet) {
 	for (let i=0; i < 4; i++) {
 		// carte
-		let myCard = document.getElementById("card" + (i+1));
-		myCard.setAttribute("onclick", 'javascript:response('+ questionOn + ',' + (i+1) +');');
+		document.getElementById("card" + (i+1)).setAttribute("onclick", 'javascript:response('+ questionOn + ',' + (i+1) +');');
 		// proposition
-		let myProp = document.getElementById("prop" + (i+1));
-		myProp.innerHTML = objet.question.attributs[i];		// afficher les libellés des propositions
+		let myProp = 
+		document.getElementById("prop" + (i+1)).innerHTML = objet.question.attributs[i];		// afficher les libellés des propositions
+		// book
+		document.getElementById("book" + (i+1)).className = "far fa-comments";
 	}
 }

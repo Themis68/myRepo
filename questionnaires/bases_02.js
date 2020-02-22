@@ -8,7 +8,7 @@ var script2 = [
         },
         reponse: {
             solution: 1,
-            loi: "Loi_01",
+            loi: 1,
             points: 1,
             temps: 5
         }
@@ -22,7 +22,7 @@ var script2 = [
         },
         reponse: {
             solution: 2,
-            loi: "Loi_06",
+            loi: 6,
             points: 1,
             temps: 5
         }
@@ -36,7 +36,7 @@ var script2 = [
         },
         reponse: {
             solution: 1,
-            loi: "Loi_07",
+            loi: 7,
             points: 2,
             temps: 6
         }
@@ -50,7 +50,7 @@ var script2 = [
         },
         reponse: {
             solution: 1,
-            loi: "Loi_02",
+            loi: 2,
             points: 1,
             temps: 8
         }
@@ -65,7 +65,7 @@ var script2 = [
         },
         reponse: {
             solution: 4,
-            loi: "Loi_04",
+            loi: 4,
             points: 1,
             temps: 5
         }
