@@ -61,7 +61,8 @@ function central(event) {
 		draw("vjs-bug-silhEquipeA", video[0].gauche.maillotCouleur);
 		draw("vjs-bug-silhEquipeB", video[0].droite.maillotCouleur);
 		draw("vjs-bug-silhArbitre", video[0].arbitre.maillotCouleur);
-    }
+	}
+	console.log("class", target);
 }
 
 function init() {
