@@ -56,18 +56,6 @@ var pathBadges = pathQuizz + "badges/";		//  badges
 
 document.addEventListener("DOMContentLoaded", init, false);	// lance l'écoute des évènements et appelle INIT
 
-function user() {
-	let avatarOk = false;
-	const reg = /^([a-zA-Z]){3,20}$/g;	// accepte des chaines de caractères jusqu'à 5 caractères
-	do {
-		avatar = window.prompt("Indique ton prénom s'il te plait (3 à 20 lettres maximum)");
-		avatarOk = reg.exec(avatar);
-	}
-	while (!avatarOk);
-	avatar = avatar.toUpperCase();
-	document.querySelector("bascule span").innerHTML = avatar + " " + tabMessages[0];
-}
-
 function init() {
     //
     // est appelé en premier par la page lors du chargement
