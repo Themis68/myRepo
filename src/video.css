@@ -187,6 +187,9 @@ main menu carousel {
   display: flex;
   align-self: center;
 }
+main menu carousel .carousel-caption {
+  padding-top: 0px!important;
+}
 main content {
   width: 95vw;
   display: flex;
