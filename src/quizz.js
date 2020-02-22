@@ -272,10 +272,11 @@ function response(numQ, propSel) {
 	clearTimeout(myChrono);
 
 	// on arrive ici si on a cliqué sur une des propositions OU si on a dépassé le temps
+	//propSel = 1, 2 3 ou 4 ou -1 si on n'a pas cliqué
 
 	// on neutralise les boutons
 	for (let i =0; i < 4; i++) {
-		document.getElementsByClassName("prop"+ (i+1))[0].setAttribute("style", "filter:brightness(500%);");
+		document.getElementsByClassName("prop"+ (i+1))[0].setAttribute("style", "filter:grayscale(100%);");
 		document.getElementsByClassName("prop"+ (i+1))[0].removeAttribute("onclick");
 	}
 	
@@ -286,9 +287,10 @@ function response(numQ, propSel) {
 	} else {
 		// bonne réponse
 		playSound("bonne");
-		document.getElementsByClassName("prop"+ propSel)[0].setAttribute("style", "filter:drop-shadow(2px 4px 6px black);");
 		addScore(myQ.reponse.points);
 	}
+	
+	document.getElementsByClassName("prop"+ myQ.reponse.solution)[0].setAttribute("style", "filter:drop-shadow(2px 4px 6px);");
 
 	// on prépare la question suivante
 	questionOn++;

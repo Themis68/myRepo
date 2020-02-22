@@ -295,6 +295,9 @@ main content inter propositions div {
 main content inter propositions div div {
   flex: 0.5;
 }
+main content inter propositions div div .card {
+  max-width: 14rem;
+}
 main content inter propositions div div .card-header {
   align-self: flex-start;
   font-size: 2vw;
