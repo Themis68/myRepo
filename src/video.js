@@ -833,8 +833,9 @@ function gestPropositions(etape, attributs, reponse) {
     let propositions = document.querySelector("inter propositions");
     
     let proposition  = document.createElement("proposition");
-    let loi = document.createElement("a");
-    let img = document.createElement("img");
+	let loi = document.createElement("a");
+	// let img = document.createElement("img");
+    let i = document.createElement("i");
     let button = document.createElement("button");
 
 	switch(etape) {
@@ -845,10 +846,14 @@ function gestPropositions(etape, attributs, reponse) {
                 proposition.id = "proposition-div-" + (i+1);
 
                 loi.id = "loi" + (i+1);
-                loi.href = '../lois/' + actionEnCours.reponse.loi + '.pdf'; //myURL + '/lois/' + actionEnCours.reponse.loi + '.pdf';
-                loi.target = '_blank';
-                img.src = pathImages + "lois.png"; // myURL + "/images/lois.png";
-                loi.appendChild(img);
+                loi.href = '../lois/' + actionEnCours.reponse.loi + '.pdf';
+				loi.target = '_blank';
+				//img.src = pathImages + "lois.png";
+				// loi.appendChild(img);
+				i.id = "book" + (i+1);
+				i.className = "fas fa-book";
+				loi.innerHTML = '<i class="fas fa-book"></i>';
+                //loi.appendChild(i);
                 loi.setAttribute("style", "display:none");
 
                 proposition.appendChild(loi);
@@ -866,8 +871,9 @@ function gestPropositions(etape, attributs, reponse) {
                 propositions.appendChild(proposition);
 
                 button = document.createElement("button");
-                loi = document.createElement("a");
-                img = document.createElement("img");
+				loi = document.createElement("a");
+				//i = document.createElement("i");
+                //i.className = "fas fa-book";
                 proposition = document.createElement("proposition");
 			}
 			// zone complement : on renseigne mais c'est masqué pour l'instant

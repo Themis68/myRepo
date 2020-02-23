@@ -332,12 +332,16 @@ main content inter propositions proposition a {
   padding: 4px;
   padding-left: 10px;
   text-decoration: none;
+  /* img {
+                            display: flex;
+                            flex: 1;
+                            height: 4vh;
+                            padding-right: 6px;
+                        }*/
 }
-main content inter propositions proposition a img {
-  display: flex;
-  flex: 1;
-  height: 4vh;
-  padding-right: 6px;
+main content inter propositions proposition a i {
+  padding-top: 4px;
+  color: navy;
 }
 main content inter propositions proposition button {
   flex: 11;
