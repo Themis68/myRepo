@@ -56,6 +56,7 @@ document.addEventListener("click", central, false);	// lance l'écoute des évè
 function central(event) {
 	// gestion de la position de la souris pour plus tard
 	var target = event.target || event.srcElement; // ce dernier pour compatibilité IE
+
 	if(target.getAttribute('class') == 'vjs-icon-placeholder') {
 		// clic sur big play
 		draw("vjs-bug-silhEquipeA", video[0].gauche.maillotCouleur);
@@ -274,6 +275,7 @@ function switchVideo(n) {
 
             // on créé la vidéo
 			 myVideo = videojs('myVideo', {
+				disableVideoPlayPauseClick: true,
 				width: matchWCalcule,
 				height: hauteur,
 				controls: true,

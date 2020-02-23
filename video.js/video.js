@@ -123,7 +123,6 @@
 
       if (history) {
         history.push([].concat(args));
-        console.log("history", history);
       } // If there's no console then don't try to output messages, but they will
       // still be stored in history.
 
@@ -24759,6 +24758,7 @@
           _this3["handleTech" + TECH_EVENTS_QUEUE[event] + "_"](eventObj);
         });
       });
+
       this.on(this.tech_, 'loadstart', this.handleTechLoadStart_);
       this.on(this.tech_, 'sourceset', this.handleTechSourceset_);
       this.on(this.tech_, 'waiting', this.handleTechWaiting_);
@@ -25521,6 +25521,11 @@
     ;
 
     _proto.handleTechClick_ = function handleTechClick_(event) {
+      // désactiver le click sur l'image ? 
+      if (this.options_.disableVideoPlayPauseClick) {
+        return
+      }
+
       if (!isSingleLeftClick(event)) {
         return;
       } // When controls are disabled a click should not toggle playback because
