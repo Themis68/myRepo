@@ -38,6 +38,7 @@ var seqUsed = -1;	// valeur de l'étape de la séquence qui a été traitée
 var hauteurContent = 0; // hauteur de la zone CONTENT récupérée lors du chargement
 var numQuestion = 0;	// numero de la Question
 var transitionTime = 1000;	// durée d'une transition ALLERA en ms
+var volumeLevel = 1;	// puissance du volume sonore
 var tabMessages = [
 	"cliquez sur la vignette du match que vous souhaitez analyser",
 	"cliquez sur cet icône pour afficher les matchs disponibles"
@@ -693,7 +694,8 @@ function continuer2() {
         gestJauge();
     }
 
-    document._video.playbackRate = 1;   // vitesse normale
+	document._video.playbackRate = 1;   // vitesse normale
+	document._video.volume = volumeLevel;	//restauration du volume sonore
     document._video.play(); // on relance la video
 
     if (actionEnCours.saut !== undefined) {
@@ -770,7 +772,9 @@ function fReplay(param) {
     addScore(-1);   // MAJ score
     replaysFaits.push(actionEnCours.step);    // on enbregistre l'opération
     getVideo().currentTime = getVideo().currentTime - (param); // on recule de X secondes
-    document._video.playbackRate = 0.2; // on active le ralentis
+	document._video.playbackRate = 0.2; // on active le ralentis
+	volumeLevel = document._video.volume;	// on sauvegarde le niveau du volume
+	document._video.volume = 0;	// mode MUTE
     document._video.play(); // on reprend la lecture de la vidéo
 }
 
