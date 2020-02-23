@@ -61,8 +61,13 @@ function central(event) {
 		draw("vjs-bug-silhEquipeA", video[0].gauche.maillotCouleur);
 		draw("vjs-bug-silhEquipeB", video[0].droite.maillotCouleur);
 		draw("vjs-bug-silhArbitre", video[0].arbitre.maillotCouleur);
+
+		//masquer les boutons de contrôle
+		document.getElementsByClassName("vjs-control-bar")[0].children[0].classList.add("vjs-hidden");	// play
+		document.getElementsByClassName("vjs-control-bar")[0].children[5].classList.add("vjs-hidden");  // time progress
+		//console.log(document.getElementsByClassName("vjs-control-bar")[0].children); // liste des contrôles
 	}
-	console.log("class", target);
+
 }
 
 function init() {

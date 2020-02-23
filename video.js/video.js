@@ -95,7 +95,8 @@
    * @module create-logger
    */
 
-  var history = [];
+  var history = []; // passe ici au clic sur le BIG-PLAY
+ 
   /**
    * Log messages to the console and history based on the type of message
    *
@@ -122,6 +123,7 @@
 
       if (history) {
         history.push([].concat(args));
+        console.log("history", history);
       } // If there's no console then don't try to output messages, but they will
       // still be stored in history.
 
@@ -731,6 +733,7 @@
     }
 
     var el = document.createElement(tagName);
+
     Object.getOwnPropertyNames(properties).forEach(function (propName) {
       var val = properties[propName]; // See #2176
       // We originally were accepting both properties and attributes in the
