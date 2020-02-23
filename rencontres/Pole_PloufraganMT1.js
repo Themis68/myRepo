@@ -38,7 +38,8 @@ var script1 = [
             indice: '00:06:24'
         },
         question: {
-            libelle: "L'arbitre assistant a indiqué que la touche est en faveur de l'équipe?"
+            libelle: "L'arbitre assistant a indiqué que la touche est en faveur de l'équipe?",
+            reculReplay: 2
         },
         attributs: ["Ligue Pays De la Loire", "Ligue de Bretagne"],
         reponse: {
@@ -58,10 +59,10 @@ var script1 = [
             indice: '00:07:58'
         },
         question: {
-            libelle: "L'arbitre utilise une gestuelle pour indiquer"
+            libelle: "L'arbitre utilise une gestuelle pour indiquer",
+            reculReplay: 3,
         },
         attributs: ["une faute", "une situation d'avantage"],
-        reculReplay: 3,
         reponse: {
             solution: 2,
             libelle: "En plus de la gestuelle l'arbitre peut compléter par un mot 'avantage'",
@@ -82,7 +83,6 @@ var script1 = [
             libelle: "Comment l'arbitre autorise-t-il le soigneur à entrer sur le terrain (aidez-vous de la fonction zoom de la vidéo)?"
         },
         attributs: ["Il lève le bras en direction du banc", "Il lève le bras en direction du banc et doit siffler"],
-        reculReplay: 2,
         reponse: {
             solution: 2,
             libelle: "le soigneur doit attendre que l'arbitre ait donné son accord pour qu'il intervienne",
@@ -99,10 +99,10 @@ var script1 = [
             indice: '00:10:02'
         },
         question: {
-            libelle: "L'arbitre siffle un coup-franc. Sa gestuelle indique qu'il s'agit d'un :"
+            libelle: "L'arbitre siffle un coup-franc. Sa gestuelle indique qu'il s'agit d'un :",
+            reculReplay: 3,
         },
         attributs: ["coup-franc direct", "coup-franc indirect"],
-        reculReplay: 3,
         reponse: {
             solution: 1,
             libelle: "L'arbitre garde le bras levé jusqu'à l'exécution du coup-franc s'il s'agit d'un coup-franc indirect",
@@ -120,10 +120,10 @@ var script1 = [
             indice: '00:11:55'
         },
         question: {
-            libelle: "L'arbitre central siffle un coup-franc. Comment l'arbitre assistant a-t-il confirmé la faute ?"
+            libelle: "L'arbitre central siffle un coup-franc. Comment l'arbitre assistant a-t-il confirmé la faute ?",
+            reculReplay: 2,
         },
         attributs: ["En secouant son drapeau puis en le dirigeant vers le camp fautif", "En levant son drapeau et en le secouant"],
-        reculReplay: 2,
         reponse: {
             solution: 1,
             libelle: "L'arbitre assistant peut signaler à l'arbitre des fautes s'il estime être le plus près de l'action. L'arbitre central garde la décision finale.",
@@ -144,7 +144,6 @@ var script1 = [
             libelle: "Au vue de la gestuelle de l'arbitre, quelle a été la décision de l'arbitre sur cette situation ?"
         },
         attributs: ["coup-franc", "laisse jouer"],
-        reculReplay: 2,
         reponse: {
             solution: 2,
             libelle: "L'arbitre estime qu'il n'y a pas faute et crie 'jouer'",
@@ -165,7 +164,6 @@ var script1 = [
             libelle: "Selon vous, au vue de l'action, l'arbitre va-t-il :"
         },
         attributs: ["siffler un coup-franc", "laisser l'avantage"],
-        reculReplay: 3,
         reponse: {
             solution: 1,
             libelle: "L'arbitre estime qu'il y a bousculade en pleine course",
@@ -183,10 +181,10 @@ var script1 = [
             indice: '00:23:40'
         },
         question: {
-            libelle: "Quelle est la décision de l'arbitre ?"
+            libelle: "Quelle est la décision de l'arbitre ?",
+            reculReplay: 3,
         },
         attributs: ["corner", "dégagement 6 mètres"],
-        reculReplay: 3,
         reponse: {
             solution: 2,
             libelle: "L'arbitre indique le point des 6 mètres avec son bras",
@@ -220,7 +218,6 @@ var script1 = [
             libelle: "L'engagement est-il fait dans les règles ?"
         },
         attributs: ["Oui", "Non"],
-        reculReplay: 3,
         reponse: {
             solution: 2,
             libelle: "2 joueurs de l'équipe adverse ont traversé la ligne de mi-terrain alors que le ballon n'a pas été déplacé",
@@ -282,10 +279,10 @@ var script1 = [
             indice: '00:30:35'
         },
         question: {
-            libelle: "L'abitre arrête l'action car il y a eu une faute sur un joueur Bleu lors du contact précédent."
+            libelle: "L'abitre arrête l'action car il y a eu une faute sur un joueur Bleu lors du contact précédent.",
+            reculReplay: 2,
         },
         attributs: ["Il revient à la faute", "Il décide une balle à terre"],
-        reculReplay: 2,
         reponse: {
             solution: 2,
             libelle: "L'arbitre estime que la faute est sans conséquence sur l'action finale puisque le gardien des bleus a récupéré le ballon",
@@ -302,10 +299,10 @@ var script1 = [
             indice: '00:31:53'
         },
         question: {
-            libelle: "Le coup-franc n'a pas lieu à l'endroit de la faute"
+            libelle: "Le coup-franc n'a pas lieu à l'endroit de la faute",
+            reculReplay: 3,
         },
         attributs: ["l'arbitre laisse faire", "l'arbitre siffle et fait rejouer"],
-        reculReplay: 3,
         reponse: {
             solution: 1,
             libelle: "l'arbitre laisse faire car il est joué avant l'endroit de la faute",
@@ -338,7 +335,6 @@ var script1 = [
             libelle: "L'arbitre assistant lève son drapeau et le secoue pour indiquer une faute"
         },
         attributs: ["L'arbitre peut siffler une faute", "L'abitre n'a pas à en tenir compte"],
-        reculReplay: 3,
         reponse: {
             solution: 1,
             libelle: "L'abritre assistant peut faire part de ses observations lorsqu'il estime être plus près de l'action que l'abitre ",
