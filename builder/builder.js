@@ -94,6 +94,8 @@ function formStructure(structure) {
         lObject[0] = lObject[0].trim();
         console.log(lObject);
 
+        lString += "<span>";
+
         // traitement du 1er caractère de la 1ère séquence
         if (lObject[0] == "{") {
             lString += "{<br>";
@@ -105,25 +107,33 @@ function formStructure(structure) {
         lObject[1] = lObject[1].trim(); // suppression des espaces
 
         if (lObject[1] == ")") {
+            // saisie libre
             lString += ' <input type="text" id="'+lObject[0]+'"/><br>';
         } else {
             lObject[1] = lObject[1].replace(")","");
             switch (lObject[1]) {
                 case "incr":
                     break;
-                case "repngncontre":
+                case "png":
+                    lString += '<input id="uploaded"'+lObject[0]+ ' type="file" accept="image/png"/>';
                     break;
                 case "mp4":
+                    lString += '<input id="uploaded"'+lObject[0]+ ' type="file" accept="video/mp4"/>';
                     break;
                 case "js":
+                    lString += '<input id="uploaded"'+lObject[0]+ ' type="file" accept="*/js"/>';
                     break;
                 case "url":
+                    lString += ' <input type="text" id="'+lObject[0]+'"/><br>';
                     break;
                 case "rgb":
                     break;
+                default:
+                    lString += ' <input type="text" id="'+lObject[0]+'"/><br>';
+                    break;
             }
-            lString += lObject[1] + "<br>";
         }
+        lString += "</span>";
     }
     console.log(lString);
     return lString;
