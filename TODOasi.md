@@ -16,6 +16,7 @@ https://www.imedias.pro/cours-en-ligne/informatique/definition-resolution-taille
 **************************************
                ANOs
 
+- utilisation de fontawesome : Reject insecure SameSite=None cookies
 - gérer la fin du quizz
 - gérer le clic sur les boutons réponses
 - gérer l'attribution des points selon bonne ou mauvaise réponse
@@ -25,6 +26,8 @@ intégrer des sons : bonne et mauvaise réponse
 **************************************
                FAIT
 
+x chrono pour lecture de la question
+x barre des accès aux pages en bas
 x ajouter un poster enr elation avec le thème du jeu
 x ajouter une image en relation avec le badge et le niveau
 
