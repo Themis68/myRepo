@@ -23,7 +23,8 @@ var script1 = [
         act: "AllerA",
         niveau: "CONFIRME",
         indice: "00:03:15"
-    },            {
+    },            
+    {
         step: '00:00:08',
         act: "AllerA",
         niveau: "EXPERT",
@@ -38,7 +39,7 @@ var script1 = [
             indice: '00:06:24'
         },
         question: {
-            libelle: "L'arbitre assistant a indiqué que la touche est en faveur de l'équipe?",
+            libelle: "L'arbitre assistant a indiqué que la touche est en faveur de l'équipe (aidez-vous des silhouettes sur la vidéo)?",
             reculReplay: 2
         },
         attributs: ["Ligue Pays De la Loire", "Ligue de Bretagne"],
@@ -80,7 +81,7 @@ var script1 = [
             indice: '00:10:03'
         },
         question: {
-            libelle: "Comment l'arbitre autorise-t-il le soigneur à entrer sur le terrain (aidez-vous de la fonction zoom de la vidéo)?"
+            libelle: "Comment l'arbitre autorise-t-il le soigneur à entrer sur le terrain (aidez-vous du zoom sur le panneau de la vidéo)?"
         },
         attributs: ["Il lève le bras en direction du banc", "Il lève le bras en direction du banc et doit siffler"],
         reponse: {
@@ -184,7 +185,7 @@ var script1 = [
             libelle: "Quelle est la décision de l'arbitre ?",
             reculReplay: 3,
         },
-        attributs: ["corner", "dégagement 6 mètres"],
+        attributs: ["corner", "dégagement coup de pied de but (6m)"],
         reponse: {
             solution: 2,
             libelle: "L'arbitre indique le point des 6 mètres avec son bras",
