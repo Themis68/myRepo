@@ -43,8 +43,8 @@ var tabMessages = [
 ];
 var nbQuests = [
 	{niv: "COURANT", nb: 0, points: 0},
-	{niv: "1 : j'apprends", nb: 0, points: 0},
-	{niv: "2 : je comprends", nb: 0, points: 0}
+	{niv: "J'APPRENDS", nb: 0, points: 0},
+	{niv: "JE COMPRENDS", nb: 0, points: 0}
 ];		// le niveau 0 est le niveau en cours
 var niveauQuest = 1		//niveau par défaut au démarrage
 var questionsFaites = [];
@@ -118,7 +118,7 @@ function creerVignettes(id) {
 		myCaption.appendChild(myF);
 		
 		let myP = document.createElement("p");    
-		myP.innerHTML = scenario[i].titre;
+		myP.innerHTML = scenario[i].titre + " (" + (scenario[i].loi === undefined ? "mix" : "loi " + scenario[i].loi) +")";
 		myCaption.appendChild(myP);
 		myCaption.className = "carousel-caption d-none d-md-block titre";
 		myCaption.setAttribute("onclick", 'javascript:switchQuizz('+ scenario[i].id +');');	// mettre ici car cette DIV est au-dessus de l'image
@@ -200,8 +200,10 @@ function gestionBoard(etape, objet) {
 			document.querySelector("inter complement").style.display = "flex";
 			
 			let texte = avatar + " "+ tabMessages[2] + " " + nbQuests[niveauQuest].niv + "<br>";
-			texte += (objet.loi !== undefined ? "portant sur la loi " + lois[parseFloat(objet.loi)-1].libelle : "");
-			texte += " et constitué de " + nbQuests[niveauQuest].nb + " questions";
+
+			texte += "Ce quizz de " +  nbQuests[niveauQuest].nb  +" question"+(nbQuests[niveauQuest].nb > 1 ? "s" : "");
+			texte += " porte sur " + (objet.loi === undefined ? "un mix de lois" : "la loi "+ objet.loi+" - " + lois[parseFloat(objet.loi)-1].libelle );
+
 			document.querySelector("inter complement p").innerHTML = texte;
 
 			document.querySelector("inter complement img").style.display = "none";
