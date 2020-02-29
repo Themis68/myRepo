@@ -5,22 +5,25 @@ URL ressources externes
 <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" type="text/css"
 
+Tailles ecrans :
+https://www.imedias.pro/cours-en-ligne/informatique/definition-resolution-taille-ecran/exemples-resolutions-ecrans-en-fonction-diagonale-et-definition/
+
+
 **************************************
                QUIZZs
 **************************************
 
 **************************************
                ANOs
-**************************************
 
 - gérer la fin du quizz
 - gérer le clic sur les boutons réponses
-- gérer l'attriobution des points selon bonne ou mauvaise réponse
+- gérer l'attribution des points selon bonne ou mauvaise réponse
 - changer la couleur de fond du chrono à 3 secondes
+intégrer des sons : bonne et mauvaise réponse
 
 **************************************
                FAIT
-**************************************
 
 x ajouter un poster enr elation avec le thème du jeu
 x ajouter une image en relation avec le badge et le niveau
