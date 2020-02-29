@@ -20,34 +20,31 @@ var script1 = [
         },
         reponse: {
             solution: 2,
-            points: 1,
-            temps: 5
+            points: 1
         }
     },
     {
         number: 3,
         niveau: 2,
         question: {
-            libelle: "les remplaçants présents sur le banc",
+            libelle: "En matière de sanctions, les remplaçants présents sur le banc",
             attributs: ["ne peuvent pas êtres sanctionnés","ne peuvent recevoir qu'un rappel à l'ordre","peuvent êtres sanctionnés comme tous les joueurs","ne peuvent recevoir qu'un carton jaune"]
         },
         reponse: {
             solution: 3,
-            points: 2,
-            temps: 6
+            points: 2
         }
     },
     {
         number: 4,
         niveau: 1,
         question: {
-            libelle: "Un remplacement est possible",
+            libelle: "Sur quelle situation un remplacement est-il possible ?",
             attributs: ["sur un corner","sur un coup-franc","sur une sortie de but","sur un arrêt de jeu"]
         },
         reponse: {
             solution: 4,
-            points: 1,
-            temps: 8
+            points: 1
         }
     },
     {
@@ -59,8 +56,7 @@ var script1 = [
         },
         reponse: {
             solution: 3,
-            points: 8,
-            temps: 11
+            points: 8
         }
     }
 ]

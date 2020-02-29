@@ -9,8 +9,7 @@ var script2 = [
         reponse: {
             solution: 1,
             loi: 1,
-            points: 1,
-            temps: 5
+            points: 1
         }
     },
     {
@@ -23,8 +22,7 @@ var script2 = [
         reponse: {
             solution: 2,
             loi: 6,
-            points: 1,
-            temps: 5
+            points: 1
         }
     },
     {
@@ -37,37 +35,34 @@ var script2 = [
         reponse: {
             solution: 1,
             loi: 7,
-            points: 2,
-            temps: 6
+            points: 2
         }
     },
     {
         number: 4,
         niveau: 1,
         question: {
-            libelle: "Les u9 peuvent jouer avec un ballon",
+            libelle: "De quelle type peut-être le ballon utilisé pour la catégorie u9",
             attributs: ["de type 4","de type 3","de type 3 ou 4","de type 5"]
         },
         reponse: {
             solution: 1,
             loi: 2,
-            points: 1,
-            temps: 8
+            points: 1
         }
     },
     {
         number: 5,
         niveau: 1,
         question: {
-            libelle: "Au sujet des protèges-tibias",
+            libelle: "En matière de protection, les protèges-tibias",
             attributs: ["sont obligatoires et peuvent êtres partiellement recouverts",
         "ne sont pas obligatoires","sont obligatoires et peuvent êtres découverts","sont obligatoires et doivent êtres recouverts totalement"]
         },
         reponse: {
             solution: 4,
             loi: 4,
-            points: 1,
-            temps: 5
+            points: 1
         }
     },
 ]
