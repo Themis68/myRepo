@@ -69,7 +69,6 @@ function central(event) {
 		//masquer les boutons de contrôle
 		document.getElementsByClassName("vjs-control-bar")[0].children[0].classList.add("vjs-hidden");	// play
 		document.getElementsByClassName("vjs-control-bar")[0].children[5].classList.add("vjs-hidden");  // time progress
-		//console.log(document.getElementsByClassName("vjs-control-bar")[0].children); // liste des contrôles
 	}
 
 }
@@ -242,10 +241,7 @@ function switchVideo(n) {
 		
 		//
 		// travail sur les actions et l'IHM associée
-		//
-		// actions = video[1];    // recup tableau des actions (position 3)
 		actions = eval(video[0].variable);
-		//actions = video[0].scenario;    // recup tableau des actions (position 3)
 
 		listeEvents("events", media_events);	// créé le tableau des évènements vidéos
         setInterval(update_properties, 200);	// lance le process de MAJ des évènements	
@@ -425,9 +421,6 @@ function switchVideo(n) {
 		
 		isDefineBVideoJS = true;
 		myVideo.load();
-
-		// zone canvas
-	//	draw("canvasG", video[0].gauche.couleur.maillot, video[0].gauche.couleur.short, video[0].gauche.couleur.chaussettes);
 
 		let inter = document.getElementById("inter");
 		inter.offsetHeight * hauteur;
@@ -627,7 +620,6 @@ function scanQuestion() {
 // tableau de fonctions pour traiter les arrêts deans la vidéo
 var mesActions = { 
     Question : function (ind) {
-		console.log("Question");
         document._video.pause();    // on pause la vidéo
         // préparation des actions
         actionEnCours = actions[ind];
@@ -670,7 +662,6 @@ var mesActions = {
 
     Fin: function (ind) {
         actionEnCours = actions[ind];
-        //showConseiller('fin', ((videoNbPoint / nbQuests[0].points) > 0.5));
     },
 
     Mitemps: function (ind) {
@@ -928,12 +919,9 @@ function gestionInter(etape, objet) {
 			addScore(0);	// on init même si c'est masqué
 			// next
 			document.querySelector("inter suite next img").style.display = "none";
-
-			//draw("canvasG", video[0].gauche.couleur.maillot, video[0].gauche.couleur.short, video[0].gauche.couleur.chaussettes);
             break;
         
         case "FermeInfo":
-          //  classSelector("set", "inter tete", "Information");
             document.querySelector("inter tete titre p").innerHTML = "Match";
             document.querySelector("inter tete points").style.display = "none";
             document.querySelector("inter question p").style.display = "none";
@@ -946,8 +934,6 @@ function gestionInter(etape, objet) {
 
 		case "InterQuestion":
 			// tete
-            //classSelector("set", "inter tete", objet.act);
-           // classSelector("set", "inter suite", objet.act);
 			document.querySelector("inter tete titre p").innerHTML = objet.act;
             document.querySelector("inter tete points").style.display = "flex";
             classSelector("set", "inter tete points p",  objet.act);
@@ -962,8 +948,6 @@ function gestionInter(etape, objet) {
 			document.querySelector("inter propositions").style.display = "flex";
 			// complement
 			document.querySelector("inter complement").style.display = "none";
-			// Suite
-			//document.querySelector("inter suite").style.display = "flex";
             // replay
             if (replaysFaits.indexOf(objet.step) < 0) {
                 // pas traité encore
@@ -981,8 +965,6 @@ function gestionInter(etape, objet) {
 		
 		case "InterBonus":
 			// tete
-            //classSelector("set", "inter tete", objet.act);
-           // classSelector("set", "inter suite", objet.act);
 			document.querySelector("inter tete titre p").innerHTML = objet.act;
             document.querySelector("inter tete points").style.display = "flex";
             classSelector("set", "inter tete points p",  objet.act);
@@ -1004,8 +986,6 @@ function gestionInter(etape, objet) {
             break;
         
         case "InterInformation":
-         //   classSelector("set", "inter tete", objet.act);
-           // classSelector("set", "inter suite", objet.act);
             document.querySelector("inter tete titre p").innerHTML = objet.act;
             document.querySelector("inter tete points").style.display = "none";
             // question
