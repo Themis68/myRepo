@@ -35,9 +35,6 @@ event {
   flex-grow: 0;
   flex-shrink: 1;
   flex-basis: 0.2rem;
-  color: midnightblue;
-  background-color: midnightblue;
-  font-size: 0vw;
 }
 event th {
   color: midnightblue;

@@ -74,6 +74,12 @@ x ajouter une image en relation avec le badge et le niveau
 - le centrage vertical des incrustations est trop bas alors qu'on met 50%
 - le centrage horizontal des incrustations ne tient pas compte de la largeur de l'objet
 
+
+**************************************
+    		v2.0.2
+**************************************
+x affichage de la loi si elle existe dans la question de la vidéo
+
 **************************************
     		v1.1.2 en cours
 **************************************
