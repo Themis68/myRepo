@@ -28,9 +28,9 @@ var niveauQuest = 1		//niveau par défaut au démarrage
 var idVideo = null;		// vidéo en cours
 var nbQuests = [
 	{niv: "COURANT", nb: 0, points: 0},
-	{niv: "DEBUTANT (1)", nb: 0, points: 0},
-	{niv: "CONFIRME (2)", nb: 0, points: 0},
-	{niv: "EXPERT (3)", nb: 0, points: 0}
+	{niv: "DEBUTANT", nb: 0, points: 0},
+	{niv: "CONFIRME", nb: 0, points: 0},
+	{niv: "EXPERT", nb: 0, points: 0}
 ];		// le niveau 0 est le niveau en cours
 var questionsFaites = [];
 var replaysFaits = [];	// on ne peut faire le replay q'une fois
@@ -365,7 +365,7 @@ function switchVideo(n) {
 						width: 30,
 						classeCSS: "vjs-bug-silhArbitreBug",
 						opacity: 1,
-						left: (30 + 20 + 160 + 5 + 300) + "px",
+						left: (30 + 20 + 160 + 5 + 200) + "px",
 						top: "20px",
 						position: 'tc'
 					},
@@ -376,7 +376,7 @@ function switchVideo(n) {
 						libelle: "<span>"+ avatar +"</span>",
 						classeCSS: "vjs-bug-titreArbitre",
 						opacity: 1,
-						left: (30 + 20 + 160 + 5 + 300) + "px",
+						left: (30 + 20 + 160 + 5 + 200) + "px",
 						top: "50px",
 						position: 'tr'
 					}, 
@@ -488,7 +488,7 @@ function capture(event) {
 	// attention cette fonction n'est appelée que si la vidéo est en marche !!
 	// la pause arrête le passage de l'event
 
-	// attention : si l'on change les ligne sde place dans cette fonction, on peut être dans la situation de gérer deux appels  àun même évènement
+	// attention : si l'on change les ligne de place dans cette fonction, on peut être dans la situation de gérer deux appels à un même évènement
 	if (event.type === 'timeupdate') {
 		var seq = Math.trunc(document._video.currentTime);	// on récupère la partie entière du pointeur temps
 		if (seq !== seqUsed) {	
@@ -627,6 +627,7 @@ function scanQuestion() {
 // tableau de fonctions pour traiter les arrêts deans la vidéo
 var mesActions = { 
     Question : function (ind) {
+		console.log("Question");
         document._video.pause();    // on pause la vidéo
         // préparation des actions
         actionEnCours = actions[ind];
@@ -858,18 +859,19 @@ function gestPropositions(etape, attributs, reponse) {
 			for (let i=0; i < attributs.length; i++) {
                 proposition.id = "proposition-div-" + (i+1);
 
-                loi.id = "loi" + (i+1);
-                loi.href = '../lois/' + actionEnCours.reponse.loi + '.pdf';
-				loi.target = '_blank';
-				//img.src = pathImages + "lois.png";
-				// loi.appendChild(img);
-				i.id = "book" + (i+1);
-				i.className = "fas fa-book";
-				loi.innerHTML = '<i class="fas fa-book"></i>';
-                //loi.appendChild(i);
-                loi.setAttribute("style", "display:none");
-
-                proposition.appendChild(loi);
+				loi.id = "loi" + (i+1);
+				if(actionEnCours.reponse.loi !== undefined) {
+					
+					loi.href = '../lois/' + actionEnCours.reponse.loi + '.pdf';
+					loi.target = '_blank';
+					i.id = "book" + (i+1);
+					i.className = "fas fa-book";
+					loi.innerHTML = '<i class="fas fa-book"></i>';
+				} else {
+					loi.innerHTML = "";
+				}
+				loi.setAttribute("style", "display:none");
+				proposition.appendChild(loi);
 
 				button.id = "proposition" + (i+1);
 				button.className = "btn btn-warning";
