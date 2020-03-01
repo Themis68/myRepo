@@ -16,7 +16,7 @@ https://www.imedias.pro/cours-en-ligne/informatique/definition-resolution-taille
 **************************************
                ANOs
 
-- utilisation de fontawesome : Reject insecure SameSite=None cookies
+- utilisation de fontawesome : https://www.chromestatus.com/feature/5633521622188032
 - gérer la fin du quizz
 - gérer le clic sur les boutons réponses
 - gérer l'attribution des points selon bonne ou mauvaise réponse
