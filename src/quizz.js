@@ -44,8 +44,8 @@ var tabMessages = [
 ];
 var nbQuests = [
 	{niv: "COURANT", nb: 0, points: 0},
-	{niv: "DEBUTANT (1)", nb: 0, points: 0},
-	{niv: "CONFIRME (2)", nb: 0, points: 0}
+	{niv: "DEBUTANT", nb: 0, points: 0},
+	{niv: "CONFIRME", nb: 0, points: 0}
 ];		// le niveau 0 est le niveau en cours
 var niveauQuest = 1		//niveau par défaut au démarrage
 var questionsFaites = [];
