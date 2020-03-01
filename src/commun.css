@@ -27,7 +27,20 @@ footer div span a:hover {
   color: yellow;
   text-decoration: none;
 }
-footer .events {
+event {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: nowrap;
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: 0.2rem;
   color: midnightblue;
-  font-size: 0.5vw;
+  background-color: midnightblue;
+  font-size: 0vw;
+}
+event th {
+  color: midnightblue;
+  background-color: midnightblue;
+  font-size: 0vw;
 }

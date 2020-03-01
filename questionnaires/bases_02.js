@@ -3,7 +3,7 @@ var script2 = [
         number: 1,
         niveau: 1,
         question: {
-            libelle: "Le point de penalty se situe à combien de mètres de la ligne de but",
+            libelle: "En foot à 11, le point de penalty se situe à combien de mètres de la ligne de but",
             attributs: ["11 mètres","9,15 mètres","9,50 mètres","16,50 mètres"]
         },
         reponse: {
@@ -17,7 +17,7 @@ var script2 = [
         niveau: 1,
         question: {
             libelle: "Quel sera le placement de l'arbitre assistant sur le corner ?",
-            attributs: ["à 1m du poteau sur le prolongement de la ligne de touche","à 1m du poteau sur le prolongement de la ligne de but","à 1m du poteau du côté qu'il veut","où il veut"]
+            attributs: ["dans le prolongement de la ligne de touche","dans le prolongement de la ligne de but","derrière la main courante","où il veut, du moment qu'il ne gêne as le/la tireur-se"]
         },
         reponse: {
             solution: 2,
@@ -43,7 +43,7 @@ var script2 = [
         niveau: 1,
         question: {
             libelle: "De quelle type peut-être le ballon utilisé pour la catégorie u9",
-            attributs: ["de type 4","de type 3","de type 3 ou 4","de type 5"]
+            attributs: ["de type 3","de type 4","de type 3 ou 4","de type 5"]
         },
         reponse: {
             solution: 1,

@@ -28,9 +28,9 @@ var niveauQuest = 1		//niveau par défaut au démarrage
 var idVideo = null;		// vidéo en cours
 var nbQuests = [
 	{niv: "COURANT", nb: 0, points: 0},
-	{niv: "DEBUTANT", nb: 0, points: 0},
-	{niv: "CONFIRME", nb: 0, points: 0},
-	{niv: "EXPERT", nb: 0, points: 0}
+	{niv: "DEBUTANT (1)", nb: 0, points: 0},
+	{niv: "CONFIRME (2)", nb: 0, points: 0},
+	{niv: "EXPERT (3)", nb: 0, points: 0}
 ];		// le niveau 0 est le niveau en cours
 var questionsFaites = [];
 var replaysFaits = [];	// on ne peut faire le replay q'une fois
@@ -40,8 +40,10 @@ var numQuestion = 0;	// numero de la Question
 var transitionTime = 1000;	// durée d'une transition ALLERA en ms
 var volumeLevel = 1;	// puissance du volume sonore
 var tabMessages = [
-	"cliquez sur la vignette du match que vous souhaitez analyser",
-	"cliquez sur cet icône pour afficher les matchs disponibles"
+	"cliquez sur la vignette du match que vous souhaitez visonner",
+	"cliquez sur cet icône pour afficher les matchs disponibles",
+	"Vous allez visionner le match avec des questions de niveau ",
+	"Cliquez sur le bouton Play sur la vidéo pour déclencher le visionnage du match"
 ]
 
 // chemins
@@ -915,7 +917,7 @@ function gestionInter(etape, objet) {
 			document.querySelector("inter question p").innerHTML = video[0].description;
 			document.querySelector("inter propositions").style.display = "none";
             document.querySelector("inter complement").style.display = "flex";
-            document.querySelector("inter complement p").innerHTML = "Vous allez analyser le match avec des questions de niveau " + nbQuests[niveauQuest].niv + ".<br><br>Cliquez sur le bouton Play sur la vidéo pour déclencher le visionnage du match"
+            document.querySelector("inter complement p").innerHTML = tabMessages[2] + nbQuests[niveauQuest].niv + ".<br><br>"+ tabMessages[3];
             document.querySelector("inter complement img").style.display = "none";
 			// replay
 			document.querySelector("inter suite replay span").style.display = "none";

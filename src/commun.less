@@ -29,11 +29,21 @@ footer {
             }
         }
     }
+}
 
-   
+event {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: nowrap;
+    flex-grow: 0;
+    flex-shrink: 1; // permet de garder la ligne affichée même si on réduit la taille de la fenêtre
+    flex-basis: 0.2rem;       // hauteur = 2 lignes de texte
 
-    .events {
+
+  th {
         color: midnightblue;
-        font-size: 0.5vw; // taille variable selon largeur du viewport
+        background-color: midnightblue; 
+        font-size: 0vw; // taille variable selon largeur du viewport
     }
 }

@@ -39,12 +39,13 @@ var tabMessages = [
 	"cliquez sur cet icône pour afficher les quizz disponibles",
 	"vous allez démarrer le quizz pour obtenir le niveau ",
 	"vous venez de terminer le quizz<br>Votre score est de <b>",
-	"Sélectionnez un nouveau quizz."
+	"Sélectionnez un nouveau quizz.",
+	"(Pour rappel : Au football, les lois du jeu sont au nombre de 17)"
 ];
 var nbQuests = [
 	{niv: "COURANT", nb: 0, points: 0},
-	{niv: "J'APPRENDS", nb: 0, points: 0},
-	{niv: "JE COMPRENDS", nb: 0, points: 0}
+	{niv: "DEBUTANT (1)", nb: 0, points: 0},
+	{niv: "CONFIRME (2)", nb: 0, points: 0}
 ];		// le niveau 0 est le niveau en cours
 var niveauQuest = 1		//niveau par défaut au démarrage
 var questionsFaites = [];
@@ -202,8 +203,8 @@ function gestionBoard(etape, objet) {
 			let texte = avatar + " "+ tabMessages[2] + " " + nbQuests[niveauQuest].niv + "<br>";
 
 			texte += "Ce quizz de " +  nbQuests[niveauQuest].nb  +" question"+(nbQuests[niveauQuest].nb > 1 ? "s" : "");
-			texte += " porte sur " + (objet.loi === undefined ? "un mix de lois" : "la loi "+ objet.loi+" - " + lois[parseFloat(objet.loi)-1].libelle );
-
+			texte += " porte sur " + (objet.loi === undefined ? "un mix de lois" : "la loi "+ objet.loi+" - " + lois[parseFloat(objet.loi)-1].libelle)+ "<br>";
+			texte += tabMessages[5];
 			document.querySelector("inter complement p").innerHTML = texte;
 
 			document.querySelector("inter complement img").style.display = "none";

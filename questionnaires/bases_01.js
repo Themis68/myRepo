@@ -3,7 +3,7 @@ var script1 = [
         number: 1,
         niveau: 1,
         question: {
-            libelle: "En foot à 11 pour qu'un match soit valable, il faut",
+            libelle: "En foot à 11, pour qu’un match puisse débuter, il faut au minimum",
             attributs: ["8 joueurs dont le gardien","8 joueurs et 1 gardien en plus","7 joueurs dont le gardien","9 joueurs dont le gardien"]
         },
         reponse: {
@@ -15,7 +15,7 @@ var script1 = [
         number: 2,
         niveau: 1,
         question: {
-            libelle: "Combien de remplaçants inscrits sur la feuille de match peuvent réellement entrer en jeu en football à 11 en France ?",
+            libelle: "Combien de remplaçant-es inscrit-es sur la feuille de match peuvent réellement entrer en jeu en football à 11 en France ?",
             attributs: ["4","3","5","6"]
         },
         reponse: {
@@ -27,8 +27,8 @@ var script1 = [
         number: 3,
         niveau: 2,
         question: {
-            libelle: "En matière de sanctions, les remplaçants présents sur le banc",
-            attributs: ["ne peuvent pas êtres sanctionnés","ne peuvent recevoir qu'un rappel à l'ordre","peuvent êtres sanctionnés comme tous les joueurs","ne peuvent recevoir qu'un carton jaune"]
+            libelle: "En matière de sanctions, les remplaçant-es présent-es sur le banc",
+            attributs: ["ne peuvent pas êtres sanctionné-es","ne peuvent recevoir qu'un rappel à l'ordre","peuvent êtres sanctionné-es comme tous les joueurs ou joueuses","ne peuvent recevoir qu'un carton jaune"]
         },
         reponse: {
             solution: 3,
@@ -55,8 +55,20 @@ var script1 = [
             attributs: ["à tout moment pendant le match","seulement lors d'un arrêt de jeu","seulement en cas de blessure du gardien","seulement à la mi-temps"]
         },
         reponse: {
-            solution: 3,
+            solution: 2,
             points: 8
+        }
+    },
+    {
+        number: 6,
+        niveau: 2,
+        question: {
+            libelle: "L’entraineur présent sur le banc de touche doit",
+            attributs: ["Assister l’arbitre en cas d’erreur technique de sa part","Adopter un comportement responsable","Effectuer la vérification d’équipement des remplaçants s’il n’y a pas d’arbitre assistant officiel","Ne doit jamais intervenir auprès de l'arbitre"]
+        },
+        reponse: {
+            solution: 2,
+            points: 3
         }
     }
 ]
