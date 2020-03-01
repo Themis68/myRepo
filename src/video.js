@@ -42,7 +42,7 @@ var volumeLevel = 1;	// puissance du volume sonore
 var tabMessages = [
 	"cliquez sur la vignette du match que vous souhaitez visonner",
 	"cliquez sur cet icône pour afficher les matchs disponibles",
-	"Vous allez visionner le match avec des questions de niveau ",
+	"Vous allez visionner le match avec ",
 	"Cliquez sur le bouton Play sur la vidéo pour déclencher le visionnage du match"
 ]
 
@@ -759,7 +759,7 @@ function gestJauge() {
     if (numQuestion == 0) {
         jauge[0].setAttribute("aria-valuenow", 0);
         jauge[0].setAttribute("style", "width: 0%");
-        jauge[0].innerHTML = nbQuests[niveauQuest].nb + " Questions";
+        jauge[0].innerHTML = nbQuests[niveauQuest].nb + " Question" + (nbQuests[niveauQuest].nb > 1 ? "s" : "");
     } else {
         jauge[0].setAttribute("aria-valuenow", numQuestion);
         pourCent = numQuestion / nbQuests[niveauQuest].nb * 100;
@@ -917,7 +917,7 @@ function gestionInter(etape, objet) {
 			document.querySelector("inter question p").innerHTML = video[0].description;
 			document.querySelector("inter propositions").style.display = "none";
             document.querySelector("inter complement").style.display = "flex";
-            document.querySelector("inter complement p").innerHTML = tabMessages[2] + nbQuests[niveauQuest].niv + ".<br><br>"+ tabMessages[3];
+            document.querySelector("inter complement p").innerHTML = tabMessages[2]+(nbQuests[niveauQuest].nb > 1 ? "des questions" : "une question") + " de niveau " + nbQuests[niveauQuest].niv + ".<br><br>"+ tabMessages[3];
             document.querySelector("inter complement img").style.display = "none";
 			// replay
 			document.querySelector("inter suite replay span").style.display = "none";

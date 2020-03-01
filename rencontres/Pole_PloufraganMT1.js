@@ -65,7 +65,7 @@ var script1 = [
         attributs: ["une faute", "une situation d'avantage"],
         reponse: {
             solution: 2,
-            libelle: "En plus de la gestuelle l'arbitre peut compléter par un mot 'avantage'",
+            libelle: "En plus de la gestuelle l'arbitre peut compléter en criant 'avantage'",
             pict: "arbitre/avantage.png",
             loi: "Loi_05",
             points: 1
@@ -96,7 +96,7 @@ var script1 = [
         niveau: "CONFIRME",
         saut: {
             attente: 5,
-            indice: '00:10:02'
+            indice: '00:13:00'
         },
         question: {
             libelle: "L'arbitre siffle un coup-franc. Sa gestuelle indique qu'il s'agit d'un :",
@@ -141,7 +141,8 @@ var script1 = [
             indice: '00:17:47'
         },
         question: {
-            libelle: "A la vue de la gestuelle de l'arbitre, quelle a été sa décision sur cette situation ?"
+            libelle: "A la vue de la gestuelle de l'arbitre, quelle a été sa décision sur cette situation ?",
+            reculReplay: 3
         },
         attributs: ["coup-franc", "laisse jouer"],
         reponse: {
@@ -166,7 +167,7 @@ var script1 = [
         attributs: ["siffler un coup-franc", "laisser l'avantage"],
         reponse: {
             solution: 1,
-            libelle: "L'arbitre estime qu'il y a bousculade en pleine course",
+            libelle: "L'arbitre estime qu'il y a charge irrégulière ",
             pict: "arbitre/direct.png",
             loi: "Loi_13",
             points: 1
@@ -274,7 +275,7 @@ var script1 = [
         step: '00:31:58',
         act: "Information",
         niveau: "DEBUTANT",
-        libelle: "L'arbitre s'enquiert de l'état du/des joueur(s) lorsqu'il y a un contact",
+        libelle: "l'arbitre s'enquiert de l'état du/des joueur(s) lorsqu'il y a un contact",
         type: 'but'
     },
     {
@@ -292,12 +293,12 @@ var script1 = [
             indice: '00:34:55'
         },
         question: {
-            libelle: "L'arbitre assistant lève son drapeau et le secoue pour indiquer une faute"
+            libelle: "L'arbitre assistant lève son drapeau et signale une faute"
         },
-        attributs: ["L'arbitre peut siffler une faute", "L'abitre n'a pas à en tenir compte"],
+        attributs: ["l’arbitre suit son assistant", "l’arbitre ne suit pas son assistant"],
         reponse: {
             solution: 1,
-            libelle: "L'abritre assistant peut faire part de ses observations lorsqu'il estime être plus près de l'action que l'abitre ",
+            libelle: "L’arbitre assistant peut faire signaler une faute s’il estime qu’il est plus près de l’action pour juger que l’arbitre central",
             pict: "arbitre/fauteassistant.png",
             loi: "Loi_13",
             points: 1

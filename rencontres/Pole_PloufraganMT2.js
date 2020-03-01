@@ -51,7 +51,7 @@ var script2 = [
             indice: '00:09:16'
         },
         question: {
-            libelle: "Au vue de la situation, l'arbitre va-til ?"
+            libelle: "A la vue de la situation, l'arbitre va-til ?"
         },
         attributs: ["Siffler un CDI", "dégagement en 6 mètres", "Arrête le jeu et mettre une balle entre deux"],
         reponse: {
@@ -113,7 +113,7 @@ var script2 = [
         attributs: ["Oui", "Non"],
         reponse: {
             solution: 2,
-            libelle: "1 joueur de l'équipe qui engage a traversé la ligne de mi-terrain alors que le ballon n'a pas été déplacé",
+            libelle: "1 joueur de l'équipe qui engage a franchi la ligne médiane, alors que la ballon n’a pas encore été botté",
             loi: "Loi_08",
             points: 2
         }
@@ -204,7 +204,7 @@ var script2 = [
             indice: '00:20:55'
         },
         question: {
-            libelle: "A quoi correspoind le geste de l'arbitre ?"
+            libelle: "A quoi correspond le geste de l'arbitre ?"
         },
         attributs: ["Pause fraicheur", "remplacement de joueur autorisé", "rappel au calme sur le banc"],
         reponse: {
@@ -284,7 +284,7 @@ var script2 = [
             libelle: "Selon vous, quelle faute siffle l'arbitre ?",
             reculReplay: 3,
         },
-        attributs: ["Charge sur le gardien", "Contact avec le défenseur", "Hors-jeu"],
+        attributs: ["charge sur le gardien", "contact avec le défenseur", "hors-jeu"],
         reponse: {
             solution: 3,
             libelle: "L'arbitre assistant signale le hors-jeu (hors vidéo)",
