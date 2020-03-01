@@ -1,5 +1,5 @@
-@import url(../src/typo/scoreboard/stylesheet.css);
-@import url(../src/typo/passion_one/stylesheet.css);
+@import url(typo/scoreboard/stylesheet.css);
+@import url(typo/passion_one/stylesheet.css);
 html,
 body,
 p,
@@ -175,11 +175,14 @@ main menu carousel {
   display: flex;
   align-self: center;
 }
+main menu carousel .carousel-caption {
+  padding-top: 30px!important;
+}
 main menu carousel .titre {
   font-size: 1.5vw;
 }
 main content {
-  width: 50vw;
+  width: 70vw;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -233,7 +236,7 @@ main content inter tete titre {
 }
 main content inter tete titre p {
   text-align: center;
-  font-size: 1.5vw;
+  font-size: 2.5vw;
   font-weight: 500;
   flex: 2;
   text-shadow: 1px 2px 0 rgba(0, 0, 0, 0.4), -1px -2px 0 #ffffff;
@@ -275,7 +278,7 @@ main content inter question p {
   padding-right: 10px;
   padding-bottom: 20px;
   text-align: left;
-  font-size: 1.3vw;
+  font-size: 1.8vw;
   color: black;
 }
 main content inter propositions {
@@ -285,6 +288,8 @@ main content inter propositions {
   background-color: white;
   padding-left: 7px;
   padding-right: 7px;
+  padding-top: 0px;
+  padding-bottom: 0px;
   flex: 1;
 }
 main content inter propositions div {
@@ -295,11 +300,17 @@ main content inter propositions div {
 main content inter propositions div div {
   flex: 0.5;
 }
+main content inter propositions div div .card {
+  max-width: 14rem;
+  margin-bottom: 0.5rem !important;
+  margin-top: 0rem!important;
+}
 main content inter propositions div div .card-header {
   align-self: flex-start;
   font-size: 2vw;
 }
 main content inter propositions div div .card-body {
+  padding: 0.5vw;
   align-self: center;
   font-size: 1.75vw;
 }
@@ -315,7 +326,7 @@ main content inter complement p {
   padding-right: 5px;
   padding-bottom: 5px;
   padding-top: 20px;
-  text-align: left;
+  text-align: center;
   font-size: 1.12vw;
   color: green;
 }
@@ -327,7 +338,8 @@ main content inter suite {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  padding: 10px;
+  padding: 2px;
+  padding-bottom: 5px;
   background-color: white;
   flex: 1;
   -webkit-border-bottom-left-radius: 20px;
@@ -341,11 +353,11 @@ main content inter suite next {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  max-width: 15%;
+  max-width: 13%;
   flex: 1;
 }
 main content inter suite next img {
-  max-width: 80%;
+  max-width: 60%;
 }
 main content inter suite chrono {
   display: flex;
@@ -354,37 +366,13 @@ main content inter suite chrono {
   background-position: center;
   background-size: contain;
   justify-content: center;
-  width: 60px;
-  height: 60px;
+  max-width: 15%;
   flex-grow: 1;
 }
 main content inter suite chrono p {
   text-align: center;
   font-size: 3vw;
   color: white;
-}
-footer {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  flex-wrap: nowrap;
-  flex-grow: 0;
-  flex-shrink: 1;
-  background-color: midnightblue;
-  color: white;
-  padding-top: 5px;
-  padding-left: 5px;
-  font-size: 1vw;
-  flex-basis: 2.5rem;
-}
-footer img {
-  padding-left: 10px;
-  width: 2.5vw;
-  height: 2vw;
-}
-footer h2 {
-  padding-left: 10px;
-  line-height: 1.5;
 }
 .cadre {
   border-color: white;

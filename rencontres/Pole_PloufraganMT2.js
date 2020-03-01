@@ -1,4 +1,4 @@
-var script5 = [
+var script2 = [
     {
         step: '00:00:01',
         act: "Question",
@@ -32,10 +32,10 @@ var script5 = [
             indice: '00:08:40'
         },
         question: {
-            libelle: "L'engagement est-il fait dans les règles ?"
+            libelle: "L'engagement est-il fait dans les règles ?",
+            reculReplay: 3,
         },
         attributs: ["Oui", "Non"],
-        reculReplay: 3,
         reponse: {
             solution: 1,
             loi: "Loi_08",
@@ -51,7 +51,7 @@ var script5 = [
             indice: '00:09:16'
         },
         question: {
-            libelle: "Au vue de la situation, l'arbitre va-til ?"
+            libelle: "A la vue de la situation, l'arbitre va-til ?"
         },
         attributs: ["Siffler un CDI", "dégagement en 6 mètres", "Arrête le jeu et mettre une balle entre deux"],
         reponse: {
@@ -107,13 +107,13 @@ var script5 = [
             indice: '00:12:32'
         },
         question: {
-            libelle: "L'engagement est-il fait dans les règles ?"
+            libelle: "L'engagement est-il fait dans les règles ?",
+            reculReplay: 3,
         },
         attributs: ["Oui", "Non"],
-        reculReplay: 3,
         reponse: {
             solution: 2,
-            libelle: "1 joueur de l'équipe qui engage a traversé la ligne de mi-terrain alors que le ballon n'a pas été déplacé",
+            libelle: "1 joueur de l'équipe qui engage a franchi la ligne médiane, alors que la ballon n’a pas encore été botté",
             loi: "Loi_08",
             points: 2
         }
@@ -126,9 +126,9 @@ var script5 = [
             attente: 5,
             indice: '00:12:25'
         },
-        reculReplay: 3,
         question: {
-            libelle: "Sur la situation présentée, le coup-franc est-il joué régulièrement ?"
+            libelle: "Sur la situation présentée, le coup-franc est-il joué régulièrement ?",
+            reculReplay: 3,
         },
         attributs: ["Oui, si le joueur joue rapidement", "le joueur doit attendre que les joueurs adverses soient à 9m15"],
         reponse: {
@@ -163,9 +163,9 @@ var script5 = [
             attente: 3,
             indice: '00:15:34'
         },
-        reculReplay: 3,
         question: {
-            libelle: "Sur la situation présentée l'arbitre siffle faute alors que le joueur allait se présenter seul face au gardien, quelle sera la décision ?"
+            libelle: "Sur la situation présentée l'arbitre siffle faute alors que le joueur allait se présenter seul face au gardien, quelle sera la décision ?",
+            reculReplay: 3
         },
         attributs: ["Exclusion du joueur", "Avertissement au joueur"],
         reponse: {
@@ -204,7 +204,7 @@ var script5 = [
             indice: '00:20:55'
         },
         question: {
-            libelle: "A quoi correspoind le geste de l'arbitre ?"
+            libelle: "A quoi correspond le geste de l'arbitre ?"
         },
         attributs: ["Pause fraicheur", "remplacement de joueur autorisé", "rappel au calme sur le banc"],
         reponse: {
@@ -223,9 +223,9 @@ var script5 = [
             attente: 8,
             indice: '00:17:10'
         },
-        reculReplay: 3,
         question: {
-            libelle: "Sur la situation présentée l'arbitre siffle. Selon vous pourquoi ?"
+            libelle: "Sur la situation présentée l'arbitre siffle. Selon vous pourquoi ?",
+            reculReplay: 3
         },
         attributs: ["Il décide que la touche est pour l'autre équipe", "La touche n'est pas jouée au point de sortie"],
         reponse: {
@@ -281,10 +281,10 @@ var script5 = [
             indice: '00:20:55'
         },
         question: {
-            libelle: "Selon vous, quelle faute siffle l'arbitre ?"
+            libelle: "Selon vous, quelle faute siffle l'arbitre ?",
+            reculReplay: 3,
         },
-        reculReplay: 3,
-        attributs: ["Charge sur le gardien", "Contact avec le défenseur", "Hors-jeu"],
+        attributs: ["charge sur le gardien", "contact avec le défenseur", "hors-jeu"],
         reponse: {
             solution: 3,
             libelle: "L'arbitre assistant signale le hors-jeu (hors vidéo)",

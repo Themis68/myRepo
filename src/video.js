@@ -38,9 +38,12 @@ var seqUsed = -1;	// valeur de l'étape de la séquence qui a été traitée
 var hauteurContent = 0; // hauteur de la zone CONTENT récupérée lors du chargement
 var numQuestion = 0;	// numero de la Question
 var transitionTime = 1000;	// durée d'une transition ALLERA en ms
+var volumeLevel = 1;	// puissance du volume sonore
 var tabMessages = [
-	"cliquez sur la vignette du match que vous souhaitez analyser",
-	"cliquez sur cet icône pour afficher les matchs disponibles"
+	"cliquez sur la vignette du match que vous souhaitez visonner",
+	"cliquez sur cet icône pour afficher les matchs disponibles",
+	"Vous allez visionner le match avec ",
+	"Cliquez sur le bouton Play sur la vidéo pour déclencher le visionnage du match"
 ]
 
 // chemins
@@ -56,24 +59,18 @@ document.addEventListener("click", central, false);	// lance l'écoute des évè
 function central(event) {
 	// gestion de la position de la souris pour plus tard
 	var target = event.target || event.srcElement; // ce dernier pour compatibilité IE
+
 	if(target.getAttribute('class') == 'vjs-icon-placeholder') {
 		// clic sur big play
 		draw("vjs-bug-silhEquipeA", video[0].gauche.maillotCouleur);
 		draw("vjs-bug-silhEquipeB", video[0].droite.maillotCouleur);
 		draw("vjs-bug-silhArbitre", video[0].arbitre.maillotCouleur);
-    }
-}
 
-function user() {
-	let avatarOk = false;
-	const reg = /^([a-zA-Z]){3,20}$/g;	// accepte des chaines de caractères jusqu'à 5 caractères
-	do {
-		avatar = window.prompt("Indique ton prénom s'il te plait (3 à 20 lettres maximum)");
-		avatarOk = reg.exec(avatar);
+		//masquer les boutons de contrôle
+		document.getElementsByClassName("vjs-control-bar")[0].children[0].classList.add("vjs-hidden");	// play
+		document.getElementsByClassName("vjs-control-bar")[0].children[5].classList.add("vjs-hidden");  // time progress
 	}
-	while (!avatarOk);
-	avatar = avatar.toUpperCase();
-	document.querySelector("bascule span").innerHTML = avatar + " " + tabMessages[0];
+
 }
 
 function init() {
@@ -244,10 +241,7 @@ function switchVideo(n) {
 		
 		//
 		// travail sur les actions et l'IHM associée
-		//
-		// actions = video[1];    // recup tableau des actions (position 3)
-		actions = eval("script" + n);
-		//actions = video[0].scenario;    // recup tableau des actions (position 3)
+		actions = eval(video[0].variable);
 
 		listeEvents("events", media_events);	// créé le tableau des évènements vidéos
         setInterval(update_properties, 200);	// lance le process de MAJ des évènements	
@@ -280,6 +274,7 @@ function switchVideo(n) {
 
             // on créé la vidéo
 			 myVideo = videojs('myVideo', {
+				disableVideoPlayPauseClick: true,
 				width: matchWCalcule,
 				height: hauteur,
 				controls: true,
@@ -366,7 +361,7 @@ function switchVideo(n) {
 						width: 30,
 						classeCSS: "vjs-bug-silhArbitreBug",
 						opacity: 1,
-						left: (30 + 20 + 160 + 5 + 300) + "px",
+						left: (30 + 20 + 160 + 5 + 200) + "px",
 						top: "20px",
 						position: 'tc'
 					},
@@ -377,7 +372,7 @@ function switchVideo(n) {
 						libelle: "<span>"+ avatar +"</span>",
 						classeCSS: "vjs-bug-titreArbitre",
 						opacity: 1,
-						left: (30 + 20 + 160 + 5 + 300) + "px",
+						left: (30 + 20 + 160 + 5 + 200) + "px",
 						top: "50px",
 						position: 'tr'
 					}, 
@@ -426,9 +421,6 @@ function switchVideo(n) {
 		
 		isDefineBVideoJS = true;
 		myVideo.load();
-
-		// zone canvas
-	//	draw("canvasG", video[0].gauche.couleur.maillot, video[0].gauche.couleur.short, video[0].gauche.couleur.chaussettes);
 
 		let inter = document.getElementById("inter");
 		inter.offsetHeight * hauteur;
@@ -489,7 +481,7 @@ function capture(event) {
 	// attention cette fonction n'est appelée que si la vidéo est en marche !!
 	// la pause arrête le passage de l'event
 
-	// attention : si l'on change les ligne sde place dans cette fonction, on peut être dans la situation de gérer deux appels  àun même évènement
+	// attention : si l'on change les ligne de place dans cette fonction, on peut être dans la situation de gérer deux appels à un même évènement
 	if (event.type === 'timeupdate') {
 		var seq = Math.trunc(document._video.currentTime);	// on récupère la partie entière du pointeur temps
 		if (seq !== seqUsed) {	
@@ -670,7 +662,6 @@ var mesActions = {
 
     Fin: function (ind) {
         actionEnCours = actions[ind];
-        //showConseiller('fin', ((videoNbPoint / nbQuests[0].points) > 0.5));
     },
 
     Mitemps: function (ind) {
@@ -697,7 +688,8 @@ function continuer2() {
         gestJauge();
     }
 
-    document._video.playbackRate = 1;   // vitesse normale
+	document._video.playbackRate = 1;   // vitesse normale
+	document._video.volume = volumeLevel;	//restauration du volume sonore
     document._video.play(); // on relance la video
 
     if (actionEnCours.saut !== undefined) {
@@ -713,6 +705,7 @@ function fProposition(reponse) {
 	let bonneReponse = actionEnCours.reponse.solution;
 
 	if (bonneReponse === reponse) {
+		playSound("bonne");
         classId("add", "proposition" + reponse, "green");
         
         if (questionsFaites.indexOf(actionEnCours.step) < 0) {
@@ -723,6 +716,7 @@ function fProposition(reponse) {
             // DEJA TRAITE
         }
 	} else {
+		playSound("mauvaise");
 		classId("add", "proposition" + reponse, "rouge");
 		classId("add", "proposition" + bonneReponse, "green");
     }
@@ -757,7 +751,7 @@ function gestJauge() {
     if (numQuestion == 0) {
         jauge[0].setAttribute("aria-valuenow", 0);
         jauge[0].setAttribute("style", "width: 0%");
-        jauge[0].innerHTML = nbQuests[niveauQuest].nb + " Questions";
+        jauge[0].innerHTML = nbQuests[niveauQuest].nb + " Question" + (nbQuests[niveauQuest].nb > 1 ? "s" : "");
     } else {
         jauge[0].setAttribute("aria-valuenow", numQuestion);
         pourCent = numQuestion / nbQuests[niveauQuest].nb * 100;
@@ -772,7 +766,9 @@ function fReplay(param) {
     addScore(-1);   // MAJ score
     replaysFaits.push(actionEnCours.step);    // on enbregistre l'opération
     getVideo().currentTime = getVideo().currentTime - (param); // on recule de X secondes
-    document._video.playbackRate = 0.2; // on active le ralentis
+	document._video.playbackRate = 0.2; // on active le ralentis
+	volumeLevel = document._video.volume;	// on sauvegarde le niveau du volume
+	document._video.volume = 0;	// mode MUTE
     document._video.play(); // on reprend la lecture de la vidéo
 }
 
@@ -842,8 +838,9 @@ function gestPropositions(etape, attributs, reponse) {
     let propositions = document.querySelector("inter propositions");
     
     let proposition  = document.createElement("proposition");
-    let loi = document.createElement("a");
-    let img = document.createElement("img");
+	let loi = document.createElement("a");
+	// let img = document.createElement("img");
+    let i = document.createElement("i");
     let button = document.createElement("button");
 
 	switch(etape) {
@@ -853,14 +850,19 @@ function gestPropositions(etape, attributs, reponse) {
 			for (let i=0; i < attributs.length; i++) {
                 proposition.id = "proposition-div-" + (i+1);
 
-                loi.id = "loi" + (i+1);
-                loi.href = '../lois/' + actionEnCours.reponse.loi + '.pdf'; //myURL + '/lois/' + actionEnCours.reponse.loi + '.pdf';
-                loi.target = '_blank';
-                img.src = pathImages + "lois.png"; // myURL + "/images/lois.png";
-                loi.appendChild(img);
-                loi.setAttribute("style", "display:none");
-
-                proposition.appendChild(loi);
+				loi.id = "loi" + (i+1);
+				if(actionEnCours.reponse.loi !== undefined) {
+					
+					loi.href = '../lois/' + actionEnCours.reponse.loi + '.pdf';
+					loi.target = '_blank';
+					i.id = "book" + (i+1);
+					i.className = "fas fa-book";
+					loi.innerHTML = '<i class="fas fa-book"></i>';
+				} else {
+					loi.innerHTML = "";
+				}
+				loi.setAttribute("style", "display:none");
+				proposition.appendChild(loi);
 
 				button.id = "proposition" + (i+1);
 				button.className = "btn btn-warning";
@@ -875,8 +877,9 @@ function gestPropositions(etape, attributs, reponse) {
                 propositions.appendChild(proposition);
 
                 button = document.createElement("button");
-                loi = document.createElement("a");
-                img = document.createElement("img");
+				loi = document.createElement("a");
+				//i = document.createElement("i");
+                //i.className = "fas fa-book";
                 proposition = document.createElement("proposition");
 			}
 			// zone complement : on renseigne mais c'est masqué pour l'instant
@@ -907,7 +910,7 @@ function gestionInter(etape, objet) {
 			document.querySelector("inter question p").innerHTML = video[0].description;
 			document.querySelector("inter propositions").style.display = "none";
             document.querySelector("inter complement").style.display = "flex";
-            document.querySelector("inter complement p").innerHTML = "Vous allez analyser le match avec des questions de niveau " + nbQuests[niveauQuest].niv + ".<br><br>Cliquez sur le bouton Play sur la vidéo pour déclencher le visionnage du match"
+            document.querySelector("inter complement p").innerHTML = tabMessages[2]+(nbQuests[niveauQuest].nb > 1 ? "des questions" : "une question") + " de niveau " + nbQuests[niveauQuest].niv + ".<br><br>"+ tabMessages[3];
             document.querySelector("inter complement img").style.display = "none";
 			// replay
 			document.querySelector("inter suite replay span").style.display = "none";
@@ -916,12 +919,9 @@ function gestionInter(etape, objet) {
 			addScore(0);	// on init même si c'est masqué
 			// next
 			document.querySelector("inter suite next img").style.display = "none";
-
-			//draw("canvasG", video[0].gauche.couleur.maillot, video[0].gauche.couleur.short, video[0].gauche.couleur.chaussettes);
             break;
         
         case "FermeInfo":
-          //  classSelector("set", "inter tete", "Information");
             document.querySelector("inter tete titre p").innerHTML = "Match";
             document.querySelector("inter tete points").style.display = "none";
             document.querySelector("inter question p").style.display = "none";
@@ -934,8 +934,6 @@ function gestionInter(etape, objet) {
 
 		case "InterQuestion":
 			// tete
-            //classSelector("set", "inter tete", objet.act);
-           // classSelector("set", "inter suite", objet.act);
 			document.querySelector("inter tete titre p").innerHTML = objet.act;
             document.querySelector("inter tete points").style.display = "flex";
             classSelector("set", "inter tete points p",  objet.act);
@@ -950,8 +948,6 @@ function gestionInter(etape, objet) {
 			document.querySelector("inter propositions").style.display = "flex";
 			// complement
 			document.querySelector("inter complement").style.display = "none";
-			// Suite
-			//document.querySelector("inter suite").style.display = "flex";
             // replay
             if (replaysFaits.indexOf(objet.step) < 0) {
                 // pas traité encore
@@ -969,8 +965,6 @@ function gestionInter(etape, objet) {
 		
 		case "InterBonus":
 			// tete
-            //classSelector("set", "inter tete", objet.act);
-           // classSelector("set", "inter suite", objet.act);
 			document.querySelector("inter tete titre p").innerHTML = objet.act;
             document.querySelector("inter tete points").style.display = "flex";
             classSelector("set", "inter tete points p",  objet.act);
@@ -992,8 +986,6 @@ function gestionInter(etape, objet) {
             break;
         
         case "InterInformation":
-         //   classSelector("set", "inter tete", objet.act);
-           // classSelector("set", "inter suite", objet.act);
             document.querySelector("inter tete titre p").innerHTML = objet.act;
             document.querySelector("inter tete points").style.display = "none";
             // question

@@ -1,6 +1,5 @@
-@import url(../src/typo/scoreboard/stylesheet.css);
-@import url(../src/typo/passion_one/stylesheet.css);
-
+@import url(./typo/scoreboard/stylesheet.css);
+@import url(./typo/passion_one/stylesheet.css);
 // minireset.css v0.0.3 | MIT License | github.com/jgthms/minireset.css 
 html,body,p,ol,ul,li,dl,dt,dd,blockquote,figure,fieldset,legend,textarea,pre,iframe,hr,h1,h2,h3,h4,h5,h6{margin:0;padding:0}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal}ul{list-style:none}button,input,select,textarea{margin:0}html{box-sizing:border-box}*,*:before,*:after{box-sizing:inherit}embed,iframe,object,audio,video{height:auto;max-width:100%}img{max-width:100%}iframe{border:0}table{border-collapse:collapse;border-spacing:0}td,th{padding:0;text-align:left}
 
@@ -9,7 +8,7 @@ font-size: 100%; // this is usually 16px by default
 */
 
 html {
-    font-family: passion_oneregular;    // police par défaut 
+    font-family: "passion_oneregular";    // police par défaut 
 }
 
 body {
@@ -73,6 +72,10 @@ tete.FermeInfo {
     padding-right: 5px;
 }
 
+.video-js.vjs-playing .vjs-tech {
+    pointer-events: none;
+  }
+
 
 main {
     display: flex;
@@ -96,7 +99,7 @@ main {
         }
     
         span {
-            font-family: scoreboardregular;
+            font-family: "scoreboardregular";
             font-size: 5vw; // taille variable selon largeur du viewport
             color:white;
         }
@@ -127,6 +130,7 @@ main {
             img {
                 align-self: flex-start; // alignement gauche
                 padding-right: 20px;
+                width: 4%;
             }
 
             span {
@@ -140,6 +144,10 @@ main {
         carousel {
             display: flex;
             align-self: center;
+
+            .carousel-caption {
+                padding-top: 0px!important;
+            }
         }
     }
 
@@ -248,7 +256,7 @@ main {
 
                     p {
                         display: flex;
-                        font-family: scoreboardregular;
+                        font-family: "scoreboardregular";
                         font-size: 2vw; // taille variable selon largeur du viewport
                         color:black;
                     }
@@ -309,12 +317,17 @@ main {
                         padding-left: 10px;
                         text-decoration: none;
 
-                        img {
+                        i {
+                            padding-top: 4px;
+                            color: navy;
+                        }
+
+                       /* img {
                             display: flex;
                             flex: 1;
                             height: 4vh;
                             padding-right: 6px;
-                        }
+                        }*/
                     }
 
                     button {
@@ -405,7 +418,7 @@ main {
 
                     p {
                         display: flex;
-                        font-family: scoreboardregular;
+                        font-family: "scoreboardregular";
                         font-size: 2vw; // taille variable selon largeur du viewport
                         color:black;
                     }
@@ -432,34 +445,4 @@ main {
     border-color: white;
     border-style: solid;
     border-width: 2px;
-}
-
-footer {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    flex-wrap: nowrap;
-    flex-grow: 0;
-    flex-shrink: 1; // permet de garder la ligne affichée même si on réduit la taille de la fenêtre
-    background-color: midnightblue; 
-    color:white;
-    padding-top: 5px;
-    padding-left: 5px;
-    font-size: 1vw; // taille variable selon largeur du viewport
-    flex-basis: 2.5rem;       // hauteur = 2 lignes de texte
-
-    img {
-        padding-left: 10px;
-        width: 2.5vw;
-        height: 2vw;
-    }
-    h2 {
-        padding-left: 10px;
-        line-height: 1.5;
-    }
-    
-    .events {
-        color: midnightblue;
-        font-size: 0.5vw; // taille variable selon largeur du viewport
-    }
 }

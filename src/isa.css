@@ -1,5 +1,5 @@
-@import url(../src/typo/scoreboard/stylesheet.css);
-@import url(../src/typo/passion_one/stylesheet.css);
+@import url(typo/scoreboard/stylesheet.css);
+@import url(typo/passion_one/stylesheet.css);
 html,
 body,
 p,
@@ -130,34 +130,6 @@ main menu div p {
   font-size: 1.3vw;
   font-family: Arial, Helvetica, sans-serif;
 }
-main content {
-  width: 80vw;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: center;
-  padding-top: 4em;
-}
-footer {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  flex-wrap: nowrap;
-  flex-grow: 0;
-  flex-shrink: 1;
-  background-color: midnightblue;
-  color: white;
-  padding-top: 5px;
-  padding-left: 5px;
-  font-size: 1vw;
-  flex-basis: 2.5rem;
-}
-footer img {
-  padding-left: 10px;
-  width: 2.5vw;
-  height: 2vw;
-}
-footer h2 {
-  padding-left: 10px;
-  line-height: 1.5;
+main menu div p span {
+  justify-items: center;
 }

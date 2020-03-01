@@ -5,40 +5,61 @@ URL ressources externes
 <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" type="text/css"
 
+Tailles ecrans :
+https://www.imedias.pro/cours-en-ligne/informatique/definition-resolution-taille-ecran/exemples-resolutions-ecrans-en-fonction-diagonale-et-definition/
+
+
 **************************************
                QUIZZs
 **************************************
 
 **************************************
+               ANOs
+
+- utilisation de fontawesome : https://www.chromestatus.com/feature/5633521622188032
+- gérer la fin du quizz
+- gérer le clic sur les boutons réponses
+- gérer l'attribution des points selon bonne ou mauvaise réponse
+- changer la couleur de fond du chrono à 3 secondes
+intégrer des sons : bonne et mauvaise réponse
+
+**************************************
                FAIT
-**************************************
-x gérer l'attribution des points selon bonne ou mauvaise réponse
-x gérer le clic sur les boutons réponses
-x ajouter un poster en relation avec le thème du jeu
+
+x chrono pour lecture de la question
+x barre des accès aux pages en bas
+x ajouter un poster enr elation avec le thème du jeu
 x ajouter une image en relation avec le badge et le niveau
-x ajouter un son à 3 secondes de la fin du chrono
-x revoir la gestion du son avec les 3 secondes
-x gérer la fin du quizz
+
 
 
 ********************************************************************************************************************************
 ********************************************************************************************************************************
 
-**************************************
-               MATCHS
-**************************************
+
 
 **************************************
-               A FAIRE
+               ANOs
 **************************************
-- relier le play de la vidéo avec le bouton suivant
+- la silhouette de l'arbitre ne s'affiche pas bien
+- les composants BUG sont créés dans une boucle puis inscrits dans le DOM. : comment s'appuyer les uns sur les autres ?
+    créer une zone complexe à embarquer avec innerHTML
+- VIDEOJS: WARN: videojs.createEl() is deprecated; use videojs.dom.createEl() instead
 - le clic sur le fanion n'exécute pas l'appel au site car le clic est considéré comme PAUSE de la vidéo
 - position des module BUG sur la vidéo : les silhouettes se superposent au titre des équipes
+
+**************************************
+               EVOLs
+**************************************
+- afficher le nom du joueur sous la silhouette de l'arbitre
 - masquer la ligne de bienvenue en mode vidéo
+- afficher les points e suite du carousel pour savoir combien de matchs on a
 - un allerA dans une INFORMATION ?
+- proposer un QUIZZ sur la base de questions du fascicule
 - tester l'affichage des questions avec des images
 - créer un texte qui défile au départ du match (page du match)
 - avoir une animation pour la mi-temps (sifflet)
+- pour un but prévoir une animation et non une image
 - gérer automatiquement la fin de la vidéo
 - rendre reactif une plage de vidéo pour donner des points à l'utilisateur
 - paramétrer la couleur des incrustations (texte)
@@ -53,15 +74,18 @@ x gérer la fin du quizz
 - le centrage vertical des incrustations est trop bas alors qu'on met 50%
 - le centrage horizontal des incrustations ne tient pas compte de la largeur de l'objet
 
+
+**************************************
+    		v2.0.2
+**************************************
+x affichage de la loi si elle existe dans la question de la vidéo
+
 **************************************
     		v1.1.2 en cours
 **************************************
-x VIDEOJS: WARN: videojs.createEl() is deprecated; use videojs.dom.createEl() instead
 x mode MUTE en replay
 x bouton BIG PLAY en fond rouge
-x son lors d'un BUT
-x afficher le nom du joueur sous la silhouette de l'arbitre
-x afficher les points de suite du carousel pour savoir combien de matchs on a
+
 
 **************************************
     		v1.1.1 en cours

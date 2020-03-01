@@ -47,7 +47,7 @@
 
 /* alignement du CAPTION de l'image*/
 .carousel-caption {
-    top: 10px;
+    top: 20px;
     left: 0%;
     right: 0%;
     font-size: 1vw; /* taille variable selon largeur du viewport */

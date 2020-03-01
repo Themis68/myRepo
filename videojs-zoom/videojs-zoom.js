@@ -104,7 +104,7 @@
       onClick: function(customSourcePicker){
         this.onClickListener(this);
         this.showAsLabel();
-        this.dom.addClass('vjs-selected');
+        this.addClass('vjs-selected');
         setSourcesSanitized(this.player_, this.options_.val);
       }
     });
@@ -187,7 +187,7 @@
 
       // affectation de la classe
       // @deprecated : videojs.dom.addClass(label, 'vjs-zoom-button-label');
-      videojs.dom.addClass(label, 'vjs-zoom-button-label');
+      videojs.dom.addClass(label,'vjs-zoom-button-label');
         
       /**
        * Updates player sources or returns current source URL

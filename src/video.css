@@ -1,5 +1,5 @@
-@import url(../src/typo/scoreboard/stylesheet.css);
-@import url(../src/typo/passion_one/stylesheet.css);
+@import url(typo/scoreboard/stylesheet.css);
+@import url(typo/passion_one/stylesheet.css);
 html,
 body,
 p,
@@ -79,7 +79,7 @@ th {
 font-size: 100%; // this is usually 16px by default 
 */
 html {
-  font-family: passion_oneregular;
+  font-family: "passion_oneregular";
 }
 body {
   min-height: 100vh;
@@ -149,7 +149,7 @@ main header img {
   height: 3vw;
 }
 main header span {
-  font-family: scoreboardregular;
+  font-family: "scoreboardregular";
   font-size: 5vw;
   color: white;
 }
@@ -176,6 +176,7 @@ main menu bascule {
 main menu bascule img {
   align-self: flex-start;
   padding-right: 20px;
+  width: 4%;
 }
 main menu bascule span {
   align-self: flex-start;
@@ -185,6 +186,9 @@ main menu bascule span {
 main menu carousel {
   display: flex;
   align-self: center;
+}
+main menu carousel .carousel-caption {
+  padding-top: 0px!important;
 }
 main content {
   width: 95vw;
@@ -278,7 +282,7 @@ main content inter tete points {
 }
 main content inter tete points p {
   display: flex;
-  font-family: scoreboardregular;
+  font-family: "scoreboardregular";
   font-size: 2vw;
   color: black;
 }
@@ -328,12 +332,16 @@ main content inter propositions proposition a {
   padding: 4px;
   padding-left: 10px;
   text-decoration: none;
+  /* img {
+                            display: flex;
+                            flex: 1;
+                            height: 4vh;
+                            padding-right: 6px;
+                        }*/
 }
-main content inter propositions proposition a img {
-  display: flex;
-  flex: 1;
-  height: 4vh;
-  padding-right: 6px;
+main content inter propositions proposition a i {
+  padding-top: 4px;
+  color: navy;
 }
 main content inter propositions proposition button {
   flex: 11;
@@ -413,7 +421,7 @@ main content inter suite score {
 }
 main content inter suite score p {
   display: flex;
-  font-family: scoreboardregular;
+  font-family: "scoreboardregular";
   font-size: 2vw;
   color: black;
 }
@@ -431,31 +439,4 @@ main content inter suite next img {
   border-color: white;
   border-style: solid;
   border-width: 2px;
-}
-footer {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  flex-wrap: nowrap;
-  flex-grow: 0;
-  flex-shrink: 1;
-  background-color: midnightblue;
-  color: white;
-  padding-top: 5px;
-  padding-left: 5px;
-  font-size: 1vw;
-  flex-basis: 2.5rem;
-}
-footer img {
-  padding-left: 10px;
-  width: 2.5vw;
-  height: 2vw;
-}
-footer h2 {
-  padding-left: 10px;
-  line-height: 1.5;
-}
-footer .events {
-  color: midnightblue;
-  font-size: 0.5vw;
 }

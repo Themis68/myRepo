@@ -95,7 +95,8 @@
    * @module create-logger
    */
 
-  var history = [];
+  var history = []; // passe ici au clic sur le BIG-PLAY
+ 
   /**
    * Log messages to the console and history based on the type of message
    *
@@ -731,6 +732,7 @@
     }
 
     var el = document.createElement(tagName);
+
     Object.getOwnPropertyNames(properties).forEach(function (propName) {
       var val = properties[propName]; // See #2176
       // We originally were accepting both properties and attributes in the
@@ -24756,6 +24758,7 @@
           _this3["handleTech" + TECH_EVENTS_QUEUE[event] + "_"](eventObj);
         });
       });
+
       this.on(this.tech_, 'loadstart', this.handleTechLoadStart_);
       this.on(this.tech_, 'sourceset', this.handleTechSourceset_);
       this.on(this.tech_, 'waiting', this.handleTechWaiting_);
@@ -25518,6 +25521,11 @@
     ;
 
     _proto.handleTechClick_ = function handleTechClick_(event) {
+      // désactiver le click sur l'image ? 
+      if (this.options_.disableVideoPlayPauseClick) {
+        return
+      }
+
       if (!isSingleLeftClick(event)) {
         return;
       } // When controls are disabled a click should not toggle playback because
