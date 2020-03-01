@@ -6,6 +6,7 @@ var scenario = [
             poster: "Pole_PloufraganMT1.png",
             fichier: "Pole_PloufraganMT1.mp4",
             scenario: "Pole_PloufraganMT1.min.js",
+            variable: "script1",
             description: "Match amical opposant Les Pôles espoirs des Ligues de Bretagne (en blanc) et des Pays de La Loire (en bleu marine) - 1ère période",
             gauche: {
                 nom: "Ligue de Bretagne",
@@ -31,6 +32,7 @@ var scenario = [
             poster: "Pole_PloufraganMT2.png",
             fichier: "Pole_PloufraganMT2.mp4",
             scenario: "Pole_PloufraganMT2.min.js",
+            variable: "script2",
             description: "Match amical opposant Les Pôles espoirs des Ligues de Bretagne (en blanc) et des Pays de La Loire (en bleu marine) - 2ème période",
             gauche: {
                 nom: "Ligue Pays De la Loire",

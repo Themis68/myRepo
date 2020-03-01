@@ -244,7 +244,7 @@ function switchVideo(n) {
 		// travail sur les actions et l'IHM associée
 		//
 		// actions = video[1];    // recup tableau des actions (position 3)
-		actions = eval("script" + n);
+		actions = eval(video[0].variable);
 		//actions = video[0].scenario;    // recup tableau des actions (position 3)
 
 		listeEvents("events", media_events);	// créé le tableau des évènements vidéos
