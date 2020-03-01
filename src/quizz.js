@@ -287,7 +287,6 @@ function gestionBoard(etape, objet) {
 function chronoQ(nbSecondesMax) {
 	let jauge = document.getElementsByClassName("progress-bar");
 	let value = parseInt(jauge[0].getAttribute("aria-valuenow"),10) + 1;	// transformation en numérique de la valeur actuelle
-	console.log (value,nbSecondesMax );
 	if (value > nbSecondesMax) {
 		continuer2();
 	} else {
@@ -343,7 +342,6 @@ function response(numQ, propSel) {
 		loi = lois[quizz.loi-1].fichier;
 	} else {
 		// loi de la question
-		console.log("loi de la question", myQ.reponse.loi);
 		loi = lois[(myQ.reponse.loi)-1].fichier;
 	}
 
@@ -367,7 +365,6 @@ function addScore(value) {
     } else {
         quizzNbPoint = quizzNbPoint + value;
 	} 
-	console.log(quizzNbPoint);
     var score = ('0' + quizzNbPoint.toString()).substr(-2);       // on a le score avec deux digits
     var scoreMax = ('0' + nbQuests[niveauQuest].points.toString()).substr(-2);
 
