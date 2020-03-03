@@ -11,7 +11,7 @@ var script2 = [
         niveau: "CONFIRME",
         saut: {
             attente: 3,
-            indice: '00:09:17'
+            indice: '00:09:20'
         },
         question: {
             libelle: "Que doit vérifier l'arbitre juste avant l'engagement selon l'usage ?"
@@ -87,7 +87,7 @@ var script2 = [
         }
     },
     {
-        step: '00:09:21',
+        step: '00:09:23',
         act: "Question",
         niveau: "CONFIRME",
         saut: {
