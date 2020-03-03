@@ -79,6 +79,7 @@ x ajouter une image en relation avec le badge et le niveau
     		v2.0.2
 **************************************
 x affichage de la loi si elle existe dans la question de la vidéo
+x suppression du flou lors de la reprise du PLAY()
 
 **************************************
     		v1.1.2 en cours

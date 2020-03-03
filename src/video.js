@@ -690,6 +690,9 @@ function continuer2() {
 
 	document._video.playbackRate = 1;   // vitesse normale
 	document._video.volume = volumeLevel;	//restauration du volume sonore
+	// suppression du flou éventuel
+	classId("del", "myVideo", "vjs-blurOn");
+    classId("add", "myVideo", "vjs-blurOff");
     document._video.play(); // on relance la video
 
     if (actionEnCours.saut !== undefined) {
@@ -769,6 +772,9 @@ function fReplay(param) {
 	document._video.playbackRate = 0.2; // on active le ralentis
 	volumeLevel = document._video.volume;	// on sauvegarde le niveau du volume
 	document._video.volume = 0;	// mode MUTE
+	// suppression du flou éventuel
+	classId("del", "myVideo", "vjs-blurOn");
+    classId("add", "myVideo", "vjs-blurOff");
     document._video.play(); // on reprend la lecture de la vidéo
 }
 
