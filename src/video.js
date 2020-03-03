@@ -634,23 +634,13 @@ var mesActions = {
     },
 
     Information : function (ind) {
+		// affiche l'information
         actionEnCours = actions[ind];
         // on affiche le bouton répondre si FAIRPLAY et pas encore GAGNE
-		timeOut = setTimeout(gestionInter, 2000, "FermeInfo", actionEnCours); 
+		//timeOut = setTimeout(gestionInter, actionEnCours.saut.attente, "FermeInfo", actionEnCours); 
 		if (actionEnCours.type === 'but'){
 			playSound("goal");
 		}
-
-        if ((actionEnCours.type === 'fairplay') && (questionsFaites.indexOf(actionEnCours.step) < 0)) {
-           /* var btnBonus = document.getElementById("btnBonus");
-            btnBonus.onclick = function() 
-            {
-                fairplay(ind); 
-            };*/
-            //showItem("btnBonus", true);
-        } else {
-           // .showItem("btnBonus", false);
-        }
 
         gestionInter("InterInformation", actionEnCours);
     },
@@ -732,15 +722,21 @@ function fProposition(reponse) {
 	gestionInter("reponse", actionEnCours);    	// gerer la réponse
 }
 
+
 function allerA(param) {
-    timeOutEffet = setTimeout(endTimeOut, 500, convertInSeqCode(param.indice)); // effet de transition
+    timeOutEffet = setTimeout(debTimeOut, parseFloat(param.attente, 10), param); // effet de transition de 1/2 seconde
+}
+
+function debTimeOut(param) {
+    timeOutEffet = setTimeout(endTimeOut, 500, param); // effet de transition de 1/2 seconde
     classId("del", "myVideo", "vjs-blurOff");
     classId("add", "myVideo", "vjs-blurOn"); 
 }
 
-function endTimeOut(seqCod) {
+
+function endTimeOut(param) {
     // on est arrivé à la fin de l'effet alors on retire l'effet
-    getVideo().currentTime = seqCod;
+    getVideo().currentTime = convertInSeqCode(param.indice);
     classId("del", "myVideo", "vjs-blurOn");
     classId("add", "myVideo", "vjs-blurOff");
     clearTimeout(timeOutEffet);
@@ -936,8 +932,6 @@ function gestionInter(etape, objet) {
             document.querySelector("inter complement").style.display = "none";
             document.querySelector("inter suite replay span").style.display = "none";
 			document.querySelector("inter suite score p").style.display = "flex";
-			console.log(objet.saut.indice);
-			//allerA(objet.saut.indice);
 			allerA(objet.saut);
             break;
 
@@ -1005,7 +999,8 @@ function gestionInter(etape, objet) {
             document.querySelector("inter complement").style.display = "none";
             document.querySelector("inter suite replay span").style.display = "none";
 			document.querySelector("inter suite score p").style.display = "flex";
-            document.querySelector("inter suite next img").style.display = "none";
+			document.querySelector("inter suite next img").style.display = "none";
+			allerA(objet.saut);	// lance le minuteur
             break;
 
 		case "reponse":
