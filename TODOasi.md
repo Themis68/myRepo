@@ -43,16 +43,12 @@ x ajouter une image en relation avec le badge et le niveau
 **************************************
 - la silhouette de l'arbitre ne s'affiche pas bien
 - les composants BUG sont créés dans une boucle puis inscrits dans le DOM. : comment s'appuyer les uns sur les autres ?
-    créer une zone complexe à embarquer avec innerHTML
-- VIDEOJS: WARN: videojs.createEl() is deprecated; use videojs.dom.createEl() instead
-- le clic sur le fanion n'exécute pas l'appel au site car le clic est considéré comme PAUSE de la vidéo
-- position des module BUG sur la vidéo : les silhouettes se superposent au titre des équipes
+     : créer une zone complexe à embarquer avec innerHTML
 
 **************************************
                EVOLs
 **************************************
-- afficher le nom du joueur sous la silhouette de l'arbitre
-- masquer la ligne de bienvenue en mode vidéo
+- ajouter cercle rouge sur une zone de l'action pour montrer plus précisémment
 - afficher les points e suite du carousel pour savoir combien de matchs on a
 - un allerA dans une INFORMATION ?
 - proposer un QUIZZ sur la base de questions du fascicule
@@ -78,15 +74,21 @@ x ajouter une image en relation avec le badge et le niveau
 **************************************
     		v2.0.2
 **************************************
+x les PICT de INTER sont désormais fixe en taille pour éviter de suivre la hauteur des textes COMPLEMENT
+x masquer la ligne de bienvenue en mode vidéo
+x clic sur la vidéo entrainant une pause supprimer
+x le clic sur le fanion n'exécute pas l'appel au site car le clic est considéré comme PAUSE de la vidéo
+x position des module BUG sur la vidéo : les silhouettes se superposent au titre des équipes
+x VIDEOJS: WARN: videojs.createEl() is deprecated; use videojs.dom.createEl() instead
 x affichage de la loi si elle existe dans la question de la vidéo
 x suppression du flou lors de la reprise du PLAY()
+x afficher le nom du joueur sous la silhouette de l'arbitre
 
 **************************************
     		v1.1.2 en cours
 **************************************
 x mode MUTE en replay
 x bouton BIG PLAY en fond rouge
-
 
 **************************************
     		v1.1.1 en cours

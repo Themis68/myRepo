@@ -657,7 +657,8 @@ var mesActions = {
 
     AllerA: function (ind) {
         actionEnCours = actions[ind];
-        allerA(actionEnCours.indice);
+	//	allerA(actionEnCours.indice);
+		allerA(actionEnCours.saut);
     },
 
     Fin: function (ind) {
@@ -732,7 +733,7 @@ function fProposition(reponse) {
 }
 
 function allerA(param) {
-    timeOutEffet = setTimeout(endTimeOut, 500, convertInSeqCode(param)); // effet de transition
+    timeOutEffet = setTimeout(endTimeOut, 500, convertInSeqCode(param.indice)); // effet de transition
     classId("del", "myVideo", "vjs-blurOff");
     classId("add", "myVideo", "vjs-blurOn"); 
 }
@@ -934,8 +935,10 @@ function gestionInter(etape, objet) {
             document.querySelector("inter propositions").style.display = "none";
             document.querySelector("inter complement").style.display = "none";
             document.querySelector("inter suite replay span").style.display = "none";
-            document.querySelector("inter suite score p").style.display = "flex";
-            allerA(objet.saut.indice);
+			document.querySelector("inter suite score p").style.display = "flex";
+			console.log(objet.saut.indice);
+			//allerA(objet.saut.indice);
+			allerA(objet.saut);
             break;
 
 		case "InterQuestion":

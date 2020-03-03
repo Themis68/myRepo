@@ -108,6 +108,7 @@ main header span {
   font-family: scoreboardregular;
   font-size: 5vw;
   color: white;
+  line-height: normal;
 }
 main section {
   display: flex;

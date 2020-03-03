@@ -179,7 +179,7 @@ var script1 = [
         niveau: "DEBUTANT",
         saut: {
             attente: 3,
-            indice: '00:23:40'
+            indice: "00:23:40"
         },
         question: {
             libelle: "Quelle est la décision de l'arbitre ?",
@@ -199,21 +199,25 @@ var script1 = [
         act: "Information",
         niveau: "DEBUTANT",
         libelle: "BUT",
-        type: 'but'
+        type: 'but',
+        saut: {
+            attente: 3,
+            indice: "00:24:12"
+        }
     },
-    {
+  /*  {
         step: '00:23:48',
         act: "AllerA",
         niveau: "DEBUTANT",
-        indice: "00:24:12",
-    },
+        indice: "00:24:12"
+    },*/
     {
         step: '00:24:16',
         act: "Question",
         niveau: "DEBUTANT",
         saut: {
             attente: 3,
-            indice: '00:24:47'
+            indice: "00:24:47"
         },
         question: {
             libelle: "L'engagement est-il fait dans les règles ?"
@@ -231,14 +235,18 @@ var script1 = [
         act: "Information",
         niveau: "DEBUTANT",
         libelle: "BUT",
-        type: 'but'
+        type: 'but',
+        saut: {
+            attente: 4,
+            indice: "00:25:18"
+        }
     },
-    {
+   /* {
         step: '00:24:55',
         act: "AllerA",
         niveau: "DEBUTANT",
         indice: "00:25:18"
-    },
+    },*/
     {
         step: '00:25:20',
         act: "Question",
@@ -263,27 +271,35 @@ var script1 = [
         act: "Information",
         niveau: "DEBUTANT",
         libelle: "BUT",
-        type: 'but'
+        type: 'but',
+        saut: {
+            attente: 4,
+            indice: "00:31:52"
+        }
     },
-    {
+   /* {
         step: '00:26:02',
         act: "AllerA",
         niveau: "DEBUTANT",
         indice: '00:31:52'
-    },
+    },*/
     {
         step: '00:31:58',
         act: "Information",
         niveau: "DEBUTANT",
         libelle: "l'arbitre s'enquiert de l'état du/des joueur(s) lorsqu'il y a un contact",
-        type: 'but'
+        type: 'fairplay',
+        saut: {
+            attente: 10,
+            indice: "00:32:35"
+        }
     },
-    {
+  /*  {
         step: '00:31:68',
         act: "AllerA",
         niveau: "DEBUTANT",
         indice: '00:32:35'
-    },
+    },*/
     {
         step: '00:32:36',
         act: "Question",
@@ -327,14 +343,18 @@ var script1 = [
         act: "Information",
         niveau: "DEBUTANT",
         libelle: "L'arbitre explique la sanction au joueur fautif pour calmer le jeu",
-        type: 'fairplay'
+        type: 'fairplay',
+        saut: {
+            attente: 10,
+            indice: "00:34:31"
+        }
     },
-    {
+  /*  {
         step: '00:34:17',
         act: "AllerA",
         niveau: "DEBUTANT",
-        indice: '00:34:31'
-    },
+        indice: "00:34:31"
+    },*/
     {
         step: '00:34:30',
         act: "Question",
