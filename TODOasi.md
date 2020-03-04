@@ -74,6 +74,7 @@ x ajouter une image en relation avec le badge et le niveau
 **************************************
     		v2.0.2
 **************************************
+x Affichage d'un message en fin de match
 x les PICT de INTER sont désormais fixe en taille pour éviter de suivre la hauteur des textes COMPLEMENT
 x masquer la ligne de bienvenue en mode vidéo
 x clic sur la vidéo entrainant une pause supprimer
