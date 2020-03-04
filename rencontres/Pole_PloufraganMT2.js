@@ -3,14 +3,8 @@ var script2 = [
         step: '00:00:01',
         act: "AllerA",
         niveau: "DEBUTANT",
-        indice: '00:20:57'
+        indice: '00:08:43'
     },
-    /*{
-        step: '00:00:01',
-        act: "AllerA",
-        niveau: "DEBUTANT",
-        indice: '00:00:06'
-    },*/
     {
         step: '00:00:02',
         act: "Question",
@@ -33,25 +27,6 @@ var script2 = [
         act: "AllerA",
         niveau: "EXPERT",
         indice: '00:02:07'
-    },
-    {
-        step: '00:00:08',
-        act: "Question",
-        niveau: "DEBUTANT",
-        saut: {
-            attente: 3,
-            indice: '00:08:40'
-        },
-        question: {
-            libelle: "L'engagement est-il fait dans les règles ?",
-            reculReplay: 3
-        },
-        attributs: ["Oui", "Non"],
-        reponse: {
-            solution: 1,
-            loi: "Loi_08",
-            points: 2
-        }
     },
     {
         step: '00:02:10',
@@ -116,7 +91,7 @@ var script2 = [
         niveau: "DEBUTANT",
         saut: {
             attente: 1,
-            indice: '00:20:57'
+            indice: '00:21:10'
         },
         question: {
             libelle: "Sur cette situation de jeu, que signalent les arbitres ? "
@@ -136,7 +111,7 @@ var script2 = [
         niveau: "CONFIRME",
         saut: {
             attente: 1,
-            indice: '00:20:57'
+            indice: '00:21:10'
         },
         question: {
             libelle: "A quoi correspond le geste de l'arbitre ?"
@@ -175,7 +150,7 @@ var script2 = [
         niveau: "EXPERT",
         saut: {
             attente: 1,
-            indice: '00:20:57'
+            indice: '00:21:10'
         },
         question: {
             libelle: "Selon vous, quelle faute siffle l'arbitre ?",
@@ -190,7 +165,7 @@ var script2 = [
         }
     },
     {
-        step: '00:21:00',
+        step: '00:21:15',
         act: "Fin"
     }
 ]

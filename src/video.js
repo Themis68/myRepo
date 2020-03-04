@@ -649,7 +649,6 @@ var mesActions = {
 
     AllerA: function (ind) {
 		actionEnCours = actions[ind];
-		console.log(actionEnCours.indice);
 		allerA(actionEnCours.indice);
     },
 
@@ -903,7 +902,7 @@ function gestionInter(etape, objet) {
 	switch (etape) {
 		case "selectVideo":
 		   // classSelector("set", "inter tete", "Information");
-		    document.querySelector("inter jauge").style.display = "flex";
+		    document.querySelector("inter jauge div").style.display = "flex";
 			document.querySelector("inter tete titre p").innerHTML = "Match";
 			document.querySelector("inter tete points").style.display = "none";
 			gestNiveaux(idVideoOn);
@@ -932,7 +931,7 @@ function gestionInter(etape, objet) {
             document.querySelector("inter complement").style.display = "none";
             document.querySelector("inter suite replay span").style.display = "none";
 			document.querySelector("inter suite score p").style.display = "flex";
-			allerA(objet.saut);
+			allerA(objet.saut.indice);
             break;
 
 		case "InterQuestion":
@@ -1000,7 +999,9 @@ function gestionInter(etape, objet) {
             document.querySelector("inter suite replay span").style.display = "none";
 			document.querySelector("inter suite score p").style.display = "flex";
 			document.querySelector("inter suite next img").style.display = "none";
-			allerA(objet.saut);	// lance le minuteur
+			timeOut = setTimeout(gestionInter, (objet.saut.attente * 1000), "FermeInfo", objet); 
+			
+			//allerA(objet.saut);	// lance le minuteur
             break;
 
 		case "reponse":
@@ -1029,7 +1030,7 @@ function gestionInter(etape, objet) {
 
 		case "Termine":
 			document.querySelector("inter tete titre p").innerHTML = "Match Terminé";
-			document.querySelector("inter jauge").style.display = "none";
+			document.querySelector("inter jauge div").style.display = "none";
 			document.querySelector("inter tete points").style.display = "none";
 			document.querySelector("inter question p").style.display = "none";
 			document.querySelector("inter propositions").style.display = "none";

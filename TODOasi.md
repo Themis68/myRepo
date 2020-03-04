@@ -9,33 +9,6 @@ Tailles ecrans :
 https://www.imedias.pro/cours-en-ligne/informatique/definition-resolution-taille-ecran/exemples-resolutions-ecrans-en-fonction-diagonale-et-definition/
 
 
-**************************************
-               QUIZZs
-**************************************
-
-**************************************
-               ANOs
-
-- utilisation de fontawesome : https://www.chromestatus.com/feature/5633521622188032
-- gérer la fin du quizz
-- gérer le clic sur les boutons réponses
-- gérer l'attribution des points selon bonne ou mauvaise réponse
-- changer la couleur de fond du chrono à 3 secondes
-intégrer des sons : bonne et mauvaise réponse
-
-**************************************
-               FAIT
-
-x chrono pour lecture de la question
-x barre des accès aux pages en bas
-x ajouter un poster enr elation avec le thème du jeu
-x ajouter une image en relation avec le badge et le niveau
-
-
-
-********************************************************************************************************************************
-********************************************************************************************************************************
-
 
 
 **************************************
@@ -49,17 +22,12 @@ x ajouter une image en relation avec le badge et le niveau
                EVOLs
 **************************************
 - ajouter cercle rouge sur une zone de l'action pour montrer plus précisémment
-- afficher les points e suite du carousel pour savoir combien de matchs on a
-- un allerA dans une INFORMATION ?
-- proposer un QUIZZ sur la base de questions du fascicule
 - tester l'affichage des questions avec des images
 - créer un texte qui défile au départ du match (page du match)
 - avoir une animation pour la mi-temps (sifflet)
-- pour un but prévoir une animation et non une image
 - gérer automatiquement la fin de la vidéo
 - rendre reactif une plage de vidéo pour donner des points à l'utilisateur
 - paramétrer la couleur des incrustations (texte)
-- cacher le bouton des points si on a une Information de type "but"
 - gestion de la position de l'arbitre
 - prévoir une présentation vidéo au départ (page 1)
 - Gérer une action qui attend une clic du joueur
@@ -74,6 +42,19 @@ x ajouter une image en relation avec le badge et le niveau
 **************************************
     		v2.0.2
 **************************************
+x utilisation de fontawesome : https://www.chromestatus.com/feature/5633521622188032
+x gérer la fin du quizz
+x gérer le clic sur les boutons réponses
+x gérer l'attribution des points selon bonne ou mauvaise réponse
+x changer la couleur de fond du chrono à 3 secondes
+x chrono pour lecture de la question
+x barre des accès aux pages en bas
+x ajouter un poster enr elation avec le thème du jeu
+x ajouter une image en relation avec le badge et le niveau
+x prévoir un sopn pour les réponses du quizz
+x pour un but prévoir une son
+x afficher les indicateurs du carousel pour savoir combien de matchs on a
+x Gestion du saut pour une Information
 x Affichage d'un message en fin de match
 x les PICT de INTER sont désormais fixe en taille pour éviter de suivre la hauteur des textes COMPLEMENT
 x masquer la ligne de bienvenue en mode vidéo
