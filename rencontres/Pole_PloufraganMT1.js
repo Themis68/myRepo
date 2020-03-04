@@ -305,8 +305,8 @@ var script1 = [
         act: "Question",
         niveau: "CONFIRME",
         saut: {
-            attente: 3,
-            indice: '00:34:55'
+            attente: 1,
+            indice: '00:34:57'
         },
         question: {
             libelle: "L'arbitre assistant lève son drapeau et signale une faute"
@@ -361,7 +361,7 @@ var script1 = [
         niveau: "EXPERT",
         saut: {
             attente: 7,
-            indice: '00:34:55'
+            indice: '00:34:57'
         },
         question: {
             libelle: "Que doit faire l'arbitre pour suivre le coup-franc dans de bonnes conditions ?"
@@ -396,8 +396,8 @@ var script1 = [
         act: "Question",
         niveau: "DEBUTANT",
         saut: {
-            attente: 5,
-            indice: '00:34:55'
+            attente: 1,
+            indice: '00:34:53'
         },
         question: {
             libelle: "Quelle situation indique l'arbitre ?"

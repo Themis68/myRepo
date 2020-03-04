@@ -3,8 +3,14 @@ var script2 = [
         step: '00:00:01',
         act: "AllerA",
         niveau: "DEBUTANT",
-        indice: '00:00:06'
+        indice: '00:20:57'
     },
+    /*{
+        step: '00:00:01',
+        act: "AllerA",
+        niveau: "DEBUTANT",
+        indice: '00:00:06'
+    },*/
     {
         step: '00:00:02',
         act: "Question",
@@ -109,7 +115,7 @@ var script2 = [
         act: "Question",
         niveau: "DEBUTANT",
         saut: {
-            attente: 3,
+            attente: 1,
             indice: '00:20:57'
         },
         question: {
@@ -129,7 +135,7 @@ var script2 = [
         act: "Question",
         niveau: "CONFIRME",
         saut: {
-            attente: 3,
+            attente: 1,
             indice: '00:20:57'
         },
         question: {
@@ -168,7 +174,7 @@ var script2 = [
         act: "Question",
         niveau: "EXPERT",
         saut: {
-            attente: 12,
+            attente: 1,
             indice: '00:20:57'
         },
         question: {
