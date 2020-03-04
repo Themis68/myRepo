@@ -43,7 +43,9 @@ var tabMessages = [
 	"cliquez sur la vignette du match que vous souhaitez visonner",
 	"cliquez sur cet icône pour afficher les matchs disponibles",
 	"Vous allez visionner le match avec ",
-	"Cliquez sur le bouton Play sur la vidéo pour déclencher le visionnage du match"
+	"Cliquez sur le bouton Play sur la vidéo pour déclencher le visionnage du match",
+	"Vous venez de terminer l'analyse arbitrale",
+	"Sélectionnez un nouveau match ou un nouveau niveau"
 ]
 
 // chemins
@@ -646,13 +648,13 @@ var mesActions = {
     },
 
     AllerA: function (ind) {
-        actionEnCours = actions[ind];
-	//	allerA(actionEnCours.indice);
-		allerA(actionEnCours.saut);
+		actionEnCours = actions[ind];
+		allerA(actionEnCours.indice);
     },
 
     Fin: function (ind) {
-        actionEnCours = actions[ind];
+		actionEnCours = actions[ind];
+		gestionInter("Termine", actionEnCours);
     },
 
     Mitemps: function (ind) {
@@ -723,20 +725,16 @@ function fProposition(reponse) {
 }
 
 
-function allerA(param) {
-    timeOutEffet = setTimeout(debTimeOut, parseFloat(param.attente, 10), param); // effet de transition de 1/2 seconde
-}
-
-function debTimeOut(param) {
-    timeOutEffet = setTimeout(endTimeOut, 500, param); // effet de transition de 1/2 seconde
+function allerA(indice) {
+    timeOutEffet = setTimeout(endTimeOut, 500, indice); // effet de transition de 1/2 seconde
     classId("del", "myVideo", "vjs-blurOff");
     classId("add", "myVideo", "vjs-blurOn"); 
 }
 
 
-function endTimeOut(param) {
+function endTimeOut(indice) {
     // on est arrivé à la fin de l'effet alors on retire l'effet
-    getVideo().currentTime = convertInSeqCode(param.indice);
+    getVideo().currentTime = convertInSeqCode(indice);
     classId("del", "myVideo", "vjs-blurOn");
     classId("add", "myVideo", "vjs-blurOff");
     clearTimeout(timeOutEffet);
@@ -903,7 +901,8 @@ function gestionInter(etape, objet) {
 	let inter = document.querySelector("inter");
 	switch (etape) {
 		case "selectVideo":
-           // classSelector("set", "inter tete", "Information");
+		   // classSelector("set", "inter tete", "Information");
+		    document.querySelector("inter jauge div").style.display = "flex";
 			document.querySelector("inter tete titre p").innerHTML = "Match";
 			document.querySelector("inter tete points").style.display = "none";
 			gestNiveaux(idVideoOn);
@@ -932,7 +931,7 @@ function gestionInter(etape, objet) {
             document.querySelector("inter complement").style.display = "none";
             document.querySelector("inter suite replay span").style.display = "none";
 			document.querySelector("inter suite score p").style.display = "flex";
-			allerA(objet.saut);
+			allerA(objet.saut.indice);
             break;
 
 		case "InterQuestion":
@@ -1000,7 +999,9 @@ function gestionInter(etape, objet) {
             document.querySelector("inter suite replay span").style.display = "none";
 			document.querySelector("inter suite score p").style.display = "flex";
 			document.querySelector("inter suite next img").style.display = "none";
-			allerA(objet.saut);	// lance le minuteur
+			timeOut = setTimeout(gestionInter, (objet.saut.attente * 1000), "FermeInfo", objet); 
+			
+			//allerA(objet.saut);	// lance le minuteur
             break;
 
 		case "reponse":
@@ -1025,6 +1026,18 @@ function gestionInter(etape, objet) {
 			document.querySelector("inter suite score p").style.display = "flex";
 			// next
             document.querySelector("inter suite next img").style.display = "flex";
+			break;
+
+		case "Termine":
+			document.querySelector("inter tete titre p").innerHTML = "Match Terminé";
+			document.querySelector("inter jauge div").style.display = "none";
+			document.querySelector("inter tete points").style.display = "none";
+			document.querySelector("inter question p").style.display = "none";
+			document.querySelector("inter propositions").style.display = "none";
+			document.querySelector("inter complement").style.display = "display";
+			document.querySelector("inter complement").innerHTML = tabMessages[4] + "<br>" + tabMessages[5];
+			document.querySelector("inter suite replay span").style.display = "none";
+			document.querySelector("inter suite score p").style.display = "flex";
 			break;
 
 		default:

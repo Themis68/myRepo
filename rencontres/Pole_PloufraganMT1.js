@@ -123,7 +123,7 @@ var script1 = [
             libelle: "L'arbitre central siffle un coup-franc. Comment l'arbitre assistant a-t-il appuyé la décision de l’arbitre central ?",
             reculReplay: 2
         },
-        attributs: ["En levant et en agitant légèrement son drapeau puis en indiquant le sens de la faute", "En levant son drapeau et en le secouant","En levant et en agitant son drapeau"],
+        attributs: ["En levant et en agitant légèrement son drapeau puis en indiquant le sens de la faute", "En levant son drapeau et en le secouant"],
         reponse: {
             solution: 1,
             libelle: "L'arbitre assistant peut signaler à l'arbitre des fautes s'il estime être le plus près de l'action. L'arbitre central garde la décision finale.",
@@ -198,19 +198,13 @@ var script1 = [
         step: '00:23:45',
         act: "Information",
         niveau: "DEBUTANT",
-        libelle: "BUT",
+        libelle: "1:0",
         type: 'but',
         saut: {
             attente: 3,
             indice: "00:24:12"
         }
     },
-  /*  {
-        step: '00:23:48',
-        act: "AllerA",
-        niveau: "DEBUTANT",
-        indice: "00:24:12"
-    },*/
     {
         step: '00:24:16',
         act: "Question",
@@ -234,19 +228,13 @@ var script1 = [
         step: '00:24:51',
         act: "Information",
         niveau: "DEBUTANT",
-        libelle: "BUT",
+        libelle: "1:1",
         type: 'but',
         saut: {
             attente: 4,
             indice: "00:25:18"
         }
     },
-   /* {
-        step: '00:24:55',
-        act: "AllerA",
-        niveau: "DEBUTANT",
-        indice: "00:25:18"
-    },*/
     {
         step: '00:25:20',
         act: "Question",
@@ -270,19 +258,13 @@ var script1 = [
         step: '00:25:58',
         act: "Information",
         niveau: "DEBUTANT",
-        libelle: "BUT",
+        libelle: "2:1",
         type: 'but',
         saut: {
             attente: 4,
             indice: "00:31:52"
         }
     },
-   /* {
-        step: '00:26:02',
-        act: "AllerA",
-        niveau: "DEBUTANT",
-        indice: '00:31:52'
-    },*/
     {
         step: '00:31:58',
         act: "Information",
@@ -291,22 +273,16 @@ var script1 = [
         type: 'fairplay',
         saut: {
             attente: 10,
-            indice: "00:32:35"
+            indice: "00:34:03"
         }
     },
-  /*  {
-        step: '00:31:68',
-        act: "AllerA",
-        niveau: "DEBUTANT",
-        indice: '00:32:35'
-    },*/
     {
         step: '00:32:36',
         act: "Question",
         niveau: "CONFIRME",
         saut: {
-            attente: 3,
-            indice: '00:34:55'
+            attente: 1,
+            indice: '00:35:14'
         },
         question: {
             libelle: "L'arbitre assistant lève son drapeau et signale une faute"
@@ -321,24 +297,6 @@ var script1 = [
         }
     },
     {
-        step: '00:32:39',
-        act: "Bonus",
-        niveau: "DEBUTANT",
-        saut: {
-            attente: 3,
-            indice: '00:34:02'
-        },
-        question: {
-            libelle: "Dans le cas de temps additionnel, l'arbitre doit :"
-        },
-        attributs: ["jouer au minium ce temps", "jouer au maximum ce temps"],
-        reponse: {
-            solution: 1,
-            loi: "Loi_13",
-            points: 3
-        }
-    },
-    {
         step: '00:34:07',
         act: "Information",
         niveau: "DEBUTANT",
@@ -349,19 +307,13 @@ var script1 = [
             indice: "00:34:31"
         }
     },
-  /*  {
-        step: '00:34:17',
-        act: "AllerA",
-        niveau: "DEBUTANT",
-        indice: "00:34:31"
-    },*/
     {
         step: '00:34:30',
         act: "Question",
         niveau: "EXPERT",
         saut: {
             attente: 7,
-            indice: '00:34:55'
+            indice: '00:35:14'
         },
         question: {
             libelle: "Que doit faire l'arbitre pour suivre le coup-franc dans de bonnes conditions ?"
@@ -396,8 +348,8 @@ var script1 = [
         act: "Question",
         niveau: "DEBUTANT",
         saut: {
-            attente: 5,
-            indice: '00:34:55'
+            attente: 1,
+            indice: '00:34:50'
         },
         question: {
             libelle: "Quelle situation indique l'arbitre ?"
@@ -409,9 +361,27 @@ var script1 = [
             loi: "Loi_17",
             points: 1
         }
+    },    
+    {
+        step: '00:34:52',
+        act: "Bonus",
+        niveau: "DEBUTANT",
+        saut: {
+            attente: 3,
+            indice: '00:35:14'
+        },
+        question: {
+            libelle: "Dans le cas de temps additionnel, l'arbitre doit :"
+        },
+        attributs: ["jouer au minium ce temps", "jouer au maximum ce temps"],
+        reponse: {
+            solution: 1,
+            loi: "Loi_13",
+            points: 3
+        }
     },
     {
-        step: '00:35:00',
+        step: '00:35:17',
         act: "Fin"
     }
 ]
