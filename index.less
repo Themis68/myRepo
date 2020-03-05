@@ -3,11 +3,9 @@
 
 // minireset.css v0.0.3 | MIT License | github.com/jgthms/minireset.css 
 html,body,p,ol,ul,li,dl,dt,dd,blockquote,figure,fieldset,legend,textarea,pre,iframe,hr,h1,h2,h3,h4,h5,h6{margin:0;padding:0}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal}ul{list-style:none}button,input,select,textarea{margin:0}html{box-sizing:border-box}*,*:before,*:after{box-sizing:inherit}img,embed,iframe,object,audio,video{height:auto;max-width:100%}iframe{border:0}table{border-collapse:collapse;border-spacing:0}td,th{padding:0;text-align:left}
-
 /* 
 font-size: 100%; // this is usually 16px by default 
 */
-
 html {
     font-family: passion_oneregular;    // police par défaut 
 }
@@ -15,22 +13,8 @@ html {
 body {
     min-height: 100vh;      // hauteur maximum 
     display: flex;
-    flex-direction: column;     // alignement vertical des zones 
+    flex-direction: column;     // alignement vertical des 
 }
-
-/*
-    MAIN                  
-        HEADER            
-        SECTION           
-        MENU              
-             MODULE       
-        CONTENT           
-             VIDEO        
-             INTERACTION  
-    FOOTER
-*/
-
-// la séquence du code est importante car la lecture est linéaire 
 
 main {
     display: flex;
@@ -109,7 +93,8 @@ main {
 
             a {
                 text-decoration: none;
-                color: white;
+                font-size: 2.5vw !important;
+                color: white !important;
             }
 
             a:hover {
@@ -142,12 +127,8 @@ main {
             font-size: 1.5vw; // taille variable selon largeur du viewport
             font-weight: bold;
 
-            a {
+            a, a:hover, a:visited, a:link , a:active{
                 color: yellow;
-            }
-
-            a:hover {
-                color: green;
             }
         }
     }

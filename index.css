@@ -84,17 +84,6 @@ body {
   display: flex;
   flex-direction: column;
 }
-/*
-    MAIN                  
-        HEADER            
-        SECTION           
-        MENU              
-             MODULE       
-        CONTENT           
-             VIDEO        
-             INTERACTION  
-    FOOTER
-*/
 main {
   display: flex;
   flex-direction: column;
@@ -161,7 +150,8 @@ main menu module {
 }
 main menu module a {
   text-decoration: none;
-  color: white;
+  font-size: 2.5vw !important;
+  color: white !important;
 }
 main menu module a:hover {
   text-decoration: none;
@@ -189,9 +179,10 @@ main content licence {
   font-size: 1.5vw;
   font-weight: bold;
 }
-main content licence a {
+main content licence a,
+main content licence a:hover,
+main content licence a:visited,
+main content licence a:link,
+main content licence a:active {
   color: yellow;
-}
-main content licence a:hover {
-  color: green;
 }

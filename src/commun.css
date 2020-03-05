@@ -22,10 +22,17 @@ footer div span {
   text-align: center;
   line-height: 1.5rem;
 }
-footer div span a,
-footer div span a:hover {
+footer div span a {
+  font-family: passion_oneregular;
+}
+a,
+a:hover,
+a:visited,
+a:link,
+a:active {
   color: yellow;
   text-decoration: none;
+  font-size: 1.3vw;
 }
 event {
   display: flex;
