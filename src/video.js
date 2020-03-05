@@ -303,7 +303,7 @@ function switchVideo(n) {
 					brand: {
 						image: pathImages + "isamini.png",
 						title: "Arrêt sur image!",
-						destination: "isa.html",
+						destination: "asi.html",
 						destinationTarget: "_blank",
 						width: 20,
 						height: 20
@@ -1034,7 +1034,7 @@ function gestionInter(etape, objet) {
 			document.querySelector("inter tete points").style.display = "none";
 			document.querySelector("inter question p").style.display = "none";
 			document.querySelector("inter propositions").style.display = "none";
-			document.querySelector("inter complement").style.display = "display";
+			document.querySelector("inter complement").style.display = "flex";
 			document.querySelector("inter complement").innerHTML = tabMessages[4] + "<br>" + tabMessages[5];
 			document.querySelector("inter suite replay span").style.display = "none";
 			document.querySelector("inter suite score p").style.display = "flex";
