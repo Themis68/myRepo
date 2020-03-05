@@ -303,7 +303,7 @@ function switchVideo(n) {
 					brand: {
 						image: pathImages + "isamini.png",
 						title: "Arrêt sur image!",
-						destination: "isa.html",
+						destination: "asi.html",
 						destinationTarget: "_blank",
 						width: 20,
 						height: 20
