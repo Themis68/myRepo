@@ -1,7 +1,7 @@
 footer {
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: space-around;
     flex-wrap: nowrap;
     flex-grow: 0;
     flex-shrink: 1; // permet de garder la ligne affichée même si on réduit la taille de la fenêtre
@@ -9,26 +9,46 @@ footer {
     color:white;
     padding-top: 5px;
     padding-left: 5px;
+    padding-right: 5px;
     font-size: 1vw; // taille variable selon largeur du viewport
     flex-basis: 2.5rem;       // hauteur = 2 lignes de texte
 
-    a {
-        color: yellow;
-        text-decoration: none;
-    }
+    div {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
 
-    a:hover {
-        color: green;
+        span {
+            text-align: center;
+           // flex: 10;
+            line-height: 1.5rem;
 
+            a {
+                font-family: passion_oneregular;
+            }
+        }
     }
-    span {
-        flex: 10;
-        padding-left: 10px;
-        line-height: 1.5;
-    }
+}
 
-    .events {
+a, a:hover, a:visited, a:link , a:active{
+    color: yellow;
+    text-decoration: none;
+    font-size: 1.3vw;
+}
+
+event {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: nowrap;
+    flex-grow: 0;
+    flex-shrink: 1; // permet de garder la ligne affichée même si on réduit la taille de la fenêtre
+    flex-basis: 0.2rem;       // hauteur = 2 lignes de texte
+
+
+    th {
         color: midnightblue;
-        font-size: 0.5vw; // taille variable selon largeur du viewport
+        background-color: midnightblue; 
+        font-size: 0vw; // taille variable selon largeur du viewport
     }
 }

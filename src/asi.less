@@ -1,5 +1,5 @@
-@import url(./src/typo/scoreboard/stylesheet.css);
-@import url(./src/typo/passion_one/stylesheet.css);
+@import url(./typo/scoreboard/stylesheet.css);
+@import url(./typo/passion_one/stylesheet.css);
 
 // minireset.css v0.0.3 | MIT License | github.com/jgthms/minireset.css 
 html,body,p,ol,ul,li,dl,dt,dd,blockquote,figure,fieldset,legend,textarea,pre,iframe,hr,h1,h2,h3,h4,h5,h6{margin:0;padding:0}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal}ul{list-style:none}button,input,select,textarea{margin:0}html{box-sizing:border-box}*,*:before,*:after{box-sizing:inherit}img,embed,iframe,object,audio,video{height:auto;max-width:100%}iframe{border:0}table{border-collapse:collapse;border-spacing:0}td,th{padding:0;text-align:left}
@@ -45,6 +45,7 @@ main {
             font-family: scoreboardregular;
             font-size: 5vw; // taille variable selon largeur du viewport
             color:white;
+            line-height: normal;
         }
     }
 
@@ -56,8 +57,7 @@ main {
 
         div {
             color:white;
-            font-size: 1.5vw; // taille variable selon largeur du viewport   
-            font-family: passion_oneregular;    // police par défaut          
+            font-size: 1.5vw; // taille variable selon largeur du viewport            
         }
     }
 
@@ -68,18 +68,9 @@ main {
         color:white;
         width: 80vw;   // on limite l'étalement des objets en largeur
 
-        div {
-            ul {
-                    li {  
-                        font-size: 2vw;
-                }
-            }
-
-            p {
+        div p {
             font-size: 1.3vw; // taille variable selon largeur du viewport
             font-family: Arial, Helvetica, sans-serif;
-            }
-
 
             span {
                 justify-items: center;

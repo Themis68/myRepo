@@ -1,14 +1,7 @@
-<<<<<<< HEAD
 *.mp4
 *.DS_Store
 *.pptx
 *.mov
 lois/couv.jpg
-=======
-rencontres/*
-rencontres/match*
-rencontres/Match Mouzillon 2.mp4
-*.DS_Store
-*.pptx
-*.mp4
->>>>>>> scenarios-eclates
+*.min.css
+*.min.js

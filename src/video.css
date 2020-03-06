@@ -128,6 +128,9 @@ tete.FermeInfo {
   width: -webkit-fill-available;
   padding-right: 5px;
 }
+.video-js.vjs-playing .vjs-tech {
+  pointer-events: none;
+}
 main {
   display: flex;
   flex-direction: column;
@@ -152,6 +155,7 @@ main header span {
   font-family: "scoreboardregular";
   font-size: 5vw;
   color: white;
+  line-height: normal;
 }
 main section {
   display: flex;
@@ -342,6 +346,7 @@ main content inter propositions proposition a {
 main content inter propositions proposition a i {
   padding-top: 4px;
   color: navy;
+  font-size: x-large;
 }
 main content inter propositions proposition button {
   flex: 11;
@@ -377,6 +382,7 @@ main content inter complement p {
 main content inter complement img {
   display: none;
   padding-right: 3px;
+  height: fit-content;
 }
 main content inter suite {
   display: flex;
