@@ -113,6 +113,7 @@ function formStructure(structure) {
             lObject[1] = lObject[1].replace(")","");
             switch (lObject[1]) {
                 case "incr":
+                    lString += ' <input type="text" id="'+lObject[0]+'"/>';
                     break;
                 case "png":
                     lString += '<input id="uploaded"'+lObject[0]+ ' type="file" accept="image/png"/>';
@@ -124,16 +125,16 @@ function formStructure(structure) {
                     lString += '<input id="uploaded"'+lObject[0]+ ' type="file" accept="*/js"/>';
                     break;
                 case "url":
-                    lString += ' <input type="text" id="'+lObject[0]+'"/><br>';
+                    lString += ' <input type="text" id="'+lObject[0]+'"/>';
                     break;
                 case "rgb":
                     break;
                 default:
-                    lString += ' <input type="text" id="'+lObject[0]+'"/><br>';
+                    lString += ' <input type="text" id="'+lObject[0]+'"/>';
                     break;
             }
         }
-        lString += "</span>";
+        lString += "<br></span>";
     }
     console.log(lString);
     return lString;
