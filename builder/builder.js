@@ -5,11 +5,13 @@ var isDefineBVideoJS = false;		// permet de gérer la délcaration de videoJS au
 let equipe = "{nom(), fanion(png), site(url), maillotCouleur(rgb)}";
 let arbitre = "{maillotCouleur(rgb)}"
 var structureRencontre =  "{id(incr), rencontre(), poster(png), fichier(mp4), scenario(js), description(), gauche" + equipe  + ", droite" + equipe + ", arbitre" + arbitre + "}";
+// picker
+var indexElement = undefined;
+
 
 document.addEventListener("DOMContentLoaded", init, false);	// lance l'écoute des évènements et appelle INIT
 
 function init() {
-
 }
 
 function upload() {
@@ -87,6 +89,7 @@ function formStructure(structure) {
     let lStructure = structure.split(",");
     let lString = "";
     let lObject = "";
+    let lFinObj = "";
     console.log(lStructure);
     for (let i=0; i < lStructure.length; i++) {
         lObject = lStructure[i];
@@ -97,7 +100,7 @@ function formStructure(structure) {
         lString += "<span>";
 
         // traitement du 1er caractère de la 1ère séquence
-        if (lObject[0] == "{") {
+        if (lObject[0] == "{") {        // présence d'un début de structure ?
             lString += "{<br>";
             lObject[0] = lObject[0].replace("{","");
         } 
@@ -111,6 +114,9 @@ function formStructure(structure) {
             lString += ' <input type="text" id="'+lObject[0]+'"/><br>';
         } else {
             lObject[1] = lObject[1].replace(")","");
+            lFinObj = (lObject[1].indexOf('}') > -1 ? true : false);    // présence d'une fin de structure ?
+            lObject[1] = lObject[1].replace("}","");    // on supprime l'éventuelle fin de structure
+            console.log(lObject[1]);
             switch (lObject[1]) {
                 case "incr":
                     lString += ' <input type="text" id="'+lObject[0]+'"/>';
@@ -128,6 +134,9 @@ function formStructure(structure) {
                     lString += ' <input type="text" id="'+lObject[0]+'"/>';
                     break;
                 case "rgb":
+                    lString += '<div class="inputColor">';
+                    lString += '<input id="rgb'+i+'" type="text" value="" />';
+                    lString += '<button id="displayrgb'+i+'" onclick="javascript:toggle(\'picker\','+i+');" /></div>';
                     break;
                 default:
                     lString += ' <input type="text" id="'+lObject[0]+'"/>';
@@ -136,6 +145,12 @@ function formStructure(structure) {
         }
         lString += "<br></span>";
     }
-    console.log(lString);
     return lString;
 } 
+
+function toggle(elem, index) {
+    indexElement = index;   // affectation due l'index de l'objet travaillé par le picker
+    let el = document.getElementById(elem);
+    // au premier tour il n'y a pas de valeur prédéfinie 
+    el.style.display = (el.style.display === "none" || el.style.display === "" ? "flex" : "none");
+}

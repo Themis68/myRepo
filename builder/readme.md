@@ -7,6 +7,7 @@ BUILDER
 - insérer un picker pour les couleurs : pipette et RGB avec ffiochage couleur sélectionnée
     https://www.cssscript.com/demo/color-picker-component-pickr/
     http://bebraw.github.io/colorjoe/
+    
 
 - sauvegarder le code de la structure
 

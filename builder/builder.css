@@ -1,5 +1,5 @@
 @import url("../src/typo/scoreboard/stylesheet.css");
-@import url("../src/typo/passion_one/stylesheet.css");
+@import url("passion_one/stylesheet.css");
 html,
 body,
 p,
@@ -123,6 +123,26 @@ main section div {
   text-align: center;
   color: white;
   font-size: 1.25vw;
+}
+main picker {
+  display: flex;
+}
+main picker .inputColor {
+  display: flex;
+  flex-direction: row;
+}
+main picker .inputColor input {
+  flex: 3;
+  background-color: white;
+}
+main picker .inputColor button {
+  flex: 1;
+  background-color: white;
+  height: 1vw !important;
+}
+main picker #picker {
+  flex: 10;
+  display: none;
 }
 main content {
   width: 95vw;
