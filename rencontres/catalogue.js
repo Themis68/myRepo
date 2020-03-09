@@ -1,7 +1,6 @@
 var scenario = [
     [
         {
-          //  id: 1,
             rencontre: "Bretagne/PDLL",
             poster: "Pole_PloufraganMT1.png",
             fichier: "Pole_PloufraganMT1.mp4",
@@ -27,7 +26,6 @@ var scenario = [
     ],
     [
         {
-           // id: 2,
             rencontre: "Bretagne/PDLL",
             poster: "Pole_PloufraganMT2.png",
             fichier: "Pole_PloufraganMT2.mp4",

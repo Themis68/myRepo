@@ -1,6 +1,5 @@
 var scenario = [
         {
-            //id: 1,
             titre: "Les joueurs",
             poster: "joueurs.png",
             fichier: "bases_01.min.js",
@@ -11,7 +10,6 @@ var scenario = [
             temps: 10
         },
         {
-           // id: 2,
             titre: "Les joueurs",
             poster: "joueurs.png",
             fichier: "bases_01.min.js",
@@ -22,7 +20,6 @@ var scenario = [
             temps: 10
         },
         {
-           // id: 3,
             titre: "Les bases",
             poster: "bases.png",
             fichier: "bases_02.min.js",
