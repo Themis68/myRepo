@@ -135,10 +135,13 @@ main picker .inputColor input {
   flex: 3;
   background-color: white;
 }
-main picker .inputColor button {
+main picker .inputColor button .butColor {
   flex: 1;
   background-color: white;
   height: 1vw !important;
+  font-weight: bold;
+  padding: 10px 40px;
+  border-radius: 3px;
 }
 main picker #picker {
   flex: 10;
