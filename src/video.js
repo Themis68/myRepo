@@ -185,7 +185,8 @@ function creerVignettes(id) {
 		myP.innerHTML = scenario[i][0].gauche.nom + "<br>" + scenario[i][0].droite.nom;
 		myCaption.appendChild(myP);
 		myCaption.className = "carousel-caption d-none d-md-block";
-		myCaption.setAttribute("onclick", 'javascript:switchVideo('+ scenario[i][0].id +');');	// mettre ici car cette DIV est au-dessus de l'image
+		// scenario[i][0].id 
+		myCaption.setAttribute("onclick", 'javascript:switchVideo('+ (i+1) +');');	// mettre ici car cette DIV est au-dessus de l'image
 		myCaption.setAttribute("title", (scenario[i][0].rencontre));
 		myCaption.setAttribute("alt", (scenario[i][0].rencontre));
 
@@ -239,7 +240,7 @@ function switchVideo(n) {
 		// MAJ videos
 		idVideo = n;		// 1 = première vidéo
 		video = scenario[n-1];    // recup scénario de la vidéo
-		idVideoOn = n; //video[0].id;
+		idVideoOn = n;
 		
 		//
 		// travail sur les actions et l'IHM associée
