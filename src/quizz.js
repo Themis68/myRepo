@@ -122,7 +122,7 @@ function creerVignettes(id) {
 		myP.innerHTML = scenario[i].titre + " (" + (scenario[i].loi === undefined ? "mix" : "loi " + scenario[i].loi) +")";
 		myCaption.appendChild(myP);
 		myCaption.className = "carousel-caption d-none d-md-block titre";
-		myCaption.setAttribute("onclick", 'javascript:switchQuizz('+ scenario[i].id +');');	// mettre ici car cette DIV est au-dessus de l'image
+		myCaption.setAttribute("onclick", 'javascript:switchQuizz('+ (i+1) +');');	// mettre ici car cette DIV est au-dessus de l'image
 
 		myDiv.appendChild(myImg);
 		myDiv.appendChild(myCaption);
@@ -375,15 +375,10 @@ function addScore(value) {
 }
 
 function gestNiveaux(niveau) {
-    //let myBadge = document.querySelector("inter tete niveau");
-	//img = document.createElement("img");
-	//img.id = "badge"
-
 	let img = document.getElementById("badge");
 	img.setAttribute("title", nbQuests[niveau].niv);
 	img.setAttribute("alt", nbQuests[niveau].niv);
 	img.setAttribute("src", pathBadges + "badge" + niveau + ".png");
-	//myBadge.appendChild(img);
 }
 
 function scanQuestion(niveau) {
