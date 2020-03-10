@@ -11,16 +11,19 @@ var scenario = [
                 nom: "Ligue de Bretagne",
                 fanion: "ligueBretagne.png",
                 site: "https://footbretagne.fff.fr",
-                maillotCouleur: "rgb(255, 255, 255)"
+                maillotCouleur: "rgb(255, 255, 255)",
+                shortCouleur: "rgb(0,0,0)"
             },
             droite: {
                 nom: "Ligue Pays De la Loire",
                 fanion: "Ligue2.png",
                 site: "https://lfpl.fff.fr",
-                maillotCouleur: "rgb(67, 76, 108)"
+                maillotCouleur: "rgb(67, 76, 108)",
+                shortCouleur: "rgb(67, 76, 108)",
             },
             arbitre: {
-                maillotCouleur: "rgb(255, 112, 119)"
+                maillotCouleur: "rgb(255, 112, 119)",
+                shortCouleur: "rgb(0,0,0)"
             }
         }
     ],

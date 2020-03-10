@@ -64,9 +64,9 @@ function central(event) {
 
 	if(target.getAttribute('class') == 'vjs-icon-placeholder') {
 		// clic sur big play
-		draw("vjs-bug-silhEquipeA", video[0].gauche.maillotCouleur);
-		draw("vjs-bug-silhEquipeB", video[0].droite.maillotCouleur);
-		draw("vjs-bug-silhArbitre", video[0].arbitre.maillotCouleur);
+		draw("vjs-bug-silhEquipeA", video[0].gauche.maillotCouleur,  video[0].gauche.shortCouleur);
+		draw("vjs-bug-silhEquipeB", video[0].droite.maillotCouleur, video[0].droite.shortCouleur );
+		draw("vjs-bug-silhArbitre", video[0].arbitre.maillotCouleur,  video[0].arbitre.shortCouleur);
 
 		//masquer les boutons de contrôle
 		document.getElementsByClassName("vjs-control-bar")[0].children[0].classList.add("vjs-hidden");	// play
@@ -90,7 +90,7 @@ function init() {
 	creerVignettes("vignettes");					        // générer la vignettes dans le carousel
 }
 
-function draw(id, maillotCouleur) {
+function draw(id, maillotCouleur, shortCouleur) {
 	let canvas = document.getElementById(id);
     	if (canvas.getContext) {
 			let ctx = canvas.getContext("2d");
@@ -98,7 +98,7 @@ function draw(id, maillotCouleur) {
 			// fond
 			ctx.beginPath();
   			ctx.lineWidth="1";
-  			ctx.arc(14, 14, 14, 0, 2 * Math.PI);	// X rayon, Y rayon, rayon, angle de départ, 2*PI pour le cercle complet
+  			ctx.arc(18, 18, 18, 0, 2 * Math.PI);	// X rayon, Y rayon, rayon, angle de départ, 2*PI pour le cercle complet
   			ctx.fillStyle = "black";	// couleur de fond
 			ctx.fill();		// ordre de remplissage
 			ctx.closePath();
@@ -106,15 +106,15 @@ function draw(id, maillotCouleur) {
 			// tete
 			ctx.beginPath();
   			ctx.lineWidth="1";
-  			ctx.arc(14, 8, 5, 0, 2 * Math.PI);		// X rayon, Y rayon, rayon, angle de départ, 2*PI pour le cercle complet
+  			ctx.arc(18, 8, 5, 0, 2 * Math.PI);		// X rayon, Y rayon, rayon, angle de départ, 2*PI pour le cercle complet
   			ctx.fillStyle = maillotCouleur;	// couleur de fond
 			ctx.fill();		// ordre de remplissage
 			ctx.closePath();
 
-			// corps
+			// haut
 			let rectWidth = 18;
       		let rectHeight = 8;
-      		let rectX = 5;
+      		let rectX = 9;
       		let rectY = 15; //12;
       		let cornerRadius = 5;
 
@@ -130,6 +130,25 @@ function draw(id, maillotCouleur) {
 			ctx.arcTo(rectX, rectY, rectX + cornerRadius, rectY, cornerRadius);	// arrondi gauche
 			ctx.fill();		// ordre de remplissage
 			ctx.closePath();
+
+			// bas
+			rectWidth = 18;
+      		rectHeight = 5;
+      		rectX = 9;
+			rectY = (15 + 8 + 1);
+
+			ctx.beginPath();
+			ctx.fillStyle = shortCouleur;
+			ctx.lineWidth = 1;
+
+			ctx.moveTo(rectX, rectY);
+			ctx.lineTo(rectX + rectWidth, rectY);
+			ctx.lineTo(rectX + rectWidth, rectY + rectHeight);
+			ctx.lineTo(rectX, rectY + rectHeight);
+			ctx.lineTo(rectX, rectY);
+			ctx.fill();		// ordre de remplissage
+			ctx.closePath();
+			
     }
 }
 
@@ -348,8 +367,8 @@ function switchVideo(n) {
 						type: "canvas",
 						id:"vjs-bug-silhEquipeA",
 						visibility: true,
-						height: 30,
-						width: 30,
+						height: 36,
+						width: 36,
 						classeCSS: "vjs-bug-silhEquipBug",
 						opacity: 1,
 						left: (30 + 20 + 160 + 5) + "px",
@@ -360,8 +379,8 @@ function switchVideo(n) {
 						type: "canvas",
 						id:"vjs-bug-silhArbitre",
 						visibility: true,
-						height: 30,
-						width: 30,
+						height: 36,
+						width: 36,
 						classeCSS: "vjs-bug-silhArbitreBug",
 						opacity: 1,
 						left: (30 + 20 + 160 + 5 + 200) + "px",
@@ -383,8 +402,8 @@ function switchVideo(n) {
 						type: "canvas",
 						id:"vjs-bug-silhEquipeB",
 						visibility: true,
-						height: 30,
-						width: 30,
+						height: 36,
+						width: 36,
 						classeCSS: "vjs-bug-silhEquipBug",
 						opacity: 1,
 						right: (30 + 20 + 170 + 5) + "px",
@@ -553,8 +572,8 @@ function gestionCamps(mitemps) {
 		document.getElementById("vjs-bug-titreEquipeB").innerHTML = "<span>" + video[0].gauche.nom + "</span>";
 		document.getElementById("vjs-bug-pictEquipeA").setAttribute("src", pathImages + "fanions/"+ (video[0].droite.fanion || "fff.png"));
 		document.getElementById("vjs-bug-pictEquipeB").setAttribute("src", pathImages + "fanions/"+ (video[0].gauche.fanion || "fff.png"));
-		draw("vjs-bug-silhEquipeA", video[0].droite.maillotCouleur);
-		draw("vjs-bug-silhEquipeB", video[0].gauche.maillotCouleur);
+		draw("vjs-bug-silhEquipeA", video[0].droite.maillotCouleur, video[0].droite.shortCouleur);
+		draw("vjs-bug-silhEquipeB", video[0].gauche.maillotCouleur, video[0].gauche.shortCouleur);
 	}
 }
 

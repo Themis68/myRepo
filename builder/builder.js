@@ -128,6 +128,16 @@ function formStructure(structure) {
                     lString += ' <input type="text" id="'+lObject[0]+'"/>';
                     break;
                 case "rgb":
+                  /*  el = document.createElement("canvas");
+                    el.width = "10px";
+                    el.height = "10px";
+                    el.id = "silhEquipe"+ (i+1);*/
+
+
+                    lString += '<input type="text" id="'+lObject[0]+'"/>';
+                    lString += '<canvas id="silhEquipe'+ (i+1)+ '" width="10px" height="10px" />';
+
+                 //   draw("silhEquipe"+ (i+1), "rgb(255,255,255)");
                     break;
                 default:
                     lString += ' <input type="text" id="'+lObject[0]+'"/>';
