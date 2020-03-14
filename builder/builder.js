@@ -13,7 +13,7 @@ var isDefineBVideoJS = false;		// permet de gérer la délcaration de videoJS au
 // structures
 let equipe = "{nom(), fanion(png), site(url), maillotCouleur(rgb)}";
 let arbitre = "{maillotCouleur(rgb)}"
-var structureRencontre =  "{id(incr), rencontre(), poster(png), fichier(mp4), scenario(js), description(), gauche" + equipe  + ", droite" + equipe + ", arbitre" + arbitre + "}";
+var structureRencontre =  "{rencontre(), poster(png), fichier(mp4), scenario(js), description(), gauche" + equipe  + ", droite" + equipe + ", arbitre" + arbitre + "}";
 // picker
 var indexElement = undefined;
 //pipette
@@ -189,50 +189,51 @@ function toggle(elem, index) {
 // pipette
 // ******************************************
 $(function(){
-    
     // drawing active image
     var image = new Image();
+    console.log("esd");
     image.onload = function () {
+        console.log("esd2");
         ctx.drawImage(image, 0, 0, image.width, image.height); // draw the image on the canvas
-    }
+        //image.src = "./images/" + images[iActiveImage];
+        console.log(myURL);
+        image.src = myURL + "/images/" + images[iActiveImage];
+        // image.crossOrigin = "file:///Volumes/Donnees/Documents/myRepo";
+        //image.setAttribute('crossOrigin', '*');
 
-    image.src = myURL + "/images/" + images[iActiveImage];
-    image.crossOrigin = "Anonymous";
-    //image.setAttribute('crossOrigin', '*');
+        // creating canvas object
+        canvas = document.getElementById('panel');
+        ctx = canvas.getContext('2d');
 
-    // creating canvas object
-    canvas = document.getElementById('panel');
-    ctx = canvas.getContext('2d');
-
-    $('#panel').mousemove(function(e) { // mouse move handler
-        var canvasOffset = $(canvas).offset();
-        var canvasX = Math.floor(e.pageX - canvasOffset.left);
-        var canvasY = Math.floor(e.pageY - canvasOffset.top);
-        var imageData = ctx.getImageData(canvasX, canvasY, 1, 1);
-        var pixel = imageData.data;
-        var pixelColor = "rgba("+pixel[0]+", "+pixel[1]+", "+pixel[2]+", "+pixel[3]+")";
-        $('#preview').css('backgroundColor', pixelColor);
+        $('#panel').mousemove(function(e) { // mouse move handler
+            var canvasOffset = $(canvas).offset();
+            var canvasX = Math.floor(e.pageX - canvasOffset.left);
+            var canvasY = Math.floor(e.pageY - canvasOffset.top);
+            var imageData = ctx.getImageData(canvasX, canvasY, 1, 1);
+            var pixel = imageData.data;
+            var pixelColor = "rgba("+pixel[0]+", "+pixel[1]+", "+pixel[2]+", "+pixel[3]+")";
+            $('#preview').css('backgroundColor', pixelColor);
         });
-    
-    $('#panel').click(function(e) { // mouse click handler
-        var canvasOffset = $(canvas).offset();
-        var canvasX = Math.floor(e.pageX - canvasOffset.left);
-        var canvasY = Math.floor(e.pageY - canvasOffset.top);
-        var imageData = ctx.getImageData(canvasX, canvasY, 1, 1);
-        var pixel = imageData.data;
-        $('#rVal').val(pixel[0]);
-        $('#gVal').val(pixel[1]);
-        $('#bVal').val(pixel[2]);
-        $('#rgbVal').val(pixel[0]+','+pixel[1]+','+pixel[2]);
-        $('#rgbaVal').val(pixel[0]+','+pixel[1]+','+pixel[2]+','+pixel[3])
-        var dColor = pixel[2] + 256 * pixel[1] + 65536 * pixel[0]
-        $('#hexVal').val( '#' + dColor.toString(16) )
-    });
+        
+        $('#panel').click(function(e) { // mouse click handler
+            var canvasOffset = $(canvas).offset();
+            var canvasX = Math.floor(e.pageX - canvasOffset.left);
+            var canvasY = Math.floor(e.pageY - canvasOffset.top);
+            var imageData = ctx.getImageData(canvasX, canvasY, 1, 1);
+            var pixel = imageData.data;
+            $('#rVal').val(pixel[0]);
+            $('#gVal').val(pixel[1]);
+            $('#bVal').val(pixel[2]);
+            $('#rgbVal').val(pixel[0]+','+pixel[1]+','+pixel[2]);
+            $('#rgbaVal').val(pixel[0]+','+pixel[1]+','+pixel[2]+','+pixel[3])
+            var dColor = pixel[2] + 256 * pixel[1] + 65536 * pixel[0]
+            $('#hexVal').val( '#' + dColor.toString(16) )
+        });
 
-    $('#swImage').click(function(e) { // switching images
-        iActiveImage++;
-        if (iActiveImage >= 10) iActiveImage = 0;
-        image.src = images[iActiveImage];
-    });
-
-});    
+        $('#swImage').click(function(e) { // switching images
+            iActiveImage++;
+            if (iActiveImage >= 10) iActiveImage = 0;
+            image.src = images[iActiveImage];
+        });
+    }
+});
