@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <title>Vidéos de matchs</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script>
+    // nécessaire pour que VIDEO prenne toute la largeur
+    window.VIDEOJS_NO_BASE_THEME = true;
+    window.VIDEOJS_NO_DYNAMIC_STYLE = false;
+  </script>
+
+  <!--picker--> 
+  <link rel="stylesheet" href="../colorjoe-master/colorjoe.css" type="text/css">
+  <script src="../colorjoe-master/colorjoe.js" type="text/javascript"></script>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8" />
+
+  <title>Arrêt sur image !</title>
+
+  <script src="../video.js/video.js" type="text/javascript"></script>
+  <link href="../video.js/video-js.css" rel="stylesheet" type="text/css">
+
+  <script src="./builder.js" type="text/javascript"></script>
+  <script src="../src/fonctions.js" type="text/javascript"></script>
+
+  <!-- Séquence : Conserver l'ordre de chargement ci-dessous -->
+  <link href="../bootstrap-4.3.1/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <script src="../jquery-3.1.1/jquery.slim.min.js"></script>
+  
+  <!-- conserver cette ligne en dernier sinon on perd les styles par défaut -->
+  <link href="./builder.css" rel="stylesheet" type="text/css">
+
+  <link href="../src/commun.min.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+
+  <main>
+    <header>
+      <a href="../index.html"><img src="../images/isa.png" /></a>&nbsp;&nbsp;
+      <span>ARRET SUR IMAGE !</span>
+    </header>
+    <section>
+      <div>
+          <input id="uploadedFile" type="file" accept="video/*"/>
+          <input type="button" value="Charger" onclick="javascript:upload();">
+      </div>
+    </section>
+    <picker>
+      <div class="wrapper">
+        <div class="inputColor">
+          <input id="rgb1" type="text">
+          <button class="butColor" id="displayrgb1" onclick="javascript:toggle('picker');"></div>
+        </div>
+        <div id="picker"></div>
+        <script>
+            const joe = colorjoe.rgb("picker", "red");
+            joe.on("change", color => {
+              document.getElementById("rgb"+ indexElement).value = color.css();
+              document.getElementById("displayrgb"+indexElement).setAttribute("style", "background-color: "+ color.css() +";");
+            }); // survol
+            joe.on("done", color => {
+              document.getElementById("rgb"+ indexElement).value = color.css();
+              document.getElementById("displayrgb"+indexElement).setAttribute("style", "background-color: "+ color.css() +";");
+              toggle("picker", indexElement);
+            });  // clic
+        </script>
+      </div>
+    </picker>
+    <content id="content">
+      <match id="match">
+        <video id="myVideo" class="video-js vjs-looping vjs-big-play-centered video-js vjs-default-skin">
+          <source id="mp4">
+            <p class="vjs-no-js">Votre navigateur ne supporte pas la gestion des vidéos</p>
+        </video>
+      </match>
+      <inter>
+        <rencontre>
+        <p id=rencontre></p>
+        <p><input type="button" value="Sauvegarder" onclick="javascript:ajoutMatch();"></p>
+      </rencontre>
+        <question></question>
+      </inter>
+    </content>
+  </main>
+</body>
+
+</html>
