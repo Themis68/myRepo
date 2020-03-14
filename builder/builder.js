@@ -1,3 +1,12 @@
+/*
+var url = 'http://lorempixel.com/g/400/200/';
+var imgObj = new Image();
+imgObj.src = url + '?' + new Date().getTime();
+imgObj.setAttribute('crossOrigin', '');
+*/
+var myURLcomplete = document.location.href;
+var myURL  = myURLcomplete.substring( 0 ,myURLcomplete.lastIndexOf( "/" ) );
+
 var pathVideos = "../rencontres/";		// vidéos des matchs
 var pathImages = "../images/";		// vidéos des matchs
 var isDefineBVideoJS = false;		// permet de gérer la délcaration de videoJS au premier tour
@@ -11,8 +20,8 @@ var indexElement = undefined;
 var canvas;
 var ctx;
 var images = [ // predefined array of used images
-    'images/pic1.jpg',
-    'images/pic2.jpg',
+    'bandeauarbitre.png',
+    'bunny_poster.png',
     'images/pic3.jpg',
     'images/pic4.jpg',
     'images/pic5.jpg',
@@ -152,7 +161,7 @@ function formStructure(structure) {
                     lString += '<div class="inputColor">';
                     lString += '<input id="rgb'+i+'" type="text" value="" />';
                     lString += '<button id="displayrgb'+i+'" onclick="javascript:toggle(\'picker\','+i+');" /></div>';
-                    el.id = "silhEquipe"+ (i+1);*/
+                    el.id = "silhEquipe"+ (i+1);
 
 
                     lString += '<input type="text" id="'+lObject[0]+'"/>';
@@ -176,7 +185,9 @@ function toggle(elem, index) {
     // au premier tour il n'y a pas de valeur prédéfinie 
     el.style.display = (el.style.display === "none" || el.style.display === "" ? "flex" : "none");
 }
-
+// ******************************************
+// pipette
+// ******************************************
 $(function(){
     
     // drawing active image
@@ -185,11 +196,14 @@ $(function(){
         ctx.drawImage(image, 0, 0, image.width, image.height); // draw the image on the canvas
     }
 
-    image.src = images[iActiveImage];
+    image.src = myURL + "/images/" + images[iActiveImage];
+    image.crossOrigin = "Anonymous";
+    //image.setAttribute('crossOrigin', '*');
 
     // creating canvas object
     canvas = document.getElementById('panel');
     ctx = canvas.getContext('2d');
+
     $('#panel').mousemove(function(e) { // mouse move handler
         var canvasOffset = $(canvas).offset();
         var canvasX = Math.floor(e.pageX - canvasOffset.left);
