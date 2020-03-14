@@ -1,3 +1,10 @@
+Sites
+
+Charger une image en binaire pour éviter canvas:
+https://stackoverflow.com/questions/28593763/how-to-extract-pixel-information-from-png-using-javascript-getimagedata-alterna
+
+
+
 Plug-ins
 
 Beautify
