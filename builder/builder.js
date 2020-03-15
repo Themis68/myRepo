@@ -4,7 +4,7 @@ var isDefineBVideoJS = false;		// permet de gérer la délcaration de videoJS au
 // structures
 let equipe = "{nom(), fanion(png), site(url), maillotCouleur(rgb)}";
 let arbitre = "{maillotCouleur(rgb)}"
-var structureRencontre =  "{id(incr), rencontre(), poster(png), fichier(mp4), scenario(js), description(), gauche" + equipe  + ", droite" + equipe + ", arbitre" + arbitre + "}";
+var structureRencontre =  "{rencontre(), poster(png), fichier(mp4), scenario(js), description(), gauche" + equipe  + ", droite" + equipe + ", arbitre" + arbitre + "}";
 // picker
 var indexElement = undefined;
 
@@ -118,9 +118,6 @@ function formStructure(structure) {
             lObject[1] = lObject[1].replace("}","");    // on supprime l'éventuelle fin de structure
             console.log(lObject[1]);
             switch (lObject[1]) {
-                case "incr":
-                    lString += ' <input type="text" id="'+lObject[0]+'"/>';
-                    break;
                 case "png":
                     lString += '<input id="uploaded"'+lObject[0]+ ' type="file" accept="image/png"/>';
                     break;
@@ -137,13 +134,14 @@ function formStructure(structure) {
                     lString += '<div class="inputColor">';
                     lString += '<input id="rgb'+i+'" type="text" value="" />';
                     lString += '<button id="displayrgb'+i+'" onclick="javascript:toggle(\'picker\','+i+');" /></div>';
-                    el.id = "silhEquipe"+ (i+1);*/
-
-
+                    
+                    /*
+                    // silhouette
+                    el.id = "silhEquipe"+ (i+1);
                     lString += '<input type="text" id="'+lObject[0]+'"/>';
                     lString += '<canvas id="silhEquipe'+ (i+1)+ '" width="10px" height="10px" />';
-
-                 //   draw("silhEquipe"+ (i+1), "rgb(255,255,255)");
+                    draw("silhEquipe"+ (i+1), "rgb(255,255,255)");
+                    */
                     break;
                 default:
                     lString += ' <input type="text" id="'+lObject[0]+'"/>';
@@ -152,6 +150,7 @@ function formStructure(structure) {
         }
         lString += "<br></span>";
     }
+    lString += '<p><input type="button" value="Sauvegarder" onclick="javascript:ajoutMatch();"></p>';
     return lString;
 } 
 
