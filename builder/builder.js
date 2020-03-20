@@ -179,7 +179,6 @@ function formStructure(structure) {
     return lString;
 } 
 
-function toggle(elem) {
 function toggle(elem, index) {
     indexElement = index;   // affectation due l'index de l'objet travaillé par le picker
     let el = document.getElementById(elem);
@@ -197,7 +196,7 @@ $(function(){
     }
     //image.crossOrigin("Anonymous");
     //image.setAttribute('crossOrigin', 'Anonymous');
-    //image.src = "./images/" + images[iActiveImage];
+    image.src = "./images/" + images[iActiveImage];
     //image.src = myURL + "/images/" + images[iActiveImage];
     // image.crossOrigin = "file:///Volumes/Donnees/Documents/myRepo";
 
@@ -241,4 +240,4 @@ $(function(){
         iActiveImage = 0;
         image.src = "./images/" + images[iActiveImage];
     });
-});
+})
