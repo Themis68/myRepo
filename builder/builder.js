@@ -1,13 +1,37 @@
+/*
+var url = 'http://lorempixel.com/g/400/200/';
+var imgObj = new Image();
+imgObj.src = url + '?' + new Date().getTime();
+imgObj.setAttribute('crossOrigin', '');
+*/
+var myURLcomplete = document.location.href;
+var myURL  = myURLcomplete.substring( 0 ,myURLcomplete.lastIndexOf( "/" ) );
+
 var pathVideos = "../rencontres/";		// vidéos des matchs
 var pathImages = "../images/";		// vidéos des matchs
 var isDefineBVideoJS = false;		// permet de gérer la délcaration de videoJS au premier tour
 // structures
 let equipe = "{nom(), fanion(png), site(url), maillotCouleur(rgb)}";
 let arbitre = "{maillotCouleur(rgb)}"
-var structureRencontre =  "{id(incr), rencontre(), poster(png), fichier(mp4), scenario(js), description(), gauche" + equipe  + ", droite" + equipe + ", arbitre" + arbitre + "}";
+var structureRencontre =  "{rencontre(), poster(png), fichier(mp4), scenario(js), description(), gauche" + equipe  + ", droite" + equipe + ", arbitre" + arbitre + "}";
 // picker
 var indexElement = undefined;
-
+//pipette
+var canvas;
+var ctx;
+var images = [ // predefined array of used images
+    'bandeauarbitre.png',
+    'bunny_poster.png',
+    'images/pic3.jpg',
+    'images/pic4.jpg',
+    'images/pic5.jpg',
+    'images/pic6.jpg',
+    'images/pic7.jpg',
+    'images/pic8.jpg',
+    'images/pic9.jpg',
+    'images/pic10.jpg'
+];
+var iActiveImage = 0;
 
 document.addEventListener("DOMContentLoaded", init, false);	// lance l'écoute des évènements et appelle INIT
 
@@ -156,8 +180,65 @@ function formStructure(structure) {
 } 
 
 function toggle(elem) {
+function toggle(elem, index) {
     indexElement = index;   // affectation due l'index de l'objet travaillé par le picker
     let el = document.getElementById(elem);
     // au premier tour il n'y a pas de valeur prédéfinie 
     el.style.display = (el.style.display === "none" || el.style.display === "" ? "flex" : "none");
 }
+// ******************************************
+// pipette
+// ******************************************
+$(function(){
+    // drawing active image
+    var image = new Image();
+    image.onload = function () {
+        ctx.drawImage(image, 0, 0, image.width, image.height); // draw the image on the canvas
+    }
+    //image.crossOrigin("Anonymous");
+    //image.setAttribute('crossOrigin', 'Anonymous');
+    //image.src = "./images/" + images[iActiveImage];
+    //image.src = myURL + "/images/" + images[iActiveImage];
+    // image.crossOrigin = "file:///Volumes/Donnees/Documents/myRepo";
+
+    // creating canvas object
+    canvas = document.getElementById('panel');
+    ctx = canvas.getContext('2d');
+
+    $('#panel').mousemove(function(e) { // mouse move handler
+        var canvasOffset = $(canvas).offset();
+        var canvasX = Math.floor(e.pageX - canvasOffset.left);
+        var canvasY = Math.floor(e.pageY - canvasOffset.top);
+        console.log(ctx);
+        var imageData = ctx.getImageData(canvasX, canvasY, 1, 1);   // extrait une zone de 1x1 pixel
+        var pixel = imageData.data;
+        var pixelColor = "rgba("+pixel[0]+", "+pixel[1]+", "+pixel[2]+", "+pixel[3]+")";
+        $('#preview').css('backgroundColor', pixelColor);
+    });
+    
+    $('#panel').click(function(e) { // mouse click handler
+        var canvasOffset = $(canvas).offset();
+        var canvasX = Math.floor(e.pageX - canvasOffset.left);
+        var canvasY = Math.floor(e.pageY - canvasOffset.top);
+        var imageData = ctx.getImageData(canvasX, canvasY, 1, 1);
+        var pixel = imageData.data;
+        $('#rVal').val(pixel[0]);
+        $('#gVal').val(pixel[1]);
+        $('#bVal').val(pixel[2]);
+        $('#rgbVal').val(pixel[0]+','+pixel[1]+','+pixel[2]);
+        $('#rgbaVal').val(pixel[0]+','+pixel[1]+','+pixel[2]+','+pixel[3])
+        var dColor = pixel[2] + 256 * pixel[1] + 65536 * pixel[0]
+        $('#hexVal').val( '#' + dColor.toString(16) )
+    });
+
+    $('#swImage').click(function(e) { // switching images
+        iActiveImage++;
+        if (iActiveImage >= 10) iActiveImage = 0;
+        image.src = "./images/" + images[iActiveImage];
+    });
+
+    $('#loImage').click(function(e) { // switching images
+        iActiveImage = 0;
+        image.src = "./images/" + images[iActiveImage];
+    });
+});

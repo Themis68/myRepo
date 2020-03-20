@@ -186,3 +186,53 @@ main content inter rencontre input {
   font-size: 0.7vw;
   font-family: Arial, Helvetica, sans-serif;
 }
+/*******************************************************/
+.container {
+  color: #000;
+  margin: 20px auto;
+  position: relative;
+  width: 730px;
+}
+.column1 {
+  float: left;
+  width: 500px;
+}
+.column2 {
+  float: left;
+  padding-left: 20px;
+  width: 170px;
+}
+#panel {
+  border: 1px #000 solid;
+  box-shadow: 4px 6px 6px #444444;
+  cursor: crosshair;
+}
+.column2 > div {
+  margin-bottom: 10px;
+}
+#swImage {
+  border: 1px #000 solid;
+  box-shadow: 2px 3px 3px #444444;
+  cursor: pointer;
+  height: 25px;
+  line-height: 25px;
+  border-radius: 3px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+}
+#swImage:hover {
+  margin-left: 2px;
+}
+#preview {
+  border: 1px #000 solid;
+  box-shadow: 2px 3px 3px #444444;
+  height: 80px;
+  width: 80px;
+  border-radius: 3px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+}
+.column2 input[type=text] {
+  float: right;
+  width: 110px;
+}
