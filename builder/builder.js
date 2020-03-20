@@ -125,7 +125,7 @@ function formStructure(structure) {
                     lString += '<input id="uploaded"'+lObject[0]+ ' type="file" accept="video/mp4"/>';
                     break;
                 case "js":
-                    lString += '<input id="uploaded"'+lObject[0]+ ' type="file" accept="*/js"/>';
+                    lString += '<input id="uploaded"'+lObject[0]+ ' type="file" accept=".js"/>';
                     break;
                 case "url":
                     lString += ' <input type="text" id="'+lObject[0]+'"/>';
