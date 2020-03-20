@@ -136,14 +136,14 @@ function formStructure(structure) {
                 case "rgb":
                     lString += '<div class="inputColor">';
                     lString += '<input id="rgb'+i+'" type="text" value="" />';
-                    lString += '<button id="displayrgb'+i+'" onclick="javascript:toggle(\'picker\','+i+');" /></div>';
-                    el.id = "silhEquipe"+ (i+1);*/
+                    lString += '<button id="displayrgb'+i+'" onclick="javascript:toggle(\'picker\''+i+');" /></div>';
+                    /*el.id = "silhEquipe"+ (i+1);
 
 
                     lString += '<input type="text" id="'+lObject[0]+'"/>';
                     lString += '<canvas id="silhEquipe'+ (i+1)+ '" width="10px" height="10px" />';
 
-                 //   draw("silhEquipe"+ (i+1), "rgb(255,255,255)");
+                    draw("silhEquipe"+ (i+1), "rgb(255,255,255)");*/
                     break;
                 default:
                     lString += ' <input type="text" id="'+lObject[0]+'"/>';
@@ -155,7 +155,7 @@ function formStructure(structure) {
     return lString;
 } 
 
-function toggle(elem, index) {
+function toggle(elem) {
     indexElement = index;   // affectation due l'index de l'objet travaillé par le picker
     let el = document.getElementById(elem);
     // au premier tour il n'y a pas de valeur prédéfinie 
