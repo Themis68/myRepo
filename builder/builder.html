@@ -59,42 +59,10 @@
         <canvas id="panel" width="200" height="90"></canvas>
       </div>
       <div class="column2">
-        <div><input type="button" value="Load image" id="loImage" /></div>
-        <div><input type="button" value="Next image" id="swImage" /></div>
-        <div>Preview:</div>
-        <div id="preview"></div>
-        <div>Color:</div>
-        <div>R: <input type="text" id="rVal" /></div>
-        <div>G: <input type="text" id="gVal" /></div>
-        <div>B: <input type="text" id="bVal" /></div>
         <div>RGB: <input type="text" id="rgbVal" /></div>
-        <div>RGBA: <input type="text" id="rgbaVal" /></div>
-        <div>HEX: <input type="text" id="hexVal" /></div>
-        <hr />
       </div>
       <div style="clear:both;"></div>
     </div>
-    <picker>
-      <div class="wrapper">
-        <div class="inputColor">
-          <input id="rgb1" type="text">
-          <button class="butColor" id="displayrgb1" onclick="javascript:toggle('picker');"></div>
-        </div>
-        <div id="picker"></div>
-        <script>
-            const joe = colorjoe.rgb("picker", "red");
-            joe.on("change", color => {
-              document.getElementById("rgb"+ indexElement).value = color.css();
-              document.getElementById("displayrgb"+indexElement).setAttribute("style", "background-color: "+ color.css() +";");
-            }); // survol
-            joe.on("done", color => {
-              document.getElementById("rgb"+ indexElement).value = color.css();
-              document.getElementById("displayrgb"+indexElement).setAttribute("style", "background-color: "+ color.css() +";");
-              toggle("picker", indexElement);
-            });  // clic
-        </script>
-      </div>
-    </picker>
     <content id="content">
       <match id="match">
         <video id="myVideo" class="video-js vjs-looping vjs-big-play-centered video-js vjs-default-skin">

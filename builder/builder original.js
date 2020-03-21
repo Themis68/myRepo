@@ -29,21 +29,8 @@ var images = '';
 //var iActiveImage = 0;
 
 document.addEventListener("DOMContentLoaded", init, false);	// lance l'écoute des évènements et appelle INIT
-document.addEventListener('click', gestClick);
 
 function init() {
-    setDisplay("video",false);
-    setDisplay("inter",false);
-    setDisplay("canvas",false);
-}
-
-function gestClick(e) {
-    let objet = e.target.id
-    if (objet.indexOf("rgb") >= 0) {
-        loadPipette(objet);
-    } else {
-        setDisplay("canvas",false);
-    }
 }
 
 function upload() {
@@ -53,7 +40,6 @@ function upload() {
     fileName = {completeName:fichier, shortName:tab[tab.length-1]};
 
     // afficher la vidéo
-    setDisplay("video",true);
     setVideo(fileName);
     setDisplay("inter",true);
     setCodeRencontre();
@@ -169,8 +155,9 @@ function formStructure(structure) {
                 case "rgb":
                     lString += '<div class="inputColor">';
                     lString += '<input id="rgb'+i+'" type="text" value="" />';
-                    lString += "<script>let e = getElementById('rgb"+i+"'); e.addEventListener('click', loadPipette);</script>";
-                    lString += '<div id="previewrgb'+i+'">&nbsp;</div>';
+                    //lString += '<button id="displayrgb'+i+'" /></div>';
+                    // lString += '<button id="displayrgb'+i+'" onclick="javascript:toggle(\'picker\''+i+');" /></div>';
+                    lString += '<button id="displayrgb'+i+'" onclick="javascript:togglePipette(\'rgb\''+i+');" /></div>';
                     /*el.id = "silhEquipe"+ (i+1);
 
 
@@ -196,30 +183,24 @@ function toggle(elem) {
     el.style.display = (el.style.display === "none" || el.style.display === "" ? "flex" : "none");
 }
 
-function loadPipette(objet) {
-    setDisplay("canvas",true);
-    var image = new Image();
-    image.onload = function () {
-        ctx.drawImage(image, 0, 0, image.width, image.height); // draw the image on the canvas
-    }
-    image.src = "./images/" + "Pole_PloufraganMT1.png";
-    canvas = document.getElementById('panel');
-    canvas.setAttribute('data-obj', objet)  // portera le nom de l'objet appelant qui demande le choix de la couleur
-    ctx = canvas.getContext('2d');
+function togglePipette(elem) {
+    //indexElement = index;   // affectation de l'index de l'objet travaillé par le picker
+    let el = document.getElementById(elem);
+    // au premier tour il n'y a pas de valeur prédéfinie 
+    el.style.display = (el.style.display === "none" || el.style.display === "" ? "flex" : "none");
 }
 // ******************************************
 // pipette
 // ******************************************
 
 $(function(){
-    var elemTarget = "";
-  /*  var image = new Image();
+    var image = new Image();
     image.onload = function () {
         ctx.drawImage(image, 0, 0, image.width, image.height); // draw the image on the canvas
     }
     image.src = "./images/" + "Pole_PloufraganMT1.png";
     canvas = document.getElementById('panel');
-    ctx = canvas.getContext('2d');*/
+    ctx = canvas.getContext('2d');
 
     $('#panel').mousemove(function(e) { // mouse move handler
         var canvasOffset = $(canvas).offset();
@@ -227,11 +208,9 @@ $(function(){
         var canvasY = Math.floor(e.pageY - canvasOffset.top);
         var imageData = ctx.getImageData(canvasX, canvasY, 1, 1);   // extrait une zone de 1x1 pixel
         var pixel = imageData.data;
-       // var pixelColor = "rgba("+pixel[0]+", "+pixel[1]+", "+pixel[2]+", "+pixel[3]+")";
-       // $('#preview8').css('backgroundColor', pixelColor);
-       let objet = document.getElementById("panel");
-       console.log(objet.dataset.obj);
-        document.getElementById('preview'+objet.dataset.obj).setAttribute("style", "background-color:rgb("+pixel[0]+','+pixel[1]+','+pixel[2]+")");
+        document.getElementById('displayrgb8').setAttribute("style", "background-color:rgb("+pixel[0]+','+pixel[1]+','+pixel[2]+")");
+        var pixelColor = "rgba("+pixel[0]+", "+pixel[1]+", "+pixel[2]+", "+pixel[3]+")";
+        $('#preview').css('backgroundColor', pixelColor);
     });
     
     $('#panel').click(function(e) { // mouse click handler
@@ -240,8 +219,25 @@ $(function(){
         var canvasY = Math.floor(e.pageY - canvasOffset.top);
         var imageData = ctx.getImageData(canvasX, canvasY, 1, 1);
         var pixel = imageData.data;
-        let objet = document.getElementById("panel");
-        console.log(objet.dataset.obj);
-        document.getElementById(objet.dataset.obj).value = "rgb("+pixel[0]+','+pixel[1]+','+pixel[2]+")";
+        $('#rVal').val(pixel[0]);
+        $('#gVal').val(pixel[1]);
+        $('#bVal').val(pixel[2]);
+        $('#rgbVal').val(pixel[0]+','+pixel[1]+','+pixel[2]);
+        $('#rgbaVal').val(pixel[0]+','+pixel[1]+','+pixel[2]+','+pixel[3])
+        var dColor = pixel[2] + 256 * pixel[1] + 65536 * pixel[0]
+        $('#hexVal').val( '#' + dColor.toString(16) )
     });
+
+    
+    $('#swImage').click(function(e) { // switching images
+        iActiveImage++;
+        if (iActiveImage >= 10) iActiveImage = 0;
+        image.src = "./images/" + images[iActiveImage];
+    });
+
+    $('#loImage').click(function(e) { // switching images
+        iActiveImage = 0;
+        image.src = "./images/" + images[iActiveImage];
+    });
+    
 })
