@@ -32,12 +32,14 @@ document.addEventListener("DOMContentLoaded", init, false);	// lance l'écoute d
 document.addEventListener('click', gestClick);
 
 function init() {
+    // initialisation des zones au load de la page
     setDisplay("video",false);
     setDisplay("inter",false);
     setDisplay("canvas",false);
 }
 
 function gestClick(e) {
+    // traitement d'un clic sur les objets RGB
     let objet = e.target.id
     if (objet.indexOf("rgb") >= 0) {
         loadPipette(objet);
@@ -60,11 +62,13 @@ function upload() {
 }
 
 function setCodeRencontre() {
+    // prépare la zone d'affichage de la structure attendue pour le catalogue
     setDisplay("rencontre",true);
     setInnerHTML("rencontre",formStructure(structureRencontre));
 }
 
 function setVideo(fileName) {
+    // définition de la zone de la vidéo
     if (isDefineBVideoJS) {
         // il y a déjà une vidéo
         myVideo.src({
@@ -100,6 +104,7 @@ function setVideo(fileName) {
 }
 
 function setDisplay(selector, state) {
+    // affiche/masque un objet by Selector
     try {
         let lSelector = document.querySelector(selector);
         lSelector.style.display = (state ? "flex" : "none");     // affiche INTER
@@ -109,6 +114,8 @@ function setDisplay(selector, state) {
 }
 
 function setInnerHTML(id, value) {
+    // met à jour #texte de l'objet HTML
+
     try {
         let lId = document.getElementById(id);
         lId.innerHTML = value;     // affecte la valeur
@@ -118,7 +125,8 @@ function setInnerHTML(id, value) {
 }
 
 function formStructure(structure) {
-    // newStructureRencontre = structure.split(",").join("<br>");
+    // construction de laz chaine de caracteres qui emportera le code dans le catalogue
+
     let lStructure = structure.split(",");
     let lString = "";
     let lObject = "";
@@ -189,12 +197,34 @@ function formStructure(structure) {
     return lString;
 } 
 
-function toggle(elem) {
-    //indexElement = index;   // affectation de l'index de l'objet travaillé par le picker
-    let el = document.getElementById(elem);
-    // au premier tour il n'y a pas de valeur prédéfinie 
-    el.style.display = (el.style.display === "none" || el.style.display === "" ? "flex" : "none");
+function capturePictFromVideo() {
+    // 1. Obtenir une référence sur l’élément <video>
+    var player = document.querySelector('#player_a');
+    
+    // 2. Créer un canevas aux dimensions de la vidéo
+    var canvas = document.createElement('canvas');
+    canvas.width = player.width;
+    canvas.height = player.height;
+    
+    // 3. Obtenir le contexte de dessin du canevas
+    var cx = canvas.getContext('2d');
+    
+    // 4. Capturer l’image actuelle de la vidéo
+    cx.drawImage(player, 0, 0, canvas.width, canvas.height);
+    
+    // 5. Convertir l’image capturée en fichier, et créer un lien vers ce fichier
+    canvas.toBlob(function (blob) {
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.target = '_blank';
+    a.textContent = 'Voir l’image capturée';
+    document.body.appendChild(a);
+    });
 }
+
+// ******************************************
+// pipette
+// ******************************************
 
 function loadPipette(objet) {
     setDisplay("canvas",true);
@@ -207,9 +237,6 @@ function loadPipette(objet) {
     canvas.setAttribute('data-obj', objet)  // portera le nom de l'objet appelant qui demande le choix de la couleur
     ctx = canvas.getContext('2d');
 }
-// ******************************************
-// pipette
-// ******************************************
 
 $(function(){
     var elemTarget = "";
