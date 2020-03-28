@@ -9,12 +9,11 @@ BUILDER
 //
 
 
-- insérer un picker pour les couleurs : pipette et RGB avec affichage couleur sélectionnée
-    https://www.cssscript.com/demo/color-picker-component-pickr/
-    http://bebraw.github.io/colorjoe/
+- insérer un picker pour les couleurs : pipette et RGB avec affichage couleur sélectionnée : http://bebraw.github.io/colorjoe/
 - sauvegarder le code de la structure
--) récupérer une ilage d'une vidéo : https://www.developpez.net/forums/d1578183/javascript/general-javascript/extraire-image-partir-d-video-projekktor/
+- récupérer une image d'une vidéo : https://www.developpez.net/forums/d1578183/javascript/general-javascript/extraire-image-partir-d-video-projekktor/
 
+ if (this.video.paused || this.video.ended)
 
 //
 //*******************  FAIT ***********************

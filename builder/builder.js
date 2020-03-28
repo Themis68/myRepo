@@ -57,6 +57,7 @@ function upload() {
     // afficher la vidéo
     setDisplay("video",true);
     setVideo(fileName);
+    capturePictFromVideo("myVideo");
     setDisplay("inter",true);
     setCodeRencontre();
 }
@@ -197,28 +198,41 @@ function formStructure(structure) {
     return lString;
 } 
 
-function capturePictFromVideo() {
+function capturePictFromVideo(objetVideo) {
+    setDisplay("canvas",true);
+
     // 1. Obtenir une référence sur l’élément <video>
-    var player = document.querySelector('#player_a');
+   // let player = document.querySelector('#' + objetVideo);
     
     // 2. Créer un canevas aux dimensions de la vidéo
-    var canvas = document.createElement('canvas');
-    canvas.width = player.width;
-    canvas.height = player.height;
+    // var canvas = document.createElement('canvas');
+    canvas = document.getElementById('panel');
+
+    //let myV = document.getElementById('myVideo');
+
+    //canvas.width = player.width;
+    //canvas.height = player.height;
     
     // 3. Obtenir le contexte de dessin du canevas
-    var cx = canvas.getContext('2d');
+    ctx = canvas.getContext('2d');
     
     // 4. Capturer l’image actuelle de la vidéo
-    cx.drawImage(player, 0, 0, canvas.width, canvas.height);
+//    ctx.drawImage(player, 0, 0, player.width, player.height);
+//myVideo.load;
+
+//myV.play();
+//myV.pause();
+    //myV.currentTime = 1;
+
+    ctx.drawImage(document._video, 0, 0, 100, 100);
     
     // 5. Convertir l’image capturée en fichier, et créer un lien vers ce fichier
     canvas.toBlob(function (blob) {
-    var a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.target = '_blank';
-    a.textContent = 'Voir l’image capturée';
-    document.body.appendChild(a);
+        var a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.target = '_blank';
+        a.textContent = 'Voir l’image capturée';
+        document.body.appendChild(a);
     });
 }
 
