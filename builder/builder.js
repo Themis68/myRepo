@@ -7,7 +7,7 @@ var isDefineBVideoJS = false;		// permet de gérer la délcaration de videoJS au
 // structures
 let equipe = "{nom(), fanion(png), site(url), maillotCouleur(rgb)}";
 let arbitre = "{maillotCouleur(rgb)}"
-var structureRencontre =  "{rencontre(), poster(png), fichier(mp4), scenario(js), description(), gauche" + equipe  + ", droite" + equipe + ", arbitre" + arbitre + "}";
+var structureRencontre =  "{rencontre(), poster(png), poster(pngi), fichier(mp4), scenario(js), description(), gauche" + equipe  + ", droite" + equipe + ", arbitre" + arbitre + "}";
 // picker
 var indexElement = undefined;
 //pipette
@@ -33,9 +33,15 @@ document.addEventListener('click', gestClick);
 
 function init() {
     // initialisation des zones au load de la page
+    document._video = document.getElementById("myVideo");
+
     setDisplay("video",false);
     setDisplay("inter",false);
     setDisplay("canvas",false);
+}
+
+function getVideo() {
+	return document._video;
 }
 
 function gestClick(e) {
@@ -43,6 +49,12 @@ function gestClick(e) {
     let objet = e.target.id
     if (objet.indexOf("rgb") >= 0) {
         loadPipette(objet);
+    } else {
+        setDisplay("canvas",false);
+    }
+
+    if (objet.indexOf("png") >= 0) {
+        capturePictFromVideo();
     } else {
         setDisplay("canvas",false);
     }
@@ -166,11 +178,15 @@ function formStructure(structure) {
                 case "png":
                     lString += '<input id="uploaded"'+lObject[0]+ ' type="file" accept="image/png"/>';
                     break;
+                case "pngi":
+                    lString += '<input id="png"'+lObject[0]+ ' type="text"/>';
+                    lString += "<script>let e = getElementById('png"+i+"'); e.addEventListener('click', capturePictFromVideo);</script>";
+                    break;
                 case "mp4":
                     lString += '<input id="uploaded"'+lObject[0]+ ' type="file" accept="video/mp4"/>';
                     break;
                 case "js":
-                    lString += '<input id="uploaded"'+lObject[0]+ ' type="file" accept="*/js"/>';
+                    lString += '<input id="uploaded"'+lObject[0]+ ' type="file" accept=".js"/>';
                     break;
                 case "url":
                     lString += ' <input type="text" id="'+lObject[0]+'"/>';
@@ -198,6 +214,7 @@ function formStructure(structure) {
     return lString;
 } 
 
+<<<<<<< HEAD
 function capturePictFromVideo(objetVideo) {
     setDisplay("canvas",true);
 
@@ -212,11 +229,23 @@ function capturePictFromVideo(objetVideo) {
 
     //canvas.width = player.width;
     //canvas.height = player.height;
+=======
+function capturePictFromVideo() {
+    window.URL = window.URL || window.webkitURL;
+    // 1. Obtenir une référence sur l’élément <video>
+    // var player = document.querySelector('#player_a');
+    
+    // 2. Créer un canevas aux dimensions de la vidéo
+    var canvas = document.createElement('canvas');
+    canvas.width = getVideo().width;
+    canvas.height = getVideo().height;
+>>>>>>> e7085ea796997dc921232f613a81b298b74cd6ea
     
     // 3. Obtenir le contexte de dessin du canevas
     ctx = canvas.getContext('2d');
     
     // 4. Capturer l’image actuelle de la vidéo
+<<<<<<< HEAD
 //    ctx.drawImage(player, 0, 0, player.width, player.height);
 //myVideo.load;
 
@@ -233,6 +262,17 @@ function capturePictFromVideo(objetVideo) {
         a.target = '_blank';
         a.textContent = 'Voir l’image capturée';
         document.body.appendChild(a);
+=======
+    cx.drawImage(getVideo(), 0, 0, canvas.width, canvas.height);
+    
+    // 5. Convertir l’image capturée en fichier, et créer un lien vers ce fichier
+    canvas.toBlob(function (blob) {
+    var a = document.createElement('a');
+    a.href = window.URL.createObjectURL(blob);
+    a.target = '_blank';
+    a.textContent = 'Voir l’image capturée';
+    document.body.appendChild(a);
+>>>>>>> e7085ea796997dc921232f613a81b298b74cd6ea
     });
 }
 
@@ -253,15 +293,6 @@ function loadPipette(objet) {
 }
 
 $(function(){
-    var elemTarget = "";
-  /*  var image = new Image();
-    image.onload = function () {
-        ctx.drawImage(image, 0, 0, image.width, image.height); // draw the image on the canvas
-    }
-    image.src = "./images/" + "Pole_PloufraganMT1.png";
-    canvas = document.getElementById('panel');
-    ctx = canvas.getContext('2d');*/
-
     $('#panel').mousemove(function(e) { // mouse move handler
         var canvasOffset = $(canvas).offset();
         var canvasX = Math.floor(e.pageX - canvasOffset.left);
