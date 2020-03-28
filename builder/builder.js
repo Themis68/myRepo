@@ -214,22 +214,6 @@ function formStructure(structure) {
     return lString;
 } 
 
-<<<<<<< HEAD
-function capturePictFromVideo(objetVideo) {
-    setDisplay("canvas",true);
-
-    // 1. Obtenir une référence sur l’élément <video>
-   // let player = document.querySelector('#' + objetVideo);
-    
-    // 2. Créer un canevas aux dimensions de la vidéo
-    // var canvas = document.createElement('canvas');
-    canvas = document.getElementById('panel');
-
-    //let myV = document.getElementById('myVideo');
-
-    //canvas.width = player.width;
-    //canvas.height = player.height;
-=======
 function capturePictFromVideo() {
     window.URL = window.URL || window.webkitURL;
     // 1. Obtenir une référence sur l’élément <video>
@@ -239,30 +223,11 @@ function capturePictFromVideo() {
     var canvas = document.createElement('canvas');
     canvas.width = getVideo().width;
     canvas.height = getVideo().height;
->>>>>>> e7085ea796997dc921232f613a81b298b74cd6ea
     
     // 3. Obtenir le contexte de dessin du canevas
     ctx = canvas.getContext('2d');
     
     // 4. Capturer l’image actuelle de la vidéo
-<<<<<<< HEAD
-//    ctx.drawImage(player, 0, 0, player.width, player.height);
-//myVideo.load;
-
-//myV.play();
-//myV.pause();
-    //myV.currentTime = 1;
-
-    ctx.drawImage(document._video, 0, 0, 100, 100);
-    
-    // 5. Convertir l’image capturée en fichier, et créer un lien vers ce fichier
-    canvas.toBlob(function (blob) {
-        var a = document.createElement('a');
-        a.href = URL.createObjectURL(blob);
-        a.target = '_blank';
-        a.textContent = 'Voir l’image capturée';
-        document.body.appendChild(a);
-=======
     cx.drawImage(getVideo(), 0, 0, canvas.width, canvas.height);
     
     // 5. Convertir l’image capturée en fichier, et créer un lien vers ce fichier
@@ -272,7 +237,6 @@ function capturePictFromVideo() {
     a.target = '_blank';
     a.textContent = 'Voir l’image capturée';
     document.body.appendChild(a);
->>>>>>> e7085ea796997dc921232f613a81b298b74cd6ea
     });
 }
 
