@@ -7,7 +7,7 @@ var isDefineBVideoJS = false;		// permet de gérer la délcaration de videoJS au
 // structures
 let equipe = "{nom(), fanion(png), site(url), maillotCouleur(rgb)}";
 let arbitre = "{maillotCouleur(rgb)}"
-var structureRencontre =  "{rencontre(), poster(png), poster(pngi), fichier(mp4), scenario(js), description(), gauche" + equipe  + ", droite" + equipe + ", arbitre" + arbitre + "}";
+var structureRencontre =  "{rencontre(), poster(png), poster(pngi), poster(png2), fichier(mp4), scenario(js), description(), gauche" + equipe  + ", droite" + equipe + ", arbitre" + arbitre + "}";
 // picker
 var indexElement = undefined;
 //pipette
@@ -69,7 +69,7 @@ function upload() {
     // afficher la vidéo
     setDisplay("video",true);
     setVideo(fileName);
-    capturePictFromVideo("myVideo");
+    //capturePictFromVideo("myVideo");
     setDisplay("inter",true);
     setCodeRencontre();
 }
@@ -178,6 +178,9 @@ function formStructure(structure) {
                 case "png":
                     lString += '<input id="uploaded"'+lObject[0]+ ' type="file" accept="image/png"/>';
                     break;
+                case "png2":
+                    lString += '<input type="button" onclick="javascript:capturePictFromVideo(\'myVideo\')" id="'+lObject[0]+';"/>';
+                    break;
                 case "pngi":
                     lString += '<input id="png"'+lObject[0]+ ' type="text"/>';
                     lString += "<script>let e = getElementById('png"+i+"'); e.addEventListener('click', capturePictFromVideo);</script>";
@@ -189,7 +192,7 @@ function formStructure(structure) {
                     lString += '<input id="uploaded"'+lObject[0]+ ' type="file" accept=".js"/>';
                     break;
                 case "url":
-                    lString += ' <input type="text" id="'+lObject[0]+'"/>';
+                    lString += '<input type="text" id="'+lObject[0]+'"/>';
                     break;
                 case "rgb":
                     lString += '<div class="inputColor">';
@@ -215,29 +218,61 @@ function formStructure(structure) {
 } 
 
 function capturePictFromVideo() {
-    window.URL = window.URL || window.webkitURL;
     // 1. Obtenir une référence sur l’élément <video>
-    // var player = document.querySelector('#player_a');
+    var player = document.querySelector('video');
     
     // 2. Créer un canevas aux dimensions de la vidéo
     var canvas = document.createElement('canvas');
-    canvas.width = getVideo().width;
-    canvas.height = getVideo().height;
+    canvas.width = player.videoWidth;
+    canvas.height = player.videoHeight;
+    
+    // 3. Obtenir le contexte de dessin du canevas
+    var cx = canvas.getContext('2d');
+    
+    // 4. Capturer l’image actuelle de la vidéo
+    cx.drawImage(player, 0, 0, canvas.width, canvas.height);
+    
+    // 5. Convertir l’image capturée en fichier, et créer un lien vers ce fichier
+    
+    canvas.toBlob(function (blob) {
+        var a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.target = '_blank';
+        a.textContent = 'Voir l’image capturée';
+        //document.getElementById('mouseclick').appendChild(a);
+        document.body.appendChild(a);
+    })
+}
+
+function capturePictFromVideo2() {
+    setDisplay("canvas",true);
+    // 1. Obtenir une référence sur l’élément <video>
+    let player = getVideo();
+    // fin de séquence
+    // 2. Créer un canevas aux dimensions de la vidéo
+    let canvas = document.getElementById('panel');
+    canvas.width = player.videoWidth;
+    canvas.height = player.videoHeight;
     
     // 3. Obtenir le contexte de dessin du canevas
     ctx = canvas.getContext('2d');
     
     // 4. Capturer l’image actuelle de la vidéo
-    cx.drawImage(getVideo(), 0, 0, canvas.width, canvas.height);
+    ctx.drawImage(player, 0, 0, canvas.width, canvas.height);
     
     // 5. Convertir l’image capturée en fichier, et créer un lien vers ce fichier
     canvas.toBlob(function (blob) {
-    var a = document.createElement('a');
-    a.href = window.URL.createObjectURL(blob);
-    a.target = '_blank';
-    a.textContent = 'Voir l’image capturée';
-    document.body.appendChild(a);
+        var a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.target = '_blank';
+        a.textContent = 'Voir l’image capturée';
+        //canvas.src = URL.createObjectURL(blob);;
+        // canvas.appendChild(a);
+        document.body.appendChild(a);
+        //document.getElementById('mouseclick').appendChild(a);
     });
+
+    setDisplay("video",false);
 }
 
 // ******************************************

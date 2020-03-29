@@ -162,7 +162,12 @@ main content match {
   flex: 3;
 }
 main content match video {
-  flex: 3;
+  display: flex;
+  flex: 1;
+}
+main content match canvas {
+  display: none;
+  flex: 1;
 }
 main content inter {
   display: none;
