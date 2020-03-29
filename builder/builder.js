@@ -50,13 +50,13 @@ function gestClick(e) {
     if (objet.indexOf("rgb") >= 0) {
         loadPipette(objet);
     } else {
-        setDisplay("canvas",false);
+        //setDisplay("canvas",false);
     }
 
     if (objet.indexOf("png") >= 0) {
         capturePictFromVideo();
     } else {
-        setDisplay("canvas",false);
+        //setDisplay("canvas",false);
     }
 }
 
@@ -121,6 +121,7 @@ function setDisplay(selector, state) {
     try {
         let lSelector = document.querySelector(selector);
         lSelector.style.display = (state ? "flex" : "none");     // affiche INTER
+        console.log(selector, state);
     } catch {
 
     }
@@ -218,30 +219,36 @@ function formStructure(structure) {
 } 
 
 function capturePictFromVideo() {
+    setDisplay("canvas",true);
+
     // 1. Obtenir une référence sur l’élément <video>
-    var player = document.querySelector('video');
+    let player = document.querySelector('video');
     
     // 2. Créer un canevas aux dimensions de la vidéo
-    var canvas = document.createElement('canvas');
-    canvas.width = player.videoWidth;
-    canvas.height = player.videoHeight;
+    let canvas = document.getElementById('panel');
+    
     
     // 3. Obtenir le contexte de dessin du canevas
-    var cx = canvas.getContext('2d');
+    let cx = canvas.getContext('2d');
     
     // 4. Capturer l’image actuelle de la vidéo
-    cx.drawImage(player, 0, 0, canvas.width, canvas.height);
+    cx.drawImage(player, 0, 0, player.width, player.height);
     
     // 5. Convertir l’image capturée en fichier, et créer un lien vers ce fichier
-    
     canvas.toBlob(function (blob) {
+        canvas.src = URL.createObjectURL(blob);
+        canvas.width = player.videoWidth;
+        canvas.height = player.videoHeight;
+    })
+
+    /*canvas.toBlob(function (blob) {
         var a = document.createElement('a');
         a.href = URL.createObjectURL(blob);
         a.target = '_blank';
         a.textContent = 'Voir l’image capturée';
-        //document.getElementById('mouseclick').appendChild(a);
         document.body.appendChild(a);
-    })
+    })*/
+    setDisplay("video",false);
 }
 
 function capturePictFromVideo2() {
@@ -266,10 +273,7 @@ function capturePictFromVideo2() {
         a.href = URL.createObjectURL(blob);
         a.target = '_blank';
         a.textContent = 'Voir l’image capturée';
-        //canvas.src = URL.createObjectURL(blob);;
-        // canvas.appendChild(a);
         document.body.appendChild(a);
-        //document.getElementById('mouseclick').appendChild(a);
     });
 
     setDisplay("video",false);
