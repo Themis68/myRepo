@@ -24,3 +24,9 @@ x Chrome en mode local : open -n -a /Applications/Google\ Chrome.app --args --us
 x upload : propose de charger uniquement les fichiers videos
 x afficher une structure de données avec affectation des éditeurs spécifiques
 
+//
+//***************      BC  ***************************
+//
+let objet = document.getElementById("panel");
+// dataset permet de récupérer les infos des attributs <data->
+document.getElementById('preview'+objet.dataset.obj).setAttribute("style", "background-color:rgb("+pixel[0]+','+pixel[1]+','+pixel[2]+")");

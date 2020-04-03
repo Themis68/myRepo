@@ -167,7 +167,7 @@ main content match video {
 }
 main content match canvas {
   display: none;
-  flex: 1;
+  flex-grow: 0;
 }
 main content inter {
   display: none;

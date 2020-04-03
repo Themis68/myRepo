@@ -1,5 +1,5 @@
-var myURLcomplete = document.location.href;
-var myURL  = myURLcomplete.substring( 0 ,myURLcomplete.lastIndexOf( "/" ) );
+//var myURLcomplete = document.location.href;
+//var myURL  = myURLcomplete.substring( 0 ,myURLcomplete.lastIndexOf( "/" ) );
 
 var pathVideos = "../rencontres/";		// vidéos des matchs
 var pathImages = "../images/";		// vidéos des matchs
@@ -9,24 +9,11 @@ let equipe = "{nom(), fanion(png), site(url), maillotCouleur(rgb)}";
 let arbitre = "{maillotCouleur(rgb)}"
 var structureRencontre =  "{rencontre(), poster(png), poster(pngi), poster(png2), fichier(mp4), scenario(js), description(), gauche" + equipe  + ", droite" + equipe + ", arbitre" + arbitre + "}";
 // picker
-var indexElement = undefined;
+//var indexElement = undefined;
 //pipette
-var canvas;
+//var canvas;
 var ctx;
 var images = '';
-
-/*[ // predefined array of used images
-    'bunny_poster.png',
-    'images/pic3.jpg',
-    'images/pic4.jpg',
-    'images/pic5.jpg',
-    'images/pic6.jpg',
-    'images/pic7.jpg',
-    'images/pic8.jpg',
-    'images/pic9.jpg',
-    'images/pic10.jpg'
-];*/
-//var iActiveImage = 0;
 
 document.addEventListener("DOMContentLoaded", init, false);	// lance l'écoute des évènements et appelle INIT
 document.addEventListener('click', gestClick);
@@ -226,57 +213,24 @@ function capturePictFromVideo() {
     
     // 2. Créer un canevas aux dimensions de la vidéo
     let canvas = document.getElementById('panel');
-    
+    canvas.width = player.clientWidth;   // player.videoWidth : taille réelle de la vidéo
+    canvas.height = player.clientHeight; // player.videoHeight : taille réelle de la vidéo
     
     // 3. Obtenir le contexte de dessin du canevas
     let cx = canvas.getContext('2d');
     
     // 4. Capturer l’image actuelle de la vidéo
-    cx.drawImage(player, 0, 0, player.width, player.height);
+    cx.drawImage(player, 0, 0, canvas.width, canvas.height);
     
     // 5. Convertir l’image capturée en fichier, et créer un lien vers ce fichier
     canvas.toBlob(function (blob) {
-        canvas.src = URL.createObjectURL(blob);
-        canvas.width = player.videoWidth;
-        canvas.height = player.videoHeight;
+        var a = document.getElementById('myCanvas');
+        a.href = URL.createObjectURL(blob);
+        a.target = '_blank';
     })
 
-    /*canvas.toBlob(function (blob) {
-        var a = document.createElement('a');
-        a.href = URL.createObjectURL(blob);
-        a.target = '_blank';
-        a.textContent = 'Voir l’image capturée';
-        document.body.appendChild(a);
-    })*/
     setDisplay("video",false);
-}
-
-function capturePictFromVideo2() {
-    setDisplay("canvas",true);
-    // 1. Obtenir une référence sur l’élément <video>
-    let player = getVideo();
-    // fin de séquence
-    // 2. Créer un canevas aux dimensions de la vidéo
-    let canvas = document.getElementById('panel');
-    canvas.width = player.videoWidth;
-    canvas.height = player.videoHeight;
-    
-    // 3. Obtenir le contexte de dessin du canevas
-    ctx = canvas.getContext('2d');
-    
-    // 4. Capturer l’image actuelle de la vidéo
-    ctx.drawImage(player, 0, 0, canvas.width, canvas.height);
-    
-    // 5. Convertir l’image capturée en fichier, et créer un lien vers ce fichier
-    canvas.toBlob(function (blob) {
-        var a = document.createElement('a');
-        a.href = URL.createObjectURL(blob);
-        a.target = '_blank';
-        a.textContent = 'Voir l’image capturée';
-        document.body.appendChild(a);
-    });
-
-    setDisplay("video",false);
+    document.getElementsByClassName("video-js")[0].style.display = "none";
 }
 
 // ******************************************
@@ -290,6 +244,7 @@ function loadPipette(objet) {
         ctx.drawImage(image, 0, 0, image.width, image.height); // draw the image on the canvas
     }
     image.src = "./images/" + "Pole_PloufraganMT1.png";
+    // canvas est une variable de la fonction accessible depuis les sous-fonctions
     canvas = document.getElementById('panel');
     canvas.setAttribute('data-obj', objet)  // portera le nom de l'objet appelant qui demande le choix de la couleur
     ctx = canvas.getContext('2d');
@@ -305,7 +260,7 @@ $(function(){
        // var pixelColor = "rgba("+pixel[0]+", "+pixel[1]+", "+pixel[2]+", "+pixel[3]+")";
        // $('#preview8').css('backgroundColor', pixelColor);
        let objet = document.getElementById("panel");
-       console.log(objet.dataset.obj);
+       // dataset permet de récupérer les infos des attributs <data->
         document.getElementById('preview'+objet.dataset.obj).setAttribute("style", "background-color:rgb("+pixel[0]+','+pixel[1]+','+pixel[2]+")");
     });
     
