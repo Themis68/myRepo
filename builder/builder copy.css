@@ -96,6 +96,13 @@ main {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  /* sil {
+        width: 95vw;   // on limite l'étalement des objets en largeur
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: center;
+    }*/
 }
 main header {
   display: flex;
@@ -123,62 +130,15 @@ main bascule span {
 }
 main section {
   display: flex;
-  width: 80%;
   flex-direction: column;
   flex-wrap: wrap;
   align-items: center;
 }
-main section div .container {
+main section div {
   flex: 1;
   text-align: center;
   color: white;
   font-size: 1vw;
-}
-main section div .container .row {
-  display: flex;
-}
-main section div .container .row .card {
-  display: flex;
-  flex: 1;
-  max-width: min-content;
-  justify-items: center;
-  font-size: 1vw;
-}
-main section div .container .row .card .card-header {
-  display: flex;
-  flex: 1;
-  background-color: white;
-  justify-content: center;
-}
-main section div .container .row .card .card-hr {
-  width: 100%;
-  background-color: white;
-  height: 0px;
-}
-main section div .container .row .card .card-hr-active {
-  width: 100%;
-  background-color: peru;
-  height: 4px;
-}
-main section div .container .row .card .card-body {
-  display: flex;
-  flex: 1;
-  max-width: fit-content;
-  flex-direction: column;
-}
-main section div .container .row .card .card-body .card-title {
-  display: flex;
-  flex: 1;
-  max-width: min-content;
-  flex-direction: column;
-  font-size: 1vw;
-}
-main section div .container .row .card .card-body .card-text {
-  display: flex;
-  flex: 1;
-  max-width: min-content;
-  flex-direction: column;
-  font-size: 0.75vw;
 }
 main picker {
   display: flex;
@@ -247,19 +207,6 @@ main content inter rencontre input {
   font-size: 0.7vw;
   font-family: Arial, Helvetica, sans-serif;
 }
-.cercle {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.2vw;
-  color: white;
-  -moz-border-radius: 50%;
-  -webkit-border-radius: 50%;
-  border-radius: 50%;
-  background: green;
-  width: 30px;
-  height: 30px;
-}
 /* zone dynamique de récupération de couleur */
 .pipette {
   display: flex;
@@ -322,18 +269,4 @@ main content inter rencontre input {
 .column2 input[type=text] {
   float: right;
   width: 110px;
-}
-.card {
-  display: flex;
-  flex: 1;
-  max-width: min-content;
-  justify-items: center;
-  font-size: 1vw;
-}
-/*$*********************************/
-tab1 {
-  display: flex;
-}
-tab2 {
-  display: none;
 }

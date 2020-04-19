@@ -54,3 +54,13 @@ La partie callback est très importante. En effet, si vous essayez d'exécuter
 code à exécyter une fois que le script est chargé"
 
 Il faut donc mettre ce code dans un callback, pour garantir qu'il soit lancé quand le script a terminé de chargé.
+
+Créer des sphères :
+https://la-cascade.io/creer-des-spheres-en-css/
+
+Des formes simples
+https://www.lucaswillems.com/fr/articles/14/des-formes-geometriques-en-css?cache=update
+
+*********************************
+
+créer des images à la volée : https://codepen.io/tpai/pen/QVxPOJ

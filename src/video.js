@@ -90,68 +90,6 @@ function init() {
 	creerVignettes("vignettes");					        // générer la vignettes dans le carousel
 }
 
-function draw(id, maillotCouleur, shortCouleur) {
-	let canvas = document.getElementById(id);
-    	if (canvas.getContext) {
-			let ctx = canvas.getContext("2d");
-
-			// fond
-			ctx.beginPath();
-  			ctx.lineWidth="1";
-  			ctx.arc(18, 18, 18, 0, 2 * Math.PI);	// X rayon, Y rayon, rayon, angle de départ, 2*PI pour le cercle complet
-  			ctx.fillStyle = "black";	// couleur de fond
-			ctx.fill();		// ordre de remplissage
-			ctx.closePath();
-
-			// tete
-			ctx.beginPath();
-  			ctx.lineWidth="1";
-  			ctx.arc(18, 8, 5, 0, 2 * Math.PI);		// X rayon, Y rayon, rayon, angle de départ, 2*PI pour le cercle complet
-  			ctx.fillStyle = maillotCouleur;	// couleur de fond
-			ctx.fill();		// ordre de remplissage
-			ctx.closePath();
-
-			// haut
-			let rectWidth = 18;
-      		let rectHeight = 8;
-      		let rectX = 9;
-      		let rectY = 15; //12;
-      		let cornerRadius = 5;
-
-			ctx.beginPath();
-			ctx.fillStyle = maillotCouleur;
-			ctx.lineWidth = 1;
-			ctx.moveTo(rectX + cornerRadius, rectY);
-			ctx.lineTo(rectX + rectWidth - cornerRadius, rectY);
-			ctx.arcTo(rectX + rectWidth, rectY, rectX + rectWidth, rectY + cornerRadius, cornerRadius);	// arrondi droite
-			ctx.lineTo(rectX + rectWidth, rectY + rectHeight);	// descendre
-			ctx.lineTo(rectX, rectY + rectHeight);	// horizontale basse
-			ctx.lineTo(rectX, rectY + cornerRadius);	// remonter
-			ctx.arcTo(rectX, rectY, rectX + cornerRadius, rectY, cornerRadius);	// arrondi gauche
-			ctx.fill();		// ordre de remplissage
-			ctx.closePath();
-
-			// bas
-			rectWidth = 18;
-      		rectHeight = 5;
-      		rectX = 9;
-			rectY = (15 + 8 + 1);
-
-			ctx.beginPath();
-			ctx.fillStyle = shortCouleur;
-			ctx.lineWidth = 1;
-
-			ctx.moveTo(rectX, rectY);
-			ctx.lineTo(rectX + rectWidth, rectY);
-			ctx.lineTo(rectX + rectWidth, rectY + rectHeight);
-			ctx.lineTo(rectX, rectY + rectHeight);
-			ctx.lineTo(rectX, rectY);
-			ctx.fill();		// ordre de remplissage
-			ctx.closePath();
-			
-    }
-}
-
 function creerVignettes(id) {
 	//
     // générer le vignettes dans le carousel
@@ -160,7 +98,7 @@ function creerVignettes(id) {
 	// création des indicateurs
 	let ind = document.getElementById("indicateurs");
 
-	for (let i = 0; i < arrayAssoSize(scenario); i++) {
+	for (let i = 0; i < arrayAssoSize(rencontre); i++) {
 		let myInd = document.createElement("li");
 		myInd.setAttribute("data-target", "#carousel-example");
 		myInd.setAttribute("data-slide-to",i);
@@ -171,7 +109,7 @@ function creerVignettes(id) {
 	// création des vignettes
 	let bloc = document.getElementById(id);
 	
-	for (let i = 0; i < arrayAssoSize(scenario); i++) {
+	for (let i = 0; i < arrayAssoSize(rencontres); i++) {
 
 		// div
 		let myDiv = document.createElement("div");
@@ -182,7 +120,7 @@ function creerVignettes(id) {
 		myImg.className = "img-fluid mx-auto d-block";
 		myImg.setAttribute("alt", "img" + i);
 		myImg.setAttribute("title", "img" + i);
-		myImg.setAttribute("src", pathVideos + (scenario[i][0].poster || pathImages + "pelouses/stade.jpg"));
+		myImg.setAttribute("src", pathVideos + (rencontres[i][0].poster || pathImages + "pelouses/stade.jpg"));
 
 		// caption
 		let myCaption = document.createElement("div");
@@ -191,23 +129,23 @@ function creerVignettes(id) {
 		let myF = document.createElement("img");
 		myF.className = "carouselFanion";
 		myF.setAttribute("title", "fanionG" + i);
-		myF.setAttribute("src", pathFanions + (scenario[i][0].gauche.fanion || "fff.png'"));
+		myF.setAttribute("src", pathFanions + (rencontres[i][0].gauche.fanion || "fff.png'"));
 		myCaption.appendChild(myF);
 		// fanion
 		myF = document.createElement("img");
 		myF.className = "carouselFanion";
 		myF.setAttribute("title", "fanionD" + i);
-		myF.setAttribute("src", pathFanions + (scenario[i][0].droite.fanion || "fff.png'"));
+		myF.setAttribute("src", pathFanions + (rencontres[i][0].droite.fanion || "fff.png'"));
 		myCaption.appendChild(myF);
 		
         let myP = document.createElement("p");        
-		myP.innerHTML = scenario[i][0].gauche.nom + "<br>" + scenario[i][0].droite.nom;
+		myP.innerHTML = rencontres[i][0].gauche.nom + "<br>" + rencontres[i][0].droite.nom;
 		myCaption.appendChild(myP);
 		myCaption.className = "carousel-caption d-none d-md-block";
-		// scenario[i][0].id 
+		// rencontre[i][0].id 
 		myCaption.setAttribute("onclick", 'javascript:switchVideo('+ (i+1) +');');	// mettre ici car cette DIV est au-dessus de l'image
-		myCaption.setAttribute("title", (scenario[i][0].rencontre));
-		myCaption.setAttribute("alt", (scenario[i][0].rencontre));
+		myCaption.setAttribute("title", (rencontres[i][0].rencontre));
+		myCaption.setAttribute("alt", (rencontres[i][0].rencontre));
 
 		myDiv.appendChild(myImg);
 		myDiv.appendChild(myCaption);
@@ -216,7 +154,7 @@ function creerVignettes(id) {
 
 		let myScript = document.createElement("SCRIPT");
 		myScript.setAttribute("type", "text/javascript");
-		myScript.setAttribute("src", "../rencontres/" + scenario[i][0].scenario);
+		myScript.setAttribute("src", "../rencontres/" + rencontres[i][0].scenario);
 		document.head.appendChild(myScript);
 	}
 }
@@ -251,14 +189,14 @@ function switchVideo(n) {
     //;
 
 
-	if (n > arrayAssoSize(scenario)) {
+	if (n > arrayAssoSize(rencontres)) {
 		// vérifie si l'index de la vidéo existe dans le fichier tableau.js
 		n = 0;
 		return false;
 	} else {
 		// MAJ videos
 		idVideo = n;		// 1 = première vidéo
-		video = scenario[n-1];    // recup scénario de la vidéo
+		video = rencontres[n-1];    // recup scénario de la vidéo
 		idVideoOn = n;
 		
 		//

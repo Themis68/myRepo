@@ -12,17 +12,12 @@ let rencontre = "rencontre(), description(area), poster(pict), fichier(mp4), sce
 let equipe = "{nom(), fanion(png), site(url), maillotCouleur(rgb), shortCouleur(rgb)}";
 let arbitre = "{maillotCouleur(rgb), shortCouleur(rgb)}"
 var structureRencontre =  rencontre + ", gauche" + equipe  + ", droite" + equipe + ", arbitre" + arbitre + "}";
-var codeCatalogue = "";
 // picker
 //var indexElement = undefined;
 //pipette
 //var canvas;
 var ctx;
 var images = '';
-
-// tab CATALOGUE
-var pathRencontres = "../rencontres/";		// vidéos des matchs
-
 
 document.addEventListener("DOMContentLoaded", init, false);	// lance l'écoute des évènements et appelle INIT
 document.addEventListener('click', gestClick);
@@ -133,7 +128,6 @@ function setInnerHTML(id, value) {
 
 function formStructure(structure) {
     // construction de laz chaine de caracteres qui emportera le code dans le catalogue
-    codeCatalogue = "";
 
     let lStructure = structure.split(",");
     let lString = "";
@@ -169,23 +163,18 @@ function formStructure(structure) {
             switch (lObject[1]) {
                 case "area":
                     lString += '<textarea id="story" name="story" rows="5" cols="33" id="'+lObject[0]+'"></textarea>';
-                    codeCatalogue += lObject[1] + ': "' + lObject[0] + '";';
                     break;
                 case "pict":
                     lString += '<input type="button" onclick="javascript:capturePictFromVideo(\'myVideo\')" id="'+lObject[0]+';"/>';
-                    codeCatalogue += lObject[1] + ': "' + lObject[0] + '";';
                     break;
                 case "mp4":
                     lString += '<input id="uploaded"'+lObject[0]+ ' type="file" accept="video/mp4"/>';
-                    codeCatalogue += lObject[1] + ': "' + lObject[0] + '";';
                     break;
                 case "js":
                     lString += '<input id="uploaded"'+lObject[0]+ ' type="file" accept=".js"/>';
-                    codeCatalogue += lObject[1] + ': "' + lObject[0] + '";';
                     break;
                 case "url":
                     lString += '<input type="text" id="'+lObject[0]+'"/>';
-                    codeCatalogue += lObject[1] + ': "' + lObject[0] + '";';
                     break;
                 case "rgb":
                     lString += '<div class="pipette">'
@@ -193,18 +182,15 @@ function formStructure(structure) {
                     lString += '<input id="rgb'+i+'" type="text" value="" />';
                     lString += "<script>let e = getElementById('rgb"+i+"'); e.addEventListener('click', loadPipette);</script></div>";
                     lString += '<div id="previewrgb'+i+'">&nbsp;</div>';
-                  //  lString += '<sil><canvas class="silrgb" id="silrgb'+i+'"></canvas></sil>';
+                    lString += '<sil><canvas class="silrgb" id="silrgb'+i+'"></canvas></sil>';
                     lString += '</div>';
-                    codeCatalogue += lObject[1] + ': "' + lObject[0] + '";';
                     break;
                 default:
                     lString += ' <input type="text" id="'+lObject[0]+'"/>';
-                    codeCatalogue += lObject[1] + ': "' + lObject[0] + '";';
                     break;
             }
         }
         lString += "<br></span>";
-
     }
     return lString;
 } 
@@ -287,63 +273,3 @@ $(function(){
         document.getElementById(objet.dataset.obj).value = "rgb("+pixel[0]+','+pixel[1]+','+pixel[2]+")";
     });
 })
-
-function tab(index){
-
-    //document.getElementsByClassName("tabs").style.display = false;  // on masque l'onglet actuel
-    document.querySelector("tab" + index).style.display = true; // on aaffiche l'onglet nouveau
-
-}
-
-/*  ONGKET CATALOGUE  */
-function creerCatalogue() {
-
-    var testEndings = function(string, endings) {
-        var file = new File([string], { type: 'plain/text',
-                                        endings: endings });
-
-/*
-        var reader = new FileReader();
-        reader.onload = function(event){
-        console.log(endings + ' of ' + JSON.stringify(string) + 
-                    ' => ' + JSON.stringify(reader.result));
-        };
-        reader.readAsText(file);
-*/
-        file.toBlob(function (blob) {
-            var a = document.getElementById('ancre');
-            a.href = URL.createObjectURL(blob);
-            a.target = '_blank';
-        })
-        
-    }
-
-    testEndings('foo\nbar', 'native');
-}
-
-function genererCatalogue() {
-
-    //creerCatalogue();
-
-    console.log("generer");
-    let myTab = codeCatalogue.split(";");
-    var a = document.getElementById('ancre');
-
-    var file = new File( myTab, "catalogue", { type: 'plain/text',
-                                        endings: 'native' });
-
-   // a.href = file;
-
-    a.href = URL.createObjectURL(file);
-    a.target = '_blank';
-
-   /*var file = new File( [myTab], "catalogue", { type: 'plain/text',
-                                        endings: "native" });
-
-    file.toBlob(function (blob) {
-        var a = document.getElementById('ancre');
-        a.href = URL.createObjectURL(blob);
-        a.target = '_blank';
-    })
-    */
-}
