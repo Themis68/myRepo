@@ -1,5 +1,8 @@
 @import url("../src/typo/scoreboard/stylesheet.css");
 @import url("passion_one/stylesheet.css");
+
+@import url("./steps.css");
+
 html,
 body,
 p,
