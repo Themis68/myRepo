@@ -123,62 +123,10 @@ main bascule span {
 }
 main section {
   display: flex;
-  width: 80%;
+  width: 90%;
   flex-direction: column;
   flex-wrap: wrap;
   align-items: center;
-}
-main section div .container {
-  flex: 1;
-  text-align: center;
-  color: white;
-  font-size: 1vw;
-}
-main section div .container .row {
-  display: flex;
-}
-main section div .container .row .card {
-  display: flex;
-  flex: 1;
-  max-width: min-content;
-  justify-items: center;
-  font-size: 1vw;
-}
-main section div .container .row .card .card-header {
-  display: flex;
-  flex: 1;
-  background-color: white;
-  justify-content: center;
-}
-main section div .container .row .card .card-hr {
-  width: 100%;
-  background-color: white;
-  height: 0px;
-}
-main section div .container .row .card .card-hr-active {
-  width: 100%;
-  background-color: peru;
-  height: 4px;
-}
-main section div .container .row .card .card-body {
-  display: flex;
-  flex: 1;
-  max-width: fit-content;
-  flex-direction: column;
-}
-main section div .container .row .card .card-body .card-title {
-  display: flex;
-  flex: 1;
-  max-width: min-content;
-  flex-direction: column;
-  font-size: 1vw;
-}
-main section div .container .row .card .card-body .card-text {
-  display: flex;
-  flex: 1;
-  max-width: min-content;
-  flex-direction: column;
-  font-size: 0.75vw;
 }
 main picker {
   display: flex;
