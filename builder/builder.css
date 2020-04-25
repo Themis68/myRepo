@@ -1,8 +1,5 @@
 @import url("../src/typo/scoreboard/stylesheet.css");
 @import url("passion_one/stylesheet.css");
-
-@import url("./steps.css");
-
 html,
 body,
 p,
@@ -127,9 +124,10 @@ main bascule span {
 main section {
   display: flex;
   width: 90%;
-  flex-direction: column;
+  flex-direction: row;
   flex-wrap: wrap;
-  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
 }
 main picker {
   display: flex;
