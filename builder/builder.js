@@ -468,3 +468,23 @@ function genererCatalogue() {
     phoneNoselect ();
     nice_Select ();
 })(jQuery); 
+
+function uploadCatalogue(event) {
+    // récupération du nom de la vidéo
+    //let fichier = document.getElementById("uploadedFile").value;
+    //let tab = fichier.split("\\");
+    //fileName = {completeName:fichier, shortName:tab[tab.length-1]};
+
+    //console.log(fichier);
+
+
+    var input = event.target;
+
+    var reader = new FileReader();
+    reader.onload = function(){
+        var dataURL = reader.result;
+        var output = document.getElementById('contentCatalogue');
+        output.value = dataURL;
+    };
+    reader.readAsText(input.files[0]);
+}

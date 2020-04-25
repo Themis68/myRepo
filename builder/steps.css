@@ -4,6 +4,7 @@
     flex-direction: column;
     flex-wrap: wrap;
     align-items: center;
+    justify-items: center;
 }
 
 }.multisteps-form__progress {
@@ -90,7 +91,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
+    width: max-content;
     height: 0;
     opacity: 0;
     visibility: hidden;
