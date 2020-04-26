@@ -13,10 +13,11 @@ let equipe = "{nom(), fanion(png), site(url), maillotCouleur(rgb), shortCouleur(
 let arbitre = "{maillotCouleur(rgb), shortCouleur(rgb)}"
 var structureRencontre =  rencontre + ", gauche" + equipe  + ", droite" + equipe + ", arbitre" + arbitre + "}";
 var codeCatalogue = "";
-// picker
-//var indexElement = undefined;
-//pipette
-//var canvas;
+
+// contenu du catalogue
+var myCatalogue = "";
+
+// pipette
 var ctx;
 var images = '';
 
@@ -470,21 +471,17 @@ function genererCatalogue() {
 })(jQuery); 
 
 function uploadCatalogue(event) {
-    // récupération du nom de la vidéo
-    //let fichier = document.getElementById("uploadedFile").value;
-    //let tab = fichier.split("\\");
-    //fileName = {completeName:fichier, shortName:tab[tab.length-1]};
-
-    //console.log(fichier);
-
-
     var input = event.target;
-
     var reader = new FileReader();
     reader.onload = function(){
         var dataURL = reader.result;
-        var output = document.getElementById('contentCatalogue');
-        output.value = dataURL;
+        document.getElementById('contentCatalogue').value = dataURL;
+        getCatalogue(reader.result);    //appel nécessaire pour sortir du context local et affecter la variable myCatalogue
     };
     reader.readAsText(input.files[0]);
+}
+
+function getCatalogue(myCat){
+    myCatalogue = JSON.parse(myCat); 
+    console.log(myCatalogue.rencontres); 
 }

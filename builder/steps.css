@@ -7,7 +7,16 @@
     justify-items: center;
 }
 
-}.multisteps-form__progress {
+.multisteps-form__content {
+  display: flex;
+  width: 80%;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-items: center;
+}
+
+.multisteps-form__progress {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
   }
