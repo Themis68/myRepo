@@ -475,7 +475,7 @@ function uploadCatalogue(event) {
     var reader = new FileReader();
     reader.onload = function(){
         var dataURL = reader.result;
-        document.getElementById('contentCatalogue').value = dataURL;
+      //  document.getElementById('contentCatalogue').value = dataURL;
         getCatalogue(reader.result);    //appel nécessaire pour sortir du context local et affecter la variable myCatalogue
     };
     reader.readAsText(input.files[0]);
@@ -483,5 +483,19 @@ function uploadCatalogue(event) {
 
 function getCatalogue(myCat){
     myCatalogue = JSON.parse(myCat); 
-    console.log(myCatalogue.rencontres); 
+    if(myCatalogue.rencontres.length > 0 ) {
+        let liste = document.querySelector("listeMatch");
+        let matchs = document.createElement("ul");
+        matchs.setAttribute("class", "matchs");
+        liste.appendChild(matchs);
+
+        for (let i=0; i < myCatalogue.rencontres.length; i++){
+            let match = document.createElement("li");
+            match.setAttribute("class", "match");
+            match.id = "match"+i;
+            match.innerHTML = myCatalogue.rencontres[i].rencontre;
+            matchs.appendChild(match);
+        }
+    }
+    
 }
