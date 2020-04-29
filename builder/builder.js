@@ -438,33 +438,53 @@ function uploadCatalogue(event) {
     var input = event.target;
     var reader = new FileReader();
     reader.onload = function(){
-        var dataURL = reader.result;
-        listerCatalogues(reader.result);    //appel nécessaire pour sortir du context local et affecter la variable myCatalogue
+        //var dataURL = reader.result;
+        getCatalogue(reader.result);    //appel nécessaire pour sortir du context local et affecter la variable myCatalogue
     };
     reader.readAsText(input.files[0]);
 }
 
 // lister les catalogues
-function listerCatalogues(myCat){
+function getCatalogue(myCat){
     myCatalogue = JSON.parse(myCat); 
+
+    console.log(myCatalogue.rencontres.length );
+
     if(myCatalogue.rencontres.length > 0 ) {
         let liste = document.querySelector("listeMatch");
-        let matchs = document.createElement("ul");
-        matchs.setAttribute("class", "matchs");
+        let matchs = document.createElement("div");
+        matchs.setAttribute("class", "list-group");
         liste.appendChild(matchs);
 
         for (let i=0; i < myCatalogue.rencontres.length; i++){
-            let match = document.createElement("li");
-            match.setAttribute("class", "match");
-            match.id = "match"+i;
-            match.innerHTML = myCatalogue.rencontres[i].rencontre;
-            matchs.appendChild(match);
+            let matchA = document.createElement("a");
+            matchA.href = "#";
+            matchA.setAttribute("class", "list-group-item list-group-item-action flex-column align-items-start" + (i==0 ? "active" : ""));
+            matchA.id = "match"+i;
+            matchA.innerHTML = myCatalogue.rencontres[i].rencontre;
+            matchs.appendChild(matchA);
+
+            let matchD = document.createElement("div");
+            matchD.setAttribute("class", "d-flex w-100 justify-content-between");
+            matchA.appendChild(matchD);
+
+            let matchH = document.createElement("h5");
+            matchH.setAttribute("class", "mb-1");
+            matchD.appendChild(matchH);
+
+            let matchP = document.createElement("p");
+            matchP.innerHTML = myCatalogue.rencontres[i].description;
+            matchD.appendChild(matchP);
+
+            matchA.appendChild(matchD);
+
+            matchs.appendChild(matchA);
         }
     }   
 }
 
 // creerCatalogue
-function genererCatalogue() {
+function creerCatalogue() {
     let b =  document.querySelector("listeMatch");
     var a = document.createElement('a');
     let myTab = '{"rencontres": []}';

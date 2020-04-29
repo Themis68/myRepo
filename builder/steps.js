@@ -142,7 +142,7 @@ DOMstrings.stepsForm.addEventListener('click', e => {
 
   // demande de création d'un catalogue
   if (eventTarget.classList.contains(`${DOMstrings.stepNewcatBtnClass}`)) {
-    genererCatalogue();
+    creerCatalogue();
   }
 
   //check if we clicked on `PREV` or NEXT` buttons
