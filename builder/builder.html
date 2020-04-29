@@ -73,6 +73,8 @@
                 <h3 class="multisteps-form__title">Sélectionner le fichier catalogue</h3>
                 <div class="multisteps-form__content">
                   <div class="form-row mt-4">
+                    <button class="btn btn-primary js-btn-create" type="button" title="Créer un catalogue">Nouveau catalogue</button>
+                    <!--<h1><a id="ancre" href="">nouveau catalogue</a></h1>-->
                     <input id="uploadedFile" type="file" accept=".json" onchange="uploadCatalogue(event)"/>
                     <!--<textarea rows="5" cols="33" id="contentCatalogue"></textarea>-->
                     <listeMatch>
@@ -180,7 +182,7 @@
           <p id=rencontre></p>
           <p>
             <input type="button" value="Sauvegarder" onclick="javascript:genererCatalogue();">
-            <h1><a id="ancre" href="">ancre</a></h1>
+            
           </p>
         </rencontre>
         <question></question>

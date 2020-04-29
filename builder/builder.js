@@ -289,28 +289,20 @@ $(function(){
     });
 })
 
-function tab(index){
+/*function tab(index){
 
     //document.getElementsByClassName("tabs").style.display = false;  // on masque l'onglet actuel
     document.querySelector("tab" + index).style.display = true; // on aaffiche l'onglet nouveau
 
-}
+}*/
 
-/*  ONGKET CATALOGUE  */
+/*  ONGKET CATALOGUE  
 function creerCatalogue() {
 
     var testEndings = function(string, endings) {
         var file = new File([string], { type: 'plain/text',
                                         endings: endings });
 
-/*
-        var reader = new FileReader();
-        reader.onload = function(event){
-        console.log(endings + ' of ' + JSON.stringify(string) + 
-                    ' => ' + JSON.stringify(reader.result));
-        };
-        reader.readAsText(file);
-*/
         file.toBlob(function (blob) {
             var a = document.getElementById('ancre');
             a.href = URL.createObjectURL(blob);
@@ -318,37 +310,9 @@ function creerCatalogue() {
         })
         
     }
-
     testEndings('foo\nbar', 'native');
-}
-
-function genererCatalogue() {
-
-    //creerCatalogue();
-
-    console.log("generer");
-    let myTab = codeCatalogue.split(";");
-    var a = document.getElementById('ancre');
-
-    var file = new File( myTab, "catalogue", { type: 'plain/text',
-                                        endings: 'native' });
-
-   // a.href = file;
-
-    a.href = URL.createObjectURL(file);
-    a.target = '_blank';
-
-   /*var file = new File( [myTab], "catalogue", { type: 'plain/text',
-                                        endings: "native" });
-
-    file.toBlob(function (blob) {
-        var a = document.getElementById('ancre');
-        a.href = URL.createObjectURL(blob);
-        a.target = '_blank';
-    })
-    */
-}
-
+}*/
+  
 /******************** STEPS *********/
 
 ;(function($) {
@@ -475,13 +439,13 @@ function uploadCatalogue(event) {
     var reader = new FileReader();
     reader.onload = function(){
         var dataURL = reader.result;
-      //  document.getElementById('contentCatalogue').value = dataURL;
-        getCatalogue(reader.result);    //appel nécessaire pour sortir du context local et affecter la variable myCatalogue
+        listerCatalogues(reader.result);    //appel nécessaire pour sortir du context local et affecter la variable myCatalogue
     };
     reader.readAsText(input.files[0]);
 }
 
-function getCatalogue(myCat){
+// lister les catalogues
+function listerCatalogues(myCat){
     myCatalogue = JSON.parse(myCat); 
     if(myCatalogue.rencontres.length > 0 ) {
         let liste = document.querySelector("listeMatch");
@@ -496,6 +460,19 @@ function getCatalogue(myCat){
             match.innerHTML = myCatalogue.rencontres[i].rencontre;
             matchs.appendChild(match);
         }
-    }
-    
+    }   
+}
+
+// creerCatalogue
+function genererCatalogue() {
+    let b =  document.querySelector("listeMatch");
+    var a = document.createElement('a');
+    let myTab = '{"rencontres": []}';
+    var file = new File( [myTab], "catalogue.json", { type: "plain/text", endings: "native" });
+    a.href = URL.createObjectURL(file);
+    a.setAttribute('download',  'catalogue_' + avatar + '.json');   // déclenche ledownload sur le click
+    b.appendChild(a);
+    a.click();  // provoque le clic sur l'objet
+    b.removeChild(a);   // supprime l'objet
+    alert("la catalogue catalogue_" + avatar + ".json vient d'être mis à disposition dans votre dossier de téléchargements");
 }
