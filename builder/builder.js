@@ -459,21 +459,22 @@ function getCatalogue(myCat){
         for (let i=0; i < myCatalogue.rencontres.length; i++){
             let matchA = document.createElement("a");
             matchA.href = "#";
-            matchA.setAttribute("class", "list-group-item list-group-item-action flex-column align-items-start" + (i==0 ? "active" : ""));
+            matchA.setAttribute("class", "list-group-item list-group-item-action flex-column align-items-start js-btn-next");
             matchA.id = "match"+i;
             matchA.innerHTML = myCatalogue.rencontres[i].rencontre;
             matchs.appendChild(matchA);
 
             let matchD = document.createElement("div");
-            matchD.setAttribute("class", "d-flex w-100 justify-content-between");
+            matchD.setAttribute("class", "d-flex w-100 justify-content-between js-btn-next");
             matchA.appendChild(matchD);
 
             let matchH = document.createElement("h5");
-            matchH.setAttribute("class", "mb-1");
+            matchH.setAttribute("class", "mb-1 js-btn-next");
             matchD.appendChild(matchH);
 
-            let matchP = document.createElement("p");
+            let matchP = document.createElement("small");
             matchP.innerHTML = myCatalogue.rencontres[i].description;
+            matchP.setAttribute("class", "js-btn-next");
             matchD.appendChild(matchP);
 
             matchA.appendChild(matchD);

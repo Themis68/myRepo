@@ -113,6 +113,8 @@ const setFormHeight = () => {
 
 //STEPS BAR CLICK FUNCTION
 DOMstrings.stepsBar.addEventListener('click', e => {
+  console.log(e.target);
+  return;
 
   console.log("clic sur stepsBar " + e.target);
   //check if click target is a step button
@@ -159,11 +161,8 @@ DOMstrings.stepsForm.addEventListener('click', e => {
   //set active step and active panel onclick
   if (eventTarget.classList.contains(`${DOMstrings.stepPrevBtnClass}`)) {
     activePanelNum--;
-
   } else {
-
     activePanelNum++;
-
   }
 
   setActiveStep(activePanelNum);
