@@ -1,7 +1,20 @@
 $('#carousel-example').on('slide.bs.carousel', function (e) {
+//$('#carousel-example').on('slide', function (e) {
+    var screenParams = [
+        {width:375, nbElem:2},
+        {width:576, nbElem:2},
+        {width:768, nbElem:3},
+        {width:991, nbElem:4}
+    ];
+
     var $e = $(e.relatedTarget);
     var idx = $e.index();
-    var itemsPerSlide = 4;
+
+
+    // déterminer le nombre de slides à afficher sur une ligne
+    let indexScreen = arrayAssoSearch2(screenParams, window.screen.width);
+    var itemsPerSlide = screenParams[indexScreen].nbElem;
+
     var totalItems = $('.carousel-item').length;
 
     if (idx >= totalItems-(itemsPerSlide-1)) {

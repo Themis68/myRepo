@@ -4,8 +4,8 @@
 
 @font-face {
     font-family: 'passion_oneregular';
-    src: url('./typo/passion_one/passionone-regular.woff2') format('woff2'),
-         url('./typo/passion_one/passionone-regular.woff') format('woff');
+    src: url('./passionone-regular.woff2') format('woff2'),
+         url('./passionone-regular.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 

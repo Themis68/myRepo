@@ -8,7 +8,8 @@ function user() {
 	while (!avatarOk);
 	avatar = avatar.toUpperCase();
 	document.title = "Bienvenue " + avatar;
-	document.querySelector("bascule span").innerHTML = avatar + " " + tabMessages[0];
+	let msg = (tabMessages === undefined ? document.title : avatar + " " + tabMessages[0]);
+	document.querySelector("bascule span").innerHTML = msg;
 }
 
 // retourne la taille d'un tableau associatif
@@ -39,6 +40,20 @@ function arrayAssoSearch(arr, valObject) {
 		}
 	}
 	return -1;	// aucun résultat
+}
+
+function arrayAssoSearch2(arr, valObject) {
+	let res = null;
+	console.log("rechercher ", valObject);
+	var nbEl = arrayAssoSize(arr);
+	for (let ind = 0; ind < nbEl; ind++) {
+		console.log(arr[ind].width);
+		if (valObject >= arr[ind].width ) {
+			res = ind;	// retourne l'indice du tableau
+		}
+	}
+	console.log("res ", res);
+	return res;	// aucun résultat
 }
 
 function deleteChild(selector) { 

@@ -2,8 +2,8 @@
 
 @font-face {
     font-family: 'scoreboardregular';
-    src: url('./typo/scoreboard/scoreboard.woff2') format('woff2'),
-         url('./typo/scoreboard/scoreboard.woff') format('woff');
+    src: url('./scoreboard.woff2') format('woff2'),
+         url('./scoreboard.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 

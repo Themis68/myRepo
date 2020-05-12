@@ -131,15 +131,22 @@ main header {
   display: flex;
   flex-direction: row;
   justify-content: center;
+}
+main header div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
   align-items: center;
+  flex: 1;
 }
-main header img {
-  width: 3vw;
-  height: 3vw;
+main header div img {
+  flex: 1;
+  width: 5vw;
+  height: 5vw;
 }
-main header span {
+main header div span {
   font-family: scoreboardregular;
-  font-size: 5vw;
+  font-size: 5rem;
   color: white;
   line-height: normal;
 }
@@ -169,7 +176,7 @@ main menu bascule img {
 }
 main menu bascule span {
   align-self: flex-start;
-  font-size: 1vw;
+  font-size: 1.6rem;
   color: white;
 }
 main menu carousel {

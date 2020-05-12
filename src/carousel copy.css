@@ -142,9 +142,8 @@
 }         
 
 @media (max-width: 576px) {
-/* Show 2 slide on sm-6 */
-    .carousel-inner .active .col-xs-6 .carousel-item + .carousel-item{
-        width:50%;
+/* Show 2 slide on sm  if col-sm-6*/
+    .carousel-inner .active.col-sm-6.carousel-item + .carousel-item{
         position: absolute;
         top: 0;
         right: -50%;  /*change this with javascript in the future*/
