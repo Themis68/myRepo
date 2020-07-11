@@ -173,7 +173,7 @@ var script3 = [
             attributs: ["La surface de but","La surface de réparation","Le rond central","La surface libre"]
         },
         reponse: {
-            solution: 3,
+            solution: 2,
             loi: 1,
             points: 1,
             temps: 6
@@ -238,7 +238,7 @@ var script3 = [
             "Peux lever mes deux pieds"]
         },
         reponse: {
-            solution: 2,
+            solution: 3,
             points: 2,
             loi: 1,
             temps: 8
