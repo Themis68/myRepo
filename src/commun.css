@@ -2,15 +2,10 @@ footer {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  flex-wrap: nowrap;
-  flex-grow: 0;
-  flex-shrink: 1;
   background-color: midnightblue;
-  color: white;
   padding-top: 5px;
   padding-left: 5px;
   padding-right: 5px;
-  font-size: 1vw;
   flex-basis: 2.5rem;
 }
 footer div {
@@ -19,8 +14,10 @@ footer div {
   justify-content: center;
 }
 footer div span {
+  font-family: passion_oneregular;
+  color: white;
+  font-size: 1.4vw;
   text-align: center;
-  line-height: 1.5rem;
 }
 footer div span a {
   font-family: passion_oneregular;
