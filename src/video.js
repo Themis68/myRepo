@@ -81,7 +81,7 @@ function init() {
 	//
 
 	// mettre les listener ici car il faut avoir chargée la page
-
+	footer();
 	// clic sur l'image de bascule
 	var bascule = document.querySelector("bascule img");
 	bascule.addEventListener("click", fBascule);	// de haut en bas

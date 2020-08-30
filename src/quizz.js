@@ -84,9 +84,14 @@ function init() {
 
 	// mettre les listener ici car il faut avoir chargée la page
 
+<<<<<<< HEAD
 	console.log(window.screen.width , window.screen.height);
 
 
+=======
+	footer();
+	
+>>>>>>> footer
 	// clic sur l'image de bascule
 	var bascule = document.querySelector("bascule img");
 	user();
@@ -367,8 +372,11 @@ function response(numQ, propSel) {
 	document.getElementsByClassName("prop"+ myQ.reponse.solution)[0].setAttribute("style", "filter:drop-shadow(2px 4px 6px);cursor:pointer");
 	if (myQ.reponse.loi == undefined){
 		// prendre la loi du quizz
-		console.log("loi du quizz", quizz.loi);
-		loi = lois[quizz.loi-1].fichier;
+		if (quizz.loi == undefined) {
+			loi="mix"
+		} else {
+			loi = lois[quizz.loi-1].fichier;
+		}
 	} else {
 		// loi de la question
 		loi = lois[(myQ.reponse.loi)-1].fichier;
