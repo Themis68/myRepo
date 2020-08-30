@@ -64,5 +64,5 @@ var script2 = [
             loi: 4,
             points: 1
         }
-    },
+    }
 ]

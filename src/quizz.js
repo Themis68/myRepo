@@ -70,6 +70,7 @@ var pathBadges = pathQuizz + "badges/";		//  badges
 // **********************************************************************************************************
 
 document.addEventListener("DOMContentLoaded", init, false);	// lance l'écoute des évènements et appelle INIT
+//window.MediaQueryList.addListener(lookScreen);
 
 window.addEventListener("resize", function(){
 	console.log(window.screen.width , window.screen.height);
@@ -91,6 +92,10 @@ function init() {
 	user();
 	bascule.addEventListener("click", fBascule);	// de haut en bas
 	creerVignettes("vignettes");					        // générer le vignettes dans le carousel
+}
+
+function lookScreen(evt) {
+	console.log(evt);
 }
 
 function creerVignettes(id) {
@@ -117,8 +122,13 @@ function creerVignettes(id) {
 
 		// div
 		let myDiv = document.createElement("div");
+<<<<<<< HEAD
 //		myDiv.className = "carousel-item col-12 col-sm-6 col-md-4 col-lg-3" + (i === 0?' active':'');
 		myDiv.className = "carousel-item col-" + screenParams[indexScreen].code + (i === 0?' active':'');	// 2 3 et 4
+=======
+		//myDiv.className = "carousel-item col-xs-6 col-sm-6 col-md-3 col-lg-2" + (i === 0?' active':'');
+		myDiv.className = "carousel-item col-xs-6 col-sm-6 col-md-3 col-lg-2" + (i === 0?' active':'');
+>>>>>>> steps
 
 		// img
 		let myImg = document.createElement("img");

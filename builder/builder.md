@@ -1,3 +1,7 @@
+- gestion locale de Crome
+sous Mac :
+open -n -a /Applications/Google\ Chrome.app --args --user-data-dir="/Users/parents" --disable-web-security
+
 - gestion de l'updateFile
 
 https://stackoverflow.com/questions/3521122/html-input-type-file-apply-a-filter

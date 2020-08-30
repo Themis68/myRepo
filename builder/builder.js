@@ -13,10 +13,11 @@ let equipe = "{nom(), fanion(png), site(url), maillotCouleur(rgb), shortCouleur(
 let arbitre = "{maillotCouleur(rgb), shortCouleur(rgb)}"
 var structureRencontre =  rencontre + ", gauche" + equipe  + ", droite" + equipe + ", arbitre" + arbitre + "}";
 var codeCatalogue = "";
-// picker
-//var indexElement = undefined;
-//pipette
-//var canvas;
+
+// contenu du catalogue
+var myCatalogue = "";
+
+// pipette
 var ctx;
 var images = '';
 
@@ -289,28 +290,20 @@ $(function(){
     });
 })
 
-function tab(index){
+/*function tab(index){
 
     //document.getElementsByClassName("tabs").style.display = false;  // on masque l'onglet actuel
     document.querySelector("tab" + index).style.display = true; // on aaffiche l'onglet nouveau
 
-}
+}*/
 
-/*  ONGKET CATALOGUE  */
+/*  ONGKET CATALOGUE  
 function creerCatalogue() {
 
     var testEndings = function(string, endings) {
         var file = new File([string], { type: 'plain/text',
                                         endings: endings });
 
-/*
-        var reader = new FileReader();
-        reader.onload = function(event){
-        console.log(endings + ' of ' + JSON.stringify(string) + 
-                    ' => ' + JSON.stringify(reader.result));
-        };
-        reader.readAsText(file);
-*/
         file.toBlob(function (blob) {
             var a = document.getElementById('ancre');
             a.href = URL.createObjectURL(blob);
@@ -318,33 +311,190 @@ function creerCatalogue() {
         })
         
     }
-
     testEndings('foo\nbar', 'native');
+}*/
+  
+/******************** STEPS *********/
+
+;(function($) {
+    "use strict";  
+    
+    //* Form js
+    function verificationForm(){
+        //jQuery time
+        var current_fs, next_fs, previous_fs; //fieldsets
+        var left, opacity, scale; //fieldset properties which we will animate
+        var animating; //flag to prevent quick multi-click glitches
+
+        $(".next").click(function () {
+            if (animating) return false;
+            animating = true;
+
+            current_fs = $(this).parent();
+            next_fs = $(this).parent().next();
+
+            //activate next step on progressbar using the index of next_fs
+            $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+
+            //show the next fieldset
+            next_fs.show();
+            //hide the current fieldset with style
+            current_fs.animate({
+                opacity: 0
+            }, {
+                step: function (now, mx) {
+                    //as the opacity of current_fs reduces to 0 - stored in "now"
+                    //1. scale current_fs down to 80%
+                    scale = 1 - (1 - now) * 0.2;
+                    //2. bring next_fs from the right(50%)
+                    left = (now * 50) + "%";
+                    //3. increase opacity of next_fs to 1 as it moves in
+                    opacity = 1 - now;
+                    current_fs.css({
+                        'transform': 'scale(' + scale + ')',
+                        'position': 'absolute'
+                    });
+                    next_fs.css({
+                        'left': left,
+                        'opacity': opacity
+                    });
+                },
+                duration: 800,
+                complete: function () {
+                    current_fs.hide();
+                    animating = false;
+                },
+                //this comes from the custom easing plugin
+                easing: 'easeInOutBack'
+            });
+        });
+
+        $(".previous").click(function () {
+            if (animating) return false;
+            animating = true;
+
+            current_fs = $(this).parent();
+            previous_fs = $(this).parent().prev();
+
+            //de-activate current step on progressbar
+            $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+
+            //show the previous fieldset
+            previous_fs.show();
+            //hide the current fieldset with style
+            current_fs.animate({
+                opacity: 0
+            }, {
+                step: function (now, mx) {
+                    //as the opacity of current_fs reduces to 0 - stored in "now"
+                    //1. scale previous_fs from 80% to 100%
+                    scale = 0.8 + (1 - now) * 0.2;
+                    //2. take current_fs to the right(50%) - from 0%
+                    left = ((1 - now) * 50) + "%";
+                    //3. increase opacity of previous_fs to 1 as it moves in
+                    opacity = 1 - now;
+                    current_fs.css({
+                        'left': left
+                    });
+                    previous_fs.css({
+                        'transform': 'scale(' + scale + ')',
+                        'opacity': opacity
+                    });
+                },
+                duration: 800,
+                complete: function () {
+                    current_fs.hide();
+                    animating = false;
+                },
+                //this comes from the custom easing plugin
+                easing: 'easeInOutBack'
+            });
+        });
+
+        $(".submit").click(function () {
+            return false;
+        })
+    }; 
+    
+    //* Add Phone no select
+    function phoneNoselect(){
+        if ( $('#msform').length ){   
+            $("#phone").intlTelInput(); 
+            $("#phone").intlTelInput("setNumber", "+880"); 
+        };
+    }; 
+    //* Select js
+    function nice_Select(){
+        if ( $('.product_select').length ){ 
+            $('select').niceSelect();
+        };
+    }; 
+    /*Function Calls*/  
+    verificationForm ();
+    phoneNoselect ();
+    nice_Select ();
+})(jQuery); 
+
+function uploadCatalogue(event) {
+    var input = event.target;
+    var reader = new FileReader();
+    reader.onload = function(){
+        //var dataURL = reader.result;
+        getCatalogue(reader.result);    //appel nécessaire pour sortir du context local et affecter la variable myCatalogue
+    };
+    reader.readAsText(input.files[0]);
 }
 
-function genererCatalogue() {
+// lister les catalogues
+function getCatalogue(myCat){
+    myCatalogue = JSON.parse(myCat); 
 
-    //creerCatalogue();
+    console.log(myCatalogue.rencontres.length );
 
-    console.log("generer");
-    let myTab = codeCatalogue.split(";");
-    var a = document.getElementById('ancre');
+    if(myCatalogue.rencontres.length > 0 ) {
+        let liste = document.querySelector("listeMatch");
+        let matchs = document.createElement("div");
+        matchs.setAttribute("class", "list-group");
+        liste.appendChild(matchs);
 
-    var file = new File( myTab, "catalogue", { type: 'plain/text',
-                                        endings: 'native' });
+        for (let i=0; i < myCatalogue.rencontres.length; i++){
+            let matchA = document.createElement("a");
+            matchA.href = "#";
+            matchA.setAttribute("class", "list-group-item list-group-item-action flex-column align-items-start js-btn-next");
+            matchA.id = "match"+i;
+            matchA.innerHTML = myCatalogue.rencontres[i].rencontre;
+            matchs.appendChild(matchA);
 
-   // a.href = file;
+            let matchD = document.createElement("div");
+            matchD.setAttribute("class", "d-flex w-100 justify-content-between js-btn-next");
+            matchA.appendChild(matchD);
 
+            let matchH = document.createElement("h5");
+            matchH.setAttribute("class", "mb-1 js-btn-next");
+            matchD.appendChild(matchH);
+
+            let matchP = document.createElement("small");
+            matchP.innerHTML = myCatalogue.rencontres[i].description;
+            matchP.setAttribute("class", "js-btn-next");
+            matchD.appendChild(matchP);
+
+            matchA.appendChild(matchD);
+
+            matchs.appendChild(matchA);
+        }
+    }   
+}
+
+// creerCatalogue
+function creerCatalogue() {
+    let b =  document.querySelector("listeMatch");
+    var a = document.createElement('a');
+    let myTab = '{"rencontres": []}';
+    var file = new File( [myTab], "catalogue.json", { type: "plain/text", endings: "native" });
     a.href = URL.createObjectURL(file);
-    a.target = '_blank';
-
-   /*var file = new File( [myTab], "catalogue", { type: 'plain/text',
-                                        endings: "native" });
-
-    file.toBlob(function (blob) {
-        var a = document.getElementById('ancre');
-        a.href = URL.createObjectURL(blob);
-        a.target = '_blank';
-    })
-    */
+    a.setAttribute('download',  'catalogue_' + avatar + '.json');   // déclenche ledownload sur le click
+    b.appendChild(a);
+    a.click();  // provoque le clic sur l'objet
+    b.removeChild(a);   // supprime l'objet
+    alert("la catalogue catalogue_" + avatar + ".json vient d'être mis à disposition dans votre dossier de téléchargements");
 }
