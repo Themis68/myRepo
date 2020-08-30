@@ -12,6 +12,9 @@
     window.VIDEOJS_NO_DYNAMIC_STYLE = false;
   </script>
 
+  <!-- utilisé pour pipette -->
+  <script src="../jquery-3.1.1/jquery.slim.min.js"></script>
+
   <!--picker--> 
   <link rel="stylesheet" href="../colorjoe-master/colorjoe.css" type="text/css">
   <script src="../colorjoe-master/colorjoe.js" type="text/javascript"></script>
@@ -38,51 +41,83 @@
 
 </head>
 
-<body>
-
+<body onLoad="user();">
   <main>
     <header>
       <a href="../index.html"><img src="../images/isa.png" /></a>&nbsp;&nbsp;
       <span>ARRET SUR IMAGE !</span>
     </header>
+    <bascule>
+      <span>Bienvenue</span>
+    </bascule>
     <section>
+      <!-- Horizontal Steppers -->
+      <div class="container">
+        <div class="row">
+            <div class="card col-md-3">
+              <h5 class="card-header"><a href="#"><span class="cercle">1</span></a></h5>
+              <div class="card-hr-active"></div>
+              <div class="card-body">
+                <h5 class="card-title">Catalogue</h5>
+                <p class="card-text">Vidéos identifiées</p>
+              </div>
+            </div>
+            <div class="card col-md-3">
+              <h5 class="card-header"><a href="#"><span class="cercle">2</span></a></h5>
+              <div class="card-hr"></div>
+              <div class="card-body">
+                <h5 class="card-title">Vidéo</h5>
+                <p class="card-text">Informations Match</p>
+              </div>
+            </div>
+            <div class="card col-md-3">
+              <h5 class="card-header"><a href="#"><span class="cercle">3</span></a></h5>
+              <div class="card-hr"></div>
+              <div class="card-body">
+                <h5 class="card-title">Equipes</h5>
+                <p class="card-text">Joueurs et arbitre</p>
+              </div>
+            </div>
+            <div class="card col-md-3">
+              <h5 class="card-header"><a href="#"><span class="cercle">4</span></a></h5>
+              <div class="card-hr"></div>
+              <div class="card-body">
+                <h5 class="card-title">Résumé</h5>
+                <p class="card-text">Phase validation</p>
+              </div>
+            </div>
+          </div>
+      </div>
       <div>
           <input id="uploadedFile" type="file" accept="video/*"/>
           <input type="button" value="Charger" onclick="javascript:upload();">
       </div>
     </section>
-    <picker>
-      <div class="wrapper">
-        <div class="inputColor">
-          <input id="rgb1" type="text">
-          <button class="butColor" id="displayrgb1" onclick="javascript:toggle('picker');"></div>
-        </div>
-        <div id="picker"></div>
-        <script>
-            const joe = colorjoe.rgb("picker", "red");
-            joe.on("change", color => {
-              document.getElementById("rgb"+ indexElement).value = color.css();
-              document.getElementById("displayrgb"+indexElement).setAttribute("style", "background-color: "+ color.css() +";");
-            }); // survol
-            joe.on("done", color => {
-              document.getElementById("rgb"+ indexElement).value = color.css();
-              document.getElementById("displayrgb"+indexElement).setAttribute("style", "background-color: "+ color.css() +";");
-              toggle("picker", indexElement);
-            });  // clic
-        </script>
-      </div>
-    </picker>
+    <div class="container">
+    </div>
+    <sil>
+      <canvas id="silG"></canvas>
+      <canvas id="silA"></canvas>
+      <canvas id="silD"></canvas>
+    </sil>
     <content id="content">
       <match id="match">
         <video id="myVideo" class="video-js vjs-looping vjs-big-play-centered video-js vjs-default-skin">
           <source id="mp4">
             <p class="vjs-no-js">Votre navigateur ne supporte pas la gestion des vidéos</p>
         </video>
+        <canvas id="panel" width="200" height="90">
+          <a id="myCanvas" href=""></a>
+        </canvas>
       </match>
       <inter>
         <rencontre>
-        <p id=rencontre></p>
-      </rencontre>
+          <p id=rencontre></p>
+          <p>
+            <input type="button" value="Sauvegarder" onclick="javascript:genererCatalogue();">
+            <h1><a id="ancre" href="">ancre</a></h1>
+          </p>
+        </rencontre>
         <question></question>
       </inter>
     </content>

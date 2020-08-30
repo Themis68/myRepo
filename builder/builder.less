@@ -48,17 +48,83 @@ main {
         }
     }
 
+    bascule {
+        display: flex;
+        flex-direction: row;     // alignement vertical des zones 
+
+        span {
+            align-self: flex-start; // alignement centré
+            font-size: 1vw; // taille variable selon largeur du viewport
+            color:white;
+        }
+    }
+
     section {
         display: flex;
+        width: 80%;
         flex-direction: column;
         flex-wrap: wrap;
         align-items: center;
 
-        div {
+        div .container{
             flex: 1;
-                text-align: center;
-                color:white;
-                font-size: 1.25vw; // taille variable selon largeur du viewport
+            text-align: center;
+            color:white;
+            font-size: 1vw; // taille variable selon largeur du viewport
+
+            .row {
+                display: flex;
+
+                .card {
+                    display: flex;
+                    flex: 1;
+                    max-width: min-content;
+                    justify-items: center;
+                    font-size: 1vw;
+
+                    .card-header {
+                        display: flex;
+                        flex: 1;
+                        background-color:white;
+                        justify-content: center;
+                    }
+
+                    .card-hr {
+                        width: 100%;
+                        background-color: white;
+                        height: 0px;
+                    }
+                    
+                    .card-hr-active {
+                        width: 100%;
+                        background-color: peru;
+                        height: 4px;
+                    }
+                    
+                    .card-body {
+                        display: flex;
+                        flex: 1;
+                        max-width: fit-content;
+                        flex-direction: column;
+                    
+                        .card-title {
+                            display: flex;
+                            flex: 1;
+                            max-width: min-content;
+                            flex-direction: column;
+                            font-size: 1vw;
+                        }
+                    
+                        .card-text {
+                            display: flex;
+                            flex: 1;
+                            max-width: min-content;
+                            flex-direction: column;
+                            font-size: 0.75vw;
+                        }
+                    }
+                }
+            }
         }
     }
 
@@ -105,7 +171,13 @@ main {
             flex: 2;        // prend les 3/4 de la largeur
 
             video {
-                flex: 3;
+                display: flex;
+                flex: 1;
+            }
+
+            canvas {
+                display: none;
+                flex-grow: 0;
             }
         }
 
@@ -131,13 +203,167 @@ main {
                     span {
                     }
                 }
-                 input {
-                    flex: 1;
-                    font-size: 1vw;
+
+                input {
+                    font-size: 0.7vw;
                     font-family: Arial, Helvetica, sans-serif;
-                 }
+                }
 
             }           
         }
     }
+}
+
+.cercle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2vw; // taille variable selon largeur du viewport
+    color:white;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    background: green;
+    width: 30px;
+    height: 30px;
+}
+
+/* zone dynamique de récupération de couleur */
+.pipette {
+    display: flex;
+    flex-direction: row;
+
+    div {
+        flex: 1;
+        flex-wrap: nowrap;
+    }
+}
+
+/* canvas silhouette dynamique */
+.silrgb {
+    flex: 1;
+}
+
+
+/*******************************************************/
+
+  
+.container {
+  
+    color:#000;
+
+    margin:20px auto;
+
+    position:relative;
+
+    width:730px;
+
+}
+
+.column1 {
+
+    float:left;
+
+    width:500px;
+
+}
+
+.column2 {
+
+    float:left;
+
+    padding-left:20px;
+
+    width:170px;
+
+}
+
+#panel {
+
+    border:1px #000 solid;
+
+    box-shadow:4px 6px 6px #444444;
+
+    cursor:crosshair;
+
+}
+
+.column2 > div {
+
+    margin-bottom:10px;
+
+}
+
+#swImage {
+
+    border:1px #000 solid;
+
+    box-shadow:2px 3px 3px #444444;
+
+    cursor:pointer;
+
+    height:25px;
+
+    line-height:25px;
+
+    border-radius:3px;
+
+    -moz-border-radius:3px;
+
+    -webkit-border-radius:3px;
+
+}
+
+#swImage:hover {
+
+    margin-left:2px;
+
+}
+
+#preview {
+
+    border:1px #000 solid;
+
+    box-shadow:2px 3px 3px #444444;
+
+    height:80px;
+
+    width:80px;
+
+    border-radius:3px;
+
+    -moz-border-radius:3px;
+
+    -webkit-border-radius:3px;
+
+}
+
+.column2 input[type=text] {
+
+    float:right;
+
+    width:110px;
+
+}
+
+// code Bootstrap de card
+
+.card {
+    display: flex;
+    flex: 1;
+    max-width: min-content;
+    justify-items: center;
+    font-size: 1vw;
+}
+
+
+
+/*$*********************************/
+
+tab1 {
+    display: flex;
+}
+
+tab2 {
+    display: none;
 }
