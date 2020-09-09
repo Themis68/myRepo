@@ -84,14 +84,11 @@ function init() {
 
 	// mettre les listener ici car il faut avoir chargée la page
 
-<<<<<<< HEAD
+
 	console.log(window.screen.width , window.screen.height);
 
-
-=======
 	footer();
 	
->>>>>>> footer
 	// clic sur l'image de bascule
 	var bascule = document.querySelector("bascule img");
 	user();
@@ -127,13 +124,12 @@ function creerVignettes(id) {
 
 		// div
 		let myDiv = document.createElement("div");
-<<<<<<< HEAD
+
 //		myDiv.className = "carousel-item col-12 col-sm-6 col-md-4 col-lg-3" + (i === 0?' active':'');
 		myDiv.className = "carousel-item col-" + screenParams[indexScreen].code + (i === 0?' active':'');	// 2 3 et 4
-=======
+
 		//myDiv.className = "carousel-item col-xs-6 col-sm-6 col-md-3 col-lg-2" + (i === 0?' active':'');
 		myDiv.className = "carousel-item col-xs-6 col-sm-6 col-md-3 col-lg-2" + (i === 0?' active':'');
->>>>>>> steps
 
 		// img
 		let myImg = document.createElement("img");
