@@ -52,11 +52,34 @@ var tabMessages = [
 var pathImages = "../images/";		// autres images
 var pathVideos = "../rencontres/";		// vidéos des matchs
 var pathFanions = pathImages + "fanions/";		// fanions des equipes
+//var fichier = "file:///Volumes/Donnees/Documents/myRepo/rencontres/catalogue.json"; //myURL + "/rencontres/catalogue.json";
+console.log(catalogue);
+//var file = new File( fichier, { type: "application/json", endings: "native" });
+//var rencontres = JSON.parse(catalogue);
+//var rencontres = JSON.parse("file:///Volumes/Donnees/Documents/myRepo/rencontres/catalogue.json");
+/*
+var rencontres = (function() {
+	var json = null;
+	$.ajax({
+		'async': false,
+		'global': false,
+		'url': pathVideos + "catalogue.json",
+		'dataType': "json",
+		'success': function (data) {
+			json = data;
+		}
+	});
+	return json;
+})();
+*/
+
+//console.log("rencontres " + rencontres);
 
 // **********************************************************************************************************
 
 document.addEventListener("DOMContentLoaded", init, false);	// lance l'écoute des évènements et appelle INIT
 document.addEventListener("click", central, false);	// lance l'écoute des évènements CLIC
+
 
 function central(event) {
 	// gestion de la position de la souris pour plus tard
@@ -85,8 +108,7 @@ function init() {
 	// clic sur l'image de bascule
 	var bascule = document.querySelector("bascule img");
 	bascule.addEventListener("click", fBascule);	// de haut en bas
-
-    document._video = document.getElementById("myVideo");   // identification de l'objet video
+	document._video = document.getElementById("myVideo");   // identification de l'objet video
 	creerVignettes("vignettes");					        // générer la vignettes dans le carousel
 }
 
