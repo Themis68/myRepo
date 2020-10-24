@@ -90,6 +90,17 @@ function init() {
 	// clic sur l'image de bascule
 	var bascule = document.querySelector("bascule img");
 	user();
+
+	var request = new XMLHttpRequest();
+	var requestURL = myURL + '/catalogue.json';
+	request.open('GET', requestURL);
+	request.responseType = 'json';
+	request.send();
+	request.onload = function() {
+		var catalogue = request.response;
+		console.log(catalogue)
+;	  }
+
 	bascule.addEventListener("click", fBascule);	// de haut en bas
 	creerVignettes("vignettes");					        // générer le vignettes dans le carousel
 }
