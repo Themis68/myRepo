@@ -1,6 +1,19 @@
+var myURLcomplete = document.location.href;
+var myURL  = myURLcomplete.substring( 0 ,myURLcomplete.lastIndexOf( "/" ) );
+
+function header() {
+    var myHeader='';
+
+    myHeader+='<div class="col-12 col-sm-12 col-md-12 col-lg-12>"';
+    myHeader+='<img src="../images/isa.png" />&nbsp;&nbsp;';
+    myHeader+='<span>ARRET SUR IMAGE !</span>';
+    myHeader+='</div>';
+
+    var e = document.querySelector('header');
+    e.innerHTML = myHeader;
+}
+
 function footer() {
-    var myURLcomplete = document.location.href;
-    var myURL  = myURLcomplete.substring( 0 ,myURLcomplete.lastIndexOf( "/" ) );
     myURL = myURL.replace("/src","");
 
     console.log(myURL);

@@ -1,0 +1,50 @@
+footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: nowrap;
+  flex-grow: 0;
+  flex-shrink: 1;
+  background-color: midnightblue;
+  color: white;
+  padding-top: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  font-size: 1vw;
+  flex-basis: 2.5rem;
+}
+footer div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+footer div span {
+  text-align: center;
+  line-height: 1.5rem;
+}
+footer div span a {
+  font-family: passion_oneregular;
+}
+a,
+a:hover,
+a:visited,
+a:link,
+a:active {
+  color: yellow;
+  text-decoration: none;
+  font-size: 1.3vw;
+}
+event {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: nowrap;
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: 0.2rem;
+}
+event th {
+  color: midnightblue;
+  background-color: midnightblue;
+  font-size: 0vw;
+}
