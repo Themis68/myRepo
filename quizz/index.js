@@ -5,6 +5,7 @@ var screenParams = [
 	{width:991, code:"xl-3"}
 ];
 
+var catalogue = [];
 var scripts = [];
 var actions = [];
 var timeCode = '';
@@ -89,27 +90,99 @@ function init() {
 	
 	// clic sur l'image de bascule
 	var bascule = document.querySelector("bascule img");
-	user();
 
+	user();
+	
+	bascule.addEventListener("click", fBascule);	// de haut en bas
+
+	buildCarousel(myURL + '/catalogue.json');
+}
+
+function buildCarousel(path) {
 	var request = new XMLHttpRequest();
-	var requestURL = myURL + '/catalogue.json';
+	var requestURL = path;
 	request.open('GET', requestURL);
 	request.responseType = 'json';
 	request.send();
 	request.onload = function() {
-		var catalogue = request.response;
-		console.log(catalogue)
-;	  }
-
-	bascule.addEventListener("click", fBascule);	// de haut en bas
-	creerVignettes("vignettes");					        // générer le vignettes dans le carousel
+		creerVignettesNew("vignettes", request.response);					        // générer le vignettes dans le carousel
+	}
 }
 
 function lookScreen(evt) {
 	console.log(evt);
 }
 
-function creerVignettes(id) {
+function creerVignettesNew(HTMLObject, catalogue) {
+	//
+    // générer le vignettes dans le carousel
+	//
+
+	let indexScreen = arrayAssoSearch2(screenParams, window.screen.width);
+
+	// paramètres communs aux Quizz
+	catalogue = catalogue.quizz;
+	nbQuizz = catalogue.length;
+
+	
+	// création des indicateurs
+	let ind = document.getElementById("indicateurs");
+	for (let i = 0; i < nbQuizz; i++) {
+		let myInd = document.createElement("li");
+		myInd.setAttribute("data-target", "#carousel-example");
+		myInd.setAttribute("data-slide-to",i);
+		if(i === 0) { myInd.setAttribute("class", "active cercle"); } else {myInd.setAttribute("class", "cercle");}
+		ind.appendChild(myInd);
+	}
+
+	// création des vignettes
+	let bloc = document.getElementById(HTMLObject);
+	for (let i = 0; i < nbQuizz; i++) {
+
+		// div
+		let myDiv = document.createElement("div");
+
+//		myDiv.className = "carousel-item col-12 col-sm-6 col-md-4 col-lg-3" + (i === 0?' active':'');
+		myDiv.className = "carousel-item col-" + screenParams[indexScreen].code + (i === 0?' active':'');	// 2 3 et 4
+
+		//myDiv.className = "carousel-item col-xs-6 col-sm-6 col-md-3 col-lg-2" + (i === 0?' active':'');
+		myDiv.className = "carousel-item col-xs-6 col-sm-6 col-md-3 col-lg-2" + (i === 0?' active':'');
+
+		// img
+		let myImg = document.createElement("img");
+		myImg.className = "img-fluid mx-auto d-block";
+		myImg.setAttribute("alt", "img" + i);
+		myImg.setAttribute("title", "img" + i);
+		myImg.setAttribute("src", pathPosters + (catalogue[i].poster || pathImages + "pelouses/stade.jpg"));
+
+		// caption
+		let myCaption = document.createElement("div");
+
+		// badge
+		let myF = document.createElement("img");
+		myF.className = "carouselFanion";
+		myF.setAttribute("title", "niveau : " + nbQuests[catalogue[i].niveau].niv);
+		myF.setAttribute("src", pathBadges + "badge" +(catalogue[i].niveau + ".png" || "fff.png'"));
+		myCaption.appendChild(myF);
+		
+		let myP = document.createElement("p");    
+		myP.innerHTML = scenario[i].titre + " (" + (catalogue[i].loi === undefined ? "mix" : "loi " + catalogue[i].loi) +")";
+		myCaption.appendChild(myP);
+		myCaption.className = "carousel-caption d-none d-md-block titre";
+		myCaption.setAttribute("onclick", 'javascript:switchQuizz('+ (i+1) +');');	// mettre ici car cette DIV est au-dessus de l'image
+
+		myDiv.appendChild(myImg);
+		myDiv.appendChild(myCaption);
+
+		bloc.appendChild(myDiv);
+
+		let myScript = document.createElement("SCRIPT");
+		myScript.setAttribute("type", "text/javascript");
+		myScript.setAttribute("src", pathQuizz + catalogue[i].fichier);
+		document.head.appendChild(myScript);
+	}
+}
+function creerVignettes(HTMLObject, catQuizz) {
 	//
     // générer le vignettes dans le carousel
 	//
@@ -127,7 +200,7 @@ function creerVignettes(id) {
 	}
 
 	// création des vignettes
-	let bloc = document.getElementById(id);
+	let bloc = document.getElementById(HTMLObject);
 	
 	for (let i = 0; i < arrayAssoSize(scenario); i++) {
 

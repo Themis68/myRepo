@@ -1,6 +1,25 @@
-- gestion locale de Crome
+- gestion locale de Chrome
 sous Mac :
 open -n -a /Applications/Google\ Chrome.app --args --user-data-dir="/Users/parents" --disable-web-security
+
+
+- récupérer le contenu d'un fichier JSON
+- function getCatalogueQuizz(path) {
+	var request = new XMLHttpRequest();
+	var requestURL = path;
+	request.open('GET', requestURL);
+	request.responseType = 'json';
+	request.send();
+	request.onload = function() {
+		setCatalogueQuizz(request.response);	// transmet la valeur à l'extérieur du scope local
+	}
+}
+
+function setCatalogueQuizz(reponse) {
+// catalogue est une varuiable globale au contrôleur JS
+	catalogue = reponse;
+}
+
 
 - gestion de l'updateFile
 
@@ -58,6 +77,10 @@ La partie callback est très importante. En effet, si vous essayez d'exécuter
 code à exécyter une fois que le script est chargé"
 
 Il faut donc mettre ce code dans un callback, pour garantir qu'il soit lancé quand le script a terminé de chargé.
+
+
+
+
 
 Créer des sphères :
 https://la-cascade.io/creer-des-spheres-en-css/
