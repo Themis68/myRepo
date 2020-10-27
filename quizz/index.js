@@ -1,47 +1,16 @@
-var screenParams = [
-	{width:375, code:"xs-6"},
-	{width:576, code:"sm-6"},
-	{width:768, code:"md-4"},
-	{width:991, code:"xl-3"}
-];
-
 var catalogue = [];
-var scripts = [];
-var actions = [];
+var quizz = [];	// quizz en cours
+// var scripts = [];
+//var actions = [];
 var timeCode = '';
 var avatar = '';
 var myURLcomplete = document.location.href;
 var myURL  = myURLcomplete.substring( 0 ,myURLcomplete.lastIndexOf( "/" ) );
 var quizzNbPoint = 0;		// nb points en cours
-var stepBarre = 0;			// % de progression pour une Question
-var stepDone = 0;			// % de progression effectué
-var idQuizz = null;		// quizz en cours
-var lois = [
-	{num:1, libelle:"Terrain", fichier:"loi_01.pdf"},
-	{num:2, libelle:"Ballon", fichier:"loi_02.pdf"},
-	{num:3, libelle:"Joueurs", fichier:"loi_03.pdf"},
-	{num:4, libelle:"Equipements", fichier:"loi_04.pdf"},
-	{num:5, libelle:"Arbitre", fichier:"loi_05.pdf"},
-	{num:6, libelle:"Autres arbitres", fichier:"loi_06.pdf"},
-	{num:7, libelle:"Durée d'un match", fichier:"loi_07.pdf"},
-	{num:8, libelle:"Coup d'envoi et reprise de jeu", fichier:"loi_08.pdf"},
-	{num:9, libelle:"Ballon en jeu et hors du jeu", fichier:"loi_09.pdf"},
-	{num:10, libelle:"Issue d'un match", fichier:"loi_10.pdf"},
-	{num:11, libelle:"Hors-jeu", fichier:"loi_11.pdf"},
-	{num:12, libelle:"Fautes et incorrections", fichier:"loi_12.pdf"},
-	{num:13, libelle:"Coups francs", fichier:"loi_13.pdf"},
-	{num:14, libelle:"Penalty", fichier:"loi_14.pdf"},
-	{num:15, libelle:"Rentrée de touche", fichier:"loi_15.pdf"},
-	{num:16, libelle:"Coup de pied de but", fichier:"loi_16.pdf"},
-	{num:17, libelle:"Corner", fichier:"loi_17.pdf"}
-];
+//var stepBarre = 0;			// % de progression pour une Question
+//var stepDone = 0;			// % de progression effectué
+//var idQuizz = null;		// quizz en cours
 
-/*var cardIcones = [
-	"fas fa-play",
-	"fas fa-star",
-	"fas fa-circle",
-	"fas fa-square"
-]*/
 var tabMessages = [
 	"cliquez sur la vignette du quizz que vous souhaitez jouer",
 	"cliquez sur cet icône pour afficher les quizz disponibles",
@@ -56,11 +25,11 @@ var nbQuests = [
 	{niv: "CONFIRME", nb: 0, points: 0}
 ];		// le niveau 0 est le niveau en cours
 var niveauQuest = 1		//niveau par défaut au démarrage
-var questionsFaites = [];
-var seqUsed = -1;	// valeur de l'étape de la séquence qui a été traitée
-var hauteurContent = 0; // hauteur de la zone CONTENT récupérée lors du chargement
+//var questionsFaites = [];
+//var seqUsed = -1;	// valeur de l'étape de la séquence qui a été traitée
+//var hauteurContent = 0; // hauteur de la zone CONTENT récupérée lors du chargement
 var questionOn = 0;	// numero de la Question
-var tabQuestions = [];
+var tabQuestions = [];	// questions du quizz
 
 // chemins
 var pathImages = "../images/";		// autres images
@@ -85,7 +54,6 @@ function init() {
 
 	// mettre les listener ici car il faut avoir chargée la page
 	header();
-
 	footer();
 	
 	// clic sur l'image de bascule
@@ -99,8 +67,8 @@ function init() {
 }
 
 function buildCarousel(path) {
-	var request = new XMLHttpRequest();
-	var requestURL = path;
+	let request = new XMLHttpRequest();
+	let requestURL = path;
 	request.open('GET', requestURL);
 	request.responseType = 'json';
 	request.send();
@@ -109,16 +77,24 @@ function buildCarousel(path) {
 	}
 }
 
-function lookScreen(evt) {
-	console.log(evt);
+function recupereQuizz(path) {
+	let request = new XMLHttpRequest();
+	let requestURL = path;
+	request.open('GET', requestURL);
+	request.responseType = 'json';
+	request.send();
+	request.onload = function() {
+		creerVignettesNew(request.response);					        // générer le vignettes dans le carousel
+	}
 }
 
-function creerVignettesNew(catalogue) {
-	//
-    // générer le vignettes dans le carousel
-	//
+/*function lookScreen(evt) {
+	console.log(evt);
+}*/
 
-	let indexScreen = arrayAssoSearch2(screenParams, window.screen.width);
+function creerVignettesNew(quizzCatalogue) {
+	catalogue = quizzCatalogue;
+	//let indexScreen = arrayAssoSearch2(screenParams, window.screen.width);
 
 	nbQuizz = catalogue.quizz.length;
 	
@@ -136,121 +112,6 @@ function creerVignettesNew(catalogue) {
 
 		// création vignette
 		HTMLObject.appendChild(itemCarousel(catalogue.quizz[i],i));
-	}
-
-	// création des vignettes
-
-	/*
-	let bloc = document.getElementById(HTMLObject);
-	for (let i = 0; i < nbQuizz; i++) {
-
-		// div
-		let myDiv = document.createElement("div");
-
-		myDiv.className = "carousel-item col-12 col-sm-6 col-md-4 col-lg-3" + (i === 0?' active':'');
-		//myDiv.className = "carousel-item col-" + screenParams[indexScreen].code + (i === 0?' active':'');	// 2 3 et 4
-
-		myDiv.className = "carousel-item col-xs-6 col-sm-6 col-md-3 col-lg-2" + (i === 0?' active':'');
-
-		// img
-		let myImg = document.createElement("img");
-		myImg.className = "img-fluid mx-auto d-block";
-		myImg.setAttribute("alt", "img" + i);
-		myImg.setAttribute("title", "img" + i);
-		myImg.setAttribute("src", pathPosters + (catalogue[i].poster || pathImages + "pelouses/stade.jpg"));
-
-		// caption
-		let myCaption = document.createElement("div");
-
-		// badge
-		let myF = document.createElement("img");
-		myF.className = "carouselFanion";
-		myF.setAttribute("title", "niveau : " + nbQuests[catalogue[i].niveau].niv);
-		myF.setAttribute("src", pathBadges + "badge" +(catalogue[i].niveau + ".png" || "fff.png'"));
-		myCaption.appendChild(myF);
-		
-		let myP = document.createElement("p");    
-		myP.innerHTML = scenario[i].titre + " (" + (catalogue[i].loi === undefined ? "mix" : "loi " + catalogue[i].loi) +")";
-		myCaption.appendChild(myP);
-		myCaption.className = "carousel-caption d-none d-md-block titre";
-		myCaption.setAttribute("onclick", 'javascript:switchQuizz('+ (i+1) +');');	// mettre ici car cette DIV est au-dessus de l'image
-
-		myDiv.appendChild(myImg);
-		myDiv.appendChild(myCaption);
-
-		bloc.appendChild(myDiv);
-		
-		let myScript = document.createElement("SCRIPT");
-		myScript.setAttribute("type", "text/javascript");
-		myScript.setAttribute("src", pathQuizz + catalogue[i].fichier);
-		document.head.appendChild(myScript);
-		
-	}*/
-}
-
-function creerVignettes(HTMLObject, catQuizz) {
-	//
-    // générer le vignettes dans le carousel
-	//
-
-	let indexScreen = arrayAssoSearch2(screenParams, window.screen.width);
-	
-	// création des indicateurs
-	let ind = document.getElementById("indicateurs");
-	for (let i = 0; i < arrayAssoSize(scenario); i++) {
-		let myInd = document.createElement("li");
-		myInd.setAttribute("data-target", "#carousel-example");
-		myInd.setAttribute("data-slide-to",i);
-		if(i === 0) { myInd.setAttribute("class", "active cercle"); } else {myInd.setAttribute("class", "cercle");}
-		ind.appendChild(myInd);
-	}
-
-	// création des vignettes
-	let bloc = document.getElementById(HTMLObject);
-	
-	for (let i = 0; i < arrayAssoSize(scenario); i++) {
-
-		// div
-		let myDiv = document.createElement("div");
-
-//		myDiv.className = "carousel-item col-12 col-sm-6 col-md-4 col-lg-3" + (i === 0?' active':'');
-		myDiv.className = "carousel-item col-" + screenParams[indexScreen].code + (i === 0?' active':'');	// 2 3 et 4
-
-		//myDiv.className = "carousel-item col-xs-6 col-sm-6 col-md-3 col-lg-2" + (i === 0?' active':'');
-		myDiv.className = "carousel-item col-xs-6 col-sm-6 col-md-3 col-lg-2" + (i === 0?' active':'');
-
-		// img
-		let myImg = document.createElement("img");
-		myImg.className = "img-fluid mx-auto d-block";
-		myImg.setAttribute("alt", "img" + i);
-		myImg.setAttribute("title", "img" + i);
-		myImg.setAttribute("src", pathPosters + (scenario[i].poster || pathImages + "pelouses/stade.jpg"));
-
-		// caption
-		let myCaption = document.createElement("div");
-
-		// badge
-		let myF = document.createElement("img");
-		myF.className = "carouselFanion";
-		myF.setAttribute("title", "niveau : " + nbQuests[scenario[i].niveau].niv);
-		myF.setAttribute("src", pathBadges + "badge" +(scenario[i].niveau + ".png" || "fff.png'"));
-		myCaption.appendChild(myF);
-		
-		let myP = document.createElement("p");    
-		myP.innerHTML = scenario[i].titre + " (" + (scenario[i].loi === undefined ? "mix" : "loi " + scenario[i].loi) +")";
-		myCaption.appendChild(myP);
-		myCaption.className = "carousel-caption d-none d-md-block titre";
-		myCaption.setAttribute("onclick", 'javascript:switchQuizz('+ (i+1) +');');	// mettre ici car cette DIV est au-dessus de l'image
-
-		myDiv.appendChild(myImg);
-		myDiv.appendChild(myCaption);
-
-		bloc.appendChild(myDiv);
-
-		let myScript = document.createElement("SCRIPT");
-		myScript.setAttribute("type", "text/javascript");
-		myScript.setAttribute("src", pathQuizz + scenario[i].fichier);
-		document.head.appendChild(myScript);
 	}
 }
 
@@ -290,18 +151,33 @@ function fBascule(event) {
 }
 
 function switchQuizz(n) {
-	if (n > arrayAssoSize(scenario)) {
+	if (n > catalogue.quizz.length) {
 		// vérifie si l'index du quizz existe dans le fichier catalogue.js
 		n = 0;
 		return false;
 	} else {
-		quizz = scenario[n-1];    		// recup infos du quizz
-		tabQuestions = eval(quizz.variable);	// recup questions du quizz
+		quizz = catalogue.quizz[n-1];    		// recup infos du quizz
+		let path = myURL + '/' + catalogue.quizz[n].fichier;
 
-		// affichage de la zone INTER
-		showContent(true);
-		gestionBoard("selectQuizz", quizz);	// on passe les infos sur le quizz sélectionné
+		// récupérer les questions du quizz selectionné
+		let request = new XMLHttpRequest();
+		let requestURL = path;
+		request.open('GET', requestURL);
+		request.responseType = 'json';
+		request.send();
+		request.onload = function() {
+			selectQuizz(request.response);
+		}
 	}
+}
+
+function selectQuizz(quizzInfos){
+	tabQuestions = quizzInfos.quizz	// recup questions du quizz
+
+	// affichage de la zone INTER
+	showContent(true);
+	gestionBoard("selectQuizz", quizz);	// on passe les infos sur le quizz sélectionné
+
 }
 
 function gestionBoard(etape, objet) {
@@ -503,8 +379,6 @@ function gestNiveaux(niveau) {
 }
 
 function scanQuestion(niveau) {
-	tabQuestions = [];
-
 	let script = eval(quizz.variable);
 	// init
 	for (let ind = 0; ind < arrayAssoSize(nbQuests); ind++) {
@@ -514,19 +388,18 @@ function scanQuestion(niveau) {
 
 	// scanne des actions et imputation des points ou pas
 	let indexSelQuestions = 0;
-	for (let ind = 0; ind < arrayAssoSize(script); ind++) {
-		if (script[ind].niveau == niveau) {
-			nbQuests[script[ind].niveau].nb++;	// nombre de Questions du nouveau niveau
-			nbQuests[script[ind].niveau].points+= script[ind].reponse.points;	// nombre de points MAX du nouveau niveau	
-			tabQuestions[indexSelQuestions] = script[ind];
+	console.log(tabQuestions);
+	for (let i = 0; i < arrayAssoSize(tabQuestions); i++) {
+		if (tabQuestions[i].niveau == niveau) {
+			nbQuests[tabQuestions[i].niveau].nb++;	// nombre de Questions du nouveau niveau
+			nbQuests[tabQuestions[i].niveau].points+= tabQuestions[i].reponse.points;	// nombre de points MAX du nouveau niveau	
+			tabQuestions[indexSelQuestions] = tabQuestions[i];
 			indexSelQuestions++;
 		}
 	}
 
 	niveauQuest = niveau;
 	questionOn = 1;
-
-	//return nbQuests;	// on renvoi le nombre de Question du nouveau niveau
 }
 
 function gestJauge(numQuest, niveau) {
@@ -623,7 +496,7 @@ function itemCarousel(infosQuizz, i){
     myCaption.appendChild(myF);
 
     let myP = document.createElement("p");    
-    myP.innerHTML = scenario[i].titre + " (" + (infosQuizz.loi === undefined ? "mix" : "loi " + infosQuizz.loi) +")";
+    myP.innerHTML = infosQuizz.titre + " (" + (infosQuizz.loi === undefined ? "mix" : "loi " + infosQuizz.loi) +")";
     myCaption.appendChild(myP);
     myCaption.className = "carousel-caption d-none d-md-block titre";
     myCaption.setAttribute("onclick", 'javascript:switchQuizz('+ (i+1) +');');	// mettre ici car cette DIV est au-dessus de l'image
