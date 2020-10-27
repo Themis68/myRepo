@@ -105,7 +105,7 @@ function buildCarousel(path) {
 	request.responseType = 'json';
 	request.send();
 	request.onload = function() {
-		creerVignettesNew("vignettes", request.response);					        // générer le vignettes dans le carousel
+		creerVignettesNew(request.response);					        // générer le vignettes dans le carousel
 	}
 }
 
@@ -113,39 +113,43 @@ function lookScreen(evt) {
 	console.log(evt);
 }
 
-function creerVignettesNew(HTMLObject, catalogue) {
+function creerVignettesNew(catalogue) {
 	//
     // générer le vignettes dans le carousel
 	//
 
 	let indexScreen = arrayAssoSearch2(screenParams, window.screen.width);
 
-	// paramètres communs aux Quizz
-	catalogue = catalogue.quizz;
-	nbQuizz = catalogue.length;
-
+	nbQuizz = catalogue.quizz.length;
 	
-	// création des indicateurs
+	// objets HTML à travailler
+	let HTMLObject = document.getElementById("vignettes");
 	let ind = document.getElementById("indicateurs");
+
 	for (let i = 0; i < nbQuizz; i++) {
+		// création indicateur
 		let myInd = document.createElement("li");
 		myInd.setAttribute("data-target", "#carousel-example");
 		myInd.setAttribute("data-slide-to",i);
 		if(i === 0) { myInd.setAttribute("class", "active cercle"); } else {myInd.setAttribute("class", "cercle");}
 		ind.appendChild(myInd);
+
+		// création vignette
+		HTMLObject.appendChild(itemCarousel(catalogue.quizz[i],i));
 	}
 
 	// création des vignettes
+
+	/*
 	let bloc = document.getElementById(HTMLObject);
 	for (let i = 0; i < nbQuizz; i++) {
 
 		// div
 		let myDiv = document.createElement("div");
 
-//		myDiv.className = "carousel-item col-12 col-sm-6 col-md-4 col-lg-3" + (i === 0?' active':'');
-		myDiv.className = "carousel-item col-" + screenParams[indexScreen].code + (i === 0?' active':'');	// 2 3 et 4
+		myDiv.className = "carousel-item col-12 col-sm-6 col-md-4 col-lg-3" + (i === 0?' active':'');
+		//myDiv.className = "carousel-item col-" + screenParams[indexScreen].code + (i === 0?' active':'');	// 2 3 et 4
 
-		//myDiv.className = "carousel-item col-xs-6 col-sm-6 col-md-3 col-lg-2" + (i === 0?' active':'');
 		myDiv.className = "carousel-item col-xs-6 col-sm-6 col-md-3 col-lg-2" + (i === 0?' active':'');
 
 		// img
@@ -175,13 +179,15 @@ function creerVignettesNew(HTMLObject, catalogue) {
 		myDiv.appendChild(myCaption);
 
 		bloc.appendChild(myDiv);
-
+		
 		let myScript = document.createElement("SCRIPT");
 		myScript.setAttribute("type", "text/javascript");
 		myScript.setAttribute("src", pathQuizz + catalogue[i].fichier);
 		document.head.appendChild(myScript);
-	}
+		
+	}*/
 }
+
 function creerVignettes(HTMLObject, catQuizz) {
 	//
     // générer le vignettes dans le carousel
@@ -588,4 +594,41 @@ function gestPropositions(etape, objet) {
 		// book
 		document.getElementById("book" + (i+1)).className = "far fa-comments";
 	}
+}
+
+function itemCarousel(infosQuizz, i){
+    // création d'une vignette
+    let myDiv = document.createElement("div");
+
+    myDiv.className = "carousel-item col-12 col-sm-6 col-md-4 col-lg-3" + (i === 0?' active':'');
+    //myDiv.className = "carousel-item col-" + screenParams[indexScreen].code + (i === 0?' active':'');	// 2 3 et 4
+
+    myDiv.className = "carousel-item col-xs-6 col-sm-6 col-md-3 col-lg-2" + (i === 0?' active':'');
+
+    // img
+    let myImg = document.createElement("img");
+    myImg.className = "img-fluid mx-auto d-block";
+    myImg.setAttribute("alt", "img" + i);
+    myImg.setAttribute("title", "img" + i);
+    myImg.setAttribute("src", pathPosters + (infosQuizz.poster || pathImages + "pelouses/stade.jpg"));
+
+    // caption
+    let myCaption = document.createElement("div");
+
+    // badge
+    let myF = document.createElement("img");
+    myF.className = "carouselFanion";
+    myF.setAttribute("title", "niveau : " + nbQuests[infosQuizz.niveau].niv);
+    myF.setAttribute("src", pathBadges + "badge" +(infosQuizz.niveau + ".png" || "fff.png'"));
+    myCaption.appendChild(myF);
+
+    let myP = document.createElement("p");    
+    myP.innerHTML = scenario[i].titre + " (" + (infosQuizz.loi === undefined ? "mix" : "loi " + infosQuizz.loi) +")";
+    myCaption.appendChild(myP);
+    myCaption.className = "carousel-caption d-none d-md-block titre";
+    myCaption.setAttribute("onclick", 'javascript:switchQuizz('+ (i+1) +');');	// mettre ici car cette DIV est au-dessus de l'image
+
+    myDiv.appendChild(myImg);
+    myDiv.appendChild(myCaption);
+    return myDiv;
 }
