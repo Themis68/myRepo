@@ -76,7 +76,7 @@ function buildCarousel(path) {
 		creerVignettesNew(request.response);					        // générer le vignettes dans le carousel
 	}
 }
-
+/*
 function recupereQuizz(path) {
 	let request = new XMLHttpRequest();
 	let requestURL = path;
@@ -87,27 +87,25 @@ function recupereQuizz(path) {
 		creerVignettesNew(request.response);					        // générer le vignettes dans le carousel
 	}
 }
+*/
 
 function creerVignettesNew(quizzCatalogue) {
 	catalogue = quizzCatalogue;
 
-	nbQuizz = catalogue.quizz.length;
-	
 	// objets HTML à travailler
 	let HTMLObject = document.getElementById("vignettes");
-	let ind = document.getElementById("indicateurs");
+	let HTMLIndicateur = document.getElementById("indicateurs");
 
-	for (let i = 0; i < nbQuizz; i++) {
-		// création indicateur
-		let myInd = document.createElement("li");
-		myInd.setAttribute("data-target", "#carousel-example");
-		myInd.setAttribute("data-slide-to",i);
-		if(i === 0) { myInd.setAttribute("class", "active cercle"); } else {myInd.setAttribute("class", "cercle");}
-		ind.appendChild(myInd);
-
-		// création vignette
-		HTMLObject.appendChild(itemCarousel(catalogue.quizz[i],i));
+	// objet à transmettre
+	monCarousel = {
+		cat: catalogue.quizz,
+		htmlCarName: document.getElementById("vignettes"),
+		htmlIndName: document.getElementById("indicateurs"),
+		posterPath: pathPosters,
+		badgePath: pathBadges
 	}
+	// créer vignette
+	carousel("addQuizz",monCarousel);
 }
 
 function showContent(etat) {
