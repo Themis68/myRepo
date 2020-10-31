@@ -1,5 +1,5 @@
-//var myURLcomplete = document.location.href;
-//var myURL  = myURLcomplete.substring( 0 ,myURLcomplete.lastIndexOf( "/" ) );
+var myURLcomplete = document.location.href;
+var myURL  = myURLcomplete.substring( 0 ,myURLcomplete.lastIndexOf( "/" ) );
 
 // gestion des écrans
 var screenParams = [
