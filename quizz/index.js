@@ -34,8 +34,8 @@ var tabQuestions = [];	// questions du quizz
 // chemins
 var pathImages = "../images/";		// autres images
 var pathQuizz = "./";		// scénarios des quizz
-var pathPosters = pathQuizz + "./posters/";		//  posters
-var pathBadges = pathQuizz + "./badges/";		//  badges
+var pathPosters = pathImages + "posters/";		//  posters
+var pathBadges = pathImages + "badges/";		//  badges
 
 // **********************************************************************************************************
 
