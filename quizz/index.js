@@ -32,10 +32,10 @@ var questionOn = 0;	// numero de la Question
 var tabQuestions = [];	// questions du quizz
 
 // chemins
-var pathImages = "../images/";		// autres images
-var pathQuizz = "./";		// scénarios des quizz
-var pathPosters = pathImages + "posters/";		//  posters
-var pathBadges = pathImages + "badges/";		//  badges
+var pathImagesASI = "../images/";		// autres images
+//var pathQuizz = "./";		// scénarios des quizz
+var pathPosters = "./images/posters/";		//  posters
+var pathBadges = "./images/badges/";		//  badges
 
 // **********************************************************************************************************
 
@@ -123,7 +123,7 @@ function showContent(etat) {
 	carousel.style.display =  (etat === true ? "none" : "flex");
 
 	let bascule_img = document.querySelector("bascule img");
-	bascule_img.setAttribute("src",pathImages  +   (etat === true ? "fleche_fermee.png" : "fleche_ouverte.png"));	// MAJ icone bascule
+	bascule_img.setAttribute("src",pathImagesASI  +   (etat === true ? "fleche_fermee.png" : "fleche_ouverte.png"));	// MAJ icone bascule
 
 	let bascule_titre = document.querySelector("bascule span");
 	bascule_titre.innerHTML = avatar + " " + (etat === true ? tabMessages[1] : tabMessages[0]);
@@ -139,12 +139,12 @@ function fBascule(event) {
 		// on ouvre
 
 		carousel.style.display = "flex";
-		this.src = pathImages + "fleche_ouverte.png";
+		this.src = pathImagesASI + "fleche_ouverte.png";
 		this.alt = "affiche la liste des quizz";
 		span.innerHTML = avatar + " " + tabMessages[0];
 	} else {
 		carousel.style.display = "none";
-		this.src = pathImages + "fleche_fermee.png";
+		this.src = pathImagesASI + "fleche_fermee.png";
 		this.alt = "masque la liste des quizz";
 		span.innerHTML = avatar + " " + tabMessages[1];
 	}	
@@ -483,7 +483,7 @@ function itemCarousel(infosQuizz, i){
     myImg.className = "img-fluid mx-auto d-block";
     myImg.setAttribute("alt", "img" + i);
     myImg.setAttribute("title", "img" + i);
-    myImg.setAttribute("src", pathPosters + (infosQuizz.poster || pathImages + "pelouses/stade.jpg"));
+    myImg.setAttribute("src", pathPosters + (infosQuizz.poster || "stade.jpg"));
 
     // caption
     let myCaption = document.createElement("div");
