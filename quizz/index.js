@@ -88,13 +88,8 @@ function recupereQuizz(path) {
 	}
 }
 
-/*function lookScreen(evt) {
-	console.log(evt);
-}*/
-
 function creerVignettesNew(quizzCatalogue) {
 	catalogue = quizzCatalogue;
-	//let indexScreen = arrayAssoSearch2(screenParams, window.screen.width);
 
 	nbQuizz = catalogue.quizz.length;
 	
@@ -157,7 +152,7 @@ function switchQuizz(n) {
 		return false;
 	} else {
 		quizz = catalogue.quizz[n-1];    		// recup infos du quizz
-		let path = myURL + '/' + catalogue.quizz[n].fichier;
+		let path = myURL + '/questionnaires/' + catalogue.quizz[n].fichier;
 
 		// récupérer les questions du quizz selectionné
 		let request = new XMLHttpRequest();
