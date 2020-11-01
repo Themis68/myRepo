@@ -55,17 +55,26 @@ function templateHTML(){
     return myCar;
 }
 
-function carousel(action, monCarousel) {
+function xCarousel(action, data) {
     switch (action) {
         case "addQuizz":
-            for (let i = 0; i < monCarousel.cat.length; i++) {
+            for (let i = 0; i < data.cat.length; i++) {
                 // création indicateur
                 let ind = addIndicateur(i);
-                monCarousel.htmlIndName.appendChild(ind);
+                data.htmlIndName.appendChild(ind);
 
                 // création vignette
-                let car = addItem(monCarousel, i);
-                monCarousel.htmlCarName.appendChild(car);
+                let item = data.cat[i];
+                let infosItem = {
+                    index: i,
+                    poster: data.posterPath + (item.poster || "stade.jpg"),
+                    niveau: item.niveau,
+                    badge: data.badgePath + "badge" + item.niveau + ".png",
+                    titre: item.titre,
+                    loi: item.loi
+                }
+                let car = addItem(infosItem);
+                data.htmlCarName.appendChild(car);
             }
             break;
     }
@@ -84,47 +93,37 @@ function addIndicateur(i) {
     return myInd;
 }
 
-function addItem(data, i){
+function addItem(data){
     // création d'une vignette
     let myDiv = document.createElement("div");
+    myDiv.className = "carousel-item col-12 col-sm-6 col-md-4 col-lg-3" + (data.index === 0 ?' active':'');
 
-    myDiv.className = "carousel-item col-12 col-sm-6 col-md-4 col-lg-3" + (i === 0 ?' active':'');
-    //myDiv.className = "carousel-item col-" + screenParams[indexScreen].code + (i === 0?' active':'');	// 2 3 et 4
-
-    //myDiv.className = "carousel-item col-xs-6 col-sm-6 col-md-3 col-lg-2" + (i === 0?' active':'');
-
-    // img
+    // IMG
     let myImg = document.createElement("img");
     myImg.className = "img-fluid mx-auto d-block";
-    myImg.setAttribute("alt", "img" + i);
-    myImg.setAttribute("title", "img" + i);
-    myImg.setAttribute("src", data.posterPath + (data.cat[i].poster || "stade.jpg"));
+    myImg.setAttribute("alt", "img" + data.index);
+    myImg.setAttribute("title", "img" + data.index);
+    myImg.setAttribute("src", data.poster);
 
     // caption
     let myCaption = document.createElement("div");
 
     // badge
-    let myBadge = badgeItem(data.cat[i].niveau, data.badgePath);
+    let myBadge = document.createElement("img");
+    myBadge.className = "carouselFanion";
+    myBadge.setAttribute("title", "niveau : " + nbQuests[data.niveau].niv);
+    myBadge.setAttribute("src", data.badge);
     myCaption.appendChild(myBadge);
 
     // titre
     let myP = document.createElement("p");   
 
-    myP.innerHTML = data.cat[i].titre + " (" + (data.cat[i].loi === undefined ? "mix" : "loi " + data.cat[i].loi) +")";
+    myP.innerHTML = data.titre + " (" + (data.loi === undefined ? "mix" : "loi " + data.loi) +")";
     myCaption.appendChild(myP);
     myCaption.className = "carousel-caption d-none d-md-block titre";
-    myCaption.setAttribute("onclick", 'javascript:switchQuizz('+ (i+1) +');');	// mettre ici car cette DIV est au-dessus de l'image
+    myCaption.setAttribute("onclick", 'javascript:switchQuizz('+ (data.index+1) +');');	// mettre ici car cette DIV est au-dessus de l'image
 
     myDiv.appendChild(myImg);
     myDiv.appendChild(myCaption);
     return myDiv;
-}
-
-function badgeItem(niveau, badgePath) {
-    // badge
-    let myBadge = document.createElement("img");
-    myBadge.className = "carouselFanion";
-    myBadge.setAttribute("title", "niveau : " + nbQuests[niveau].niv);
-    myBadge.setAttribute("src", badgePath + "badge" +(niveau + ".png" || "fff.png'"));
-    return myBadge;
 }
