@@ -31,6 +31,30 @@ $('#carousel-example').on('slide.bs.carousel', function (e) {
     }
 })
 
+document.addEventListener("DOMContentLoaded", init, false);	// lance l'écoute des évènements et appelle INIT
+
+function init(){
+    var car = document.querySelector("carousel");
+    car.innerHTML = templateHTML();
+}
+
+function templateHTML(){
+    let myCar=' <div id="carousel-example" class="carousel slide" data-ride="carousel" data-interval="false">';
+    myCar+='<div id="vignettes" class="carousel-inner row w-100 mx-auto" role="listbox">';
+    myCar+='</div>';
+    myCar+='<ol id="indicateurs" class="carousel-indicators"></ol>';
+    myCar+='<a class="carousel-control-prev" href="#carousel-example" role="button" data-slide="prev">';
+    myCar+='<span class="carousel-control-prev-icon" aria-hidden="true"></span>';
+    myCar+='<span class="sr-only">Previous</span>';
+    myCar+='</a>';
+    myCar+='<a class="carousel-control-next" href="#carousel-example" role="button" data-slide="next">';
+    myCar+='<span class="carousel-control-next-icon" aria-hidden="true"></span>';
+    myCar+='<span class="sr-only">Next</span>';
+    myCar+='</a>';
+    myCar+='</div>';
+    return myCar;
+}
+
 function carousel(action, monCarousel) {
     switch (action) {
         case "addQuizz":
