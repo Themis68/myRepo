@@ -1,17 +1,27 @@
-$('#carousel-example').on('slide.bs.carousel', function (e) {
-//$('#carousel-example').on('slide', function (e) {
-    var screenParams = [
-        {width:375, nbElem:2},
-        {width:576, nbElem:2},
-        {width:768, nbElem:3},
-        {width:991, nbElem:4}
-    ];
+var screenParams = [
+    {width:0, nbElem:1},
+    {width:375, nbElem:2},
+    {width:576, nbElem:3},
+    {width:768, nbElem:4},
+    {width:991, nbElem:5}
+];
 
+
+$('#carousel-example').on('slide.bs.carousel', function (e) {
+    /*
+    Bootstrap’s carousel class exposes two events for hooking into carousel functionality.
+
+    Both events have the following additional properties:
+
+    direction: The direction in which the carousel is sliding (either “left” or “right”).
+    relatedTarget: The DOM element that is being slid into place as the active item.
+    All carousel events are fired at the carousel itself (i.e. at the).
+    */
     var $e = $(e.relatedTarget);
     var idx = $e.index();
 
 
-    // déterminer le nombre de slides à afficher sur une ligne
+
     let indexScreen = arrayAssoSearch2(screenParams, window.screen.width);
     var itemsPerSlide = screenParams[indexScreen].nbElem;
 
@@ -58,6 +68,15 @@ function templateHTML(){
 function xCarousel(action, data) {
     switch (action) {
         case "addQuizz":
+            // déterminer le nombre de slides à afficher sur une ligne
+            let nbResolutions = arrayAssoSize(screenParams);
+            nbElem = 0;
+            for(let i=0; i < nbResolutions; i++) {
+                if (screenParams[i].width <= window.screen.width) {
+                    nbElem = screenParams[i].nbElem;
+                }
+            }
+
             for (let i = 0; i < data.cat.length; i++) {
                 // création indicateur
                 let ind = addIndicateur(i);
@@ -71,7 +90,8 @@ function xCarousel(action, data) {
                     niveau: item.niveau,
                     badge: data.badgePath + "badge" + item.niveau + ".png",
                     titre: item.titre,
-                    loi: item.loi
+                    loi: item.loi,
+                    etat: (i < nbElem ? 'showCarouselItem' : 'hideCarouselItem')
                 }
                 let car = addItem(infosItem);
                 data.htmlCarName.appendChild(car);
@@ -96,7 +116,8 @@ function addIndicateur(i) {
 function addItem(data){
     // création d'une vignette
     let myDiv = document.createElement("div");
-    myDiv.className = "carousel-item col-12 col-sm-6 col-md-4 col-lg-3" + (data.index === 0 ?' active':'');
+    myDiv.className = "carousel-item col col-sm-6 col-md-4 col-lg-3" + data.etat + " " + (data.index === 0 ?' active':'');
+    //myDiv.className = "carousel-item " + data.etat + " " + (data.index === 0 ?' active':'');
 
     // IMG
     let myImg = document.createElement("img");

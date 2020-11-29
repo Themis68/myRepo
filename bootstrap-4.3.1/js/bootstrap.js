@@ -892,6 +892,7 @@
     };
 
     _proto._getItemIndex = function _getItemIndex(element) {
+      console.log("Crousel getItemIndex");
       this._items = element && element.parentNode ? [].slice.call(element.parentNode.querySelectorAll(Selector$2.ITEM)) : [];
       return this._items.indexOf(element);
     };

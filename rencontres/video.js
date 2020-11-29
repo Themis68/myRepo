@@ -52,28 +52,6 @@ var tabMessages = [
 var pathImages = "../images/";		// autres images
 var pathVideos = "../rencontres/";		// vidéos des matchs
 var pathFanions = pathImages + "fanions/";		// fanions des equipes
-//var fichier = "file:///Volumes/Donnees/Documents/myRepo/rencontres/catalogue.json"; //myURL + "/rencontres/catalogue.json";
-console.log(catalogue);
-//var file = new File( fichier, { type: "application/json", endings: "native" });
-//var rencontres = JSON.parse(catalogue);
-//var rencontres = JSON.parse("file:///Volumes/Donnees/Documents/myRepo/rencontres/catalogue.json");
-/*
-var rencontres = (function() {
-	var json = null;
-	$.ajax({
-		'async': false,
-		'global': false,
-		'url': pathVideos + "catalogue.json",
-		'dataType': "json",
-		'success': function (data) {
-			json = data;
-		}
-	});
-	return json;
-})();
-*/
-
-//console.log("rencontres " + rencontres);
 
 // **********************************************************************************************************
 

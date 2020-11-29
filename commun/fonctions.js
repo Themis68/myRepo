@@ -44,15 +44,12 @@ function arrayAssoSearch(arr, valObject) {
 
 function arrayAssoSearch2(arr, valObject) {
 	let res = null;
-	console.log("rechercher ", valObject);
 	var nbEl = arrayAssoSize(arr);
 	for (let ind = 0; ind < nbEl; ind++) {
-		console.log(arr[ind].width);
 		if (valObject >= arr[ind].width ) {
 			res = ind;	// retourne l'indice du tableau
 		}
 	}
-	console.log("res ", res);
 	return res;	// aucun résultat
 }
 

@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", init, false);	// lance l'écoute d
 //window.MediaQueryList.addListener(lookScreen);
 
 window.addEventListener("resize", function(){
-	console.log("ecran : ", window.screen.width , window.screen.height);
+	console.log("window.screen : ", window.screen.width , window.screen.height);
 });
 
 
