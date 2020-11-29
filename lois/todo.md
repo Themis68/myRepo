@@ -1,0 +1,1 @@
+- placer les png dans images/icones et les pdf dans images/pdf

@@ -1,0 +1,272 @@
+@import url("../src/typo/scoreboard/stylesheet.css");
+@import url("passion_one/stylesheet.css");
+html,
+body,
+p,
+ol,
+ul,
+li,
+dl,
+dt,
+dd,
+blockquote,
+figure,
+fieldset,
+legend,
+textarea,
+pre,
+iframe,
+hr,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 100%;
+  font-weight: normal;
+}
+ul {
+  list-style: none;
+}
+button,
+input,
+select,
+textarea {
+  margin: 0;
+}
+html {
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+embed,
+iframe,
+object,
+audio,
+video {
+  height: auto;
+  max-width: 100%;
+}
+img {
+  max-width: 100%;
+}
+iframe {
+  border: 0;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+td,
+th {
+  padding: 0;
+  text-align: left;
+}
+/* 
+font-size: 100%; // this is usually 16px by default 
+*/
+html {
+  font-family: "passion_oneregular";
+}
+body {
+  min-height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+}
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  background-image: url("../images/pelouses/stade3.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  /* sil {
+        width: 95vw;   // on limite l'étalement des objets en largeur
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: center;
+    }*/
+}
+main header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+main header img {
+  width: 3vw;
+  height: 3vw;
+}
+main header span {
+  font-family: "scoreboardregular";
+  font-size: 5vw;
+  color: white;
+}
+main bascule {
+  display: flex;
+  flex-direction: row;
+}
+main bascule span {
+  align-self: flex-start;
+  font-size: 1vw;
+  color: white;
+}
+main section {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+}
+main section div {
+  flex: 1;
+  text-align: center;
+  color: white;
+  font-size: 1vw;
+}
+main picker {
+  display: flex;
+}
+main picker .inputColor {
+  display: flex;
+  flex-direction: row;
+}
+main picker .inputColor input {
+  flex: 3;
+  background-color: white;
+}
+main picker .inputColor button .butColor {
+  flex: 1;
+  background-color: white;
+  height: 1vw !important;
+  font-weight: bold;
+  padding: 10px 40px;
+  border-radius: 3px;
+}
+main picker #picker {
+  flex: 10;
+  display: none;
+}
+main content {
+  width: 95vw;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  min-height: auto;
+  flex: 1;
+}
+main content match {
+  display: flex;
+  flex-direction: column;
+  flex: 3;
+}
+main content match video {
+  display: flex;
+  flex: 1;
+}
+main content match canvas {
+  display: none;
+  flex-grow: 0;
+}
+main content inter {
+  display: none;
+  flex-direction: column;
+  justify-content: start;
+  align-self: flex-start;
+  margin-left: 7px;
+  flex: 1;
+  background-color: beige;
+  padding: 7px;
+}
+main content inter rencontre {
+  display: none;
+  color: black;
+}
+main content inter rencontre p {
+  font-size: 0.7vw;
+  font-family: Arial, Helvetica, sans-serif;
+}
+main content inter rencontre input {
+  font-size: 0.7vw;
+  font-family: Arial, Helvetica, sans-serif;
+}
+/* zone dynamique de récupération de couleur */
+.pipette {
+  display: flex;
+  flex-direction: row;
+}
+.pipette div {
+  flex: 1;
+  flex-wrap: nowrap;
+}
+/* canvas silhouette dynamique */
+.silrgb {
+  flex: 1;
+}
+/*******************************************************/
+.container {
+  color: #000;
+  margin: 20px auto;
+  position: relative;
+  width: 730px;
+}
+.column1 {
+  float: left;
+  width: 500px;
+}
+.column2 {
+  float: left;
+  padding-left: 20px;
+  width: 170px;
+}
+#panel {
+  border: 1px #000 solid;
+  box-shadow: 4px 6px 6px #444444;
+  cursor: crosshair;
+}
+.column2 > div {
+  margin-bottom: 10px;
+}
+#swImage {
+  border: 1px #000 solid;
+  box-shadow: 2px 3px 3px #444444;
+  cursor: pointer;
+  height: 25px;
+  line-height: 25px;
+  border-radius: 3px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+}
+#swImage:hover {
+  margin-left: 2px;
+}
+#preview {
+  border: 1px #000 solid;
+  box-shadow: 2px 3px 3px #444444;
+  height: 80px;
+  width: 80px;
+  border-radius: 3px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+}
+.column2 input[type=text] {
+  float: right;
+  width: 110px;
+}

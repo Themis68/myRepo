@@ -1,3 +1,10 @@
+var screenParams = [
+	{width:375, code:"xs-6"},
+	{width:576, code:"sm-6"},
+	{width:768, code:"md-4"},
+	{width:991, code:"xl-3"}
+];
+
 var scripts = [];
 var actions = [];
 var timeCode = '';
@@ -63,6 +70,12 @@ var pathBadges = pathQuizz + "badges/";		//  badges
 // **********************************************************************************************************
 
 document.addEventListener("DOMContentLoaded", init, false);	// lance l'écoute des évènements et appelle INIT
+//window.MediaQueryList.addListener(lookScreen);
+
+window.addEventListener("resize", function(){
+	console.log(window.screen.width , window.screen.height);
+});
+
 
 function init() {
     //
@@ -71,16 +84,28 @@ function init() {
 
 	// mettre les listener ici car il faut avoir chargée la page
 
+
+	console.log(window.screen.width , window.screen.height);
+
+	footer();
+	
 	// clic sur l'image de bascule
 	var bascule = document.querySelector("bascule img");
+	user();
 	bascule.addEventListener("click", fBascule);	// de haut en bas
 	creerVignettes("vignettes");					        // générer le vignettes dans le carousel
+}
+
+function lookScreen(evt) {
+	console.log(evt);
 }
 
 function creerVignettes(id) {
 	//
     // générer le vignettes dans le carousel
 	//
+
+	let indexScreen = arrayAssoSearch2(screenParams, window.screen.width);
 	
 	// création des indicateurs
 	let ind = document.getElementById("indicateurs");
@@ -99,7 +124,12 @@ function creerVignettes(id) {
 
 		// div
 		let myDiv = document.createElement("div");
-		myDiv.className = "carousel-item col-12 col-sm-6 col-md-4 col-lg-3" + (i === 0?' active':'');
+
+//		myDiv.className = "carousel-item col-12 col-sm-6 col-md-4 col-lg-3" + (i === 0?' active':'');
+		myDiv.className = "carousel-item col-" + screenParams[indexScreen].code + (i === 0?' active':'');	// 2 3 et 4
+
+		//myDiv.className = "carousel-item col-xs-6 col-sm-6 col-md-3 col-lg-2" + (i === 0?' active':'');
+		myDiv.className = "carousel-item col-xs-6 col-sm-6 col-md-3 col-lg-2" + (i === 0?' active':'');
 
 		// img
 		let myImg = document.createElement("img");
@@ -122,7 +152,7 @@ function creerVignettes(id) {
 		myP.innerHTML = scenario[i].titre + " (" + (scenario[i].loi === undefined ? "mix" : "loi " + scenario[i].loi) +")";
 		myCaption.appendChild(myP);
 		myCaption.className = "carousel-caption d-none d-md-block titre";
-		myCaption.setAttribute("onclick", 'javascript:switchQuizz('+ scenario[i].id +');');	// mettre ici car cette DIV est au-dessus de l'image
+		myCaption.setAttribute("onclick", 'javascript:switchQuizz('+ (i+1) +');');	// mettre ici car cette DIV est au-dessus de l'image
 
 		myDiv.appendChild(myImg);
 		myDiv.appendChild(myCaption);
@@ -378,15 +408,10 @@ function addScore(value) {
 }
 
 function gestNiveaux(niveau) {
-    //let myBadge = document.querySelector("inter tete niveau");
-	//img = document.createElement("img");
-	//img.id = "badge"
-
 	let img = document.getElementById("badge");
 	img.setAttribute("title", nbQuests[niveau].niv);
 	img.setAttribute("alt", nbQuests[niveau].niv);
 	img.setAttribute("src", pathBadges + "badge" + niveau + ".png");
-	//myBadge.appendChild(img);
 }
 
 function scanQuestion(niveau) {

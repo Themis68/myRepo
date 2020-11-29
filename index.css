@@ -1,5 +1,5 @@
-@import url(./src/typo/scoreboard/stylesheet.css);
-@import url(./src/typo/passion_one/stylesheet.css);
+@import url(src/typo/scoreboard/stylesheet.css);
+@import url(src/typo/passion_one/stylesheet.css);
 html,
 body,
 p,
@@ -83,6 +83,9 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+}
+body wrapper header {
+  background-color: green;
 }
 main {
   display: flex;

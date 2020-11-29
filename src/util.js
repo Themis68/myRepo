@@ -260,6 +260,7 @@ var Util = function ($) {
         // public
     
         Carousel.prototype.next = function next() {
+          console.log("Carousel.prototype.next ");
           if (this._isSliding) {
             throw new Error('Carousel is sliding');
           }
@@ -267,6 +268,7 @@ var Util = function ($) {
         };
     
         Carousel.prototype.nextWhenVisible = function nextWhenVisible() {
+          console.log("Carousel.prototype.nextWhenViible");
           // Don't call next when the page isn't visible
           if (!document.hidden) {
             this.next();
@@ -274,6 +276,7 @@ var Util = function ($) {
         };
     
         Carousel.prototype.prev = function prev() {
+          console.log("Carousel.prototype.prev");
           if (this._isSliding) {
             throw new Error('Carousel is sliding');
           }
@@ -281,6 +284,7 @@ var Util = function ($) {
         };
     
         Carousel.prototype.pause = function pause(event) {
+          console.log("Carousel.prototype.pause");
           if (!event) {
             this._isPaused = true;
           }
@@ -295,6 +299,7 @@ var Util = function ($) {
         };
     
         Carousel.prototype.cycle = function cycle(event) {
+          console.log("Carousel.prototype.cycle");
           if (!event) {
             this._isPaused = false;
           }
@@ -310,6 +315,7 @@ var Util = function ($) {
         };
     
         Carousel.prototype.to = function to(index) {
+          console.log("Carousel.prototype.to");
           var _this = this;
     
           this._activeElement = $(this._element).find(Selector.ACTIVE_ITEM)[0];
@@ -339,6 +345,7 @@ var Util = function ($) {
         };
     
         Carousel.prototype.dispose = function dispose() {
+          console.log("Carousel.prototype.dispose");
           $(this._element).off(EVENT_KEY);
           $.removeData(this._element, DATA_KEY);
     
@@ -355,12 +362,14 @@ var Util = function ($) {
         // private
     
         Carousel.prototype._getConfig = function _getConfig(config) {
+          console.log("Carousel.prototype.getconfig");
           config = $.extend({}, Default, config);
           Util.typeCheckConfig(NAME, config, DefaultType);
           return config;
         };
     
         Carousel.prototype._addEventListeners = function _addEventListeners() {
+          console.log("Carousel.prototype.addEventListeners");
           var _this2 = this;
     
           if (this._config.keyboard) {
@@ -379,6 +388,7 @@ var Util = function ($) {
         };
     
         Carousel.prototype._keydown = function _keydown(event) {
+          console.log("Carousel.prototype.keydown");
           if (/input|textarea/i.test(event.target.tagName)) {
             return;
           }
@@ -398,11 +408,13 @@ var Util = function ($) {
         };
     
         Carousel.prototype._getItemIndex = function _getItemIndex(element) {
+          console.log("Carousel.prototype.getItemindex");
           this._items = $.makeArray($(element).parent().find(Selector.ITEM));
           return this._items.indexOf(element);
         };
     
         Carousel.prototype._getItemByDirection = function _getItemByDirection(direction, activeElement) {
+          console.log("Carousel.prototype.getItemByDirection ");
           var isNextDirection = direction === Direction.NEXT;
           var isPrevDirection = direction === Direction.PREVIOUS;
           var activeIndex = this._getItemIndex(activeElement);
@@ -420,6 +432,7 @@ var Util = function ($) {
         };
     
         Carousel.prototype._triggerSlideEvent = function _triggerSlideEvent(relatedTarget, eventDirectionName) {
+          console.log("Carousel.prototype.triggerSlideEvent");
           var slideEvent = $.Event(Event.SLIDE, {
             relatedTarget: relatedTarget,
             direction: eventDirectionName
@@ -431,6 +444,7 @@ var Util = function ($) {
         };
     
         Carousel.prototype._setActiveIndicatorElement = function _setActiveIndicatorElement(element) {
+          console.log("Carousel.prototype.setActiveIndicatrosElement ");
           if (this._indicatorsElement) {
             $(this._indicatorsElement).find(Selector.ACTIVE).removeClass(ClassName.ACTIVE);
     
@@ -443,6 +457,7 @@ var Util = function ($) {
         };
     
         Carousel.prototype._slide = function _slide(direction, element) {
+          console.log("Carousel.prototype.slide");
           var _this3 = this;
     
           var activeElement = $(this._element).find(Selector.ACTIVE_ITEM)[0];
@@ -528,6 +543,7 @@ var Util = function ($) {
         // static
     
         Carousel._jQueryInterface = function _jQueryInterface(config) {
+          console.log("Carousel.prototype.jQUeryInterface");
           return this.each(function () {
             var data = $(this).data(DATA_KEY);
             var _config = $.extend({}, Default, $(this).data());
@@ -558,6 +574,7 @@ var Util = function ($) {
         };
     
         Carousel._dataApiClickHandler = function _dataApiClickHandler(event) {
+          console.log("Carousel.prototype.dataApiClickHandler");
           var selector = Util.getSelectorFromElement(this);
     
           if (!selector) {
