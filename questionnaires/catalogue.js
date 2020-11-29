@@ -22,7 +22,7 @@ var scenario = [
     },
     {
         id: 3,
-        titre: "Les gardiebs",
+        titre: "Les gardiens",
         poster: "gardien.png",
         fichier: "bases_01.min.js",
         variable: "script1",
