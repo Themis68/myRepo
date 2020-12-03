@@ -84,9 +84,6 @@ body {
   display: flex;
   flex-direction: column;
 }
-body wrapper header {
-  background-color: green;
-}
 main {
   display: flex;
   flex-direction: column;
