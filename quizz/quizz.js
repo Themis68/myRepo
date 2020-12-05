@@ -15,6 +15,7 @@ var quizzNbPoint = 0;		// nb points en cours
 var stepBarre = 0;			// % de progression pour une Question
 var stepDone = 0;			// % de progression effectué
 var idQuizz = null;		// quizz en cours
+/*
 var lois = [
 	{num:1, libelle:"Terrain", fichier:"loi_01.pdf"},
 	{num:2, libelle:"Ballon", fichier:"loi_02.pdf"},
@@ -34,6 +35,7 @@ var lois = [
 	{num:16, libelle:"Coup de pied de but", fichier:"loi_16.pdf"},
 	{num:17, libelle:"Corner", fichier:"loi_17.pdf"}
 ];
+*/
 
 /*var cardIcones = [
 	"fas fa-play",
