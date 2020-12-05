@@ -10,9 +10,9 @@ function init() {
     //
     // est appelé en premier par la page lors du chargement
 	//
-    header();
+
     footer();
-    
+    header();
 }
 
 

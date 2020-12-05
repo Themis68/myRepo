@@ -82,9 +82,9 @@ function init() {
     // est appelé en premier par la page lors du chargement
 	//
 
+    footer();
     header();
-	footer();
-	
+
 	// clic sur l'image de bascule
 	var bascule = document.querySelector("bascule img");
 	user();
