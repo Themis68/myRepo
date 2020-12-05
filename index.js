@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", init, false);	
 
 function init(){
-    footer();
     header();
+    footer();
 }
 
 function showAlt(id) {

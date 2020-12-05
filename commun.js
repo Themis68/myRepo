@@ -33,21 +33,19 @@ var lois = [
 ];
 
 function header() {
-    url = calculURL(myURL);
     var myHeader='';
 
-	myHeader+='<div class="col-12 col-sm-12 col-md-12 col-lg-12">';
-	myHeader+='<a href="'+ url + '/index.html">';
-    myHeader+='<img src="'+ url + '/images/isa.png" /></a>&nbsp;&nbsp;';
+    myHeader+='<div class="col-12 col-sm-12 col-md-12 col-lg-12>"';
+    myHeader+='<img src="../images/isa.png" />&nbsp;&nbsp;';
     myHeader+='<span>ARRET SUR IMAGE !</span>';
     myHeader+='</div>';
 
     var e = document.querySelector('header');
-	e.innerHTML = myHeader;
+    e.innerHTML = myHeader;
 }
 
 function footer() {
-    url = calculURL(myURL);
+    myURL = myURL.replace("/src","");
     var myFooter='';
 
     myFooter+='<div class="col-lg-3 col-md-3 col-sm-3">';
@@ -58,24 +56,25 @@ function footer() {
     myFooter+='</span>';
     myFooter+='</div>';
 
+    console.log(myURL);
     myFooter+='<div class="col-lg-1 col-md-1 col-sm-1">';
-    myFooter+='<span><a href="'+url+'/aide/aide.html">Aide</a></span>';
+    myFooter+='<span><a href="'+myURL+'/aide/aide.html">Aide</a></span>';
     myFooter+='</div>';
 
     myFooter+='<div class="col-lg-1 col-md-1 col-sm-1">';
-    myFooter+='<span><a href="'+url+'/licence/licence.html">Licence</a></span>';
+    myFooter+='<span><a href="'+myURL+'/src/asi.html">Licence</a></span>';
     myFooter+='</div>';
 
     myFooter+='<div class="col-lg-1 col-md-1 col-sm-1">';
-    myFooter+='<span><a href="'+url+'/src/video.html">Vidéo</a></span>';
+    myFooter+='<span><a href="'+myURL+'/src/video.html">Vidéo</a></span>';
     myFooter+='</div>';
 
     myFooter+='<div class="col-lg-1 col-md-1 col-sm-1">';
-    myFooter+='<span><a href="'+url+'/quizz/quizz.html">Quizz</a></span>';
+    myFooter+='<span><a href="'+myURL+'/src/quizz.html">Quizz</a></span>';
     myFooter+='</div>';
 
     myFooter+='<div class="col-lg-1 col-md-1 col-sm-1">';
-    myFooter+='<span><a href="'+url+'/lois/lois.html">Lois du jeu</a></span>';
+    myFooter+='<span><a href="'+myURL+'/src/lois.html">Lois du jeu</a></span>';
     myFooter+='</div>';
 
     myFooter+='<div class="col-lg-4 col-md-4 col-sm-4">';
@@ -86,99 +85,4 @@ function footer() {
     e.innerHTML = myFooter;
 }
 
-function calculURL(url) {
-    // traitement selon page courante
-    url = url.replace("/aide","");
-    url = url.replace("/lois","");
-    url = url.replace("/licence","");
-    url = url.replace("/quizz","");
-    url = url.replace("/rencontres","");
-    url = url.replace("/carousel","");
-    
-    return url;
-}
 
-function user() {
-	let avatarOk = false;
-	const reg = /^([a-zA-Z]){3,20}$/g;	// accepte des chaines de caractères jusqu'à 5 caractères
-	do {
-		avatar = window.prompt("Indique ton prénom s'il te plait (3 à 20 lettres maximum)");
-		avatarOk = reg.exec(avatar);
-	}
-	while (!avatarOk);
-	avatar = avatar.toUpperCase();
-	document.title = "Bienvenue " + avatar;
-	document.querySelector("bascule span").innerHTML = avatar + " " + tabMessages[0];
-}
-
-// retourne la taille d'un tableau associatif
-//
-// exemple appel : arrayAssoSize(scenario) avec 
-// - scenario un tableau associatif
-//
-function arrayAssoSize(arr) {
-    var size = 0;
-    for (let key in arr) 
-    {
-        if (arr.hasOwnProperty(key)) size++;
-    }
-    return size;
-}
-
-// retourne l'indice du tableau correspondnat à la valeur reçue
-//
-// exemple appel : arrayAssoSearch(actions, timeCode) avec 
-// - actions un tableau associatif
-// - timecode la valeur à rechercher
-//
-function arrayAssoSearch(arr, valObject) {
-	var nbEl = arrayAssoSize(arr);
-	for (let ind = 0; ind < nbEl; ind++) {
-		if (arr[ind].step === valObject) {
-			return ind;	// retourne l'indice du tableau
-		}
-	}
-	return -1;	// aucun résultat
-}
-
-function deleteChild(selector) { 
-	var e = document.querySelector(selector); 
-	var first = e.firstElementChild; 
-	while (first) { 
-		first.remove(); 
-		first = e.firstElementChild; 
-	} 
-} 
-
-function classSelector(use, selector, value) {
-	var e = document.querySelector(selector);
-	gestClass(use, e, value);
-}
-
-function classId(use, id, value) {
-	var e = document.getElementById(id);
-	gestClass(use, e, value);
-}
-
-function gestClass(use, objet, value) {
-	switch (use) {
-		case "set":
-			objet.className = value;
-			break;
-
-		case "add":
-			objet.classList.add(value);
-			break;
-		
-		case "del":
-			objet.classList.remove(value);
-
-		default:
-
-	}
-}
-
-function playSound(soundObj) {
-  var sound = document.getElementById(soundObj);
-  sound.play();
-}
