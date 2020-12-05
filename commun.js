@@ -1,3 +1,5 @@
+// cette variable est nécessaire ici mais aussi dans d'autres pages
+// on ne peut pas éviter de la mettre ici donc
 var myURLcomplete = document.location.href;
 var myURL  = myURLcomplete.substring( 0 ,myURLcomplete.lastIndexOf( "/" ) );
 
@@ -54,8 +56,9 @@ function footer() {
     myFooter+='</span>';
     myFooter+='</div>';
 
+    console.log(myURL);
     myFooter+='<div class="col-lg-1 col-md-1 col-sm-1">';
-    myFooter+='<span><a href="'+myURL+'./aide/aide.html">Aide</a></span>';
+    myFooter+='<span><a href="'+myURL+'/aide/aide.html">Aide</a></span>';
     myFooter+='</div>';
 
     myFooter+='<div class="col-lg-1 col-md-1 col-sm-1">';
