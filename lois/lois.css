@@ -1,0 +1,35 @@
+@import url(../typo/scoreboard/stylesheet.css);
+@import url(../typo/passion_one/stylesheet.css);
+@import url(../commun.css);
+main section {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+}
+main section div p {
+  text-align: center;
+  color: white;
+  font-size: 1.25vw;
+}
+main menu {
+  display: flex;
+  flex-direction: column;
+  width: 80vw;
+}
+main menu span {
+  align-self: flex-start;
+  font-size: 1vw;
+  color: white;
+}
+main content {
+  width: 80vw;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+main content div div vignettesLois div a img {
+  width: 2vw;
+  height: 2vw;
+}
