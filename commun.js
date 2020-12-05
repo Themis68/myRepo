@@ -33,10 +33,11 @@ var lois = [
 ];
 
 function header() {
+    url = calculURL(myURL);
     var myHeader='';
 
-    myHeader+='<div class="col-12 col-sm-12 col-md-12 col-lg-12>"';
-    myHeader+='<img src="../images/isa.png" />&nbsp;&nbsp;';
+    myHeader+='<div class="col-12 col-sm-12 col-md-12 col-lg-12">';
+    myHeader+='<img src="'+ url + '/images/isa.png" />&nbsp;&nbsp;';
     myHeader+='<span>ARRET SUR IMAGE !</span>';
     myHeader+='</div>';
 
@@ -45,7 +46,7 @@ function header() {
 }
 
 function footer() {
-    myURL = myURL.replace("/src","");
+    url = calculURL(myURL);
     var myFooter='';
 
     myFooter+='<div class="col-lg-3 col-md-3 col-sm-3">';
@@ -56,25 +57,24 @@ function footer() {
     myFooter+='</span>';
     myFooter+='</div>';
 
-    console.log(myURL);
     myFooter+='<div class="col-lg-1 col-md-1 col-sm-1">';
-    myFooter+='<span><a href="'+myURL+'/aide/aide.html">Aide</a></span>';
+    myFooter+='<span><a href="'+url+'/aide/aide.html">Aide</a></span>';
     myFooter+='</div>';
 
     myFooter+='<div class="col-lg-1 col-md-1 col-sm-1">';
-    myFooter+='<span><a href="'+myURL+'/src/asi.html">Licence</a></span>';
+    myFooter+='<span><a href="'+url+'/src/asi.html">Licence</a></span>';
     myFooter+='</div>';
 
     myFooter+='<div class="col-lg-1 col-md-1 col-sm-1">';
-    myFooter+='<span><a href="'+myURL+'/src/video.html">Vidéo</a></span>';
+    myFooter+='<span><a href="'+url+'/src/video.html">Vidéo</a></span>';
     myFooter+='</div>';
 
     myFooter+='<div class="col-lg-1 col-md-1 col-sm-1">';
-    myFooter+='<span><a href="'+myURL+'/src/quizz.html">Quizz</a></span>';
+    myFooter+='<span><a href="'+url+'/src/quizz.html">Quizz</a></span>';
     myFooter+='</div>';
 
     myFooter+='<div class="col-lg-1 col-md-1 col-sm-1">';
-    myFooter+='<span><a href="'+myURL+'/src/lois.html">Lois du jeu</a></span>';
+    myFooter+='<span><a href="'+url+'/lois/lois.html">Lois du jeu</a></span>';
     myFooter+='</div>';
 
     myFooter+='<div class="col-lg-4 col-md-4 col-sm-4">';
@@ -85,4 +85,13 @@ function footer() {
     e.innerHTML = myFooter;
 }
 
-
+function calculURL(url) {
+    // traitement selon page courante
+    url = url.replace("/aide","");
+    url = url.replace("/lois","");
+    url = url.replace("/questionnaires","");
+    url = url.replace("/rencontres","");
+    url = url.replace("/src","");
+    
+    return url;
+}
