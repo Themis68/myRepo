@@ -1,3 +1,10 @@
+document.addEventListener("DOMContentLoaded", init, false);	
+
+function init(){
+    footer();
+    header();
+}
+
 function user() {
 	let avatarOk = false;
 	const reg = /^([a-zA-Z]){3,20}$/g;	// accepte des chaines de caractères jusqu'à 5 caractères

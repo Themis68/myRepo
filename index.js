@@ -1,3 +1,10 @@
+document.addEventListener("DOMContentLoaded", init, false);	
+
+function init(){
+    footer();
+    header();
+}
+
 function showAlt(id) {
     let newInnerHTML = '';
     switch(id) {

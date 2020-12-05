@@ -80,7 +80,8 @@ function init() {
     // est appelé en premier par la page lors du chargement
 	//
 
-	// mettre les listener ici car il faut avoir chargée la page
+	footer();
+    header();
 
 	// clic sur l'image de bascule
 	var bascule = document.querySelector("bascule img");
