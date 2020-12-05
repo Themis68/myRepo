@@ -62,7 +62,7 @@ function footer() {
     myFooter+='</div>';
 
     myFooter+='<div class="col-lg-1 col-md-1 col-sm-1">';
-    myFooter+='<span><a href="'+url+'/src/asi.html">Licence</a></span>';
+    myFooter+='<span><a href="'+url+'/licence/licence.html">Licence</a></span>';
     myFooter+='</div>';
 
     myFooter+='<div class="col-lg-1 col-md-1 col-sm-1">';
@@ -89,6 +89,7 @@ function calculURL(url) {
     // traitement selon page courante
     url = url.replace("/aide","");
     url = url.replace("/lois","");
+    url = url.replace("/licence","");
     url = url.replace("/questionnaires","");
     url = url.replace("/rencontres","");
     url = url.replace("/src","");
