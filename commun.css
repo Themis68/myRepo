@@ -98,17 +98,17 @@ html body main {
   background-position: center;
   background-size: cover;
 }
-html body main header {
+html body main header div {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
 }
-html body main header img {
+html body main header div img {
   width: 3vw;
   height: 3vw;
 }
-html body main header span {
+html body main header div span {
   font-family: scoreboardregular;
   font-size: 5vw;
   color: white;
