@@ -44,7 +44,7 @@ var script1 = [
         attributs: ["Ligue Pays De la Loire", "Ligue de Bretagne"],
         reponse: {
             solution: 2,
-            pict: "arbitre/touche.png",
+            pict: "touche.png",
             libelle: "L'arbitre assistant positionne son drapeau en direction du camps qui a touché le ballon en dernier ",
             loi: "Loi_15",
             points: 1
@@ -66,7 +66,7 @@ var script1 = [
         reponse: {
             solution: 2,
             libelle: "En plus de la gestuelle l'arbitre peut compléter en criant 'avantage'",
-            pict: "arbitre/avantage.png",
+            pict: "avantage.png",
             loi: "Loi_05",
             points: 1
         }
@@ -106,7 +106,7 @@ var script1 = [
         reponse: {
             solution: 1,
             libelle: "L'arbitre garde le bras levé jusqu'à l'exécution du coup-franc s'il s'agit d'un coup-franc indirect",
-            pict: "arbitre/direct.png",
+            pict: "direct.png",
             loi: "Loi_13",
             points: 2
         }
@@ -127,7 +127,7 @@ var script1 = [
         reponse: {
             solution: 1,
             libelle: "L'arbitre assistant peut signaler à l'arbitre des fautes s'il estime être le plus près de l'action. L'arbitre central garde la décision finale.",
-            pict: "arbitre/fauteassistant.png",
+            pict: "fauteassistant.png",
             loi: "Loi_13",
             points: 1
         }
@@ -148,7 +148,7 @@ var script1 = [
         reponse: {
             solution: 2,
             libelle: "L'arbitre estime qu'il n'y a pas faute et crie 'jouer'",
-            pict: "arbitre/avantage.png",
+            pict: "avantage.png",
             loi: "Loi_05",
             points: 1
         }
@@ -168,7 +168,7 @@ var script1 = [
         reponse: {
             solution: 1,
             libelle: "L'arbitre estime qu'il y a charge irrégulière ",
-            pict: "arbitre/direct.png",
+            pict: "direct.png",
             loi: "Loi_13",
             points: 1
         }
@@ -189,7 +189,7 @@ var script1 = [
         reponse: {
             solution: 2,
             libelle: "L’arbitre indique avec son bras que le dégagement doit avoir lieu à hauteur de la ligne des 5,50 mètres, familièrement appelé « 6 mètres »",
-            pict: "arbitre/sortiebut.png",
+            pict: "sortiebut.png",
             loi: "Loi_16",
             points: 1
         }
@@ -291,7 +291,7 @@ var script1 = [
         reponse: {
             solution: 1,
             libelle: "L’arbitre assistant peut faire signaler une faute s’il estime qu’il est plus près de l’action pour juger que l’arbitre central",
-            pict: "arbitre/fauteassistant.png",
+            pict: "fauteassistant.png",
             loi: "Loi_13",
             points: 1
         }

@@ -26,7 +26,7 @@ var script3 = [
         reponse: {
             solution: 1,
             libelle: "L'arbitre confirme en indiquant le centre du terrain",
-            pict: "arbitre/sortiebut.png",
+            pict: "sortiebut.png",
             points: 1
         }
     },

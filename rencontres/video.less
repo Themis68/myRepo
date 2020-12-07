@@ -1,36 +1,6 @@
 @import url(../typo/scoreboard/stylesheet.css);
 @import url(../typo/passion_one/stylesheet.css);
-// minireset.css v0.0.3 | MIT License | github.com/jgthms/minireset.css 
-html,body,p,ol,ul,li,dl,dt,dd,blockquote,figure,fieldset,legend,textarea,pre,iframe,hr,h1,h2,h3,h4,h5,h6{margin:0;padding:0}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal}ul{list-style:none}button,input,select,textarea{margin:0}html{box-sizing:border-box}*,*:before,*:after{box-sizing:inherit}embed,iframe,object,audio,video{height:auto;max-width:100%}img{max-width:100%}iframe{border:0}table{border-collapse:collapse;border-spacing:0}td,th{padding:0;text-align:left}
-
-/* 
-font-size: 100%; // this is usually 16px by default 
-*/
-
-html {
-    font-family: "passion_oneregular";    // police par défaut 
-}
-
-body {
-    min-height: 100vh;      // hauteur maximum 
-    width: 100vw;   // on prend la largeur totale
-    display: flex;
-    flex-direction: column;     // alignement vertical des zones 
-}
-
-/*
-    MAIN                  
-        HEADER            
-        SECTION           
-        MENU              
-             MODULE       
-        CONTENT           
-             VIDEO        
-             INTERACTION  
-    FOOTER
-*/
-
-// la séquence du code est importante car la lecture est linéaire 
+@import url(../commun.css);
 
 // classes pour la zone TETE
 #grey {
@@ -78,34 +48,6 @@ tete.FermeInfo {
 
 
 main {
-    display: flex;
-    flex-direction: column;     // alignement vertical des zones 
-    align-items: center;
-    flex: 1;  // prend toute la hauteur restante : donc 100% dans ce cas
-    background-image: url("../images/pelouses/stade3.jpg");
-    background-repeat: no-repeat;
-    background-position: center; 
-    background-size: cover;     // couvre tout l'écran
-
-    header {
-        display:flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-    
-        img {
-            width: 3vw;
-            height: 3vw;
-        }
-    
-        span {
-            font-family: "scoreboardregular";
-            font-size: 5vw; // taille variable selon largeur du viewport
-            color:white;
-            line-height: normal;
-        }
-    }
-
     section {
         display: flex;
         flex-direction: column;
@@ -192,7 +134,7 @@ main {
                 border-top-right-radius: 20px;
                 padding: 5px;
 
-                background-image: url("../images/pelouses/stade.jpg");
+                background-image: url("./images/pelouses/stade.jpg");
                 background-repeat: no-repeat;
                 background-position: center; 
                 background-size: cover;
@@ -398,7 +340,7 @@ main {
 
                     span {
                         display: flex;
-                        background-image: url("../images/replay.png");
+                        background-image: url("./images/replay.png");
                         background-repeat: no-repeat;
                         background-position: center; 
                         background-size: contain;     // couvre tout l'écran

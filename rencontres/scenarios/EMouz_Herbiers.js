@@ -54,7 +54,7 @@ var script2 = [
         reponse: {
             solution: 1,
             libelle: "L'arbitre lève le bras pour signaler la faute. Puis le baisse pour indiquer le caractère direct du coup-franc",
-            pict: "arbitre/direct.png",
+            pict: "direct.png",
             points: 2,
             loi: "Loi_11"
         }

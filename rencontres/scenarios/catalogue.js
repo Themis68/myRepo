@@ -76,5 +76,31 @@ var scenario = [
                 maillotCouleur: "rgb(0,200,0)"
             }
         }
+    ],
+    [
+        {
+            id: 4,
+            rencontre: "PDLL/Bretagne",
+            poster: "Pole_PloufraganMT2.png",
+            fichier: "Pole_PloufraganMT2.mp4",
+            scenario: "Pole_PloufraganMT2.js",
+            variable: "script4",
+            description: "Match amical opposant Les Pôles espoirs des Ligues de Bretagne (en blanc) et des Pays de La Loire (en bleu marine) - 2ème période",
+            gauche: {
+                nom: "Ligue Pays De la Loire",
+                fanion: "Ligue2.png",
+                site: "https://lfpl.fff.fr",
+                maillotCouleur: "rgb(67, 76, 108)"
+            },
+            droite: {
+                nom: "Ligue de Bretagne",
+                fanion: "ligueBretagne.png",
+                site: "https://footbretagne.fff.fr",
+                maillotCouleur: "rgb(255, 255, 255)"
+            },
+            arbitre: {
+                maillotCouleur: "rgb(255, 112, 119)"
+            }
+        }
     ]
 ]

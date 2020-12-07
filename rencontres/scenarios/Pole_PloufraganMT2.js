@@ -1,4 +1,4 @@
-var script2 = [
+var script4 = [
     {
         step: '00:00:01',
         act: "AllerA",
@@ -100,7 +100,7 @@ var script2 = [
         reponse: {
             solution: 2,
             libelle: "Sur cette action le ballon ayant franchi la ligne de but de peu. L’arbitra assistant signale la sortie du ballon en levant le drapeau, pour alerter l’arbitre central puis en indique le point de corner.",
-            pict: "arbitre/corner.png",
+            pict: "corner.png",
             loi: "Loi_17",
             points: 1
         }
@@ -120,7 +120,7 @@ var script2 = [
         reponse: {
             solution: 2,
             libelle: "L'arbitre assistant signale la demande de remplacement de la même façon",
-            pict: "arbitre/remplacement.png",
+            pict: "remplacement.png",
             loi: "Loi_03",
             points: 2
         }
@@ -159,7 +159,7 @@ var script2 = [
         attributs: ["charge sur le gardien", "contact avec le défenseur", "hors-jeu"],
         reponse: {
             solution: 3,
-            pict: "arbitre/hors-jeu.png",
+            pict: "hors-jeu.png",
             loi: "Loi_11",
             points: 2
         }

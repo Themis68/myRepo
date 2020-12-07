@@ -49,10 +49,10 @@ var tabMessages = [
 ]
 
 // chemins
-var pathImages = "../images/";		// autres images
-var pathVideos = "../rencontres/";		// vidéos des matchs
-var pathFanions = pathImages + "fanions/";		// fanions des equipes
-
+var pathJS = "./rencontres/scenarios/";		// vidéos des matchs
+var pathImages = "./images/";		// autres images
+var pathVideos = "./scenarios/";		// vidéos des matchs
+var pathLois = "../lois/images";
 // **********************************************************************************************************
 
 document.addEventListener("DOMContentLoaded", init, false);	// lance l'écoute des évènements et appelle INIT
@@ -80,8 +80,8 @@ function init() {
     // est appelé en premier par la page lors du chargement
 	//
 
-	footer();
     header();
+	footer();
 
 	// clic sur l'image de bascule
 	var bascule = document.querySelector("bascule img");
@@ -164,7 +164,7 @@ function creerVignettes(id) {
 		myImg.className = "img-fluid mx-auto d-block";
 		myImg.setAttribute("alt", "img" + i);
 		myImg.setAttribute("title", "img" + i);
-		myImg.setAttribute("src", pathVideos + (scenario[i][0].poster || pathImages + "pelouses/stade.jpg"));
+		myImg.setAttribute("src", (pathVideos + scenario[i][0].poster) || (pathImages + "pelouses/stade.jpg"));
 
 		// caption
 		let myCaption = document.createElement("div");
@@ -173,13 +173,13 @@ function creerVignettes(id) {
 		let myF = document.createElement("img");
 		myF.className = "carouselFanion";
 		myF.setAttribute("title", "fanionG" + i);
-		myF.setAttribute("src", pathFanions + (scenario[i][0].gauche.fanion || "fff.png'"));
+		myF.setAttribute("src", pathImages + 'fanions/' + (scenario[i][0].gauche.fanion || "fff.png'"));
 		myCaption.appendChild(myF);
 		// fanion
 		myF = document.createElement("img");
 		myF.className = "carouselFanion";
 		myF.setAttribute("title", "fanionD" + i);
-		myF.setAttribute("src", pathFanions + (scenario[i][0].droite.fanion || "fff.png'"));
+		myF.setAttribute("src", pathImages + 'fanions/' +(scenario[i][0].droite.fanion || "fff.png'"));
 		myCaption.appendChild(myF);
 		
         let myP = document.createElement("p");        
@@ -197,7 +197,7 @@ function creerVignettes(id) {
 
 		let myScript = document.createElement("SCRIPT");
 		myScript.setAttribute("type", "text/javascript");
-		myScript.setAttribute("src", "../rencontres/" + scenario[i][0].scenario);
+		myScript.setAttribute("src",  pathVideos + scenario[i][0].scenario);
 		document.head.appendChild(myScript);
 	}
 }
@@ -286,7 +286,7 @@ function switchVideo(n) {
 				preload:  'none',
 				loop: false,
 				fluid: true,
-				poster: (pathVideos + video[0].poster || pathImages + "pelouses/pelousemini.png"),
+				poster: (pathVideos + video[0].poster) || (pathImages + "pelouses/pelousemini.png"),
 				controlBar: {
 					volumePanel: {	// avec l'ancienne version de video-js on appelait volumeMenuButton
 						inline: false,
@@ -870,7 +870,7 @@ function gestPropositions(etape, attributs, reponse) {
 				loi.id = "loi" + (i+1);
 				if(actionEnCours.reponse.loi !== undefined) {
 					
-					loi.href = '../lois/' + actionEnCours.reponse.loi + '.pdf';
+					loi.href = pathLois + '/' +actionEnCours.reponse.loi + '.pdf';
 					loi.target = '_blank';
 					i.id = "book" + (i+1);
 					i.className = "fas fa-book";
@@ -1030,7 +1030,7 @@ function gestionInter(etape, objet) {
                 document.querySelector("inter complement img").style.display = (objet.reponse.pict === undefined ? "none" : "flex");
                 if (objet.reponse.pict !== undefined) {
                     // on doit avoir le IF car sinon ca généère un message d'eereur lors de l'affectation de l'image  
-                    document.querySelector("inter complement img").setAttribute("src",pathImages + objet.reponse.pict);
+                    document.querySelector("inter complement img").setAttribute("src",pathImages + 'arbitres/' + objet.reponse.pict);
                 }
             }
             // replay
