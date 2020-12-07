@@ -93,7 +93,7 @@ function calculURL(url) {
     url = url.replace("/licence","");
     url = url.replace("/quizz","");
     url = url.replace("/rencontres","");
-    url = url.replace("/src","");
+    url = url.replace("/carousel","");
     
     return url;
 }
