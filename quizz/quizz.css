@@ -102,10 +102,7 @@ main content inter tete {
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   padding: 5px;
-  background-image: url("../images/pelouses/stade.jpg");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
+  background-color: silver;
 }
 main content inter tete niveau {
   display: flex;
@@ -253,7 +250,7 @@ main content inter suite next img {
 }
 main content inter suite chrono {
   display: flex;
-  background-image: url("../images/cerclebleu.png");
+  background-image: url("images/cerclebleu.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
