@@ -62,15 +62,21 @@ function central(event) {
 	// gestion de la position de la souris pour plus tard
 	var target = event.target || event.srcElement; // ce dernier pour compatibilité IE
 
-	if(target.getAttribute('class') == 'vjs-icon-placeholder') {
-		// clic sur big play
-		draw("vjs-bug-silhEquipeA", video[0].gauche.maillotCouleur);
-		draw("vjs-bug-silhEquipeB", video[0].droite.maillotCouleur);
-		draw("vjs-bug-silhArbitre", video[0].arbitre.maillotCouleur);
+	console.log(target.getAttribute('class'));
 
-		//masquer les boutons de contrôle
-		document.getElementsByClassName("vjs-control-bar")[0].children[0].classList.add("vjs-hidden");	// play
-		document.getElementsByClassName("vjs-control-bar")[0].children[5].classList.add("vjs-hidden");  // time progress
+	switch (target.getAttribute('class')) { 
+		case 'vjs-icon-placeholder':	// clis sur le grand bouton PLAY
+		case 'vjs-poster':	// clis sur l'image
+			// clic sur big play = démarrage initial
+			console.log("passe 1");
+			draw("vjs-bug-silhEquipeA", video[0].gauche.maillotCouleur);
+			draw("vjs-bug-silhEquipeB", video[0].droite.maillotCouleur);
+			draw("vjs-bug-silhArbitre", video[0].arbitre.maillotCouleur);
+
+			//masquer les boutons de contrôle
+			document.getElementsByClassName("vjs-control-bar")[0].children[0].classList.add("vjs-hidden");	// play
+			document.getElementsByClassName("vjs-control-bar")[0].children[5].classList.add("vjs-hidden");  // time progress
+			break;
 	}
 
 }
@@ -93,45 +99,46 @@ function init() {
 
 function draw(id, maillotCouleur) {
 	let canvas = document.getElementById(id);
-    	if (canvas.getContext) {
-			let ctx = canvas.getContext("2d");
 
-			// fond
-			ctx.beginPath();
-  			ctx.lineWidth="1";
-  			ctx.arc(14, 14, 14, 0, 2 * Math.PI);	// X rayon, Y rayon, rayon, angle de départ, 2*PI pour le cercle complet
-  			ctx.fillStyle = "black";	// couleur de fond
-			ctx.fill();		// ordre de remplissage
-			ctx.closePath();
+	if (canvas.getContext) {
+		let ctx = canvas.getContext("2d");
 
-			// tete
-			ctx.beginPath();
-  			ctx.lineWidth="1";
-  			ctx.arc(14, 8, 5, 0, 2 * Math.PI);		// X rayon, Y rayon, rayon, angle de départ, 2*PI pour le cercle complet
-  			ctx.fillStyle = maillotCouleur;	// couleur de fond
-			ctx.fill();		// ordre de remplissage
-			ctx.closePath();
+		// fond
+		ctx.beginPath();
+		ctx.lineWidth="1";
+		ctx.arc(14, 14, 14, 0, 2 * Math.PI);	// X rayon, Y rayon, rayon, angle de départ, 2*PI pour le cercle complet
+		ctx.fillStyle = "black";	// couleur de fond
+		ctx.fill();		// ordre de remplissage
+		ctx.closePath();
 
-			// corps
-			let rectWidth = 18;
-      		let rectHeight = 8;
-      		let rectX = 5;
-      		let rectY = 15; //12;
-      		let cornerRadius = 5;
+		// tete
+		ctx.beginPath();
+		ctx.lineWidth="1";
+		ctx.arc(14, 8, 5, 0, 2 * Math.PI);		// X rayon, Y rayon, rayon, angle de départ, 2*PI pour le cercle complet
+		ctx.fillStyle = maillotCouleur;	// couleur de fond
+		ctx.fill();		// ordre de remplissage
+		ctx.closePath();
 
-			ctx.beginPath();
-			ctx.fillStyle = maillotCouleur;
-			ctx.lineWidth = 1;
-			ctx.moveTo(rectX + cornerRadius, rectY);
-			ctx.lineTo(rectX + rectWidth - cornerRadius, rectY);
-			ctx.arcTo(rectX + rectWidth, rectY, rectX + rectWidth, rectY + cornerRadius, cornerRadius);	// arrondi droite
-			ctx.lineTo(rectX + rectWidth, rectY + rectHeight);	// descendre
-			ctx.lineTo(rectX, rectY + rectHeight);	// horizontale basse
-			ctx.lineTo(rectX, rectY + cornerRadius);	// remonter
-			ctx.arcTo(rectX, rectY, rectX + cornerRadius, rectY, cornerRadius);	// arrondi gauche
-			ctx.fill();		// ordre de remplissage
-			ctx.closePath();
-    }
+		// corps
+		let rectWidth = 18;
+		let rectHeight = 8;
+		let rectX = 5;
+		let rectY = 15; //12;
+		let cornerRadius = 5;
+
+		ctx.beginPath();
+		ctx.fillStyle = maillotCouleur;
+		ctx.lineWidth = 1;
+		ctx.moveTo(rectX + cornerRadius, rectY);
+		ctx.lineTo(rectX + rectWidth - cornerRadius, rectY);
+		ctx.arcTo(rectX + rectWidth, rectY, rectX + rectWidth, rectY + cornerRadius, cornerRadius);	// arrondi droite
+		ctx.lineTo(rectX + rectWidth, rectY + rectHeight);	// descendre
+		ctx.lineTo(rectX, rectY + rectHeight);	// horizontale basse
+		ctx.lineTo(rectX, rectY + cornerRadius);	// remonter
+		ctx.arcTo(rectX, rectY, rectX + cornerRadius, rectY, cornerRadius);	// arrondi gauche
+		ctx.fill();		// ordre de remplissage
+		ctx.closePath();
+	}
 }
 
 function creerVignettes(id) {
@@ -263,7 +270,7 @@ function switchVideo(n) {
 				});
 			myVideo.poster(pathVideos + video[0].poster); 
 
-			gestionCamps(0);	// MAJ des infos des équipes
+			gestionCamps(0);	// MAJ des infos des équipes (silhouettes et fanions)
 
 		} else {
 			// tableau du jeu
@@ -322,6 +329,85 @@ function switchVideo(n) {
 						]
 					},
 					bug: [{
+							type: "equipe",
+							id:"vjs-bug-EquipeA",
+							visibility: true,
+							libelle: "<span>"+ video[0].gauche.nom +"</span>",
+							classeCSSText: "vjs-bug-titreBug",
+							opacity: 1,
+							left: "30px",
+							top: "25px",
+							position: 'tl',
+							imgSrc: pathImages + "fanions/" + (video[0].gauche.fanion || 'fff.png'),
+							alt: video[0].gauche.nom  || "fanion par défaut",
+							link: video[0].gauche.site,
+							classeCSSCanvas: "vjs-bug-silhBug",
+							idCanvas:"vjs-bug-silhEquipeA",
+							idFanion:"vjs-bug-pictEquipeA",
+							idTitre:"vjs-bug-titreEquipeA",
+							paddingInterne: "3px"
+						}, 
+						{
+							type: "equipe",
+							id:"vjs-bug-EquipeB",
+							visibility: true,
+							libelle: "<span>"+ video[0].droite.nom +"</span>",
+							classeCSSText: "vjs-bug-titreBug",
+							opacity: 1,
+							right: "30px",
+							top: "25px",
+							position: 'tr',
+							imgSrc: pathImages + "fanions/" + (video[0].droite.fanion || 'fff.png'),
+							alt: video[0].droite.nom  || "fanion par défaut",
+							link: video[0].droite.site,
+							classeCSSCanvas: "vjs-bug-silhBug",
+							idCanvas:"vjs-bug-silhEquipeB",
+							idFanion:"vjs-bug-pictEquipeB",
+							idTitre:"vjs-bug-titreEquipeB",
+							paddingInterne: "3px"
+						}, 
+						{
+							type: "arbitre",
+							id:"vjs-bug-EquipeB",
+							visibility: true,
+							libelle: "<span>"+ avatar +"</span>",
+							classeCSSText: "vjs-bug-titreBug",
+							opacity: 1,
+							left: "300px",
+							top: "25px",
+							position: 'tc',
+							imgSrc: pathImages + "fanions/" + (video[0].droite.fanion || 'fff.png'),
+							alt: video[0].droite.nom  || "fanion par défaut",
+							link: video[0].droite.site,
+							classeCSSCanvas: "vjs-bug-silhBug",
+							idCanvas:"vjs-bug-silhArbitre",
+							paddingInterne: "3px"
+						} 
+/*
+						{
+							type: "canvas",
+							id:"vjs-bug-silhArbitre",
+							visibility: true,
+							height: 30,
+							width: 30,
+							classeCSS: "vjs-bug-silhArbitreBug",
+							opacity: 1,
+							left: (30 + 20 + 160 + 5 + 200) + "px",
+							top: "20px",
+							position: 'tc'
+						},
+						{
+							type: "text",
+							id:"vjs-bug-titreArbitre",
+							visibility: true,
+							libelle: "<span>"+ avatar +"</span>",
+							classeCSS: "vjs-bug-titreArbitre",
+							opacity: 1,
+							left: (30 + 20 + 160 + 5 + 200) + "px",
+							top: "50px",
+							position: 'tc'
+						}*/
+					/*{
 						type: "pict",
 						id:"vjs-bug-pictEquipeA",
 						visibility: true,
@@ -357,31 +443,10 @@ function switchVideo(n) {
 						left: (30 + 20 + 160 + 5) + "px",
 						top: "20px",
 						position: 'tl'
-					},
-					{
-						type: "canvas",
-						id:"vjs-bug-silhArbitre",
-						visibility: true,
-						height: 30,
-						width: 30,
-						classeCSS: "vjs-bug-silhArbitreBug",
-						opacity: 1,
-						left: (30 + 20 + 160 + 5 + 200) + "px",
-						top: "20px",
-						position: 'tc'
-					},
-					{
-						type: "text",
-						id:"vjs-bug-titreArbitre",
-						visibility: true,
-						libelle: "<span>"+ avatar +"</span>",
-						classeCSS: "vjs-bug-titreArbitre",
-						opacity: 1,
-						left: (30 + 20 + 160 + 5 + 200) + "px",
-						top: "50px",
-						position: 'tr'
-					}, 
-					{
+					},*/
+						
+					]
+					/*{
 						type: "canvas",
 						id:"vjs-bug-silhEquipeB",
 						visibility: true,
@@ -417,7 +482,7 @@ function switchVideo(n) {
 						right: "20px",
 						top: "20px",
 						position: 'tr'
-					}]
+					}]*/
 				}
 			});
 		}
@@ -561,7 +626,7 @@ function gestionCamps(mitemps) {
 		document.getElementById("vjs-bug-pictEquipeB").setAttribute("src", pathImages + "fanions/"+ (video[0].droite.fanion || "fff.png"));
 		draw("vjs-bug-silhEquipeA", video[0].gauche.maillotCouleur);
 		draw("vjs-bug-silhEquipeB", video[0].droite.maillotCouleur);
-		draw("vjs-bug-silhEquipeB", video[0].arbitre.maillotCouleur);
+		draw("vjs-bug-silhArbitre", video[0].arbitre.maillotCouleur);
 	}
 	if (mitemps===2) {
 		document.getElementById("vjs-bug-titreEquipeA").innerHTML = "<span>" + video[0].droite.nom + "</span>";
