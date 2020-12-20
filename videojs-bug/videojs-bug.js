@@ -128,10 +128,13 @@
 
       function BugComponent(player, options) {
         _classCallCheck(this, BugComponent);
+
         return _possibleConstructorReturn(this, (BugComponent.__proto__ || Object.getPrototypeOf(BugComponent)).call(this, player, options));
       }
 
+      // *****************************************************************************************
       // The `createEl` function of a component creates its DOM element.
+      //
       _createClass(BugComponent, [{
         key: 'createEl',
         value: function createEl() {
@@ -146,26 +149,30 @@
           // Create the element
           switch (options.type) {
             case "equipe":
+            case "arbitre":
               // object général
               var element = videojs.dom.createEl('div', {
-                className: "vjs-bug-compose"
+                className: "vjs-bug-compose",
+                id: options.id
               })
 
               // FANION
-              var pict = videojs.dom.createEl('img', {
-                src: options.imgSrc,
-                title: options.alt  || "",
-                className: (options.visibility ? "vjs-bug-show" : "vjs-bug-hide"),
-                id: options.idFanion
-              });
-              pict.style.padding= options.paddingInterne;
-              pict.style.width= "14%";
+              if (options.type == "equipe") {
+                var pict = videojs.dom.createEl('img', {
+                  src: options.imgSrc,
+                  title: options.alt  || "",
+                  className: (options.visibility ? "vjs-bug-show" : "vjs-bug-hide"),
+                  id: options.id + "F"
+                });
+                pict.style.padding= options.paddingInterne;
+                pict.style.width= "14%";
+              }
 
               // NOM EQUIPE
               var span = videojs.dom.createEl('span', {
                 height: options.height,
                 className: options.classeCSSText + " " + (options.visibility ? "vjs-bug-show" : "vjs-bug-hide"),
-                id: options.idTitre,
+                id: options.id + "T",
                 innerHTML: options.libelle
               });
               span.style.padding= options.paddingInterne;
@@ -175,37 +182,13 @@
                 className: options.classeCSSCanvas + " " + (options.visibility ? "vjs-bug-show" : "vjs-bug-hide"),
                 height: 30,
                 width: 30,
-                id: options.idCanvas
+                id: options.id + "C"
               });
               canvas.style.padding= options.paddingInterne;
 
-              element.appendChild(pict);
-              element.appendChild(span);
-              element.appendChild(canvas);
-              break;
-
-            case "arbitre":
-              var element = videojs.dom.createEl('div', {
-                className: "vjs-bug-compose"
-              })
-
-              var span = videojs.dom.createEl('span', {
-                height: options.height,
-                className: options.classeCSSText + " " + (options.visibility ? "vjs-bug-show" : "vjs-bug-hide"),
-              });
-              span.innerHTML = options.libelle;
-              span.id = options.id;
-              span.style.padding = "3px";
-
-              var canvas = videojs.dom.createEl('canvas', {
-                className: options.classeCSSCanvas + " " + (options.visibility ? "vjs-bug-show" : "vjs-bug-hide"),
-                height: 30,
-                width: 30
-                
-              });
-              canvas.id = options.idCanvas;
-              canvas.style.padding = "3px";
-
+              // Assemblage de l'objet
+              
+              (options.type == "equipe"? element.appendChild(pict) : "");
               element.appendChild(span);
               element.appendChild(canvas);
               break;
@@ -216,9 +199,9 @@
                 width: options.width,
                 height: options.height,
                 title: options.alt  || "",
-                className: (options.visibility ? "vjs-bug-show" : "vjs-bug-hide")
+                className: (options.visibility ? "vjs-bug-show" : "vjs-bug-hide"),
+                id: options.id
               });
-              element.id = options.id;
               break;
 
             case "text":
@@ -226,25 +209,24 @@
                 width: options.width, 
                 height: options.height,
                 className: options.classeCSS + " " + (options.visibility ? "vjs-bug-show" : "vjs-bug-hide"),
+                id: options.id,
+                innerHTML: options.libelle
               });
-              element.innerHTML = options.libelle;
-              element.id = options.id;
-             // element.style = "padding-left: 3px; padding-right: 3px;";
               break;
             
             case "canvas":
             var element = videojs.dom.createEl('canvas', {
                 width: options.width,
                 height: options.height,
-                className: options.classeCSS + " " + (options.visibility ? "vjs-bug-show" : "vjs-bug-hide")
+                className: options.classeCSS + " " + (options.visibility ? "vjs-bug-show" : "vjs-bug-hide"),
+                id: options.id,
               });
-              element.id = options.id;
               break;
 
             default:
               break;
           }
-        
+
           // Possibly make it a link
           if (options.link) {
             var linkElement = videojs.dom.createEl('a', {}, {
@@ -261,8 +243,6 @@
 
           // Styling
           bugElement.style.opacity = options.opacity || "";
-
-          // on ne traite pas le padding pour les centrage horizontaux et verticaux
           bugElement.style.padding = options.padding || "";
           bugElement.style.left = options.left || "";
           bugElement.style.top = options.top || "";
@@ -270,10 +250,13 @@
           bugElement.style.bottom = options.bottom || "";
          // }
 
+
           return bugElement;
         }
       }]);
       return BugComponent;
+
+      // *****************************************************************************************
     }(VjsClickableComponent);
 
     // Cross-compatibility for Video.js 5 and 6.
@@ -282,7 +265,6 @@
     var validateOptions = function validateOptions(options) {
       // CLIC 3
       // traitement éventuel de la position
-     // for (var i=0; i < options.length; i++) {
         switch (options.position) {
           case 'tl':
           case 'tr':
@@ -321,11 +303,12 @@
      */
     var onPlayerReady = function onPlayerReady(player, options) {
       // CLIC 2
-       for (var i=0 ; i < options.length; i++) {
+      for (var i=0 ; i < options.length; i++) {
         validateOptions(options[i]);
         videojs.registerComponent('BugComponent', BugComponent);  // MAJ faite pour gérer le tableau
         player.addChild('BugComponent', options[i], 1);  // Insert bug as first item after <video>:
-       }
+      }
+  
     };
 
     /**

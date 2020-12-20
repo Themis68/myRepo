@@ -3297,6 +3297,7 @@
       if (options.el) {
         this.el_ = options.el;
       } else if (options.createEl !== false) {
+        // PPS : Appel à la gestion des objets à ajouter à la vidéo
         this.el_ = this.createEl();
       } // if evented is anything except false, we want to mixin in evented
 
@@ -3645,6 +3646,8 @@
         }
 
         component = new ComponentClass(this.player_ || this, options); // child is a component instance
+
+        console.log('3648');
       } else {
         component = child;
       }
