@@ -64,16 +64,12 @@ function central(event) {
 	// gestion de la position de la souris pour plus tard
 	var target = event.target || event.srcElement; // ce dernier pour compatibilité IE
 
-	console.log(target.getAttribute('class'));
-
 	switch (target.getAttribute('class')) { 
-		case 'vjs-icon-placeholder':	// clis sur le grand bouton PLAY
-		case 'vjs-poster':	// clis sur l'image
-			// clic sur big play = démarrage initial
-			console.log("passe 1");
-			draw("vjs-bug-silhEquipeA", video[0].gauche.maillotCouleur);
-			draw("vjs-bug-silhEquipeB", video[0].droite.maillotCouleur);
-			draw("vjs-bug-silhArbitre", video[0].arbitre.maillotCouleur);
+		case 'vjs-icon-placeholder':	// clic sur le grand bouton PLAY
+		case 'vjs-poster':				// clic sur l'image
+			draw("vjs-bug-EquipeAC", video[0].gauche.maillotCouleur);
+			draw("vjs-bug-EquipeBC", video[0].droite.maillotCouleur);
+			draw("vjs-bug-ArbitreC", video[0].arbitre.maillotCouleur);
 
 			//masquer les boutons de contrôle
 			document.getElementsByClassName("vjs-control-bar")[0].children[0].classList.add("vjs-hidden");	// play
@@ -379,16 +375,13 @@ function switchVideo(n) {
 							libelle: "<span>"+ video[0].gauche.nom +"</span>",
 							classeCSSText: "vjs-bug-titreBug",
 							opacity: 1,
-							left: "30px",
-							top: "25px",
+							left: "20px",
+							top: "20px",
 							position: 'tl',
 							imgSrc: pathImages + "fanions/" + (video[0].gauche.fanion || 'fff.png'),
 							alt: video[0].gauche.nom  || "fanion par défaut",
 							link: video[0].gauche.site,
 							classeCSSCanvas: "vjs-bug-silhBug",
-							idCanvas:"vjs-bug-silhEquipeA",
-							idFanion:"vjs-bug-pictEquipeA",
-							idTitre:"vjs-bug-titreEquipeA",
 							paddingInterne: "3px"
 						}, 
 						{
@@ -398,33 +391,29 @@ function switchVideo(n) {
 							libelle: "<span>"+ video[0].droite.nom +"</span>",
 							classeCSSText: "vjs-bug-titreBug",
 							opacity: 1,
-							right: "30px",
-							top: "25px",
+							right: "20px",
+							top: "20px",
 							position: 'tr',
 							imgSrc: pathImages + "fanions/" + (video[0].droite.fanion || 'fff.png'),
 							alt: video[0].droite.nom  || "fanion par défaut",
 							link: video[0].droite.site,
 							classeCSSCanvas: "vjs-bug-silhBug",
-							idCanvas:"vjs-bug-silhEquipeB",
-							idFanion:"vjs-bug-pictEquipeB",
-							idTitre:"vjs-bug-titreEquipeB",
 							paddingInterne: "3px"
 						}, 
 						{
 							type: "arbitre",
-							id:"vjs-bug-EquipeB",
+							id:"vjs-bug-Arbitre",
 							visibility: true,
 							libelle: "<span>"+ avatar +"</span>",
 							classeCSSText: "vjs-bug-titreBug",
 							opacity: 1,
-							left: "300px",
-							top: "25px",
+							left: "50%",
+							top: "20px",
 							position: 'tc',
 							imgSrc: pathImages + "fanions/" + (video[0].droite.fanion || 'fff.png'),
 							alt: video[0].droite.nom  || "fanion par défaut",
 							link: video[0].droite.site,
 							classeCSSCanvas: "vjs-bug-silhBug",
-							idCanvas:"vjs-bug-silhArbitre",
 							paddingInterne: "3px"
 						} 
 /*
@@ -664,13 +653,13 @@ function gestionCamps(mitemps) {
 
 	if (mitemps===0) {
 		// on a cliqué sur une autre rencontre
-		document.getElementById("vjs-bug-titreEquipeA").innerHTML = "<span>" + video[0].gauche.nom + "</span>";
-		document.getElementById("vjs-bug-titreEquipeB").innerHTML = "<span>" + video[0].droite.nom + "</span>";
-		document.getElementById("vjs-bug-pictEquipeA").setAttribute("src", pathImages + "fanions/"+ (video[0].gauche.fanion || "fff.png"));
-		document.getElementById("vjs-bug-pictEquipeB").setAttribute("src", pathImages + "fanions/"+ (video[0].droite.fanion || "fff.png"));
-		draw("vjs-bug-silhEquipeA", video[0].gauche.maillotCouleur);
-		draw("vjs-bug-silhEquipeB", video[0].droite.maillotCouleur);
-		draw("vjs-bug-silhArbitre", video[0].arbitre.maillotCouleur);
+		document.getElementById("vjs-bug-EquipeAT").innerHTML = "<span>" + video[0].gauche.nom + "</span>";
+		document.getElementById("vjs-bug-EquipeBT").innerHTML = "<span>" + video[0].droite.nom + "</span>";
+		document.getElementById("vjs-bug-EquipeAF").setAttribute("src", pathImages + "fanions/"+ (video[0].gauche.fanion || "fff.png"));
+		document.getElementById("vjs-bug-EquipeBF").setAttribute("src", pathImages + "fanions/"+ (video[0].droite.fanion || "fff.png"));
+		draw("vjs-bug-EquipeAC", video[0].gauche.maillotCouleur);
+		draw("vjs-bug-EquipeBC", video[0].droite.maillotCouleur);
+		draw("vjs-bug-ArbitreC", video[0].arbitre.maillotCouleur);
 	}
 	if (mitemps===2) {
 		document.getElementById("vjs-bug-EquipeAT").innerHTML = "<span>" + video[0].droite.nom + "</span>";

@@ -18,6 +18,11 @@
 }
 */
 
+.vjs-bugs {
+  display: flex;
+  justify-content: space-between;
+}
+
 /* gestion de la zone d'infos sur les équipes FANION + TITRE + SILHOUETTE */
 .vjs-bug-compose {
   display:flex;

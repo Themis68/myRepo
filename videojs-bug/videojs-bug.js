@@ -129,8 +129,6 @@
       function BugComponent(player, options) {
         _classCallCheck(this, BugComponent);
 
-        // objet pas encore créé dans DOM
-
         return _possibleConstructorReturn(this, (BugComponent.__proto__ || Object.getPrototypeOf(BugComponent)).call(this, player, options));
       }
 
@@ -151,26 +149,30 @@
           // Create the element
           switch (options.type) {
             case "equipe":
+            case "arbitre":
               // object général
               var element = videojs.dom.createEl('div', {
-                className: "vjs-bug-compose"
+                className: "vjs-bug-compose",
+                id: options.id
               })
 
               // FANION
-              var pict = videojs.dom.createEl('img', {
-                src: options.imgSrc,
-                title: options.alt  || "",
-                className: (options.visibility ? "vjs-bug-show" : "vjs-bug-hide"),
-                id: options.idFanion
-              });
-              pict.style.padding= options.paddingInterne;
-              pict.style.width= "14%";
+              if (options.type == "equipe") {
+                var pict = videojs.dom.createEl('img', {
+                  src: options.imgSrc,
+                  title: options.alt  || "",
+                  className: (options.visibility ? "vjs-bug-show" : "vjs-bug-hide"),
+                  id: options.id + "F"
+                });
+                pict.style.padding= options.paddingInterne;
+                pict.style.width= "14%";
+              }
 
               // NOM EQUIPE
               var span = videojs.dom.createEl('span', {
                 height: options.height,
                 className: options.classeCSSText + " " + (options.visibility ? "vjs-bug-show" : "vjs-bug-hide"),
-                id: options.idTitre,
+                id: options.id + "T",
                 innerHTML: options.libelle
               });
               span.style.padding= options.paddingInterne;
@@ -180,37 +182,13 @@
                 className: options.classeCSSCanvas + " " + (options.visibility ? "vjs-bug-show" : "vjs-bug-hide"),
                 height: 30,
                 width: 30,
-                id: options.idCanvas
+                id: options.id + "C"
               });
               canvas.style.padding= options.paddingInterne;
 
-              element.appendChild(pict);
-              element.appendChild(span);
-              element.appendChild(canvas);
-              break;
-
-            case "arbitre":
-              var element = videojs.dom.createEl('div', {
-                className: "vjs-bug-compose"
-              })
-
-              var span = videojs.dom.createEl('span', {
-                height: options.height,
-                className: options.classeCSSText + " " + (options.visibility ? "vjs-bug-show" : "vjs-bug-hide"),
-              });
-              span.innerHTML = options.libelle;
-              span.id = options.id;
-              span.style.padding = "3px";
-
-              var canvas = videojs.dom.createEl('canvas', {
-                className: options.classeCSSCanvas + " " + (options.visibility ? "vjs-bug-show" : "vjs-bug-hide"),
-                height: 30,
-                width: 30
-                
-              });
-              canvas.id = options.idCanvas;
-              canvas.style.padding = "3px";
-
+              // Assemblage de l'objet
+              
+              (options.type == "equipe"? element.appendChild(pict) : "");
               element.appendChild(span);
               element.appendChild(canvas);
               break;
@@ -249,12 +227,6 @@
               break;
           }
 
-          // préparation de l'objet composé
-          var bugElement = videojs.dom.createEl('div', {         // element container
-            className: 'vjs-bug vjs-bug-' + options.position,
-            id: options.id
-          });
-
           // Possibly make it a link
           if (options.link) {
             var linkElement = videojs.dom.createEl('a', {}, {
@@ -272,8 +244,6 @@
 
           // Styling
           bugElement.style.opacity = options.opacity || "";
-
-          // on ne traite pas le padding pour les centrage horizontaux et verticaux
           bugElement.style.padding = options.padding || "";
           bugElement.style.boxSizing = "border-box";
 
@@ -305,7 +275,6 @@
           bugElement.style.bottom = options.bottom || "";
           bugElement.style.right = options.right || "";
 
-          // bugElement n'est pas encore présent dans le DOM
           return bugElement;
         }
       }]);
@@ -319,6 +288,22 @@
 
     var validateOptions = function validateOptions(options) {
       // CLIC 3
+      // traitement éventuel de la position
+        switch (options.position) {
+          case 'tl':
+          case 'tr':
+          case 'bl':
+          case 'br':
+          case 'tc':  // horizontal center et top
+          case 'cc':  // centrage total
+          case 'bc':  // horizontal center et bottom
+          case 'cl':  // vertical center et left
+          case 'cr':  // vertical center et right
+          break;
+
+          default:
+            options.position = 'br';
+        }
 
         if (options.opacity > 1) {
           options.opacity = 1;    // correction en cas de dépassement de la valeur
@@ -347,7 +332,6 @@
         videojs.registerComponent('BugComponent', BugComponent);  // MAJ faite pour gérer le tableau
         player.addChild('BugComponent', options[i], 1);  // Insert bug as first item after <video>:
       }
-      // Objet pas créé dans DOM
   
     };
 

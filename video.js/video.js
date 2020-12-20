@@ -3672,6 +3672,7 @@
 
         component = new ComponentClass(this.player_ || this, options); // child is a component instance
 
+        console.log('3648');
       } else {
         component = child;
       }
