@@ -143,48 +143,74 @@
           
           var options = this.options();
 
+          var bugElement = videojs.dom.createEl('div', {         // element container
+            className: 'vjs-bug vjs-bug-' + options.position,
+            id: options.id
+          });
+
           // Create the element
           switch (options.type) {
             case "equipe":
-            case "arbitre":
               // object général
               var element = videojs.dom.createEl('div', {
-                className: "vjs-bug-compose",
+                className: "vjs-bug-compose"
               })
 
               // FANION
-              if (options.type == "equipe") {
-                var pict = videojs.dom.createEl('img', {
-                  src: options.imgSrc,
-                  title: options.alt  || "",
-                  className: (options.visibility ? "vjs-bug-show" : "vjs-bug-hide"),
-                  id: options.id + "F"
-                });
-                pict.style.padding= options.paddingInterne;
-                pict.style.width= "14%";
-              }
+              var pict = videojs.dom.createEl('img', {
+                src: options.imgSrc,
+                title: options.alt  || "",
+                className: (options.visibility ? "vjs-bug-show" : "vjs-bug-hide"),
+                id: options.idFanion
+              });
+              pict.style.padding= options.paddingInterne;
+              pict.style.width= "14%";
 
               // NOM EQUIPE
               var span = videojs.dom.createEl('span', {
                 height: options.height,
                 className: options.classeCSSText + " " + (options.visibility ? "vjs-bug-show" : "vjs-bug-hide"),
-                id: options.id + "T",
+                id: options.idTitre,
                 innerHTML: options.libelle
               });
-              span.style.padding = options.paddingInterne;
+              span.style.padding= options.paddingInterne;
 
               // SILHOUETTE
               var canvas = videojs.dom.createEl('canvas', {
                 className: options.classeCSSCanvas + " " + (options.visibility ? "vjs-bug-show" : "vjs-bug-hide"),
                 height: 30,
                 width: 30,
-                id: options.id + "C"
+                id: options.idCanvas
               });
               canvas.style.padding= options.paddingInterne;
 
-              // Assemblage de l'objet
-              
-              (options.type == "equipe" ? element.appendChild(pict) : "");
+              element.appendChild(pict);
+              element.appendChild(span);
+              element.appendChild(canvas);
+              break;
+
+            case "arbitre":
+              var element = videojs.dom.createEl('div', {
+                className: "vjs-bug-compose"
+              })
+
+              var span = videojs.dom.createEl('span', {
+                height: options.height,
+                className: options.classeCSSText + " " + (options.visibility ? "vjs-bug-show" : "vjs-bug-hide"),
+              });
+              span.innerHTML = options.libelle;
+              span.id = options.id;
+              span.style.padding = "3px";
+
+              var canvas = videojs.dom.createEl('canvas', {
+                className: options.classeCSSCanvas + " " + (options.visibility ? "vjs-bug-show" : "vjs-bug-hide"),
+                height: 30,
+                width: 30
+                
+              });
+              canvas.id = options.idCanvas;
+              canvas.style.padding = "3px";
+
               element.appendChild(span);
               element.appendChild(canvas);
               break;
@@ -246,6 +272,8 @@
 
           // Styling
           bugElement.style.opacity = options.opacity || "";
+
+          // on ne traite pas le padding pour les centrage horizontaux et verticaux
           bugElement.style.padding = options.padding || "";
           bugElement.style.boxSizing = "border-box";
 
