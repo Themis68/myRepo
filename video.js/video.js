@@ -719,6 +719,12 @@
 
 
   function createEl(tagName, properties, attributes, content) {
+    /*
+      seuls les attributs fixés à la création apparaissent ici
+      ex : pas de 'width' car on ne l'a pas défini
+      confirmé par el.getAttributeNames();
+    */
+
     if (tagName === void 0) {
       tagName = 'div';
     }
@@ -1080,8 +1086,11 @@
    */
 
   function getBoundingClientRect(el) {
-    if (el && el.getBoundingClientRect && el.parentNode) {
+
+    if (el && el.getBoundingClientRect(el) && el.parentNode) {
+      
       var rect = el.getBoundingClientRect();
+
       var result = {};
       ['bottom', 'height', 'left', 'right', 'top', 'width'].forEach(function (k) {
         if (rect[k] !== undefined) {
@@ -3299,6 +3308,25 @@
       } else if (options.createEl !== false) {
         // PPS : Appel à la gestion des objets à ajouter à la vidéo
         this.el_ = this.createEl();
+
+        // objet pas encore créé dans DOM
+        // il ne possède que les attributs qu'on lui a donné lors de sa création
+         // console.log(this.el_.getBoundingClientRect());  // ne ramène que des zéro
+          // console.log(this.el_.offsetWidth); // ne ramène que des zéro
+          // console.log(this.el_.clientWidth); // ramène 0
+        
+        if(this.el_.id == "vjs-bug-Arbitre") {
+          const esd = window.getComputedStyle(this.el_, null);
+          const esd2 = getBoundingClientRect(this.el_); // appel de la fonction locale à video-js
+          console.log(
+            '1', esd2,
+          '2', esd, 
+          '4', esd.getPropertyValue('font-weight') , 
+          '5', esd['font-weight'], 
+          '6', esd.fontWeight,
+          '7', esd['fontWeight'], );
+      }
+
       } // if evented is anything except false, we want to mixin in evented
 
 
@@ -3640,14 +3668,12 @@
         // backwards-compatibility with 4.x. check to make sure the
         // component class can be instantiated.
 
-
         if (typeof ComponentClass !== 'function') {
           return null;
         }
 
         component = new ComponentClass(this.player_ || this, options); // child is a component instance
 
-        console.log('3648');
       } else {
         component = child;
       }
@@ -3679,6 +3705,7 @@
         this.contentEl().insertBefore(component.el(), refNode);
       } // Return so it can stored on parent object if desired.
 
+      // objet pas créé dans DOM
 
       return component;
     }
@@ -13249,6 +13276,8 @@
 
       _this.enable();
 
+      // objet pas encore ajouté au DOM
+
       return _this;
     }
     /**
@@ -18196,10 +18225,13 @@
           tabIndex: -1
         });
         this.hideThreshold_ += 1;
+
+        //TODO : appel à la création du composant
         var titleComponent = new Component(this.player_, {
           el: titleEl
         });
         menu.addItem(titleComponent);
+
       }
 
       this.items = this.createItems();
