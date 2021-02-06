@@ -129,6 +129,8 @@
       function BugComponent(player, options) {
         _classCallCheck(this, BugComponent);
 
+        // objet pas encore créé dans DOM
+
         return _possibleConstructorReturn(this, (BugComponent.__proto__ || Object.getPrototypeOf(BugComponent)).call(this, player, options));
       }
 
@@ -141,11 +143,6 @@
           
           var options = this.options();
 
-          var bugElement = videojs.dom.createEl('div', {         // element container
-            className: 'vjs-bug vjs-bug-' + options.position,
-            id: options.id
-          });
-
           // Create the element
           switch (options.type) {
             case "equipe":
@@ -153,7 +150,6 @@
               // object général
               var element = videojs.dom.createEl('div', {
                 className: "vjs-bug-compose",
-                id: options.id
               })
 
               // FANION
@@ -175,7 +171,7 @@
                 id: options.id + "T",
                 innerHTML: options.libelle
               });
-              span.style.padding= options.paddingInterne;
+              span.style.padding = options.paddingInterne;
 
               // SILHOUETTE
               var canvas = videojs.dom.createEl('canvas', {
@@ -188,9 +184,26 @@
 
               // Assemblage de l'objet
               
-              (options.type == "equipe"? element.appendChild(pict) : "");
+              (options.type == "equipe" ? element.appendChild(pict) : "");
               element.appendChild(span);
               element.appendChild(canvas);
+
+              /*
+              //inputText = "Geeks For Geeks"; 
+              //font = "16px times new roman"; 
+
+              canvas = document.createElement("canvas"); 
+              context = canvas.getContext("2d"); 
+              
+              //context.font = font; 
+              width = context.measureText(element).width; 
+              formattedWidth = Math.ceil(width) + "px"; 
+
+              console.log("width", formattedWidth);
+
+              //document.querySelector('.output').textContent 
+                    //  = formattedWidth; */
+
               break;
 
             case "pict":
@@ -227,6 +240,12 @@
               break;
           }
 
+          // préparation de l'objet composé
+          var bugElement = videojs.dom.createEl('div', {         // element container
+            className: 'vjs-bug vjs-bug-' + options.position,
+            id: options.id
+          });
+
           // Possibly make it a link
           if (options.link) {
             var linkElement = videojs.dom.createEl('a', {}, {
@@ -247,12 +266,9 @@
           bugElement.style.padding = options.padding || "";
           bugElement.style.boxSizing = "border-box";
 
-		     //bugElement.getBoundingClientRect(); sont à ZERO car l'objet n'a pas été recalculé à ce stade. Il le sera lors de l'init de la page
-
           // Position
-          /*
           switch (options.position) {
-           // case 'tc': // horizontal center et top
+            case 'tc': // horizontal center et top
             case 'bc': // horizontal center et bottom
             case 'cc':  // centrage total
               options.left = (document.getElementById("myVideo").offsetWidth / 2)+ 'px'; // 'px' est obligatoire via cette déclaration alors que left depuis la délczration via la vidéo n'en n'a pas besoin
@@ -268,13 +284,12 @@
             default:
               options.position = 'br';
           }
-*/
-          // espaces depuis le bord : padding
           bugElement.style.left = options.left || "";
           bugElement.style.top = options.top || "";
           bugElement.style.bottom = options.bottom || "";
           bugElement.style.right = options.right || "";
 
+          // bugElement n'est pas encore présent dans le DOM
           return bugElement;
         }
       }]);
@@ -288,22 +303,6 @@
 
     var validateOptions = function validateOptions(options) {
       // CLIC 3
-      // traitement éventuel de la position
-        switch (options.position) {
-          case 'tl':
-          case 'tr':
-          case 'bl':
-          case 'br':
-          case 'tc':  // horizontal center et top
-          case 'cc':  // centrage total
-          case 'bc':  // horizontal center et bottom
-          case 'cl':  // vertical center et left
-          case 'cr':  // vertical center et right
-          break;
-
-          default:
-            options.position = 'br';
-        }
 
         if (options.opacity > 1) {
           options.opacity = 1;    // correction en cas de dépassement de la valeur
@@ -332,6 +331,7 @@
         videojs.registerComponent('BugComponent', BugComponent);  // MAJ faite pour gérer le tableau
         player.addChild('BugComponent', options[i], 1);  // Insert bug as first item after <video>:
       }
+      // Objet pas créé dans DOM
   
     };
 

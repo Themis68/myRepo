@@ -64,6 +64,10 @@ function central(event) {
 	// gestion de la position de la souris pour plus tard
 	var target = event.target || event.srcElement; // ce dernier pour compatibilité IE
 
+	// positonnement des objets particuliers
+	if (document.getElementById("vjs-bug-Arbitre") != undefined) {
+		arbitreInfos.style.left = calculPosGauche("vjs-bug-Arbitre", "myVideo");
+	}
 	switch (target.getAttribute('class')) { 
 		case 'vjs-icon-placeholder':	// clic sur le grand bouton PLAY
 		case 'vjs-poster':				// clic sur l'image
@@ -82,6 +86,16 @@ function gererResize(event){
 	if (myVideo != undefined) {
 		gererFullscreen(event);	// gestion de la position des objets
 	}
+}
+
+function calculPosGauche(video, objet){
+	var arbitreInfos = document.getElementById(objet);
+	const arbitreTaille = arbitreInfos.getBoundingClientRect();
+
+		var videoInfos = document.getElementById(video);
+		const videoTaille = videoInfos.getBoundingClientRect();
+
+		return ((videoTaille.width / 2 ) - (arbitreTaille.width / 2))+ "px";
 }
 
 function init() {
@@ -407,7 +421,6 @@ function switchVideo(n) {
 							libelle: "<span>"+ avatar +"</span>",
 							classeCSSText: "vjs-bug-titreBug",
 							opacity: 1,
-							left: "50%",
 							top: "20px",
 							position: 'tc',
 							imgSrc: pathImages + "fanions/" + (video[0].droite.fanion || 'fff.png'),
