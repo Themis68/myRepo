@@ -25,7 +25,7 @@
 
 /* gestion de la zone d'infos sur les équipes FANION + TITRE + SILHOUETTE */
 .vjs-bug-compose {
-  display:flex;
+  display: flex;
   align-items: center;
   flex-direction: row;
 }
@@ -37,7 +37,7 @@
 }
 
 .vjs-bug-titreBug {
-  display:flex;
+  display: flex;
   flex-direction: row;
   justify-content: flex-start;
 }
@@ -47,7 +47,7 @@
   font-size: 1.2vw;
   color: white;
   background-color: midnightblue;
-  padding: 3px;
+  padding: 3px; /* padding pour le titre dans son rectangle */
 }
 
  /* gestion du score */
@@ -80,7 +80,10 @@
 /* on posse en flex
 /*.video-js .vjs-bug{display:inline-block;position:absolute}
 */
-.video-js .vjs-bug{display:flex;position:absolute}
+.video-js .vjs-bug{
+  display:flex;
+  position:absolute
+}
 
 
 .video-js .vjs-bug.no-link{pointer-events:none}
