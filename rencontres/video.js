@@ -79,9 +79,11 @@ function central(event) {
 	var target = event.target || event.srcElement; // ce dernier pour compatibilité IE
 
 	// positonnement des objets particuliers
+	// centrage sur la vidéo
 	if (document.getElementById("vjs-bug-Arbitre") != undefined) {
 		arbitreInfos = document.getElementById("vjs-bug-Arbitre");
-		arbitreInfos.style.left = calculPosGauche("myVideo", "vjs-bug-Arbitre");
+		arbitreInfos.style.left = centrerObjetSurVideo("myVideo", "vjs-bug-Arbitre");
+
 	}
 	switch (target.getAttribute('class')) { 
 		case 'vjs-icon-placeholder':	// clic sur le grand bouton PLAY
@@ -98,14 +100,14 @@ function central(event) {
 
 }
 
-function calculPosGauche(video, objet){
-	var arbitreInfos = document.getElementById(objet);
-	const arbitreTaille = arbitreInfos.getBoundingClientRect();
+function centrerObjetSurVideo(video, objet){
+	var objetInfos = document.getElementById(objet);
+	const objetTaille = objetInfos.getBoundingClientRect();
 
 		var videoInfos = document.getElementById(video);
 		const videoTaille = videoInfos.getBoundingClientRect();
 
-		return ((videoTaille.width / 2 ) - (arbitreTaille.width / 2))+ "px";
+		return ((videoTaille.width / 2 ) - (objetTaille.width / 2))+ "px";
 }
 
 function draw(id, maillotCouleur) {

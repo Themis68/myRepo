@@ -187,23 +187,6 @@
               (options.type == "equipe" ? element.appendChild(pict) : "");
               element.appendChild(span);
               element.appendChild(canvas);
-
-              /*
-              //inputText = "Geeks For Geeks"; 
-              //font = "16px times new roman"; 
-
-              canvas = document.createElement("canvas"); 
-              context = canvas.getContext("2d"); 
-              
-              //context.font = font; 
-              width = context.measureText(element).width; 
-              formattedWidth = Math.ceil(width) + "px"; 
-
-              console.log("width", formattedWidth);
-
-              //document.querySelector('.output').textContent 
-                    //  = formattedWidth; */
-
               break;
 
             case "pict":
@@ -266,9 +249,12 @@
           bugElement.style.padding = options.padding || "";
           bugElement.style.boxSizing = "border-box";
 
+		     //bugElement.getBoundingClientRect(); sont à ZERO car l'objet n'a pas été recalculé à ce stade. Il le sera lors de l'init de la page
+
           // Position
+          /*
           switch (options.position) {
-            case 'tc': // horizontal center et top
+           // case 'tc': // horizontal center et top
             case 'bc': // horizontal center et bottom
             case 'cc':  // centrage total
               options.left = (document.getElementById("myVideo").offsetWidth / 2)+ 'px'; // 'px' est obligatoire via cette déclaration alors que left depuis la délczration via la vidéo n'en n'a pas besoin
@@ -284,7 +270,8 @@
             default:
               options.position = 'br';
           }
-
+*/
+          // espaces depuis le bord : padding
           bugElement.style.left = options.left || "";
           bugElement.style.top = options.top || "";
           bugElement.style.bottom = options.bottom || "";
