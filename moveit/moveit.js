@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 function load()
 {
     // Ne déclarer qu'un seul objet de type DragList
@@ -18,6 +19,8 @@ function load()
     // Maintenant on peut faire du drag & drop avec les objects contenus dans la liste ;:-)
 }
 
+=======
+>>>>>>> b7217bf... objets deplacables
 /*
 En tout cas ca permet de déplacer n'importe quel élément HTML à la souris en utilisant le drag & drop pour peu que tu positionnes cet élément de manière absolu
 
