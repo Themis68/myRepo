@@ -10,11 +10,9 @@
  * <https://github.com/mozilla/vtt.js/blob/master/LICENSE>
  * 
  * Modifications : PAULO
- * 27/09/2019 : 
- *    _proto.unpressButton = function unpressButtonZoom() : pour ne pas bloquer l'affichage du pop-up menu ZOOM
- *    _proto.handleTapClick = function handleTapClick(event) : appel la fonction unpressButtonZoom au lieu de unpressButton
- * 
- * 
+* 
+ * RG-01 : désactiver le click sur l'image via paramètre à l'init de la vidéo
+ * RG-02   _proto.handleTapClick = function handleTapClick(event) : appel la fonction unpressButtonZoom au lieu de unpressButton
  * 
  */
 
@@ -17987,13 +17985,18 @@
     ;
 
     _proto.handleTapClick = function handleTapClick(event) {
+      console.log(event);
+      // RG-02
       // Unpress the associated MenuButton, and move focus back to it
+      // gestion d'une exception pour le bouton zoom
+      // car sinon ne fonctionne pas
       if (this.menuButton_) {
         if (this.menuButton_.label === 'span:vjs-zoom-button-label') {
           this.menuButton_.unpressButtonZoom();
         } else {
           this.menuButton_.unpressButton();
         }
+
         var childComponents = this.children();
 
         if (!Array.isArray(childComponents)) {
@@ -25556,7 +25559,9 @@
     ;
 
     _proto.handleTechClick_ = function handleTechClick_(event) {
+      // RG-01
       // désactiver le click sur l'image ? 
+      // ajout pour éviter les clicss intempestifs sur la vidéo
       if (this.options_.disableVideoPlayPauseClick) {
         return
       }

@@ -58,13 +58,30 @@ var pathLois = "../lois/images";
 document.addEventListener("DOMContentLoaded", init, false);	// lance l'écoute des évènements et appelle INIT
 document.addEventListener("click", central, false);	// lance l'écoute des évènements CLIC
 
+function init() {
+    //
+    // est appelé en premier par la page lors du chargement
+	//
+
+    header();
+	footer();
+
+	// clic sur l'image de bascule
+	var bascule = document.querySelector("bascule img");
+	bascule.addEventListener("click", fBascule);	// de haut en bas
+
+    document._video = document.getElementById("myVideo");   // identification de l'objet video
+	creerVignettes("vignettes");					        // générer la vignettes dans le carousel
+}
+
 function central(event) {
 	// gestion de la position de la souris pour plus tard
 	var target = event.target || event.srcElement; // ce dernier pour compatibilité IE
 
 	// positonnement des objets particuliers
 	if (document.getElementById("vjs-bug-Arbitre") != undefined) {
-		arbitreInfos.style.left = calculPosGauche("vjs-bug-Arbitre", "myVideo");
+		arbitreInfos = document.getElementById("vjs-bug-Arbitre");
+		arbitreInfos.style.left = calculPosGauche("myVideo", "vjs-bug-Arbitre");
 	}
 	switch (target.getAttribute('class')) { 
 		case 'vjs-icon-placeholder':	// clic sur le grand bouton PLAY
@@ -89,22 +106,6 @@ function calculPosGauche(video, objet){
 		const videoTaille = videoInfos.getBoundingClientRect();
 
 		return ((videoTaille.width / 2 ) - (arbitreTaille.width / 2))+ "px";
-}
-
-function init() {
-    //
-    // est appelé en premier par la page lors du chargement
-	//
-
-    header();
-	footer();
-
-	// clic sur l'image de bascule
-	var bascule = document.querySelector("bascule img");
-	bascule.addEventListener("click", fBascule);	// de haut en bas
-
-    document._video = document.getElementById("myVideo");   // identification de l'objet video
-	creerVignettes("vignettes");					        // générer la vignettes dans le carousel
 }
 
 function draw(id, maillotCouleur) {
