@@ -57,6 +57,21 @@ var pathLois = "../lois/images";
 
 document.addEventListener("DOMContentLoaded", init, false);	// lance l'écoute des évènements et appelle INIT
 document.addEventListener("click", central, false);	// lance l'écoute des évènements CLIC
+document.addEventListener("fullscreenchange", gererFullscreen);	// gestion du cic sur le bouton de fullscreen
+window.addEventListener("resize", gererResize);	// gestion du remiensionnement
+
+function gererFullscreen(event){
+	if (document.getElementById("vjs-bug-Arbitre") != undefined) {
+		arbitreInfos = document.getElementById("vjs-bug-Arbitre");
+		arbitreInfos.style.left = centrerObjetSurVideo("myVideo", "vjs-bug-Arbitre");  // on positionne depuis la gauche de l'objet
+	}
+}
+
+function gererResize(event){
+	if (myVideo != undefined) {
+		gererFullscreen(event);	// gestion de la position des objets
+	}
+}
 
 function init() {
     //
@@ -82,11 +97,11 @@ function central(event) {
 	// centrage sur la vidéo
 	if (document.getElementById("vjs-bug-Arbitre") != undefined) {
 		arbitreInfos = document.getElementById("vjs-bug-Arbitre");
-		arbitreInfos.style.left = centrerObjetSurVideo("myVideo", "vjs-bug-Arbitre");
-
+		arbitreInfos.style.left = centrerObjetSurVideo("myVideo", "vjs-bug-Arbitre");  // on positionne depuis la gauche de l'objet
 	}
+
 	switch (target.getAttribute('class')) { 
-		case 'vjs-icon-placeholder':	// clic sur le grand bouton PLAY
+		case 'vjs-icon-placeholder':	// clic sur le grand bouton PLAY, le fullscreen, le son
 		case 'vjs-poster':				// clic sur l'image
 			draw("vjs-bug-EquipeAC", video[0].gauche.maillotCouleur);
 			draw("vjs-bug-EquipeBC", video[0].droite.maillotCouleur);
@@ -101,13 +116,14 @@ function central(event) {
 }
 
 function centrerObjetSurVideo(video, objet){
+
 	var objetInfos = document.getElementById(objet);
 	const objetTaille = objetInfos.getBoundingClientRect();
 
-		var videoInfos = document.getElementById(video);
-		const videoTaille = videoInfos.getBoundingClientRect();
+	var videoInfos = document.getElementById(video);
+	const videoTaille = videoInfos.getBoundingClientRect();
 
-		return ((videoTaille.width / 2 ) - (objetTaille.width / 2))+ "px";
+	return ((videoTaille.width / 2 ) - (objetTaille.width / 2))+ "px";
 }
 
 function draw(id, maillotCouleur) {
