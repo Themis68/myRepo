@@ -60,13 +60,30 @@ document.addEventListener("click", central, false);	// lance l'écoute des évè
 document.addEventListener("fullscreenchange", gererFullscreen);	// gestion du cic sur le bouton de fullscreen
 window.addEventListener("resize", gererResize);	// gestion du remiensionnement
 
+function init() {
+    //
+    // est appelé en premier par la page lors du chargement
+	//
+
+    header();
+	footer();
+
+	// clic sur l'image de bascule
+	var bascule = document.querySelector("bascule img");
+	bascule.addEventListener("click", fBascule);	// de haut en bas
+
+    document._video = document.getElementById("myVideo");   // identification de l'objet video
+	creerVignettes("vignettes");					        // générer la vignettes dans le carousel
+}
+
 function central(event) {
 	// gestion de la position de la souris pour plus tard
 	var target = event.target || event.srcElement; // ce dernier pour compatibilité IE
 
 	// positonnement des objets particuliers
 	if (document.getElementById("vjs-bug-Arbitre") != undefined) {
-		arbitreInfos.style.left = calculPosGauche("vjs-bug-Arbitre", "myVideo");
+		arbitreInfos = document.getElementById("vjs-bug-Arbitre");
+		arbitreInfos.style.left = calculPosGauche("myVideo", "vjs-bug-Arbitre");
 	}
 	switch (target.getAttribute('class')) { 
 		case 'vjs-icon-placeholder':	// clic sur le grand bouton PLAY
@@ -96,58 +113,6 @@ function calculPosGauche(video, objet){
 		const videoTaille = videoInfos.getBoundingClientRect();
 
 		return ((videoTaille.width / 2 ) - (arbitreTaille.width / 2))+ "px";
-}
-
-function init() {
-    //
-    // est appelé en premier par la page lors du chargement
-	//
-
-    header();
-	footer();
-
-	// clic sur l'image de bascule
-	var bascule = document.querySelector("bascule img");
-	bascule.addEventListener("click", fBascule);	// de haut en bas
-	document._video = document.getElementById("myVideo");   // identification de l'objet video
-	creerVignettes("vignettes");					        // générer la vignettes dans le carousel
-}
-
-function central(event) {
-	// gestion de la position de la souris pour plus tard
-	var target = event.target || event.srcElement; // ce dernier pour compatibilité IE
-
-	// positonnement des objets particuliers
-	// centrage sur la vidéo
-	if (document.getElementById("vjs-bug-Arbitre") != undefined) {
-		arbitreInfos = document.getElementById("vjs-bug-Arbitre");
-		arbitreInfos.style.left = centrerObjetSurVideo("myVideo", "vjs-bug-Arbitre");  // on positionne depuis la gauche de l'objet
-	}
-
-	switch (target.getAttribute('class')) { 
-		case 'vjs-icon-placeholder':	// clic sur le grand bouton PLAY, le fullscreen, le son
-		case 'vjs-poster':				// clic sur l'image
-			draw("vjs-bug-EquipeAC", video[0].gauche.maillotCouleur);
-			draw("vjs-bug-EquipeBC", video[0].droite.maillotCouleur);
-			draw("vjs-bug-ArbitreC", video[0].arbitre.maillotCouleur);
-
-			//masquer les boutons de contrôle
-			document.getElementsByClassName("vjs-control-bar")[0].children[0].classList.add("vjs-hidden");	// play
-			document.getElementsByClassName("vjs-control-bar")[0].children[5].classList.add("vjs-hidden");  // time progress
-			break;
-	}
-
-}
-
-function centrerObjetSurVideo(video, objet){
-
-	var objetInfos = document.getElementById(objet);
-	const objetTaille = objetInfos.getBoundingClientRect();
-
-	var videoInfos = document.getElementById(video);
-	const videoTaille = videoInfos.getBoundingClientRect();
-
-	return ((videoTaille.width / 2 ) - (objetTaille.width / 2))+ "px";
 }
 
 function draw(id, maillotCouleur) {
