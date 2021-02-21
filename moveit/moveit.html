@@ -5,39 +5,7 @@
 
 
 <script language="JavaScript" type="text/javascript" src="moveit.js"></script>
-<style>
-.abs {position:absolute; left:100px; top:100px;}
-
-.big {
-font-size:12pt;
-font-weight:bold;
-font-family:arial;
-}
-</style>
-
-
-<script language="javascript">
-
-    function load()
-    {
-        // Ne déclarer qu'un seul objet de type DragList
-        // IMPORTANT : le nommer 'dragList' et surtout ne pas changer son nom !!!!
-        dragList=new DragList();
-
-        // Initialise les gestionnaires d'événement associés à l'instance dragList
-        dragList.initDrag()
-
-
-        // Declaration des objets de type DragObject : toujours passer le nom de l'élt HTML en 1er paramètre
-        // On initialise la position de l'élément HTML dragTst en (100,100)
-        dragTest=new DragObject('dragTst',100,100)
-
-        // On ajoute le nouvel objet dans la liste pour permettre son drag & drop
-        dragList.add(dragTest)
-
-        // Maintenant on peut faire du drag & drop avec les objects contenus dans la liste ;:-)
-    }
-</script>
+<link href="moveit.css" rel="stylesheet" type="text/css">
 
 </head>
 <body onload="load()">
