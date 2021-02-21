@@ -1,3 +1,23 @@
+function load()
+{
+    // Ne déclarer qu'un seul objet de type DragList
+    // IMPORTANT : le nommer 'dragList' et surtout ne pas changer son nom !!!!
+    dragList=new DragList();
+
+    // Initialise les gestionnaires d'événement associés à l'instance dragList
+    dragList.initDrag()
+
+
+    // Declaration des objets de type DragObject : toujours passer le nom de l'élt HTML en 1er paramètre
+    // On initialise la position de l'élément HTML dragTst en (100,100)
+    dragTest=new DragObject('dragTst',100,100)
+
+    // On ajoute le nouvel objet dans la liste pour permettre son drag & drop
+    dragList.add(dragTest)
+
+    // Maintenant on peut faire du drag & drop avec les objects contenus dans la liste ;:-)
+}
+
 /*
 En tout cas ca permet de déplacer n'importe quel élément HTML à la souris en utilisant le drag & drop pour peu que tu positionnes cet élément de manière absolu
 
