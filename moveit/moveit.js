@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> a7f1919... integration moveit
 function load()
 {
     // Ne déclarer qu'un seul objet de type DragList
@@ -22,11 +18,6 @@ function load()
     // Maintenant on peut faire du drag & drop avec les objects contenus dans la liste ;:-)
 }
 
-<<<<<<< HEAD
-=======
->>>>>>> b7217bf... objets deplacables
-=======
->>>>>>> a7f1919... integration moveit
 /*
 En tout cas ca permet de déplacer n'importe quel élément HTML à la souris en utilisant le drag & drop pour peu que tu positionnes cet élément de manière absolu
 

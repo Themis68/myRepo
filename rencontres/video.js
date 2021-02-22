@@ -112,12 +112,7 @@ function central(event) {
 			document.getElementsByClassName("vjs-control-bar")[0].children[5].classList.add("vjs-hidden");  // time progress
 			break;
 	}
-}
 
-function gererResize(event){
-	if (myVideo != undefined) {
-		gererFullscreen(event);	// gestion de la position des objets
-	}
 }
 
 function centrerObjetSurVideo(video, objet){
@@ -183,7 +178,7 @@ function creerVignettes(id) {
 	// création des indicateurs
 	let ind = document.getElementById("indicateurs");
 
-	for (let i = 0; i < arrayAssoSize(rencontre); i++) {
+	for (let i = 0; i < arrayAssoSize(scenario); i++) {
 		let myInd = document.createElement("li");
 		myInd.setAttribute("data-target", "#carousel-example");
 		myInd.setAttribute("data-slide-to",i);
@@ -194,7 +189,7 @@ function creerVignettes(id) {
 	// création des vignettes
 	let bloc = document.getElementById(id);
 	
-	for (let i = 0; i < arrayAssoSize(rencontres); i++) {
+	for (let i = 0; i < arrayAssoSize(scenario); i++) {
 
 		// div
 		let myDiv = document.createElement("div");
@@ -224,13 +219,12 @@ function creerVignettes(id) {
 		myCaption.appendChild(myF);
 		
         let myP = document.createElement("p");        
-		myP.innerHTML = rencontres[i][0].gauche.nom + "<br>" + rencontres[i][0].droite.nom;
+		myP.innerHTML = scenario[i][0].gauche.nom + "<br>" + scenario[i][0].droite.nom;
 		myCaption.appendChild(myP);
 		myCaption.className = "carousel-caption d-none d-md-block";
-		// rencontre[i][0].id 
-		myCaption.setAttribute("onclick", 'javascript:switchVideo('+ (i+1) +');');	// mettre ici car cette DIV est au-dessus de l'image
-		myCaption.setAttribute("title", (rencontres[i][0].rencontre));
-		myCaption.setAttribute("alt", (rencontres[i][0].rencontre));
+		myCaption.setAttribute("onclick", 'javascript:switchVideo('+ scenario[i][0].id +');');	// mettre ici car cette DIV est au-dessus de l'image
+		myCaption.setAttribute("title", (scenario[i][0].rencontre));
+		myCaption.setAttribute("alt", (scenario[i][0].rencontre));
 
 		myDiv.appendChild(myImg);
 		myDiv.appendChild(myCaption);
@@ -280,8 +274,8 @@ function switchVideo(n) {
 	} else {
 		// MAJ videos
 		idVideo = n;		// 1 = première vidéo
-		video = rencontres[n-1];    // recup scénario de la vidéo
-		idVideoOn = n;
+		video = scenario[n-1];    // recup scénario de la vidéo
+		idVideoOn = n; //video[0].id;
 		
 		//
 		// travail sur les actions et l'IHM associée
@@ -463,8 +457,8 @@ function switchVideo(n) {
 						type: "canvas",
 						id:"vjs-bug-silhEquipeA",
 						visibility: true,
-						height: 36,
-						width: 36,
+						height: 30,
+						width: 30,
 						classeCSS: "vjs-bug-silhEquipBug",
 						opacity: 1,
 						left: (30 + 20 + 160 + 5) + "px",
@@ -477,8 +471,8 @@ function switchVideo(n) {
 						type: "canvas",
 						id:"vjs-bug-silhEquipeB",
 						visibility: true,
-						height: 36,
-						width: 36,
+						height: 30,
+						width: 30,
 						classeCSS: "vjs-bug-silhEquipBug",
 						opacity: 1,
 						right: (30 + 20 + 170 + 5) + "px",
