@@ -24,8 +24,13 @@ $('#carousel-example').on('slide.bs.carousel', function (e) {
 
     let indexScreen = arrayAssoSearch2(screenParams, window.screen.width);
     var itemsPerSlide = screenParams[indexScreen].nbElem;
-
     var totalItems = $('.carousel-item').length;
+
+    // originaux
+    //var itemsPerSlide = 4;
+    // var totalItems = $('.carousel-item').length;
+    //
+
 
     if (idx >= totalItems-(itemsPerSlide-1)) {
         var it = itemsPerSlide - (totalItems - idx);
