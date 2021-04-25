@@ -1,3 +1,5 @@
+
+
 document.addEventListener("DOMContentLoaded", init, false);	
 
 function init(){
@@ -23,3 +25,4 @@ function showAlt(id) {
 function cleanAlt() {
     document.getElementById("alt").innerHTML = " ";
 }
+
