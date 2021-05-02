@@ -1,75 +1,92 @@
-/* STYLES POUR MOBILE */
+/* ne pas mettre de . avant le chemin sinon cela ne fonctionne pas  */
+@import url(typo/scoreboard/stylesheet.css);
+@import url(typo/passion_one/stylesheet.css);
+
+/* compatibilité des autres navigateurs 
+  filter: grayscale(100%);
+  -webkit-filter: grayscale(100%);
+  -moz-filter: grayscale(100%);
+*/
 
 html {
-    margin: 10px;
-    font-family:"Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+  margin: 10px;
 }
-
-#init {
-    position: absolute;
-    margin-right: 0px;
-    margin-left: 0px;
-    margin-top: 0px;
-    margin-bottom: 0px;
-    z-index: 1000;
-}
-
 body {
-    background-color:white;
+  background-color: white;
 }
 
-/* ZONE MENU */
+/*************** MENUS ****************/
 .nav {
-    background-color: white;
-    border-bottom: 2px solid green;
+  background-color: white;
+  border-bottom: 2px solid green;
+  height: fit-content;
 }
 
-/* container onglet */
-.nav-item {
-    font-size: 3em;
-    background-color: white;
+.navbar-brand {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-self: center;
+  background-color: white;
 }
 
-.nav-item.active {
-    font-size: 3em;
-    background-color: green;
+object#svgAlarm {
+  height: 5em;
 }
 
-/* liens hypertexte du menu */
-.nav-link:hover,
-.nav-link:active,
-.nav-link:link,
-.nav-link:visited {
-    color: green;
-    text-decoration: none;
+.asi-title {
+  color: black;
+  font-family: scoreboardregular;
+  font-size: 4em;
 }
 
-.navlink {
-    font-weight: normal;
-    color: green;
-}
-
-.nav-link.active {
-    font-weight: bold;
-    color: white;
-}
-
-.onglet {
-    display: none;
-}
-
-
-.onglet.active {
-    display: flex;
-}
-
-/* ZONE CONTENT */
+/*************** CONTENT ****************/
 content div {
-    background-color:rgb(245, 239, 239);
-    margin: 10px;
-    font-size: 2em;
+  background-color: #f5efef;
+  margin: 10px;
+  font-size: 2em;
 }
 
+/*img.card-img-top, div.card-body{*/
+div.card-group {
+  display: flex;
+  flex-direction: row;
+  justify-content:left;
+}
+
+img.card-img-top{
+  border-bottom: 30px solid green;
+}
+
+img.card-img-top.disable {
+  border-bottom: 30px solid #f5efef;
+}
+
+a.card-link {
+  background-color: #f5efef;
+  color: black;
+  font-family: passion_oneregular;
+  font-weight: normal;
+  text-align: center;
+  font-size: 36pt;
+}
+
+a.card-link.disable {
+  color: #b4b1b1;
+}
+
+/* p.card-texte.asi-text : pas reconnnu */
+/* .card-texte.asi-text: pas reconnu */
+p.asi-text {
+  font-family: passion_oneregular;
+  color: green;
+  font-weight: normal;
+  font-size: 0.5em;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+/*************** FOOTER ****************/
 footer {
-    font-size: 2em;
+  font-size: 2em;
 }
