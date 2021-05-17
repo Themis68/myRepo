@@ -1,75 +1,99 @@
-/* STYLES POUR MOBILE */
+/* ne pas mettre de . avant le chemin sinon cela ne fonctionne pas  */
+@import url(../typo/scoreboard/stylesheet.css);
+@import url(../typo/passion_one/stylesheet.css);
+@import url(../carousel/carouselSP.css);
+
+/* compatibilité des autres navigateurs 
+  filter: grayscale(100%);
+  -webkit-filter: grayscale(100%);
+  -moz-filter: grayscale(100%);
+*/
 
 html {
     margin: 10px;
-    font-family:"Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
-}
-
-#init {
-    position: absolute;
-    margin-right: 0px;
-    margin-left: 0px;
-    margin-top: 0px;
-    margin-bottom: 0px;
-    z-index: 1000;
 }
 
 body {
     background-color:white;
 }
 
-/* ZONE MENU */
-.nav {
+/*************** MENUS ****************/
+.navbar {
     background-color: white;
     border-bottom: 2px solid green;
+    height: fit-content;
 }
 
-/* container onglet */
-.nav-item {
-    font-size: 3em;
+.navbar-brand {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-self: center;
     background-color: white;
 }
-
-.nav-item.active {
-    font-size: 3em;
-    background-color: green;
+  
+object#svgAlarm {
+    height: 5em;
+}
+  
+/* p.card-texte.asi-text : pas reconnnu */
+/* .card-texte.asi-text: pas reconnu */
+.asi-text{
+  font-family: passion_oneregular;
+  color: green;
+  font-weight: normal;
+  font-size: 1em;
+  text-align: center;
+  margin-bottom: 10px;
 }
 
-/* liens hypertexte du menu */
-.nav-link:hover,
-.nav-link:active,
-.nav-link:link,
-.nav-link:visited {
-    color: green;
-    text-decoration: none;
+.asi-title {
+  color: black;
+  font-family: scoreboardregular;
+  font-size: 4em;
 }
-
-.navlink {
-    font-weight: normal;
-    color: green;
-}
-
-.nav-link.active {
-    font-weight: bold;
-    color: white;
-}
-
-.onglet {
-    display: none;
-}
-
-
-.onglet.active {
-    display: flex;
-}
-
-/* ZONE CONTENT */
+  
+/*************** CONTENT ****************/
 content div {
-    background-color:rgb(245, 239, 239);
-    margin: 10px;
-    font-size: 2em;
+  background-color: #f5efef;
+  margin: 10px;
+  font-size: 2em;
 }
 
+/* position du bloc des indicateurs circulaires */
+.carousel-indicators {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around; 
+}
+
+.cercle {
+  background-color: green !important;
+  filter: grayscale(100%);
+  border-radius: 50% !important;
+  width: 40px !important;
+  height: 40px !important;
+  border: 2px solid white !important; 
+}
+
+.cercle.active {
+  filter: grayscale(0%);
+}
+
+/* gestion de la position des flèches de défilement */
+.carousel-control-prev-icon {
+  width: 50px;
+  height: 50px;
+  background-image: url("../svg/prev.svg");
+}
+
+.carousel-control-next-icon {
+  width: 50px;
+  height: 50px;
+  background-image: url("../svg/next.svg");
+}
+  
+/*************** FOOTER ****************/
 footer {
-    font-size: 2em;
+  font-size: 2em;
 }

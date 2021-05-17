@@ -16,7 +16,7 @@ body {
 }
 
 /*************** MENUS ****************/
-.nav {
+.navbar {
   background-color: white;
   border-bottom: 2px solid green;
   height: fit-content;
@@ -34,6 +34,17 @@ object#svgAlarm {
   height: 5em;
 }
 
+/* p.card-texte.asi-text : pas reconnnu */
+/* .card-texte.asi-text: pas reconnu */
+.asi-text{
+  font-family: passion_oneregular;
+  color: green;
+  font-weight: normal;
+  font-size: 1em;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
 .asi-title {
   color: black;
   font-family: scoreboardregular;
@@ -45,13 +56,6 @@ content div {
   background-color: #f5efef;
   margin: 10px;
   font-size: 2em;
-}
-
-/*img.card-img-top, div.card-body{*/
-div.card-group {
-  display: flex;
-  flex-direction: row;
-  justify-content:left;
 }
 
 img.card-img-top{
@@ -73,17 +77,6 @@ a.card-link {
 
 a.card-link.disable {
   color: #b4b1b1;
-}
-
-/* p.card-texte.asi-text : pas reconnnu */
-/* .card-texte.asi-text: pas reconnu */
-p.asi-text {
-  font-family: passion_oneregular;
-  color: green;
-  font-weight: normal;
-  font-size: 0.5em;
-  text-align: center;
-  margin-bottom: 10px;
 }
 
 /*************** FOOTER ****************/

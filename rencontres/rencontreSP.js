@@ -34,3 +34,35 @@ function gestContent(c) {
         }
     }
 }
+
+
+
+
+/*
+document.addEventListener("DOMContentLoaded", init, false);	
+
+function init() {
+
+    if((navigator.userAgent.match(/iPhone/i)) || (navigator.userAgent.match(/iPod/i)) || (navigator.userAgent.match(/iPad/i))) {
+        document.addEventListener("click", initSP, false);
+       /*
+        document.write('<a id="init" ontouchstart="javascript:sndInit();">click</a>');
+
+        function sndInit(){
+            snd.play();
+            snd.pause();
+            document.getElementById('init').style.display = 'none';
+            }
+    }
+    
+}
+
+function initSP() {
+    document.write('<p>hello</p>');
+}
+
+function playSound(soundObj) {
+    var sound = document.getElementById(soundObj);
+    sound.play();
+}
+*/
