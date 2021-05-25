@@ -22,14 +22,14 @@ function creerVignettes(id) {
 	let ind = document.getElementById("indicateurs");
 	for (let i = 0; i < arrayAssoSize(scenario); i++) {
 		let myInd = document.createElement("li");
-		myInd.setAttribute("id", "indicateur" + i);
+	//	myInd.setAttribute("id", "indicateur" + i);
 		myInd.setAttribute("data-target", "#carousel-example");
-		myInd.setAttribute("data-slide-to",i);
+		myInd.setAttribute("data-slide-to", i);
 		myInd.setAttribute("class", (i === 0 ? "cercle active" : "cercle"));
 		ind.appendChild(myInd);
 	}
 
-    /*
+    
 	// création des vignettes
 	let bloc = document.getElementById(id);
 	
@@ -41,11 +41,11 @@ function creerVignettes(id) {
 
 		// img
 		let myImg = document.createElement("img");
-		myImg.className = "img-fluid mx-auto d-block";
+		myImg.className = "img-fluid mx-auto d-flex";
 		myImg.setAttribute("alt", "img" + i);
 		myImg.setAttribute("title", "img" + i);
-		myImg.setAttribute("src", pathPosters + (scenario[i].poster || pathImages + "stade.jpg"));
-
+		myImg.setAttribute("src", pathPosters + (scenario[i].poster || "./images/stade.jpg"));
+/*
 		// caption
 		let myCaption = document.createElement("div");
 
@@ -64,7 +64,8 @@ function creerVignettes(id) {
 
 		myDiv.appendChild(myImg);
 		myDiv.appendChild(myCaption);
-
+*/
+		myDiv.appendChild(myImg);
 		bloc.appendChild(myDiv);
 
 		let myScript = document.createElement("SCRIPT");
@@ -72,5 +73,5 @@ function creerVignettes(id) {
 		myScript.setAttribute("src", pathQuizz + scenario[i].fichier);
 		document.head.appendChild(myScript);
 	}
-    */
+    
 }

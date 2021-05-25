@@ -59,40 +59,56 @@ content div {
   margin: 10px;
   font-size: 2em;
 }
+/* @media (max-device-width: 480px) incompatible sur iphone 
+  CSS MOBILE QUIZZ
+*/
+@media (max-device-width: 480px) {
+/* je m'appuie sur BOOTSTRAP !!! */
 
-/* position du bloc des indicateurs circulaires */
-.carousel-indicators {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around; 
+  /* position du bloc des indicateurs circulaires pris en chargev*/
+  .carousel-indicators {
+    justify-content: space-around; 
+  }
+
+  /* forme spécifique circulaire des indicateurs */
+  .cercle {
+    background-color: green;
+    filter: grayscale(100%);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    border: 2px solid white; 
+  }
+
+  .cercle.active {
+    filter: grayscale(0%);
+  }
+
+  /* gestion de la position des flèches de défilement pris en charge*/
+  .carousel-control-prev-icon,   .carousel-control-next-icon {
+    width: 50px;
+    height: 50px;
+  }
+   
+  .carousel-control-prev-icon {
+    background-image: url("../svg/prev.svg");
+  }
+
+  .carousel-control-next {
+    right: -50px;
+    justify-content: flex-end;
+  }
+
+  .carousel-control-next-icon {
+    background-image: url("../svg/next.svg");
+  }
+
+  .carousel-control-prev {
+    left: -30px;
+    justify-content: flex-start;
+  }
 }
 
-.cercle {
-  background-color: green !important;
-  filter: grayscale(100%);
-  border-radius: 50% !important;
-  width: 40px !important;
-  height: 40px !important;
-  border: 2px solid white !important; 
-}
-
-.cercle.active {
-  filter: grayscale(0%);
-}
-
-/* gestion de la position des flèches de défilement */
-.carousel-control-prev-icon {
-  width: 50px;
-  height: 50px;
-  background-image: url("../svg/prev.svg");
-}
-
-.carousel-control-next-icon {
-  width: 50px;
-  height: 50px;
-  background-image: url("../svg/next.svg");
-}
-  
 /*************** FOOTER ****************/
 footer {
   font-size: 2em;
