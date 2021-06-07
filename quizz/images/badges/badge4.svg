@@ -7,11 +7,10 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="210mm"
-   height="297mm"
-   viewBox="0 0 210 297"
+   width="11.796mm"
+   height="16.045387mm"
+   viewBox="0 0 11.796 16.045387"
    version="1.1"
-   id="svg8"
    inkscape:version="1.0.1 (c497b03c, 2020-09-10)"
    sodipodi:docname="badge4.svg">
   <defs
@@ -23,9 +22,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="15.28836"
-     inkscape:cx="88.697914"
-     inkscape:cy="115.12289"
+     inkscape:zoom="3.2428832"
+     inkscape:cx="75.210402"
+     inkscape:cy="59.461832"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
@@ -43,16 +42,17 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
   <g
      inkscape:label="Calque 1"
      inkscape:groupmode="layer"
-     id="layer1">
+     id="layer1"
+     transform="translate(-18.045709,-21.292392)">
     <path
-       style="fill:#c46764;stroke:#ffffff;stroke-width:0.565;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;fill-opacity:1"
+       style="fill:#c46764;fill-opacity:1;stroke:#ffffff;stroke-width:0.565;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 19.027853,22.553044 c 1.940612,-1.55249 9.491357,-1.058516 9.738343,0.105851 0.196457,0.926159 1.164367,7.974151 0.635111,9.35022 -0.52926,1.376071 -4.551618,5.080875 -5.257295,5.045591 -0.635296,-0.03177 -4.728037,-2.999128 -5.539565,-5.04559 -0.811529,-2.046465 0.423406,-9.456072 0.423406,-9.456072 z"
        id="path953"
        sodipodi:nodetypes="cssssc" />

@@ -70,33 +70,31 @@ content div {
     justify-content: space-around; 
   }
 
-  /* forme spécifique circulaire des indicateurs */
+  /* forme spécifique circulaire des indicateurs 
+  les !mportznt sont nécessaires
+  */
   .cercle {
-    background-color: green;
+    background-color: green !important;
     filter: grayscale(100%);
     border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    border: 2px solid white; 
+    width: 40px !important;
+    height: 40px !important;
   }
 
+  /* pris en charge*/
   .cercle.active {
     filter: grayscale(0%);
   }
 
   /* gestion de la position des flèches de défilement pris en charge*/
-  .carousel-control-prev-icon,   .carousel-control-next-icon {
+  .carousel-control-prev-icon,   
+  .carousel-control-next-icon {
     width: 50px;
     height: 50px;
   }
    
   .carousel-control-prev-icon {
     background-image: url("../svg/prev.svg");
-  }
-
-  .carousel-control-next {
-    right: -50px;
-    justify-content: flex-end;
   }
 
   .carousel-control-next-icon {
@@ -106,6 +104,31 @@ content div {
   .carousel-control-prev {
     left: -30px;
     justify-content: flex-start;
+  }
+
+  .carousel-control-next {
+    right: -50px;
+    justify-content: flex-end;
+  }
+
+  .carousel-inner {
+    display:flex;
+    flex-direction: row;
+    justify-items: center;
+  }
+
+  .carousel-inner + .carousel-item {
+    overflow: hidden;
+  }
+
+  /* <DIV> */
+  .carousel-caption {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    /*align-items: center;
+    top: 10px;*/
+    background-color: transparent !important;
   }
 }
 

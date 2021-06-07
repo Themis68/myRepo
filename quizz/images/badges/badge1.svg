@@ -3,63 +3,62 @@
    xmlns:dc="http://purl.org/dc/elements/1.1/"
    xmlns:cc="http://creativecommons.org/ns#"
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="210mm"
-   height="297mm"
-   viewBox="0 0 210 297"
+   width="11.796053"
+   height="16.045374"
    version="1.1"
-   id="svg8"
-   inkscape:version="1.0.1 (c497b03c, 2020-09-10)"
-   sodipodi:docname="badge1.svg">
+   viewBox="0 0 11.796053 16.045374"
+   sodipodi:docname="badge1.svg"
+   inkscape:version="1.0.1 (c497b03c, 2020-09-10)">
   <defs
-     id="defs2" />
+     id="defs1043" />
   <sodipodi:namedview
-     id="base"
      pagecolor="#ffffff"
      bordercolor="#666666"
-     borderopacity="1.0"
-     inkscape:pageopacity="0.0"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:zoom="6.1971796"
-     inkscape:cx="82.23592"
-     inkscape:cy="112.95814"
-     inkscape:document-units="mm"
-     inkscape:current-layer="layer1"
-     inkscape:document-rotation="0"
+     inkscape:window-width="1508"
+     inkscape:window-height="981"
+     id="namedview1041"
      showgrid="false"
-     inkscape:window-width="1434"
-     inkscape:window-height="982"
+     inkscape:zoom="2.8215488"
+     inkscape:cx="86.954228"
+     inkscape:cy="125.09677"
      inkscape:window-x="0"
      inkscape:window-y="23"
-     inkscape:window-maximized="0" />
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg1039" />
   <metadata
-     id="metadata5">
+     id="metadata1031">
     <rdf:RDF>
       <cc:Work
          rdf:about="">
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
   <g
-     inkscape:label="Calque 1"
-     inkscape:groupmode="layer"
-     id="layer1">
+     id="g1037"
+     transform="translate(-18.045772,-21.292349)">
     <path
-       style="fill:#b3b3b3;stroke:#ffffff;stroke-width:0.565;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 19.027853,22.553044 c 1.940612,-1.55249 9.491357,-1.058516 9.738343,0.105851 0.196457,0.926159 1.164367,7.974151 0.635111,9.35022 -0.52926,1.376071 -4.551618,5.080875 -5.257295,5.045591 -0.635296,-0.03177 -4.728037,-2.999128 -5.539565,-5.04559 -0.811529,-2.046465 0.423406,-9.456072 0.423406,-9.456072 z"
-       id="path953"
-       sodipodi:nodetypes="cssssc" />
+       d="m 19.028,22.553 c 1.9406,-1.5525 9.4914,-1.0585 9.7383,0.10585 0.19646,0.92616 1.1644,7.9742 0.63511,9.3502 -0.52926,1.3761 -4.5516,5.0809 -5.2573,5.0456 -0.6353,-0.03177 -4.728,-2.9991 -5.5396,-5.0456 -0.81153,-2.0465 0.42341,-9.4561 0.42341,-9.4561 z"
+       fill="#b3b3b3"
+       stroke="#ffffff"
+       stroke-width="0.565"
+       id="path1033" />
     <path
-       style="fill:#000000;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 21.971233,26.607153 c 0.352839,0 1.481922,-0.211704 1.517206,-0.987949 0,0 0.589563,0.0104 1.164367,0.04006 0.03528,1.411353 0.0872,4.633327 0.07057,5.922913 -0.635109,0 -1.003424,0.0088 -1.411354,0 0,-0.811527 0.0023,-2.749546 -0.009,-3.881223 -0.537644,0.02632 -1.331821,0.352838 -1.367104,0 -0.03528,-0.352838 0.03528,-1.093798 0.03528,-1.093798 z"
-       id="path955"
-       sodipodi:nodetypes="scccccscs" />
+       d="m 21.971,26.607 c 0.35284,0 1.4819,-0.2117 1.5172,-0.98795 0,0 0.58956,0.0104 1.1644,0.04006 0.03528,1.4114 0.0872,4.6333 0.07057,5.9229 -0.63511,0 -1.0034,0.0088 -1.4114,0 0,-0.81153 0.0023,-2.7495 -0.009,-3.8812 -0.53764,0.02632 -1.3318,0.35284 -1.3671,0 -0.03528,-0.35284 0.03528,-1.0938 0.03528,-1.0938 z"
+       stroke="#000000"
+       stroke-width="0.26458px"
+       id="path1035" />
   </g>
 </svg>
