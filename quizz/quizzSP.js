@@ -38,7 +38,6 @@ function creerVignettes(id) {
 	
 	for (let i = 0; i < arrayAssoSize(scenario); i++) {
 
-		try {
 		// POSTER
 		let myPoster = document.createElement("img");
 		myPoster.setAttribute("class", "img-fluid mx-auto d-flex");	// nécessaire poour l'affichage des vignettes
@@ -58,17 +57,23 @@ function creerVignettes(id) {
 
 		mySvg.appendChild(svgimg);
 
+		// titre
+		let myTitle = document.createElement("p");
+		myTitle.setAttribute('id','title' + scenario[i].id );
+		//myTitle.innerHTML = scenario[i].description;
+
 		// caption
 		let myCaption = document.createElement("div");
 		myCaption.setAttribute("class", "carousel-caption");
 		myCaption.appendChild(mySvg);
+
 
 		// div
 		let myVignette = document.createElement("div");
 		myVignette.setAttribute("class", "carousel-item" + (i === 0 ? ' active':''));
 
 		// assembler la vignette
-		myVignette.appendChild(myCaption);
+		myVignette.appendChild(myTitle);
 		myVignette.appendChild(myPoster);
 
 
@@ -80,9 +85,6 @@ function creerVignettes(id) {
 		myScript.setAttribute("src", pathQuizz + scenario[i].fichier);
 		document.head.appendChild(myScript);
 		*/
-		} catch (err) {
-			alert(err);
-		}
 	}
     
 }

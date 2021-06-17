@@ -1,7 +1,8 @@
 /* ne pas mettre de . avant le chemin sinon cela ne fonctionne pas  */
 @import url(../typo/scoreboard/stylesheet.css);
 @import url(../typo/passion_one/stylesheet.css);
-@import url(../carousel/carouselSP.css);
+/*@import url(../carousel/carouselSP.css);* ne pas utiliser car ca résoud 
+plein de soucis sur le carousel/
 
 /* compatibilité des autres navigateurs 
   filter: grayscale(100%);
@@ -20,7 +21,7 @@ body {
 /*************** MENUS ****************/
 .navbar {
     background-color: white;
-    border-bottom: 2px solid green;
+    border-bottom: 3px solid green;
     height: fit-content;
 }
 
@@ -59,19 +60,25 @@ content div {
   margin: 10px;
   font-size: 2em;
 }
-/* @media (max-device-width: 480px) incompatible sur iphone 
-  CSS MOBILE QUIZZ
-*/
+
 @media (max-device-width: 480px) {
-/* je m'appuie sur BOOTSTRAP !!! */
+  /* je m'appuie sur BOOTSTRAP !!! */
+
+  /* alignement dex deux zones vignette + infos */
+  .card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
 
   /* position du bloc des indicateurs circulaires pris en chargev*/
   .carousel-indicators {
-    justify-content: space-around; 
+    bottom: -90px;
+    justify-content: space-between; 
   }
 
   /* forme spécifique circulaire des indicateurs 
-  les !mportznt sont nécessaires
+  les !mportant sont nécessaires
   */
   .cercle {
     background-color: green !important;
@@ -92,7 +99,7 @@ content div {
     width: 50px;
     height: 50px;
   }
-   
+
   .carousel-control-prev-icon {
     background-image: url("../svg/prev.svg");
   }
@@ -104,7 +111,7 @@ content div {
   .carousel-control-prev {
     width: 50px;
     height: 80%;
-    left: -30px;
+    left: -50px;
     justify-content: flex-start;
   }
 
@@ -129,10 +136,68 @@ content div {
   .carousel-caption {
     display: flex;
     flex-direction: row;
+    flex-wrap: nowrap;
     justify-content: center;
-    /*align-items: center;
-    top: 10px;*/
+    top: 20px;
     background-color: transparent !important;
+  }
+
+  p2[id~="title"], #title29{
+    font-family: passion_oneregular;
+    color: green;
+    font-weight: normal;
+    font-size: 24pt;
+  }
+
+  #infoquizz{
+    top: 100px;
+    border-top: solid green 3px;
+    margin: 20px;
+  }
+
+  .card-body {
+    margin: 0px !important; /* retire le cadre blanc */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  h1 {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-content: center;
+  }
+  .card-title {
+    display: flex;
+    font-family: system-ui;
+  }
+
+  #svgInfo {
+    height: 1.2em;
+    padding-right: 10px;
+    filter: invert(20%) sepia(97%) saturate(4013%); /* tous et IE */
+    -webkit-filter: invert(20%) sepia(97%) saturate(4013%); /*SAFARI OPERA CHROME */
+    -moz-filter: invert(20%) sepia(97%) saturate(4013%); /*FIREFOX */
+  }
+
+  .titreQuizz {
+    color: green;
+    font-weight:800;
+    text-align: left;
+    font-size: 36pt;
+  }
+
+  .card-text {
+    padding-left: 2em;
+    color: black;
+    font-weight: normal;
+    text-align: left;
+    font-size: 28pt;
+  }
+
+  #niveau , #svgNiveau{
+    border: blue solid 3px;
   }
 }
 
