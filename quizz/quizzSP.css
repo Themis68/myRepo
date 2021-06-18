@@ -196,7 +196,7 @@ content div {
     font-size: 28pt;
   }
 
-  #niveau , #svgNiveau{
+  #niveau{
     border: blue solid 3px;
   }
 }
