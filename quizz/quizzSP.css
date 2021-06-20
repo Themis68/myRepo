@@ -142,14 +142,7 @@ content div {
     background-color: transparent !important;
   }
 
-  p2[id~="title"], #title29{
-    font-family: passion_oneregular;
-    color: green;
-    font-weight: normal;
-    font-size: 24pt;
-  }
-
-  #infoquizz{
+  #zoneQuizz{
     top: 100px;
     border-top: solid green 3px;
     margin: 20px;
@@ -159,21 +152,18 @@ content div {
     margin: 0px !important; /* retire le cadre blanc */
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
   }
 
   h1 {
     display: flex;
     flex-direction: row;
-    justify-content: left;
-    align-content: center;
   }
   .card-title {
     display: flex;
     font-family: system-ui;
   }
 
-  #svgInfo {
+  #svgInfo, #svgNiveau {
     height: 1.2em;
     padding-right: 10px;
     filter: invert(20%) sepia(97%) saturate(4013%); /* tous et IE */
@@ -181,23 +171,10 @@ content div {
     -moz-filter: invert(20%) sepia(97%) saturate(4013%); /*FIREFOX */
   }
 
-  .titreQuizz {
-    color: green;
-    font-weight:800;
-    text-align: left;
-    font-size: 36pt;
-  }
-
-  .card-text {
-    padding-left: 2em;
+  .titreQuizz, .descriptionQuizz {
     color: black;
     font-weight: normal;
-    text-align: left;
-    font-size: 28pt;
-  }
-
-  #niveau{
-    border: blue solid 3px;
+    font-size: 32pt;
   }
 }
 

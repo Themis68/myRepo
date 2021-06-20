@@ -14,6 +14,19 @@ function init() {
     //var car = document.querySelector("carousel");
    // car.innerHTML = templateHTML();
     creerVignettes("vignettes");
+	showInfosQuizz(scenario[0]);
+}
+
+function showInfosQuizz(quizz){
+	let titreQuizz = document.getElementById("titreQuizz");
+	titreQuizz.innerHTML = quizz.titre;
+
+	let descriptionQuizz = document.getElementById("descriptionQuizz");
+	descriptionQuizz.innerHTML = quizz.description;
+
+	let svgNiveau = document.getElementById("svgNiveau");
+	svgNiveau.innerHTML = quizz.niveau;
+
 }
 
 function creerVignettes(id) {
