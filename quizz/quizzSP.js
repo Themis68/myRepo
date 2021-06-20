@@ -3,30 +3,67 @@ var pathImagesCommunes = "../images/"   // images communes
 var pathPosters =  "./images/posters/";		//  posters
 var pathBadges = "./images/badges/";		//  badges
 var pathQuizz = "./questionnaires/";		// scénarios des quizz
+var pathSvg = "../svg/";
 
 var myURLcomplete = document.location.href;
 var myURL  = myURLcomplete.substring( 0 ,myURLcomplete.lastIndexOf( "/" ) );
 
 document.addEventListener("DOMContentLoaded", init, false);	
- 
+let prev = document.getElementById("prev");
+prev.addEventListener("click", clickF, false);
+let next = document.getElementById("next");
+next.addEventListener("click", clickF, false);
+
+
+function clickF(e){
+	switch(e.target.id) {
+
+	case "prev":
+		break;
+	case "next":
+		break;
+	default :
+		// indicateur direct
+	}
+}
 function init() {
-    // mise en place du carousel
-    //var car = document.querySelector("carousel");
-   // car.innerHTML = templateHTML();
     creerVignettes("vignettes");
 	showInfosQuizz(scenario[0]);
 }
 
 function showInfosQuizz(quizz){
-	let titreQuizz = document.getElementById("titreQuizz");
+	// quizz : scenario[index]
+	alert(quizz.titre);
+	var resultat = document.getElementById("title1");
+
+	var svgInfo = document.createElement("img");
+	svgInfo.setAttribute("id","svgInfo");
+	svgInfo.setAttribute("src", pathSvg + "info.svg");
+	svgInfo.setAttribute("width","10%");
+	svgInfo.setAttribute("height","10%");
+	resultat.appendChild(svgInfo);
+
+	var titreQuizz = document.createElement("span");
+	titreQuizz.setAttribute("id","titreQuizz");
+	titreQuizz.className = "titreQuizz";
 	titreQuizz.innerHTML = quizz.titre;
+	resultat.appendChild(titreQuizz);
+/*
 
-	let descriptionQuizz = document.getElementById("descriptionQuizz");
+	let resultat2 = document.getElementById("title2");
+
+	let svgNiveau = document.createElement("img");
+	svgNiveau.setAttribute("id","svgInfo");
+	svgNiveau.setAttribute("src", pathSvg + "niveau" + quizz.niveau +".svg");
+	svgNiveau.setAttribute("width","10%");
+	resultat2.appendChild(svgNiveau);
+
+	let descriptionQuizz = document.createElement("span");
+	descriptionQuizz.setAttribute("id","descriptionQuizz");
+	descriptionQuizz.className = "descriptionQuizz";
 	descriptionQuizz.innerHTML = quizz.description;
-
-	let svgNiveau = document.getElementById("svgNiveau");
-	svgNiveau.innerHTML = quizz.niveau;
-
+	resultat2.appendChild(descriptionQuizz);
+*/
 }
 
 function creerVignettes(id) {
@@ -38,7 +75,7 @@ function creerVignettes(id) {
 	let ind = document.getElementById("indicateurs");
 	for (let i = 0; i < arrayAssoSize(scenario); i++) {
 		let myInd = document.createElement("li");
-	//	myInd.setAttribute("id", "indicateur" + i);
+		myInd.setAttribute("id", "indicateur" + i);
 		myInd.setAttribute("data-target", "#carousel-example");
 		myInd.setAttribute("data-slide-to", i);
 		myInd.setAttribute("class", "cercle"+ (i === 0 ? ' active' : ''));
@@ -73,7 +110,6 @@ function creerVignettes(id) {
 		// titre
 		let myTitle = document.createElement("p");
 		myTitle.setAttribute('id','title' + scenario[i].id );
-		//myTitle.innerHTML = scenario[i].description;
 
 		// caption
 		let myCaption = document.createElement("div");
