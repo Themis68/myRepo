@@ -9,20 +9,40 @@ var myURL  = myURLcomplete.substring( 0 ,myURLcomplete.lastIndexOf( "/" ) );
 
 document.addEventListener("DOMContentLoaded", init, false);	
 document.addEventListener("touchstart", clickF, false);	
+
+// ne fonctionne pas sur iphone
+//const btnNext = document.querySelector("#next");
+//btnNext.addEventListener("touchstart", clickF, false);	
  
 function init() {
-    // mise en place du carousel
-    //var car = document.querySelector("carousel");
-   // car.innerHTML = templateHTML();
+	// création carousel
     creerVignettes("vignettes");
+	// récupération infos quizz initial
 	showInfosQuizz(scenario[0]);
 }
+function chgt(e) {
+ alert("esd");
+}
 
-function clickF() {
-	alert(e);
-	/*if(e.target.id.indexOf("indicateur") > 0) {
-		alert("c'es bon");
-	}*/
+function clickF(e) {
+	// indicateur actif
+	let indicateurActif = document.querySelectorAll("li.cercle.active");
+	let indexIndActif = parseInt(indicateurActif[0].id.replace("indicateur", ""), 10);
+	//alert(indexIndActif);
+
+	let libelle = (e.target.id.indexOf("indicateur") >= 0 ? "indicateur" : e.target.id);
+	switch(libelle)
+	{
+		case "prev":
+			break;
+		case "next":
+			break;
+		case "indicateur":
+			showInfosQuizz(scenario[parseInt(e.target.id.replace("indicateur", ""), 10)]);
+			break;
+		default:
+		
+	}
 }
 
 function showInfosQuizz(quizz){
