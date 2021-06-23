@@ -8,6 +8,7 @@ var myURLcomplete = document.location.href;
 var myURL  = myURLcomplete.substring( 0 ,myURLcomplete.lastIndexOf( "/" ) );
 
 document.addEventListener("DOMContentLoaded", init, false);	
+document.addEventListener("touchstart", clickF, false);	
  
 function init() {
     // mise en place du carousel
@@ -15,6 +16,13 @@ function init() {
    // car.innerHTML = templateHTML();
     creerVignettes("vignettes");
 	showInfosQuizz(scenario[0]);
+}
+
+function clickF() {
+	alert(e);
+	/*if(e.target.id.indexOf("indicateur") > 0) {
+		alert("c'es bon");
+	}*/
 }
 
 function showInfosQuizz(quizz){
@@ -38,7 +46,7 @@ function creerVignettes(id) {
 	let ind = document.getElementById("indicateurs");
 	for (let i = 0; i < arrayAssoSize(scenario); i++) {
 		let myInd = document.createElement("li");
-	//	myInd.setAttribute("id", "indicateur" + i);
+		myInd.setAttribute("id", "indicateur" + i);
 		myInd.setAttribute("data-target", "#carousel-example");
 		myInd.setAttribute("data-slide-to", i);
 		myInd.setAttribute("class", "cercle"+ (i === 0 ? ' active' : ''));
