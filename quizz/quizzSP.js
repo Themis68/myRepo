@@ -28,14 +28,14 @@ function clickF(e) {
 	// indicateur actif
 	let indicateurActif = document.querySelectorAll("li.cercle.active");
 	let indexIndActif = parseInt(indicateurActif[0].id.replace("indicateur", ""), 10);
-	//alert(indexIndActif);
-
 	let libelle = (e.target.id.indexOf("indicateur") >= 0 ? "indicateur" : e.target.id);
 	switch(libelle)
 	{
 		case "prev":
+			showInfosQuizz(scenario[indexIndActif-1]);
 			break;
 		case "next":
+			showInfosQuizz(scenario[indexIndActif+1]);
 			break;
 		case "indicateur":
 			showInfosQuizz(scenario[parseInt(e.target.id.replace("indicateur", ""), 10)]);
@@ -49,12 +49,22 @@ function showInfosQuizz(quizz){
 	let titreQuizz = document.getElementById("titreQuizz");
 	titreQuizz.innerHTML = quizz.titre;
 
+	let svgNiveau = document.getElementById("svgNiveau");
+	svgNiveau.setAttribute("src", "../svg/niveau" + quizz.niveau + ".svg");
+
 	let descriptionQuizz = document.getElementById("descriptionQuizz");
 	descriptionQuizz.innerHTML = quizz.description;
-
-	let svgNiveau = document.getElementById("svgNiveau");
-	svgNiveau.innerHTML = quizz.niveau;
-
+/*
+	let pictLoi = document.getElementById("pictLoi");
+	let loiQuizz = document.getElementById("loiQuizz");
+	if (quizz.loi === undefined) {
+		loiQuizz.innerHTML = "Mix de lois";
+		pictLoi.setAttribute("src", "../lois/images/loi.png");
+	} else {
+		loiQuizz.innerHTML = Lois[quizz.loi - 1].libelle;
+		pictLoi.setAttribute("src", "../lois/images/Loi_" + (quizz.loi >= 10 ? "0" : "") + quizz.loi - 1 + ".png");
+	}
+	*/
 }
 
 function creerVignettes(id) {

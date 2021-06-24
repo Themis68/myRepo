@@ -165,16 +165,16 @@ content div {
 
   #svgInfo, #svgNiveau {
     height: 1.2em;
-    padding-right: 10px;
     filter: invert(20%) sepia(97%) saturate(4013%); /* tous et IE */
     -webkit-filter: invert(20%) sepia(97%) saturate(4013%); /*SAFARI OPERA CHROME */
     -moz-filter: invert(20%) sepia(97%) saturate(4013%); /*FIREFOX */
   }
 
-  .titreQuizz, .descriptionQuizz {
+  .titreQuizz, .descriptionQuizz, .loiQuizz{
     color: black;
     font-weight: normal;
     font-size: 32pt;
+    padding-left: 10px;
   }
 }
 
