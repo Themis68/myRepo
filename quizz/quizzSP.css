@@ -177,9 +177,16 @@ content div {
     padding-left: 10px;
     flex-grow: 1; /* prend toute la largeur de la zone */
   }
+
+  #btnQuizz {
+    font-size: 34pt;
+    margin: 10px;
+    padding: 20px;
+  }
 }
 
 /*************** FOOTER ****************/
 footer {
+  
   font-size: 2em;
 }

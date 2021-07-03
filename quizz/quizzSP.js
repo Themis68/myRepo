@@ -65,6 +65,10 @@ function showInfosQuizz(quizz){
 	} else {
 		loiQuizz.innerHTML = "Loi " + quizz.loi + " : " +lois[quizz.loi - 1].libelle;
 	}
+
+	let btnQuizz = document.getElementById("btnQuizz");
+	btnQuizz.setAttribute("href","./zoneQuizz.html?id=" + quizz.id);
+	
 	
 }
 
