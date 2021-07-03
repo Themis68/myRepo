@@ -17,7 +17,23 @@ document.addEventListener("touchstart", clickF, false);
 function init() {
 	var quizzId = getParametersURL("id");
 	var quizz = scenario[quizzId-1]; // le id va de 1 à n, l'idnex du tableau commence à 0
-	alert("quizz "+ quizz.titre);
+	
+	// ajout accès au fichier des questions	
+	let myScript = document.createElement("script");
+	myScript.type = "text/javascript";
+	//myScript.setAttribute("src", pathQuizz + quizz.fichier);
+	myScript.src = pathQuizz + quizz.fichier;
+	document.head.appendChild(myScript);
+
+	// à ce stade les questions sont chargées dans la variable "script"	
+}
+
+function chargerQuestions() {
+	alert(script[0].question.libelle);
+}
+
+function clickF() {
+	chargerQuestions(); // on contrôle le chargement des questions
 }
 
 function getParametersURL(param){
