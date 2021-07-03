@@ -163,7 +163,7 @@ content div {
     font-family: system-ui;
   }
 
-  #svgInfo, #svgNiveau {
+  #svgInfo, #svgNiveau, #svgLoi {
     height: 1.2em;
     filter: invert(20%) sepia(97%) saturate(4013%); /* tous et IE */
     -webkit-filter: invert(20%) sepia(97%) saturate(4013%); /*SAFARI OPERA CHROME */
@@ -175,6 +175,7 @@ content div {
     font-weight: normal;
     font-size: 32pt;
     padding-left: 10px;
+    flex-grow: 1; /* prend toute la largeur de la zone */
   }
 }
 

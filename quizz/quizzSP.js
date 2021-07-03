@@ -6,6 +6,7 @@ var pathQuizz = "./questionnaires/";		// scénarios des quizz
 
 var myURLcomplete = document.location.href;
 var myURL  = myURLcomplete.substring( 0 ,myURLcomplete.lastIndexOf( "/" ) );
+var nbQuizz = arrayAssoSize(scenario);
 
 document.addEventListener("DOMContentLoaded", init, false);	
 document.addEventListener("touchstart", clickF, false);	
@@ -25,20 +26,23 @@ function chgt(e) {
 }
 
 function clickF(e) {
-	// indicateur actif
+	// indicateur actuel actif
 	let indicateurActif = document.querySelectorAll("li.cercle.active");
 	let indexIndActif = parseInt(indicateurActif[0].id.replace("indicateur", ""), 10);
 	let libelle = (e.target.id.indexOf("indicateur") >= 0 ? "indicateur" : e.target.id);
 	switch(libelle)
 	{
 		case "prev":
-			showInfosQuizz(scenario[indexIndActif-1]);
+			index = (indexIndActif-1 < 0 ? nbQuizz-1 : indexIndActif-1 );
+			showInfosQuizz(scenario[index]);
 			break;
 		case "next":
-			showInfosQuizz(scenario[indexIndActif+1]);
+			index = (indexIndActif === nbQuizz-1 ? 0 : indexIndActif+1 );
+			showInfosQuizz(scenario[index]);
 			break;
 		case "indicateur":
-			showInfosQuizz(scenario[parseInt(e.target.id.replace("indicateur", ""), 10)]);
+			index = parseInt(e.target.id.replace("indicateur", ""), 10);
+			showInfosQuizz(scenario[index]);
 			break;
 		default:
 		
@@ -54,17 +58,14 @@ function showInfosQuizz(quizz){
 
 	let descriptionQuizz = document.getElementById("descriptionQuizz");
 	descriptionQuizz.innerHTML = quizz.description;
-/*
-	let pictLoi = document.getElementById("pictLoi");
+
 	let loiQuizz = document.getElementById("loiQuizz");
 	if (quizz.loi === undefined) {
 		loiQuizz.innerHTML = "Mix de lois";
-		pictLoi.setAttribute("src", "../lois/images/loi.png");
 	} else {
-		loiQuizz.innerHTML = Lois[quizz.loi - 1].libelle;
-		pictLoi.setAttribute("src", "../lois/images/Loi_" + (quizz.loi >= 10 ? "0" : "") + quizz.loi - 1 + ".png");
+		loiQuizz.innerHTML = "Loi " + quizz.loi + " : " +lois[quizz.loi - 1].libelle;
 	}
-	*/
+	
 }
 
 function creerVignettes(id) {
@@ -92,7 +93,8 @@ function creerVignettes(id) {
 		// POSTER
 		let myPoster = document.createElement("img");
 		myPoster.setAttribute("class", "img-fluid mx-auto d-flex");	// nécessaire poour l'affichage des vignettes
-		myPoster.setAttribute("src", pathPosters + scenario[i].poster || "./images/stade.jpg");
+		let poster = (scenario[i].loi === undefined ? "bases.png" : "Loi_" + scenario[i].loi + ".png");
+		myPoster.setAttribute("src", pathPosters + poster);
 
 		// assemblage fanion et svg
 		// badge SVG
