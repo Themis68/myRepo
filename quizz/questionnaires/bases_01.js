@@ -71,4 +71,5 @@ var script1 = [
             points: 3
         }
     }
-]
+];
+var script = script1;   // nécessaire pour la version Mobile

@@ -3,7 +3,7 @@ var script3 = [
         number: 1,
         niveau: 1,
         question: {
-            libelle: "En foot à 11, le point de penalty se situe à combien de mètres de la ligne de but",
+            libelle: "En foot à 11, le point de PENALTY se situe à combien de mètres de la ligne de but",
             attributs: ["11 mètres",
             "9,15 mètres",
             "9,50 mètres",
@@ -244,4 +244,5 @@ var script3 = [
             temps: 8
         }
     }
-]
+];
+var script = script3;      // nécessaire pour la version Mobile

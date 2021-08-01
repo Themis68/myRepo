@@ -136,12 +136,6 @@ function creerVignettes(id) {
 
 		// ajouter à la liste des vignettes
 		vignettes.appendChild(myVignette);
-		/*
-		let myScript = document.createElement("SCRIPT");
-		myScript.setAttribute("type", "text/javascript");
-		myScript.setAttribute("src", pathQuizz + scenario[i].fichier);
-		document.head.appendChild(myScript);
-		*/
 	}
     
 }

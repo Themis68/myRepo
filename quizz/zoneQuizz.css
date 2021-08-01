@@ -18,164 +18,89 @@ body {
     background-color:white;
 }
 
-/*************** MENUS ****************/
-.navbar {
-    background-color: white;
-    border-bottom: 3px solid green;
-    height: fit-content;
-}
-
-.navbar-brand {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-self: center;
-    background-color: white;
-}
-  
-object#svgAlarm {
-    height: 5em;
-}
-  
-/* p.card-texte.asi-text : pas reconnnu */
-/* .card-texte.asi-text: pas reconnu */
-.asi-text{
-  font-family: passion_oneregular;
-  color: green;
-  font-weight: normal;
-  font-size: 1em;
-  text-align: center;
-  margin-bottom: 10px;
-}
-
-.asi-title {
-  color: black;
-  font-family: scoreboardregular;
-  font-size: 4em;
-}
-  
-/*************** CONTENT ****************/
-content div {
-  background-color: #f5efef;
-  margin: 10px;
-  font-size: 2em;
-}
-
-@media (max-device-width: 480px) {
   /* je m'appuie sur BOOTSTRAP !!! */
 
-  /* alignement dex deux zones vignette + infos */
+  /*************** MENUS ****************/
+  .navbar {
+      background-color: white;
+      border-bottom: 3px solid green;
+      height: fit-content;
+  }
+
+  .navbar-brand {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-self: center;
+      background-color: white;
+  }
+    
+  object#svgAlarm {
+      height: 5em;
+  }
+  
+  /* p.card-texte.asi-text : pas reconnnu */
+  /* .card-texte.asi-text: pas reconnu */
+  .asi-text{
+    font-family: passion_oneregular;
+    color: green;
+    font-weight: normal;
+    font-size: 1em;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .asi-title{
+    color: black;
+    font-family: scoreboardregular;
+    font-size: 4em;
+  }
+
+  content {
+    background-color: #f5efef;
+    margin: 10px;
+  }
+
+  @media (max-device-width: 480px) {
+    /*************** CONTENT ****************/
+
+
   .card {
     display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-  }
-
-  /* position du bloc des indicateurs circulaires pris en chargev*/
-  .carousel-indicators {
-    bottom: -90px;
-    justify-content: space-between; 
-  }
-
-  /* forme spécifique circulaire des indicateurs 
-  les !mportant sont nécessaires
-  */
-  .cercle {
-    background-color: green !important;
-    filter: grayscale(100%);
-    border-radius: 50%;
-    width: 40px !important;
-    height: 40px !important;
-  }
-
-  /* pris en charge*/
-  .cercle.active {
-    filter: grayscale(0%);
-  }
-
-  /* gestion de la position des flèches de défilement pris en charge*/
-  .carousel-control-prev-icon,   
-  .carousel-control-next-icon {
-    width: 50px;
-    height: 50px;
-  }
-
-  .carousel-control-prev-icon {
-    background-image: url("../svg/prev.svg");
-  }
-
-  .carousel-control-next-icon {
-    background-image: url("../svg/next.svg");
-  }
-
-  .carousel-control-prev {
-    width: 50px;
-    height: 80%;
-    left: -50px;
+    flex: 1;
+    flex-direction: row;
+    flex-wrap: wrap;
     justify-content: flex-start;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
   }
 
-  .carousel-control-next {
-    width: 50px;
-    height: 80%; 
-    right: -50px;
-    justify-content: flex-end;
-  }
-
-  .carousel-inner {
-    display:flex;
-    flex-direction: row;
-    justify-items: center;
-  }
-
-  .carousel-inner + .carousel-item {
-    overflow: hidden;
-  }
-
-  /* <DIV> */
-  .carousel-caption {
+  .question{
     display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: center;
-    top: 20px;
-    background-color: transparent !important;
-  }
-
-  #zoneQuizz{
-    top: 100px;
-    border-top: solid green 3px;
-    margin: 20px;
+    flex: 1;
+    width: 100%;
+    font-size: 4em;
+    background-color: #f5efef;
   }
 
   .card-body {
-    margin: 0px !important; /* retire le cadre blanc */
-    display: flex;
-    flex-direction: column;
+    flex: 1 1 auto;
+    width: 46%;
+    height: auto;
+    max-width:50%;
+    max-height:50%;
+    margin: 5px;
+    object-fit: cover;
   }
 
-  h1 {
-    display: flex;
-    flex-direction: row;
-  }
   .card-title {
-    display: flex;
     font-family: system-ui;
-  }
-
-  #svgInfo, #svgNiveau, #svgLoi {
-    height: 1.2em;
-    filter: invert(20%) sepia(97%) saturate(4013%); /* tous et IE */
-    -webkit-filter: invert(20%) sepia(97%) saturate(4013%); /*SAFARI OPERA CHROME */
-    -moz-filter: invert(20%) sepia(97%) saturate(4013%); /*FIREFOX */
-  }
-
-  .titreQuizz, .descriptionQuizz, .loiQuizz{
-    color: black;
-    font-weight: normal;
+    color: white;
     font-size: 32pt;
-    padding-left: 10px;
-    flex-grow: 1; /* prend toute la largeur de la zone */
+    flex-grow: 1;
+    background-color: red;
+    padding: 10px;
   }
 }
 

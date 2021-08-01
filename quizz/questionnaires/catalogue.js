@@ -2,7 +2,7 @@ var scenario = [
     {
         id: 1,
         titre: "Révision des bases",
-        fichier: "bases_03.min.js",
+        fichier: "bases_03.js",
         variable: "script3",
         description: "Bases catégories u11 à u15",
         niveau: 1,
@@ -11,7 +11,7 @@ var scenario = [
     {
         id: 2,
         titre: "Les joueurs",
-        fichier: "bases_01.min.js",
+        fichier: "bases_01.js",
         variable: "script1",
         description: "Questionnaire sur les joueurs",
         loi: 3,
@@ -21,7 +21,7 @@ var scenario = [
     {
         id: 3,
         titre: "Les coups-francs",
-        fichier: "bases_01.min.js",
+        fichier: "bases_01.js",
         variable: "script1",
         description: "Questionnaire sur les coups-francs",
         loi: 13,
@@ -31,7 +31,7 @@ var scenario = [
     {
         id: 4,
         titre: "Les bases",
-        fichier: "bases_02.min.js",
+        fichier: "bases_02.js",
         variable: "script2",
         description: "Bases de l'arbitrage",
         niveau: 2,
@@ -40,7 +40,7 @@ var scenario = [
     {
         id: 5,
         titre: "Les coups de pied de coin",
-        fichier: "bases_01.min.js",
+        fichier: "bases_01.js",
         variable: "script1",
         description: "Questionnaire sur les corners",
         loi: 17,
@@ -50,7 +50,7 @@ var scenario = [
     {
         id: 6,
         titre: "Les touches",
-        fichier: "bases_01.min.js",
+        fichier: "bases_01.js",
         variable: "script1",
         description: "Questionnaire sur les touches",
         loi: 15,
@@ -60,7 +60,7 @@ var scenario = [
     {
         id: 7,
         titre: "Les sanctions",
-        fichier: "bases_02.min.js",
+        fichier: "bases_02.js",
         variable: "script2",
         description: "Bases des sanctions",
         loi: 12,
