@@ -21,7 +21,9 @@ document.addEventListener('readystatechange', ready, false);
 // init page
 document.addEventListener("DOMContentLoaded", init, false);	
 //document.addEventListener("DOMContentLoaded", init, false);	
-//document.addEventListener("touchstart", clickF, false);	
+
+// gestion du clic
+document.addEventListener("touchstart", clickF, false);	
 
 // ne fonctionne pas sur iphone
 //const btnNext = document.querySelector("#next");
@@ -63,8 +65,15 @@ function getParametersURL(param){
 	return vars;
 }
 
-function clickF() {
-
+function clickF(e) {
+	//if(myChronoQ != undefined) {
+		// on est dans le chrono
+		if((e.target.id).indexOf("Prop") > 0) {
+			// clic sur un des boutons de proposition
+			clearTimeout(myChronoQ);	// arrêt du chrono Question sur clic utilisateur
+			gestChrono("arret");
+		}
+	//}
 }
 
 function gestQuestion(etape, question) {
@@ -85,17 +94,34 @@ function gestQuestion(etape, question) {
 }
 
 function chronoQ(nbSecondesMax) {
-	let jauge = document.getElementsByClassName("progress-bar");
-	let value = parseInt(jauge[0].getAttribute("aria-valuenow"),10) + 1;	// transformation en numérique de la valeur actuelle
+	let objet = document.getElementsByClassName("progress-bar");
+	let value = parseInt(objet[0].getAttribute("aria-valuenow"),10) + 1;	// transformation en numérique de la valeur actuelle
 	if (value > nbSecondesMax) {
 		// arrêter le chrono
-		clearTimeout(myChronoQ);	// arrêt du chrono Question
+		alert("fin");
+		clearTimeout(myChronoQ);	// arrêt du chrono Question en fin de temps
+		gestChrono("arret");
 	} else {
-		jauge[0].setAttribute("aria-valuenow", (value));
+		objet[0].setAttribute("aria-valuenow", (value));
 		pourCent = value / nbSecondesMax * 100;
-		jauge[0].setAttribute("style", "width: " + pourCent + "%");
+		objet[0].setAttribute("style", "width: " + pourCent + "%");
 	}
 }
+/* fonction qui effectue un balayage en douceur de la barre de progression
+function chronoQ2(nbSecondesMax) {
+	let objet = document.getElementsByClassName("progress-bar");
+//	let value = parseInt(objet[0].getAttribute("aria-valuenow"),10) + 1;	// transformation en numérique de la valeur actuelle
+	for(let i=0; i < (1000*10); i++){
+			objet[0].setAttribute("aria-valuenow", (i));
+			pourCent = i / (1000 * 10)*100;
+			for (let j=0; j < 000; j++) {
+				// attente
+			}
+			objet[0].setAttribute("style", "width: " + pourCent + "%");
+	}
+	clearTimeout(myChronoQ);
+}
+*/
 
 function gestChrono(phase) {
 	switch(phase) {
@@ -105,6 +131,9 @@ function gestChrono(phase) {
 			document.getElementsByClassName("progress-bar")[0].setAttribute("aria-valuenow", 0);	// INIT valeur de la jauge
 			break;
 		
+		case "arret":
+			break;
+
 		default:
 
 	}
