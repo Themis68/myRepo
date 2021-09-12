@@ -9,11 +9,7 @@ var myURL  = myURLcomplete.substring( 0 ,myURLcomplete.lastIndexOf( "/" ) );
 var nbQuizz = arrayAssoSize(scenario);
 
 document.addEventListener("DOMContentLoaded", init, false);	
-document.addEventListener("touchstart", clickF, false);	
-
-// ne fonctionne pas sur iphone
-//const btnNext = document.querySelector("#next");
-//btnNext.addEventListener("touchstart", clickF, false);	
+document.addEventListener("touchstart", clickF, false);		
  
 function init() {
 	// création carousel

@@ -13,41 +13,46 @@ var nbQuests = [
 	{niv: "CONFIRME", nb: 0, points: 0}
 ];		// le niveau 0 est le niveau en cours
 
-var questCourante = 0;
+var indexQuestion = 0;
 
 // print state changes
 document.addEventListener('readystatechange', ready, false);
 
 // init page
-document.addEventListener("DOMContentLoaded", init, false);	
-//document.addEventListener("DOMContentLoaded", init, false);	
+document.addEventListener("DOMContentLoaded", init, false);		
 
 // gestion du clic
 document.addEventListener("touchstart", clickF, false);	
 
 // ne fonctionne pas sur iphone
-//const btnNext = document.querySelector("#next");
-//btnNext.addEventListener("touchstart", clickF, false);	
+
+document.getElementById("jauge").addEventListener("blur", function(){
+	displayPage();
+}, false);	
 
 
-
-function ready() {
-	if (document.readyState === "complete") {
-		gestQuestion("question", script[window.questCourante]);
-	}
+function displayPage() {
+	alert("jauge");
 }
 
 function init() {
+	// on récupère le id du quizz
 	var quizzId = getParametersURL("id");
+	// on récupère le numéro de la question a traiter
+	window.indexQuestion = getParametersURL("question") || window.indexQuestion;
+	// on charge le quizz
 	var quizz = scenario[quizzId-1]; // le id va de 1 à n, l'index du tableau commence à 0
-	
 	// ajout accès au fichier des questions	
 	let myScript = document.createElement("script");
 	myScript.type = "text/javascript";
 	myScript.src = pathQuizz + quizz.fichier;
 	document.head.appendChild(myScript);
+}
 
-	questCourante = 0;
+function ready() {
+	if (document.readyState === "complete") {
+		gestChrono("");
+	}
 }
 
 function getParametersURL(param){
@@ -66,72 +71,91 @@ function getParametersURL(param){
 }
 
 function clickF(e) {
-	//if(myChronoQ != undefined) {
-		// on est dans le chrono
-		if((e.target.id).indexOf("Prop") > 0) {
-			// clic sur un des boutons de proposition
-			clearTimeout(myChronoQ);	// arrêt du chrono Question sur clic utilisateur
-			gestChrono("arret");
-		}
-	//}
-}
-
-function gestQuestion(etape, question) {
-	switch(etape) {
-		case "question":
-			document.getElementById("libQuestion").innerHTML = question.question.libelle;
-			for (let i=0; i < 4; i++) {
-				document.getElementById("prop" + (i+1)).setAttribute("onclick", 'javascript:response('+ question.reponse.solution + ',' + (i+1) +');');
-				document.getElementById("libProp" + (i+1)).innerHTML = question.question.attributs[i];		// afficher les libellés des propositions
-			}
-			// chrono
-			gestChrono("init");
-			myChronoQ = setInterval(chronoQ, 1000, 7); // 7 secondes pour la lecture de la question
-			break;
-
-		default:
+	if((e.target.id).indexOf("Prop") > 0) {
+		// clic sur un des boutons de proposition
+		gestChrono("R");
 	}
 }
 
-function chronoQ(nbSecondesMax) {
-	let objet = document.getElementsByClassName("progress-bar");
-	let value = parseInt(objet[0].getAttribute("aria-valuenow"),10) + 1;	// transformation en numérique de la valeur actuelle
+function chrono(nbSecondesMax) {
+	let btnJauge = document.getElementById("jauge");
+	let value = parseInt(btnJauge.getAttribute("aria-valuenow"),10) + 1;	// transformation en numérique de la valeur actuelle
 	if (value > nbSecondesMax) {
 		// arrêter le chrono
-		alert("fin");
-		clearTimeout(myChronoQ);	// arrêt du chrono Question en fin de temps
-		gestChrono("arret");
+		switch(btnJauge.dataset.use) {
+			case "" :
+				btnJauge.dataset.use = "P";
+				break;
+
+			case "P" :
+				btnJauge.dataset.use = "R";
+				break;
+		}
+		gestChrono(btnJauge.dataset.use);
 	} else {
-		objet[0].setAttribute("aria-valuenow", (value));
-		pourCent = value / nbSecondesMax * 100;
-		objet[0].setAttribute("style", "width: " + pourCent + "%");
+		btnJauge.setAttribute("aria-valuenow", value);
+		pourCent = Math.round(value / nbSecondesMax * 100);
+		btnJauge.setAttribute("style", "width: " + pourCent + "%");
 	}
 }
-/* fonction qui effectue un balayage en douceur de la barre de progression
-function chronoQ2(nbSecondesMax) {
-	let objet = document.getElementsByClassName("progress-bar");
-//	let value = parseInt(objet[0].getAttribute("aria-valuenow"),10) + 1;	// transformation en numérique de la valeur actuelle
-	for(let i=0; i < (1000*10); i++){
-			objet[0].setAttribute("aria-valuenow", (i));
-			pourCent = i / (1000 * 10)*100;
-			for (let j=0; j < 000; j++) {
-				// attente
-			}
-			objet[0].setAttribute("style", "width: " + pourCent + "%");
-	}
-	clearTimeout(myChronoQ);
-}
-*/
 
 function gestChrono(phase) {
+	btnJauge = document.getElementById("jauge");
+
 	switch(phase) {
-		case "init":
-			document.getElementsByClassName("progress")[0].style.display = "flex";	// afficher fond jauge
-			document.getElementsByClassName("progress-bar")[0].style.display = "flex";	// afficher jauge
-			document.getElementsByClassName("progress-bar")[0].setAttribute("aria-valuenow", 0);	// INIT valeur de la jauge
+		case "":
+			// récupère la question
+			question = window.script[window.indexQuestion];
+			// libellé question
+			document.getElementById("libQuestion").innerHTML = question.question.libelle;
+			// on masque les propositions
+			document.getElementById("propositions").style.display = "none";
+			// INIT valeur de la jauge
+			btnJauge.setAttribute("aria-valuenow", 0);	
+			// chrono
+			myChrono = setInterval(chrono, 1000, parseInt(question.question.temps, 10));
+			break;
+
+		case "P":
+			// INIT valeur de la jauge
+			btnJauge.setAttribute("aria-valuenow", 0);
+			// arrêt chrono	
+			clearInterval(myChrono);
+			// afficher les libellés des propositions
+			document.getElementById("propositions").style.display = "flex";
+			for (let i=0; i < 4; i++) {
+				document.getElementById("libProp" + (i+1)).innerHTML = question.question.attributs[i];	
+			}
+
+			btnJauge.dataset.use = "P";
+			// chrono
+			myChrono = setInterval(chrono, 1000, parseInt(question.reponse.temps, 10));
 			break;
 		
-		case "arret":
+		case "R":
+			// INIT valeur de la jauge
+			btnJauge.setAttribute("aria-valuenow", 0);
+			btnJauge.setAttribute("style", "width: 0%");
+			btnJauge.dataset.use = "";
+			// arrêt chrono	
+			clearInterval(myChrono);
+			for (let i=0; i < 4; i++) {
+				document.getElementById("libProp" + (i+1)).style.display = ((i+1) === parseInt(question.reponse.solution, 10) ? "flex" : "none");
+			}
+			// on incrémente la question
+			window.indexQuestion++;
+			indexQuestionSuivante = script[window.indexQuestion].number;
+			alert(window.indexQuestion);
+			if (indexQuestionSuivante === undefined) {
+			// fini
+			} else {
+				// affichage bouton question suivante
+				let btnQuestion = document.getElementById("btnQuestion");
+				btnQuestion.style.display = "flex";
+				// récupérer le quizzID ou la URL en cours
+				// appeler le gestChropno avec la nouvelle question
+				btnQuestion.setAttribute("href",document.location.href + "&question=" + window.indexQuestion);
+			}
 			break;
 
 		default:
