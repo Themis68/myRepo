@@ -15,6 +15,9 @@ var nbQuests = [
 
 var indexQuestion = 0;
 
+// on récupère le id du quizz
+var quizzId = getParametersURL("id");
+
 // print state changes
 document.addEventListener('readystatechange', ready, false);
 
@@ -36,10 +39,9 @@ function displayPage() {
 }
 
 function init() {
-	// on récupère le id du quizz
-	var quizzId = getParametersURL("id");
+	
 	// on récupère le numéro de la question a traiter
-	window.indexQuestion = getParametersURL("question") || window.indexQuestion;
+	window.indexQuestion = getParametersURL("question");
 	// on charge le quizz
 	var quizz = scenario[quizzId-1]; // le id va de 1 à n, l'index du tableau commence à 0
 	// ajout accès au fichier des questions	
@@ -144,21 +146,26 @@ function gestChrono(phase) {
 			}
 			// on incrémente la question
 			window.indexQuestion++;
-			indexQuestionSuivante = script[window.indexQuestion].number;
-			alert(window.indexQuestion);
+			indexQuestionSuivante = script[window.indexQuestion];
 			if (indexQuestionSuivante === undefined) {
-			// fini
+				// quizz fini
+				buildRing("ring");
 			} else {
 				// affichage bouton question suivante
 				let btnQuestion = document.getElementById("btnQuestion");
 				btnQuestion.style.display = "flex";
 				// récupérer le quizzID ou la URL en cours
-				// appeler le gestChropno avec la nouvelle question
-				btnQuestion.setAttribute("href",document.location.href + "&question=" + window.indexQuestion);
+				// appeler le gestChrono avec la nouvelle question
+				btnQuestion.setAttribute("href","./zoneQuizz.html?id=" + window.quizzId + "&question=" + window.indexQuestion);
 			}
 			break;
 
 		default:
 
 	}
+}
+
+function buildRing(idObjet){
+	let objet = document.getElementById(idObjet);
+	objet.style.display = "flex";
 }

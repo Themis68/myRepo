@@ -16,6 +16,10 @@ https://developer.mozilla.org/fr/docs/Web/Events
 incompatibilités browser :
 https://www.quirksmode.org/dom/events/index.html#t01
 
+chartist :
+https://gionkunz.github.io/chartist-js/getting-started.html
+
+
 accès à un attribut personnalisé d'un TAG
 HTML : <div id="jauge" class="progress-bar"  data-use="esd">
 javascript : 	alert(btnJauge.dataset.use);

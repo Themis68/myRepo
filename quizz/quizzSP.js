@@ -63,7 +63,7 @@ function showInfosQuizz(quizz){
 	}
 
 	let btnQuizz = document.getElementById("btnQuizz");
-	btnQuizz.setAttribute("href","./zoneQuizz.html?id=" + quizz.id);
+	btnQuizz.setAttribute("href","./zoneQuizz.html?id=" + quizz.id + "&question=0");
 	
 	
 }
