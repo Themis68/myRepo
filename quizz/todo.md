@@ -23,3 +23,9 @@ https://gionkunz.github.io/chartist-js/getting-started.html
 accès à un attribut personnalisé d'un TAG
 HTML : <div id="jauge" class="progress-bar"  data-use="esd">
 javascript : 	alert(btnJauge.dataset.use);
+
+
+  <div class="ring red"></div>
+      <div class="ring orange"></div>
+      <div class="ring blue"></div>
+      <div class="ring green"></div>

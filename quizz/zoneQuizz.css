@@ -145,58 +145,24 @@ plein de soucis sur le carousel/
     padding: 20px;
   }
 
-  /**********************donut ring*/
-.donut-ring {
-  display: none;
-  position: relative;
-  width: 200px;
-  height: 200px;
-}
+  /********************************/
 
-.ring {
-  position: absolute;
-  width: 50%;
-  height: 50%;
-}
+  #ring {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+  }
 
-.ring.orange {
-  bottom: 0;
-  left: 0;
-  background-color: orange;
-  border-radius: 0 0 0 100%;
-}
+  svg {
+    display: none;
+    justify-content: center;
+    background: transparent;
+    width: 400px;
+    height: 400px;
+  }
+/********************************/
 
-.ring.green {
-  bottom: 0;
-  right: 0;
-  background-color: green;
-  border-radius: 0 0 100% 0;
-}
 
-.ring.blue {
-  top: 0;
-  right: 0;
-  background-color: blue;
-  border-radius: 0 100% 0 0;
-}
-
-.ring.red {
-  top: 0;
-  left: 0;
-  background-color: red;
-  border-radius: 100% 0 0 0;
-}
-
-.cutout {
-  width: 50%;
-  height: 50%;
-  background-color: white;
-  position: absolute;
-  top: 25%;
-  left: 25%;
-  border-radius: 50%;
-  pointer-events: none;
-}
   /*************** FOOTER ****************/
   footer {
     display: flex;

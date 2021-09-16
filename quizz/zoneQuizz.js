@@ -149,7 +149,16 @@ function gestChrono(phase) {
 			indexQuestionSuivante = script[window.indexQuestion];
 			if (indexQuestionSuivante === undefined) {
 				// quizz fini
-				buildRing("ring");
+				let reussite = 17;
+
+				let objet = document.querySelector("svg");
+				objet.style.display = "flex";
+				
+				var animateSvg = document.getElementById("esd");
+				animateSvg.setAttribute("to", reussite);
+				var titreSvg = document.querySelector("text");
+  				titreSvg.innerHTML = reussite;
+
 			} else {
 				// affichage bouton question suivante
 				let btnQuestion = document.getElementById("btnQuestion");
@@ -163,9 +172,4 @@ function gestChrono(phase) {
 		default:
 
 	}
-}
-
-function buildRing(idObjet){
-	let objet = document.getElementById(idObjet);
-	objet.style.display = "flex";
 }
