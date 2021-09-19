@@ -148,16 +148,29 @@ function gestChrono(phase) {
 			window.indexQuestion++;
 			indexQuestionSuivante = script[window.indexQuestion];
 			if (indexQuestionSuivante === undefined) {
-				// quizz fini
-				let reussite = 17;
+				//gestSvg(7, 14);
+				 //quizz fini
+				let reussite = 7;
+				let nbTotalPoints = 14;
 
-				let objet = document.querySelector("svg");
-				objet.style.display = "flex";
+				let offset = reussite / nbTotalPoints * 100;
 				
-				var animateSvg = document.getElementById("esd");
-				animateSvg.setAttribute("to", reussite);
 				var titreSvg = document.querySelector("text");
   				titreSvg.innerHTML = reussite;
+
+				let circle = document.getElementById("my-circle");
+				let rayon = circle.getAttribute("r");
+
+				let b = Math.PI * rayon * 2; 
+				let a = offset * b / 100;		
+				circle.setAttribute("stroke-dasharray", a + " "+ b);
+				
+				let svg = document.querySelector("svg");
+				svg.style.display = "flex";
+
+				let animate = document.querySelector("animate");
+				animate.setAttribute("to", a);
+				animate.beginElement();
 
 			} else {
 				// affichage bouton question suivante
@@ -172,4 +185,31 @@ function gestChrono(phase) {
 		default:
 
 	}
+}
+
+function gestSvg(reussite, total) {
+	// calcul pourcentge réussite
+	let offset = reussite / total * 100;
+
+	// afficher réussite
+	var titreSvg = document.querySelector("svg text");
+  	titreSvg.innerHTML = reussite;
+
+	  // récupérer le rayon du SVG
+	let circle = document.querySelector("svg #my-circle");
+	let rayon = circle.getAttribute("r");
+
+	// calculer la section de réussite
+	let b = Math.PI * rayon * 2; 
+	let a = offset * b / 100;		
+	circle.setAttribute("stroke-dasharray", a + " "+ b);
+	
+	// afficher le svg
+	let svg = document.querySelector("svg");
+	svg.style.display = "flex";
+
+	// lancer l'animation
+	let animate = document.querySelector("svg animate");
+	animate.setAttribute("to", a);
+	animate.beginElement();
 }
