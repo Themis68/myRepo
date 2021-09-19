@@ -1,17 +1,8 @@
 // chemins
-var pathImagesCommunes = "../images/"   // images communes
-var pathPosters =  "./images/posters/";		//  posters
-var pathBadges = "./images/badges/";		//  badges
 var pathQuizz = "./questionnaires/";		// scénarios des quizz
 
 var myURLcomplete = document.location.href;
 var myURL  = myURLcomplete.substring( 0 ,myURLcomplete.lastIndexOf( "/" ) );
-
-var nbQuests = [
-	{niv: "COURANT", nb: 0, points: 0},
-	{niv: "DEBUTANT", nb: 0, points: 0},
-	{niv: "CONFIRME", nb: 0, points: 0}
-];		// le niveau 0 est le niveau en cours
 
 // variable d'une question
 var indexQuestion = 1;
@@ -32,16 +23,6 @@ document.addEventListener("DOMContentLoaded", init, false);
 // gestion du clic
 document.addEventListener("touchstart", clickF, false);
 
-// ne fonctionne pas sur iphone
-/*document.getElementById("jauge").addEventListener("blur", function(){
-	displayPage();
-}, false);	
-*/
-
-function displayPage() {
-	alert("jauge");
-}
-
 function init() {
 	// on récupère le numéro de la question a traiter
 	window.indexQuestion = getParametersURL("question");
@@ -50,7 +31,7 @@ function init() {
 	// ajout accès au fichier des questions	
 	let myScript = document.createElement("script");
 	myScript.type = "text/javascript";
-	myScript.src = pathQuizz + quizz.fichier + "?n=1" ; 
+	myScript.src = pathQuizz + window.quizz.fichier + "?n=1" ; 
 	document.head.appendChild(myScript);
 }
 
@@ -77,9 +58,11 @@ function getParametersURL(param){
 
 function clickF(e) {
 	if (e.target.id === "btnQuestion") {
-		document.getElementById(e.target.id).style.display = "none";
-		window.indexQuestion++;	// on passe à la question suivante
-		gestChrono("","");	// on reinitialisae la page avec les bons éléments
+		if (document.getElementById(e.target.id).getAttribute("href") === "#") {
+			document.getElementById(e.target.id).style.display = "none";
+			window.indexQuestion++;	// on passe à la question suivante
+			gestChrono("","");	// on reinitialisae la page avec les bons éléments
+		}
 	}
 
 	if((e.target.id).indexOf("Prop") > 0) {
@@ -162,50 +145,25 @@ function gestChrono(phase, data) {
 			pointsQuestion = parseInt(window.question.reponse.points, 10);
 
 			window.nbPointsQuizz = window.nbPointsQuizz + pointsQuestion;
-			if(data == "libProp" + window.question.reponse.solution) {
+			if (data == "libProp" + window.question.reponse.solution) {
 				// points de l'utilisateur
 				window.nbPointsUtilisateur = window.nbPointsUtilisateur + pointsQuestion;
 			}
 			// derniere question ?
-			let btnQuestion = document.getElementById("btnQuestion");
 			indexQuestionSuivante = window.script[window.indexQuestion];
+
+			let btnQuestion = document.getElementById("btnQuestion");
 			if (indexQuestionSuivante === undefined) {
 				//quizz fini	
-				gestSvg(window.nbPointsUtilisateur, window.nbPointsQuizz);
+				btnQuestion.innerHTML = "Afficher résultat";
+				btnQuestion.setAttribute("href","./resultatQuizz.html?id=" + window.quizz.id + "&reussir=" + window.nbPointsUtilisateur + "&total=" + window.nbPointsQuizz);
 			} else {
 				// affichage bouton question suivante		
-				btnQuestion.style.display = "flex";
+				btnQuestion.innerHTML = "Question suivante";
 			}
+			btnQuestion.style.display = "flex";
 			break;
 
 		default:
-
 	}
-}
-
-function gestSvg(reussite, total) {
-	// calcul pourcentge réussite
-	let offset = reussite / total * 100;
-
-	// afficher réussite
-	var titreSvg = document.querySelector("text");
-  	titreSvg.innerHTML = reussite;
-
-	  // récupérer le rayon du SVG
-	let circle = document.getElementById("my-circle");
-	let rayon = circle.getAttribute("r");
-
-	// calculer la section de réussite
-	let b = Math.PI * rayon * 2; 
-	let a = offset * b / 100;		
-	circle.setAttribute("stroke-dasharray", a + " "+ b);
-	
-	// afficher le svg
-	let svg = document.querySelector("svg");
-	svg.style.display = "flex";
-
-	// lancer l'animation
-	let animate = document.querySelector("animate");
-	animate.setAttribute("to", a);
-	animate.beginElement();
 }
