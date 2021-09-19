@@ -127,6 +127,7 @@ plein de soucis sur le carousel/
     display: flex;
     flex: 1;
     justify-content: center;
+    margin-top: 20px;
   }
 
   svg {

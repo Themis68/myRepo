@@ -2,8 +2,16 @@ QUIZZ MOBILE
 
 
 - le fond gris du <card> ne va pas jusqu'en bas
-- les logos des infos du quizz ne sont pas vert
-- les questionnaires ont la var script au lieu de script<n> : v"rfiier que cela ne plante pas en version desktop
+- les logos des infos du quizz ne sont pas vert: 
+- v"rfiier que cela ne plante pas en version desktop
+- le footer n'est pas fixé en bas
+- centrer le résultat dans le ring
+- corriger la taille du titre de resultat.html
+- récupérer les infos du quizz joué dans résultat.html
+- afficher les propositions verticalement dans zoneQuizz.html
+- gérer la couleur des boutons de proposition selon que l'on a bon ou lauvais
+- ajouter du son
+
 
 sources :
 
