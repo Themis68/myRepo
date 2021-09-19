@@ -13,7 +13,12 @@ var nbQuests = [
 	{niv: "CONFIRME", nb: 0, points: 0}
 ];		// le niveau 0 est le niveau en cours
 
-var indexQuestion = 0;
+// variable d'une question
+var indexQuestion = 1;
+var nbPointsUtilisateur = 0;
+var nbPointsQuizz = 0;
+var question;
+var script;
 
 // on récupère le id du quizz
 var quizzId = getParametersURL("id");
@@ -25,35 +30,33 @@ document.addEventListener('readystatechange', ready, false);
 document.addEventListener("DOMContentLoaded", init, false);		
 
 // gestion du clic
-document.addEventListener("touchstart", clickF, false);	
+document.addEventListener("touchstart", clickF, false);
 
 // ne fonctionne pas sur iphone
-
-document.getElementById("jauge").addEventListener("blur", function(){
+/*document.getElementById("jauge").addEventListener("blur", function(){
 	displayPage();
 }, false);	
-
+*/
 
 function displayPage() {
 	alert("jauge");
 }
 
 function init() {
-	
 	// on récupère le numéro de la question a traiter
 	window.indexQuestion = getParametersURL("question");
 	// on charge le quizz
-	var quizz = scenario[quizzId-1]; // le id va de 1 à n, l'index du tableau commence à 0
+	window.quizz = scenario[quizzId-1]; // le id va de 1 à n, l'index du tableau commence à 0
 	// ajout accès au fichier des questions	
 	let myScript = document.createElement("script");
 	myScript.type = "text/javascript";
-	myScript.src = pathQuizz + quizz.fichier;
+	myScript.src = pathQuizz + quizz.fichier + "?n=1" ; 
 	document.head.appendChild(myScript);
 }
 
 function ready() {
 	if (document.readyState === "complete") {
-		gestChrono("");
+		gestChrono("","");
 	}
 }
 
@@ -73,9 +76,15 @@ function getParametersURL(param){
 }
 
 function clickF(e) {
+	if (e.target.id === "btnQuestion") {
+		document.getElementById(e.target.id).style.display = "none";
+		window.indexQuestion++;	// on passe à la question suivante
+		gestChrono("","");	// on reinitialisae la page avec les bons éléments
+	}
+
 	if((e.target.id).indexOf("Prop") > 0) {
 		// clic sur un des boutons de proposition
-		gestChrono("R");
+		gestChrono("R", e.target.id);
 	}
 }
 
@@ -87,13 +96,15 @@ function chrono(nbSecondesMax) {
 		switch(btnJauge.dataset.use) {
 			case "" :
 				btnJauge.dataset.use = "P";
+				data = "";
 				break;
 
 			case "P" :
 				btnJauge.dataset.use = "R";
+				data = "";
 				break;
 		}
-		gestChrono(btnJauge.dataset.use);
+		gestChrono(btnJauge.dataset.use, data);
 	} else {
 		btnJauge.setAttribute("aria-valuenow", value);
 		pourCent = Math.round(value / nbSecondesMax * 100);
@@ -101,21 +112,21 @@ function chrono(nbSecondesMax) {
 	}
 }
 
-function gestChrono(phase) {
+function gestChrono(phase, data) {
 	btnJauge = document.getElementById("jauge");
 
 	switch(phase) {
 		case "":
 			// récupère la question
-			question = window.script[window.indexQuestion];
+			window.question = window.script[window.indexQuestion-1];
 			// libellé question
-			document.getElementById("libQuestion").innerHTML = question.question.libelle;
+			document.getElementById("libQuestion").innerHTML = window.question.question.libelle;
 			// on masque les propositions
 			document.getElementById("propositions").style.display = "none";
 			// INIT valeur de la jauge
 			btnJauge.setAttribute("aria-valuenow", 0);	
 			// chrono
-			myChrono = setInterval(chrono, 1000, parseInt(question.question.temps, 10));
+			myChrono = setInterval(chrono, 1000, parseInt(window.question.question.temps, 10));
 			break;
 
 		case "P":
@@ -126,12 +137,13 @@ function gestChrono(phase) {
 			// afficher les libellés des propositions
 			document.getElementById("propositions").style.display = "flex";
 			for (let i=0; i < 4; i++) {
-				document.getElementById("libProp" + (i+1)).innerHTML = question.question.attributs[i];	
+				document.getElementById("libProp" + (i+1)).innerHTML = window.question.question.attributs[i];	
+				document.getElementById("libProp" + (i+1)).style.display = "flex";
 			}
 
 			btnJauge.dataset.use = "P";
 			// chrono
-			myChrono = setInterval(chrono, 1000, parseInt(question.reponse.temps, 10));
+			myChrono = setInterval(chrono, 1000, parseInt(window.question.reponse.temps, 10));
 			break;
 		
 		case "R":
@@ -142,21 +154,27 @@ function gestChrono(phase) {
 			// arrêt chrono	
 			clearInterval(myChrono);
 			for (let i=0; i < 4; i++) {
-				document.getElementById("libProp" + (i+1)).style.display = ((i+1) === parseInt(question.reponse.solution, 10) ? "flex" : "none");
+				document.getElementById("libProp" + (i+1)).style.display = ((i+1) === parseInt(window.question.reponse.solution, 10) ? "flex" : "none");
 			}
-			// on incrémente la question
-			window.indexQuestion++;
-			indexQuestionSuivante = script[window.indexQuestion];
+
+			// gestion des points
+			// points du quizz
+			pointsQuestion = parseInt(window.question.reponse.points, 10);
+
+			window.nbPointsQuizz = window.nbPointsQuizz + pointsQuestion;
+			if(data == "libProp" + window.question.reponse.solution) {
+				// points de l'utilisateur
+				window.nbPointsUtilisateur = window.nbPointsUtilisateur + pointsQuestion;
+			}
+			// derniere question ?
+			let btnQuestion = document.getElementById("btnQuestion");
+			indexQuestionSuivante = window.script[window.indexQuestion];
 			if (indexQuestionSuivante === undefined) {
-				//quizz fini
-				gestSvg(7, 14);
+				//quizz fini	
+				gestSvg(window.nbPointsUtilisateur, window.nbPointsQuizz);
 			} else {
-				// affichage bouton question suivante
-				let btnQuestion = document.getElementById("btnQuestion");
+				// affichage bouton question suivante		
 				btnQuestion.style.display = "flex";
-				// récupérer le quizzID ou la URL en cours
-				// appeler le gestChrono avec la nouvelle question
-				btnQuestion.setAttribute("href","./zoneQuizz.html?id=" + window.quizzId + "&question=" + window.indexQuestion);
 			}
 			break;
 

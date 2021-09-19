@@ -26,7 +26,7 @@ var script = [
         reponse: {
             solution: 4,
             loi: 4,
-            points: 1,
+            points: 4,
             temps: 3
         }
     },

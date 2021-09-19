@@ -12,7 +12,7 @@ var script = [
         reponse: {
             solution: 1,
             loi: 1,
-            points: 1,
+            points: 14,
             temps: 8
         }
     },
@@ -245,4 +245,3 @@ var script = [
         }
     }
 ];
-var script = script3;      // nécessaire pour la version Mobile

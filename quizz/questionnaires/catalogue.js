@@ -2,7 +2,7 @@ var scenario = [
     {
         id: 1,
         titre: "Révision des bases 25",
-        fichier: "bases_02 copy.js",
+        fichier: "bases_02_copy.js",
         variable: "script",
         description: "Bases catégories u11 à u25",
         niveau: 1,

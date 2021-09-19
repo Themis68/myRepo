@@ -9,7 +9,7 @@ var script = [
         },
         reponse: {
             solution: 1,
-            points: 1
+            points: 10
         }
     },
     {
@@ -73,4 +73,3 @@ var script = [
         }
     }
 ];
-var script = script1;   // nécessaire pour la version Mobile
