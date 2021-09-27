@@ -15,7 +15,9 @@ html {
 }
 
 body {
-    background-color:white;
+  display: flex;
+
+  background-color:white;
 }
 
 /*************** MENUS ****************/

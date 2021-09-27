@@ -2,6 +2,10 @@
 @import url(typo/scoreboard/stylesheet.css);
 @import url(typo/passion_one/stylesheet.css);
 
+:root {
+  --fond-color: #f5efef;
+}
+
 /* compatibilité des autres navigateurs 
   filter: grayscale(100%);
   -webkit-filter: grayscale(100%);
@@ -9,77 +13,43 @@
 */
 
 html {
-  margin: 10px;
+  background-color: var(--fond-color);
 }
+
 body {
-  background-color: white;
-}
-
-/*************** MENUS ****************/
-.navbar {
-  background-color: white;
-  border-bottom: 2px solid green;
-  height: fit-content;
-}
-
-.navbar-brand {
   display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-self: center;
-  background-color: white;
 }
 
-object#svgAlarm {
-  height: 5em;
+header{
+  background-color: var(--fond-color);
 }
 
-/* p.card-texte.asi-text : pas reconnnu */
-/* .card-texte.asi-text: pas reconnu */
-.asi-text{
-  font-family: passion_oneregular;
-  color: green;
-  font-weight: normal;
-  font-size: 1em;
-  text-align: center;
-  margin-bottom: 10px;
+content {
+  background-color: blue;
 }
 
-.asi-title {
-  color: black;
-  font-family: scoreboardregular;
-  font-size: 4em;
-}
-
-/*************** CONTENT ****************/
-content div {
-  background-color: #f5efef;
-  margin: 10px;
-  font-size: 2em;
-}
-
-img.card-img-top{
-  border-bottom: 30px solid green;
-}
-
-img.card-img-top.disable {
-  border-bottom: 30px solid #f5efef;
-}
-
-a.card-link {
-  background-color: #f5efef;
-  color: black;
-  font-family: passion_oneregular;
-  font-weight: normal;
-  text-align: center;
-  font-size: 36pt;
-}
-
-a.card-link.disable {
-  color: #b4b1b1;
-}
-
-/*************** FOOTER ****************/
 footer {
-  font-size: 2em;
+  margin-top : auto;
+  background-color: red;
+}
+
+/* petits écrans */
+@media (orientation: portrait) and (max-device-width: 480px) {
+  body {
+    flex-direction: column;
+  }
+}
+
+/* ecrans moyens */
+@media (orientation: portrait) and (max-device-width: 800px) {
+  body {
+    flex-direction: column;
+  }
+}
+
+/* ecrans moyens */
+@media (orientation: landscape) {
+  body {
+    flex-direction: column;
+  }
 }
