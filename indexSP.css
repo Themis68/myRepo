@@ -6,30 +6,56 @@
   --fond-color: #f5efef;
 }
 
-html {
-  background-color: var(--fond-color);
-}
-
 body {
   display: flex;
   flex-direction: column;
+  background-color: white;
 }
 
 header{
-  background-color: var(--fond-color);
+  display: flex;
 }
 
 content {
-  background-color: blue;
+  display: flex;
 }
 
 footer {
   margin-top : auto;
-  background-color: red;
+  display: flex;
 }
 
 /* petits écrans */
 @media (orientation: portrait) and (max-device-width: 480px) {
+  /*********  MENUS  **********/
+  header {
+    /* ici il prend toute la largeur */
+    border-bottom: 0.5em solid green; 
+  }
+  
+  nav {
+    display: flex;
+  }
+
+  nav a{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 1em;
+  }
+
+  object {
+    height: 7em;
+  }
+
+  nav a span {
+    font-family: scoreboardregular;
+    font-size: 6em;
+    color: black;
+  }
+
+  /*********  MENUS  **********/
 
 }
 
@@ -39,6 +65,6 @@ footer {
 }
 
 /* ecrans moyens */
-@media (orientation: landscape) {
+@media (orientation: landscape) and (max-device-width: 735px){
 
 }
