@@ -72,7 +72,7 @@ footer {
   content p {
     color: green;
     font-family: passion_oneregular;
-    font-size: 4em;
+    font-size: 3.2em;
     font-weight: normal;
     text-align: center;
   }
@@ -86,7 +86,10 @@ footer {
   }
 
   .card-body {
-    padding: 3em;
+    padding-top: 1em;
+    padding-left: 3em;
+    padding-right: 3em;
+    padding-bottom: 3em;
   }
 
   .card-title {
@@ -132,10 +135,8 @@ footer {
 /* ecrans moyens : width correspond à la vrai largeur en pixel*/
 @media (orientation: landscape) and (max-device-width: 667px){
   html {
-    -webkit-text-size-adjust: 100%;
-   -ms-text-size-adjust: 100%;
   }
-  
+
   header {
     /* ici il prend toute la largeur */
     border-bottom: 0.3em solid green; 
@@ -154,12 +155,12 @@ footer {
   }
 
   object {
-    height: 3em;
+    height: 2.5em;
   }
 
   nav a span {
     font-family: scoreboardregular;
-    font-size: 4em;
+    font-size: 3em;
     color: black;
   }
 
@@ -189,11 +190,14 @@ footer {
   }
 
   .card-body {
-    padding: 3em;
+    padding-top: 1em;
+    padding-left: 3em;
+    padding-right: 3em;
+    padding-bottom: 1em;
   }
 
   .card-title {
-    font-size: 3em;
+    font-size: 2.5em;
     font-family: passion_oneregular;
     font-weight: normal;
     text-align: left;
@@ -221,7 +225,7 @@ footer {
     footer p {
       color: grey;
       font-family: passion_oneregular;
-      font-size: 1.5em;
+      font-size: 1.4em;
       padding-left: 1em;
       font-weight: normal;
     }
