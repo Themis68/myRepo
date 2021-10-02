@@ -20,7 +20,7 @@ function ready() {
 function init() {
     // calcul hauteur
     matriceDevice = viewportSize();
-    calculHauteur(matriceDevice.height);
+    calculHauteur(matriceDevice.height - 200);
     // mise en place de l'écoute des onglets
     var menuButton = document.getElementsByClassName("nav-link");
     for (var i = 0 ; i < menuButton.length; ++i)
