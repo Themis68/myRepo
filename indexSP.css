@@ -55,6 +55,57 @@ footer {
     color: black;
   }
 
+  /*********  CONTENT  **********/
+  content {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    flex: 1;
+  }
+
+  content p {
+    color: green;
+    font-family: passion_oneregular;
+    font-size: 4em;
+    font-weight: normal;
+    text-align: center;
+  }
+
+  .card {
+    display: flex;
+    flex-direction: row;
+    justify-content: center !important;
+    flex-wrap: wrap;
+
+  }
+
+  .card-body {
+    padding: 3em;
+  }
+
+  .card-title {
+    font-size: 3em;
+    font-family: passion_oneregular;
+    font-weight: normal;
+    text-align: left;
+    color: black;
+    background-color: var(--fond-color);
+    padding-left: 0.2em;
+  }
+
+  .card-img-top {
+    border: 2px solid green;
+  }
+
+  .vide {
+    background-color: rgb(172, 166, 166);
+    
+    height: 100%;
+  }
+
+
+
   /*********  FOOTER  **********/
   footer {
     /* ici il prend toute la largeur */
