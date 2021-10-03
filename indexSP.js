@@ -1,5 +1,5 @@
 // initialisation matrice device
-var matriceDevice = viewportSize();
+ var matriceDevice = viewportSize();
 
 // écouteurs
 document.addEventListener('readystatechange', ready, false);
@@ -22,13 +22,13 @@ function init() {
     matriceDevice = viewportSize();
     calculHauteur(matriceDevice.height - 200);
     // mise en place de l'écoute des onglets
-    var menuButton = document.getElementsByClassName("nav-link");
+/*    var menuButton = document.getElementsByClassName("nav-link");
     for (var i = 0 ; i < menuButton.length; ++i)
     {
         attach_event(menuButton[i]);
     }
-}
-
+}*/
+/*
 function attach_event(c) {
     // on actice le LISTENER sur un objet
     c.addEventListener("touchstart", function(){ gestContent(c.innerHTML) }, false);
@@ -54,37 +54,4 @@ function gestContent(c) {
         }
     }
 }
-
-/**
- * 
- * @returns matrice taille device
- */
-function viewportSize() {
-    // récupération id objet à travailler
-    var d = document.documentElement;
-    // retourne la matrice device
-    return {
-      height: d.clientHeight,
-      width: d.clientWidth
-    };
-}
-
-/**
- * 
- * @param {hauteurDevice} hauteur 
- */
-function calculHauteur(hauteur) {
-    // gestion hauteur de device
-    let body = document.querySelector("body");
-    body.style.minHeight = hauteur + "px";
-}
-
-/**
- * redimensionnement écran
- */
-function windowResize() {
-    // récupération nouvelle matrice device
-    window.matriceDevice = viewportSize();
-    // calcul de la hauteur du device
-    calculHauteur(window.matriceDevice.height);
-}
+*/

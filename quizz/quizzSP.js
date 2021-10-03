@@ -1,3 +1,6 @@
+// initialisation matrice device
+var matriceDevice = viewportSize();
+
 // chemins
 var pathImagesCommunes = "../images/"   // images communes
 var pathPosters =  "./images/posters/";		//  posters
@@ -10,8 +13,19 @@ var nbQuizz = arrayAssoSize(scenario);
 
 document.addEventListener("DOMContentLoaded", init, false);	
 document.addEventListener("touchstart", clickF, false);		
- 
+window.addEventListener('resize', windowResize, false);
+document.addEventListener('readystatechange', ready, false);
+
+function ready() {
+    // interactive
+    // complete
+
+}
 function init() {
+	// calcul hauteur
+    matriceDevice = viewportSize();
+    calculHauteur(matriceDevice.height - 200);
+	
 	// création carousel
     creerVignettes("vignettes");
 	// récupération infos quizz initial

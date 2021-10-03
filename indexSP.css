@@ -2,16 +2,22 @@
 @import url(typo/scoreboard/stylesheet.css);
 @import url(typo/passion_one/stylesheet.css);
 
-:root {
-  --fond-color: #f5efef;
-}
+/* compatibilité des autres navigateurs 
+  filter: grayscale(100%);
+  -webkit-filter: grayscale(100%);
+  -moz-filter: grayscale(100%);
+*/
+
 
 html {
   -webkit-text-size-adjust: none;
 }
 
+a:link a:visited a:active{
+  text-decoration: none;
+}
+
 body {
-  touch-action: none;
   display: flex;
   flex-direction: column;
   background-color: white;

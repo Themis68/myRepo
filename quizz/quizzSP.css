@@ -11,67 +11,89 @@ plein de soucis sur le carousel/
 */
 
 html {
-    margin: 10px;
+  -webkit-text-size-adjust: none;
+}
+
+a:link a:visited a:active{
+  text-decoration: none;
 }
 
 body {
   display: flex;
-
-  background-color:white;
+  flex-direction: column;
+  background-color: white;
 }
 
-/*************** MENUS ****************/
-.navbar {
-    background-color: white;
-    border-bottom: 3px solid green;
-    height: fit-content;
+header{
+  display: flex;
 }
 
-.navbar-brand {
+content {
+  display: flex;
+}
+
+footer {
+  margin-top : auto;
+  display: flex;
+}
+
+/* petits écrans */
+@media (orientation: portrait) and (max-device-width: 480px) {
+  /*********  MENUS  **********/
+  header {
+    /* ici il prend toute la largeur */
+    border-bottom: 0.3em solid green; 
+  }
+  
+  nav {
+    display: flex;
+  }
+
+  nav a{
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-    align-self: center;
-    background-color: white;
-}
-  
-object#svgAlarm {
-    height: 5em;
-}
-  
-/* p.card-texte.asi-text : pas reconnnu */
-/* .card-texte.asi-text: pas reconnu */
-.asi-text{
-  font-family: passion_oneregular;
-  color: green;
-  font-weight: normal;
-  font-size: 1em;
-  text-align: center;
-  margin-bottom: 10px;
-}
+    align-items: center;
+    padding-left: 1em;
+  }
 
-.asi-title {
-  color: black;
-  font-family: scoreboardregular;
-  font-size: 4em;
-}
-  
-/*************** CONTENT ****************/
-content div {
-  background-color: #f5efef;
-  margin: 10px;
-  font-size: 2em;
-}
+  object {
+    height: 7em;
+  }
 
-@media (max-device-width: 480px) {
-  /* je m'appuie sur BOOTSTRAP !!! */
+  nav a span {
+    font-family: scoreboardregular;
+    font-size: 6em;
+    color: black;
+  }
 
+  /*********  CONTENT  **********/
+  content {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    flex: 1;
+  }
+
+  content p {
+    color: green;
+    font-family: passion_oneregular;
+    font-size: 3.2em;
+    font-weight: normal;
+    text-align: center;
+  }
+    
   /* alignement dex deux zones vignette + infos */
   .card {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    flex: 1;
   }
+
+  /***********
+   CAROUSSEL 
+   ************/
 
   /* position du bloc des indicateurs circulaires pris en chargev*/
   .carousel-indicators {
@@ -79,6 +101,7 @@ content div {
     justify-content: space-between; 
   }
 
+  
   /* forme spécifique circulaire des indicateurs 
   les !mportant sont nécessaires
   */
@@ -134,7 +157,6 @@ content div {
     overflow: hidden;
   }
 
-  /* <DIV> */
   .carousel-caption {
     display: flex;
     flex-direction: row;
@@ -144,10 +166,9 @@ content div {
     background-color: transparent !important;
   }
 
-  #zoneQuizz{
-    top: 100px;
-    border-top: solid green 3px;
-    margin: 20px;
+  /******** infos quizz ******/
+  .infosQuizz {
+    margin-top: 6em;
   }
 
   .card-body {
@@ -155,14 +176,19 @@ content div {
     display: flex;
     flex-direction: column;
   }
+  .card-title {
+    font-size: 3em;
+    font-family: passion_oneregular;
+    font-weight: normal;
+    text-align: left;
+    color: black;
+    background-color: white;
+    padding-left: 0.2em;
+  }
 
   h1 {
     display: flex;
     flex-direction: row;
-  }
-  .card-title {
-    display: flex;
-    font-family: system-ui;
   }
 
   #svgInfo, #svgNiveau, #svgLoi {
@@ -178,17 +204,29 @@ content div {
     font-size: 32pt;
     padding-left: 10px;
     flex-grow: 1; /* prend toute la largeur de la zone */
+    background-color: white ;
   }
 
   #btnQuizz {
-    font-size: 34pt;
-    margin: 10px;
-    padding: 20px;
+    font-size: 28pt;
+    margin-top: 10px;
+    padding-top: 10px;
   }
-}
 
-/*************** FOOTER ****************/
-footer {
-  
-  font-size: 2em;
+  /*************** FOOTER ****************/
+  footer {
+    /* ici il prend toute la largeur */
+    border-top: 0.3em solid green; 
+    flex-direction: row;
+    justify-content: start;
+    height: 5em;
+  }
+
+  footer p {
+    color: grey;
+    font-family: passion_oneregular;
+    font-size: 2em;
+    padding-left: 1em;
+    font-weight: normal;
+  }
 }
