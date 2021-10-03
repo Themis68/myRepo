@@ -37,6 +37,52 @@ footer {
   display: flex;
 }
 
+/* style commun du carousel */
+.carousel-control-prev-icon {
+  background-image: url("../svg/prev.svg");
+}
+
+.carousel-control-next-icon {
+  background-image: url("../svg/next.svg");
+}
+
+/* gestion de la position des flèches de défilement pris en charge*/
+.carousel-control-prev-icon,   
+.carousel-control-next-icon {
+  width: 50px;
+  height: 50px;
+}
+
+.carousel-control-prev {
+  width: 50px;
+  height: 80%;
+  left: -50px;
+  justify-content: flex-start;
+}
+
+.carousel-control-next {
+  width: 50px;
+  height: 80%; 
+  right: -50px;
+  justify-content: flex-end;
+}
+
+.carousel-inner {
+  display:flex;
+  flex-direction: row;
+  justify-items: center;
+}
+
+.carousel-inner + .carousel-item {
+  overflow: hidden;
+}
+
+.cercle.active {
+  filter: grayscale(0%);
+}
+
+/* fin */
+
 /* petits écrans */
 @media (orientation: portrait) and (max-device-width: 480px) {
   /*********  MENUS  **********/
@@ -101,7 +147,6 @@ footer {
     justify-content: space-between; 
   }
 
-  
   /* forme spécifique circulaire des indicateurs 
   les !mportant sont nécessaires
   */
@@ -111,50 +156,6 @@ footer {
     border-radius: 50%;
     width: 40px !important;
     height: 40px !important;
-  }
-
-  /* pris en charge*/
-  .cercle.active {
-    filter: grayscale(0%);
-  }
-
-  /* gestion de la position des flèches de défilement pris en charge*/
-  .carousel-control-prev-icon,   
-  .carousel-control-next-icon {
-    width: 50px;
-    height: 50px;
-  }
-
-  .carousel-control-prev-icon {
-    background-image: url("../svg/prev.svg");
-  }
-
-  .carousel-control-next-icon {
-    background-image: url("../svg/next.svg");
-  }
-
-  .carousel-control-prev {
-    width: 50px;
-    height: 80%;
-    left: -50px;
-    justify-content: flex-start;
-  }
-
-  .carousel-control-next {
-    width: 50px;
-    height: 80%; 
-    right: -50px;
-    justify-content: flex-end;
-  }
-
-  .carousel-inner {
-    display:flex;
-    flex-direction: row;
-    justify-items: center;
-  }
-
-  .carousel-inner + .carousel-item {
-    overflow: hidden;
   }
 
   .carousel-caption {
@@ -327,26 +328,6 @@ footer {
     border-radius: 50%;
     width: 15px !important;
     height: 15px !important;
-  }
-
-  /* pris en charge*/
-  .cercle.active {
-    filter: grayscale(0%);
-  }
-
-  /* gestion de la position des flèches de défilement pris en charge*/
-  .carousel-control-prev-icon,   
-  .carousel-control-next-icon {
-    width: 50px;
-    height: 50px;
-  }
-
-  .carousel-control-prev-icon {
-    background-image: url("../svg/prev.svg");
-  }
-
-  .carousel-control-next-icon {
-    background-image: url("../svg/next.svg");
   }
 
   .carousel-control-prev {
