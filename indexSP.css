@@ -133,15 +133,8 @@ footer {
   }
 }
 
-/* ecrans moyens */
-@media (orientation: portrait) and (max-device-width: 800px) {
-  
-}
-
 /* ecrans moyens : width correspond à la vrai largeur en pixel*/
 @media (orientation: landscape) and (max-device-width: 667px){
-  html {
-  }
 
   header {
     /* ici il prend toute la largeur */
