@@ -24,7 +24,7 @@ function ready() {
 function init() {
 	// calcul hauteur
     matriceDevice = viewportSize();
-    calculHauteur(matriceDevice.height - 200);
+    calculHauteur(matriceDevice.height);
 	
 	// création carousel
     creerVignettes("vignettes");
