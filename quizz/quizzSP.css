@@ -11,10 +11,12 @@ plein de soucis sur le carousel/
 */
 
 html {
-  -webkit-text-size-adjust: none;
+
 }
 
-a:link a:visited a:active{
+a:link,
+a:visited, 
+a:active {
   text-decoration: none;
 }
 
@@ -85,7 +87,6 @@ footer {
 
 /* petits écrans */
 @media (orientation: portrait) and (max-device-width: 480px) {
-  /*********  MENUS  **********/
   header {
     /* ici il prend toute la largeur */
     border-bottom: 0.3em solid green; 
@@ -234,6 +235,8 @@ footer {
     padding-left: 1em;
     font-weight: normal;
   }
+
+
 }
 
 /* ecrans moyens : width correspond à la vrai largeur en pixel*/

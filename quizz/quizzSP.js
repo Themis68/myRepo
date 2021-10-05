@@ -31,9 +31,6 @@ function init() {
 	// récupération infos quizz initial
 	showInfosQuizz(scenario[0]);
 }
-function chgt(e) {
- alert("esd");
-}
 
 function clickF(e) {
 	// indicateur actuel actif
