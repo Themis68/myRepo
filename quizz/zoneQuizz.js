@@ -1,3 +1,6 @@
+// initialisation matrice device
+var matriceDevice = viewportSize();
+
 // chemins
 var pathQuizz = "./questionnaires/";		// scénarios des quizz
 
@@ -14,16 +17,22 @@ var script;
 // on récupère le id du quizz
 var quizzId = getParametersURL("id");
 
-// print state changes
+document.addEventListener("DOMContentLoaded", init, false);	
+document.addEventListener("touchstart", clickF, false);		
+window.addEventListener('resize', windowResize, false);
 document.addEventListener('readystatechange', ready, false);
 
-// init page
-document.addEventListener("DOMContentLoaded", init, false);		
-
-// gestion du clic
-document.addEventListener("touchstart", clickF, false);
+function ready() {
+	if (document.readyState === "complete") {
+		gestChrono("","");
+	}
+}
 
 function init() {
+	// calcul hauteur
+	matriceDevice = viewportSize();
+	calculHauteur(matriceDevice.height);
+
 	// on récupère le numéro de la question a traiter
 	window.indexQuestion = getParametersURL("question");
 	// on charge le quizz
@@ -31,14 +40,9 @@ function init() {
 	// ajout accès au fichier des questions	
 	let myScript = document.createElement("script");
 	myScript.type = "text/javascript";
+	// l'extension permet depurger le cache du ficheir JS
 	myScript.src = pathQuizz + window.quizz.fichier + "?n=1" ; 
 	document.head.appendChild(myScript);
-}
-
-function ready() {
-	if (document.readyState === "complete") {
-		gestChrono("","");
-	}
 }
 
 function getParametersURL(param){

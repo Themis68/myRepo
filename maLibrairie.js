@@ -26,6 +26,7 @@
  * redimensionnement écran
  */
  function windowResize() {
+   alert("esd");
     // récupération nouvelle matrice device
     window.matriceDevice = viewportSize();
     // calcul de la hauteur du device

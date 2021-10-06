@@ -9,90 +9,78 @@ plein de soucis sur le carousel/
   -webkit-filter: grayscale(100%);
   -moz-filter: grayscale(100%);
 */
-
+/*
 *, ::before, ::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
+*/
+html {
+
+}
+
+a:link,
+a:visited, 
+a:active {
+  text-decoration: none;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+}
+
+header{
+  display: flex;
+}
+
+content {
+  display: flex;
+}
+
+footer {
+  margin-top : auto;
+  display: flex;
+}
 
 
-@media (max-device-width: 480px) {
-  /*************** CONTENT ****************/
-
-
-  html {
-      margin: 10px;
-  }
-
-  body {
-    /* centrage vetticla */
-      display: flex;
-      flex-direction: column;
-      min-height: 20em;
-    /**/
-
-    background-color: white;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  }
-
-  /*************** HEADER ****************/
+@media (orientation: portrait) and (max-device-width: 480px) {
   header {
-    display: flex;
-  }
-
-  /*************** CONTENT ****************/
-  content {
-    display: flex;
-    /*
-    background-color: #f5efef;
-    margin: 10px;
-    flex-direction: column;
-    align-items: stretch;
-    */
-  }
-
-  /*************** FOOTER ****************/
-  footer {
-    display: flex;
-    /*
-
-    flex: 1;
-    flex-direction: row;
-    justify-content: flex-start;
-    font-size: 1em;*/
-    margin-top: auto;
-  }
-
-
-  /* je m'appuie sur BOOTSTRAP !!! */
-
-  /*************** MENUS ****************/
-  .navbar {
-      background-color: white;
-      border-bottom: 3px solid green;
-      height: fit-content;
-  }
-
-  .navbar-brand {
-      display: flex;
-      flex-direction: row;
-      justify-content: flex-start;
-      align-self: center;
-      background-color: white;
-  }
-    
-  object#svgAlarm {
-      height: 5em;
+    /* ici il prend toute la largeur */
+    border-bottom: 0.3em solid green; 
   }
   
-  /* p.card-texte.asi-text : pas reconnnu */
-  /* .card-texte.asi-text: pas reconnu */
+  nav {
+    display: flex;
+  }
 
-  .asi-title{
-    color: black;
+  nav a{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 1em;
+  }
+
+  object {
+    height: 7em;
+  }
+
+  nav a span {
     font-family: scoreboardregular;
-    font-size: 4em;
+    font-size: 6em;
+    color: black;
+  }
+
+  /*********  CONTENT  **********/
+  content {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    flex: 1;
   }
 
 
@@ -115,15 +103,6 @@ plein de soucis sur le carousel/
     margin-bottom: 10px;
   }
 
-  .jauge {
-    background-color: white;
-    padding-top: 8px;
-    padding-bottom: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
-    flex: 0.4;
-  }
-  
   .progress {
     background-color: #f5efef;
     font-size: 1vw;
@@ -135,9 +114,20 @@ plein de soucis sur le carousel/
   }
 
   /* zone de propositions */
+
+  propositions {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 2em;
+    flex: 1; /* prend toute la hauteur car align : center*/
+    width: 100%;
+  }
+
   .card {
-    display:flex;
-    flex-flow: column wrap;
+    display: flex;
+    flex-direction: column ;
+    flex-wrap: wrap;
     justify-content: flex-end;
     align-items: stretch;
     margin: 5px;
@@ -162,22 +152,20 @@ plein de soucis sur le carousel/
     padding: 20px;
   }
 
-
-
-  .basdepage{
-    display: flex;
-    flex: 1;
-    width: 100%;
-    font-size: 4em;
-    background-color: #f5efef;
+  /*************** FOOTER ****************/
+  footer {
+    /* ici il prend toute la largeur */
+    border-top: 0.3em solid green; 
+    flex-direction: row;
+    justify-content: start;
+    height: 5em;
   }
 
-  .asi-text-footer {
+  footer p {
+    color: grey;
     font-family: passion_oneregular;
-    color: green;
+    font-size: 2em;
+    padding-left: 1em;
     font-weight: normal;
-    font-size: 0.5em;
-    text-align: center;
-    padding: 10px;
   }
 }
