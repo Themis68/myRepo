@@ -1,8 +1,6 @@
 /* ne pas mettre de . avant le chemin sinon cela ne fonctionne pas  */
 @import url(../typo/scoreboard/stylesheet.css);
 @import url(../typo/passion_one/stylesheet.css);
-/*@import url(../carousel/carouselSP.css);* ne pas utiliser car ca résoud 
-plein de soucis sur le carousel/
 
 /* compatibilité des autres navigateurs 
   filter: grayscale(100%);
@@ -137,9 +135,10 @@ footer {
     font-family: system-ui;
     color: white;
     font-size: 32pt;
-    background-color: red;
-    padding: 10px;
-    text-align: center;
+    background-color: #e3c691;
+    padding-left: 1em;
+    height: 4em;
+    align-items: center;
   }
 
 

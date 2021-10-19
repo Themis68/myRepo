@@ -140,8 +140,11 @@ function gestChrono(phase, data) {
 			btnJauge.dataset.use = "";
 			// arrêt chrono	
 			clearInterval(myChrono);
+			let bonneProp = parseInt(window.question.reponse.solution, 10);
 			for (let i=0; i < 4; i++) {
-				document.getElementById("libProp" + (i+1)).style.display = ((i+1) === parseInt(window.question.reponse.solution, 10) ? "flex" : "none");
+//				document.getElementById("libProp" + (i+1)).style.display = ((i+1) === parseInt(window.question.reponse.solution, 10) ? "flex" : "none");
+				document.getElementById("libProp" + (i+1)).style.backgroundColor = ((i+1) ===  bonneProp ? "green" : "var(--fond-proposition)");
+				document.getElementById("libProp" + (i+1)).removeAttribute("onclick");
 			}
 
 			// gestion des points
