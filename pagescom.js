@@ -44,8 +44,6 @@ function header() {
 
 function footer() {
     myURL = myURL.replace("/src","");
-
-    console.log(myURL);
     var myFooter='';
 
     myFooter+='<div class="col-lg-3 col-md-3 col-sm-3">';

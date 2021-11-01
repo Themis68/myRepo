@@ -34,8 +34,7 @@ var tabQuestions = [];	// questions du quizz
 // chemins
 var pathImagesASI = "../images/";		// autres images
 //var pathQuizz = "./";		// scénarios des quizz
-var pathPosters = "./images/posters/";		//  posters
-var pathBadges = "./images/badges/";		//  badges
+var pathBadges = "./images/badges/";		//  badges : UTILISER ENCIRE UNE FOIS DANS LE CODE
 
 // **********************************************************************************************************
 
@@ -43,7 +42,7 @@ document.addEventListener("DOMContentLoaded", init, false);	// lance l'écoute d
 //window.MediaQueryList.addListener(lookScreen);
 
 window.addEventListener("resize", function(){
-	console.log(window.screen.width , window.screen.height);
+	console.log("window.screen : ", window.screen.width , window.screen.height);
 });
 
 
@@ -52,18 +51,14 @@ function init() {
     // est appelé en premier par la page lors du chargement
 	//
 
-	// mettre les listener ici car il faut avoir chargée la page
+	user();
 	header();
-	footer();
-	
 	// clic sur l'image de bascule
 	var bascule = document.querySelector("bascule img");
-
-	user();
-	
+	// mettre les listener ici car il faut avoir chargée la page
 	bascule.addEventListener("click", fBascule);	// de haut en bas
-
 	buildCarousel(myURL + '/catalogue.json');
+	footer();
 }
 
 function buildCarousel(path) {
@@ -73,41 +68,23 @@ function buildCarousel(path) {
 	request.responseType = 'json';
 	request.send();
 	request.onload = function() {
-		creerVignettesNew(request.response);					        // générer le vignettes dans le carousel
-	}
-}
-
-function recupereQuizz(path) {
-	let request = new XMLHttpRequest();
-	let requestURL = path;
-	request.open('GET', requestURL);
-	request.responseType = 'json';
-	request.send();
-	request.onload = function() {
-		creerVignettesNew(request.response);					        // générer le vignettes dans le carousel
+		creerVignettesNew(request.response);  // OBLIGATOIRE pour transettre la veleur de la fonction locale à la variable globale
 	}
 }
 
 function creerVignettesNew(quizzCatalogue) {
-	catalogue = quizzCatalogue;
+	catalogue = quizzCatalogue;	// OBLIGATOIRE pour transettre la veleur de la fonction locale à la variable globale
 
-	nbQuizz = catalogue.quizz.length;
-	
-	// objets HTML à travailler
-	let HTMLObject = document.getElementById("vignettes");
-	let ind = document.getElementById("indicateurs");
-
-	for (let i = 0; i < nbQuizz; i++) {
-		// création indicateur
-		let myInd = document.createElement("li");
-		myInd.setAttribute("data-target", "#carousel-example");
-		myInd.setAttribute("data-slide-to",i);
-		if(i === 0) { myInd.setAttribute("class", "active cercle"); } else {myInd.setAttribute("class", "cercle");}
-		ind.appendChild(myInd);
-
-		// création vignette
-		HTMLObject.appendChild(itemCarousel(catalogue.quizz[i],i));
+	// objet à transmettre
+	monCarousel = {
+		cat: catalogue.quizz,
+		htmlCarName: document.getElementById("vignettes"),
+		htmlIndName: document.getElementById("indicateurs"),
+		posterPath: "./images/posters/",	//  posters
+		badgePath: "./images/badges/"		//  badges
 	}
+	// créer vignette
+	xCarousel("addQuizz",monCarousel);
 }
 
 function showContent(etat) {
@@ -462,41 +439,4 @@ function gestPropositions(etape, objet) {
 		// book
 		document.getElementById("book" + (i+1)).className = "far fa-comments";
 	}
-}
-
-function itemCarousel(infosQuizz, i){
-    // création d'une vignette
-    let myDiv = document.createElement("div");
-
-    myDiv.className = "carousel-item col-12 col-sm-6 col-md-4 col-lg-3" + (i === 0?' active':'');
-    //myDiv.className = "carousel-item col-" + screenParams[indexScreen].code + (i === 0?' active':'');	// 2 3 et 4
-
-    myDiv.className = "carousel-item col-xs-6 col-sm-6 col-md-3 col-lg-2" + (i === 0?' active':'');
-
-    // img
-    let myImg = document.createElement("img");
-    myImg.className = "img-fluid mx-auto d-block";
-    myImg.setAttribute("alt", "img" + i);
-    myImg.setAttribute("title", "img" + i);
-    myImg.setAttribute("src", pathPosters + (infosQuizz.poster || "stade.jpg"));
-
-    // caption
-    let myCaption = document.createElement("div");
-
-    // badge
-    let myF = document.createElement("img");
-    myF.className = "carouselFanion";
-    myF.setAttribute("title", "niveau : " + nbQuests[infosQuizz.niveau].niv);
-    myF.setAttribute("src", pathBadges + "badge" +(infosQuizz.niveau + ".png" || "fff.png'"));
-    myCaption.appendChild(myF);
-
-    let myP = document.createElement("p");    
-    myP.innerHTML = infosQuizz.titre + " (" + (infosQuizz.loi === undefined ? "mix" : "loi " + infosQuizz.loi) +")";
-    myCaption.appendChild(myP);
-    myCaption.className = "carousel-caption d-none d-md-block titre";
-    myCaption.setAttribute("onclick", 'javascript:switchQuizz('+ (i+1) +');');	// mettre ici car cette DIV est au-dessus de l'image
-
-    myDiv.appendChild(myImg);
-    myDiv.appendChild(myCaption);
-    return myDiv;
 }
