@@ -1,14 +1,15 @@
-var script1 = [               
+var script = [               
     {
         number: 1,
         niveau: 1,
         question: {
             libelle: "En foot à 11, pour qu’un match puisse débuter, il faut au minimum",
-            attributs: ["8 joueurs dont le gardien","8 joueurs et 1 gardien en plus","7 joueurs dont le gardien","9 joueurs dont le gardien"]
+            attributs: ["8 joueurs dont le gardien","8 joueurs et 1 gardien en plus","7 joueurs dont le gardien","9 joueurs dont le gardien"],
+            temps: 10
         },
         reponse: {
             solution: 1,
-            points: 1
+            points: 10
         }
     },
     {
@@ -71,4 +72,4 @@ var script1 = [
             points: 3
         }
     }
-]
+];

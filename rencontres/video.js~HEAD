@@ -188,7 +188,8 @@ function switchVideo(n) {
     // affectation de la nouvelle vidéo et des attributs liés
     //;
 
-	if (n > arrayAssoSize(scenario)) {
+
+	if (n > arrayAssoSize(rencontres)) {
 		// vérifie si l'index de la vidéo existe dans le fichier tableau.js
 		n = 0;
 		return false;
@@ -219,9 +220,6 @@ function switchVideo(n) {
 				   type: "video/mp4"
 				});
 			myVideo.poster(pathVideos + video[0].poster); 
-
-			gestionCamps(0);	// MAJ des infos des équipes
-
 		} else {
 			// tableau du jeu
 			questionsFaites.splice(0, questionsFaites.length);	// efface le contenu
@@ -384,8 +382,6 @@ function switchVideo(n) {
 		isDefineBVideoJS = true;
 		myVideo.load();
 
-		console.log(myVideo.options_.plugins.bug[0]);
-
 		let inter = document.getElementById("inter");
 		inter.offsetHeight * hauteur;
 		inter.style.display = "flex";
@@ -509,17 +505,6 @@ function getVideo() {
 function gestionCamps(mitemps) {
 		// fanions incrustés
 	// en première mi-temps c'est l'init du plugin qui affiche les infos
-
-	if (mitemps===0) {
-		// on a cliqué sur une autre rencontre
-		document.getElementById("vjs-bug-titreEquipeA").innerHTML = "<span>" + video[0].gauche.nom + "</span>";
-		document.getElementById("vjs-bug-titreEquipeB").innerHTML = "<span>" + video[0].droite.nom + "</span>";
-		document.getElementById("vjs-bug-pictEquipeA").setAttribute("src", pathImages + "fanions/"+ (video[0].gauche.fanion || "fff.png"));
-		document.getElementById("vjs-bug-pictEquipeB").setAttribute("src", pathImages + "fanions/"+ (video[0].droite.fanion || "fff.png"));
-		draw("vjs-bug-silhEquipeA", video[0].gauche.maillotCouleur);
-		draw("vjs-bug-silhEquipeB", video[0].droite.maillotCouleur);
-		draw("vjs-bug-silhEquipeB", video[0].arbitre.maillotCouleur);
-	}
 	if (mitemps===2) {
 		document.getElementById("vjs-bug-titreEquipeA").innerHTML = "<span>" + video[0].droite.nom + "</span>";
 		document.getElementById("vjs-bug-titreEquipeB").innerHTML = "<span>" + video[0].gauche.nom + "</span>";

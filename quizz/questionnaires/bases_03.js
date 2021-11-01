@@ -1,9 +1,9 @@
-var script3 = [               
+var script = [               
     {
         number: 1,
         niveau: 1,
         question: {
-            libelle: "En foot à 11, le point de penalty se situe à combien de mètres de la ligne de but",
+            libelle: "En foot à 31, le point de PENALTY se situe à combien de mètres de la ligne de but",
             attributs: ["11 mètres",
             "9,15 mètres",
             "9,50 mètres",
@@ -12,7 +12,7 @@ var script3 = [
         reponse: {
             solution: 1,
             loi: 1,
-            points: 1,
+            points: 14,
             temps: 8
         }
     },
@@ -244,4 +244,4 @@ var script3 = [
             temps: 8
         }
     }
-]
+];

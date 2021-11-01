@@ -1,0 +1,170 @@
+/* ne pas mettre de . avant le chemin sinon cela ne fonctionne pas  */
+@import url(../typo/scoreboard/stylesheet.css);
+@import url(../typo/passion_one/stylesheet.css);
+
+/* compatibilité des autres navigateurs 
+  filter: grayscale(100%);
+  -webkit-filter: grayscale(100%);
+  -moz-filter: grayscale(100%);
+*/
+/*
+*, ::before, ::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+*/
+html {
+
+}
+
+a:link,
+a:visited, 
+a:active {
+  text-decoration: none;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+}
+
+header{
+  display: flex;
+}
+
+content {
+  display: flex;
+}
+
+footer {
+  margin-top : auto;
+  display: flex;
+}
+
+
+@media (orientation: portrait) and (max-device-width: 480px) {
+  header {
+    /* ici il prend toute la largeur */
+    border-bottom: 0.3em solid green; 
+  }
+  
+  nav {
+    display: flex;
+  }
+
+  nav a{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 1em;
+  }
+
+  object {
+    height: 7em;
+  }
+
+  nav a span {
+    font-family: scoreboardregular;
+    font-size: 6em;
+    color: black;
+  }
+
+  /*********  CONTENT  **********/
+  content {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    flex: 1;
+  }
+
+
+  /* Zone de question et jauge */
+  .question{
+    display: flex;
+    flex: 1;
+    width: 100%;
+    font-size: 4em;
+    background-color: #f5efef;
+    padding: 10px;
+  }
+
+  .asi-text{
+    font-family: passion_oneregular;
+    color: green;
+    font-weight: normal;
+    font-size: 1em;
+    text-align: left;
+    margin-bottom: 10px;
+  }
+
+  .progress {
+    background-color: #f5efef;
+    font-size: 1vw;
+  }
+
+  .progress-bar {
+    color: black;
+    background-color: green !important;
+  }
+
+  /* zone de propositions */
+
+  propositions {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 2em;
+    flex: 1; /* prend toute la hauteur car align : center*/
+    width: 100%;
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column ;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: stretch;
+    margin: 5px;
+  }
+
+  .card-title {
+    font-family: system-ui;
+    color: white;
+    font-size: 32pt;
+    background-color: #e3c691;
+    padding-left: 1em;
+    height: 4em;
+    align-items: center;
+  }
+
+
+  /* bouton suite */
+  #btnQuestion {
+    display: none;
+    justify-content: center;
+    font-size: 34pt;
+    margin: 10px;
+    padding: 20px;
+  }
+
+  /*************** FOOTER ****************/
+  footer {
+    /* ici il prend toute la largeur */
+    border-top: 0.3em solid green; 
+    flex-direction: row;
+    justify-content: start;
+    height: 5em;
+  }
+
+  footer p {
+    color: grey;
+    font-family: passion_oneregular;
+    font-size: 2em;
+    padding-left: 1em;
+    font-weight: normal;
+  }
+}
