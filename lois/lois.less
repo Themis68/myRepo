@@ -1,0 +1,52 @@
+@import url(../typo/scoreboard/stylesheet.css);
+@import url(../typo/passion_one/stylesheet.css);
+@import url(../commun.css);
+
+main {
+    section {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-items: center;
+
+        div p {
+            text-align: center;
+            color:white;
+            font-size: 1.25vw; // taille variable selon largeur du viewport
+        }
+    }
+
+    menu {
+        display: flex;
+        flex-direction: column;
+        width: 80vw;   // on limite l'étalement des objets en largeur
+
+        span {
+            align-self: flex-start; // alignement centré
+            font-size: 1vw; // taille variable selon largeur du viewport
+            color:white;
+        }
+    }
+
+    content {
+        width: 80vw;   // on limite l'étalement des objets en largeur
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: center;
+        div {
+            div {
+                vignettesLois {
+                    div {
+                        a {
+                            img {
+                                width:2vw;
+                                height:2vw;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

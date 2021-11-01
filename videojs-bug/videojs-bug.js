@@ -1,5 +1,6 @@
 /**
  * videojs-bug
+ *
  * @version 1.0.0-rc.2
  * @copyright 2017 johndanek <john.danek@teamcoco.com>
  * @license MIT
@@ -127,31 +128,76 @@
 
       function BugComponent(player, options) {
         _classCallCheck(this, BugComponent);
+
+        // objet pas encore créé dans DOM
+
         return _possibleConstructorReturn(this, (BugComponent.__proto__ || Object.getPrototypeOf(BugComponent)).call(this, player, options));
       }
 
+      // *****************************************************************************************
       // The `createEl` function of a component creates its DOM element.
+      //
       _createClass(BugComponent, [{
         key: 'createEl',
         value: function createEl() {
           
           var options = this.options();
 
-          var bugElement = videojs.dom.createEl('span', {         // element container
-            className: 'vjs-bug vjs-bug-' + options.position
-          });
-
           // Create the element
           switch (options.type) {
+            case "equipe":
+            case "arbitre":
+              // object général
+              var element = videojs.dom.createEl('div', {
+                className: "vjs-bug-compose",
+              })
+
+              // FANION
+              if (options.type == "equipe") {
+                var pict = videojs.dom.createEl('img', {
+                  src: options.imgSrc,
+                  title: options.alt  || "",
+                  className: (options.visibility ? "vjs-bug-show" : "vjs-bug-hide"),
+                  id: options.id + "F"
+                });
+                pict.style.padding= options.paddingInterne;
+                pict.style.width= "14%";
+              }
+
+              // NOM EQUIPE
+              var span = videojs.dom.createEl('span', {
+                height: options.height,
+                className: options.classeCSSText + " " + (options.visibility ? "vjs-bug-show" : "vjs-bug-hide"),
+                id: options.id + "T",
+                innerHTML: options.libelle
+              });
+              span.style.padding = options.paddingInterne;
+
+              // SILHOUETTE
+              var canvas = videojs.dom.createEl('canvas', {
+                className: options.classeCSSCanvas + " " + (options.visibility ? "vjs-bug-show" : "vjs-bug-hide"),
+                height: 30,
+                width: 30,
+                id: options.id + "C"
+              });
+              canvas.style.padding= options.paddingInterne;
+
+              // Assemblage de l'objet
+              
+              (options.type == "equipe" ? element.appendChild(pict) : "");
+              element.appendChild(span);
+              element.appendChild(canvas);
+              break;
+
             case "pict":
               var element = videojs.dom.createEl('img', {
                 src: options.imgSrc,
                 width: options.width,
                 height: options.height,
                 title: options.alt  || "",
-                className: (options.visibility ? "vjs-bug-show" : "vjs-bug-hide")
+                className: (options.visibility ? "vjs-bug-show" : "vjs-bug-hide"),
+                id: options.id
               });
-              element.id = options.id;
               break;
 
             case "text":
@@ -159,28 +205,34 @@
                 width: options.width, 
                 height: options.height,
                 className: options.classeCSS + " " + (options.visibility ? "vjs-bug-show" : "vjs-bug-hide"),
+                id: options.id,
+                innerHTML: options.libelle
               });
-              element.innerHTML = options.libelle;
-              element.id = options.id;
-             // element.style = "padding-left: 3px; padding-right: 3px;";
               break;
             
             case "canvas":
             var element = videojs.dom.createEl('canvas', {
                 width: options.width,
                 height: options.height,
-                className: options.classeCSS + " " + (options.visibility ? "vjs-bug-show" : "vjs-bug-hide")
+                className: options.classeCSS + " " + (options.visibility ? "vjs-bug-show" : "vjs-bug-hide"),
+                id: options.id,
               });
-              element.id = options.id;
               break;
 
             default:
               break;
           }
-        
+
+          // préparation de l'objet composé
+          var bugElement = videojs.dom.createEl('div', {         // element container
+            className: 'vjs-bug vjs-bug-' + options.position,
+            id: options.id
+          });
+
           // Possibly make it a link
           if (options.link) {
             var linkElement = videojs.dom.createEl('a', {}, {
+              id: options.id + "Z",
               href: options.link,
               target: '_blank'
             });
@@ -193,20 +245,45 @@
           }
 
           // Styling
-          bugElement.style.opacity = options.opacity;
-
-          // on ne traite pas le padding pour les centrage horizontaux et verticaux
+          bugElement.style.opacity = options.opacity || "";
           bugElement.style.padding = options.padding || "";
+          bugElement.style.boxSizing = "border-box";
+
+		     //bugElement.getBoundingClientRect(); sont à ZERO car l'objet n'a pas été recalculé à ce stade. Il le sera lors de l'init de la page
+
+          // Position
+          /*
+          switch (options.position) {
+           // case 'tc': // horizontal center et top
+            case 'bc': // horizontal center et bottom
+            case 'cc':  // centrage total
+              options.left = (document.getElementById("myVideo").offsetWidth / 2)+ 'px'; // 'px' est obligatoire via cette déclaration alors que left depuis la délczration via la vidéo n'en n'a pas besoin
+              break;
+            
+            case 'cl':  // vertical center et left
+            case 'cr':  // vertical center et right
+            case 'cc':  // centrage total
+              options.top  = (document.getElementById("myVideo").offsetHeight / 2)+ 'px'; // 'px' est obligatoire via cette déclaration alors que left depuis la délczration via la vidéo n'en n'a pas besoin
+
+              break;
+
+            default:
+              options.position = 'br';
+          }
+*/
+          // espaces depuis le bord : padding
           bugElement.style.left = options.left || "";
           bugElement.style.top = options.top || "";
-          bugElement.style.right = options.right || "";
           bugElement.style.bottom = options.bottom || "";
-         // }
+          bugElement.style.right = options.right || "";
 
+          // bugElement n'est pas encore présent dans le DOM
           return bugElement;
         }
       }]);
       return BugComponent;
+
+      // *****************************************************************************************
     }(VjsClickableComponent);
 
     // Cross-compatibility for Video.js 5 and 6.
@@ -214,29 +291,12 @@
 
     var validateOptions = function validateOptions(options) {
       // CLIC 3
-      // traitement éventuel de la position
-     // for (var i=0; i < options.length; i++) {
-        switch (options.position) {
-          case 'tl':
-          case 'tr':
-          case 'bl':
-          case 'br':
-          case 'tc':  // horizontal center et top
-          case 'cc':  // centrage total
-          case 'bc':  // horizontal center et bottom
-          case 'cl':  // vertical center et left
-          case 'cr':  // vertical center et right
-          break;
-
-          default:
-            options.position = 'br';
-        }
 
         if (options.opacity > 1) {
-          options.opacity = 1;    // corerction en cas de dépassement de la valeur
+          options.opacity = 1;    // correction en cas de dépassement de la valeur
         }
         if (options.opacity < 0) {
-          options.opacity = 0;  // corerction en cas de dépassement de la valeur
+          options.opacity = 0;  // correction en cas de dépassement de la valeur
         }
       //}
     };
@@ -254,11 +314,13 @@
      */
     var onPlayerReady = function onPlayerReady(player, options) {
       // CLIC 2
-       for (var i=0 ; i < options.length; i++) {
+      for (var i=0 ; i < options.length; i++) {
         validateOptions(options[i]);
         videojs.registerComponent('BugComponent', BugComponent);  // MAJ faite pour gérer le tableau
         player.addChild('BugComponent', options[i], 1);  // Insert bug as first item after <video>:
-       }
+      }
+      // Objet pas créé dans DOM
+  
     };
 
     /**

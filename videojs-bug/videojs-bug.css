@@ -8,7 +8,7 @@
       gestion de la taille de la police de caractère relative (vw)
  */
 
- /* gestion des équipes */
+ /* gestion des équipes 
  .vjs-bug-titreAppBug {
   font-family: scoreboardregular;
   font-size: 24pt;
@@ -16,40 +16,38 @@
   width: max-content;
   text-align: center;
 }
+*/
 
-/* gestion des zone d'infos sur les équipes */
-.vjs-bug-titreEquipBug {
-  display:flex;
+.vjs-bugs {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* gestion de la zone d'infos sur les équipes FANION + TITRE + SILHOUETTE */
+.vjs-bug-compose {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+/* CANVAS OBJECT */
+.vjs-bug-silhBug {
+  /* flex: 1;  !! ne pas mettre cette ligne sinon on distrod l'image */
+  background-color: transparent;
+}
+
+.vjs-bug-titreBug {
+  display: flex;
   flex-direction: row;
   justify-content: flex-start;
 }
 
-
-.vjs-bug-titreEquipBug span {
-  flex: 5;
-  align-self: baseline;
+.vjs-bug-titreBug span {
   font-family: passion_oneregular;
   font-size: 1.2vw;
   color: white;
-  width: max-content;
-  text-align: center;
   background-color: midnightblue;
-}
-
-.vjs-bug-titreArbitre span {
-  flex: 5;
-  align-self: baseline;
-  font-family: passion_oneregular;
-  font-size: 1.2vw;
-  color: blue;
-  width: max-content;
-  text-align: left;
-  background-color: none;
-}
-
-.vjs-bug-silhEquipBug {
-  flex: 1;
-  background-color: transparent;
+  padding: 3px; /* padding pour le titre dans son rectangle */
 }
 
  /* gestion du score */
@@ -69,19 +67,39 @@
   background-color: midnightblue;
  }
 
+ /* AFFICHE L'OBJET */
  .vjs-bug-show {
    display: flex;
  }
  
+ /* CACHE L'OBJET */
  .vjs-bug-hide {
    display: none;
  }
 
+/* on posse en flex
+/*.video-js .vjs-bug{display:inline-block;position:absolute}
+*/
+.video-js .vjs-bug{
+  display:flex;
+  position:absolute
+}
 
-.video-js .vjs-bug{display:inline-block;position:absolute}
+
 .video-js .vjs-bug.no-link{pointer-events:none}
-.video-js .vjs-bug.vjs-bug-tl{top:0;left:0}
-.video-js .vjs-bug.vjs-bug-tr{top:0;right:0}
+
+.video-js .vjs-bug.vjs-bug-tl .vjs-bug-compose{
+  top:0;
+  left:0;
+  justify-content: flex-start;  /* alignement des blocs en fonction de la position de l'objet*/
+}
+
+.video-js .vjs-bug.vjs-bug-tr .vjs-bug-compose{
+  top:0;
+  right:0;
+  justify-content: flex-end;  /* alignement des blocs en fonction de la position de l'objet*/
+}
+
 .video-js .vjs-bug.vjs-bug-bl{bottom:0;left:0}
 .video-js .vjs-bug.vjs-bug-br{bottom:0;right:0}
 .video-js .vjs-bug.vjs-bug-tc{top:0}

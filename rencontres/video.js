@@ -49,31 +49,28 @@ var tabMessages = [
 ]
 
 // chemins
-var pathImages = "../images/";		// autres images
-var pathVideos = "../rencontres/";		// vidéos des matchs
-var pathFanions = pathImages + "fanions/";		// fanions des equipes
-
+var pathJS = "./rencontres/scenarios/";		// vidéos des matchs
+var pathImages = "./images/";		// autres images
+var pathVideos = "./scenarios/";		// vidéos des matchs
+var pathLois = "../lois/images";
 // **********************************************************************************************************
 
 document.addEventListener("DOMContentLoaded", init, false);	// lance l'écoute des évènements et appelle INIT
 document.addEventListener("click", central, false);	// lance l'écoute des évènements CLIC
+document.addEventListener("fullscreenchange", gererFullscreen);	// gestion du cic sur le bouton de fullscreen
+window.addEventListener("resize", gererResize);	// gestion du remiensionnement
 
-
-function central(event) {
-	// gestion de la position de la souris pour plus tard
-	var target = event.target || event.srcElement; // ce dernier pour compatibilité IE
-
-	if(target.getAttribute('class') == 'vjs-icon-placeholder') {
-		// clic sur big play
-		draw("vjs-bug-silhEquipeA", video[0].gauche.maillotCouleur,  video[0].gauche.shortCouleur);
-		draw("vjs-bug-silhEquipeB", video[0].droite.maillotCouleur, video[0].droite.shortCouleur );
-		draw("vjs-bug-silhArbitre", video[0].arbitre.maillotCouleur,  video[0].arbitre.shortCouleur);
-
-		//masquer les boutons de contrôle
-		document.getElementsByClassName("vjs-control-bar")[0].children[0].classList.add("vjs-hidden");	// play
-		document.getElementsByClassName("vjs-control-bar")[0].children[5].classList.add("vjs-hidden");  // time progress
+function gererFullscreen(event){
+	if (document.getElementById("vjs-bug-Arbitre") != undefined) {
+		arbitreInfos = document.getElementById("vjs-bug-Arbitre");
+		arbitreInfos.style.left = centrerObjetSurVideo("myVideo", "vjs-bug-Arbitre");  // on positionne depuis la gauche de l'objet
 	}
+}
 
+function gererResize(event){
+	if (myVideo != undefined) {
+		gererFullscreen(event);	// gestion de la position des objets
+	}
 }
 
 function init() {
@@ -81,13 +78,95 @@ function init() {
     // est appelé en premier par la page lors du chargement
 	//
 
-	// mettre les listener ici car il faut avoir chargée la page
+    header();
 	footer();
+
 	// clic sur l'image de bascule
 	var bascule = document.querySelector("bascule img");
 	bascule.addEventListener("click", fBascule);	// de haut en bas
 	document._video = document.getElementById("myVideo");   // identification de l'objet video
 	creerVignettes("vignettes");					        // générer la vignettes dans le carousel
+}
+
+function central(event) {
+	// gestion de la position de la souris pour plus tard
+	var target = event.target || event.srcElement; // ce dernier pour compatibilité IE
+
+	// positonnement des objets particuliers
+	// centrage sur la vidéo
+	if (document.getElementById("vjs-bug-Arbitre") != undefined) {
+		arbitreInfos = document.getElementById("vjs-bug-Arbitre");
+		arbitreInfos.style.left = centrerObjetSurVideo("myVideo", "vjs-bug-Arbitre");  // on positionne depuis la gauche de l'objet
+	}
+
+	switch (target.getAttribute('class')) { 
+		case 'vjs-icon-placeholder':	// clic sur le grand bouton PLAY, le fullscreen, le son
+		case 'vjs-poster':				// clic sur l'image
+			draw("vjs-bug-EquipeAC", video[0].gauche.maillotCouleur);
+			draw("vjs-bug-EquipeBC", video[0].droite.maillotCouleur);
+			draw("vjs-bug-ArbitreC", video[0].arbitre.maillotCouleur);
+
+			//masquer les boutons de contrôle
+			document.getElementsByClassName("vjs-control-bar")[0].children[0].classList.add("vjs-hidden");	// play
+			document.getElementsByClassName("vjs-control-bar")[0].children[5].classList.add("vjs-hidden");  // time progress
+			break;
+	}
+
+}
+
+function centrerObjetSurVideo(video, objet){
+
+	var objetInfos = document.getElementById(objet);
+	const objetTaille = objetInfos.getBoundingClientRect();
+
+	var videoInfos = document.getElementById(video);
+	const videoTaille = videoInfos.getBoundingClientRect();
+
+	return ((videoTaille.width / 2 ) - (objetTaille.width / 2))+ "px";
+}
+
+function draw(id, maillotCouleur) {
+	let canvas = document.getElementById(id);
+
+	if (canvas.getContext) {
+		let ctx = canvas.getContext("2d");
+
+		// fond
+		ctx.beginPath();
+		ctx.lineWidth="1";
+		ctx.arc(14, 14, 14, 0, 2 * Math.PI);	// X rayon, Y rayon, rayon, angle de départ, 2*PI pour le cercle complet
+		ctx.fillStyle = "black";	// couleur de fond
+		ctx.fill();		// ordre de remplissage
+		ctx.closePath();
+
+		// tete
+		ctx.beginPath();
+		ctx.lineWidth="1";
+		ctx.arc(14, 8, 5, 0, 2 * Math.PI);		// X rayon, Y rayon, rayon, angle de départ, 2*PI pour le cercle complet
+		ctx.fillStyle = maillotCouleur;	// couleur de fond
+		ctx.fill();		// ordre de remplissage
+		ctx.closePath();
+
+		// corps
+		let rectWidth = 18;
+		let rectHeight = 8;
+		let rectX = 5;
+		let rectY = 15; //12;
+		let cornerRadius = 5;
+
+		ctx.beginPath();
+		ctx.fillStyle = maillotCouleur;
+		ctx.lineWidth = 1;
+		ctx.moveTo(rectX + cornerRadius, rectY);
+		ctx.lineTo(rectX + rectWidth - cornerRadius, rectY);
+		ctx.arcTo(rectX + rectWidth, rectY, rectX + rectWidth, rectY + cornerRadius, cornerRadius);	// arrondi droite
+		ctx.lineTo(rectX + rectWidth, rectY + rectHeight);	// descendre
+		ctx.lineTo(rectX, rectY + rectHeight);	// horizontale basse
+		ctx.lineTo(rectX, rectY + cornerRadius);	// remonter
+		ctx.arcTo(rectX, rectY, rectX + cornerRadius, rectY, cornerRadius);	// arrondi gauche
+		ctx.fill();		// ordre de remplissage
+		ctx.closePath();
+	}
 }
 
 function creerVignettes(id) {
@@ -120,7 +199,7 @@ function creerVignettes(id) {
 		myImg.className = "img-fluid mx-auto d-block";
 		myImg.setAttribute("alt", "img" + i);
 		myImg.setAttribute("title", "img" + i);
-		myImg.setAttribute("src", pathVideos + (rencontres[i][0].poster || pathImages + "pelouses/stade.jpg"));
+		myImg.setAttribute("src", (pathVideos + scenario[i][0].poster) || (pathImages + "pelouses/stade.jpg"));
 
 		// caption
 		let myCaption = document.createElement("div");
@@ -129,13 +208,13 @@ function creerVignettes(id) {
 		let myF = document.createElement("img");
 		myF.className = "carouselFanion";
 		myF.setAttribute("title", "fanionG" + i);
-		myF.setAttribute("src", pathFanions + (rencontres[i][0].gauche.fanion || "fff.png'"));
+		myF.setAttribute("src", pathImages + 'fanions/' + (scenario[i][0].gauche.fanion || "fff.png'"));
 		myCaption.appendChild(myF);
 		// fanion
 		myF = document.createElement("img");
 		myF.className = "carouselFanion";
 		myF.setAttribute("title", "fanionD" + i);
-		myF.setAttribute("src", pathFanions + (rencontres[i][0].droite.fanion || "fff.png'"));
+		myF.setAttribute("src", pathImages + 'fanions/' +(scenario[i][0].droite.fanion || "fff.png'"));
 		myCaption.appendChild(myF);
 		
         let myP = document.createElement("p");        
@@ -154,7 +233,7 @@ function creerVignettes(id) {
 
 		let myScript = document.createElement("SCRIPT");
 		myScript.setAttribute("type", "text/javascript");
-		myScript.setAttribute("src", "../rencontres/" + rencontres[i][0].scenario);
+		myScript.setAttribute("src",  pathVideos + scenario[i][0].scenario);
 		document.head.appendChild(myScript);
 	}
 }
@@ -188,8 +267,7 @@ function switchVideo(n) {
     // affectation de la nouvelle vidéo et des attributs liés
     //;
 
-
-	if (n > arrayAssoSize(rencontres)) {
+	if (n > arrayAssoSize(scenario)) {
 		// vérifie si l'index de la vidéo existe dans le fichier tableau.js
 		n = 0;
 		return false;
@@ -220,6 +298,9 @@ function switchVideo(n) {
 				   type: "video/mp4"
 				});
 			myVideo.poster(pathVideos + video[0].poster); 
+
+			gestionCamps(0);	// MAJ des infos des équipes (silhouettes et fanions)
+
 		} else {
 			// tableau du jeu
 			questionsFaites.splice(0, questionsFaites.length);	// efface le contenu
@@ -241,7 +322,7 @@ function switchVideo(n) {
 				preload:  'none',
 				loop: false,
 				fluid: true,
-				poster: (pathVideos + video[0].poster || pathImages + "pelouses/pelousemini.png"),
+				poster: (pathVideos + video[0].poster) || (pathImages + "pelouses/pelousemini.png"),
 				controlBar: {
 					volumePanel: {	// avec l'ancienne version de video-js on appelait volumeMenuButton
 						inline: false,
@@ -277,6 +358,77 @@ function switchVideo(n) {
 						]
 					},
 					bug: [{
+							type: "equipe",
+							id:"vjs-bug-EquipeA",
+							visibility: true,
+							libelle: "<span>"+ video[0].gauche.nom +"</span>",
+							classeCSSText: "vjs-bug-titreBug",
+							opacity: 1,
+							left: "20px",
+							top: "20px",
+							position: 'tl',
+							imgSrc: pathImages + "fanions/" + (video[0].gauche.fanion || 'fff.png'),
+							alt: video[0].gauche.nom  || "fanion par défaut",
+							link: video[0].gauche.site,
+							classeCSSCanvas: "vjs-bug-silhBug",
+							paddingInterne: "3px"
+						}, 
+						{
+							type: "equipe",
+							id:"vjs-bug-EquipeB",
+							visibility: true,
+							libelle: "<span>"+ video[0].droite.nom +"</span>",
+							classeCSSText: "vjs-bug-titreBug",
+							opacity: 1,
+							right: "20px",
+							top: "20px",
+							position: 'tr',
+							imgSrc: pathImages + "fanions/" + (video[0].droite.fanion || 'fff.png'),
+							alt: video[0].droite.nom  || "fanion par défaut",
+							link: video[0].droite.site,
+							classeCSSCanvas: "vjs-bug-silhBug",
+							paddingInterne: "3px"
+						}, 
+						{
+							type: "arbitre",
+							id:"vjs-bug-Arbitre",
+							visibility: true,
+							libelle: "<span>"+ avatar +"</span>",
+							classeCSSText: "vjs-bug-titreBug",
+							opacity: 1,
+							top: "20px",
+							position: 'tc',
+							imgSrc: pathImages + "fanions/" + (video[0].droite.fanion || 'fff.png'),
+							alt: video[0].droite.nom  || "fanion par défaut",
+							link: video[0].droite.site,
+							classeCSSCanvas: "vjs-bug-silhBug",
+							paddingInterne: "3px"
+						} 
+/*
+						{
+							type: "canvas",
+							id:"vjs-bug-silhArbitre",
+							visibility: true,
+							height: 30,
+							width: 30,
+							classeCSS: "vjs-bug-silhArbitreBug",
+							opacity: 1,
+							left: (30 + 20 + 160 + 5 + 200) + "px",
+							top: "20px",
+							position: 'tc'
+						},
+						{
+							type: "text",
+							id:"vjs-bug-titreArbitre",
+							visibility: true,
+							libelle: "<span>"+ avatar +"</span>",
+							classeCSS: "vjs-bug-titreArbitre",
+							opacity: 1,
+							left: (30 + 20 + 160 + 5 + 200) + "px",
+							top: "50px",
+							position: 'tc'
+						}*/
+					/*{
 						type: "pict",
 						id:"vjs-bug-pictEquipeA",
 						visibility: true,
@@ -312,31 +464,10 @@ function switchVideo(n) {
 						left: (30 + 20 + 160 + 5) + "px",
 						top: "20px",
 						position: 'tl'
-					},
-					{
-						type: "canvas",
-						id:"vjs-bug-silhArbitre",
-						visibility: true,
-						height: 36,
-						width: 36,
-						classeCSS: "vjs-bug-silhArbitreBug",
-						opacity: 1,
-						left: (30 + 20 + 160 + 5 + 200) + "px",
-						top: "20px",
-						position: 'tc'
-					},
-					{
-						type: "text",
-						id:"vjs-bug-titreArbitre",
-						visibility: true,
-						libelle: "<span>"+ avatar +"</span>",
-						classeCSS: "vjs-bug-titreArbitre",
-						opacity: 1,
-						left: (30 + 20 + 160 + 5 + 200) + "px",
-						top: "50px",
-						position: 'tr'
-					}, 
-					{
+					},*/
+						
+					]
+					/*{
 						type: "canvas",
 						id:"vjs-bug-silhEquipeB",
 						visibility: true,
@@ -372,7 +503,7 @@ function switchVideo(n) {
 						right: "20px",
 						top: "20px",
 						position: 'tr'
-					}]
+					}]*/
 				}
 			});
 		}
@@ -382,8 +513,10 @@ function switchVideo(n) {
 		isDefineBVideoJS = true;
 		myVideo.load();
 
+
 		let inter = document.getElementById("inter");
 		inter.offsetHeight * hauteur;
+		
 		inter.style.display = "flex";
 		// EQUIPES : doit être après le chargement des plugins videos
 		gestionCamps(1);	// affichage des Informations sur l'équipe pour la première mi-temps
@@ -505,13 +638,24 @@ function getVideo() {
 function gestionCamps(mitemps) {
 		// fanions incrustés
 	// en première mi-temps c'est l'init du plugin qui affiche les infos
+
+	if (mitemps===0) {
+		// on a cliqué sur une autre rencontre
+		document.getElementById("vjs-bug-EquipeAT").innerHTML = "<span>" + video[0].gauche.nom + "</span>";
+		document.getElementById("vjs-bug-EquipeBT").innerHTML = "<span>" + video[0].droite.nom + "</span>";
+		document.getElementById("vjs-bug-EquipeAF").setAttribute("src", pathImages + "fanions/"+ (video[0].gauche.fanion || "fff.png"));
+		document.getElementById("vjs-bug-EquipeBF").setAttribute("src", pathImages + "fanions/"+ (video[0].droite.fanion || "fff.png"));
+		draw("vjs-bug-EquipeAC", video[0].gauche.maillotCouleur);
+		draw("vjs-bug-EquipeBC", video[0].droite.maillotCouleur);
+		draw("vjs-bug-ArbitreC", video[0].arbitre.maillotCouleur);
+	}
 	if (mitemps===2) {
-		document.getElementById("vjs-bug-titreEquipeA").innerHTML = "<span>" + video[0].droite.nom + "</span>";
-		document.getElementById("vjs-bug-titreEquipeB").innerHTML = "<span>" + video[0].gauche.nom + "</span>";
-		document.getElementById("vjs-bug-pictEquipeA").setAttribute("src", pathImages + "fanions/"+ (video[0].droite.fanion || "fff.png"));
-		document.getElementById("vjs-bug-pictEquipeB").setAttribute("src", pathImages + "fanions/"+ (video[0].gauche.fanion || "fff.png"));
-		draw("vjs-bug-silhEquipeA", video[0].droite.maillotCouleur, video[0].droite.shortCouleur);
-		draw("vjs-bug-silhEquipeB", video[0].gauche.maillotCouleur, video[0].gauche.shortCouleur);
+		document.getElementById("vjs-bug-EquipeAT").innerHTML = "<span>" + video[0].droite.nom + "</span>";
+		document.getElementById("vjs-bug-EquipeBT").innerHTML = "<span>" + video[0].gauche.nom + "</span>";
+		document.getElementById("vjs-bug-EquipeAF").setAttribute("src", pathImages + "fanions/"+ (video[0].droite.fanion || "fff.png"));
+		document.getElementById("vjs-bug-EquipeBF").setAttribute("src", pathImages + "fanions/"+ (video[0].gauche.fanion || "fff.png"));
+		draw("vjs-bug-EquipeAC", video[0].droite.maillotCouleur);
+		draw("vjs-bug-EquipeBC", video[0].gauche.maillotCouleur);
 	}
 }
 
@@ -812,7 +956,7 @@ function gestPropositions(etape, attributs, reponse) {
 				loi.id = "loi" + (i+1);
 				if(actionEnCours.reponse.loi !== undefined) {
 					
-					loi.href = '../lois/' + actionEnCours.reponse.loi + '.pdf';
+					loi.href = pathLois + '/' +actionEnCours.reponse.loi + '.pdf';
 					loi.target = '_blank';
 					i.id = "book" + (i+1);
 					i.className = "fas fa-book";
@@ -972,7 +1116,7 @@ function gestionInter(etape, objet) {
                 document.querySelector("inter complement img").style.display = (objet.reponse.pict === undefined ? "none" : "flex");
                 if (objet.reponse.pict !== undefined) {
                     // on doit avoir le IF car sinon ca généère un message d'eereur lors de l'affectation de l'image  
-                    document.querySelector("inter complement img").setAttribute("src",pathImages + objet.reponse.pict);
+                    document.querySelector("inter complement img").setAttribute("src",pathImages + 'arbitres/' + objet.reponse.pict);
                 }
             }
             // replay
