@@ -346,11 +346,8 @@ function response(numQ, propSel) {
 	document.getElementsByClassName("prop"+ myQ.reponse.solution)[0].setAttribute("style", "filter:drop-shadow(2px 4px 6px);cursor:pointer");
 	if (myQ.reponse.loi == undefined){
 		// prendre la loi du quizz
-		if (quizz.loi == undefined) {
-			loi="mix"
-		} else {
-			loi = lois[quizz.loi-1].fichier;
-		}
+		console.log("loi du quizz", quizz.loi);
+		loi = lois[quizz.loi-1].fichier;
 	} else {
 		// loi de la question
 		loi = lois[(myQ.reponse.loi)-1].fichier;
