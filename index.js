@@ -1,28 +1,23 @@
-
-
 document.addEventListener("DOMContentLoaded", init, false);	
+// gestion du portrait/payasage
+window.addEventListener('resize', windowResize, false);
 
 function init(){
-    header();
-    footer();
+    // recupérer infos taille viewport
+    matriceDevice = viewportSize();
+    // appel nécessaire pour aligner le footer tout en bas
+    calculHauteur(matriceDevice.height);
+
+    setTimeout('RedirectionJavascript()', 6000);
 }
 
-function showAlt(id) {
-    let newInnerHTML = '';
-    switch(id) {
-        case 'quizz':
-            newInnerHTML = "Répondez à des questions <br>afin d'évaluer vos connaissances sur les lois du football";
-            break;
-        case 'video':
-            newInnerHTML = "Prenez le sifflet pour arbitrer des matchs comme si vous y étiez";
-            break;
-        case 'lois':
-            newInnerHTML = "Révisez à tête reposée les lois du jeu avec les dernières évolutions";
+function RedirectionJavascript(){
+    // appel HTML en fonction du device
+    if (isMobileDevice()) {
+        // mobile
+        document.location.href="./indexSP.html";
+    } else {
+        //desktop
+        document.location.href="./indexDK.html";
     }
-    document.getElementById("alt").innerHTML = newInnerHTML;
 }
-
-function cleanAlt() {
-    document.getElementById("alt").innerHTML = " ";
-}
-
