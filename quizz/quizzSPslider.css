@@ -1,6 +1,7 @@
 /* ne pas mettre de . avant le chemin sinon cela ne fonctionne pas  */
 @import url(../typo/scoreboard/stylesheet.css);
 @import url(../typo/passion_one/stylesheet.css);
+@import url(https://fonts.googleapis.com/css?family=Josefin+Slab:100);
 
 :root {
   --fond-color: #f5efef;
@@ -27,6 +28,11 @@ body {
   display: flex;
   flex-direction: column;
   background-color: white;
+
+  /* sliders */
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
 }
 
 header{
@@ -136,75 +142,10 @@ content {
     flex: 1;
   }
 
-  /***********
-   CAROUSSEL 
-   ************/
-
-  /* position du bloc des indicateurs circulaires pris en chargev*/
-  .carousel-indicators {
-    bottom: -90px;
-    justify-content: space-between; 
-  }
-
-  /* forme spécifique circulaire des indicateurs 
-  les !mportant sont nécessaires
-  */
-  .cercle {
-    background-color: green !important;
-    filter: grayscale(100%);
-    border-radius: 50%;
-    width: 40px !important;
-    height: 40px !important;
-  }
-
-  .carousel-caption {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: center;
-    top: 20px;
-    background-color: transparent !important;
-  }
-
-  /******** infos quizz ******/
-  .infosQuizz {
-    margin-top: 6em;
-    display: flex;
-    flex-direction: column;
-    justify-items: flex-start;
-  }
-
-  .card-body {
-    margin: 0px !important; /* retire le cadre blanc */
-    display: flex;
-    flex-direction: column;
-  }
-  .card-title {
-    font-size: 3em;
-    font-family: passion_oneregular;
-    font-weight: normal;
-    text-align: left;
-    color: black;
-    background-color: white;
-    padding-left: 0.2em;
-  }
-
   /*_________    SLIDERS _____*/
-  @import url(https://fonts.googleapis.com/css?family=Josefin+Slab:100);
 
   .animate {
     transition: transform 0.3s ease-out;
-  }
-  
-  html,
-  body {
-    height: 100%;
-  }
-  
-  body {
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
   }
   
   .slider-wrap {
