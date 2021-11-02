@@ -37,11 +37,6 @@ content {
   display: flex;
 }
 
-footer {
-  margin-top : auto;
-  display: flex;
-}
-
 /* style commun du carousel */
 .carousel-control-prev-icon {
   background-image: url("../svg/prev.svg");
@@ -221,25 +216,6 @@ footer {
     margin-top: 20px;
     padding-top: 10px;
   }
-
-  /*************** FOOTER ****************/
-  footer {
-    /* ici il prend toute la largeur */
-    border-top: 0.3em solid green; 
-    flex-direction: row;
-    justify-content: start;
-    height: 5em;
-  }
-
-  footer p {
-    color: grey;
-    font-family: passion_oneregular;
-    font-size: 2em;
-    padding-left: 1em;
-    font-weight: normal;
-  }
-
-
 }
 
 /* ecrans moyens : width correspond à la vrai largeur en pixel*/
@@ -412,22 +388,5 @@ footer {
     font-size: 24pt;
     line-height: 1em;
     flex: 1;
-  }
-
-  /*************** FOOTER ****************/
-  footer {
-    /* ici il prend toute la largeur */
-    border-top: 0.2em solid green; 
-    flex-direction: row;
-    justify-content: start;
-    height: 2em;
-  }
-
-  footer p {
-    color: grey;
-    font-family: passion_oneregular;
-    font-size: 1em;
-    padding-left: 1em;
-    font-weight: normal;
   }
 }
