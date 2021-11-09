@@ -86,6 +86,7 @@ function creerVignettes(id) {
 	
 	// création des indicateurs
 	let ind = document.getElementById("indicateurs");
+	console.log(scenario);
 	for (let i = 0; i < arrayAssoSize(scenario); i++) {
 		let myInd = document.createElement("li");
 		myInd.setAttribute("id", "indicateur" + i);

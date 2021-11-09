@@ -1,17 +1,4 @@
-// ________________--   SLIDERS
-/*
-var slideWidth = undefined
-var touchstartx = undefined;
-var touchmovex = undefined;
-var movex = undefined;
-var index = 0;
-var longTouch = undefined;
-
-*/
-document.addEventListener("readystatechange", ready, false);	
-
-
-function ready() {
+function loadSlider() {
   if (document.readyState === "complete") {
     if (navigator.msMaxTouchPoints) {
       $('#slider').addClass('ms-touch');
@@ -107,6 +94,7 @@ function ready() {
     }
   }
 }
+// ________________________
 
  // var slider = document.getElementById("slider");
   /*slideWidth = slider.width();
@@ -116,7 +104,7 @@ function ready() {
   slider.addEventListener("touchleave", handleLeave, false);
   slider.addEventListener("touchmove", handleMove, false);
   */
-
+/*
 function handleCancel(event) {
 
 }
@@ -136,5 +124,4 @@ function handleMove(event) {
 function handleEnd(event) {
   
 }      
-
-// ________________________
+*/
