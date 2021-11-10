@@ -42,48 +42,30 @@ content {
   display: flex;
 }
 
-/* style commun du carousel */
-.carousel-control-prev-icon {
-  background-image: url("../svg/prev.svg");
+/* position du bloc des indicateurs circulaires pris en chargev*/
+.carousel-indicators {
+  bottom: -40px;
+  justify-content: space-between; 
 }
 
-.carousel-control-next-icon {
-  background-image: url("../svg/next.svg");
+
+/* forme spécifique circulaire des indicateurs 
+les !mportant sont nécessaires
+*/
+.cercle {
+  background-color: green !important;
+  filter: grayscale(100%);
+  border-radius: 50%;
+  width: 15px !important;
+  height: 15px !important;
 }
 
-/* gestion de la position des flèches de défilement pris en charge*/
-.carousel-control-prev-icon,   
-.carousel-control-next-icon {
-  width: 50px;
-  height: 50px;
-}
-
-.carousel-control-prev {
-  width: 50px;
-  height: 80%;
-  left: -50px;
-  justify-content: flex-start;
-}
-
-.carousel-control-next {
-  width: 50px;
-  height: 80%; 
-  right: -50px;
-  justify-content: flex-end;
-}
-
-.carousel-inner {
-  display:flex;
-  flex-direction: row;
-  justify-items: center;
-}
-
-.carousel-inner + .carousel-item {
-  overflow: hidden;
-}
-
-.cercle.active {
+.cercle-active {
+  background-color: green !important;
   filter: grayscale(0%);
+  border-radius: 50%;
+  width: 15px !important;
+  height: 15px !important;
 }
 
 /* fin */
@@ -244,65 +226,6 @@ content {
     width: 30%;
     justify-content: left;
     align-items: flex-start;
-  }
-
-  /* position du bloc des indicateurs circulaires pris en chargev*/
-  .carousel-indicators {
-    bottom: -40px;
-    justify-content: space-between; 
-  }
-
-  
-  /* forme spécifique circulaire des indicateurs 
-  les !mportant sont nécessaires
-  */
-  .cercle {
-    background-color: green !important;
-    filter: grayscale(100%);
-    border-radius: 50%;
-    width: 15px !important;
-    height: 15px !important;
-  }
-
-  .carousel-control-prev {
-    width: 50px;
-    height: 80%;
-    left: -50px;
-    justify-content: flex-start;
-  }
-
-  .carousel-control-next {
-    width: 50px;
-    height: 80%; 
-    right: -50px;
-    justify-content: flex-end;
-  }
-
-  .carousel-inner {
-    display:flex;
-    flex-direction: row;
-    justify-items: center;
-  }
-
-  .carousel-inner + .carousel-item {
-    overflow: hidden;
-  }
-
-  .carousel-caption {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: center;
-    top: 20px;
-    background-color: transparent !important;
-  }
-
-  /******** infos quizz ******/
-  .infosQuizz {
-    display: flex;
-    flex-direction: column;
-    justify-items: flex-start;
-    align-items: center;
   }
 
   .card-body {
