@@ -8,13 +8,16 @@
   }
   
   .slider-wrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
     width: 300px;   /* correspond largeur SLIDER * nb SLIDE */
     height: 500px;
     position: absolute;
     left: 50%;
     margin-left: -150px;  /* correspond à la moitié de la largeur de SLIDE */
-    top: 50%;
-    margin-top: -225px;
+    margin-top : 12em;
   }
   
   .slider {
