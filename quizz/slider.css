@@ -8,14 +8,11 @@
   }
   
   .slider-wrap {
-    display: flex;
-    flex: 1;
-
-    width: 300px;
+    width: 300px;   /* correspond largeur SLIDER * nb SLIDE */
     height: 500px;
     position: absolute;
     left: 50%;
-    margin-left: -150px;
+    margin-left: -150px;  /* correspond à la moitié de la largeur de SLIDE */
     top: 50%;
     margin-top: -225px;
   }
@@ -43,36 +40,25 @@
     /* Defines the y and x intervals to snap to when scrolling. */
   }
   
-  .holder {
-    width: 300%;
-    max-height: 500px;
-    height: 100%;
-    overflow-y: hidden;
-  }
+.holder {
+  width: 300%;  /* correspond nb SLIDE * 100% */
+  max-height: 500px;
+  height: 100%;
+  overflow-y: hidden;
+}
   
-  .slide-wrapper {
-    width: 33.333%;
-    height: 100%;
-    float: left;
-    height: 500px;
-    position: relative;
-    overflow: hidden;
-  }
+.slide-wrapper {
+  width: 33.333%; /* correspond 100% / nb SLIDE */
+  height: 100%;
+  float: left;
+  height: 500px;
+  position: relative;
+  overflow: hidden;
+}
   
   .slide {
     height: 100%;
     position: relative;
-  }
-  
-  .temp {
-    position: absolute;
-    z-index: 1;
-    color: white;
-    font-size: 100px;
-    bottom: 15px;
-    left: 15px;
-    font-family: 'Josefin Slab', serif;
-    font-weight: 100;
   }
   
   .slide img {
@@ -92,9 +78,22 @@
     background: linear-gradient(transparent, black);
   }
   
+  /*
   .slide div {
-    width: 300px;
+    width: 300px; /* correspond largeur SLIDER * nb SLIDE 
     height: 500px;
     z-index: 0;
+  }
+  */
+
+  .temp {
+    position: absolute;
+    z-index: 1;
+    color: white;
+    font-size: 100px;
+    bottom: 15px;
+    left: 15px;
+    font-family: 'Josefin Slab', serif;
+    font-weight: 100;
   }
 /* // SLIDERS */
