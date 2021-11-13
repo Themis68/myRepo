@@ -4,10 +4,12 @@ function paramSlider(nbSlides) {
 	holder.style.width = (nbSlides * 100) + "%";
 
 	// .slider-wrap
-	let sliderWrap = document.getElementsByClassName("slider-wrap")[0];
-	sliderWrap.style.marginLeft = ((-nbSlides * 100) /2) + "px";
-	sliderWrap.style.width = (nbSlides * 100) + "px";
-
+/*	let sliderWrap = document.getElementsByClassName("slider-wrap")[0];
+	sliderWrap.style.marginLeft = "0%";//((-nbSlides * 100) /2) + "px";
+  sliderWrap.style.marginRight = "0%";
+  // largeur globale de la zone 
+	sliderWrap.style.width = "100%"; //(nbSlides * 100) + "px";
+*/
 	// .slide div
 	let slide = document.getElementsByClassName("slide");
 	// .slide-wrapper
@@ -15,6 +17,7 @@ function paramSlider(nbSlides) {
 	for(let i = 0; i < nbSlides; i++) {
 		slide[i].style.width = (nbSlides * 100) + "%";
 		slideWrapper[i].style.width = (100 / nbSlides) + "%";
+    slideWrapper[i].style.height = "90%";
 	}
 }
 

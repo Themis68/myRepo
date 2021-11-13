@@ -1,54 +1,53 @@
 /* ne pas mettre de . avant le chemin sinon cela ne fonctionne pas  */
 @import url(https://fonts.googleapis.com/css?family=Josefin+Slab:100);
 
-  /*_________    SLIDERS _____*/
+/*_________    SLIDERS _____*/
 
-  .animate {
-    transition: transform 0.3s ease-out;
-  }
+.animate {
+  transition: transform 0.3s ease-out;
+}
+
+.slider-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  height: 500px;
+  background-color: blue;
+  width: 95%;
+}
+
+.slider {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: red;
+  height: 80%;
+}
+
+.ms-touch.slider {
+  overflow-x: scroll;
+  overflow-y: hidden;
   
-  .slider-wrap {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    width: 300px;   /* correspond largeur SLIDER * nb SLIDE */
-    height: 500px;
-    position: absolute;
-    left: 50%;
-    margin-left: -150px;  /* correspond à la moitié de la largeur de SLIDE */
-    margin-top : 12em;
-  }
+  -ms-overflow-style: none;
+  /* Hides the scrollbar. */
   
-  .slider {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    background-color: red;
-  }
+  -ms-scroll-chaining: none;
+  /* Prevents Metro from swiping to the next tab or app. */
   
-  .ms-touch.slider {
-    overflow-x: scroll;
-    overflow-y: hidden;
-    
-    -ms-overflow-style: none;
-    /* Hides the scrollbar. */
-    
-    -ms-scroll-chaining: none;
-    /* Prevents Metro from swiping to the next tab or app. */
-    
-    -ms-scroll-snap-type: mandatory;
-    /* Forces a snap scroll behavior on your images. */
-    
-    -ms-scroll-snap-points-x: snapInterval(0%, 100%);
-    /* Defines the y and x intervals to snap to when scrolling. */
-  }
+  -ms-scroll-snap-type: mandatory;
+  /* Forces a snap scroll behavior on your images. */
+  
+  -ms-scroll-snap-points-x: snapInterval(0%, 100%);
+  /* Defines the y and x intervals to snap to when scrolling. */
+}
   
 .holder {
   width: 300%;  /* correspond nb SLIDE * 100% */
   max-height: 500px;
   height: 100%;
   overflow-y: hidden;
+  background-color: yellow;
 }
   
 .slide-wrapper {
@@ -60,27 +59,27 @@
   overflow: hidden;
 }
   
-  .slide {
-    height: 100%;
-    position: relative;
-  }
-  
-  .slide img {
-    position: absolute;
-    z-index: 0;
-    transform: translatex(-100px);
-  }
-  
-  .slide:before {
-    content: "";
-    position: absolute;
-    z-index: 1;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 40%;
-    background: linear-gradient(transparent, black);
-  }
+.slide {
+  height: 100%;
+  position: relative;
+}
+
+.slide img {
+  position: absolute;
+  z-index: 0;
+  transform: translatex(-100px);
+}
+
+.slide:before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40%;
+  background: linear-gradient(transparent, black);
+}
   
   /*
   .slide div {

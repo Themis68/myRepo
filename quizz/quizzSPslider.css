@@ -42,9 +42,15 @@ content {
   display: flex;
 }
 
+.indicateurs {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-center;
+  align-items: flex-start;
+}
+
 /* position du bloc des indicateurs circulaires pris en chargev*/
 .carousel-indicators {
-  bottom: -5em;
   justify-content: space-between; 
 }
 

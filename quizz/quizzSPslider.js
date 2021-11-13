@@ -71,13 +71,13 @@ function creerVignettes(id) {
 		mySlideWrapper.appendChild(mySlide);
 
 		// titre
-		let myTitle = document.createElement("span");
+	/*	let myTitle = document.createElement("span");
 		myTitle.setAttribute("class", "temp");
 		myTitle.innerHTML = scenario[i].description;
 
 		// ajouter le titre
 		mySlideWrapper.appendChild(myTitle);
-
+*/
 		// ajouter à la liste des vignettes
 		holder.appendChild(mySlideWrapper);
 	}
