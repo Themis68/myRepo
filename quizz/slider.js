@@ -1,3 +1,23 @@
+function paramSlider(nbSlides) {
+	// .holder
+	let holder = document.getElementsByClassName("holder")[0];
+	holder.style.width = (nbSlides * 100) + "%";
+
+	// .slider-wrap
+	let sliderWrap = document.getElementsByClassName("slider-wrap")[0];
+	sliderWrap.style.marginLeft = ((-nbSlides * 100) /2) + "px";
+	sliderWrap.style.width = (nbSlides * 100) + "px";
+
+	// .slide div
+	let slide = document.getElementsByClassName("slide");
+	// .slide-wrapper
+	let slideWrapper = document.getElementsByClassName("slide-wrapper");
+	for(let i = 0; i < nbSlides; i++) {
+		slide[i].style.width = (nbSlides * 100) + "%";
+		slideWrapper[i].style.width = (100 / nbSlides) + "%";
+	}
+}
+
 function loadSlider() {
   if (document.readyState === "complete") {
     if (navigator.msMaxTouchPoints) {
@@ -10,9 +30,8 @@ function loadSlider() {
       var slider = {
         el: {
           slider: document.getElementById("slider"), //$("#slider"),
-          holder: $(".holder"), // il faut affecter comme ça sinon on ne peut pas appeler ON 
-          //document.getElementsByClassName("holder")[0], //$(".holder"),
-          imgSlide: document.getElementsByClassName("slide-image")[0] //$(".slide-image")
+          holder: $(".holder"), // il faut affecter comme ça sinon on ne peut pas appeler .ON 
+          imgSlide: $(".slide-image") // il faut affecter comme ça sinon on ne peut pas appeler .CSS
         },
 
         slideWidth: $("#slider").width(), // width est recupéré par ce moyen seulement
@@ -94,34 +113,3 @@ function loadSlider() {
     }
   }
 }
-// ________________________
-
- // var slider = document.getElementById("slider");
-  /*slideWidth = slider.width();
-  slider.addEventListener("touchstart", handleStart, false);
-  slider.addEventListener("touchend", handleEnd, false);
-  slider.addEventListener("touchcancel", handleCancel, false);
-  slider.addEventListener("touchleave", handleLeave, false);
-  slider.addEventListener("touchmove", handleMove, false);
-  */
-/*
-function handleCancel(event) {
-
-}
-
-function handleLeave(event) {
-
-}
-
-function handleStart(event) {
- 
-}
-
-function handleMove(event) {
-  
-}
-
-function handleEnd(event) {
-  
-}      
-*/

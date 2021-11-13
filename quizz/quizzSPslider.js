@@ -82,30 +82,3 @@ function creerVignettes(id) {
 		holder.appendChild(mySlideWrapper);
 	}
 }
-
-function paramSlider(nbSlides) {
-	// .holder
-	let holder = document.getElementsByClassName("holder")[0];
-	holder.style.width = (nbSlides * 100) + "%";
-
-	// .slider-wrap
-	let sliderWrap = document.getElementsByClassName("slider-wrap")[0];
-	sliderWrap.style.marginLeft = ((-nbSlides * 100) /2) + "px";
-	sliderWrap.style.width = (nbSlides * 100) + "px";
-
-	// .slide div
-	let slide = document.getElementsByClassName("slide");
-	// .slide-wrapper
-	let slideWrapper = document.getElementsByClassName("slide-wrapper");
-	for(let i = 0; i < nbSlides; i++) {
-		slide[i].style.width = (nbSlides * 100) + "%";
-		slideWrapper[i].style.width = (100 / nbSlides) + "%";
-	}
-}
-
-/*
-          <div class="slide-wrapper">
-            <div class="slide"><img class="slide-image" src="http://farm8.staticflickr.com/7382/8732044638_9337082fc6_z.jpg" /></div>
-            <span class="temp">82</span>
-          </div>
-*/
