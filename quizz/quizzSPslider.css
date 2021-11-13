@@ -42,40 +42,6 @@ content {
   display: flex;
 }
 
-.indicateurs {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-center;
-  align-items: flex-start;
-}
-
-/* position du bloc des indicateurs circulaires pris en chargev*/
-.carousel-indicators {
-  justify-content: space-between; 
-}
-
-
-/* forme spécifique circulaire des indicateurs 
-les !mportant sont nécessaires
-*/
-.cercle {
-  background-color: green !important;
-  filter: grayscale(100%);
-  border-radius: 50%;
-  width: 15px !important;
-  height: 15px !important;
-}
-
-.cercle-active {
-  background-color: green !important;
-  filter: grayscale(0%);
-  border-radius: 50%;
-  width: 15px !important;
-  height: 15px !important;
-}
-
-/* fin */
-
 /* petits écrans */
 @media (orientation: portrait) and (max-device-width: 480px) {
   header {
