@@ -80,14 +80,6 @@
   height: 40%;
   background: linear-gradient(transparent, black);
 }
-  
-  /*
-  .slide div {
-    width: 300px; /* correspond largeur SLIDER * nb SLIDE 
-    height: 500px;
-    z-index: 0;
-  }
-  */
 
 .temp {
   position: absolute;
@@ -108,34 +100,14 @@
   align-items: flex-start;
 }
 
-/* position du bloc des indicateurs circulaires pris en charge */
+/* position du bloc des indicateurs circulaires pris en charge 
+on s'appuie sur BOOTSTRAP */
 .carousel-indicators {
   justify-content: space-between !important; 
   margin: 0 !important;
   position: relative !important;
 }
-/*
-.div-indicateurs {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: flex-start;
-  list-style: none;
-}
 
-position du bloc des indicateurs circulaires pris en chargev
-.indicateurs {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between; 
-  padding: 0;
-  flex: 1;
-}
-*/
-
-/* forme spécifique circulaire des indicateurs 
-les !mportant sont nécessaires
-*/
 .cercle {
   background-color: green !important;
   filter: grayscale(100%);
