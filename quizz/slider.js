@@ -15,7 +15,7 @@ function paramSlider(nbSlides) {
 	// .slide-wrapper
 	let slideWrapper = document.getElementsByClassName("slide-wrapper");
 	for(let i = 0; i < nbSlides; i++) {
-		slide[i].style.width = (nbSlides * 100) + "%";
+		//slide[i].style.width = (nbSlides * 100) + "%";
 		slideWrapper[i].style.width = (100 / nbSlides) + "%";
     slideWrapper[i].style.height = "90%";
 	}
