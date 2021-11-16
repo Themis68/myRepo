@@ -71,7 +71,7 @@
   /*height: 100%;
   width: 100%;*/
 }
-
+/*
 .slide2:before {
   content: "";
   position: absolute;
@@ -82,6 +82,7 @@
   height: 40%;
   background: linear-gradient(transparent, black);
 }
+*/
 
 .temp {
   position: absolute;
@@ -92,6 +93,12 @@
   left: 15px;
   font-family: 'Josefin Slab', serif;
   font-weight: 100;
+}
+
+span {
+  color: black;
+  font-size: 48pt;
+  font-family: 'Josefin Slab', serif;
 }
 
 /* INDICATEURS */

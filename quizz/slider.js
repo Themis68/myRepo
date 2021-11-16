@@ -2,6 +2,7 @@ function paramSlider(nbSlides) {
 	// .holder
 	let holder = document.getElementsByClassName("holder")[0];
 	holder.style.width = (nbSlides * 100) + "%";
+  holder.setAttribute("data-nbslides", nbSlides);
 
 	// .slider-wrap
 /*	let sliderWrap = document.getElementsByClassName("slider-wrap")[0];
@@ -38,19 +39,19 @@ function loadSlider() {
         },
 
         slideWidth: $("#slider").width(), // width est recupéré par ce moyen seulement
+        holderWidth: $(".holder").width(),
         touchstartx: undefined,
         touchmovex: undefined,
         movex: undefined,
         index: 0,
         longTouch: undefined,
+        nbSlides: document.getElementById("holder").dataset.nbslides, // recupère le nbre de slides
         
         init: function() {
           this.bindUIEvents();
         },
 
         bindUIEvents: function() {
-
-          console.log(this.el.holder);
 
           this.el.holder.on("touchstart", function(event) {
             slider.start(event);
@@ -67,6 +68,7 @@ function loadSlider() {
         },
 
         start: function(event) {
+          // passage uniquement sur le premier appui
           // Test for flick.
           this.longTouch = false;
           setTimeout(function() {
@@ -83,11 +85,16 @@ function loadSlider() {
         move: function(event) {
           // Continuously return touch position.
           this.touchmovex =  event.originalEvent.touches[0].pageX;
+          
+          document.getElementById("info").innerHTML = this.touchmovex + " / " + this.holderWidth;
+
           // Calculate distance to translate holder.
           this.movex = this.index*this.slideWidth + (this.touchstartx - this.touchmovex);
           // Defines the speed the images should move at.
           var panx = 100-this.movex/6;
-          if (this.movex < 600) { // Makes the holder stop moving when there is no more content.
+          console.log("index " + this.index);
+          // this.holderWidth = permet de savoir s'il y a encore des images
+          if (this.movex < this.holderWidth) { // Makes the holder stop moving when there is no more content.
             this.el.holder.css('transform','translate3d(-' + this.movex + 'px,0,0)');
           }
           if (panx < 100) { // Corrects an edge-case problem where the background image moves without the container moving.
@@ -100,7 +107,7 @@ function loadSlider() {
           var absMove = Math.abs(this.index*this.slideWidth - this.movex);
           // Calculate the index. All other calculations are based on the index.
           if (absMove > this.slideWidth/2 || this.longTouch === false) {
-            if (this.movex > this.index*this.slideWidth && this.index < 2) {
+            if (this.movex > this.index*this.slideWidth && this.index < (this.nbSlides-1)) {
               this.index++;
             } else if (this.movex < this.index*this.slideWidth && this.index > 0) {
               this.index--;
