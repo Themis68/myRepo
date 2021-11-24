@@ -4,19 +4,12 @@ function paramSlider(nbSlides) {
 	holder.style.width = (nbSlides * 100) + "%";
   holder.setAttribute("data-nbslides", nbSlides);
 
-	// .slider-wrap
-/*	let sliderWrap = document.getElementsByClassName("slider-wrap")[0];
-	sliderWrap.style.marginLeft = "0%";//((-nbSlides * 100) /2) + "px";
-  sliderWrap.style.marginRight = "0%";
-  // largeur globale de la zone 
-	sliderWrap.style.width = "100%"; //(nbSlides * 100) + "px";
-*/
 	// .slide div
 	let slide = document.getElementsByClassName("slide");
+
 	// .slide-wrapper
 	let slideWrapper = document.getElementsByClassName("slide-wrapper");
 	for(let i = 0; i < nbSlides; i++) {
-		//slide[i].style.width = (nbSlides * 100) + "%";
 		slideWrapper[i].style.width = (100 / nbSlides) + "%";
     slideWrapper[i].style.height = "90%";
 	}
@@ -132,7 +125,8 @@ function loadSlider() {
               this.index--;
             }
             this.indicateur(indexOld, this.index);  // MAJ indicateur
-          }      
+            doAfterSlide(this.index);   // afficher les infos du quizz
+          }     
           // Move and animate the elements.
           this.el.holder.addClass('animate').css('transform', 'translate3d(-' + this.index*this.slideWidth + 'px,0,0)');
           this.el.imgSlide.addClass('animate').css('transform', 'translate3d(-' + 100-this.index*50 + 'px,0,0)');

@@ -70,15 +70,40 @@ function creerVignettes(id) {
 		// ajouter le POSTER
 		mySlideWrapper.appendChild(mySlide);
 
-		// titre
-	/*	let myTitle = document.createElement("span");
-		myTitle.setAttribute("class", "temp");
-		myTitle.innerHTML = scenario[i].description;
-
-		// ajouter le titre
-		mySlideWrapper.appendChild(myTitle);
-*/
 		// ajouter à la liste des vignettes
 		holder.appendChild(mySlideWrapper);
 	}
+}
+
+function doAfterSlide(numQuizz){
+	// récupérer le quizz sélectionné
+	quizz = scenario[numQuizz];
+
+	// titre du quizz
+	let titreQuizz = document.getElementById("titreQuizz");
+	titreQuizz.innerHTML = quizz.titre;
+
+	// niveau du quizz
+	let svgNiveau = document.getElementById("svgNiveau");
+	svgNiveau.setAttribute("src", "../svg/niveau" + quizz.niveau + ".svg");
+
+	// description du quizz
+	let descriptionQuizz = document.getElementById("descriptionQuizz");
+	descriptionQuizz.innerHTML = quizz.description;
+
+	// loi liée au quizz éventuellement
+	let loiQuizz = document.getElementById("loiQuizz");
+	if (quizz.loi === undefined) {
+		loiQuizz.innerHTML = "Mix de lois";
+	} else {
+		loiQuizz.innerHTML = "Loi " + quizz.loi + " : " +lois[quizz.loi - 1].libelle;
+	}
+
+	// bouton de lancement
+	let btnQuizz = document.getElementById("btnQuizz");
+	btnQuizz.setAttribute("href","./zoneQuizz.html?id=" + quizz.id + "&question=1");
+
+	// afficher la zone d'informations
+	document.getElementsByClassName("infosQuizz")[0].style.display = "flex";
+	
 }

@@ -1,5 +1,5 @@
-/* ne pas mettre de . avant le chemin sinon cela ne fonctionne pas  */
-@import url(https://fonts.googleapis.com/css?family=Josefin+Slab:100);
+/* ne pas mettre de . avant le chemin sinon cela ne fonctionne pas  
+@import url(https://fonts.googleapis.com/css?family=Josefin+Slab:100);*/
 
 /*_________    SLIDERS _____*/
 
@@ -29,7 +29,6 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  background-color: blue;
   width: 85%;
   height: 32vh;
 }
@@ -38,7 +37,6 @@
   width: 100%;
   /* height: 100%;*/
   overflow: hidden;
-  background-color: red;
   height: 100%;
 }
   
@@ -47,7 +45,6 @@
   /*max-height: 500px;*/
   /*height: 100%;*/
   overflow-y: hidden;
-  background-color: yellow;
 }
   
 .slide-wrapper {
@@ -58,6 +55,14 @@
   position: relative;
   overflow: hidden;
 }
+
+/* icone slider*/
+.icone-slider {
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+  z-index: 1;
+}
   
 .slide {
   height: 100%;
@@ -65,24 +70,8 @@
 }
 
 .slide img {
- /* position: absolute;*/
   z-index: 0;
-  /*transform: translatex(-100px);*/
-  /*height: 100%;
-  width: 100%;*/
 }
-/*
-.slide2:before {
-  content: "";
-  position: absolute;
-  z-index: 1;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 40%;
-  background: linear-gradient(transparent, black);
-}
-*/
 
 .temp {
   position: absolute;
