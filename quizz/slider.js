@@ -45,6 +45,7 @@ function loadSlider() {
         movex: undefined,
         index: 0,
         longTouch: undefined,
+        direction: undefined,
         nbSlides: document.getElementById("holder").dataset.nbslides, // recupère le nbre de slides
         
         init: function() {
@@ -86,19 +87,36 @@ function loadSlider() {
           // Continuously return touch position.
           this.touchmovex =  event.originalEvent.touches[0].pageX;
           
-          document.getElementById("info").innerHTML = this.touchmovex + " / " + this.holderWidth;
+          //document.getElementById("info").innerHTML = this.touchmovex + " / " + this.holderWidth;
 
           // Calculate distance to translate holder.
-          this.movex = this.index*this.slideWidth + (this.touchstartx - this.touchmovex);
-          // Defines the speed the images should move at.
-          var panx = 100-this.movex/6;
-          console.log("index " + this.index);
-          // this.holderWidth = permet de savoir s'il y a encore des images
-          if (this.movex < this.holderWidth) { // Makes the holder stop moving when there is no more content.
-            this.el.holder.css('transform','translate3d(-' + this.movex + 'px,0,0)');
+          this.direction = this.touchstartx - this.touchmovex;
+          var continuer = false;
+          if(this.direction > 0) {
+            // glisser vers gauche
+            // on contrôle la borne supérieure
+            continuer = (this.index == (this.nbSlides-1) ? false : true);
+          } else {
+            // glisser vers droite
+            // on contrôle la borne inférieure
+            continuer = (this.index == 1 ? false : true);
           }
-          if (panx < 100) { // Corrects an edge-case problem where the background image moves without the container moving.
-            this.el.imgSlide.css('transform','translate3d(-' + panx + 'px,0,0)');
+
+          if(continuer == true) {
+            // on continue le sliding
+            this.movex = this.index * this.slideWidth + this.direction;
+
+            // Defines the speed the images should move at.
+            var panx = 100-this.movex/6;
+            // this.holderWidth = permet de savoir s'il y a encore des images
+            if (this.movex < this.holderWidth) { // Makes the holder stop moving when there is no more content.
+              this.el.holder.css('transform','translate3d(-' + this.movex + 'px,0,0)');
+            }
+            
+            // Corrects an edge-case problem where the background image moves without the container moving.
+            if (panx < 100) { 
+              this.el.imgSlide.css('transform','translate3d(-' + panx + 'px,0,0)');
+            }
           }
         },
 
@@ -107,15 +125,22 @@ function loadSlider() {
           var absMove = Math.abs(this.index*this.slideWidth - this.movex);
           // Calculate the index. All other calculations are based on the index.
           if (absMove > this.slideWidth/2 || this.longTouch === false) {
+            var indexOld = this.index;
             if (this.movex > this.index*this.slideWidth && this.index < (this.nbSlides-1)) {
               this.index++;
             } else if (this.movex < this.index*this.slideWidth && this.index > 0) {
               this.index--;
             }
+            this.indicateur(indexOld, this.index);  // MAJ indicateur
           }      
           // Move and animate the elements.
           this.el.holder.addClass('animate').css('transform', 'translate3d(-' + this.index*this.slideWidth + 'px,0,0)');
           this.el.imgSlide.addClass('animate').css('transform', 'translate3d(-' + 100-this.index*50 + 'px,0,0)');
+        },
+
+        indicateur: function(indexOld, indexNew) {
+          document.getElementById("indicateur"+indexOld).setAttribute("class", "cercle");
+          document.getElementById("indicateur"+indexNew).setAttribute("class", "cercle-active");
         }
       };
 
