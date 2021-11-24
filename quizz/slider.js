@@ -28,7 +28,8 @@ function loadSlider() {
         el: {
           slider: document.getElementById("slider"), //$("#slider"),
           holder: $(".holder"), // il faut affecter comme ça sinon on ne peut pas appeler .ON 
-          imgSlide: $(".slide-image") // il faut affecter comme ça sinon on ne peut pas appeler .CSS
+          imgSlide: $(".slide-image"), // il faut affecter comme ça sinon on ne peut pas appeler .CSS
+          iconeSlider: $(".icone-slider")
         },
 
         slideWidth: $("#slider").width(), // width est recupéré par ce moyen seulement
@@ -68,6 +69,11 @@ function loadSlider() {
           setTimeout(function() {
             window.slider.longTouch = true;
           }, 250);
+
+          // arrêter l'animation
+          this.el.iconeSlider.addClass('icone-slider').css('animation-play-state','paused');
+          //masquer l'icone slider
+          document.getElementsByClassName("icone-slider")[0].style.display = "none";
 
           // Get the original touch position.
           this.touchstartx =  event.originalEvent.touches[0].pageX;

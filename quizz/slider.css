@@ -31,6 +31,7 @@
   align-items: flex-start;
   width: 85%;
   height: 32vh;
+  position: relative;
 }
 
 .slider {
@@ -59,11 +60,24 @@
 /* icone slider*/
 .icone-slider {
   position: absolute;
-  bottom: 15px;
-  left: 15px;
+  bottom: 15%;
+  left: 40%;
   z-index: 1;
+  width: 20%;
+  height: 20%;
+
+  /* animation*/
+  animation-name: moved;
+  Animation-delay : 0s ;
+  Animation-duration : 1s ;
+  Animation-iteration-count : infinite ;
+ }
+
+@keyframes moved {
+  from {transform: translateX(30px);} /* Équivalent à : translateX(10px) ou translate(10px, 0) */
+  to{transform: translateX(-30px);}
 }
-  
+
 .slide {
   height: 100%;
   position: relative;
