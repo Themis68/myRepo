@@ -40,6 +40,7 @@ function loadSlider() {
         index: 0,
         longTouch: undefined,
         direction: undefined,
+        continuer: false,
         nbSlides: document.getElementById("holder").dataset.nbslides, // recupère le nbre de slides
         
         init: function() {
@@ -90,18 +91,18 @@ function loadSlider() {
 
           // Calculate distance to translate holder.
           this.direction = this.touchstartx - this.touchmovex;
-          var continuer = false;
+          this.continuer = false;
           if(this.direction > 0) {
             // glisser vers gauche
             // on contrôle la borne supérieure
-            continuer = (this.index == (this.nbSlides-1) ? false : true);
+            this.continuer = (this.index == (this.nbSlides-1) ? false : true);
           } else {
             // glisser vers droite
             // on contrôle la borne inférieure
-            continuer = (this.index == 1 ? false : true);
+            this.continuer = (this.index == 0 ? false : true);
           }
 
-          if(continuer == true) {
+          if(this.continuer == true) {
             // on continue le sliding
             this.movex = this.index * this.slideWidth + this.direction;
 
@@ -120,22 +121,25 @@ function loadSlider() {
         },
 
         end: function(event) {
-          // Calculate the distance swiped.
-          var absMove = Math.abs(this.index*this.slideWidth - this.movex);
-          // Calculate the index. All other calculations are based on the index.
-          if (absMove > this.slideWidth/2 || this.longTouch === false) {
-            var indexOld = this.index;
-            if (this.movex > this.index*this.slideWidth && this.index < (this.nbSlides-1)) {
-              this.index++;
-            } else if (this.movex < this.index*this.slideWidth && this.index > 0) {
-              this.index--;
-            }
-            this.indicateur(indexOld, this.index);  // MAJ indicateur
-            doAfterSlide(this.index);   // afficher les infos du quizz
-          }     
-          // Move and animate the elements.
-          this.el.holder.addClass('animate').css('transform', 'translate3d(-' + this.index*this.slideWidth + 'px,0,0)');
-          this.el.imgSlide.addClass('animate').css('transform', 'translate3d(-' + 100-this.index*50 + 'px,0,0)');
+          // on vérifie si le move était autorisé
+          if (this.continuer == true) {
+            // Calculate the distance swiped.
+            var absMove = Math.abs(this.index*this.slideWidth - this.movex);
+            // Calculate the index. All other calculations are based on the index.
+            if (absMove > this.slideWidth/2 || this.longTouch === false) {
+              var indexOld = this.index;
+              if (this.movex > this.index*this.slideWidth && this.index < (this.nbSlides-1)) {
+                this.index++;
+              } else if (this.movex < this.index*this.slideWidth && this.index > 0) {
+                this.index--;
+              }
+              this.indicateur(indexOld, this.index);  // MAJ indicateur
+              doAfterSlide(this.index);   // afficher les infos du quizz
+            }     
+            // Move and animate the elements.
+            this.el.holder.addClass('animate').css('transform', 'translate3d(-' + this.index*this.slideWidth + 'px,0,0)');
+            this.el.imgSlide.addClass('animate').css('transform', 'translate3d(-' + 100-this.index*50 + 'px,0,0)');
+          }
         },
 
         indicateur: function(indexOld, indexNew) {
