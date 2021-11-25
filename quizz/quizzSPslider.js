@@ -26,6 +26,8 @@ function ready() {
 		paramSlider(arrayAssoSize(scenario));
 		// 3 - on lance la fonction sldier
 		loadSlider();
+		// afficher les infos du quizz
+		doAfterSlide(0);   
 
 	}
 
