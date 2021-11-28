@@ -141,24 +141,43 @@ function gestChrono(phase, data) {
 			btnJauge.setAttribute("aria-valuenow", 0);
 			btnJauge.setAttribute("style", "width: 0%");
 			btnJauge.dataset.use = "";
+			
+			let fond = undefined;
+			let bord = undefined;
+			let numPropClic = undefined;
+
 			// arrêt chrono	
 			clearInterval(myChrono);
 			let bonneProp = parseInt(window.question.reponse.solution, 10);
+			if (data != "") {
+				numPropClic = parseInt(data.substring(data.length -1), 10);
+			} else {
+				numPropClic = 0; 	// pas de clic
+			}
+			// traitement des propositions
 			for (let i=0; i < 4; i++) {
-//				document.getElementById("libProp" + (i+1)).style.display = ((i+1) === parseInt(window.question.reponse.solution, 10) ? "flex" : "none");
-				document.getElementById("libProp" + (i+1)).style.backgroundColor = ((i+1) ===  bonneProp ? "green" : "var(--fond-proposition)");
-//				document.getElementById("libProp" + (i+1)).setAttribute("border-left", (i+1) == bonneProp ? "green solid 1em" : "white solid 1em");				
-				document.getElementById("prop" + (i+1)).style.borderLeft = (i+1) == bonneProp ? "green solid 1em" : "white solid 1em";
-
-				// réponse cliquée
-				if ((data != "")) {
-					if (i+1 == data) {
-						// on a cliqué sur la bonne réponse
-					} else {
-						// on a cliqué sur la mauvaise réponse
-						document.getElementById("prop" + (i+1)).style.borderLeft = (i+1) == bonneProp ? "red solid 1em" : "white solid 1em";
+				var enCours = i+1;
+				// en cours = bonne réponse ?
+				if (enCours == bonneProp) {
+					if(enCours == numPropClic) {
+						// bon choix : ajouter un son
 					}
-				}				}
+					fond = "green";
+					bord = "green solid 1em";
+				} else {
+					// en cours = selection utilisateur ?
+					if (enCours == numPropClic) {
+						// mauvais choix : ajouter un son
+						fond = "var(--fond-proposition)";
+						bord = "red solid 1em";
+					} else {
+						fond = "var(--fond-proposition)";
+						bord = "white solid 1em";
+					}
+				}
+				document.getElementById("libProp" + (i+1)).style.backgroundColor = fond;
+				document.getElementById("prop" + (i+1)).style.borderLeft = bord;
+				// on retire la gestion du click
 				document.getElementById("libProp" + (i+1)).removeAttribute("onclick");
 			}
 
