@@ -161,6 +161,7 @@ function gestChrono(phase, data) {
 				if (enCours == bonneProp) {
 					if(enCours == numPropClic) {
 						// bon choix : ajouter un son
+						document.getElementById('bonne').play();
 					}
 					fond = "green";
 					bord = "green solid 1em";
@@ -168,6 +169,7 @@ function gestChrono(phase, data) {
 					// en cours = selection utilisateur ?
 					if (enCours == numPropClic) {
 						// mauvais choix : ajouter un son
+						document.getElementById('mauvaise').play();
 						fond = "var(--fond-proposition)";
 						bord = "red solid 1em";
 					} else {
