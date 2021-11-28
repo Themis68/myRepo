@@ -24,6 +24,9 @@ document.addEventListener('readystatechange', ready, false);
 
 function ready() {
 	if (document.readyState === "complete") {
+		// MAJ titre navigation
+	//	document.getElementsByClassName("asi-title")[0].innerHTML = window.quizz.titre + " " +window.quizz.niveau;
+
 		gestChrono("","");
 	}
 }
@@ -133,7 +136,7 @@ function gestChrono(phase, data) {
 			myChrono = setInterval(chrono, 1000, parseInt(window.question.reponse.temps, 10));
 			break;
 		
-		case "R":
+		case "R":	// data = numéro de la qproposition cliquée
 			// INIT valeur de la jauge
 			btnJauge.setAttribute("aria-valuenow", 0);
 			btnJauge.setAttribute("style", "width: 0%");
@@ -144,6 +147,18 @@ function gestChrono(phase, data) {
 			for (let i=0; i < 4; i++) {
 //				document.getElementById("libProp" + (i+1)).style.display = ((i+1) === parseInt(window.question.reponse.solution, 10) ? "flex" : "none");
 				document.getElementById("libProp" + (i+1)).style.backgroundColor = ((i+1) ===  bonneProp ? "green" : "var(--fond-proposition)");
+//				document.getElementById("libProp" + (i+1)).setAttribute("border-left", (i+1) == bonneProp ? "green solid 1em" : "white solid 1em");				
+				document.getElementById("prop" + (i+1)).style.borderLeft = (i+1) == bonneProp ? "green solid 1em" : "white solid 1em";
+
+				// réponse cliquée
+				if ((data != "")) {
+					if (i+1 == data) {
+						// on a cliqué sur la bonne réponse
+					} else {
+						// on a cliqué sur la mauvaise réponse
+						document.getElementById("prop" + (i+1)).style.borderLeft = (i+1) == bonneProp ? "red solid 1em" : "white solid 1em";
+					}
+				}				}
 				document.getElementById("libProp" + (i+1)).removeAttribute("onclick");
 			}
 
