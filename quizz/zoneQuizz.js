@@ -85,11 +85,13 @@ function chrono(nbSecondesMax) {
 		// arrêter le chrono
 		switch(btnJauge.dataset.use) {
 			case "" :
+				// on va afficher les propositions
 				btnJauge.dataset.use = "P";
 				data = "";
 				break;
 
 			case "P" :
+				// on va afficher la réponse
 				btnJauge.dataset.use = "R";
 				data = "";
 				break;
