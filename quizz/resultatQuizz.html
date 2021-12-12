@@ -29,6 +29,7 @@
 
   <!-- scripts -->
   <script src="./questionnaires/catalogue.js" type="text/javascript"></script>
+  <script src="../maLibrairie.js" type="text/javascript"></script>
   <script src="./resultatQuizz.js?n=1" type="text/javascript"></script>
 
 </head>
@@ -36,7 +37,7 @@
 <body>
   <header>
     <nav class="navbar">
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand" href="../indexSP.html">
         <object data="../svg/asi.svg" type="image/svg+xml" id="svgAlarm"></object>
         &nbsp;
         <span class="asi-title">Quizz</span>
@@ -93,15 +94,16 @@
           
           <text x="15"  y="30"
           style="font-family: Arial;
-                  font-size  : 14;
+                  font-size  : 12;
                   fill       : green;"> 
           </text>
         
       </svg>
-      <a id="btnGameOver" href="#" class="btn btn-primary">Choisir un autre Quizz</a>
     </div>
-
-    
+    <div id="btn">
+      <a id="btnGameOver" href="./quizzSPslider.html" class="btn btn-primary">Encore un Quizz</a>
+      <a id="btnMail" class="btn btn-warning">Envoyer le résultat</a>
+    </div>
   </content>
 </body>
 

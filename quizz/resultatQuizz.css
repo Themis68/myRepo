@@ -128,10 +128,15 @@
   h1 {
     margin-top: 0.5em;
     margin-bottom: 0.5em;
+    font-size: 2.1rem;
   }
 
   .titre {
     padding-left: 1em;
+  }
+
+  #imgPoster {
+    width: 80%;
   }
 
   #poster {
@@ -139,13 +144,6 @@
     flex-direction: row;
     justify-content: center;
     margin-bottom: 1em;
-  }
-
-  #btnGameOver {
-    font-size: 3em;
-    margin-top: 1em;
-    width: 80%;
-    align-items: center;
   }
 
   .infosQuizz {
@@ -159,21 +157,32 @@
   #ring {
     display: flex;
     flex: 1;
-    flex-wrap: wrap;
     justify-content: center;
-    margin-top: 2em;
   }
 
   svg {
     display: none;
     justify-content: center;
     background: transparent;
-    width: 400px;
-    height: 400px;
+    width: 350px;
+    height: 350px;
   }
 
-  pt {
-    font-size: 1em;
+  #btn {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 0.5em;
+    margin-top: 1em;
+  }
+
+  #svgInfo, #svgNiveau, #svgLoi {
+    width: 8%
+  }
+
+  #btnGameOver, #btnMail {
+    font-size : 3rem;
   }
 /********************************/
 }

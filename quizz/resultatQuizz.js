@@ -1,3 +1,6 @@
+// initialisation matrice device
+var matriceDevice = viewportSize();
+
 // chemins
 var pathImagesCommunes = "../images/"   // images communes
 var pathPosters =  "./images/posters/";		//  posters
@@ -7,9 +10,14 @@ var pathQuizz = "./questionnaires/";		// scénarios des quizz
 var myURLcomplete = document.location.href;
 var myURL  = myURLcomplete.substring( 0 ,myURLcomplete.lastIndexOf( "/" ) );
 
+// parametres
+var idQuizz = getParametersURL("id");
 var nbPointsUtilisateur = getParametersURL("reussir");
 var nbPointsMax = getParametersURL("total");
 var infosQuizz = undefined;
+
+var user =  "paulo.pires-seixas@laposte.net";
+
 // print state changes
 document.addEventListener('readystatechange', ready, false);
 
@@ -20,6 +28,10 @@ document.addEventListener("DOMContentLoaded", init, false);
 document.addEventListener("touchstart", clickF, false);
 
 function init() {
+	 // calcul hauteur
+	 matriceDevice = viewportSize();
+	 calculHauteur(matriceDevice.height - 200);
+
 	// on charge les infos du quizz
 	quizzId = getParametersURL("id");
 	// le id va de 1 à n, l'index du tableau commence à 0
@@ -32,6 +44,13 @@ function ready() {
 		gestSvg(window.nbPointsUtilisateur, window.nbPointsMax);
 
 	}
+}
+
+function clickF(e) {
+	if (e.target.id === "btnMail") {
+		envoyerMail(window.idQuizz);
+	}
+
 }
 
 function getParametersURL(param){
@@ -75,11 +94,6 @@ function gestSvg(reussite, total) {
 	animate.setAttribute("to", a);
 	animate.beginElement();
 }
-function clickF(e) {
-	//if (e.target.id === "btnQuestion") {}
-		
-
-}
 
 function getInfoQuizz(indexQuizz){
 	// indexQuizz
@@ -116,4 +130,20 @@ function getInfoQuizz(indexQuizz){
 	// afficher la zone d'informations
 	document.getElementsByClassName("infosQuizz")[0].style.display = "flex";
 	
+}
+
+function envoyerMail(idQuizz){
+	let saut = '<br>';
+
+	// récupérer le quizz sélectionné
+	infosQuizz = scenario[idQuizz-1];
+
+	let body = "envoyé par " + window.user + saut;
+	body += "titre du Quizz : " + infosQuizz.titre + saut;
+	body += "description du quizz : " + infosQuizz.description + saut;
+	body +=  "niveau du quizz : " + infosQuizz.niveau + saut;
+	body +=  "loi du quizz : " + infosQuizz.loi + saut;
+
+	body += "réussite : " + window.nbPointsUtilisateur + " sur " + window.nbPointsMax + saut;
+	window.open('mailto:arretsurimage_%40laposte.net?subject=' + infosQuizz.titre + '&body=' + body);
 }
