@@ -125,13 +125,43 @@
     padding: 20px;
   }
 
-  /********************************/
+  h1 {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+
+  .titre {
+    padding-left: 1em;
+  }
+
+  #poster {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 1em;
+  }
+
+  #btnGameOver {
+    font-size: 3em;
+    margin-top: 1em;
+    width: 80%;
+    align-items: center;
+  }
+
+  .infosQuizz {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 2em;
+    margin-right: 2em;
+  }
 
   #ring {
     display: flex;
     flex: 1;
+    flex-wrap: wrap;
     justify-content: center;
-    margin-top: 20px;
+    margin-top: 2em;
   }
 
   svg {
@@ -141,33 +171,9 @@
     width: 400px;
     height: 400px;
   }
-/********************************/
 
-
-  /*************** FOOTER ****************/
-  footer {
-    display: flex;
-    flex: 1;
-    flex-direction: row;
-    justify-content: flex-start;
+  pt {
     font-size: 1em;
-    margin-top: auto;
   }
-
-  .basdepage{
-    display: flex;
-    flex: 1;
-    width: 100%;
-    font-size: 4em;
-    background-color: #f5efef;
-  }
-
-  .asi-text-footer {
-    font-family: passion_oneregular;
-    color: green;
-    font-weight: normal;
-    font-size: 0.5em;
-    text-align: center;
-    padding: 10px;
-  }
+/********************************/
 }

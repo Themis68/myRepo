@@ -7,11 +7,9 @@ var pathQuizz = "./questionnaires/";		// scénarios des quizz
 var myURLcomplete = document.location.href;
 var myURL  = myURLcomplete.substring( 0 ,myURLcomplete.lastIndexOf( "/" ) );
 
-var quizzId = getParametersURL("id");
 var nbPointsUtilisateur = getParametersURL("reussir");
-var nbPointsQuizz = getParametersURL("total");
-var quizz;
-
+var nbPointsMax = getParametersURL("total");
+var infosQuizz = undefined;
 // print state changes
 document.addEventListener('readystatechange', ready, false);
 
@@ -23,15 +21,15 @@ document.addEventListener("touchstart", clickF, false);
 
 function init() {
 	// on charge les infos du quizz
-	window.quizz = scenario[quizzId-1]; // le id va de 1 à n, l'index du tableau commence à 0
-	poster = document.getElementById("poster");
-	poster.setAttribute("src",pathPosters + (window.quizz.loi || "bases.png"));
+	quizzId = getParametersURL("id");
+	// le id va de 1 à n, l'index du tableau commence à 0
+	getInfoQuizz(quizzId-1);
 }
 
 function ready() {
 	if (document.readyState === "complete") {
 		// lancer le ring
-		gestSvg(window.nbPointsUtilisateur, window.nbPointsQuizz);
+		gestSvg(window.nbPointsUtilisateur, window.nbPointsMax);
 
 	}
 }
@@ -57,7 +55,7 @@ function gestSvg(reussite, total) {
 
 	// afficher réussite
 	var titreSvg = document.querySelector("text");
-  	titreSvg.innerHTML = reussite;
+  	titreSvg.innerHTML = reussite + "/" + total;
 
 	  // récupérer le rayon du SVG
 	let circle = document.getElementById("my-circle");
@@ -76,4 +74,46 @@ function gestSvg(reussite, total) {
 	let animate = document.querySelector("animate");
 	animate.setAttribute("to", a);
 	animate.beginElement();
+}
+function clickF(e) {
+	//if (e.target.id === "btnQuestion") {}
+		
+
+}
+
+function getInfoQuizz(indexQuizz){
+	// indexQuizz
+	// récupérer le quizz sélectionné
+	infosQuizz = scenario[indexQuizz];
+
+	// titre du quizz
+	let titreQuizz = document.getElementById("titreQuizz");
+	titreQuizz.innerHTML = infosQuizz.titre;
+
+	// niveau du quizz
+	let svgNiveau = document.getElementById("svgNiveau");
+	svgNiveau.setAttribute("src", "../svg/niveau" + infosQuizz.niveau + ".svg");
+
+	// description du quizz
+	let descriptionQuizz = document.getElementById("descriptionQuizz");
+	descriptionQuizz.innerHTML = infosQuizz.description;
+
+	// loi liée au quizz éventuellement
+	let loiQuizz = document.getElementById("loiQuizz");
+	if (infosQuizz.loi === undefined) {
+		loiQuizz.innerHTML = "Mix de lois";
+	} else {
+		loiQuizz.innerHTML = "Loi " + infosQuizz.loi + " : " +lois[infosQuizz.loi - 1].libelle;
+	}
+
+	// bouton de lancement
+	let btnQuizz = document.getElementById("btnGameOver");
+	btnQuizz.setAttribute("href","./zoneQuizz.html?id=" + infosQuizz.id + "&question=1");
+
+	poster = document.getElementById("imgPoster");
+	poster.setAttribute("src",pathPosters + (infosQuizz.loi || "bases.png"));
+
+	// afficher la zone d'informations
+	document.getElementsByClassName("infosQuizz")[0].style.display = "flex";
+	
 }

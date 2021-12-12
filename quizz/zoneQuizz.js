@@ -10,7 +10,7 @@ var myURL  = myURLcomplete.substring( 0 ,myURLcomplete.lastIndexOf( "/" ) );
 // variable d'une question
 var indexQuestion = 1;
 var nbPointsUtilisateur = 0;
-var nbPointsQuizz = 0;
+var nbPointsMax = 0;
 var question;
 var script;
 
@@ -29,8 +29,6 @@ document.addEventListener('readystatechange', ready, false);
 function ready() {
 	if (document.readyState === "complete") {
 		// MAJ titre navigation
-	//	document.getElementsByClassName("asi-title")[0].innerHTML = window.quizz.titre + " " +window.quizz.niveau;
-
 		gestChrono("","");
 	}
 }
@@ -174,6 +172,9 @@ function gestChrono(phase, data) {
 
 			// récupérer la bonne réponse
 			let bonneProp = parseInt(window.question.reponse.solution, 10);
+			// points de la bonne réponse
+			let pointsQuestion = parseInt(window.question.reponse.points, 10);
+
 			if (data != "") {
 				numPropClic = parseInt(data.substring(data.length -1), 10);
 			} else {
@@ -187,6 +188,7 @@ function gestChrono(phase, data) {
 					if(enCours == numPropClic) {
 						// bon choix : ajouter un son
 						document.getElementById('bonne').play();
+						window.nbPointsUtilisateur = window.nbPointsUtilisateur + pointsQuestion;
 					}
 					fond = "green";
 					bord = "green solid 1em";
@@ -211,14 +213,11 @@ function gestChrono(phase, data) {
 			}
 
 			// gestion des points
-			// points du quizz
-			pointsQuestion = parseInt(window.question.reponse.points, 10);
-
-			window.nbPointsQuizz = window.nbPointsQuizz + pointsQuestion;
-			if (data == "libProp" + window.question.reponse.solution) {
+			window.nbPointsMax = window.nbPointsMax + pointsQuestion;
+		//	if (data == "libProp" + window.question.reponse.solution) {
 				// points de l'utilisateur
-				window.nbPointsUtilisateur = window.nbPointsUtilisateur + pointsQuestion;
-			}
+		//		window.nbPointsUtilisateur = window.nbPointsUtilisateur + pointsQuestion;
+		//	}
 			// derniere question ?
 			indexQuestionSuivante = window.script[window.indexQuestion];
 
@@ -226,7 +225,8 @@ function gestChrono(phase, data) {
 			if (indexQuestionSuivante === undefined) {
 				//quizz fini	
 				btnQuestion.innerHTML = "Afficher résultat";
-				btnQuestion.setAttribute("href","./resultatQuizz.html?id=" + window.quizz.id + "&reussir=" + window.nbPointsUtilisateur + "&total=" + window.nbPointsQuizz);
+				console.log(window.nbPointsUtilisateur , window.nbPointsMax);
+				btnQuestion.setAttribute("href","./resultatQuizz.html?id=" + window.quizzId + "&reussir=" + window.nbPointsUtilisateur + "&total=" + window.nbPointsMax);
 			} else {
 				// affichage bouton question suivante		
 				btnQuestion.innerHTML = "Question suivante";

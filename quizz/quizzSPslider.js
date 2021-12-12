@@ -77,9 +77,11 @@ function creerVignettes(id) {
 	}
 }
 
-function doAfterSlide(numQuizz){
+
+function doAfterSlide(indexQuizz){
+	// indexQuizz
 	// récupérer le quizz sélectionné
-	quizz = scenario[numQuizz];
+	quizz = scenario[indexQuizz];
 
 	// titre du quizz
 	let titreQuizz = document.getElementById("titreQuizz");
