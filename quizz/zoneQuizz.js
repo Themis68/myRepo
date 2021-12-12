@@ -14,6 +14,10 @@ var nbPointsQuizz = 0;
 var question;
 var script;
 
+// variable CSS propositions
+var bord = "";
+var fond = "";
+
 // on récupère le id du quizz
 var quizzId = getParametersURL("id");
 
@@ -66,6 +70,7 @@ function getParametersURL(param){
 function clickF(e) {
 	if (e.target.id === "btnQuestion") {
 		if (document.getElementById(e.target.id).getAttribute("href") === "#") {
+			console.log("clickF : question suivante");
 			document.getElementById(e.target.id).style.display = "none";
 			window.indexQuestion++;	// on passe à la question suivante
 			gestChrono("","");	// on reinitialisae la page avec les bons éléments
@@ -73,6 +78,7 @@ function clickF(e) {
 	}
 
 	if((e.target.id).indexOf("Prop") > 0) {
+		console.log("clickF : une proposition");
 		// clic sur un des boutons de proposition
 		gestChrono("R", e.target.id);
 	}
@@ -82,15 +88,17 @@ function chrono(nbSecondesMax) {
 	let btnJauge = document.getElementById("jauge");
 	let value = parseInt(btnJauge.getAttribute("aria-valuenow"),10) + 1;	// transformation en numérique de la valeur actuelle
 	if (value > nbSecondesMax) {
-		// arrêter le chrono
+		// Arrêter le chrono
 		switch(btnJauge.dataset.use) {
 			case "" :
+				console.log("chrono : afficher propositions");
 				// on va afficher les propositions
 				btnJauge.dataset.use = "P";
 				data = "";
 				break;
 
 			case "P" :
+				console.log("chrono : afficher réponses");
 				// on va afficher la réponse
 				btnJauge.dataset.use = "R";
 				data = "";
@@ -98,6 +106,7 @@ function chrono(nbSecondesMax) {
 		}
 		gestChrono(btnJauge.dataset.use, data);
 	} else {
+		// MAJ avancement chrono
 		btnJauge.setAttribute("aria-valuenow", value);
 		pourCent = Math.round(value / nbSecondesMax * 100);
 		btnJauge.setAttribute("style", "width: " + pourCent + "%");
@@ -109,6 +118,7 @@ function gestChrono(phase, data) {
 
 	switch(phase) {
 		case "":
+			console.log("gestChrono : afficher la question");
 			// récupère la question
 			window.question = window.script[window.indexQuestion-1];
 			// libellé question
@@ -122,14 +132,24 @@ function gestChrono(phase, data) {
 			break;
 
 		case "P":
+			console.log("gestChrono : afficher les propositions");
 			// INIT valeur de la jauge
 			btnJauge.setAttribute("aria-valuenow", 0);
 			// arrêt chrono	
 			clearInterval(myChrono);
-			// afficher les libellés des propositions
+			// afficher les libellés des propositions : ici sinon on ne peut pas travailler sur son contenu
 			document.getElementById("propositions").style.display = "flex";
+			// MAJ bordures pour la nouvelle question
+			bord = "white solid 1em";
 			for (let i=0; i < 4; i++) {
+				// couleur bordure poroposition (LI)
+				document.getElementById("prop" + (i+1)).style.borderLeft = bord;
+				// fond proposition (H5)
+				document.getElementById("libProp" + (i+1)).style.backgroundColor = fond;
+				// récupérer libellé proposition
 				document.getElementById("libProp" + (i+1)).innerHTML = window.question.question.attributs[i];	
+				console.log(window.question.question.attributs[i]);
+				// afficher proposition
 				document.getElementById("libProp" + (i+1)).style.display = "flex";
 			}
 
@@ -139,17 +159,20 @@ function gestChrono(phase, data) {
 			break;
 		
 		case "R":	// data = numéro de la qproposition cliquée
+			console.log("gestChrono : afficher les réponses");
 			// INIT valeur de la jauge
 			btnJauge.setAttribute("aria-valuenow", 0);
 			btnJauge.setAttribute("style", "width: 0%");
 			btnJauge.dataset.use = "";
 			
-			let fond = undefined;
-			let bord = undefined;
+			//fond = undefined;
+			//bord = undefined;
 			let numPropClic = undefined;
 
 			// arrêt chrono	
 			clearInterval(myChrono);
+
+			// récupérer la bonne réponse
 			let bonneProp = parseInt(window.question.reponse.solution, 10);
 			if (data != "") {
 				numPropClic = parseInt(data.substring(data.length -1), 10);
@@ -179,9 +202,11 @@ function gestChrono(phase, data) {
 						bord = "white solid 1em";
 					}
 				}
-				document.getElementById("libProp" + (i+1)).style.backgroundColor = fond;
+				// couleur bordure poroposition (LI)
 				document.getElementById("prop" + (i+1)).style.borderLeft = bord;
-				// on retire la gestion du click
+				// fond proposition (H5)
+				document.getElementById("libProp" + (i+1)).style.backgroundColor = fond;
+				// on retire la gestion du click (H5)
 				document.getElementById("libProp" + (i+1)).removeAttribute("onclick");
 			}
 
