@@ -36,12 +36,26 @@
 </head>
 
 <body>
+  <audio id="comptearebours">
+    <source src="../sons/comptearebours.wav" type="audio/wav">
+    Votre navigateur ne gère pas les fichiers sons.
+  </audio>
+  <audio id="bonne">
+    <source src="../sons/bonnereponse.wav" type="audio/wav"> <!--type="audio/x-wav"-->
+    Votre navigateur ne gère pas les fichiers sons.
+  </audio>
+  <audio id="mauvaise">
+    <source src="../sons/mauvaisereponse.mp3" type="audio/mpeg"> <!--type="audio/mp3"-->
+    Votre navigateur ne gère pas les fichiers sons.
+  </audio>
+
   <header>
-    <nav>
-      <a href="../indexSP.html">
+    <nav class="navbar" >
+      <a class="navbar-brand" href="../indexSP.html">
         <object data="../svg/asi.svg" type="image/svg+xml" id="svgAlarm"></object>
         &nbsp;&nbsp;
         <span class="asi-title">Quizz</span>
+        <span id="avancement"></span>
       </a>
     </nav>
   </header>
@@ -83,11 +97,6 @@
     </suivant>
 
   </content>
-  
-  <footer>
-    <p>v1.0.0</p>
-  </footer>
-
 </body>
 
 </html>
