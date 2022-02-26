@@ -125,49 +125,64 @@
     padding: 20px;
   }
 
-  /********************************/
+  h1 {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    font-size: 2.1rem;
+  }
+
+  .titre {
+    padding-left: 1em;
+  }
+
+  #imgPoster {
+    width: 80%;
+  }
+
+  #poster {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 1em;
+  }
+
+  .infosQuizz {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 2em;
+    margin-right: 2em;
+  }
 
   #ring {
     display: flex;
     flex: 1;
     justify-content: center;
-    margin-top: 20px;
   }
 
   svg {
     display: none;
     justify-content: center;
     background: transparent;
-    width: 400px;
-    height: 400px;
+    width: 350px;
+    height: 350px;
   }
-/********************************/
 
-
-  /*************** FOOTER ****************/
-  footer {
+  #btn {
     display: flex;
     flex: 1;
     flex-direction: row;
-    justify-content: flex-start;
-    font-size: 1em;
-    margin-top: auto;
+    justify-content: space-between;
+    margin-bottom: 0.5em;
+    margin-top: 1em;
   }
 
-  .basdepage{
-    display: flex;
-    flex: 1;
-    width: 100%;
-    font-size: 4em;
-    background-color: #f5efef;
+  #svgInfo, #svgNiveau, #svgLoi {
+    width: 8%
   }
 
-  .asi-text-footer {
-    font-family: passion_oneregular;
-    color: green;
-    font-weight: normal;
-    font-size: 0.5em;
-    text-align: center;
-    padding: 10px;
+  #btnGameOver, #btnMail {
+    font-size : 3rem;
   }
+/********************************/
 }

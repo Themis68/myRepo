@@ -27,6 +27,11 @@ body {
   display: flex;
   flex-direction: column;
   background-color: white;
+
+  /* sliders */
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
 }
 
 header{
@@ -36,52 +41,6 @@ header{
 content {
   display: flex;
 }
-
-/* style commun du carousel */
-.carousel-control-prev-icon {
-  background-image: url("../svg/prev.svg");
-}
-
-.carousel-control-next-icon {
-  background-image: url("../svg/next.svg");
-}
-
-/* gestion de la position des flèches de défilement pris en charge*/
-.carousel-control-prev-icon,   
-.carousel-control-next-icon {
-  width: 50px;
-  height: 50px;
-}
-
-.carousel-control-prev {
-  width: 50px;
-  height: 80%;
-  left: -50px;
-  justify-content: flex-start;
-}
-
-.carousel-control-next {
-  width: 50px;
-  height: 80%; 
-  right: -50px;
-  justify-content: flex-end;
-}
-
-.carousel-inner {
-  display:flex;
-  flex-direction: row;
-  justify-items: center;
-}
-
-.carousel-inner + .carousel-item {
-  overflow: hidden;
-}
-
-.cercle.active {
-  filter: grayscale(0%);
-}
-
-/* fin */
 
 /* petits écrans */
 @media (orientation: portrait) and (max-device-width: 480px) {
@@ -136,57 +95,19 @@ content {
     flex: 1;
   }
 
-  /***********
-   CAROUSSEL 
-   ************/
-
-  /* position du bloc des indicateurs circulaires pris en chargev*/
-  .carousel-indicators {
-    bottom: -90px;
-    justify-content: space-between; 
-  }
-
-  /* forme spécifique circulaire des indicateurs 
-  les !mportant sont nécessaires
-  */
-  .cercle {
-    background-color: green !important;
-    filter: grayscale(100%);
-    border-radius: 50%;
-    width: 40px !important;
-    height: 40px !important;
-  }
-
-  .carousel-caption {
+  /* ZONE INFOS */
+  .card-body1 {
     display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: center;
-    top: 20px;
-    background-color: transparent !important;
+    flex-direction: column;
+    flex: 1;
   }
 
-  /******** infos quizz ******/
   .infosQuizz {
-    margin-top: 6em;
-    display: flex;
+    display: none;
     flex-direction: column;
-    justify-items: flex-start;
-  }
-
-  .card-body {
-    margin: 0px !important; /* retire le cadre blanc */
-    display: flex;
-    flex-direction: column;
-  }
-  .card-title {
-    font-size: 3em;
-    font-family: passion_oneregular;
-    font-weight: normal;
-    text-align: left;
-    color: black;
-    background-color: white;
-    padding-left: 0.2em;
+    justify-content: flex-start;
+    width: -webkit-fill-available;  /* fixe la largeur du container */
+    margin: 3em;
   }
 
   h1 {
@@ -196,26 +117,28 @@ content {
   }
 
   #svgInfo, #svgNiveau, #svgLoi {
-    height: 3em;
+    height: 2em;
     filter: invert(20%) sepia(97%) saturate(4013%); /* tous et IE */
     -webkit-filter: invert(20%) sepia(97%) saturate(4013%); /*SAFARI OPERA CHROME */
     -moz-filter: invert(20%) sepia(97%) saturate(4013%); /*FIREFOX */
   }
 
   .titre{
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 1.3em;
     color: black;
-    font-weight: normal;
-    font-size: 32pt;
-    padding-left: 10px;
-    flex-grow: 1; /* prend toute la largeur de la zone */
     background-color: white ;
+    padding-bottom: 10px;
+    line-height: 1.5em;
+    font-weight: normal;
+    padding-left: 1em;
   }
 
   #btnQuizz {
-    font-size: 32pt;
-    margin-top: 20px;
-    padding-top: 10px;
+    font-size: 3em;
+    margin-top: 1em;
   }
+  /* ZONE INFO */
 }
 
 /* ecrans moyens : width correspond à la vrai largeur en pixel*/
@@ -288,69 +211,11 @@ content {
    }
 
    .infosQuizz{
+    display: none;
     margin: 0;
     width: 30%;
     justify-content: left;
     align-items: flex-start;
-  }
-
-  /* position du bloc des indicateurs circulaires pris en chargev*/
-  .carousel-indicators {
-    bottom: -40px;
-    justify-content: space-between; 
-  }
-
-  
-  /* forme spécifique circulaire des indicateurs 
-  les !mportant sont nécessaires
-  */
-  .cercle {
-    background-color: green !important;
-    filter: grayscale(100%);
-    border-radius: 50%;
-    width: 15px !important;
-    height: 15px !important;
-  }
-
-  .carousel-control-prev {
-    width: 50px;
-    height: 80%;
-    left: -50px;
-    justify-content: flex-start;
-  }
-
-  .carousel-control-next {
-    width: 50px;
-    height: 80%; 
-    right: -50px;
-    justify-content: flex-end;
-  }
-
-  .carousel-inner {
-    display:flex;
-    flex-direction: row;
-    justify-items: center;
-  }
-
-  .carousel-inner + .carousel-item {
-    overflow: hidden;
-  }
-
-  .carousel-caption {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: center;
-    top: 20px;
-    background-color: transparent !important;
-  }
-
-  /******** infos quizz ******/
-  .infosQuizz {
-    display: flex;
-    flex-direction: column;
-    justify-items: flex-start;
-    align-items: center;
   }
 
   .card-body {
@@ -375,8 +240,8 @@ content {
   }
 
   .titre{
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     font-size: 1.5em;
-    font-family: passion_oneregular;
     color: black;
     padding-left: 20px;
     background-color: white ;
