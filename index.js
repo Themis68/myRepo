@@ -1,3 +1,5 @@
+var version = "1.1m";
+
 document.addEventListener("DOMContentLoaded", init, false);	
 // gestion du portrait/payasage
 window.addEventListener('resize', windowResize, false);
@@ -9,6 +11,8 @@ function init(){
     calculHauteur(matriceDevice.height);
 
     setTimeout('RedirectionJavascript()', 6000);
+
+    setVersion(version);
 }
 
 function RedirectionJavascript(){
@@ -20,4 +24,12 @@ function RedirectionJavascript(){
         //desktop
         document.location.href="./indexDK.html";
     }
+}
+
+/**
+ * 
+ * @returns 
+ */
+ function setVersion(version) {
+    document.getElementById("version").innerHTML = version;
 }
