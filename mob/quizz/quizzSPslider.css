@@ -1,17 +1,11 @@
 /* ne pas mettre de . avant le chemin sinon cela ne fonctionne pas  */
-@import url(../typo/scoreboard/stylesheet.css);
-@import url(../typo/passion_one/stylesheet.css);
+@import url(../../typo/scoreboard/stylesheet.css);
+@import url(../../typo/passion_one/stylesheet.css);
 
 :root {
   --fond-color: #f5efef;
   --fond-proposition: #c1a809;
 }
-
-/* compatibilité des autres navigateurs 
-  filter: grayscale(100%);
-  -webkit-filter: grayscale(100%);
-  -moz-filter: grayscale(100%);
-*/
 
 html {
 

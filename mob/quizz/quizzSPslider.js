@@ -2,10 +2,11 @@
 var matriceDevice = viewportSize();
 
 // chemins
-var pathImagesCommunes = "../images/"   // images communes
-var pathPosters =  "./images/posters/";		//  posters
-var pathBadges = "./images/badges/";		//  badges
-var pathQuizz = "./questionnaires/";		// scénarios des quizz
+var pathImagesCommunes = "../../images/"   // images communes
+var pathPosters =  "../../images/posters/";		//  posters
+var pathBadges = "../../images/badges/";		//  badges
+var pathQuizz = "../../questionnaires/";		// scénarios des quizz
+var pathSVG = "../../images/svg/";			// images svg
 
 var myURLcomplete = document.location.href;
 var myURL  = myURLcomplete.substring( 0 ,myURLcomplete.lastIndexOf( "/" ) );
@@ -89,7 +90,7 @@ function doAfterSlide(indexQuizz){
 
 	// niveau du quizz
 	let svgNiveau = document.getElementById("svgNiveau");
-	svgNiveau.setAttribute("src", "../svg/niveau" + quizz.niveau + ".svg");
+	svgNiveau.setAttribute("src", pathSVG + "niveau" + quizz.niveau + ".svg");
 
 	// description du quizz
 	let descriptionQuizz = document.getElementById("descriptionQuizz");
