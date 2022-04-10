@@ -106,7 +106,7 @@ function doAfterSlide(indexQuizz){
 
 	// bouton de lancement
 	let btnQuizz = document.getElementById("btnQuizz");
-	btnQuizz.setAttribute("href","./zoneQuizz.html?id=" + quizz.id + "&question=1");
+	btnQuizz.setAttribute("href","./quizzSPquestions.html?id=" + quizz.id + "&question=1");
 
 	// afficher la zone d'informations
 	document.getElementsByClassName("infosQuizz")[0].style.display = "flex";
