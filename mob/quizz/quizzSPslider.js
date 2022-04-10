@@ -5,7 +5,7 @@ var matriceDevice = viewportSize();
 var pathImagesCommunes = "../../images/"   // images communes
 var pathPosters =  "../../images/posters/";		//  posters
 var pathBadges = "../../images/badges/";		//  badges
-var pathQuizz = "../../questionnaires/";		// scénarios des quizz
+var pathQuizz = "../../quizz/questionnaires/";		// scénarios des quizz
 var pathSVG = "../../images/svg/";			// images svg
 
 var myURLcomplete = document.location.href;
