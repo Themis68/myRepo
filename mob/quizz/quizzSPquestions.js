@@ -2,7 +2,7 @@
 var matriceDevice = viewportSize();
 
 // chemins
-var pathQuizz = "./questionnaires/";		// scénarios des quizz
+var pathQuizz = "../../quizz/questionnaires/";		// scénarios des quizz
 
 var myURLcomplete = document.location.href;
 var myURL  = myURLcomplete.substring( 0 ,myURLcomplete.lastIndexOf( "/" ) );
@@ -83,6 +83,7 @@ function clickF(e) {
 }
 
 function chrono(nbSecondesMax) {
+	console.log("appel chrono");
 	let btnJauge = document.getElementById("jauge");
 	let value = parseInt(btnJauge.getAttribute("aria-valuenow"),10) + 1;	// transformation en numérique de la valeur actuelle
 	if (value > nbSecondesMax) {
@@ -226,7 +227,7 @@ function gestChrono(phase, data) {
 				//quizz fini	
 				btnQuestion.innerHTML = "Afficher résultat";
 				console.log(window.nbPointsUtilisateur , window.nbPointsMax);
-				btnQuestion.setAttribute("href","./resultatQuizz.html?id=" + window.quizzId + "&reussir=" + window.nbPointsUtilisateur + "&total=" + window.nbPointsMax);
+				btnQuestion.setAttribute("href","./quizzSPresultat.html?id=" + window.quizzId + "&reussir=" + window.nbPointsUtilisateur + "&total=" + window.nbPointsMax);
 			} else {
 				// affichage bouton question suivante		
 				btnQuestion.innerHTML = "Question suivante";
