@@ -227,7 +227,7 @@ function gestChrono(phase, data) {
 				//quizz fini	
 				btnQuestion.innerHTML = "Afficher résultat";
 				console.log(window.nbPointsUtilisateur , window.nbPointsMax);
-				btnQuestion.setAttribute("href","./resultatQuizz.html?id=" + window.quizzId + "&reussir=" + window.nbPointsUtilisateur + "&total=" + window.nbPointsMax);
+				btnQuestion.setAttribute("href","./quizzSPresultat.html?id=" + window.quizzId + "&reussir=" + window.nbPointsUtilisateur + "&total=" + window.nbPointsMax);
 			} else {
 				// affichage bouton question suivante		
 				btnQuestion.innerHTML = "Question suivante";

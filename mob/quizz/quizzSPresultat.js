@@ -2,10 +2,10 @@
 var matriceDevice = viewportSize();
 
 // chemins
-var pathImagesCommunes = "../images/"   // images communes
-var pathPosters =  "./images/posters/";		//  posters
-var pathBadges = "./images/badges/";		//  badges
-var pathQuizz = "./questionnaires/";		// scénarios des quizz
+var pathImagesCommunes = "../../images/"   // images communes
+var pathPosters =  "../../images/posters/";		//  posters
+var pathBadges = "../../images/badges/";		//  badges
+var pathQuizz = "../../quizz/questionnaires/";		// scénarios des quizz
 
 var myURLcomplete = document.location.href;
 var myURL  = myURLcomplete.substring( 0 ,myURLcomplete.lastIndexOf( "/" ) );
@@ -106,7 +106,7 @@ function getInfoQuizz(indexQuizz){
 
 	// niveau du quizz
 	let svgNiveau = document.getElementById("svgNiveau");
-	svgNiveau.setAttribute("src", "../svg/niveau" + infosQuizz.niveau + ".svg");
+	svgNiveau.setAttribute("src", "../../images/svg/niveau" + infosQuizz.niveau + ".svg");
 
 	// description du quizz
 	let descriptionQuizz = document.getElementById("descriptionQuizz");
@@ -122,7 +122,7 @@ function getInfoQuizz(indexQuizz){
 
 	// bouton de lancement
 	let btnQuizz = document.getElementById("btnGameOver");
-	btnQuizz.setAttribute("href","./zoneQuizz.html?id=" + infosQuizz.id + "&question=1");
+	btnQuizz.setAttribute("href","./quizzSPslider.html?id=" + infosQuizz.id + "&question=1");
 
 	poster = document.getElementById("imgPoster");
 	poster.setAttribute("src",pathPosters + (infosQuizz.loi || "bases.png"));
