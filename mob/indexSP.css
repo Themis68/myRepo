@@ -13,6 +13,7 @@ a {
 body {
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
   background-color: white;
 }
 
@@ -96,8 +97,8 @@ content {
 /* petits écrans */
 @media (orientation: portrait) and (max-device-width: 480px) {
   /*********  MENUS  **********/
-  header {
-    /* ici il prend toute la largeur */
+  /*header {
+    /* ici il prend toute la largeur
     border-bottom: 0.3em solid green; 
   }
   
@@ -111,18 +112,18 @@ content {
     justify-content: flex-start;
     align-items: center;
     padding-left: 1em;
-  }
+  }*/
 
-  /* logo SVG */
+  /* logo SVG 
   object {
     height: 7em;
-  }
+  }*/
 
-  nav a span {
+  /*nav a span {
     font-family: scoreboardregular;
     font-size: 6em;
     color: black;
-  }
+  }*/
 
   /*********  CONTENT  **********/
   content {

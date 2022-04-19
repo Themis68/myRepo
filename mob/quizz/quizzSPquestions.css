@@ -4,7 +4,10 @@
 
 :root {
   --fond-color: #f5efef;
-  --fond-proposition: #c1a809;
+  --proposition: #c1a809;
+  --proposition-ko: red;
+  --proposition-ok: green;
+  --proposition-none:white;
 }
 /* compatibilité des autres navigateurs 
   filter: grayscale(100%);
@@ -44,8 +47,8 @@ content {
 
 
 @media (orientation: portrait) and (max-device-width: 480px) {
-  header {
-    /* ici il prend toute la largeur */
+  /*header {
+    /* ici il prend toute la largeur 
     border-bottom: 0.3em solid green; 
   }
   
@@ -61,34 +64,37 @@ content {
     padding-left: 1em;
   }
 
-  object {
+  /*object {
     height: 7em;
-  }
+  }*/
 
-  .asi-title{
+  /*.asi-title{
     font-family: scoreboardregular;
     font-size: 6em;
     color: black;
-  }
+  }*/
 
   /*********  CONTENT  **********/
   content {
     display: flex;
     flex-direction: column;
-    justify-content: start;
+   /* justify-content: start;
     align-items: center;
-    flex: 1;
+    flex: 1;*/
   }
 
-
   /* Zone de question et jauge */
+  question {
+    margin: 1em;
+    padding: 1em;
+  }
+
   .question{
     display: flex;
     flex: 1;
     width: 100%;
     font-size: 4em;
     background-color: #f5efef;
-    padding: 10px;
   }
 
   .asi-text{
@@ -116,7 +122,7 @@ content {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin-top: 2em;
+    /*margin-top: 2em;*/
     flex: 1; /* prend toute la hauteur car align : center*/
     width: 100%;
     margin-right: 1.5em;
@@ -145,11 +151,14 @@ content {
 
 
   /* bouton suite */
-  #btnQuestion {
+  #btnNextQuestion {
     display: none;
     justify-content: center;
-    font-size: 34pt;
-    margin: 10px;
-    padding: 20px;
+    font-size: 3em;
+    margin-top: 1em;
+    margin-left: 5em;
+    margin-right: 5em;
+    padding-left: 1em;
+    padding-right: 1em;
   }
 }

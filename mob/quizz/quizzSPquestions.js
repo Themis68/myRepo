@@ -78,7 +78,6 @@ function clickF(e) {
 	}
 
 	if((e.target.id).indexOf("Prop") > 0) {
-		console.log("clickF : proposition " + e.target.id);
 		// est-ce le premier click ?
 		let zonePropositions = document.getElementById("zone");
 		if (zonePropositions.dataset.click == "F") {
@@ -125,6 +124,10 @@ function gestChrono(phase, data) {
 		case "":
 			// on masque les propositions
 			document.getElementById("propositions").style.display = "none";
+			// on réinitiliase l'état du click des propositions
+			let zonePropositions = document.getElementById("zone");
+			zonePropositions.dataset.click = "F";
+
 			// récupère la question
 			window.question = window.script[window.indexQuestion-1];
 			// libellé question
@@ -144,7 +147,8 @@ function gestChrono(phase, data) {
 			// afficher les libellés des propositions : ici sinon on ne peut pas travailler sur son contenu
 			document.getElementById("propositions").style.display = "flex";
 			// MAJ bordures pour la nouvelle question
-			bord = "white solid 1em";
+			bord = "var(--proposition-none) sold 1em";
+			fond = "var(--proposition)";
 			for (let i=0; i < 4; i++) {
 				// couleur bordure poroposition (LI)
 				document.getElementById("prop" + (i+1)).style.borderLeft = bord;
@@ -196,18 +200,19 @@ function gestChrono(phase, data) {
 						document.getElementById('bonne').play();
 						window.nbPointsUtilisateur = window.nbPointsUtilisateur + pointsQuestion;
 					}
-					fond = "green";
-					bord = "green solid 1em";
+					fond = "var(--proposition-ok)";
+					bord = "var(--proposition-ok) solid 1em";
 				} else {
 					// en cours = selection utilisateur ?
 					if (enCours == numPropClic) {
-						// mauvais choix : ajouter un son
+						// proposition mauvaise cliquée
 						document.getElementById('mauvaise').play();
-						fond = "var(--fond-proposition)";
-						bord = "red solid 1em";
+						fond = "var(--proposition)";
+						bord = "var(--proposition-ko) solid 1em";
 					} else {
-						fond = "var(--fond-proposition)";
-						bord = "white solid 1em";
+						// proposition mauvaise non cliquée
+						fond = "var(--proposition)";
+						bord = "var(--proposition-none) solid 1em";
 					}
 				}
 				// couleur bordure poroposition (LI)
@@ -215,10 +220,8 @@ function gestChrono(phase, data) {
 				// fond proposition (H5)
 				document.getElementById("libProp" + (i+1)).style.backgroundColor = fond;
 				// on retire la gestion du click (H5)
-				propi = document.getElementById("libProp" + (i+1));
-				console.log(propi);
-				propi.removeAttribute("onclick");
-				console.log(propi);
+				//propi = document.getElementById("libProp" + (i+1));
+				//propi.removeAttribute("onclick");
 	
 			}
 
@@ -242,6 +245,7 @@ function gestChrono(phase, data) {
 				btnNextQuestion.innerHTML = "Question suivante";
 			}
 			btnNextQuestion.style.display = "flex";
+
 			break;
 
 		default:

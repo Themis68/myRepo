@@ -1,6 +1,7 @@
 /* ne pas mettre de . avant le chemin sinon cela ne fonctionne pas  */
 @import url(../../typo/scoreboard/stylesheet.css);
 @import url(../../typo/passion_one/stylesheet.css);
+@import url(../../commun.css);
 
 :root {
   --fond-color: #f5efef;
@@ -20,27 +21,28 @@
   padding: 0;
 }
 
+html {
+  margin: 10px;
+}
 
-@media (max-device-width: 480px) {
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 20em;
+  background-color: white;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+
+@media (orientation: portrait) and (max-device-width: 480px) {
   /*************** CONTENT ****************/
 
 
-  html {
-      margin: 10px;
-  }
-
-  body {
-      display: flex;
-      flex-direction: column;
-      min-height: 20em;
-      background-color: white;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  }
-
+  
   /* je m'appuie sur BOOTSTRAP !!! */
 
   /*************** MENUS ****************/
-  .navbar {
+  /*.navbar {
       background-color: white;
       border-bottom: 3px solid green;
       height: fit-content;
@@ -54,12 +56,12 @@
       background-color: white;
   }
     
-  object#svgAlarm {
+  /*object#svgAlarm {
       height: 5em;
-  }
+  }*/
   
-  /* p.card-texte.asi-text : pas reconnnu */
-  /* .card-texte.asi-text: pas reconnu */
+  /* p.card-texte.asi-text : pas reconnnu 
+  /* .card-texte.asi-text: pas reconnu 
   .asi-text{
     font-family: passion_oneregular;
     color: green;
@@ -73,7 +75,7 @@
     color: black;
     font-family: scoreboardregular;
     font-size: 4em;
-  }
+  }*/
 
   content {
     background-color: #f5efef;
