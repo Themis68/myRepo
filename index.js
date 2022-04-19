@@ -1,4 +1,4 @@
-var version = "1.1";
+var version = "m1.0.3";
 
 document.addEventListener("DOMContentLoaded", init, false);	
 // gestion du portrait/payasage
