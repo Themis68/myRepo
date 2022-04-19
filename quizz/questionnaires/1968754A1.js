@@ -7,7 +7,8 @@ var script = [
             attributs: ["11 mètres",
             "9,15 mètres",
             "9,50 mètres",
-            "16,50 mètres"]
+            "16,50 mètres"],
+            temps: 10
         },
         reponse: {
             solution: 1,
@@ -24,12 +25,14 @@ var script = [
             attributs: ["dans le prolongement de la ligne de touche",
             "dans le prolongement de la ligne de but",
             "derrière la main courante",
-            "où il veut, du moment qu'il ne gêne pas le/la tireur-se"]
+            "où il veut, du moment qu'il ne gêne pas le/la tireur-se"],
+            temps: 10
         },
         reponse: {
             solution: 2,
             loi: 6,
-            points: 1
+            points: 1,
+            temps: 10
         }
     },
     {
@@ -40,12 +43,14 @@ var script = [
             attributs: ["de 15 minutes maximum",
             "de 15 minutes minimum",
             "à la convenance de l'arbitre",
-            "dépend de la catégorie"]
+            "dépend de la catégorie"],
+            temps: 10
         },
         reponse: {
             solution: 1,
             loi: 7,
-            points: 2
+            points: 2,
+            temps: 10
         }
     },
     {
@@ -56,12 +61,14 @@ var script = [
             attributs: ["de type 3",
             "de type 4",
             "de type 3 ou 4",
-            "de type 5"]
+            "de type 5"],
+            temps: 10
         },
         reponse: {
             solution: 2,
             loi: 2,
-            points: 1
+            points: 1,
+            temps: 10
         }
     },
     {
@@ -72,12 +79,14 @@ var script = [
             attributs: ["sont obligatoires et peuvent êtres partiellement recouverts",
         "ne sont pas obligatoires",
         "sont obligatoires et peuvent êtres découverts",
-        "sont obligatoires et doivent êtres recouverts totalement"]
+        "sont obligatoires et doivent êtres recouverts totalement"],
+        temps: 10
         },
         reponse: {
             solution: 4,
             loi: 4,
-            points: 1
+            points: 1,
+            temps: 10
         }
     },
     {
@@ -88,12 +97,14 @@ var script = [
             attributs: ["8 joueurs dont le gardien",
             "8 joueurs et 1 gardien en plus",
             "7 joueurs dont le gardien",
-            "9 joueurs dont le gardien"]
+            "9 joueurs dont le gardien"],
+            temps: 10
         },
         reponse: {
             solution: 1,
             loi: 3,
-            points: 1
+            points: 1,
+            temps: 10
         }
     },
     {
@@ -101,11 +112,13 @@ var script = [
         niveau: 2,
         question: {
             libelle: "Combien de remplaçant-es inscrit-es sur la feuille de match peuvent réellement entrer en jeu en football à 11 en France ?",
-            attributs: ["4","3","5","6"]
+            attributs: ["4","3","5","6"],
+            temps: 10
         },
         reponse: {
             solution: 2,
-            points: 1
+            points: 1,
+            temps: 10
         }
     },
     {
@@ -116,11 +129,13 @@ var script = [
             attributs: ["ne peuvent pas êtres sanctionné-es",
             "ne peuvent recevoir qu'un rappel à l'ordre",
             "peuvent êtres sanctionné-es comme tous les joueurs ou joueuses",
-            "ne peuvent recevoir qu'un carton jaune"]
+            "ne peuvent recevoir qu'un carton jaune"],
+            temps: 10
         },
         reponse: {
             solution: 3,
-            points: 2
+            points: 2,
+            temps: 10
         }
     },
     {
@@ -131,11 +146,13 @@ var script = [
             attributs: ["sur un corner",
             "sur un coup-franc",
             "sur une sortie de but",
-            "sur un arrêt de jeu"]
+            "sur un arrêt de jeu"],
+            temps: 10
         },
         reponse: {
             solution: 4,
-            points: 1
+            points: 1,
+            temps: 10
         }
     },
     {
@@ -146,11 +163,13 @@ var script = [
             attributs: ["à tout moment pendant le match",
             "seulement lors d'un arrêt de jeu",
             "seulement en cas de blessure du gardien",
-            "seulement à la mi-temps"]
+            "seulement à la mi-temps"],
+            temps: 10
         },
         reponse: {
             solution: 2,
-            points: 8
+            points: 8,
+            temps: 10
         }
     },
     {
@@ -158,11 +177,16 @@ var script = [
         niveau: 2,
         question: {
             libelle: "L’entraineur présent sur le banc de touche doit",
-            attributs: ["Assister l’arbitre en cas d’erreur technique de sa part","Adopter un comportement responsable","Effectuer la vérification d’équipement des remplaçants s’il n’y a pas d’arbitre assistant officiel","Ne doit jamais intervenir auprès de l'arbitre"]
+            attributs: ["Assister l’arbitre en cas d’erreur technique de sa part",
+            "Adopter un comportement responsable",
+            "Effectuer la vérification d’équipement des remplaçants s’il n’y a pas d’arbitre assistant officiel",
+            "Ne doit jamais intervenir auprès de l'arbitre"],
+            temps: 10
         },
         reponse: {
             solution: 2,
-            points: 3
+            points: 3,
+            temps: 10
         }
     },
     {
@@ -235,7 +259,8 @@ var script = [
             attributs: ["Peux lever mes deux pieds",
             "Peux lever un pied",
             "Dois laisser les deux pieds au sol",
-            "Peux lever mes deux pieds"]
+            "Peux lever mes deux pieds"],
+            temps: 10
         },
         reponse: {
             solution: 3,
