@@ -21,10 +21,11 @@ var fond = "";
 // on récupère le id du quizz
 var quizzId = getParametersURL("id");
 
-document.addEventListener("DOMContentLoaded", init, false);	
+document.addEventListener("DOMContentLoaded", init, false);
+document.addEventListener('readystatechange', ready, false);	
 document.addEventListener("touchstart", clickF, false);		
 window.addEventListener('resize', windowResize, false);
-document.addEventListener('readystatechange', ready, false);
+
 
 function ready() {
 	if (document.readyState === "complete") {
@@ -66,7 +67,8 @@ function getParametersURL(param){
 }
 
 function clickF(e) {
-	if (e.target.id === "btnQuestion") {
+	// ce click va au-dela du onClick présent dans le code HTML
+	if (e.target.id === "btnNextQuestion") {
 		if (document.getElementById(e.target.id).getAttribute("href") === "#") {
 			console.log("clickF : question suivante");
 			document.getElementById(e.target.id).style.display = "none";
@@ -76,14 +78,18 @@ function clickF(e) {
 	}
 
 	if((e.target.id).indexOf("Prop") > 0) {
-		console.log("clickF : une proposition");
-		// clic sur un des boutons de proposition
-		gestChrono("R", e.target.id);
+		console.log("clickF : proposition " + e.target.id);
+		// est-ce le premier click ?
+		let zonePropositions = document.getElementById("zone");
+		if (zonePropositions.dataset.click == "F") {
+			// clic sur un des boutons de proposition
+			zonePropositions.dataset.click = "T";
+			gestChrono("R", e.target.id);
+		}
 	}
 }
 
 function chrono(nbSecondesMax) {
-	console.log("appel chrono");
 	let btnJauge = document.getElementById("jauge");
 	let value = parseInt(btnJauge.getAttribute("aria-valuenow"),10) + 1;	// transformation en numérique de la valeur actuelle
 	if (value > nbSecondesMax) {
@@ -117,13 +123,12 @@ function gestChrono(phase, data) {
 
 	switch(phase) {
 		case "":
-			console.log("gestChrono : afficher la question");
+			// on masque les propositions
+			document.getElementById("propositions").style.display = "none";
 			// récupère la question
 			window.question = window.script[window.indexQuestion-1];
 			// libellé question
 			document.getElementById("libQuestion").innerHTML = window.question.question.libelle;
-			// on masque les propositions
-			document.getElementById("propositions").style.display = "none";
 			// INIT valeur de la jauge
 			btnJauge.setAttribute("aria-valuenow", 0);	
 			// chrono
@@ -210,7 +215,11 @@ function gestChrono(phase, data) {
 				// fond proposition (H5)
 				document.getElementById("libProp" + (i+1)).style.backgroundColor = fond;
 				// on retire la gestion du click (H5)
-				document.getElementById("libProp" + (i+1)).removeAttribute("onclick");
+				propi = document.getElementById("libProp" + (i+1));
+				console.log(propi);
+				propi.removeAttribute("onclick");
+				console.log(propi);
+	
 			}
 
 			// gestion des points
@@ -222,17 +231,17 @@ function gestChrono(phase, data) {
 			// derniere question ?
 			indexQuestionSuivante = window.script[window.indexQuestion];
 
-			let btnQuestion = document.getElementById("btnQuestion");
+			let btnNextQuestion = document.getElementById("btnNextQuestion");
 			if (indexQuestionSuivante === undefined) {
 				//quizz fini	
-				btnQuestion.innerHTML = "Afficher résultat";
+				btnNextQuestion.innerHTML = "Afficher résultat";
 				console.log(window.nbPointsUtilisateur , window.nbPointsMax);
-				btnQuestion.setAttribute("href","./quizzSPresultat.html?id=" + window.quizzId + "&reussir=" + window.nbPointsUtilisateur + "&total=" + window.nbPointsMax);
+				btnNextQuestion.setAttribute("href","./quizzSPresultat.html?id=" + window.quizzId + "&reussir=" + window.nbPointsUtilisateur + "&total=" + window.nbPointsMax);
 			} else {
 				// affichage bouton question suivante		
-				btnQuestion.innerHTML = "Question suivante";
+				btnNextQuestion.innerHTML = "Question suivante";
 			}
-			btnQuestion.style.display = "flex";
+			btnNextQuestion.style.display = "flex";
 			break;
 
 		default:

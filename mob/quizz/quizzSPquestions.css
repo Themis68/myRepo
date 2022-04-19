@@ -108,10 +108,10 @@ content {
   .progress-bar {
     color: black;
     background-color: green !important;
+    transition: height 0.3s ease 0s;
+
   }
-
-  /* zone de propositions */
-
+  
   propositions {
     display: flex;
     flex-direction: column;
