@@ -10,7 +10,8 @@ var script = [
         },
         reponse: {
             solution: 3,
-            points: 1
+            points: 1,
+            temps: 10
         }
     },
     {
@@ -24,7 +25,8 @@ var script = [
         },
         reponse: {
             solution: 1,
-            points: 2
+            points: 2,
+            temps: 10
         }
     },
     {
@@ -38,7 +40,8 @@ var script = [
         },
         reponse: {
             solution: 2,
-            points: 1
+            points: 1,
+            temps: 10
         }
     },
     {
@@ -52,7 +55,8 @@ var script = [
         },
         reponse: {
             solution: 2,
-            points: 2
+            points: 2,
+            temps: 10
         }
     },
     {
@@ -96,7 +100,8 @@ var script = [
         },
         reponse: {
             solution: 1,
-            points: 1
+            points: 1,
+            temps: 10
         }
     },
     {
@@ -110,7 +115,8 @@ var script = [
         },
         reponse: {
             solution: 3,
-            points: 3
+            points: 3,
+            temps: 10
         }
     },
     {
@@ -124,7 +130,8 @@ var script = [
         },
         reponse: {
             solution: 2,
-            points: 2
+            points: 2,
+            temps: 10
         }
     },
     {
@@ -138,7 +145,8 @@ var script = [
         },
         reponse: {
             solution: 3,
-            points: 4
+            points: 4,
+            temps: 10
         }
     }
 ];
