@@ -98,17 +98,25 @@ content {
   }
 
   .asi-text{
-    font-family: passion_oneregular;
+    /*font-family: passion_oneregular;
     color: green;
     font-weight: normal;
-    font-size: 1em;
+    font-size: 1em;*/
     text-align: left;
     margin-bottom: 10px;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+
+    font-family: system-ui;
+    color: green;
+    font-size: 0.7em;
   }
 
   .progress {
     background-color: #f5efef;
     font-size: 1vw;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
   }
 
   .progress-bar {
@@ -142,10 +150,10 @@ content {
   .card-title {
     font-family: system-ui;
     color: white;
-    font-size: 32pt;
+    font-size: 2.1em;
     background-color: var(--fond-proposition);
     padding-left: 1em;
-    height: 4em;
+    height: 3.5em;
     align-items: center;
   }
 

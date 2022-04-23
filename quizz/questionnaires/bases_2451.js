@@ -4,7 +4,7 @@ var script = [
         niveau: 1,
         loi: 12,
         question: {
-            libelle: " Que veut dire carton blanc ?",
+            libelle: "Que veut dire carton blanc ?",
             attributs: ["Joueur blessé", "Arrêt de jeu","Sortie d’un joueur durant 10 min.","Penalty"],
             temps: 5
         },

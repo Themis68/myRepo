@@ -19,7 +19,7 @@ var script = [
         niveau: 1,
         loi: 3,
         question: {
-            libelle: "ur quelle situation un remplacement est-il possible ?",
+            libelle: "Pour quelle situation un remplacement est-il possible ?",
             attributs: ["n'importe quand","lorsque le gardien intercepte le ballon","lors d'un coup-franc","lors d'un arrêt de jeu"],
             temps: 5
         },
