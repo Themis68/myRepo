@@ -35,50 +35,9 @@ body {
 
 
 @media (orientation: portrait) and (max-device-width: 480px) {
-  /*************** CONTENT ****************/
-
-
-  
-  /* je m'appuie sur BOOTSTRAP !!! */
-
-  /*************** MENUS ****************/
-  /*.navbar {
-      background-color: white;
-      border-bottom: 3px solid green;
-      height: fit-content;
-  }
-
-  .navbar-brand {
-      display: flex;
-      flex-direction: row;
-      justify-content: flex-start;
-      align-self: center;
-      background-color: white;
-  }
-    
-  /*object#svgAlarm {
-      height: 5em;
-  }*/
-  
-  /* p.card-texte.asi-text : pas reconnnu 
-  /* .card-texte.asi-text: pas reconnu 
-  .asi-text{
-    font-family: passion_oneregular;
-    color: green;
-    font-weight: normal;
-    font-size: 1em;
-    text-align: left;
-    margin-bottom: 10px;
-  }
-
-  .asi-title{
-    color: black;
-    font-family: scoreboardregular;
-    font-size: 4em;
-  }*/
 
   content {
-    background-color: #f5efef;
+    background-color: white;
     margin: 10px;
     flex-direction: column;
     align-items: stretch;
@@ -156,6 +115,12 @@ body {
     margin-right: 2em;
   }
 
+  .resultats {
+    font-family: system-ui;
+    color: black;
+    font-size: 3em;
+  }
+
   #ring {
     display: flex;
     flex: 1;
@@ -180,7 +145,7 @@ body {
   }
 
   #svgInfo, #svgNiveau, #svgLoi {
-    width: 8%
+    width: 6%
   }
 
   #btnGameOver, #btnMail {
