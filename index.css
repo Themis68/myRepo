@@ -41,7 +41,7 @@ footer {
     }
   }
 
-/* petits écrans */
+/* SMARTPHONE */
 @media (orientation: portrait) and (max-device-width: 480px) {
   object {
     height: 20em;
@@ -61,36 +61,22 @@ footer {
   }
 }
 
-/* ecrans moyens : width correspond à la vrai largeur en pixel*/
-@media (orientation: landscape) and (max-device-width: 667px){
+/* IPAD */
+@media (orientation: portrait) and (min-device-width: 481px) and (max-device-width: 768px){
   object {
-    height: 10em;
+    height: 20em;
   }
 
   .titre {
     font-family: scoreboardregular;
-    font-weight: lighter;
-    font-size: 3em;
+    font-size: 5em;
     color: black;
   }
 
   .footer {
     font-family: var(--font-family-sans-serif);
-    font-size: 1em;
+    font-size: 2em;
     color: black;
     padding-bottom: 1em;
-  }
-}
-
-/* ecrans moyens : width correspond à la vrai largeur en pixel*/
-@media (orientation: portrait) and (min-device-width: 668px){
-  object {
-    height: 5em;
-  }
-
-  .titre {
-    font-family: scoreboardregular;
-    font-size: 3em;
-    color: black;
   }
 }
