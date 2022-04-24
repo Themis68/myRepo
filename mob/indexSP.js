@@ -3,7 +3,7 @@
 
 // écouteurs
 document.addEventListener("DOMContentLoaded", init, false);	
-window.addEventListener('resize', windowResize, false); //maLibrairie
+window.addEventListener('resize', windowResize, false); 
 
 /**
  * s'exécute au lancement de la page
