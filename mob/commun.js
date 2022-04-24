@@ -99,7 +99,7 @@ function calculURL(url) {
 }
 
 function user() {
-	let avatarOk = false;
+	var avatarOk = false;
 	const reg = /^([a-zA-Z]){3,20}$/g;	// accepte des chaines de caractères jusqu'à 5 caractères
 	do {
 		avatar = window.prompt("Indique ton prénom s'il te plait (3 à 20 lettres maximum)");
@@ -205,7 +205,7 @@ function playSound(soundObj) {
  */
  function calculHauteur(hauteur) {
     // gestion hauteur de device
-    let body = document.querySelector("body");
+    var body = document.querySelector("body");
     body.style.minHeight = hauteur + "px";
 }
 

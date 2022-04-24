@@ -1,14 +1,14 @@
 function paramSlider(nbSlides) {
 	// .holder
-	let holder = document.getElementsByClassName("holder")[0];
+	var holder = document.getElementsByClassName("holder")[0];
 	holder.style.width = (nbSlides * 100) + "%";
   holder.setAttribute("data-nbslides", nbSlides);
 
 	// .slide div
-	let slide = document.getElementsByClassName("slide");
+	var slide = document.getElementsByClassName("slide");
 
 	// .slide-wrapper
-	let slideWrapper = document.getElementsByClassName("slide-wrapper");
+	var slideWrapper = document.getElementsByClassName("slide-wrapper");
 	for(let i = 0; i < nbSlides; i++) {
 		slideWrapper[i].style.width = (100 / nbSlides) + "%";
     slideWrapper[i].style.height = "90%";
