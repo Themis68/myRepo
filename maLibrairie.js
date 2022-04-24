@@ -19,11 +19,9 @@
  * @param {hauteurDevice} hauteur 
  */
  function calculHauteur(hauteur) {
-   console.log(typeof hauteur);
     // gestion hauteur de device
-    var haut = hauteur.toString() ;
-    let body = document.querySelector("body");
-    body.style.minHeight = haut + "px";
+    var body = document.querySelector("body");
+    body.style.minHeight = hauteur.toString() + "px";
 }
 
 /**
