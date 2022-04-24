@@ -24,3 +24,30 @@
         color: black;
     }
 }
+
+@media (orientation: portrait) and (min-device-width: 481px) and (max-device-width: 768px){
+  /* MENU */
+
+    header {
+        /* ici il prend toute la largeur */
+        border-bottom: 0.3em solid green; 
+    }
+
+    /* zone du haut */
+    nav {
+        display: flex;
+    }
+
+    /* logo SVG */
+    object {
+        height: 6em;
+        vertical-align: top;
+    }
+
+    /* titre en font score */
+    nav a span {
+        font-family: scoreboardregular;
+        font-size: 5.5em;
+        color: black;
+    }
+}

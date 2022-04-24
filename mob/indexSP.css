@@ -14,7 +14,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  background-color: white;
+ /* background-color: white;*/
 }
 
 header{
@@ -96,36 +96,10 @@ content {
 
 /* petits écrans */
 @media (orientation: portrait) and (max-device-width: 480px) {
-  /*********  MENUS  **********/
-  /*header {
-    /* ici il prend toute la largeur
-    border-bottom: 0.3em solid green; 
-  }
-  
-  nav {
-    display: flex;
+  body {
+    background-color: white;
   }
 
-  nav a{
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    padding-left: 1em;
-  }*/
-
-  /* logo SVG 
-  object {
-    height: 7em;
-  }*/
-
-  /*nav a span {
-    font-family: scoreboardregular;
-    font-size: 6em;
-    color: black;
-  }*/
-
-  /*********  CONTENT  **********/
   content {
     display: flex;
     flex-direction: column;
@@ -144,37 +118,11 @@ content {
 }
 
 /* ecrans moyens : width correspond à la vrai largeur en pixel*/
-@media (orientation: landscape) and (max-device-width: 670px){
-
-  header {
-    /* ici il prend toute la largeur */
-    border-bottom: 0.3em solid green; 
-  }
-  
-  nav {
-    display: flex;
+@media (orientation: portrait) and (min-device-width: 481px) and (max-device-width: 768px){
+  body {
+    background-color: aqua;
   }
 
-  nav a{
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    padding-left: 1em;
-  }
-
-  /* logo SVG */
-  object {
-    height: 2.5em;
-  }
-
-  nav a span {
-    font-family: scoreboardregular;
-    font-size: 3em;
-    color: black;
-  }
-
-  /*********  CONTENT  **********/
   content {
     display: flex;
     flex-direction: column;
@@ -186,7 +134,7 @@ content {
   content p {
     color: green;
     font-family: passion_oneregular;
-    font-size: 2em;
+    font-size: 3.2em;
     font-weight: normal;
     text-align: center;
   }
