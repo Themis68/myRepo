@@ -118,7 +118,7 @@ function user() {
 //
 function arrayAssoSize(arr) {
     var size = 0;
-    for (let key in arr) 
+    for (var key in arr) 
     {
         if (arr.hasOwnProperty(key)) size++;
     }
@@ -133,7 +133,7 @@ function arrayAssoSize(arr) {
 //
 function arrayAssoSearch(arr, valObject) {
 	var nbEl = arrayAssoSize(arr);
-	for (let ind = 0; ind < nbEl; ind++) {
+	for (var ind = 0; ind < nbEl; ind++) {
 		if (arr[ind].step === valObject) {
 			return ind;	// retourne l'indice du tableau
 		}
