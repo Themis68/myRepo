@@ -117,7 +117,7 @@ content {
   }
 }
 
-/* ecrans moyens : width correspond à la vrai largeur en pixel*/
+/* IPAD */
 @media (orientation: portrait) and (min-device-width: 481px) and (max-device-width: 768px){
   body {
     background-color: aqua;

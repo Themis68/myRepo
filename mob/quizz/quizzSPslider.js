@@ -2,11 +2,12 @@
 var matriceDevice = viewportSize();
 
 // chemins
-var pathImagesCommunes = "../../images/"   // images communes
-var pathPosters =  "../../images/posters/";		//  posters
-var pathBadges = "../../images/badges/";		//  badges
+var pathImagesCommunes = "../images/"   // images communes
+var pathPosters =  pathImagesCommunes + "posters/";		//  posters
+var pathBadges = pathImagesCommunes + "badges/";		//  badges
 var pathQuizz = "../../quizz/questionnaires/";		// scénarios des quizz
-var pathSVG = "../../images/svg/";			// images svg
+var pathSVG = pathImagesCommunes + "svg/";			// images svg
+var pageSuivante = "./quizzSPquestions.html";
 
 var myURLcomplete = document.location.href;
 var myURL  = myURLcomplete.substring( 0 ,myURLcomplete.lastIndexOf( "/" ) );
@@ -106,7 +107,7 @@ function doAfterSlide(indexQuizz){
 
 	// bouton de lancement
 	let btnQuizz = document.getElementById("btnQuizz");
-	btnQuizz.setAttribute("href","./quizzSPquestions.html?id=" + quizz.id + "&question=1");
+	btnQuizz.setAttribute("href", pageSuivante + "?id=" + quizz.id + "&question=1");
 
 	// afficher la zone d'informations
 	document.getElementsByClassName("infosQuizz")[0].style.display = "flex";
