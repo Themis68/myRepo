@@ -2,38 +2,12 @@
 @import url(../../typo/scoreboard/stylesheet.css);
 @import url(../../typo/passion_one/stylesheet.css);
 
-:root {
-  --fond-color: #f5efef;
-  --fond-proposition: #c1a809;
-}
-
-html {
-
-}
-
-a:link,
-a:visited, 
-a:active {
-  text-decoration: none;
-}
-
 body {
-  display: flex;
-  flex-direction: column;
-  background-color: white;
 
   /* sliders */
   margin: 0;
   padding: 0;
   overflow: hidden;
-}
-
-header{
-  display: flex;
-}
-
-content {
-  display: flex;
 }
 
 /* MOBILE */

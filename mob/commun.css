@@ -1,3 +1,35 @@
+:root {
+    --fond-color: #f5efef;
+    --proposition: #c1a809;
+    --proposition-ko: red;
+    --proposition-ok: green;
+    --proposition-none:white;
+}
+
+html {
+
+}
+
+a:link,
+a:visited, 
+a:active {
+  text-decoration: none;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+}
+
+header{
+  display: flex;
+}
+
+content {
+  display: flex;
+}
+  
 @media (orientation: portrait) and (max-device-width: 480px) {
     /* MENU */
 
