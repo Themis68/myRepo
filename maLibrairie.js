@@ -25,8 +25,8 @@
 }
 
 /**
- * redimensionnement écran
- */
+ * redimensionnement écran */
+
  function windowResize() {
     // récupération nouvelle matrice device
     window.matriceDevice = viewportSize();

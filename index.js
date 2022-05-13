@@ -9,10 +9,10 @@ function init(){
     matriceDevice = viewportSize();
     // appel nécessaire pour aligner le footer tout en bas
     calculHauteur(matriceDevice.height);
-
+    setVersion(version);
     setTimeout('RedirectionJavascript()', 6000);
 
-    setVersion(version);
+    
 }
 
 function RedirectionJavascript(){
@@ -33,3 +33,4 @@ function RedirectionJavascript(){
  function setVersion(version) {
     document.getElementById("version").innerHTML = version;
 }
+

@@ -3,6 +3,7 @@ var matriceDevice = viewportSize();
 
 // chemins
 var pathQuizz = "../../quizz/questionnaires/";		// scénarios des quizz
+var pageSuivante = "./quizzSPresultat.html";
 
 var myURLcomplete = document.location.href;
 var myURL  = myURLcomplete.substring( 0 ,myURLcomplete.lastIndexOf( "/" ) );
@@ -239,7 +240,7 @@ function gestChrono(phase, data) {
 				//quizz fini	
 				btnNextQuestion.innerHTML = "Afficher résultat";
 				console.log(window.nbPointsUtilisateur , window.nbPointsMax);
-				btnNextQuestion.setAttribute("href","./quizzSPresultat.html?id=" + window.quizzId + "&reussir=" + window.nbPointsUtilisateur + "&total=" + window.nbPointsMax);
+				btnNextQuestion.setAttribute("href", pageSuivante + "?id=" + window.quizzId + "&reussir=" + window.nbPointsUtilisateur + "&total=" + window.nbPointsMax);
 			} else {
 				// affichage bouton question suivante		
 				btnNextQuestion.innerHTML = "Question suivante";

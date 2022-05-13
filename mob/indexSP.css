@@ -6,19 +6,9 @@ html {
   -webkit-text-size-adjust: none;
 }
 
-a {
-  text-decoration: none;
-}
-
-body {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
- /* background-color: white;*/
-}
-
 header{
   display: flex;
+  flex-direction: row;
 }
 
 content {
@@ -96,9 +86,6 @@ content {
 
 /* petits écrans */
 @media (orientation: portrait) and (max-device-width: 480px) {
-  body {
-    background-color: white;
-  }
 
   content {
     display: flex;
@@ -117,12 +104,8 @@ content {
   }
 }
 
-/* ecrans moyens : width correspond à la vrai largeur en pixel*/
+/* IPAD */
 @media (orientation: portrait) and (min-device-width: 481px) and (max-device-width: 768px){
-  body {
-    background-color: aqua;
-  }
-
   content {
     display: flex;
     flex-direction: column;

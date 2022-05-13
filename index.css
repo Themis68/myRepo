@@ -1,14 +1,36 @@
 @import url(./typo/scoreboard/stylesheet.css);
 @import url(./typo/passion_one/stylesheet.css);
 
+:root {
+  --fond-color: #f5efef;
+  --proposition: #c1a809;
+  --proposition-ko: red;
+  --proposition-ok: green;
+  --proposition-none:white;
+}
+
+html {
+
+}
+
+a:link,
+a:visited, 
+a:active {
+text-decoration: none;
+}
+
 body {
   display: flex;
   flex-direction: column;
+  background-color: white;
+ /* justify-content: flex-start;*/
+  align-items: center;
 }
 
 content {
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
 
   /* alignement vertical sur le viewport */
@@ -22,6 +44,11 @@ content {
   Animation-iteration-count : 1 ;
 }
 
+object {
+  height: 20em;
+  vertical-align: top;
+}
+
 footer {
   display: flex;
   margin-top : auto;
@@ -29,54 +56,37 @@ footer {
 }
 
 @keyframes fade {
-    0% {
-      Opacity : 0 ;
-      transform: scale(0)   /* echelle */
-        translateY(-50%);   /* tiré de la moitié de sa propre hauteur */
-    }
-    100% {
-      Opacity : 1 ;
-      transform: scale(1) 
-        translateY(-50%);
-    }
+  0% {
+    Opacity : 0 ;
+    transform: scale(0)   /* echelle */
+      translateY(-50%);   /* tiré de la moitié de sa propre hauteur */
   }
+  100% {
+    Opacity : 1 ;
+    transform: scale(1) 
+      translateY(-50%);
+  }
+}
+
+.titre {
+  font-family: scoreboardregular;
+  font-size: 5em;
+  color: black;
+}
+
+.footer {
+  font-family: var(--font-family-sans-serif);
+  font-size: 2em;
+  color: black;
+  padding-bottom: 1em;
+}
 
 /* SMARTPHONE */
-@media (orientation: portrait) and (max-device-width: 480px) {
-  object {
-    height: 20em;
-  }
+  @media (orientation: portrait) and (max-device-width: 480px) {
 
-  .titre {
-    font-family: scoreboardregular;
-    font-size: 5em;
-    color: black;
-  }
-
-  .footer {
-    font-family: var(--font-family-sans-serif);
-    font-size: 2em;
-    color: black;
-    padding-bottom: 1em;
-  }
 }
 
 /* IPAD */
 @media (orientation: portrait) and (min-device-width: 481px) and (max-device-width: 768px){
-  object {
-    height: 20em;
-  }
 
-  .titre {
-    font-family: scoreboardregular;
-    font-size: 5em;
-    color: black;
-  }
-
-  .footer {
-    font-family: var(--font-family-sans-serif);
-    font-size: 2em;
-    color: black;
-    padding-bottom: 1em;
-  }
 }
