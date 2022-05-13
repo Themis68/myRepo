@@ -86,6 +86,9 @@ content {
 
 /* petits écrans */
 @media (orientation: portrait) and (max-device-width: 480px) {
+  body {
+    background-color: rgb(84, 161, 96);
+  }
 
   content {
     display: flex;
@@ -105,7 +108,11 @@ content {
 }
 
 /* IPAD */
-@media (orientation: portrait) and (min-device-width: 481px) and (max-device-width: 768px){
+@media (orientation: portrait) and (min-device-width: 481px) and (max-device-width: 810px){
+  body {
+    background-color: rgb(161, 84, 143);
+  }
+
   content {
     display: flex;
     flex-direction: column;
@@ -121,4 +128,19 @@ content {
     font-weight: normal;
     text-align: center;
   }
+}
+
+@media (orientation: portrait) and (min-device-width: 1200px) and (max-device-width: 1920px){
+  body {
+    background-color: rgb(84, 84, 161);
+  }
+
+}
+
+
+@media (orientation: portrait) and (min-device-width: 1200px) and (max-device-width: 1920px){
+  body {
+    background-color: rgb(84, 84, 161);
+  }
+
 }
