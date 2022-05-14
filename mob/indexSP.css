@@ -86,8 +86,28 @@ content {
 
 /* petits écrans */
 @media (orientation: portrait) and (max-device-width: 480px) {
+
+  content {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    flex: 1;
+  }
+
+  content p {
+    color: green;
+    font-family: passion_oneregular;
+    font-size: 3.2em;
+    font-weight: normal;
+    text-align: center;
+  }
+}
+
+/* IPAD 1 / acer*/
+@media (orientation: portrait) and (min-device-width: 481px) and (max-device-width: 768px){
   body {
-    background-color: rgb(84, 161, 96);
+    background-color: blue;
   }
 
   content {
@@ -102,45 +122,6 @@ content {
     color: green;
     font-family: passion_oneregular;
     font-size: 3.2em;
-    font-weight: normal;
-    text-align: center;
-  }
-}
-
-/* IPAD 1 / acer*/
-@media (orientation: portrait) and (min-device-width: 481px) and (max-device-width: 810px){
-  content {
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items: center;
-    flex: 1;
-  }
-
-  content p {
-    color: green;
-    font-family: passion_oneregular;
-    font-size: 3.2em;
-    font-weight: normal;
-    text-align: center;
-  }
-}
-
-/* IPAD 1 / acer*/
-@media (orientation: landscape) and (min-device-width: 481px) and (max-device-width: 1280px){
-
-  content {
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items: center;
-    flex: 1;
-  }
-
-  content p {
-    color: green;
-    font-family: passion_oneregular;
-    font-size: 2em;
     font-weight: normal;
     text-align: center;
   }

@@ -28,7 +28,8 @@ content {
   flex-direction: column;
   justify-content: flex-start;
 }
-  
+
+/* portable */
 @media (orientation: portrait) and (max-device-width: 480px) {
     /* MENU */
 
@@ -66,7 +67,7 @@ content {
 }
 
 /* IPAD 1 / acer*/
-@media (orientation: portrait) and (min-device-width: 481px) and (max-device-width: 810px){
+@media (orientation: portrait) and (min-device-width: 481px) and (max-device-width: 768px){
   /* MENU */
 
     header {

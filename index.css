@@ -82,7 +82,7 @@ footer {
 }
 
 /* SMARTPHONE */
-  @media (orientation: portrait) and (max-device-width: 480px) {
+@media (orientation: portrait) and (max-device-width: 480px) {
 
 }
 

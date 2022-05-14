@@ -1,6 +1,6 @@
-@import url(typo/scoreboard/stylesheet.css);
-@import url(typo/passion_one/stylesheet.css);
-@import url(commun.css);
+@import url(.typo/scoreboard/stylesheet.css);
+@import url(.typo/passion_one/stylesheet.css);
+
 main section {
   width: 80vw;
   display: flex;
