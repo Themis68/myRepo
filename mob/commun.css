@@ -59,39 +59,13 @@ content div p{
     text-align: center;
 }
 
-/* portable */
-/*@media (orientation: portrait) and (max-device-width: 480px) {*/
-    /* MENU */
-
-    
-    
-   
-
 @media (orientation: portrait) {
     /* titre header */
     nav a span {
         font-size: 5.5em;
     }
-    
-    /* titre/question 
-    content div p{
-        font-size: 3.2em;
-    }*/
-
 }
 
 @media (orientation: landscape) {
 
 }
-
-/* IPAD 1 / acer*/
-/*@media (orientation: portrait) and (min-device-width: 481px) and (max-device-width: 768px){*/
-  /* MENU */
-
-
-/*}*/
-
-/* IPAD 1 / acer*/
-/*@media (orientation: landscape) and (min-device-width: 481px) and (max-device-width: 1280px){*/
-    /* MENU */
-/*}*/
