@@ -2,189 +2,95 @@
 @import url(../../typo/scoreboard/stylesheet.css);
 @import url(../../typo/passion_one/stylesheet.css);
 
+/*********  CONTENT  **********/
 
-/* SMARTPHONE */
-@media (orientation: portrait) and (max-device-width: 480px) {
-
-  /*********  CONTENT  **********/
-  content {
-    display: flex;
-    flex-direction: column;
-  }
-
-  /* Zone de question et jauge */
-  question {
-    margin: 1em;
-    padding: 1em;
-  }
-
-  .question{
-    display: flex;
-    flex: 1;
-    width: 100%;
-    font-size: 4em;
-    background-color: #f5efef;
-  }
-
-  .asi-text{
-    text-align: left;
-    margin-bottom: 10px;
-    padding-left: 0.5em;
-    padding-right: 0.5em;
-
-    font-family: system-ui;
-    color: green;
-    font-size: 0.7em;
-  }
-
-  .progress {
-    background-color: #f5efef;
-    font-size: 1vw;
-    padding-left: 0.5em;
-    padding-right: 0.5em;
-  }
-
-  .progress-bar {
-    color: black;
-    background-color: green !important;
-    transition: height 0.3s ease 0s;
-
-  }
-  
-  propositions {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    /*margin-top: 2em;*/
-    flex: 1; /* prend toute la hauteur car align : center*/
-    width: 100%;
-    margin-right: 1.5em;
-    padding-right:1em;
-  }
-
-  .card {
-    display: flex;
-    flex-direction: column ;
-    flex-wrap: wrap;
-    justify-content: flex-end;
-    align-items: stretch;
-    margin: 5px;
-    list-style-type: none !important;
-  }
-
-  .card-title {
-    font-family: system-ui;
-    color: white;
-    font-size: 2.1em;
-    background-color: var(--fond-proposition);
-    padding-left: 1em;
-    height: 3.5em;
-    align-items: center;
-  }
-
-
-  /* bouton suite */
-  #btnNextQuestion {
-    display: none;
-    justify-content: center;
-    font-size: 3em;
-    margin-top: 1em;
-    margin-left: 5em;
-    margin-right: 5em;
-    padding-left: 1em;
-    padding-right: 1em;
-  }
+/* Zone de question et jauge */
+question {
+  margin: 1em;
+  padding: 1em;
 }
 
-/* IPAD */
-@media (orientation: portrait) and (min-device-width: 481px) and (max-device-width: 768px){
+.question{
+  display: flex;
+  flex: 1;
+  width: 100%;
+  font-size: 4em;
+  background-color: #f5efef;
+}
 
-  /*********  CONTENT  **********/
-  content {
-    display: flex;
-    flex-direction: column;
-  }
+.asi-text{
+  text-align: left;
+  margin-bottom: 10px;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
 
-  /* Zone de question et jauge */
-  question {
-    margin: 1em;
-    padding: 1em;
-  }
+  font-family: system-ui;
+  color: green;
+  font-size: 0.7em;
+}
 
-  .question{
-    display: flex;
-    flex: 1;
-    width: 100%;
-    font-size: 4em;
-    background-color: #f5efef;
-  }
+.progress {
+  background-color: #f5efef;
+  font-size: 1vw;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+}
 
-  .asi-text{
-    text-align: left;
-    margin-bottom: 10px;
-    padding-left: 0.5em;
-    padding-right: 0.5em;
+.progress-bar {
+  color: black;
+  background-color: green !important;
+  transition: height 0.3s ease 0s;
 
-    font-family: system-ui;
-    color: green;
-    font-size: 0.7em;
-  }
+}
 
-  .progress {
-    background-color: #f5efef;
-    font-size: 1vw;
-    padding-left: 0.5em;
-    padding-right: 0.5em;
-  }
+propositions {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /*margin-top: 2em;*/
+  flex: 1; /* prend toute la hauteur car align : center*/
+  width: 100%;
+  margin-right: 1.5em;
+  padding-right:1em;
+}
 
-  .progress-bar {
-    color: black;
-    background-color: green !important;
-    transition: height 0.3s ease 0s;
+.card {
+  display: flex;
+  flex-direction: column ;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: stretch;
+  margin: 5px;
+  list-style-type: none !important;
+}
 
-  }
+.card-title {
+  font-family: system-ui;
+  color: white;
+  font-size: 2.1em;
+  background-color: var(--fond-proposition);
+  padding-left: 1em;
+  height: 3.5em;
+  align-items: center;
+}
+
+
+/* bouton suite */
+#btnNextQuestion {
+  display: none;
+  justify-content: center;
+  font-size: 3em;
+  margin-top: 1em;
+  margin-left: 5em;
+  margin-right: 5em;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+@media (orientation: portrait) {
   
-  propositions {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    /*margin-top: 2em;*/
-    flex: 1; /* prend toute la hauteur car align : center*/
-    width: 100%;
-    margin-right: 1.5em;
-    padding-right:1em;
-  }
+}
 
-  .card {
-    display: flex;
-    flex-direction: column ;
-    flex-wrap: wrap;
-    justify-content: flex-end;
-    align-items: stretch;
-    margin: 5px;
-    list-style-type: none !important;
-  }
+@media (orientation: landscape) {
 
-  .card-title {
-    font-family: system-ui;
-    color: white;
-    font-size: 2.1em;
-    background-color: var(--fond-proposition);
-    padding-left: 1em;
-    height: 3.5em;
-    align-items: center;
-  }
-
-
-  /* bouton suite */
-  #btnNextQuestion {
-    display: none;
-    justify-content: center;
-    font-size: 3em;
-    margin-top: 1em;
-    margin-left: 5em;
-    margin-right: 5em;
-    padding-left: 1em;
-    padding-right: 1em;
-  }
 }
