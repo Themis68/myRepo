@@ -76,10 +76,7 @@ h1 {
 }
 
 @media (orientation: portrait) {
-  /* titre header */
-  nav a span {
-      font-size: 5.5em;
-  }
+
 }
 
 @media (orientation: landscape) {

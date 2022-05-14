@@ -64,6 +64,11 @@ content div p{
     nav a span {
         font-size: 5.5em;
     }
+
+    /* titre général de la page */
+    content p {
+        font-size: 3.2em;
+    }
 }
 
 @media (orientation: landscape) {
