@@ -2,15 +2,6 @@
 @import url(../typo/scoreboard/stylesheet.css);
 @import url(../typo/passion_one/stylesheet.css);
 
-html {
-  -webkit-text-size-adjust: none;
-}
-
-header{
-  display: flex;
-  flex-direction: row;
-}
-
  /*--------------------------------  ITEMS CATALOGUES   ------------------------------------------*/
  .items {
   display: flex;
@@ -70,26 +61,11 @@ header{
     width: auto;   /* largeur du parent */
     color: black;
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 9vw;
+    font-size: 5em;
 }
 
 .item_titredesactive {
   color: rgb(208, 188, 188);
-}
-
-content {
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
-  align-items: center;
-  flex: 1;
-}
-
-content p {
-  color: green;
-  font-family: passion_oneregular;
-  font-weight: normal;
-  text-align: center;
 }
 
 /*--------------------------------  FIN ITEMS CATALOGUES   ------------------------------------------*/
@@ -99,11 +75,6 @@ content p {
 /*@media (orientation: portrait) and (max-device-width: 480px) {*/
 
 @media (orientation: portrait) {
-
-  /* titre général de la page */
-  content p {
-    font-size: 3.2em;
-  }
 
 }
 

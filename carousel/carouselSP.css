@@ -16,11 +16,13 @@
     width:10px;
     height:10px;
     border: 2px solid white; 
+    opacity: 0.2 !important;
   }
 
   /* indicateur selectionné */
 .carousel-indicators li.active {
     background-color: RGB(0,255,0);
+    opacity: 0.7 !important;
   }
 
 /* alignement du CAPTION de l'image*/
