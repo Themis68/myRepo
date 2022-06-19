@@ -1,3 +1,5 @@
+var version = "1.0.18";
+
 // initialisation matrice device
  var matriceDevice = viewportSize();
 

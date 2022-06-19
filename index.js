@@ -1,3 +1,6 @@
+var version = "1.0.18";
+
+
 document.addEventListener("DOMContentLoaded", init, false);	
 // gestion du portrait/payasage
 window.addEventListener('resize', windowResize, false);
@@ -23,3 +26,6 @@ function RedirectionJavascript(){
     }
 }
 
+function setVersion(version) {
+    document.getElementById("version").innerHTML = navigator.userAgent + " - " + version;
+}

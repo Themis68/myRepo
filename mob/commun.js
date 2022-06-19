@@ -1,6 +1,5 @@
 // cette variable est nécessaire ici mais aussi dans d'autres pages
 // on ne peut pas éviter de la mettre ici donc
-var version = "1.0.18";
 
 
 var myURLcomplete = document.location.href;
@@ -243,5 +242,5 @@ function isMobileDevice() {
  }
 
  function setVersion(version) {
-  document.getElementById("version").innerHTML = navigator.userAgent; //version;
+  document.getElementById("version").innerHTML = navigator.userAgent + " - " + version;
 }
