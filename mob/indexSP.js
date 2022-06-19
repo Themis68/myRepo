@@ -1,5 +1,6 @@
 // initialisation matrice device
  var matriceDevice = viewportSize();
+ var version = "1.0.18";
 
 // écouteurs
 document.addEventListener("DOMContentLoaded", init, false);	
