@@ -77,12 +77,12 @@ content div p{
 @media (orientation: portrait) {
     /* titre header */
     nav a span {
-        font-size: 5.5em;
+        font-size: 5.4em;
     }
 
     /* titre général de la page */
     content p {
-        font-size: 3.2em;
+        font-size: 3em;
     }
 }
 

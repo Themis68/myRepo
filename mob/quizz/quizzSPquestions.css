@@ -95,7 +95,9 @@ content p {
 }
 
 @media (orientation: portrait) {
-  
+  nav, body {
+    line-height: 1;
+  }
 }
 
 @media (orientation: landscape) {

@@ -1,4 +1,4 @@
-var version = "1.0.16";
+var version = "1.0.17";
 
 document.addEventListener("DOMContentLoaded", init, false);	
 // gestion du portrait/payasage
@@ -11,8 +11,6 @@ function init(){
     calculHauteur(matriceDevice.height);
     setVersion(version);
     setTimeout('RedirectionJavascript()', 6000);
-
-    
 }
 
 function RedirectionJavascript(){
@@ -26,10 +24,6 @@ function RedirectionJavascript(){
     }
 }
 
-/**
- * 
- * @returns 
- */
  function setVersion(version) {
     document.getElementById("version").innerHTML = version;
 }
