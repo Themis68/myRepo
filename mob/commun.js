@@ -238,3 +238,7 @@ function isMobileDevice() {
       return false;
     }
  }
+
+ function setVersion(version) {
+  document.getElementById("version").innerHTML = navigator.userAgent; //version;
+}

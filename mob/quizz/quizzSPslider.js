@@ -40,6 +40,7 @@ function init() {
 	// calcul hauteur
     matriceDevice = viewportSize();
     calculHauteur(matriceDevice.height);
+	setVersion(version);
 }
 
 function creerVignettes(id) {

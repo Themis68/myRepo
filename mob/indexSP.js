@@ -12,4 +12,5 @@ function init() {
     // calcul hauteur
     matriceDevice = viewportSize();
     calculHauteur(matriceDevice.height - 200);
+    setVersion(version);
 }

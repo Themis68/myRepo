@@ -31,6 +31,7 @@ function init() {
 	 // calcul hauteur
 	 matriceDevice = viewportSize();
 	 calculHauteur(matriceDevice.height - 200);
+	 setVersion(version);
 
 	// on charge les infos du quizz
 	quizzId = getParametersURL("id");

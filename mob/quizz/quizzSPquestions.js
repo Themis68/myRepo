@@ -50,6 +50,8 @@ function init() {
 	// l'extension permet depurger le cache du ficheir JS
 	myScript.src = pathQuizz + window.quizz.fichier + "?n=1" ; 
 	document.head.appendChild(myScript);
+
+	setVersion(version);
 }
 
 function getParametersURL(param){

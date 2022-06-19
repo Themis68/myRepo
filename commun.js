@@ -182,3 +182,7 @@ function playSound(soundObj) {
   var sound = document.getElementById(soundObj);
   sound.play();
 }
+
+function setVersion(version) {
+    document.getElementById("version").innerHTML = navigator.userAgent; //version;
+}
