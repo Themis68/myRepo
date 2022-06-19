@@ -234,6 +234,7 @@ function isMobileDevice() {
     || navigator.userAgent.match(/BlackBerry/i)
     || navigator.userAgent.match(/Windows Phone/i)
     || navigator.userAgent.match(/Mobile/i))
+    || navigator.userAgent.match(/X11/i))
     {
       return true;
     } else {
