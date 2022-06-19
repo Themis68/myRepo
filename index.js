@@ -1,5 +1,3 @@
-var version = "1.0.17";
-
 document.addEventListener("DOMContentLoaded", init, false);	
 // gestion du portrait/payasage
 window.addEventListener('resize', windowResize, false);
@@ -23,9 +21,5 @@ function RedirectionJavascript(){
         //desktop
         document.location.href="./indexDK.html";
     }
-}
-
- function setVersion(version) {
-    document.getElementById("version").innerHTML = navigator.userAgent; //version;
 }
 
