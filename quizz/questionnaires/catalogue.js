@@ -34,7 +34,25 @@ var scenario = [
         description: "Mix sur les éléments liés au match",
         niveau: 1,
         temps: 12
-    }
+    },
+    {
+        id: 5,
+        titre: "Les bases sur les acteurs du football",
+        fichier: "bases_5547.js",
+        variable: "script",
+        description: "Joueurs et arbitres",
+        niveau: 1,
+        temps: 8
+    },
+    {
+        id: 6,
+        titre: "Les bases des lois 7 à 10",
+        fichier: "bases_6384.js",
+        variable: "script",
+        description: "Bases sur les lois Duréee, Coup d'envoi, Ballon et issue du match",
+        niveau: 1,
+        temps: 15
+    },
 ]
 /*var scenario = [
     {
