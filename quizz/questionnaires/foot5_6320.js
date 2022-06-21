@@ -4,12 +4,12 @@ var script = [
         niveau: 1,
         loi: 3,
         question: {
-            libelle: "Sélectionner la proposition fausse",
-            attributs: ["équipe de garçons uniquement", "équipe de filles uniquement","équipe mixte libre","équipe avec au maximum 3 filles"],
+            libelle: "Le gardien peut prendre le ballon à la main ...",
+            attributs: ["dans sa zone des 6 m", "dans son demi-terrain","dans sa zone des 12 m","dans sa zone des 4 m"],
             temps: 7
         },
         reponse: {
-            solution: 4,
+            solution: 1,
             points: 1,
             temps: 15
         }

@@ -4,7 +4,7 @@ var script = [
         niveau: 1,
         loi: 3,
         question: {
-            libelle: "Chercher l'intrus : Le gardien ne peut pas prendre le ballon à la main ...",
+            libelle: "Le gardien peut prendre le ballon à la main ...",
             attributs: ["sur une passe de la tête d'un partenaire", "sur une passe au pied d'un partenaire","sur une rentrée de touche","après avoir relaché le ballon"],
             temps: 7
         },
@@ -64,7 +64,7 @@ var script = [
         niveau: 1,
         loi: 3,
         question: {
-            libelle: "Quelles catégories d'âges peuvent jouer au foot à 5 ?",
+            libelle: "Quelles catégories d'âges peuvent jouer au foot à 8 ?",
             attributs: ["u9 à u10","u10 à u11","u10 à u12","u10 à u13"],
             temps: 7
         },

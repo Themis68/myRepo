@@ -7,7 +7,7 @@ var pageSuivante = "./quizzSPresultat.html";
 
 var myURLcomplete = document.location.href;
 var myURL  = myURLcomplete.substring( 0 ,myURLcomplete.lastIndexOf( "/" ) );
-var version = "1.0.18";
+var version = "1.0.19";
 
 // variable d'une question
 var indexQuestion = 1;
