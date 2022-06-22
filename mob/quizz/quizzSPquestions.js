@@ -42,6 +42,7 @@ function init() {
 	// calcul hauteur
 	matriceDevice = viewportSize();
 	calculHauteur(matriceDevice.height);
+	setVersion(version);
 
 	// on récupère le numéro de la question a traiter
 	window.indexQuestion = getParametersURL("question");
@@ -54,7 +55,7 @@ function init() {
 	myScript.src = pathQuizz + window.quizz.fichier + "?n=1" ; 
 	document.head.appendChild(myScript);
 
-	setVersion(version);
+
 }
 
 function getParametersURL(param){
