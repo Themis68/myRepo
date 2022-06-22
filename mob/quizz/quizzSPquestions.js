@@ -1,3 +1,5 @@
+var version = "1.0.20";
+
 // initialisation matrice device
 var matriceDevice = viewportSize();
 
@@ -7,7 +9,7 @@ var pageSuivante = "./quizzSPresultat.html";
 
 var myURLcomplete = document.location.href;
 var myURL  = myURLcomplete.substring( 0 ,myURLcomplete.lastIndexOf( "/" ) );
-var version = "1.0.19";
+
 
 // variable d'une question
 var indexQuestion = 1;
