@@ -19,7 +19,7 @@ var script = [
         niveau: 1,
         loi: 7,
         question: {
-            libelle: "La durée de la pause à la mi§temps est de",
+            libelle: "La durée de la pause à la mi-temps est de",
             attributs: ["15 minutes maximum","15 minutes minimum","15 à 20 minutes","15 à 25 minutes"],
             temps: 7
         },
@@ -34,7 +34,7 @@ var script = [
         niveau: 1,
         loi: 3,
         question: {
-            libelle: "Nombre de changement de joueurs maximum de ...",
+            libelle: "Nombre de changements de joueurs maximum de ...",
             attributs: ["3","4","5","illimité"],
             temps: 7
         },
@@ -64,7 +64,7 @@ var script = [
         niveau: 1,
         loi: 3,
         question: {
-            libelle: "Quelles catégories d'âges peuvent jouer au foot à 11 féminin ?",
+            libelle: "Quelles catégories d'âges peuvent jouer au en u18 féminin ?",
             attributs: ["u15 à u10","u16 à u18","u17 à u18","u14 à u18"],
             temps: 7
         },
@@ -95,11 +95,11 @@ var script = [
         loi: 17,
         question: {
             libelle: "Sur un corner, les défenseurs doivent se trouver à quelle distance du ballon ?",
-            attributs: ["9 m 15 m","9 m","6 m","7 m"],
+            attributs: ["9 m","9 m 15","10 m","11 m"],
             temps: 7
         },
         reponse: {
-            solution: 1,
+            solution: 2,
             points: 1,
             temps: 15
         }
