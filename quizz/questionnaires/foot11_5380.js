@@ -19,8 +19,8 @@ var script = [
         niveau: 1,
         loi: 7,
         question: {
-            libelle: "Pour les u12-u13 une mi-temps dure au maximum",
-            attributs: ["15 minutes maximum","20 minutes minimum","25 minutes maximum","30 minutes maximum"],
+            libelle: "La durée de la pause à la mi§temps est de",
+            attributs: ["15 minutes maximum","15 minutes minimum","15 à 20 minutes","15 à 25 minutes"],
             temps: 7
         },
         reponse: {
@@ -39,7 +39,7 @@ var script = [
             temps: 7
         },
         reponse: {
-            solution: 4,
+            solution: 1,
             points: 2,
             temps: 15
         }
@@ -50,11 +50,11 @@ var script = [
         loi: 2,
         question: {
             libelle: "La taille du ballon peut être ...",
-            attributs: ["Taille 2 ou 3","Taille 3 ou 4","Taille 3 seulement","Taille 4 seulement"],
+            attributs: ["Taille 5 seulement","Taille 4 ou 5","Taille 3 seulement","Taille 4 seulement"],
             temps: 7
         },
         reponse: {
-            solution: 4,
+            solution: 5,
             points: 2,
             temps: 15
         }
@@ -64,12 +64,12 @@ var script = [
         niveau: 1,
         loi: 3,
         question: {
-            libelle: "Quelles catégories d'âges peuvent jouer au foot à 8 ?",
-            attributs: ["u9 à u10","u10 à u11","u10 à u12","u10 à u13"],
+            libelle: "Quelles catégories d'âges peuvent jouer au foot à 11 féminin ?",
+            attributs: ["u15 à u10","u16 à u18","u17 à u18","u14 à u18"],
             temps: 7
         },
         reponse: {
-            solution: 4,
+            solution: 1,
             points: 2,
             temps: 15
         }
@@ -79,8 +79,8 @@ var script = [
         niveau: 1,
         loi: 11,
         question: {
-            libelle: "Au foot à 8, pour la catégorie u10-u11 le hors-jeu existe à partir de ...",
-            attributs: ["Il n'y a pas de hors-jeu","Ligne médiane","Ligne de réparation","Ligne de penalty"],
+            libelle: "Il n'y a pas de hors-jeu lors ...",
+            attributs: ["d'un coup-franc","d'un corner","d'une remise en touche","d'un coup d'envoi"],
             temps: 10
         },
         reponse: {
@@ -95,11 +95,11 @@ var script = [
         loi: 17,
         question: {
             libelle: "Sur un corner, les défenseurs doivent se trouver à quelle distance du ballon ?",
-            attributs: ["4 m","5 m","6 m","7 m"],
+            attributs: ["9 m 15 m","9 m","6 m","7 m"],
             temps: 7
         },
         reponse: {
-            solution: 3,
+            solution: 1,
             points: 1,
             temps: 15
         }
@@ -124,8 +124,8 @@ var script = [
         niveau: 1,
         loi: 3,
         question: {
-            libelle: "Une équipe peut être composée de combien de remplaçants au maximum ?",
-            attributs: ["1","2","3","4"],
+            libelle: "La feuille de match peut avoir combien de remplaçants au maximum ?",
+            attributs: ["5","7","9","12"],
             temps: 7
         },
         reponse: {
@@ -140,7 +140,7 @@ var script = [
         loi: 10,
         question: {
             libelle: "A quelle distance du but se trouve le point de penalty ?",
-            attributs: ["4,5 m","6 m","7,50 m","9 m"],
+            attributs: ["8 m","9 m","9 m 15","11 m"],
             temps: 7
         },
         reponse: {
