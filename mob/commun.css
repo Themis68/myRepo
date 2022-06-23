@@ -24,22 +24,6 @@ body {
     margin: 0;
 }
 
-content {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  justify-content: start;
-  align-items: center;
-  flex: 1;
-}
-
-content p {
-    color: green;
-    font-family: passion_oneregular;
-    font-weight: normal;
-    text-align: center;
-  }
-
 /* -------------     HEADER       ------------- */
 header {
     /* ici il prend toute la largeur */
@@ -64,7 +48,23 @@ nav a span {
     font-family: scoreboardregular;
     color: black;
 }
-/* ------------------------------------------------ */
+
+
+content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    justify-content: start;
+    align-items: center;
+    flex: 1;
+}
+
+content p {
+    color: green;
+    font-family: passion_oneregular;
+    font-weight: normal;
+    text-align: center;
+}
 
 /* titre/question */
 content div p{

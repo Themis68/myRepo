@@ -87,12 +87,14 @@ propositions {
   padding-right: 1em;
 }
 
+/*
 content p {
   color: green;
   font-family: passion_oneregular;
   font-weight: normal;
   text-align: center;
 }
+*/
 
 @media (orientation: portrait) {
   nav, body {
