@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", init, false);	
 
 function init(){
-    header();
+    /* header() */
     footer();
 }
 

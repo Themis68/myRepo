@@ -1,5 +1,31 @@
-@import url(.typo/scoreboard/stylesheet.css);
-@import url(.typo/passion_one/stylesheet.css);
+@import url(typo/scoreboard/stylesheet.css);
+@import url(typo/passion_one/stylesheet.css);
+
+/* page de message pour les grands écrans */
+.pleincadre {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.asimini {
+  width: 12%;
+}
+
+.asititre {
+  font-family: scoreboardregular;
+  color: black;
+  font-size: 5em;
+}
+
+.asimessage {
+  font-family: Arial, Helvetica, sans-serif;
+  color: black;
+  font-size: 2em;
+  text-align: center;
+}
+/******************************************/
 
 main section {
   width: 80vw;
@@ -10,7 +36,7 @@ main section {
 }
 main section div p {
   text-align: center;
-  color: white;
+  color: black;
   font-size: 1.25vw;
 }
 main section div {

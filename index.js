@@ -22,7 +22,8 @@ function RedirectionJavascript(){
         document.location.href="./mob/indexSP.html";
     } else {
         //desktop
-        document.location.href="./indexDK.html";
+        document.location.href="./message.html";
+        //document.location.href="./indexDK.html";
     }
 }
 

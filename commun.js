@@ -38,8 +38,8 @@ function header() {
 
 	myHeader+='<div class="col-12 col-sm-12 col-md-12 col-lg-12">';
 	myHeader+='<a href="'+ url + '/index.html">';
-    myHeader+='<img src="'+ url + '/images/isa.png" /></a>&nbsp;&nbsp;';
-    myHeader+='<span>ARRET SUR IMAGE !</span>';
+    myHeader+='<img class="asimini" src="'+ url + '/images/svg/asi.svg" /></a>&nbsp;&nbsp;';
+    myHeader+='<span class="asititre">ARRET SUR IMAGE !</span>';
     myHeader+='</div>';
 
     var e = document.querySelector('header');
