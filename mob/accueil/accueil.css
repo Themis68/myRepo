@@ -1,10 +1,16 @@
 /* ne pas mettre de . avant le chemin sinon cela ne fonctionne pas  */
-@import url(../typo/scoreboard/stylesheet.css);
-@import url(../typo/passion_one/stylesheet.css);
+@import url(../../typo/scoreboard/stylesheet.css);
+@import url(../../typo/passion_one/stylesheet.css);
 
 
 /* petits écrans */
 /*@media (orientation: portrait) and (max-device-width: 480px) {*/
+
+.version {
+  font-family: Arial, Helvetica, sans-serif;
+  color: green;
+  font-size: 1em;
+}
 
 @media (orientation: portrait) {
 
