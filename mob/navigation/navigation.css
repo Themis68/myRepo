@@ -1,0 +1,38 @@
+.navigation {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background-color: deepskyblue;
+}
+
+.navigation a {
+  display: block;
+  padding: 1em;
+  text-decoration: none;
+  text-align: center;
+}
+
+/* grand ecran */
+.navigation {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+/*@media (min-width: 451px) and (max-width: 800px) {*/
+@media (max-width: 800px) {
+  .navigation {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 450px) {
+  .navigation {
+    flex-flow: column wrap;
+  }
+}
+
+
+
+
