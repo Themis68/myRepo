@@ -8,13 +8,13 @@ var script = [
             "9,15 mètres",
             "9,50 mètres",
             "16,50 mètres"],
-            temps: 15
+            temps: 12
         },
         reponse: {
             solution: 1,
             loi: 1,
             points: 4,
-            temps: 15
+            temps: 12
         }
     },
     {
@@ -26,13 +26,13 @@ var script = [
             "dans le prolongement de la ligne de but",
             "derrière la main courante",
             "où il veut, du moment qu'il ne gêne pas le/la tireur-se"],
-            temps: 15
+            temps: 12
         },
         reponse: {
             solution: 2,
             loi: 6,
             points: 2,
-            temps: 15
+            temps: 12
         }
     },
     {
@@ -44,31 +44,31 @@ var script = [
             "de 15 minutes minimum",
             "à la convenance de l'arbitre",
             "dépend de la catégorie"],
-            temps: 15
+            temps: 12
         },
         reponse: {
             solution: 1,
             loi: 7,
             points: 1,
-            temps: 15
+            temps: 12
         }
     },
     {
         number: 4,
         niveau: 1,
         question: {
-            libelle: "De quelle type peut-être le ballon utilisé pour la catégorie u13",
+            libelle: "De quelle type peut-être le ballon utilisé pour la catégorie u18",
             attributs: ["de type 3",
             "de type 4",
             "de type 3 ou 4",
             "de type 5"],
-            temps: 15
+            temps: 12
         },
         reponse: {
-            solution: 2,
+            solution: 4,
             loi: 2,
             points: 1,
-            temps: 15
+            temps: 12
         }
     },
     {
@@ -80,13 +80,13 @@ var script = [
         "ne sont pas obligatoires",
         "sont obligatoires et peuvent êtres découverts",
         "sont obligatoires et doivent êtres recouverts totalement"],
-        temps: 15
+        temps: 12
         },
         reponse: {
             solution: 4,
             loi: 4,
             points: 1,
-            temps: 15
+            temps: 12
         }
     },
     {
@@ -98,13 +98,13 @@ var script = [
             "8 joueurs et 1 gardien en plus",
             "7 joueurs dont le gardien",
             "9 joueurs dont le gardien"],
-            temps: 15
+            temps: 12
         },
         reponse: {
             solution: 1,
             loi: 3,
             points: 2,
-            temps: 15
+            temps: 12
         }
     },
     {
@@ -113,12 +113,12 @@ var script = [
         question: {
             libelle: "Combien de remplaçants inscrits sur la feuille de match peuvent jouer en football à 11 en u18 ?",
             attributs: ["4","3","5","6"],
-            temps: 15
+            temps: 12
         },
         reponse: {
             solution: 2,
             points: 2,
-            temps: 15
+            temps: 12
         }
     },
     {
@@ -130,12 +130,12 @@ var script = [
             "ne peuvent recevoir qu'un rappel à l'ordre",
             "peuvent êtres sanctionnés",
             "ne peuvent recevoir qu'un carton jaune"],
-            temps: 15
+            temps: 12
         },
         reponse: {
             solution: 3,
             points: 2,
-            temps: 15
+            temps: 12
         }
     },
     {
@@ -147,12 +147,12 @@ var script = [
             "sur un coup-franc",
             "sur une sortie de but",
             "sur une touche"],
-            temps: 15
+            temps: 12
         },
         reponse: {
             solution: 4,
             points: 2,
-            temps: 15
+            temps: 12
         }
     },
     {
@@ -164,12 +164,12 @@ var script = [
             "seulement lors d'un arrêt de jeu",
             "seulement en cas de blessure du gardien",
             "seulement à la mi-temps"],
-            temps: 15
+            temps: 12
         },
         reponse: {
             solution: 2,
             points: 3,
-            temps: 15
+            temps: 12
         }
     },
     {
@@ -181,12 +181,12 @@ var script = [
             "Adopter un comportement responsable",
             "Effectuer la vérification d’équipement des remplaçants s’il n’y a pas d’arbitre assistant officiel",
             "Ne doit jamais intervenir auprès de l'arbitre"],
-            temps: 15
+            temps: 12
         },
         reponse: {
             solution: 2,
             points: 3,
-            temps: 15
+            temps: 12
         }
     },
     {
@@ -198,13 +198,13 @@ var script = [
             "La surface de réparation",
             "Le rond central",
             "La surface libre"],
-            temps: 15
+            temps: 12
         },
         reponse: {
             solution: 2,
             loi: 1,
             points: 1,
-            temps: 15
+            temps: 12
         }
     },
     {
@@ -216,31 +216,31 @@ var script = [
             "La ligne de but",
             "La ligne de touche",
             "La ligne de sortie"],
-            temps: 15
+            temps: 12
         },
         reponse: {
             solution: 2,
             loi: 1,
             points: 2,
-            temps: 15
+            temps: 12
         }
     },
     {
         number: 14,
         niveau: 1,
         question: {
-            libelle: "Ou est donné le coup d’envoi ?",
+            libelle: "Où est donné le coup d’envoi ?",
             attributs: ["Au milieu du rond central",
             "Au point de pénalty",
             "Au point de la faute",
             "Au point de corner"],
-            temps: 15
+            temps: 12
         },
         reponse: {
             solution: 1,
             points: 1,
             loi: 1,
-            temps: 15 
+            temps: 12 
         }
     },
     {
@@ -252,13 +252,13 @@ var script = [
             "La ligne de but",
             "Le coup de but (6 mètres)",
             "Le coup de pied coin (corner)"],
-            temps: 15
+            temps: 12
         },
         reponse: {
             solution: 4,
             points: 2,
             loi: 1,
-            temps: 15
+            temps: 12
         }
     },
     {
@@ -270,13 +270,13 @@ var script = [
             "Peux décoller les deux pieds",
             "Dois laisser au moins les talons au sol",
             "Peux mettre un dex deux pieds sur le terrain"],
-            temps: 15
+            temps: 12
         },
         reponse: {
             solution: 3,
             points: 3,
             loi: 15,
-            temps: 15
+            temps: 12
         }
     }, 
     {
@@ -287,14 +287,14 @@ var script = [
             attributs: ["Le point de penalty",
             "La ligne de but",
             "Le coup de but (6 mètres)",
-            "Le coup de pied coin (corner)"],
-            temps: 15
+            "Le ballon"],
+            temps: 12
         },
         reponse: {
             solution: 1,
             points: 2,
             loi: 1,
-            temps: 15
+            temps: 12
         }
     },
     {
@@ -306,31 +306,31 @@ var script = [
             "9,15 mètres",
             "9,50 mètres",
             "16,50 mètres"],
-            temps: 15
+            temps: 12
         },
         reponse: {
             solution: 2,
             loi: 1,
             points: 2,
-            temps: 15
+            temps: 12
         }
     },
     {
         number: 20,
         niveau: 1,
         question: {
-            libelle: "L'arbitre assistant n'a pas de rôle à jouer dans la situation suivante",
+            libelle: "Dans quelle situation l'arbitre assistant n'a pas de rôle à jouer ?",
             attributs: ["tir au penalty",
             "remplacement de joueur",
             "sortie de ballon",
             "coup d'envoi"],
-            temps: 15
+            temps: 12
         },
         reponse: {
             solution: 4,
             loi: 6,
             points: 2,
-            temps: 15
+            temps: 12
         }
     }
 ];
