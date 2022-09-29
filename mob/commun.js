@@ -243,5 +243,7 @@ function isMobileDevice() {
  }
 
  function setVersion(version) {
-  document.getElementById("version").innerHTML = navigator.userAgent + " - " + version;
-}
+  document.getElementById("version").innerHTML = version;
+
+/*document.getElementById("version").innerHTML = navigator.userAgent + " - " + version;
+ */}
