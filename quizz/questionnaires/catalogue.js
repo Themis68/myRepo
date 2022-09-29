@@ -62,4 +62,13 @@ var scenario = [
         niveau: 1,
         temps: 15
     },
+    {
+        id: 8,
+        titre: "Contrôle des connaissances",
+        fichier: "1968754A1.js",
+        variable: "script",
+        description: "Contrôle des connaissances de base sur l'ensemble des lois (séance 1)",
+        niveau: 1,
+        temps: 15
+    }
 ]

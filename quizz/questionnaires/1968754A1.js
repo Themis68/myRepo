@@ -3,18 +3,18 @@ var script = [
         number: 1,
         niveau: 1,
         question: {
-            libelle: "En foot à 31, le point de PENALTY se situe à combien de mètres de la ligne de but",
+            libelle: "En foot à 11, le point de PENALTY se situe à combien de mètres de la ligne de but",
             attributs: ["11 mètres",
             "9,15 mètres",
             "9,50 mètres",
             "16,50 mètres"],
-            temps: 10
+            temps: 15
         },
         reponse: {
             solution: 1,
             loi: 1,
-            points: 14,
-            temps: 8
+            points: 4,
+            temps: 15
         }
     },
     {
@@ -26,13 +26,13 @@ var script = [
             "dans le prolongement de la ligne de but",
             "derrière la main courante",
             "où il veut, du moment qu'il ne gêne pas le/la tireur-se"],
-            temps: 10
+            temps: 15
         },
         reponse: {
             solution: 2,
             loi: 6,
-            points: 1,
-            temps: 10
+            points: 2,
+            temps: 15
         }
     },
     {
@@ -44,13 +44,13 @@ var script = [
             "de 15 minutes minimum",
             "à la convenance de l'arbitre",
             "dépend de la catégorie"],
-            temps: 10
+            temps: 15
         },
         reponse: {
             solution: 1,
             loi: 7,
-            points: 2,
-            temps: 10
+            points: 1,
+            temps: 15
         }
     },
     {
@@ -62,13 +62,13 @@ var script = [
             "de type 4",
             "de type 3 ou 4",
             "de type 5"],
-            temps: 10
+            temps: 15
         },
         reponse: {
             solution: 2,
             loi: 2,
             points: 1,
-            temps: 10
+            temps: 15
         }
     },
     {
@@ -80,13 +80,13 @@ var script = [
         "ne sont pas obligatoires",
         "sont obligatoires et peuvent êtres découverts",
         "sont obligatoires et doivent êtres recouverts totalement"],
-        temps: 10
+        temps: 15
         },
         reponse: {
             solution: 4,
             loi: 4,
             points: 1,
-            temps: 10
+            temps: 15
         }
     },
     {
@@ -98,44 +98,44 @@ var script = [
             "8 joueurs et 1 gardien en plus",
             "7 joueurs dont le gardien",
             "9 joueurs dont le gardien"],
-            temps: 10
+            temps: 15
         },
         reponse: {
             solution: 1,
             loi: 3,
-            points: 1,
-            temps: 10
+            points: 2,
+            temps: 15
         }
     },
     {
         number: 7,
         niveau: 2,
         question: {
-            libelle: "Combien de remplaçant-es inscrit-es sur la feuille de match peuvent réellement entrer en jeu en football à 11 en France ?",
+            libelle: "Combien de remplaçants inscrits sur la feuille de match peuvent jouer en football à 11 en u18 ?",
             attributs: ["4","3","5","6"],
-            temps: 10
+            temps: 15
         },
         reponse: {
             solution: 2,
-            points: 1,
-            temps: 10
+            points: 2,
+            temps: 15
         }
     },
     {
         number: 8,
         niveau: 2,
         question: {
-            libelle: "En matière de sanctions, les remplaçant-es présent-es sur le banc",
-            attributs: ["ne peuvent pas êtres sanctionné-es",
+            libelle: "En matière de sanctions, les remplaçants présents sur le banc",
+            attributs: ["ne peuvent pas êtres sanctionnés",
             "ne peuvent recevoir qu'un rappel à l'ordre",
-            "peuvent êtres sanctionné-es comme tous les joueurs ou joueuses",
+            "peuvent êtres sanctionnés",
             "ne peuvent recevoir qu'un carton jaune"],
-            temps: 10
+            temps: 15
         },
         reponse: {
             solution: 3,
             points: 2,
-            temps: 10
+            temps: 15
         }
     },
     {
@@ -146,13 +146,13 @@ var script = [
             attributs: ["sur un corner",
             "sur un coup-franc",
             "sur une sortie de but",
-            "sur un arrêt de jeu"],
-            temps: 10
+            "sur une touche"],
+            temps: 15
         },
         reponse: {
             solution: 4,
-            points: 1,
-            temps: 10
+            points: 2,
+            temps: 15
         }
     },
     {
@@ -164,12 +164,12 @@ var script = [
             "seulement lors d'un arrêt de jeu",
             "seulement en cas de blessure du gardien",
             "seulement à la mi-temps"],
-            temps: 10
+            temps: 15
         },
         reponse: {
             solution: 2,
-            points: 8,
-            temps: 10
+            points: 3,
+            temps: 15
         }
     },
     {
@@ -181,12 +181,12 @@ var script = [
             "Adopter un comportement responsable",
             "Effectuer la vérification d’équipement des remplaçants s’il n’y a pas d’arbitre assistant officiel",
             "Ne doit jamais intervenir auprès de l'arbitre"],
-            temps: 10
+            temps: 15
         },
         reponse: {
             solution: 2,
             points: 3,
-            temps: 10
+            temps: 15
         }
     },
     {
@@ -194,27 +194,35 @@ var script = [
         niveau: 1,
         question: {
             libelle: "Comment appelle-t-on la surface dans laquelle le gardien à le droit de prendre le ballon à la main ?",
-            attributs: ["La surface de but","La surface de réparation","Le rond central","La surface libre"]
+            attributs: ["La surface de but",
+            "La surface de réparation",
+            "Le rond central",
+            "La surface libre"],
+            temps: 15
         },
         reponse: {
             solution: 2,
             loi: 1,
             points: 1,
-            temps: 6
+            temps: 15
         }
     },
     {
         number: 13,
         niveau: 1,
         question: {
-            libelle: "Comment appelle-t-on la ligne délémitée à chaque extrémité d’un drapeau de coin (corner) et sur laquelle est posé le but ?",
-            attributs: ["La ligne médiane","La ligne de but","La ligne de touche","La ligne de sortie"]
+            libelle: "Comment appelle-t-on la ligne sur laquelle est posé le but ?",
+            attributs: ["La ligne médiane",
+            "La ligne de but",
+            "La ligne de touche",
+            "La ligne de sortie"],
+            temps: 15
         },
         reponse: {
             solution: 2,
             loi: 1,
             points: 2,
-            temps: 6
+            temps: 15
         }
     },
     {
@@ -225,48 +233,104 @@ var script = [
             attributs: ["Au milieu du rond central",
             "Au point de pénalty",
             "Au point de la faute",
-            "Au point de corner"]
+            "Au point de corner"],
+            temps: 15
         },
         reponse: {
             solution: 1,
             points: 1,
             loi: 1,
-            temps: 5 
+            temps: 15 
         }
     },
     {
         number: 15,
         niveau: 1,
         question: {
-            libelle: "Je mesure 1 mètre de rayon,1/4 de ma surface est marqué au sol, c’est l’endroit ou je place mon ballon pour le tirer, je suis signalisé par un drapeau ?",
-            attributs: ["Le pénalty",
+            libelle: "Je mesure 1 mètre de rayon,1/4 de ma surface est marqué au sol. Qui suis-je ?",
+            attributs: ["Le point de pénalty",
             "La ligne de but",
             "Le coup de but (6 mètres)",
-            "Le coup de pied coin (corner)"]
+            "Le coup de pied coin (corner)"],
+            temps: 15
         },
         reponse: {
             solution: 4,
             points: 2,
             loi: 1,
-            temps: 10
+            temps: 15
         }
     },
     {
         number: 16,
         niveau: 1,
         question: {
-            libelle: "Lors de la remise en jeu par une touche je",
-            attributs: ["Peux lever mes deux pieds",
-            "Peux lever un pied",
-            "Dois laisser les deux pieds au sol",
-            "Peux lever mes deux pieds"],
-            temps: 10
+            libelle: "Lors de la remise en jeu par une touche je...",
+            attributs: ["Peux lever un des deux pieds",
+            "Peux décoller les deux pieds",
+            "Dois laisser au moins les talons au sol",
+            "Peux mettre un dex deux pieds sur le terrain"],
+            temps: 15
         },
         reponse: {
             solution: 3,
+            points: 3,
+            loi: 15,
+            temps: 15
+        }
+    }, 
+    {
+        number: 17,
+        niveau: 1,
+        question: {
+            libelle: "Je mesure 22 cm de diamètre. Qui suis-je ?",
+            attributs: ["Le point de penalty",
+            "La ligne de but",
+            "Le coup de but (6 mètres)",
+            "Le coup de pied coin (corner)"],
+            temps: 15
+        },
+        reponse: {
+            solution: 1,
             points: 2,
             loi: 1,
-            temps: 8
+            temps: 15
+        }
+    },
+    {
+        number: 18,
+        niveau: 1,
+        question: {
+            libelle: "En foot à 11, à quelle distance doit se tenir l'adversaire du point de corner ?",
+            attributs: ["11 mètres",
+            "9,15 mètres",
+            "9,50 mètres",
+            "16,50 mètres"],
+            temps: 15
+        },
+        reponse: {
+            solution: 2,
+            loi: 1,
+            points: 2,
+            temps: 15
+        }
+    },
+    {
+        number: 20,
+        niveau: 1,
+        question: {
+            libelle: "L'arbitre assistant n'a pas de rôle à jouer dans la situation suivante",
+            attributs: ["tir au penalty",
+            "remplacement de joueur",
+            "sortie de ballon",
+            "coup d'envoi"],
+            temps: 15
+        },
+        reponse: {
+            solution: 4,
+            loi: 6,
+            points: 2,
+            temps: 15
         }
     }
 ];
