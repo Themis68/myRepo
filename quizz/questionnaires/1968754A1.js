@@ -319,25 +319,7 @@ var script = [
         number: 19,
         niveau: 1,
         question: {
-            libelle: "Dans quelle situation l'arbitre assistant n'a pas de rôle à jouer ?",
-            attributs: ["tir au penalty",
-            "remplacement de joueur",
-            "sortie de ballon",
-            "coup d'envoi"],
-            temps: 12
-        },
-        reponse: {
-            solution: 4,
-            loi: 6,
-            points: 2,
-            temps: 12
-        }
-    },
-    {
-        number: 20,
-        niveau: 1,
-        question: {
-            libelle: "En fot à 8, à partir d'où y-a-t-il position de hord-jeu ?",
+            libelle: "En foot à 8, à partir d'où y-a-t-il position de hord-jeu potentiel?",
             attributs: ["ligne médiane",
             "ligne de surface de réparation",
             "Ligne de surface de but",
@@ -348,6 +330,24 @@ var script = [
             solution: 2,
             loi: 11,
             points: 2,
+            temps: 12
+        }
+    },
+    {
+        number: 20,
+        niveau: 1,
+        question: {
+            libelle: "Au coup d'envoi, qui peut être dans le cercle",
+            attributs: ["Tous les joueurs",
+            "Les joueurs adverses",
+            "Les joueurs qui engagent",
+            "Seulement le joueur qui engage"],
+            temps: 12
+        },
+        reponse: {
+            solution: 2,
+            loi: 8,
+            points: 1,
             temps: 12
         }
     }
