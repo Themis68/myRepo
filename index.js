@@ -1,4 +1,4 @@
-var version = "1.0.19";
+var version = "1.0.20";
 
 
 document.addEventListener("DOMContentLoaded", init, false);	
@@ -28,5 +28,5 @@ function RedirectionJavascript(){
 }
 
 function setVersion(version) {
-    document.getElementById("version").innerHTML = navigator.userAgent + " - " + version;
+    document.getElementById("version").innerHTML = version;
 }

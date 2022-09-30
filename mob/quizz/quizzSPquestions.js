@@ -138,7 +138,7 @@ function gestChrono(phase, data) {
 			// libellé question
 			document.getElementById("libQuestion").innerHTML = window.question.question.libelle;
 			// numero question
-			document.getElementById("numQuestion").innerHTML = "Question "+indexQuestion;
+			doNextNum(indexQuestion);
 			// INIT valeur de la jauge
 			btnJauge.setAttribute("aria-valuenow", 0);	
 			// chrono
@@ -257,4 +257,15 @@ function gestChrono(phase, data) {
 
 		default:
 	}
+}
+
+function doNextNum(numero) {
+	if (!document.querySelector('[id="innum"] span:nth-of-type(' + (numero) + ')')) {
+	  let e;
+	  e = document.createElement("span");
+	  e.innerHTML = numero + "";
+	  document.querySelector('[id="innum"]').appendChild(e);
+	}
+	document.querySelector('[id="innum"]').style.top = (-(numero - 1) * 5) + "rem";
+	document.querySelector('[id="num"]').value = num + "";
 }

@@ -316,7 +316,7 @@ var script = [
         }
     },
     {
-        number: 20,
+        number: 19,
         niveau: 1,
         question: {
             libelle: "Dans quelle situation l'arbitre assistant n'a pas de rôle à jouer ?",
@@ -329,6 +329,24 @@ var script = [
         reponse: {
             solution: 4,
             loi: 6,
+            points: 2,
+            temps: 12
+        }
+    },
+    {
+        number: 20,
+        niveau: 1,
+        question: {
+            libelle: "En fot à 8, à partir d'où y-a-t-il position de hord-jeu ?",
+            attributs: ["ligne médiane",
+            "ligne de surface de réparation",
+            "Ligne de surface de but",
+            "Il n'y a pas de hors-jeu"],
+            temps: 12
+        },
+        reponse: {
+            solution: 2,
+            loi: 11,
             points: 2,
             temps: 12
         }
