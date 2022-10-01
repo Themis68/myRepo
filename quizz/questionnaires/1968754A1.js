@@ -345,7 +345,7 @@ var script = [
             temps: 12
         },
         reponse: {
-            solution: 2,
+            solution: 3,
             loi: 8,
             points: 1,
             temps: 12
