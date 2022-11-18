@@ -19,7 +19,7 @@ var scenario = [
     },
     {
         id: 3,
-        titre: "Football à 8",
+        titre: "Football à 8 pour les u11",
         fichier: "foot8_6380.js",
         variable: "script",
         description: "Les bases du football à 8",

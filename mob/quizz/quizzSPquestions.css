@@ -1,37 +1,9 @@
 /* ne pas mettre de . avant le chemin sinon cela ne fonctionne pas  */
 @import url(../../typo/scoreboard/stylesheet.css);
 @import url(../../typo/passion_one/stylesheet.css);
+@import url(../chrono/chrono.css);
 
-#num {
-  position: absolute;
-  top: 2.5rem;
-  left: calc(50% - 2.5rem);
-  width: 5rem;
-  height: 5rem;
-  line-height: 5rem;
-  border-radius: 2.5rem;
-  background: var(--proposition-ok);
-  color: #fff;
-  border: 0;
-  box-shadow: 0 0.25rem 0.125rem #e0e0e0;
-  overflow: hidden;
-}
 
-#innum {
-  position: absolute;
-  top: 0;
-  transition: top 0.25s ease;
-}
-
-#innum span {
-  display: block;
-  width: 5rem;
-  height: 5rem;
-  line-height: 5rem;
-  text-align: center;
-  font-size: 2.5rem;
-  font-weight: bold;
-}
 
 /*********  CONTENT  **********/
 
