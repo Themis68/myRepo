@@ -19,12 +19,12 @@ var script = [
         niveau: 1,
         loi: 7,
         question: {
-            libelle: "Pour les u12-u13 une mi-temps dure au maximum",
+            libelle: "Pour les u10-u11 une mi-temps dure au maximum",
             attributs: ["15 minutes maximum","20 minutes minimum","25 minutes maximum","30 minutes maximum"],
             temps: 7
         },
         reponse: {
-            solution: 4,
+            solution: 3,
             points: 1,
             temps: 15
         }
