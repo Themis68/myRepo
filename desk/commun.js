@@ -62,7 +62,7 @@ function footer() {
     myFooter+='</div>';
 
     myFooter+='<div class="col-lg-2 col-md-2 col-sm-2">';
-    myFooter+='<span><a href="'+url+'/src/video.html">Vidéo</a></span>';
+    myFooter+='<span><a href="'+url+'/rencontres/video.html">Vidéo</a></span>';
     myFooter+='</div>';
 
 	myFooter+='<div class="col-lg-2 col-md-2 col-sm-2">';
