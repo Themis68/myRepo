@@ -1,0 +1,392 @@
+/* ne pas mettre de . avant le chemin sinon cela ne fonctionne pas  */
+@import url(../typo/scoreboard/stylesheet.css);
+@import url(../typo/passion_one/stylesheet.css);
+
+:root {
+  --fond-color: #f5efef;
+  --fond-proposition: #c1a809;
+}
+
+/* compatibilité des autres navigateurs 
+  filter: grayscale(100%);
+  -webkit-filter: grayscale(100%);
+  -moz-filter: grayscale(100%);
+*/
+
+html {
+
+}
+
+a:link,
+a:visited, 
+a:active {
+  text-decoration: none;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+}
+
+header{
+  display: flex;
+}
+
+content {
+  display: flex;
+}
+
+/* style commun du carousel */
+.carousel-control-prev-icon {
+  background-image: url("../svg/prev.svg");
+}
+
+.carousel-control-next-icon {
+  background-image: url("../svg/next.svg");
+}
+
+/* gestion de la position des flèches de défilement pris en charge*/
+.carousel-control-prev-icon,   
+.carousel-control-next-icon {
+  width: 50px;
+  height: 50px;
+}
+
+.carousel-control-prev {
+  width: 50px;
+  height: 80%;
+  left: -50px;
+  justify-content: flex-start;
+}
+
+.carousel-control-next {
+  width: 50px;
+  height: 80%; 
+  right: -50px;
+  justify-content: flex-end;
+}
+
+.carousel-inner {
+  display:flex;
+  flex-direction: row;
+  justify-items: center;
+}
+
+.carousel-inner + .carousel-item {
+  overflow: hidden;
+}
+
+.cercle.active {
+  filter: grayscale(0%);
+}
+
+/* fin */
+
+/* petits écrans */
+@media (orientation: portrait) and (max-device-width: 480px) {
+  header {
+    /* ici il prend toute la largeur */
+    border-bottom: 0.3em solid green; 
+  }
+  
+  nav {
+    display: flex;
+  }
+
+  nav a{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 1em;
+  }
+
+  object {
+    height: 7em;
+  }
+
+  nav a span {
+    font-family: scoreboardregular;
+    font-size: 6em;
+    color: black;
+  }
+
+  /*********  CONTENT  **********/
+  content {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    flex: 1;
+  }
+
+  content p {
+    color: green;
+    font-family: passion_oneregular;
+    font-size: 3.2em;
+    font-weight: normal;
+    text-align: center;
+  }
+    
+  /* alignement dex deux zones vignette + infos */
+  .card {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  /***********
+   CAROUSSEL 
+   ************/
+
+  /* position du bloc des indicateurs circulaires pris en chargev*/
+  .carousel-indicators {
+    bottom: -90px;
+    justify-content: space-between; 
+  }
+
+  /* forme spécifique circulaire des indicateurs 
+  les !mportant sont nécessaires
+  */
+  .cercle {
+    background-color: green !important;
+    filter: grayscale(100%);
+    border-radius: 50%;
+    width: 40px !important;
+    height: 40px !important;
+  }
+
+  .carousel-caption {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    top: 20px;
+    background-color: transparent !important;
+  }
+
+  /******** infos quizz ******/
+  .infosQuizz {
+    margin-top: 6em;
+    display: flex;
+    flex-direction: column;
+    justify-items: flex-start;
+  }
+
+  .card-body {
+    margin: 0px !important; /* retire le cadre blanc */
+    display: flex;
+    flex-direction: column;
+  }
+  .card-title {
+    font-size: 3em;
+    font-family: passion_oneregular;
+    font-weight: normal;
+    text-align: left;
+    color: black;
+    background-color: white;
+    padding-left: 0.2em;
+  }
+
+  h1 {
+    display: flex;
+    flex-direction: row;
+    line-height: 2;
+  }
+
+  #svgInfo, #svgNiveau, #svgLoi {
+    height: 3em;
+    filter: invert(20%) sepia(97%) saturate(4013%); /* tous et IE */
+    -webkit-filter: invert(20%) sepia(97%) saturate(4013%); /*SAFARI OPERA CHROME */
+    -moz-filter: invert(20%) sepia(97%) saturate(4013%); /*FIREFOX */
+  }
+
+  .titre{
+    color: black;
+    font-weight: normal;
+    font-size: 32pt;
+    padding-left: 10px;
+    flex-grow: 1; /* prend toute la largeur de la zone */
+    background-color: white ;
+  }
+
+  #btnQuizz {
+    font-size: 32pt;
+    margin-top: 20px;
+    padding-top: 10px;
+  }
+}
+
+/* ecrans moyens : width correspond à la vrai largeur en pixel*/
+@media (orientation: landscape) and (max-device-width: 667px){
+  header {
+    /* ici il prend toute la largeur */
+    border-bottom: 0.3em solid green; 
+  }
+  
+  nav {
+    display: flex;
+  }
+
+  nav a{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 1em;
+  }
+
+  object {
+    height: 2.5em;
+  }
+
+  nav a span {
+    font-family: scoreboardregular;
+    font-size: 3em;
+    color: black;
+  }
+
+  /*********  CONTENT  **********/
+  content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    flex: 1;
+  }
+
+  content p {
+    color: green;
+    font-family: passion_oneregular;
+    font-size: 2em;
+    font-weight: normal;
+    text-align: center;
+    padding-bottom: 0.1em;
+  }
+
+  .card {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-left: 2.2em;
+  }
+
+   /***********
+        CAROUSSEL 
+   ************/
+  .card-group {
+    flex: 1;
+  }
+
+   .container-fluid{
+     margin: 0;
+     width: 70%;
+     justify-content: left;
+     align-items: flex-start;
+     padding-left: 15px;
+     padding-right: 0;
+   }
+
+   .infosQuizz{
+    margin: 0;
+    width: 30%;
+    justify-content: left;
+    align-items: flex-start;
+  }
+
+  /* position du bloc des indicateurs circulaires pris en chargev*/
+  .carousel-indicators {
+    bottom: -40px;
+    justify-content: space-between; 
+  }
+
+  
+  /* forme spécifique circulaire des indicateurs 
+  les !mportant sont nécessaires
+  */
+  .cercle {
+    background-color: green !important;
+    filter: grayscale(100%);
+    border-radius: 50%;
+    width: 15px !important;
+    height: 15px !important;
+  }
+
+  .carousel-control-prev {
+    width: 50px;
+    height: 80%;
+    left: -50px;
+    justify-content: flex-start;
+  }
+
+  .carousel-control-next {
+    width: 50px;
+    height: 80%; 
+    right: -50px;
+    justify-content: flex-end;
+  }
+
+  .carousel-inner {
+    display:flex;
+    flex-direction: row;
+    justify-items: center;
+  }
+
+  .carousel-inner + .carousel-item {
+    overflow: hidden;
+  }
+
+  .carousel-caption {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    top: 20px;
+    background-color: transparent !important;
+  }
+
+  /******** infos quizz ******/
+  .infosQuizz {
+    display: flex;
+    flex-direction: column;
+    justify-items: flex-start;
+    align-items: center;
+  }
+
+  .card-body {
+    margin: 0px !important; /* retire le cadre blanc */
+    display: flex;
+    flex-direction: column;
+    justify-items: flex-start;
+  }
+
+  h1 {
+    display: flex;
+    flex-direction: row;
+    justify-items: flex-start;
+    align-items: flex-start;
+  }
+
+  #svgInfo, #svgNiveau, #svgLoi {
+    font-size: 1em;
+    filter: invert(20%) sepia(97%) saturate(4013%); /* tous et IE */
+    -webkit-filter: invert(20%) sepia(97%) saturate(4013%); /*SAFARI OPERA CHROME */
+    -moz-filter: invert(20%) sepia(97%) saturate(4013%); /*FIREFOX */
+  }
+
+  .titre{
+    font-size: 1.5em;
+    font-family: passion_oneregular;
+    color: black;
+    padding-left: 20px;
+    background-color: white ;
+    padding-bottom:10px;
+    line-height: 1.5em;
+  }
+
+  #btnQuizz {
+    font-size: 24pt;
+    line-height: 1em;
+    flex: 1;
+  }
+}
