@@ -33,7 +33,6 @@ var lois = [
 ];
 
 function header() {
-	console.log("header");
     url = calculURL(myURL);
     var myHeader='';
 
@@ -48,7 +47,6 @@ function header() {
 }
 
 function footer() {
-	console.log("footer");
     url = calculURL(myURL);
     var myFooter='';
 

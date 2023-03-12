@@ -141,7 +141,7 @@
           
           var options = this.options();
 
-          var bugElement = videojs.createEl('span', {         // element container
+          var bugElement = videojs.dom.createEl('span', {         // element container
             className: 'vjs-bug vjs-bug-' + options.position
           });
 
@@ -150,7 +150,7 @@
           // Create the element
           switch (options.type) {
             case "pict":
-              var element = videojs.createEl('img', {
+              var element = videojs.dom.createEl('img', {
                 src: options.imgSrc,
                 width: options.width,
                 height: options.height,
@@ -161,7 +161,7 @@
               break;
 
             case "text":
-              var element = videojs.createEl('span', {
+              var element = videojs.dom.createEl('span', {
                 width: options.width, 
                 height: options.height,
                 className: options.classeCSS + " " + (options.visibility ? "vjs-bug-show" : "vjs-bug-hide"),
@@ -172,7 +172,7 @@
               break;
             
             case "canvas":
-            var element = videojs.createEl('canvas', {
+            var element = videojs.dom.createEl('canvas', {
                 width: options.width,
                 height: options.height,
                 className: options.classeCSS + " " + (options.visibility ? "vjs-bug-show" : "vjs-bug-hide")
@@ -186,7 +186,7 @@
         
           // Possibly make it a link
           if (options.link) {
-            var linkElement = videojs.createEl('a', {}, {
+            var linkElement = videojs.dom.createEl('a', {}, {
               href: options.link,
               target: '_blank'
             });

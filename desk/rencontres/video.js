@@ -315,7 +315,6 @@ function switchVideo(n) {
     //
     // affectation de la nouvelle vidéo et des attributs liés
     //
-console.log('myVideo avant ',myVideo);
 
 
 	if (n > arrayAssoSize(rencontres)) {
@@ -685,6 +684,9 @@ console.log('myVideo avant ',myVideo);
 function listeEvents(id, arrayEventDef) {
     //
     // créé le tableau des évènements vidéos
+	//
+	// ajouter le code suivant au fichier video.html
+	//   <events><div id="events"></div></events>
 	//
     for (let key in arrayEventDef) {
 		document._video.addEventListener(key, capture, false);

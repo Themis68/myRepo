@@ -129,7 +129,7 @@
         } else {
           // affiche l'engrenage
           var staticLabel = document.createElement('span');
-          videojs.addClass(staticLabel, 'vjs-zoom-button-staticlabel');
+          videojs.dom.addClass(staticLabel, 'vjs-zoom-button-staticlabel');
           this.el().appendChild(staticLabel);
         }
       },
@@ -181,7 +181,7 @@
           label = document.createElement('span');
 
       // affectation de la classe
-      videojs.addClass(label, 'vjs-zoom-button-label');
+      videojs.dom.addClass(label, 'vjs-zoom-button-label');
         
       /**
        * Updates player sources or returns current source URL
@@ -200,7 +200,7 @@
 
         var menuButton = new ZoomMenuButton(player, { zoom: niveaux, initialySelectedLabel: choosen.lab , initialySelectedRes: choosen.val}, settings, label);
 
-        videojs.addClass(menuButton.el(), 'vjs-zoom-button');
+        videojs.dom.addClass(menuButton.el(), 'vjs-zoom-button');
         player.controlBar.videoJsZoom = player.controlBar.el_.insertBefore(menuButton.el_, player.controlBar.getChild('fullscreenToggle').el_); // ajout de la liste déroulante
 
         player.controlBar.videoJsZoom.dispose = function(){

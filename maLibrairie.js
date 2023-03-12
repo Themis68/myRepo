@@ -39,7 +39,6 @@
  * détecte s'il s'agit d'un mobile
  */
 function isMobileDevice() { 
-  console.log(navigator.userAgent);
   if( navigator.userAgent.match(/iPhone/i)
     || navigator.userAgent.match(/webOS/i)
     || navigator.userAgent.match(/Android/i)

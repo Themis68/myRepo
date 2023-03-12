@@ -133,12 +133,10 @@ function formStructure(structure) {
     let lString = "";
     let lObject = "";
     let lFinObj = "";
-    console.log(lStructure);
     for (let i=0; i < lStructure.length; i++) {
         lObject = lStructure[i];
         lObject = lObject.split("(");
         lObject[0] = lObject[0].trim();
-        console.log(lObject);
 
         lString += "<span>";
 
@@ -159,7 +157,6 @@ function formStructure(structure) {
             lObject[1] = lObject[1].replace(")","");
             lFinObj = (lObject[1].indexOf('}') > -1 ? true : false);    // présence d'une fin de structure ?
             lObject[1] = lObject[1].replace("}","");    // on supprime l'éventuelle fin de structure
-            console.log(lObject[1]);
             switch (lObject[1]) {
                 case "area":
                     lString += '<textarea id="story" name="story" rows="5" cols="33" id="'+lObject[0]+'"></textarea>';
@@ -269,7 +266,6 @@ $(function(){
         var imageData = ctx.getImageData(canvasX, canvasY, 1, 1);
         var pixel = imageData.data;
         let objet = document.getElementById("panel");
-        console.log(objet.dataset.obj);
         document.getElementById(objet.dataset.obj).value = "rgb("+pixel[0]+','+pixel[1]+','+pixel[2]+")";
     });
 })

@@ -140,7 +140,6 @@ function formStructure(structure) {
     let lString = "";
     let lObject = "";
     let lFinObj = "";
-    console.log(lStructure);
     for (let i=0; i < lStructure.length; i++) {
         lObject = lStructure[i];
         lObject = lObject.split("(");
