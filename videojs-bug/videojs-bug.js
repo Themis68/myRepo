@@ -166,7 +166,7 @@
 
               // NOM EQUIPE
               var span = videojs.dom.createEl('span', {
-                height: options.height,
+                height: options.heightTitre,
                 className: options.classeCSSText + " " + (options.visibility ? "vjs-bug-show" : "vjs-bug-hide"),
                 id: options.id + "T",
                 innerHTML: options.libelle
@@ -183,7 +183,6 @@
               canvas.style.padding= options.paddingInterne;
 
               // Assemblage de l'objet
-              
               (options.type == "equipe" ? element.appendChild(pict) : "");
               element.appendChild(span);
               element.appendChild(canvas);

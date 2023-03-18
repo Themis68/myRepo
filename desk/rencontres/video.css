@@ -460,7 +460,10 @@ footer div span a:hover {
   color:white;
   font-weight: bold;
 }
-footer .events {
-  color: midnightblue;
-  font-size: 0.5vw;
+
+#events {
+  visibility: hidden;
+}
+#events th {
+  font-size: 0vw;
 }

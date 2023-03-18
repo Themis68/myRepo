@@ -1,20 +1,13 @@
 
-step: '00:09:22', : rechercher la loi du jeu pour une poussette dans le dos
 
 
 **************************************
-               A CORRIGER V2
+               A CORRIGER V3
 **************************************
 - erreur sur clic de deuxième vidéo après avoir visionné la première
 - même erreur en changeant de niveau de question
-
-- VIDEOJS: WARN: videojs.createEl() is deprecated; use videojs.dom.createEl() instead
 - le clic sur le fanion n'exécute pas l'appel au site car le clic est considéré comme PAUSE de la vidéo
 - position des module BUG sur la vidéo : les silhouettes se superposent au titre des équipes
-
-**************************************
-               A FAIRE V2
-**************************************
 - bouron BIG PLAY en fond rouge
 - un allerA dans une INFORMATION ?
 - proposer un QUIZZ sur la base de questions du fascicule
@@ -26,9 +19,11 @@ step: '00:09:22', : rechercher la loi du jeu pour une poussette dans le dos
 - rendre reactif une plage de vidéo pour donner des points à l'utilisateur
 - paramétrer la couleur des incrustations (texte)
 - cacher le bouton des points si on a une Information de type "but"
+- step: '00:09:22', : rechercher la loi du jeu pour une poussette dans le dos
+
 
 **************************************
-                FAIT V2
+                CORRIGE
 **************************************
 x préparer la silhouette de l'équipement
 x ajouter un accès direct aux lois du jeu
@@ -63,9 +58,11 @@ x centrer verticalement le logo Mouzillon dans la barre de contrôle
 x récupération de la position xy sur la zone de la vidéo
 x affecter un niveau de competition au match
 x intégrer un allerA dans la question et aux bonus
+x VIDEOJS: WARN: videojs.createEl() is deprecated; use videojs.dom.createEl() instead
+x VIDEOJS: WARN: videojs.addClass() is deprecated; use videojs.dom.addClass() instead
 
 **************************************
-               A FAIRE BACKLOG
+                BACKLOG
 **************************************
 - gestion de la position de l'arbitre
 - prévoir une présentation vidéo au départ (page 1)
