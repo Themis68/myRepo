@@ -149,6 +149,50 @@
 
           // Create the element
           switch (options.type) {
+            case "equipe":
+            case "arbitre":
+              // object général
+              var element = videojs.dom.createEl('div', {
+                className: "vjs-bug-compose",
+              })
+
+              // FANION
+              if (options.type == "equipe") {
+                var pict = videojs.dom.createEl('img', {
+                  src: options.imgSrc,
+                  title: options.alt  || "",
+                  className: (options.visibility ? "vjs-bug-show" : "vjs-bug-hide"),
+                  id: options.id + "F"
+                });
+                pict.style.padding= options.paddingInterne;
+                pict.style.width= "14%";
+              }
+
+              // NOM EQUIPE
+              var span = videojs.dom.createEl('span', {
+                height: options.heightTitre,
+                className: options.classeCSSText + " " + (options.visibility ? "vjs-bug-show" : "vjs-bug-hide"),
+                id: options.id + "T",
+                innerHTML: options.libelle
+              });
+              span.style.padding = options.paddingInterne;
+
+              // SILHOUETTE
+              var canvas = videojs.dom.createEl('canvas', {
+                className: options.classeCSSCanvas + " " + (options.visibility ? "vjs-bug-show" : "vjs-bug-hide"),
+                height: 30,
+                width: 30,
+                id: options.id + "C"
+              });
+              canvas.style.padding= options.paddingInterne;
+
+              // Assemblage de l'objet
+              (options.type == "equipe" ? element.appendChild(pict) : "");
+              element.appendChild(span);
+              element.appendChild(canvas);
+              console.log("double");
+              break;
+              
             case "pict":
               var element = videojs.dom.createEl('img', {
                 src: options.imgSrc,

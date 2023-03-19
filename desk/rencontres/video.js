@@ -114,7 +114,6 @@ function init() {
 
 function central(event) {
 	var target = event.target || event.srcElement; // ce dernier pour compatibilité IE
-	console.log(target);
 	/*if(target.getAttribute('class') == 'vjs-icon-placeholder') {
 		// clic sur big play
 		draw("vjs-bug-silhEquipeA", video[0].gauche.maillotCouleur);
@@ -216,8 +215,7 @@ function draw(id, maillotCouleur) {
 			ctx.fill();		// ordre de remplissage
 			ctx.closePath();
     }
-}
-*/
+}*/
 
 function creerVignettes(id) {
     //
@@ -225,7 +223,8 @@ function creerVignettes(id) {
     //
 
 	// création des indicateurs
-	/*let ind = document.getElementById("indicateurs");
+	/*
+	let ind = document.getElementById("indicateurs");
 
 	for (let i = 0; i < arrayAssoSize(scenario); i++) {
 		let myInd = document.createElement("li");
@@ -234,7 +233,7 @@ function creerVignettes(id) {
 		if(i === 0) { myInd.setAttribute("class", "active cercle"); } else {myInd.setAttribute("class", "cercle");}
 		ind.appendChild(myInd);
 	}
-*/
+	*/
 
     let bloc = document.getElementById(id);
 
@@ -415,6 +414,7 @@ function switchVideo(n) {
 						]
 					},
 					bug: [
+						/*
 					{
 						type: "pict",
 						id:"vjs-bug-pictEquipeA",
@@ -440,7 +440,7 @@ function switchVideo(n) {
 						top: "25px",
 						position: 'tl'
 					}, 
-				/*	{
+					{
 						type: "canvas",
 						id:"vjs-bug-silhEquipeA",
 						visibility: true,
@@ -453,60 +453,84 @@ function switchVideo(n) {
 						position: 'tl'
 					},
 					{
+						type: "text",
+						id:"vjs-bug-titreEquipeB",
+						visibility: true,
+						libelle: "<span>"+ video[0].droite.nom +"</span>",
+						classeCSS: "vjs-bug-titreEquipBug",
+						opacity: 1,
+						right: (30 + 20 + 5) + "px",
+						top: "25px",
+						position: 'tr'
+					}, 
+					{
+						type: "pict",
+						id:"vjs-bug-pictEquipeB",
+						visibility: true,
+						height: 30,
+						width: 30,
+						imgSrc: pathImages + "fanions/" + (video[0].droite.fanion || 'fff.png'),
+						alt: video[0].droite.nom || "fanion par défaut",
+						link: video[0].droite.site,
+						opacity: 0.7,
+						right: "20px",
+						top: "20px",
+						position: 'tr'
+					}*/
+					{
 						type: "equipe",
 						id:"vjs-bug-EquipeA",
 						visibility: true,
-						imgSrc: pathImages + "fanions/" + (video[0].gauche.fanion || "fanions/fff.png"),
+						imgSrc: pathImages + "fanions/" + (video[0].gauche.fanion || "fff.png"),
 						alt: video[0].gauche.nom  || "fanion par défaut",
 						paddingInterne: "3px",
 						libelle: "<span>"+ video[0].gauche.nom +"</span>",
 						heightTitre: 30,
 						classeCSSText: "vjs-bug-titreBug",
-						classeCSSCanvas: "vjs-bug-silhBug"
-						/*opacity: 1,
+						classeCSSCanvas: "vjs-bug-silhBug",
+						opacity: 1,
 						top: "20px",
 						position: 'tc',
-						
-						link: video[0].droite.site,
-						,
-						
+						link: video[0].gauche.site,
+						height: 30,
+						width: 30
 					},
 					{
 						type: "arbitre",
 						id:"vjs-bug-Arbitre",
 						visibility: true,
-						classeCSSCanvas: "vjs-bug-silhBug",
+						imgSrc: pathImages + "fanions/fff.png",
 						paddingInterne: "3px",
 						libelle: "<span>"+ avatar +"</span>",
 						heightTitre: 30,
-						classeCSSCanvas: "vjs-bug-silhBug"
-						/*imgSrc: pathImages + "fanions/fff.png",
+						imgSrc: pathImages + "fanions/fff.png",
 						classeCSSText: "vjs-bug-titreBug",
+						classeCSSCanvas: "vjs-bug-silhBug",
 						opacity: 1,
 						top: "20px",
 						position: 'tc',
-						imgSrc: pathImages + "fanions/fff.png",
-						alt: video[0].droite.nom  || "fanion par défaut",
-						link: video[0].droite.site
+						alt: "fanion par défaut",
+						height: 30,
+						width: 30
 					},
 					{
 						type: "equipe",
 						id:"vjs-bug-EquipeB",
 						visibility: true,
-						imgSrc: pathImages + "fanions/" + (video[0].droite.fanion || "fanions/fff.png"),
+						imgSrc: pathImages + "fanions/" + (video[0].droite.fanion || "fff.png"),
 						paddingInterne: "3px",
 						libelle: "<span>"+ video[0].droite.nom +"</span>",
 						heightTitre: 30,
 						classeCSSText: "vjs-bug-titreBug",
-						classeCSSCanvas: "vjs-bug-silhBug"
-					/*	opacity: 1,
+						classeCSSCanvas: "vjs-bug-silhBug",
+						opacity: 1,
 						top: "20px",
 						position: 'tc',
-						imgSrc: pathImages + "fanions/fff.png",
 						alt: video[0].droite.nom  || "fanion par défaut",
 						link: video[0].droite.site,
-						 
-					}*/
+						height: 30,
+						width: 30
+					}
 				/*	{
 						type: "canvas",
 						id:"vjs-bug-silhArbitre",
@@ -542,37 +566,15 @@ function switchVideo(n) {
 						top: "20px",
 						position: 'tr'
 					},*/
-					{
-						type: "text",
-						id:"vjs-bug-titreEquipeB",
-						visibility: true,
-						libelle: "<span>"+ video[0].droite.nom +"</span>",
-						classeCSS: "vjs-bug-titreEquipBug",
-						opacity: 1,
-						right: (30 + 20 + 5) + "px",
-						top: "25px",
-						position: 'tr'
-					}, 
-					{
-						type: "pict",
-						id:"vjs-bug-pictEquipeB",
-						visibility: true,
-						height: 30,
-						width: 30,
-						imgSrc: pathImages + "fanions/" + (video[0].droite.fanion || 'fff.png'),
-						alt: video[0].droite.nom || "fanion par défaut",
-						link: video[0].droite.site,
-						opacity: 0.7,
-						right: "20px",
-						top: "20px",
-						position: 'tr'
-					}
+					
 				]}
 			});
 		}
 
 		numQuestion = 0;	// on ré-initialise le nombre e questions
 		
+		console.log("init");
+
 		isDefineBVideoJS = true;
 		myVideo.load();
 
@@ -723,7 +725,8 @@ function gestionCamps(mitemps) {
 		document.getElementById("vjs-bug-EquipeBF").setAttribute("src", pathImages + "fanions/"+ (video[0].gauche.fanion || "fff.png"));
 		draw("vjs-bug-EquipeAC", video[0].droite.maillotCouleur, video[0].gauche.shortCouleur);
 		//draw("vjs-bug-EquipeBC", video[0].gauche.maillotCouleur, video[0].droite.shortCouleur);
-	}}
+	}
+}
 
 function showContent(etat) {
 	// ce n'est appelé que si on peut voir les vignettes car c'ets le clic dessus quki affiche !!!!

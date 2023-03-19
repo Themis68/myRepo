@@ -66,7 +66,6 @@ function gestClass(use, objet, value) {
 }
 
 function draw(id, maillotCouleur, shortCouleur) {
-	console.log(id);
 	let myCanvas = document.getElementById(id);
     	if (myCanvas.getContext) {
 			let ctx = myCanvas.getContext("2d");
