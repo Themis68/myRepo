@@ -1,6 +1,125 @@
 @import url(../typo/scoreboard/stylesheet.css);
 @import url(../typo/passion_one/stylesheet.css);
-@import url(../commun.css);
+/*@import url(../commun.css);*/
+html,
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-image: url("images/pelouses/stade3.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+p,
+ol,
+ul,
+li,
+dl,
+dt,
+dd,
+blockquote,
+figure,
+fieldset,
+legend,
+textarea,
+pre,
+iframe,
+hr,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 100%;
+  font-weight: normal;
+}
+ul {
+  list-style: none;
+}
+button,
+input,
+select,
+textarea {
+  margin: 0;
+}
+html {
+  box-sizing: border-box;
+  font-family: passion_oneregular;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+embed,
+iframe,
+object,
+audio,
+video {
+  height: auto;
+  max-width: 100%;
+}
+img {
+  max-width: 100%;
+}
+iframe {
+  border: 0;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+td,
+th {
+  padding: 0;
+  text-align: left;
+}
+
+/************************************************************************/
+/************************************************************************/
+.pleincadre {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.asimini {
+  width: 12%;
+}
+.asititre {
+  font-family: scoreboardregular;
+  color: white;
+  font-size: 2em;
+}
+
+.asimessage {
+  font-family: Arial, Helvetica, sans-serif;
+  color: black;
+  font-size: 2em;
+  text-align: center;
+}
+html {
+  font-family: passion_oneregular;
+}
+body {
+  min-height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+}
+/*********************************************************/
+
 .card-header {
   justify-items: center;
 }
@@ -34,6 +153,17 @@ tete.FermeInfo {
   width: -webkit-fill-available;
   padding-right: 5px;
 }
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+main header {
+  font-family: scoreboardregular;
+  font-size: 3vw;
+  color: white;
+}
 main section {
   display: flex;
   flex-direction: column;
@@ -43,7 +173,7 @@ main section {
 main section div p {
   text-align: center;
   color: white;
-  font-size: 1.25vw;
+  font-size: 1.5vw;
 }
 main menu {
   display: flex;
@@ -67,12 +197,12 @@ main menu carousel {
   display: flex;
   align-self: center;
 }
-main menu carousel .carousel-caption {
+/*main menu carousel .carousel-caption {
   padding-top: 30px!important;
 }
 main menu carousel .titre {
   font-size: 1.5vw;
-}
+}*/
 main content {
   width: 70vw;
   display: flex;
@@ -120,6 +250,35 @@ main content inter tete niveau img {
   text-align: center;
   width: 70%;
 }
+/*
+main content inter tete niveau .btn {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  background-color: transparent;
+  border-color: transparent;
+  padding: 0px;
+}
+main content inter tete niveau .btn:hover {
+  background-color: transparent;
+  border-color: transparent;
+}
+main content inter tete niveau .badge {
+  display: flex;
+  margin-right: 1px;
+  font-weight: 100;
+  font-size: 1vw;
+  text-align: center;
+}
+main content inter tete niveau .badge-current {
+  display: flex;
+  margin-right: 1px;
+  font-weight: 700;
+  font-size: 1.25vw;
+  text-align: center;
+}
+*/
+
 main content inter tete titre {
   flex: 10;
 }
@@ -267,4 +426,23 @@ main content inter suite chrono p {
   border-color: white;
   border-style: solid;
   border-width: 2px;
+}
+footer {
+  display: flex;
+  flex-grow: 0;
+  flex-shrink: 1;
+  /*background-color: midnightblue;*/
+  color: white;
+  padding-top: 5px;
+  padding-left: 5px;
+  font-size: 1.5em;
+  flex-basis: 2.5rem;
+}
+footer div span a {
+  color:white;
+}
+
+footer div span a:hover {
+  color:white;
+  font-weight: bold;
 }

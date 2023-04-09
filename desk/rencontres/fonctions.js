@@ -28,6 +28,17 @@ function arrayAssoSearch(arr, valObject) {
 	return -1;	// aucun résultat
 }
 
+function arrayAssoSearch2(arr, valObject) {
+	let res = null;
+	var nbEl = arrayAssoSize(arr);
+	for (let ind = 0; ind < nbEl; ind++) {
+		if (valObject >= arr[ind].width ) {
+			res = ind;	// retourne l'indice du tableau
+		}
+	}
+	return res;	// aucun résultat
+}
+
 function deleteChild(selector) { 
 	var e = document.querySelector(selector); 
 	var first = e.firstElementChild; 
@@ -64,6 +75,11 @@ function gestClass(use, objet, value) {
 
 	}
 }
+
+function playSound(soundObj) {
+	var sound = document.getElementById(soundObj);
+	sound.play();
+  }
 
 function draw(id, maillotCouleur, shortCouleur) {
 	let myCanvas = document.getElementById(id);
