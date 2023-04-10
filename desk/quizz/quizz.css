@@ -1,5 +1,6 @@
 @import url(../typo/scoreboard/stylesheet.css);
 @import url(../typo/passion_one/stylesheet.css);
+@import url(./animCompteur/animCompteur.css);
 /*@import url(../commun.css);*/
 html,
 body {
@@ -319,6 +320,8 @@ main content inter jauge .progress .progress-bar {
 }
 main content inter question {
   background-color: white;
+  padding-left: 1rem;
+  align-items: baseline;
   flex: 0.5;
 }
 main content inter question p {

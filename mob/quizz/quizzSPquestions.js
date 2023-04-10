@@ -163,7 +163,6 @@ function gestChrono(phase, data) {
 				document.getElementById("libProp" + (i+1)).style.backgroundColor = fond;
 				// récupérer libellé proposition
 				document.getElementById("libProp" + (i+1)).innerHTML = window.question.question.attributs[i];	
-				console.log(window.question.question.attributs[i]);
 				// afficher proposition
 				document.getElementById("libProp" + (i+1)).style.display = "flex";
 			}

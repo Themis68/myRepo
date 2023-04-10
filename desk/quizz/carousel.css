@@ -19,6 +19,7 @@
 /* gestion de l'encadrement des images */
 .carouselFanion:first-child {
     padding: 10px;
+    width: 4em;
 }
 
 

@@ -204,7 +204,7 @@ function gestionBoard(etape, objet) {
 			gestNiveaux(objet.niveau);		// calcul des niveaux
 			scanQuestion(objet.niveau);	// analyse du scénario
 			document.getElementsByClassName("progress-bar")[0].style.display = "none";
-            document.querySelector("inter question p").style.display = "none";
+			document.querySelector("inter question").style.display = "none";
 			document.querySelector("inter propositions").style.display = "none";
 			document.querySelector("inter complement").style.display = "flex";
 			
@@ -238,7 +238,8 @@ function gestionBoard(etape, objet) {
 			document.querySelector("inter suite").style.display = "flex";
 			document.querySelector("inter suite next").style.display = "none";
             // question
-			document.querySelector("inter question p").style.display = "flex";
+			document.querySelector("inter question").style.display = "flex";
+			doNextNum(objet.number);
 			document.querySelector("inter question p").innerHTML = objet.question.libelle;
 			// jauge
 			document.getElementsByClassName("progress")[0].style.display = "flex";	// afficher fond jauge
@@ -247,7 +248,7 @@ function gestionBoard(etape, objet) {
 			// chronoQ
 			document.querySelector("inter suite chrono").style.display = "none";
 			document.querySelector("inter suite chrono p").innerHTML = "0";	// init de la valeur
-			myChronoQ = setInterval(chronoQ, 1000, 7); // 7 secondes pour la lecture de la question
+			myChronoQ = setInterval(chronoQ, 1000, (objet.question.temps !== undefined ? objet.question.temps : quizz.tempsQuestion));  //8 secondes pour la lecture de la question
 			break;
 			
 		case "InterReponse":
@@ -265,7 +266,7 @@ function gestionBoard(etape, objet) {
 			document.querySelector("inter suite next").style.display = "none";
 			document.querySelector("inter suite chrono").style.display = "flex";
 			let pChronoR = document.querySelector("inter suite chrono p");
-			pChronoR.innerHTML = (objet.reponse.temps !== undefined ? objet.reponse.temps : quizz.temps);
+			pChronoR.innerHTML = (objet.reponse.temps !== undefined ? objet.reponse.temps : quizz.tempsReponse);
 			document.querySelector("inter suite chrono").style.display = "flex";
 			myChronoR = setInterval(chronoR, 1000, objet.reponse); // effet de transition
 			break;
@@ -277,7 +278,7 @@ function gestionBoard(etape, objet) {
 			// score
 			document.querySelector("inter tete score p").style.display = "flex";
             // question
-			document.querySelector("inter question p").style.display = "none";
+			document.querySelector("inter question").style.display = "none";
 			// gestion des propositions
 			document.querySelector("inter propositions").style.display = "none";
 			// Suite
