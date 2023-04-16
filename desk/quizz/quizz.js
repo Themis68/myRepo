@@ -1,3 +1,5 @@
+var version = "1.0.0";
+
 var screenParams = [
 	{width:375, code:"xs-6"},
 	{width:576, code:"sm-6"},
@@ -5,6 +7,8 @@ var screenParams = [
 	{width:991, code:"xl-3"}
 ];
 
+var ratio = 0;
+var quizz = [];
 var scripts = [];
 var actions = [];
 var timeCode = '';
@@ -12,6 +16,7 @@ var avatar = '';
 var myURLcomplete = document.location.href;
 var myURL  = myURLcomplete.substring( 0 ,myURLcomplete.lastIndexOf( "/" ) );
 var quizzNbPoint = 0;		// nb points en cours
+var quizzNbPointRegul = 0;	// nb points regiularisé en fonction de la vitesse
 var stepBarre = 0;			// % de progression pour une Question
 var stepDone = 0;			// % de progression effectué
 var idQuizz = null;		// quizz en cours
@@ -231,7 +236,7 @@ function gestionBoard(etape, objet) {
 			// complement
 			document.querySelector("inter complement").style.display = "none";
 			// score
-			document.querySelector("inter tete score p").style.display = "none";
+			document.querySelector("inter tete score p").style.display = "flex";
 			// propositions
 			document.querySelector("inter propositions").style.display = "none";
 			// Suite
@@ -248,7 +253,7 @@ function gestionBoard(etape, objet) {
 			// chronoQ
 			document.querySelector("inter suite chrono").style.display = "none";
 			document.querySelector("inter suite chrono p").innerHTML = "0";	// init de la valeur
-			myChronoQ = setInterval(chronoQ, 1000, (objet.question.temps !== undefined ? objet.question.temps : quizz.tempsQuestion));  //8 secondes pour la lecture de la question
+			myChronoQ = setInterval(chronoQ, 1000, (objet.question.temps !== undefined ? objet.question.temps : quizz.tempsQuestion));  // temps pour la lecture de la question
 			break;
 			
 		case "InterReponse":
@@ -273,8 +278,9 @@ function gestionBoard(etape, objet) {
 
 		case "QuizzTermine":
 			// complement
+			let scoreFinal = quizzNbPointRegul.toFixed(2) ;
 			document.querySelector("inter complement").style.display = "flex";
-			document.querySelector("inter complement p").innerHTML = avatar + " " + tabMessages[3] + " " + quizzNbPoint + (quizzNbPoint > 1 ? " points" : " point") +"</b><br>" +  tabMessages[4];
+			document.querySelector("inter complement p").innerHTML = avatar + " " + tabMessages[3] + " " + scoreFinal + (scoreFinal> 1 ? " points" : " point") +"</b><br>" +  tabMessages[4];
 			// score
 			document.querySelector("inter tete score p").style.display = "flex";
             // question
@@ -320,8 +326,6 @@ function chronoR(reponse) {
 }
 
 function response(numQ, propSel) {
-	clearTimeout(myChronoR);
-
 	// on arrive ici si on a cliqué sur une des propositions OU si on a dépassé le temps
 	//propSel = 1, 2 3 ou 4 ou -1 si on n'a pas cliqué
 
@@ -344,10 +348,26 @@ function response(numQ, propSel) {
 	
 	let loi = "";
 
+	// on récupère le chrono restant
+	let pChronoR = document.querySelector("inter suite chrono p");
+	let tempsRestant = parseInt(pChronoR.innerHTML,10);
+	let tempsPropose = 0.0;
+	if (myQ.reponse.temps == undefined) {
+		// temps du quizz
+		console.log("quizz.tempsReponse " + quizz.tempsReponse);
+		tempsPropose = parseInt(quizz.tempsReponse,10);
+	} else {
+		// temps de la question
+		console.log("myQ.reponse.temps " + myQ.reponse.temps);
+		tempsPropose = parseInt(myQ.reponse.temps,10);
+	}
+	ratio = tempsRestant / tempsPropose ;
+	// on initialise le chrono
+	clearTimeout(myChronoR);
+
 	document.getElementsByClassName("prop"+ myQ.reponse.solution)[0].setAttribute("style", "filter:drop-shadow(2px 4px 6px);cursor:pointer");
 	if (myQ.reponse.loi == undefined){
 		// prendre la loi du quizz
-		console.log("loi du quizz", quizz.loi);
 		loi = lois[quizz.loi-1].fichier;
 	} else {
 		// loi de la question
@@ -371,9 +391,12 @@ function response(numQ, propSel) {
 function addScore(value) {
     if (value === 0) {
         quizzNbPoint = 0;
+		quizzNbPointRegul = quizzNbPoint;
     } else {
         quizzNbPoint = quizzNbPoint + value;
+		quizzNbPointRegul = quizzNbPointRegul + Math.max(1, (value * ratio));	// score minimum = 1 point
 	} 
+	console.log("quizzNbPointRegul " + quizzNbPointRegul);
     var score = ('0' + quizzNbPoint.toString()).substr(-2);       // on a le score avec deux digits
     var scoreMax = ('0' + nbQuests[niveauQuest].points.toString()).substr(-2);
 

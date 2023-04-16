@@ -1,3 +1,5 @@
+var version = "1.0.0";
+
 var scenario = [
         {
             id: 1,

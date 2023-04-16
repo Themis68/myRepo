@@ -8,7 +8,6 @@ function doNextNum(numero) {
 	  e = document.createElement("span");
 	  e.innerHTML = numero + "";
 	  document.querySelector('[id="innum"]').appendChild(e);
-	  console.log(e);
 	}
 	document.querySelector('[id="innum"]').style.top = (-(numero - 1) * 3) + "rem";
 	document.querySelector('[id="num"]').value = num + "";
