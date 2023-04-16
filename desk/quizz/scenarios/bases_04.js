@@ -1,13 +1,13 @@
-var script3 = [               
+var script4 = [               
     {
         number: 1,
         niveau: 1,
         question: {
             libelle: "Quelle taille de ballon est autorisée ?",
-            attributs: ["Taille 3","Taille 4","Taille 5","Taille libre"]
+            attributs: ["Taille 3","Taille 4","Taille 3 ou 4","Taille libre"]
         },
         reponse: {
-            solution: 2,
+            solution: 3,
             loi: 2,
             points: 1
         }
@@ -16,11 +16,11 @@ var script3 = [
         number: 2,
         niveau: 1,
         question: {
-            libelle: "Quelle est la durée d'un match ?",
-            attributs: ["2 x 15 min","2 x 20 min","2 x 25 min","2 x 30 min"]
+            libelle: "Quelle est le temps de jeu total à ne pas dépasser lors du plateau ?",
+            attributs: ["50 min","40 min","30 min","20 min"]
         },
         reponse: {
-            solution: 3,
+            solution: 1,
             loi: 7,
             points: 1
         }
@@ -30,10 +30,10 @@ var script3 = [
         niveau: 1,
         question: {
             libelle: "Quel est le nombre de remplaçants maximum ?",
-            attributs: ["0","2","4","5"]
+            attributs: ["1","2","3","5"]
         },
         reponse: {
-            solution: 3,
+            solution: 2,
             loi: 3,
             points: 1
         }
@@ -42,8 +42,8 @@ var script3 = [
         number: 4,
         niveau: 1,
         question: {
-            libelle: "Quelle catégorie de joueurs peut arbitrer en priorité ces matchs ?",
-            attributs: ["u13-u14","u15-u17","u18","Séniors"]
+            libelle: "Qui peut arbitrer en priorité ces matchs ?",
+            attributs: ["u15-u16","les joueurs eux-mêmes","encadrant ou responsable d'équipe","Séniors"]
         },
         reponse: {
             solution: 2,
@@ -59,7 +59,7 @@ var script3 = [
             attributs: ["Surface de réparation","Milieu de terrain","Zone de but","Il n'y en a pas"]
         },
         reponse: {
-            solution: 1,
+            solution: 4,
             loi: 11,
             points: 2
         }
@@ -68,12 +68,12 @@ var script3 = [
         number: 6,
         niveau: 1,
         question: {
-            libelle: "Comment l'arbitre indique-t-il un coup-franc indirect ?",
-            attributs: ["Il tend le bras vers l'endroit de la faute","Il tend le bras vers le camp de l'équipe sanctionnée","Il lève le bras puis le baisse","Il maintient le bras levé jusqu'à l'exécution du coup-franc"]
+            libelle: "Quelle sanction n'existe pas au foot à 5 ?",
+            attributs: ["Coup-franc indirect","Coup-franc direct","Penalty","Remise en jeu"]
         },
         reponse: {
             temps: 15,
-            solution: 4,
+            solution: 1,
             loi: 12,
             points: 4
         }
@@ -82,11 +82,11 @@ var script3 = [
         number: 7,
         niveau: 1,
         question: {
-            libelle: "A quelle distance doivent se trouver les adversaires lors d'un coup-franc indirect ?",
+            libelle: "A quelle distance doivent se trouver les adversaires lors d'un coup-franc direct ?",
             attributs: ["4 m","5 m","6 m","9 m 15"]
         },
         reponse: {
-            solution: 3,
+            solution: 1,
             loi: 13,
             points: 2
         }
@@ -96,11 +96,11 @@ var script3 = [
         niveau: 1,
         question: {
             libelle: "Où doit-on positionner le ballon lors d'un coup de pied de but ?",
-            attributs: ["A 1 m à gauche ou à droite du point de Penalty","Sur le point de Penalty","A la limite de la surface de réparation","Position libre dans la surface de réparation"]
+            attributs: ["A 5 m","A 6 m","Sur le point de Penalty","Position libre dans la surface de réparation"]
         },
         reponse: {
             temps: 15,
-            solution: 1,
+            solution: 2,
             loi: 16,
             points: 4
         }
@@ -113,7 +113,7 @@ var script3 = [
             attributs: ["6 m","9 m","9 m 15","11 m"]
         },
         reponse: {
-            solution: 2,
+            solution: 1,
             loi: 14,
             points: 2
         }
