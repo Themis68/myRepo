@@ -275,3 +275,13 @@
         visibility: visible;
     }
 }
+
+.showCarouselItem {
+    display: flex !important;
+    /*visibility: visible;*/
+}
+
+.hideCarouselItem {
+    display: none;
+    /*visibility: hidden;£/
+}
