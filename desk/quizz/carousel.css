@@ -1,4 +1,35 @@
-/* media queries*/
+/***************** ajout Paulo ******************/
+.carouselFanion {
+    width: 15%;
+    padding-left: 3px;
+    padding-right: 3px;
+}
+
+/*************************************************/
+/* bloc des indicateurs */
+.carousel-indicators {
+    margin: 10px 0 0;
+    overflow: auto;
+    position: static;
+    text-align: left;
+    white-space: nowrap;
+    width: 100%;
+}
+
+/* indicateur circulaire */
+.carousel-indicators li{
+    background: white;
+    border-radius:50%;
+    width:10px;
+    height:10px;
+    border: 2px solid white; 
+  }
+
+  /* indicateur selectionné */
+.carousel-indicators li.active {
+    background-color: RGB(0,255,0);
+}
+
 
 /* gestion de l'encadrement des images */
 .carousel-item {
