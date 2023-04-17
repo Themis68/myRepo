@@ -15,7 +15,7 @@ var timeCode = '';
 var avatar = '';
 var myURLcomplete = document.location.href;
 var myURL  = myURLcomplete.substring( 0 ,myURLcomplete.lastIndexOf( "/" ) );
-var quizzNbPoint = 0;		// nb points en cours
+//var quizzNbPoint = 0;		// nb points en cours
 var quizzNbPointRegul = 0;	// nb points regiularisé en fonction de la vitesse
 var stepBarre = 0;			// % de progression pour une Question
 var stepDone = 0;			// % de progression effectué
@@ -278,7 +278,7 @@ function gestionBoard(etape, objet) {
 
 		case "QuizzTermine":
 			// complement
-			let scoreFinal = quizzNbPointRegul.toFixed(2) ;
+			let scoreFinal = quizzNbPointRegul.toFixed(2) ;	// on arrondi à 2 chiffres
 			document.querySelector("inter complement").style.display = "flex";
 			document.querySelector("inter complement p").innerHTML = avatar + " " + tabMessages[3] + " " + scoreFinal + (scoreFinal> 1 ? " points" : " point") +"</b><br>" +  tabMessages[4];
 			// score
@@ -354,14 +354,13 @@ function response(numQ, propSel) {
 	let tempsPropose = 0.0;
 	if (myQ.reponse.temps == undefined) {
 		// temps du quizz
-		console.log("quizz.tempsReponse " + quizz.tempsReponse);
 		tempsPropose = parseInt(quizz.tempsReponse,10);
 	} else {
 		// temps de la question
-		console.log("myQ.reponse.temps " + myQ.reponse.temps);
 		tempsPropose = parseInt(myQ.reponse.temps,10);
 	}
 	ratio = tempsRestant / tempsPropose ;
+	console.log(tempsRestant, tempsPropose, ratio);
 	// on initialise le chrono
 	clearTimeout(myChronoR);
 
@@ -390,18 +389,26 @@ function response(numQ, propSel) {
 
 function addScore(value) {
     if (value === 0) {
-        quizzNbPoint = 0;
-		quizzNbPointRegul = quizzNbPoint;
+      //  quizzNbPoint = 0;
+		// uizzNbPointRegul = quizzNbPoint;
+		quizzNbPointRegul = 0;
     } else {
-        quizzNbPoint = quizzNbPoint + value;
-		quizzNbPointRegul = quizzNbPointRegul + Math.max(1, (value * ratio));	// score minimum = 1 point
+      //  quizzNbPoint = quizzNbPoint + value;
+		console.log("ratio "+ratio);
+		if (ratio >= 0.5) {
+			// on favorise la réponse dans la moitié du temps impartie
+			quizzNbPointRegul = quizzNbPointRegul + value;
+		} else {
+			quizzNbPointRegul = quizzNbPointRegul + (value * ratio);
+		}
 	} 
-	console.log("quizzNbPointRegul " + quizzNbPointRegul);
-    var score = ('0' + quizzNbPoint.toString()).substr(-2);       // on a le score avec deux digits
+	
+   // var score = ('0' + quizzNbPoint.toString()).substr(-2);       // on a le score avec deux digits
     var scoreMax = ('0' + nbQuests[niveauQuest].points.toString()).substr(-2);
 
-    let myColor = ((quizzNbPoint / nbQuests[niveauQuest].points) > 0.5 ? 'green' : 'black');
-    let myScore = '<span style="color:'+ myColor +';">' + score + '</span>';
+    let myColor = ((quizzNbPointRegul / nbQuests[niveauQuest].points) > 0.5 ? 'green' : 'black');
+    // let myScore = '<span style="color:'+ myColor +';">' + score + '</span>';
+	let myScore = '<span style="color:'+ myColor +';">' + quizzNbPointRegul + '</span>';
 
     document.querySelector("inter tete score p").innerHTML = myScore + ':' + scoreMax;
 }
