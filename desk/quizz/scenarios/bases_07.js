@@ -18,7 +18,7 @@ var script7 = [
         niveau: 1,
         question: {
             libelle: "En cas de hors-jeu que fait l'arbitre assistant ?",
-            attributs: ["Il lève le drapeau et le baisse aussitôt","Il lève le drapeau et le baisse seulement quand l'arbitre l'a vu","Il lève le drapeau et le garde levé jusqu'à exécution de la faute","Il lève le drapeauet le garde quelques instants"]
+            attributs: ["Il lève le drapeau et le baisse aussitôt","Il lève le drapeau et le baisse seulement quand l'arbitre l'a vu","Il lève le drapeau et le garde levé jusqu'à exécution de la faute","Il lève le drapeau et le garde quelques instants"]
         },
         reponse: {
             solution: 2,
