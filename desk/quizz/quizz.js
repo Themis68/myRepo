@@ -300,6 +300,7 @@ function gestionBoard(etape, objet) {
 }
 
 function chronoQ(nbSecondesMax) {
+	// affichage de la jauge pour la question
 	let jauge = document.getElementsByClassName("progress-bar");
 	let value = parseInt(jauge[0].getAttribute("aria-valuenow"),10) + 1;	// transformation en numérique de la valeur actuelle
 	if (value > nbSecondesMax) {
@@ -313,6 +314,7 @@ function chronoQ(nbSecondesMax) {
 
 
 function chronoR(reponse) {
+	// affichage du chrono numérique
 	let pChronoR = document.querySelector("inter suite chrono p");
 	let value = parseInt(pChronoR.innerHTML,10);
 	if (value == 0) {
@@ -336,6 +338,7 @@ function response(numQ, propSel) {
 		document.getElementById("book"+ (i+1)).removeAttribute("onclick");
 	}
 	
+	let gagne = false;
 	myQ = tabQuestions[numQ-1];
 	if (propSel != myQ.reponse.solution) {
 		// mauvaise réponse
@@ -343,7 +346,7 @@ function response(numQ, propSel) {
 	} else {
 		// bonne réponse
 		playSound("bonne");
-		addScore(myQ.reponse.points);
+		gagne = true;
 	}
 	
 	let loi = "";
@@ -360,7 +363,12 @@ function response(numQ, propSel) {
 		tempsPropose = parseInt(myQ.reponse.temps,10);
 	}
 	ratio = tempsRestant / tempsPropose ;
-	console.log(tempsRestant, tempsPropose, ratio);
+
+	// MAJ score
+	if(gagne) {
+		addScore(myQ.reponse.points);
+	}
+
 	// on initialise le chrono
 	clearTimeout(myChronoR);
 
@@ -394,8 +402,8 @@ function addScore(value) {
 		quizzNbPointRegul = 0;
     } else {
       //  quizzNbPoint = quizzNbPoint + value;
-		console.log("ratio "+ratio);
-		if (ratio >= 0.5) {
+		console.log("ratio "+ratio +"   points  " + (value * ratio));
+		if (ratio >= 0.7) {
 			// on favorise la réponse dans la moitié du temps impartie
 			quizzNbPointRegul = quizzNbPointRegul + value;
 		} else {
