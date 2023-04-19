@@ -1,3 +1,5 @@
+var version = "1.0.0";
+
 var script2 = [               
     {
         number: 1,
@@ -64,5 +66,5 @@ var script2 = [
             loi: 4,
             points: 1
         }
-    },
+    }
 ]
