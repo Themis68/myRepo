@@ -34,5 +34,17 @@ var scenario = [
         niveau: 1,
         tempsQuestion: 10,
         tempsReponse: 8
+    },
+    {
+        id: 4,
+        titre: "Les arbitres assistants",
+        poster: "assistant.png",
+        fichier: "bases_06.js",
+        variable: "script6",
+        description: "Questionnaire pour les Penalties",
+        loi: 6,
+        niveau: 1,
+        tempsQuestion: 10,
+        tempsReponse: 8
     }
 ]

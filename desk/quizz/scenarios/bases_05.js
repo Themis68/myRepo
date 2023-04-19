@@ -10,7 +10,6 @@ var script5 = [
         },
         reponse: {
             solution: 3,
-            loi: 5,
             points: 2
         }
     },
@@ -23,7 +22,6 @@ var script5 = [
         },
         reponse: {
             solution: 4,
-            loi: 5,
             points: 3,
             temps: 10
         }
@@ -37,7 +35,6 @@ var script5 = [
         },
         reponse: {
             solution: 1,
-            loi: 5,
             points: 2
         }
     },
@@ -50,7 +47,6 @@ var script5 = [
         },
         reponse: {
             solution: 3,
-            loi: 5,
             points: 3
         }
     },
@@ -63,7 +59,6 @@ var script5 = [
         },
         reponse: {
             solution: 2,
-            loi: 5,
             points: 3
         }
     }
