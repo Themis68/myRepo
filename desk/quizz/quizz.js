@@ -219,8 +219,8 @@ function gestionBoard(etape, objet) {
 			texte += " porte sur " + (objet.loi === undefined ? "un mix de lois" : "la loi "+ objet.loi+" - " + lois[parseFloat(objet.loi)-1].libelle)+ "<br>";
 			texte += tabMessages[5];
 			document.querySelector("inter complement p").innerHTML = texte;
-
 			document.querySelector("inter complement img").style.display = "none";
+			document.querySelector("inter complement #ring").style.display = "none";
 			// score
 			document.querySelector("inter tete score p").style.display = "none";
 			addScore(0);	// on init même si c'est masqué
@@ -234,6 +234,8 @@ function gestionBoard(etape, objet) {
 		case "InterQuestion":
 			// objet = question
 			// complement
+			// lancer le ring
+			document.querySelector("inter complement #ring").style.display = "none";
 			document.querySelector("inter complement").style.display = "none";
 			// score
 			document.querySelector("inter tete score p").style.display = "flex";
@@ -244,6 +246,7 @@ function gestionBoard(etape, objet) {
 			document.querySelector("inter suite next").style.display = "none";
             // question
 			document.querySelector("inter question").style.display = "flex";
+			// animation numQuestion
 			doNextNum(objet.number);
 			document.querySelector("inter question p").innerHTML = objet.question.libelle;
 			// jauge
@@ -281,6 +284,9 @@ function gestionBoard(etape, objet) {
 			let scoreFinal = quizzNbPointRegul.toFixed(2) ;	// on arrondi à 2 chiffres
 			document.querySelector("inter complement").style.display = "flex";
 			document.querySelector("inter complement p").innerHTML = avatar + " " + tabMessages[3] + " " + scoreFinal + (scoreFinal> 1 ? " points" : " point") +"</b><br>" +  tabMessages[4];
+			// lancer le ring
+			document.querySelector("inter complement #ring").style.display = "flex";
+			gestSvg(scoreFinal, nbQuests[niveauQuest].points);
 			// score
 			document.querySelector("inter tete score p").style.display = "flex";
             // question
@@ -298,6 +304,34 @@ function gestionBoard(etape, objet) {
 			inter.display = "none";
 	}
 }
+
+function gestSvg(reussite, total) {
+	// calcul pourcentge réussite
+	let offset = reussite / total * 100;
+
+	// afficher réussite
+	var titreSvg = document.querySelector("text");
+  	titreSvg.innerHTML = reussite + "/" + total;
+
+	  // récupérer le rayon du SVG
+	let circle = document.getElementById("my-circle");
+	let rayon = circle.getAttribute("r");
+
+	// calculer la section de réussite
+	let b = Math.PI * rayon * 2; 
+	let a = offset * b / 100;		
+	circle.setAttribute("stroke-dasharray", a + " "+ b);
+	
+	// afficher le svg
+	let svg = document.querySelector("svg");
+	svg.style.display = "flex";
+
+	// lancer l'animation
+	let animate = document.querySelector("animate");
+	animate.setAttribute("to", a);
+	animate.beginElement();
+}
+
 
 function chronoQ(nbSecondesMax) {
 	// affichage de la jauge pour la question
@@ -378,7 +412,7 @@ function response(numQ, propSel) {
 		loi = lois[quizz.loi-1].fichier;
 	} else {
 		// loi de la question
-		loi = lois[(myQ.reponse.loi)-1].fichier;
+		loi = lois[myQ.reponse.loi-1].fichier;
 	}
 
 	let boutonOk = document.getElementById("book" + myQ.reponse.solution);
