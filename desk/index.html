@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8" />
+
+  <title>Arrêt sur image !</title>
+
+  <!-- Séquence : Conserver l'ordre de chargement ci-dessous -->
+  <link href="./bootstrap-4.3.1/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <!-- fin séquence -->
+  
+  <link href="./index.css" rel="stylesheet" type="text/css">
+  <script type="text/javascript" src="./index.js"></script>
+
+</head>
+
+<body>
+  <main>
+    <header>ARRET SUR IMAGE !</header>
+    <section>
+      <div><p>Redécouvrez les règles du football en tant qu'arbitre</p></div>
+      <div><img src="images/bandeauarbitre.png" alt=""/></div>
+    </section>
+    <menu>
+        <module><a href="./src/quizz.html" onmouseover="showAlt('quizz')" onmouseout="cleanAlt()">Quizz</a></module>
+        <module><a href="./src/video.html" onmouseover="showAlt('video')" onmouseout="cleanAlt()">Vidéo</a></module>
+        <module><a href="./src/lois.html" onmouseover="showAlt('lois')" onmouseout="cleanAlt()">Lois</a></module>
+    </menu>
+    <content>
+      <div><p id="alt"></p></div>
+    </content>
+  </main>
+  <footer>
+    <h2>Développé par Paulo Pires Seixas - v1.1</h2>
+  </footer>
+</body>
+
+</html>

@@ -1,0 +1,321 @@
+/***************** ajout Paulo ******************/
+.carouselFanion {
+    width: 15%;
+    padding-left: 3px;
+    padding-right: 3px;
+}
+/*************************************************/
+/* bloc des indicateurs */
+.carousel-indicators {
+    margin: 10px 0 0;
+    overflow: auto;
+    position: static;
+    text-align: left;
+    white-space: nowrap;
+    width: 100%;
+}
+
+/* indicateur circulaire */
+.carousel-indicators li{
+    background: white;
+    border-radius:50%;
+    width:10px;
+    height:10px;
+    border: 2px solid white; 
+  }
+
+  /* indicateur selectionné */
+.carousel-indicators li.active {
+    background-color: RGB(0,255,0);
+  }
+
+/* indicateurs trait */
+.carousel-indicators2 li {
+    background-color: transparent;
+    -webkit-border-radius: 0;
+    border-radius: 0;
+    display: inline-block;
+    height: auto;
+    margin: 0 !important;
+    width: auto;
+}
+
+/* indicateur avec une image dans <li>*/
+.carousel-indicators2 li img {
+    display: block;
+}
+
+/* alignement du CAPTION de l'image*/
+.carousel-caption {
+    top: 20px;
+    left: 0%;
+    right: 0%;
+    font-size: 1vw; /* taille variable selon largeur du viewport */
+   /* text-align: center;*/
+}
+
+/* gestion de l'encadrement des images */
+.carousel-item {
+    padding: 5px;
+    /*position: relative;*/
+}
+
+.carousel-item:after {
+    border-color:white;
+    border-style:solid;
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+}
+/* fin gestion de l'encadrement des images */
+
+/* gestion de la position des flèches de défilement */
+.carousel-control-prev {
+    left: -30px;
+    justify-content: end;
+}
+
+.carousel-control-next {
+    right: -30px;
+    justify-content: flex-end;
+}
+/* fin gestion de la position des flèches de défilement */
+
+<<<<<<< HEAD
+
+
+@media (min-width: 768px) and (max-width: 991px) {
+    /* show 4 items */
+    
+    .carousel-inner .active,
+    .carousel-inner .active + .carousel-item,
+    .carousel-inner .active + .carousel-item + .carousel-item,
+    .carousel-inner .active + .carousel-item + .carousel-item + .carousel-item  {
+    display: block;
+    }
+
+    .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left),
+    .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left) + .carousel-item,
+    .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left) + .carousel-item + .carousel-item,
+    .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left) + .carousel-item + .carousel-item + .carousel-item {
+    transition: none;
+    }
+
+    .carousel-inner .carousel-item-next,
+    .carousel-inner .carousel-item-prev {
+    position: relative;
+    transform: translate3d(0, 0, 0);
+=======
+.slide {
+    display: flex;
+    flex-direction: column; /* positionne les indicateurs sous les vignettes */
+}
+/*XL */
+@media (min-width: 992px) {
+    .container-fluid {
+        background-color: blue;
+>>>>>>> steps
+    }
+
+    /* show 4th item */
+    .carousel-inner .active + .carousel-item + .carousel-item {
+        display: flex;
+    }
+    
+    /* left or forward direction */
+    .carousel-item-next.carousel-item-left + .carousel-item + .carousel-item + .carousel-item + .carousel-item {
+        position: relative;
+        transform: translate3d(-100%, 0, 0);
+        visibility: visible;
+    }
+<<<<<<< HEAD
+
+}         
+
+@media (max-width: 576px) {
+/* Show 2 slide on sm-6 */
+    .carousel-inner .active .col-xs-6 .carousel-item + .carousel-item{
+        width:50%;
+        position: absolute;
+        top: 0;
+        right: -50%;  /*change this with javascript in the future*/
+        z-index: -1;
+        display: block;
+        visibility: visible;
+    }
+
+}
+
+@media (min-width: 577px) and (max-width: 768px) {
+/* Show 3rd slide on sm  if col-sm-6*/
+    .carousel-inner .active.col-sm-6.carousel-item + .carousel-item + .carousel-item {
+        position: absolute;
+        top: 0;
+        right: -50%;  /*change this with javascript in the future*/
+        z-index: -1;
+=======
+    
+    /* right or prev direction //t - previous slide direction last item animation fix */
+    .carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item + .carousel-item + .carousel-item {
+        position: relative;
+        transform: translate3d(100%, 0, 0);
+        visibility: visible;
+>>>>>>> steps
+        display: block;
+        visibility: visible;
+    }
+}
+
+/*LG */
+@media (min-width: 769px) and (max-width: 991px) {
+    .container-fluid {
+        background-color: purple;
+    }
+
+    /* show 4th item */
+    .carousel-inner .active + .carousel-item {
+        display: flex;
+    }
+    
+    /* left or forward direction */
+    .carousel-item-next.carousel-item-left + .carousel-item + .carousel-item + .carousel-item + .carousel-item {
+        position: relative;
+        transform: translate3d(-100%, 0, 0);
+        visibility: visible;
+    }
+    
+    /* right or prev direction //t - previous slide direction last item animation fix */
+    .carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item + .carousel-item + .carousel-item {
+        position: relative;
+        transform: translate3d(100%, 0, 0);
+        visibility: visible;
+        display: block;
+        visibility: visible;
+    }
+}
+
+/*MD*/
+@media (min-width: 577px) and (max-width: 768px) {
+    .container-fluid {
+        background-color: red;
+    }
+
+    /* show 3rd of 3 item slide */
+    .carousel-inner .active + .carousel-item {
+        display: flex ;
+    }
+
+    .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left) + .carousel-item + .carousel-item {
+        transition: none;
+    }
+
+    
+    .carousel-inner .carousel-item-next {
+    position: relative;
+    transform: translate3d(0, 0, 0);
+    }
+    
+    
+    /* left or forward direction */
+    .carousel-item-next.carousel-item-left + .carousel-item + .carousel-item + .carousel-item {
+        position: relative;
+        transform: translate3d(-100%, 0, 0);
+        visibility: visible;
+    }
+    
+    /* right or prev direction */
+    .carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item + .carousel-item {
+        position: relative;
+        transform: translate3d(100%, 0, 0);
+        visibility: visible;
+        display: block;
+        visibility: visible;
+    }
+}
+
+@media (min-width: 376px) and (max-width: 576px) {
+    .container-fluid {
+        background-color: green;
+    }
+
+    .carousel-item {
+        margin-right: 0;
+    }
+
+    /* show 2 items */
+    .carousel-inner .active + .carousel-item{
+        display: flex;
+    }
+    
+    .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left),
+    .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left) + .carousel-item {
+        transition: none;
+    }
+
+    .carousel-inner .carousel-item-next {
+    position: relative;
+    transform: translate3d(0, 0, 0);
+    }
+    
+    /* left or forward direction */
+    .active.carousel-item-left + .carousel-item-next.carousel-item-left,
+    .carousel-item-next.carousel-item-left + .carousel-item,
+    .carousel-item-next.carousel-item-left + .carousel-item + .carousel-item {
+        position: relative;
+        transform: translate3d(-100%, 0, 0);
+        visibility: visible;
+    } 
+    
+    /* farthest right hidden item must be abso position for animations */
+    .carousel-inner .carousel-item-prev.carousel-item-right {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        display: block;
+        visibility: visible;
+    }
+    
+    /* right or prev direction */
+    .active.carousel-item-right + .carousel-item-prev.carousel-item-right,
+    .carousel-item-prev.carousel-item-right + .carousel-item,
+    .carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item {
+        position: relative;
+        transform: translate3d(100%, 0, 0);
+        visibility: visible;
+        display: block;
+        visibility: visible;
+    }
+}
+
+@media (max-width: 375px) {
+    .container-fluid {
+        background-color: yellow;
+    }
+
+    .carousel-inner .active  {
+    display: flex;
+    }
+
+    /* left or forward direction */
+    .active.carousel-item-left + .carousel-item-next.carousel-item-left,
+    .carousel-item-next.carousel-item-left + .carousel-item,
+    .carousel-item-next.carousel-item-left + .carousel-item + .carousel-item{
+    position: relative;
+    transform: translate3d(-100%, 0, 0);
+    visibility: visible;
+    }
+
+    /* farthest right hidden item must be abso position for animations */
+    .carousel-inner .carousel-item-prev.carousel-item-right {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    display: block;
+    visibility: visible;
+    }
+} 

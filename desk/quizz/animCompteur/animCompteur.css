@@ -1,0 +1,31 @@
+#num {
+    /* position: absolute; fait apparaitre en haut du document */
+    top: 1.5rem;
+    left: calc(50% - 1.5rem);   /* ratio de 1/2 sur la taille de l'image */
+    width: 3rem;    /* taille de l'image */
+    height: 3rem;   /* taille de l'image */
+    line-height: 3rem;
+    border-radius: 1.5rem;
+    background: green;
+    color: white;
+    border: 0;
+    box-shadow: 0 0.25rem 0.125rem #e0e0e0;
+    overflow: hidden;
+  }
+  
+  #innum {
+    position: relative; /*fait apparaitre en haut du document */
+    top: 0;
+    transition: top 0.25s ease;
+    left: calc(50% - 0.5rem); /* centre le compteur dans le cercle */
+  }
+  
+  #innum span {
+    display: flex;
+    width: 3rem;
+    height: 3rem;
+    line-height: 3rem;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
