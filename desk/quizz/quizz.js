@@ -402,8 +402,16 @@ function response(numQ, propSel) {
 		// temps de la question
 		tempsPropose = parseInt(myQ.reponse.temps,10);
 	}
-	tempsConsomme = tempsConsomme + (tempsPropose - tempsRestant);
-	console.log("max " + tempsPropose + " /  utilisé "+ (tempsPropose - tempsRestant) + " total utilisé " + tempsConsomme);
+
+	if (gagne) {
+		// Gagné : on tient compte du temps utilisé
+		tempsConsomme = tempsConsomme + (tempsPropose - tempsRestant);
+		console.log("max " + tempsPropose + " /  utilisé "+ (tempsPropose) + " total utilisé " + tempsConsomme);
+	} else {
+		// Perdu : on ajoute le temps prévu pour la question
+		tempsConsomme = tempsConsomme + tempsPropose;
+		console.log("max " + tempsPropose + " /  utilisé "+ (tempsPropose - tempsRestant) + " total utilisé " + tempsConsomme);
+	}
 	//ratio = tempsRestant / tempsPropose ;
 
 	// MAJ score
