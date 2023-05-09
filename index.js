@@ -19,7 +19,7 @@ function RedirectionJavascript(){
     // appel HTML en fonction du device
     if (isMobileDevice()) {
         // mobile
-        document.location.href="./mob/indexSP.html";
+        document.location.href="./mob/indexSP.html?lang=fr";
     } else {
         //desktop
         //document.location.href="./message.html";
