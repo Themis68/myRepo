@@ -7,13 +7,15 @@ var matriceDevice = viewportSize();
 var pathImagesCommunes = "../images/"   // images communes
 var pathPosters =  pathImagesCommunes + "posters/";		//  posters
 var pathBadges = pathImagesCommunes + "badges/";		//  badges
-var pathQuizz = "../../quizz/questionnaires/";		// scénarios des quizz
+var pathQuizz = "./questionnaires/";		// scénarios des quizz
 var pathSVG = pathImagesCommunes + "svg/";			// images svg
-var pageSuivante = "./quizzSPquestions.html";
-
+var pageSuivante = "./quizzSPquestions.html";					// fichiers langues
 var myURLcomplete = document.location.href;
 var myURL  = myURLcomplete.substring( 0 ,myURLcomplete.lastIndexOf( "/" ) );
 var nbQuizz = arrayAssoSize(scenario);
+
+// multilangue
+var pathLangues = "../lang";	
 
 document.addEventListener("DOMContentLoaded", init, false);	
 //document.addEventListener("touchstart", clickF, false);		
@@ -28,27 +30,30 @@ function ready() {
 		creerVignettes("holder");
 		// 2 - on met à jour les attributs dynamiques des classes du Slider
 		paramSlider(arrayAssoSize(scenario));
-		// 3 - on lance la fonction sldier
+		// 3 - on lance la fonction slider
 		loadSlider();
 		// afficher les infos du quizz
-		doAfterSlide(0);   
+		doAfterSlide(0);
+		// charger les chaines
+		setLibelle("titre","LIB_B001");
+		setLibelle("btnQuizz","LIB_B002");
 
 	}
-
-	//showInfosQuizz(scenario[0]);
-
 }
+
+
 function init() {
 	// calcul hauteur
     matriceDevice = viewportSize();
     calculHauteur(matriceDevice.height);
 	setVersion(version);
+	paramsURL = getParameters();	// on récupère un tableau associatif depuis les paramètres de l'URL
+	selectLangue(pathLangues, paramsURL.lang);	// on charge les chaines dns la langue souhaitée
 }
 
 function creerVignettes(id) {
 	// création des indicateurs
 	let ind = document.getElementById("indicateurs");
-	console.log(arrayAssoSize(scenario));
 	for (let i = 0; i < arrayAssoSize(scenario); i++) {
 		let myInd = document.createElement("li");
 		myInd.setAttribute("id", "indicateur" + i);
@@ -110,7 +115,7 @@ function doAfterSlide(indexQuizz){
 
 	// bouton de lancement
 	let btnQuizz = document.getElementById("btnQuizz");
-	btnQuizz.setAttribute("href", pageSuivante + "?id=" + quizz.id + "&question=1");
+	btnQuizz.setAttribute("href", pageSuivante + "?lang=" + paramsURL.lang + "&id=" + quizz.id + "&question=1");
 
 	// afficher la zone d'informations
 	document.getElementsByClassName("infosQuizz")[0].style.display = "flex";
