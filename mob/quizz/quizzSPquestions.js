@@ -4,7 +4,7 @@ var version = "1.0.21";
 var matriceDevice = viewportSize();
 
 // chemins
-var pathQuizz = "../../quizz/questionnaires/";		// scénarios des quizz
+var pathQuizz = "./questionnaires/";		// scénarios des quizz
 var pageSuivante = "./quizzSPresultat.html";
 
 var myURLcomplete = document.location.href;
@@ -25,6 +25,9 @@ var fond = "";
 // on récupère le id du quizz
 var quizzId = getParametersURL("id");
 
+// multilangue
+var pathLangues = "../lang";
+
 document.addEventListener("DOMContentLoaded", init, false);
 document.addEventListener('readystatechange', ready, false);	
 document.addEventListener("touchstart", clickF, false);		
@@ -35,6 +38,12 @@ function ready() {
 	if (document.readyState === "complete") {
 		// MAJ titre navigation
 		gestChrono("","");
+
+		// charger les chaines
+		setLibelle("comptearebours","LIB_C001");
+		setLibelle("bonne","LIB_C001");
+		setLibelle("mauvaise","LIB_C001");
+		setLibelle("btnNextQuestion","LIB_C002");
 	}
 }
 
@@ -51,9 +60,12 @@ function init() {
 	// ajout accès au fichier des questions	
 	let myScript = document.createElement("script");
 	myScript.type = "text/javascript";
-	// l'extension permet depurger le cache du ficheir JS
+	// l'extension permet de purger le cache du ficheir JS
 	myScript.src = pathQuizz + window.quizz.fichier + "?n=1" ; 
 	document.head.appendChild(myScript);
+
+	paramsURL = getParameters();	// on récupère un tableau associatif depuis les paramètres de l'URL
+	selectLangue(pathLangues, paramsURL.lang);	// on charge les chaines dns la langue souhaitée
 }
 
 function getParametersURL(param){
@@ -75,7 +87,6 @@ function clickF(e) {
 	// ce click va au-dela du onClick présent dans le code HTML
 	if (e.target.id === "btnNextQuestion") {
 		if (document.getElementById(e.target.id).getAttribute("href") === "#") {
-			console.log("clickF : question suivante");
 			document.getElementById(e.target.id).style.display = "none";
 			window.indexQuestion++;	// on passe à la question suivante
 			gestChrono("","");	// on reinitialisae la page avec les bons éléments
@@ -100,14 +111,12 @@ function chrono(nbSecondesMax) {
 		// Arrêter le chrono
 		switch(btnJauge.dataset.use) {
 			case "" :
-				console.log("chrono : afficher propositions");
 				// on va afficher les propositions
 				btnJauge.dataset.use = "P";
 				data = "";
 				break;
 
 			case "P" :
-				console.log("chrono : afficher réponses");
 				// on va afficher la réponse
 				btnJauge.dataset.use = "R";
 				data = "";
@@ -146,7 +155,6 @@ function gestChrono(phase, data) {
 			break;
 
 		case "P":
-			console.log("gestChrono : afficher les propositions");
 			// INIT valeur de la jauge
 			btnJauge.setAttribute("aria-valuenow", 0);
 			// arrêt chrono	
@@ -173,7 +181,6 @@ function gestChrono(phase, data) {
 			break;
 		
 		case "R":	// data = numéro de la qproposition cliquée
-			console.log("gestChrono : afficher les réponses");
 			// INIT valeur de la jauge
 			btnJauge.setAttribute("aria-valuenow", 0);
 			btnJauge.setAttribute("style", "width: 0%");
@@ -243,12 +250,14 @@ function gestChrono(phase, data) {
 			let btnNextQuestion = document.getElementById("btnNextQuestion");
 			if (indexQuestionSuivante === undefined) {
 				//quizz fini	
-				btnNextQuestion.innerHTML = "Afficher résultat";
+				setLibelle("btnNextQuestion","LIB_C003");	
+				//btnNextQuestion.innerHTML = "Afficher résultat";
 				console.log(window.nbPointsUtilisateur , window.nbPointsMax);
 				btnNextQuestion.setAttribute("href", pageSuivante + "?id=" + window.quizzId + "&reussir=" + window.nbPointsUtilisateur + "&total=" + window.nbPointsMax);
 			} else {
-				// affichage bouton question suivante		
-				btnNextQuestion.innerHTML = "Question suivante";
+				// affichage bouton question suivante	
+				setLibelle("btnNextQuestion","LIB_C002");	
+				//btnNextQuestion.innerHTML = "Question suivante";
 			}
 			btnNextQuestion.style.display = "flex";
 

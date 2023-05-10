@@ -5,5 +5,8 @@ lang = {
     LIB_A004:"Basketball",
     LIB_A005:"Handball",
     LIB_B001:"Choisis un quizz pour t'essayer à devenir arbitre",
-    LIB_B002:"Lancer le Quizz"
+    LIB_B002:"Lancer le Quizz",
+    LIB_C001:"Votre navigateur ne gère pas les fichiers sons",
+    LIB_C002:"Question suivante",
+    LIB_C003:"Voir résultat"
 }
