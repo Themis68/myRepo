@@ -8,5 +8,6 @@ lang = {
     LIB_B002:"Lancer le Quizz",
     LIB_C001:"Votre navigateur ne gère pas les fichiers sons",
     LIB_C002:"Question suivante",
-    LIB_C003:"Voir résultat"
+    LIB_C003:"Voir résultat",
+    LIB_D001:"Envoyer le résultat"
 }

@@ -8,5 +8,6 @@ lang = {
     LIB_B002:"Inicia o Teste",
     LIB_C001:"Seu navegador não suporta arquivos de som",
     LIB_C002:"Pergunta seguinte",
-    LIB_C003:"Ver resultado"
+    LIB_C003:"Ver resultado",
+    LIB_D001:"Mail o resultado"
 }
