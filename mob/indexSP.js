@@ -3,6 +3,9 @@ var version = "1.0.19";
 // initialisation matrice device
 var matriceDevice = viewportSize();
 
+// multilangue
+var pathLangues = "./lang";	
+
 // écouteurs
 document.addEventListener("DOMContentLoaded", init, false);	
 window.addEventListener('resize', windowResize, false); 

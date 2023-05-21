@@ -39,8 +39,8 @@ nav {
 
 /* logo SVG */
 object {
-    height: 6em;
-    vertical-align: top;
+    height: 4rem;
+    /*vertical-align: top;*/
 }
 
 /* titre en font score */

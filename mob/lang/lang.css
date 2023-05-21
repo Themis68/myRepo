@@ -1,0 +1,54 @@
+.navbar {
+   /* on surcharge pour prendre toute la largeur */
+   flex: 1 !important;
+}
+
+/* Associe les mêmes règles au label et à la case
+   pour les superposer, et "cacher" la case à cocher. */
+.menu-label, .menu-cb {
+   /* Retire l'affichage par défaut des éléments de formulaire */
+   /* ... comme les checkbox */
+   appearance: none;
+   /* on place le contenu toujours en premier */
+    /* Taille fixe */
+   width: 5ch;
+}
+
+label {
+   margin: 0 !important;
+   display: inherit !important;
+   font-size: 2rem !important;
+}
+
+.menu-nav {
+  /* A la place de "display: none" :
+     translater sur l'axe X, càd décaler horizontalement
+     l'élement pour le sortir de la page 
+     transform: translateX(100%);*/
+     display: none;
+}
+
+ /* SI la case est cochée, modifier la classe "menu-nav" */
+.menu-cb:checked ~ .menu-nav {
+  /* A la place de "display: block" :
+     Remettre l'élément à sa place d'origine 
+     transform: translateX(0); */
+     display: flex;
+     background: white;
+     padding-right: 5px;
+
+     /* positionne le menu à gauche et en-dessous */
+     transform: translate(-50%, -15%); 
+     transition: transform 1s linear;
+}
+
+.menu-item {
+   list-style-type: none;
+}
+
+.menu-item-img {
+   /* Taille fixe */
+   height: 2rem;
+   width: 2rem;
+   padding-bottom: 2px;
+}
