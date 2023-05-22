@@ -232,18 +232,11 @@ function gestChrono(phase, data) {
 				document.getElementById("prop" + (i+1)).style.borderLeft = bord;
 				// fond proposition (H5)
 				document.getElementById("libProp" + (i+1)).style.backgroundColor = fond;
-				// on retire la gestion du click (H5)
-				//propi = document.getElementById("libProp" + (i+1));
-				//propi.removeAttribute("onclick");
-	
 			}
 
 			// gestion des points
 			window.nbPointsMax = window.nbPointsMax + pointsQuestion;
-		//	if (data == "libProp" + window.question.reponse.solution) {
-				// points de l'utilisateur
-		//		window.nbPointsUtilisateur = window.nbPointsUtilisateur + pointsQuestion;
-		//	}
+
 			// derniere question ?
 			indexQuestionSuivante = window.script[window.indexQuestion];
 
@@ -251,13 +244,10 @@ function gestChrono(phase, data) {
 			if (indexQuestionSuivante === undefined) {
 				//quizz fini	
 				setLibelle("btnNextQuestion","LIB_C003");	
-				//btnNextQuestion.innerHTML = "Afficher résultat";
-				console.log(window.nbPointsUtilisateur , window.nbPointsMax);
 				btnNextQuestion.setAttribute("href", pageSuivante + "?id=" + window.quizzId + "&reussir=" + window.nbPointsUtilisateur + "&total=" + window.nbPointsMax);
 			} else {
 				// affichage bouton question suivante	
 				setLibelle("btnNextQuestion","LIB_C002");	
-				//btnNextQuestion.innerHTML = "Question suivante";
 			}
 			btnNextQuestion.style.display = "flex";
 
