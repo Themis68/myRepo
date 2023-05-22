@@ -1,3 +1,5 @@
+var version = "1.0.0";
+
 var myURLcomplete = document.location.href;
 var myURL  = myURLcomplete.substring( 0 ,myURLcomplete.lastIndexOf( "?" ) );
 
@@ -54,5 +56,24 @@ function clickF (e) {
 		}
 		window.location.href = myURL + "?lang=" + lang;
 	}
+}
+
+function genererHtml() {
+	let html='<label for="menu-cb" class="menu-label">';
+   		html+='<img class="menu-item-img" id="icone-lang" src=""/>';
+    	html+='<span id="menu-lang-title"></span>';
+    html+='</label>';
+    html+='<input type="checkbox" id="menu-cb" class="menu-cb">';
+    html+='<nav class="menu-nav">';
+    	html+='<ul>';
+    		html+='<li class="menu-item"><a id="sel-lang-fr" href=""><img id="icone-lang-fr" class="menu-item-img" src="./lang/images/FR.png" /> FR</a></li>';
+    		html+='<li class="menu-item"><a id="sel-lang-pt" href=""><img id="icone-lang-pt" class="menu-item-img" src="./lang/images/PT.png" /> PT</a></li>';
+    		html+='<li class="menu-item"><a id="sel-lang-en" href=""><img id="icone-lang-en" class="menu-item-img" src="./lang/images/EN.png" /> EN</a></li>';
+    	html+='</ul>';
+    html+='</nav>';
+
+	let obj = document.getElementById("menu-lang");
+	obj.innerHTML = html;
+	
 }
 
