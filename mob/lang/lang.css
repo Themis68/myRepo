@@ -1,6 +1,6 @@
 #menu-lang {
    width: 5ch;
-   margin-right: 2ch;
+   margin-right: 3ch;
 }
 
 .menu-label {
@@ -50,7 +50,7 @@ label {
      display: flex;
      background: white;
      /* décale le menu à gauche et en-dessous */
-     transform: translate(-50%, -15%); 
+     transform: translate(-70%, -15%); 
      transition: transform 1s linear;
 }
 
@@ -68,4 +68,5 @@ label {
 .menu-item-span {
    font-size: 1.8rem;
    font-family: Arial, Helvetica, sans-serif;
+   background-color: white;
 }
