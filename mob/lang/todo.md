@@ -1,17 +1,26 @@
-- appel de la lang par défaut depuis les pages HTML de départ:
-
-        <a href="./quizz/quizzSPslider.html?lang=fr">
-        
 - CYCLE EVENTS
 1 - ready
 2 - init
 3 - ready
 4 - load
 
+- Le module sera activé uniquement s'il détecte la présence d'un objet qui l'appelle depuis la page HTML
+  <div id="menu-lang" data-menu="true"></div>
+-- data-menu="true" : module activé
+-- data-menu="false" : module désactivé
+
+- il faut intégrer les appels suivants dans la zone HEAD de la page appelante :
+  <link href="./lang/lang.css" rel="stylesheet" type="text/css"/>
+  <script src="./lang/lang.js" type="text/javascript" id="LG"></script>
+
 - chaque langue a un fichier avec l'ensemble des chaines de caractères pour le module quizz
 - le fichier est chargé dynamiquement avec la page via le paramètre 'lang' grace à l'import des pages
-  <script src="../fonctions.js" type="text/javascript"></script>
-  <script src="./lang/lang.js" type="text/javascript"></script>
+
+
+
+- appel de la lang par défaut depuis les pages HTML de départ:
+
+        <a href="./quizz/quizzSPslider.html?lang=fr">
 
 - les objets qui bénéficient de la gestion des langues doivent avoir un id et l'attribut "lab"
 
@@ -37,6 +46,5 @@ on définit les valeurs dans la méthode ready()
 document.location.href="./mob/indexSP.html?lang=fr";
 
 - le menu des langues peut être initialisé sur la page en ajoutant le code suivant dans le fichier HTML
-     <div id="menu-lang">
-    </div>
+
 

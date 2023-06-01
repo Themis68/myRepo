@@ -1,4 +1,6 @@
 // variables
+var LG_etatModule = false;	// par défaut le module ne doit pas êtrre utilisé
+
 var LG_params = [
 	{id: "fr", flag:"FR"},
 	{id: "pt", flag:"PT"},
@@ -11,44 +13,49 @@ var LG_defaut = {id: "fr", flag:"FR"};
 var LG_codeHtml = "";
 var LG_menu_lang_title = "";
 var LG_icone_lang = "";
+var LG_chemin = "";
 
 // URI complète
 var myURLcomplete = document.location.href;
 // URL sans les paramètres
 var myURL  = myURLcomplete.substring( 0 ,myURLcomplete.lastIndexOf( "?" ) );
 
+/* Gestion des évènements propres au module multilangue 
+ils ne fonctionneront que si le module est activé
+*/
+
 // gestion du clic
 //document.addEventListener("touchstart", clickF, false);
+document.addEventListener('readystatechange', ready, false);
+document.addEventListener("DOMContentLoaded", init, false);	 
 window.addEventListener('load', LG_load, false); 
 
-document.addEventListener("DOMContentLoaded", init, false);	 
-document.addEventListener('readystatechange', ready, false);
-
-function init(){
-	console.log("init");
-	// flag qui confirme l'usage de langue apr la page HTML
-	window.LG_codeHtml = document.getElementById("LG_menu-lang");					
-	if (LG_codeHtml != null) {
-		// module activé
-		// inserer ici les actions
+function ready(){
+	console.log("1 - ready");
+	// Cette condition évite le doublement du chargement
+	if (document.readyState === "complete") {
+		// on regarde s'il y a un appel du module
+		window.LG_codeHtml = document.getElementById("LG_menu-lang");	
+		if (window.LG_codeHtml != null) {
+			// module activé
+			LG_etatModule = true;
+			let lg = document.getElementById("LG");	
+			let src = lg.getAttribute("src");
+			window.LG_chemin = src.substring(0, src.lastIndexOf("/")+1);
+			console.log(window.LG_chemin);
+		}
 	}
 }
 
-function ready(){
-	console.log("ready");
-	// LG_codeHtml est déjà reconnu
-	if (window.LG_codeHtml != null) {
-		// module activé
-		// inserer ici les actions
+function init(){
+	console.log("2 - init");
+	if (LG_etatModule) {
 	}
 }
 
 function LG_load() {
-	// on insere le code sur la page HTML
-	// objets
-	LG_codeHtml = document.getElementById("menu-lang");					// flag qui confirme l'usage de langue apr la page HTML
-
-	if (LG_codeHtml != null) {
+	console.log("3 - load");
+	if (LG_etatModule) {
 		// génération du code HTML
 		LG_genererHtml(window.LG_params);
 		// MAJ de la langue par defaut
@@ -86,6 +93,21 @@ function LG_arraySearch(arr, valObject) {
 	return -1;	// aucun résultat
 }
 
+// recuperation des paramètres de l'url
+function LG_getParameters(){
+	var urlParams,
+	match,
+	pl = "/+/g", // Regex for replacing addition symbol with a space
+	search = /([^&=]+)=?([^&]*)/g,
+	decode = function (s) { return decodeURIComponent(s.replace(pl, )); },
+	query = window.location.search.substring(1);
+	urlParams = {};
+	while (match = search.exec(query))
+	urlParams[decode(match[1])] = decode(match[2]);
+	return urlParams;
+}
+
+
 function LG_displayLang(langue) {
 	/*
 		// on affiche le nom court de la langue
@@ -94,7 +116,7 @@ function LG_displayLang(langue) {
 		window.LG_menu_lang_title.appendChild(span);
 
 		// afficher icone
-		let chemin = pathLangues + "/images/" + params.lang + ".png";
+		let chemin = window.LG_chemin + "/images/" + params.lang + ".png";
 		window.LG_icone_lang.setAttribute("src", chemin);
 		*/
 
@@ -102,7 +124,6 @@ function LG_displayLang(langue) {
 	window.LG_menu_lang_title = document.getElementById("LG_menu-lang-title");	// titre de la langue à afficher
 	window.LG_icone_lang = document.getElementById("LG_icone-lang");				// drapeau de la langue
 
-	console.log(langue);
 	// afficher langue
 	window.LG_menu_lang_title.innerHTML = "&nbsp;" + langue.flag;
 	// afficher icone
@@ -110,7 +131,7 @@ function LG_displayLang(langue) {
 	// comment gérer le chemin d'accès de la page HTML ?
 	// on peut le récupérer ?
 	// on le passe en paralètre ?
-	let chemin = pathLangues + "/images/" +langue.id + ".png";
+	let chemin = window.LG_chemin + "/images/" +langue.id + ".png";
 	window.LG_icone_lang.setAttribute("src", chemin);
 
 	// on appelle la gestion des chaines de la page
@@ -122,20 +143,20 @@ function LG_ready(codeLang) {
 	
 	// QUELLE LANGUE AFFICHEE
 	// récupérer les paramètres dans l'URL
-	let params = getParameters();
+	let params = LG_getParameters();
 
 	// on vérifie si la langue est gérée
 	let indice = LG_arraySearch(window.LG_params, paramsURL.lang);
 	if( indice > -1) {
 		// on insère le code de la lang dans le header
 		// intégration du fichier de langue sélectionné
-		LG_insertLangue("../mob/lang", paramsURL.lang);	// on charge les chaines dns la langue souhaitée
+		LG_insertLangue("../mob/lang", params.lang);	// on charge les chaines dns la langue souhaitée
 
 		// on sélectionne une langue
 		LG_selectLangue(paramsURL.lang);
 
 		// on affiche la langue
-		LG_displayLang(LG_params[paramsURL.lang]);
+		LG_displayLang(LG_params[params.lang]);
 	} else {
 		// afficher une erreur
 		window.alert("La langue "+params.lang + " n'est pas prise en charge");
@@ -146,7 +167,7 @@ function LG_insertLangue(pathLangues, langue){
 	// ajout accès au fichier des langues	
 	let myScript = document.createElement("script");
 	myScript.type = "text/javascript";
-	myScript.src = pathLangues + "/lang."+langue+ ".js" ; 
+	myScript.src = window.LG_chemin + "/lang."+langue+ ".js" ; 
 	document.head.appendChild(myScript);
 }
 
@@ -195,6 +216,7 @@ function LG_genererHtml(params) {
 	let img  = document.createElement("img");
 	img.setAttribute("class", "LG_menu-item-img");
 	img.setAttribute("id", "LG_icone-lang");
+	img.setAttribute("src", window.LG_chemin + "/images/"+ window.LG_defaut.flag + ".png");
 	img.setAttribute("src", "");
 
 	// langue abrégée
@@ -212,14 +234,14 @@ function LG_genererHtml(params) {
 		// case a cocher
 		let input  = document.createElement("input");
 		input.setAttribute("type", "checkbox");
-		input.setAttribute("id", "menu-cb");
-		input.setAttribute("class", "menu-cb");
+		input.setAttribute("id", "LG_menu-cb");
+		input.setAttribute("class", "LG_menu-cb");
 
 		window.LG_codeHtml.appendChild(input);
 
 		// menu déroulant
 		let nav = document.createElement("nav");
-		nav.setAttribute("class", "menu-nav");
+		nav.setAttribute("class", "LG_menu-nav");
 
 		// boucle pour les langues
 		let ul = document.createElement("ul");
@@ -227,21 +249,21 @@ function LG_genererHtml(params) {
 		for (let i = 0; i < LG_arrayAssoSize(params); i++){
 			// langue
 			let li  = document.createElement("li");
-			li.setAttribute("class", "menu-item");
+			li.setAttribute("class", "LG_menu-item");
 
 			// kien hypertext
 			let hyp = document.createElement("a");
-			hyp.setAttribute("id", "sel-lang-" + params[i].id);
-			hyp.setAttribute("class", "menu-label");
+			hyp.setAttribute("id", "LG_sel-lang-" + params[i].id);
+			hyp.setAttribute("class", "LG_menu-label");
 			hyp.setAttribute("href", "");
 			// img
 			let img1 = document.createElement("img");
-			img1.setAttribute("id", "icone-lang-" + params[i].id);
-			img1.setAttribute("class", "menu-item-img");
-			img1.setAttribute("src", "./lang/images/"+ params[i].flag + ".png");
+			img1.setAttribute("id", "LG_icone-lang-" + params[i].id);
+			img1.setAttribute("class", "LG_menu-item-img");
+			img1.setAttribute("src", window.LG_chemin + "/images/"+ params[i].flag + ".png");
 
 			let span = document.createElement("span");
-			span.setAttribute("class", "menu-item-span");
+			span.setAttribute("class", "LG_menu-item-span");
 			span.innerHTML = "&nbsp;"+ params[i].flag;
 
 			hyp.appendChild(img1);

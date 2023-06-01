@@ -3,9 +3,6 @@ const version = "1.0.20";
 // initialisation matrice device
 var matriceDevice = viewportSize();
 
-// multilangue
-var pathLangues = "./lang";	
-
 // écouteurs
 document.addEventListener("DOMContentLoaded", init, false);	
 window.addEventListener('resize', windowResize, false); 
@@ -54,10 +51,11 @@ function init() {
 }
 
 function LG_chaines() {
-        setLibelle("titre","LIB_A001");
+     /*   setLibelle("titre","LIB_A001");
         setLibelle("titre1","LIB_A002");
         setLibelle("titre2","LIB_A003");
         setLibelle("titre3","LIB_A004");
         setLibelle("titre4","LIB_A005");
         setLibelle("asi-title","LIB_A006");
+        */
 }
