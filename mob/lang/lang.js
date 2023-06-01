@@ -39,11 +39,13 @@ function ready(){
 		if (window.LG_codeHtml != null) {
 			// module activé
 			LG_etatModule = true;
+			// récupérer le chemin relatif pour langue
 			let lg = document.getElementById("LG");	
 			let src = lg.getAttribute("src");
 			window.LG_chemin = src.substring(0, src.lastIndexOf("/")+1);
-			console.log(window.LG_chemin);
 		}
+		// insérer le script avec le bon dico
+		LG_insertDico(window.LG_defaut.id);
 	}
 }
 
@@ -163,11 +165,11 @@ function LG_ready(codeLang) {
 	}
 }
 
-function LG_insertLangue(pathLangues, langue){
+function LG_insertDico(dico){
 	// ajout accès au fichier des langues	
 	let myScript = document.createElement("script");
 	myScript.type = "text/javascript";
-	myScript.src = window.LG_chemin + "/lang."+langue+ ".js" ; 
+	myScript.src = window.LG_chemin + "/lang."+dico+ ".js" ; 
 	document.head.appendChild(myScript);
 }
 
