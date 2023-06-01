@@ -1,8 +1,6 @@
-- CYCLE EVENTS
-1 - ready
-2 - init
-3 - ready
-4 - load
+ARRET SUR IMAGE ! 
+
+IHM avec l'option Multilangues
 
 - Le module sera activé uniquement s'il détecte la présence d'un objet qui l'appelle depuis la page HTML
   <div id="menu-lang" data-menu="true"></div>
@@ -12,6 +10,16 @@
 - il faut intégrer les appels suivants dans la zone HEAD de la page appelante :
   <link href="./lang/lang.css" rel="stylesheet" type="text/css"/>
   <script src="./lang/lang.js" type="text/javascript" id="LG"></script>
+
+- il faut égalemen ajouter la langue à afficher dans les appels des pages suivantes dès lors qu'elles l'utilisent
+  <a href="./quizz/quizzSPslider.html?lang=fr">
+
+-- on a les langues suivantes à disposition : 
+--- fr : français
+--- pt : portugais
+--- en : anglais
+------------------------------------------------------------------------------
+
 
 - chaque langue a un fichier avec l'ensemble des chaines de caractères pour le module quizz
 - le fichier est chargé dynamiquement avec la page via le paramètre 'lang' grace à l'import des pages
