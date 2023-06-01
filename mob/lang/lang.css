@@ -1,9 +1,9 @@
-#menu-lang {
+#LG_menu-lang {
    width: 5ch;
    margin-right: 2ch;
 }
 
-.menu-label {
+.LG_menu-label {
    display: flex;
    position: relative;
    width: 3em;
@@ -21,7 +21,7 @@ nav {
 
 /* Associe les mêmes règles au label et à la case
    pour les superposer, et "cacher" la case à cocher. */
-.menu-label, .menu-cb {
+.LG_menu-label, .LG_menu-cb {
    /* Retire l'affichage par défaut des éléments de formulaire */
    /* ... comme les checkbox */
    appearance: none;
@@ -33,7 +33,7 @@ label {
    font-size: 2rem !important;
 }
 
-.menu-nav {
+.LG_menu-nav {
   /* A la place de "display: none" :
      translater sur l'axe X, càd décaler horizontalement
      l'élement pour le sortir de la page 
@@ -43,7 +43,7 @@ label {
 }
 
  /* SI la case est cochée, modifier la classe "menu-nav" */
-.menu-cb:checked ~ .menu-nav {
+.LG_menu-cb:checked ~ .LG_menu-nav {
   /* A la place de "display: block" :
      Remettre l'élément à sa place d'origine 
      transform: translateX(0); */
@@ -54,18 +54,19 @@ label {
      transition: transform 1s linear;
 }
 
-.menu-item {
+.LG_menu-item {
    list-style-type: none;
+   width: 8ch;
 }
 
-.menu-item-img {
+.LG_menu-item-img {
    /* Taille fixe */
    height: 2rem;
    width: 2rem;
    padding-bottom: 2px;
 }
 
-.menu-item-span {
+.LG_menu-item-span {
    font-size: 1.8rem;
    font-family: Arial, Helvetica, sans-serif;
 }

@@ -52,3 +52,12 @@ function init() {
     setVersion(version);
     paramsURL = getParameters();	// on récupère un tableau associatif depuis les paramètres de l'URL
 }
+
+function LG_chaines() {
+        setLibelle("titre","LIB_A001");
+        setLibelle("titre1","LIB_A002");
+        setLibelle("titre2","LIB_A003");
+        setLibelle("titre3","LIB_A004");
+        setLibelle("titre4","LIB_A005");
+        setLibelle("asi-title","LIB_A006");
+}
