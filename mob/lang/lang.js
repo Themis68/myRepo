@@ -18,7 +18,7 @@ var myURLcomplete = document.location.href;
 var myURL  = myURLcomplete.substring( 0 ,myURLcomplete.lastIndexOf( "?" ) );
 
 // gestion du clic
-document.addEventListener("touchstart", clickF, false);
+//document.addEventListener("touchstart", clickF, false);
 window.addEventListener('load', LG_load, false); 
 
 document.addEventListener("DOMContentLoaded", init, false);	 
@@ -26,10 +26,21 @@ document.addEventListener('readystatechange', ready, false);
 
 function init(){
 	console.log("init");
+	// flag qui confirme l'usage de langue apr la page HTML
+	window.LG_codeHtml = document.getElementById("LG_menu-lang");					
+	if (LG_codeHtml != null) {
+		// module activé
+		// inserer ici les actions
+	}
 }
 
 function ready(){
 	console.log("ready");
+	// LG_codeHtml est déjà reconnu
+	if (window.LG_codeHtml != null) {
+		// module activé
+		// inserer ici les actions
+	}
 }
 
 function LG_load() {
@@ -76,8 +87,20 @@ function LG_arraySearch(arr, valObject) {
 }
 
 function LG_displayLang(langue) {
-	window.LG_menu_lang_title = document.getElementById("menu-lang-title");	// titre de la langue à afficher
-	window.LG_icone_lang = document.getElementById("icone-lang");				// drapeau de la langue
+	/*
+		// on affiche le nom court de la langue
+		let span = document.createElement("span");
+		span.innerHTML = " " + (LG_params[indice].flag);
+		window.LG_menu_lang_title.appendChild(span);
+
+		// afficher icone
+		let chemin = pathLangues + "/images/" + params.lang + ".png";
+		window.LG_icone_lang.setAttribute("src", chemin);
+		*/
+
+
+	window.LG_menu_lang_title = document.getElementById("LG_menu-lang-title");	// titre de la langue à afficher
+	window.LG_icone_lang = document.getElementById("LG_icone-lang");				// drapeau de la langue
 
 	console.log(langue);
 	// afficher langue
@@ -89,35 +112,38 @@ function LG_displayLang(langue) {
 	// on le passe en paralètre ?
 	let chemin = pathLangues + "/images/" +langue.id + ".png";
 	window.LG_icone_lang.setAttribute("src", chemin);
+
+	// on appelle la gestion des chaines de la page
+	LG_chaines();
 }
 
 function LG_ready(codeLang) {
 
-	// intégration du fichier de langue sélectionné
-	LG_selectLangue("../mob/lang", paramsURL.lang);	// on charge les chaines dns la langue souhaitée
-
+	
+	// QUELLE LANGUE AFFICHEE
 	// récupérer les paramètres dans l'URL
 	let params = getParameters();
 
 	// on vérifie si la langue est gérée
 	let indice = LG_arraySearch(window.LG_params, paramsURL.lang);
 	if( indice > -1) {
-		// on affiche le nom court de la langue
-		let span = document.createElement("span");
-		span.innerHTML = " " + (LG_params[indice].flag);
-		window.LG_menu_lang_title.appendChild(span);
+		// on insère le code de la lang dans le header
+		// intégration du fichier de langue sélectionné
+		LG_insertLangue("../mob/lang", paramsURL.lang);	// on charge les chaines dns la langue souhaitée
 
-		// afficher icone
-		let chemin = pathLangues + "/images/" + params.lang + ".png";
-		window.LG_icone_lang.setAttribute("src", chemin);
+		// on sélectionne une langue
+		LG_selectLangue(paramsURL.lang);
+
+		// on affiche la langue
+		LG_displayLang(LG_params[paramsURL.lang]);
 	} else {
 		// afficher une erreur
 		window.alert("La langue "+params.lang + " n'est pas prise en charge");
 	}
 }
 
-function LG_selectLangue(pathLangues, langue){
-	// ajout accès au fichier des questions	
+function LG_insertLangue(pathLangues, langue){
+	// ajout accès au fichier des langues	
 	let myScript = document.createElement("script");
 	myScript.type = "text/javascript";
 	myScript.src = pathLangues + "/lang."+langue+ ".js" ; 
@@ -130,42 +156,51 @@ function setLibelle(id, libelle){
 }
 
 // on gère le changement de lkangue
-function clickF (e) {
-	if (e.target.id.indexOf("sel-lang-") > -1){
+/*function clickF (e) {
+	console.log("click : " + e.target);
+	if (e.target.id.indexOf("LG_sel-lang-") > -1){
 		lang = e.target.id.substring(e.target.id.lastIndexOf("-"),2);
-		console.log(lang);
 		switch (e.target.id) {
-			case "sel-lang-fr":
+			case "LG_sel-lang-fr":
 				lang = "fr";
 				break;
-			case "sel-lang-pt":
+			case "LG_sel-lang-pt":
 				lang = "pt";
 				break;
-			case "sel-lang-en":
+			case "LG_sel-lang-en":
 				lang = "en";
 				break;
 			default:
+				lang = "fr";
 		}
 		window.location.href = myURL + "?lang=" + lang;
 	}
+}*/
+
+function LG_selectLangue (langue) {
+	console.log(myURL);
+	window.location.href = myURL + "?lang=" + langue;
 }
 
+/*
+	génération du code HTML du menu des langues
+*/
 function LG_genererHtml(params) {
 	// binôome : drapeau et abbréviation
 	let label  = document.createElement("label");
-    label.setAttribute("for", "menu-cb");
-	label.setAttribute("class", "menu-label");
+    label.setAttribute("for", "LG_menu-cb");
+	label.setAttribute("class", "LG_menu-label");
 
 	// drapeau
 	let img  = document.createElement("img");
-	img.setAttribute("class", "menu-item-img");
-	img.setAttribute("id", "icone-lang");
+	img.setAttribute("class", "LG_menu-item-img");
+	img.setAttribute("id", "LG_icone-lang");
 	img.setAttribute("src", "");
 
 	// langue abrégée
 	let span  = document.createElement("span");
-	span.setAttribute("id", "menu-lang-title");
-	span.setAttribute("class", "menu-item-span");
+	span.setAttribute("id", "LG_menu-lang-title");
+	span.setAttribute("class", "LG_menu-item-span");
 	label.appendChild(img);
 	label.appendChild(span);
 
