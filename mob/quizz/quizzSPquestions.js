@@ -1,4 +1,4 @@
-var version = "1.0.21";
+const version = "1.0.21";
 
 // initialisation matrice device
 var matriceDevice = viewportSize();

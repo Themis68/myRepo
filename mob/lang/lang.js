@@ -1,5 +1,3 @@
-var version = "1.0.1";
-
 // variables
 var LG_params = [
 	{id: "fr", flag:"FR"},
@@ -40,6 +38,7 @@ function LG_load() {
 	LG_codeHtml = document.getElementById("menu-lang");					// flag qui confirme l'usage de langue apr la page HTML
 
 	if (LG_codeHtml != null) {
+		// génération du code HTML
 		LG_genererHtml(window.LG_params);
 		// MAJ de la langue par defaut
 		LG_displayLang(window.LG_defaut);
@@ -80,6 +79,7 @@ function LG_displayLang(langue) {
 	window.LG_menu_lang_title = document.getElementById("menu-lang-title");	// titre de la langue à afficher
 	window.LG_icone_lang = document.getElementById("icone-lang");				// drapeau de la langue
 
+	console.log(langue);
 	// afficher langue
 	window.LG_menu_lang_title.innerHTML = "&nbsp;" + langue.flag;
 	// afficher icone
@@ -151,7 +151,7 @@ function clickF (e) {
 }
 
 function LG_genererHtml(params) {
-	// bin$ome : drapeau et abbréviation
+	// binôome : drapeau et abbréviation
 	let label  = document.createElement("label");
     label.setAttribute("for", "menu-cb");
 	label.setAttribute("class", "menu-label");
@@ -171,47 +171,52 @@ function LG_genererHtml(params) {
 
 	window.LG_codeHtml.appendChild(label);
 
-	// case a cocher
-	let input  = document.createElement("input");
-    input.setAttribute("type", "checkbox");
-	input.setAttribute("id", "menu-cb");
-	input.setAttribute("class", "menu-cb");
+	if(window.LG_codeHtml.getAttribute("data-menu") == "true") {
+		// on active le menu
 
-	window.LG_codeHtml.appendChild(input);
-	// menu déroulant
-	let nav = document.createElement("nav");
-    nav.setAttribute("class", "menu-nav");
+		// case a cocher
+		let input  = document.createElement("input");
+		input.setAttribute("type", "checkbox");
+		input.setAttribute("id", "menu-cb");
+		input.setAttribute("class", "menu-cb");
 
-	// boucle pour les langues
-	let ul = document.createElement("ul");
-	
-	for (i = 0; i < LG_arrayAssoSize(params); i++){
-		// langue
-		let li  = document.createElement("li");
-		li.setAttribute("class", "menu-item");
+		window.LG_codeHtml.appendChild(input);
 
-		// kien hypertext
-		let hyp = document.createElement("a");
-		hyp.setAttribute("id", "sel-lang-" + params[i].id);
-		hyp.setAttribute("class", "menu-label");
-		hyp.setAttribute("href", "");
-		// img
-		let img1 = document.createElement("img");
-		img1.setAttribute("id", "icone-lang-" + params[i].id);
-		img1.setAttribute("class", "menu-item-img");
-		img1.setAttribute("src", "./lang/images/"+ params[i].flag + ".png");
+		// menu déroulant
+		let nav = document.createElement("nav");
+		nav.setAttribute("class", "menu-nav");
 
-		let span = document.createElement("span");
-		span.setAttribute("class", "menu-item-span");
-		span.innerHTML = "&nbsp;"+ params[i].flag;
+		// boucle pour les langues
+		let ul = document.createElement("ul");
+		
+		for (let i = 0; i < LG_arrayAssoSize(params); i++){
+			// langue
+			let li  = document.createElement("li");
+			li.setAttribute("class", "menu-item");
 
-		hyp.appendChild(img1);
-		hyp.appendChild(span);
-		li.appendChild(hyp);
-		ul.appendChild(li);
+			// kien hypertext
+			let hyp = document.createElement("a");
+			hyp.setAttribute("id", "sel-lang-" + params[i].id);
+			hyp.setAttribute("class", "menu-label");
+			hyp.setAttribute("href", "");
+			// img
+			let img1 = document.createElement("img");
+			img1.setAttribute("id", "icone-lang-" + params[i].id);
+			img1.setAttribute("class", "menu-item-img");
+			img1.setAttribute("src", "./lang/images/"+ params[i].flag + ".png");
 
+			let span = document.createElement("span");
+			span.setAttribute("class", "menu-item-span");
+			span.innerHTML = "&nbsp;"+ params[i].flag;
+
+			hyp.appendChild(img1);
+			hyp.appendChild(span);
+			li.appendChild(hyp);
+			ul.appendChild(li);
+
+		}
+		nav.appendChild(ul);
+		window.LG_codeHtml.appendChild(nav);
 	}
-	nav.appendChild(ul);
-	window.LG_codeHtml.appendChild(nav);
 }
 
