@@ -1,3 +1,4 @@
+d 
 VIDEO :
 - gestion du centrage des infos de l'arbitre en mode fullscreen :
     x gestion lors du clic sur le bouton
