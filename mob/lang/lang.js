@@ -31,9 +31,14 @@ document.addEventListener("DOMContentLoaded", init, false);
 window.addEventListener('load', LG_load, false); 
 
 function ready(){
-	console.log("1 - ready");
+	
 	// Cette condition évite le doublement du chargement
 	if (document.readyState === "complete") {
+		console.log("6 - ready");
+		// insertion des chaines de caracteres
+		LG_chaines();
+	} else {
+		console.log("2 - ready");
 		// on regarde s'il y a un appel du module
 		window.LG_codeHtml = document.getElementById("LG_menu-lang");	
 		if (window.LG_codeHtml != null) {
@@ -50,18 +55,22 @@ function ready(){
 }
 
 function init(){
-	console.log("2 - init");
+	console.log("4 - init");
 	if (LG_etatModule) {
+
 	}
 }
 
 function LG_load() {
-	console.log("3 - load");
+	console.log("8 - load");
 	if (LG_etatModule) {
 		// génération du code HTML
 		LG_genererHtml(window.LG_params);
 		// MAJ de la langue par defaut
 		LG_displayLang(window.LG_defaut);
+
+				
+
 	}
 }
 
@@ -135,14 +144,9 @@ function LG_displayLang(langue) {
 	// on le passe en paralètre ?
 	let chemin = window.LG_chemin + "/images/" +langue.id + ".png";
 	window.LG_icone_lang.setAttribute("src", chemin);
-
-	// on appelle la gestion des chaines de la page
-	LG_chaines();
 }
-
-function LG_ready(codeLang) {
-
-	
+/*
+function LG_ready(codeLang) {	
 	// QUELLE LANGUE AFFICHEE
 	// récupérer les paramètres dans l'URL
 	let params = LG_getParameters();
@@ -164,12 +168,13 @@ function LG_ready(codeLang) {
 		window.alert("La langue "+params.lang + " n'est pas prise en charge");
 	}
 }
+*/
 
 function LG_insertDico(dico){
 	// ajout accès au fichier des langues	
 	let myScript = document.createElement("script");
 	myScript.type = "text/javascript";
-	myScript.src = window.LG_chemin + "/lang."+dico+ ".js" ; 
+	myScript.src = window.LG_chemin + "lang_"+dico+ ".js" ; 
 	document.head.appendChild(myScript);
 }
 
@@ -201,7 +206,6 @@ function setLibelle(id, libelle){
 }*/
 
 function LG_selectLangue (langue) {
-	console.log(myURL);
 	window.location.href = myURL + "?lang=" + langue;
 }
 
@@ -279,3 +283,11 @@ function LG_genererHtml(params) {
 	}
 }
 
+function LG_chaines() {
+    setLibelle("titre","LIB_A001");
+    setLibelle("titre1","LIB_A002");
+    setLibelle("titre2","LIB_A003");
+    setLibelle("titre3","LIB_A004");
+    setLibelle("titre4","LIB_A005");
+    setLibelle("asi-title","LIB_A006");
+}

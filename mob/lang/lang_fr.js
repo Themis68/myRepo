@@ -1,5 +1,5 @@
 lang = {
-    LIB_A006:"Disciplines", 
+    LIB_A006:"Sports", 
     LIB_A001:"Découvre de nouvelles émotions en devenant arbitre de ton sport préféré",
     LIB_A002:"Football",
     LIB_A003:"Futsal",
