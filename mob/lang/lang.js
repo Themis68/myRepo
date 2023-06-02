@@ -24,11 +24,11 @@ var myURL  = myURLcomplete.substring( 0 ,myURLcomplete.lastIndexOf( "?" ) );
 ils ne fonctionneront que si le module est activé
 */
 
-// gestion du clic
-//document.addEventListener("touchstart", clickF, false);
+// gestion des évènements
 document.addEventListener('readystatechange', ready, false);
 document.addEventListener("DOMContentLoaded", init, false);	 
 window.addEventListener('load', LG_load, false); 
+document.addEventListener("touchstart", clickF, false);
 
 function ready(){
 	
@@ -184,26 +184,15 @@ function setLibelle(id, libelle){
 }
 
 // on gère le changement de lkangue
-/*function clickF (e) {
-	console.log("click : " + e.target);
-	if (e.target.id.indexOf("LG_sel-lang-") > -1){
-		lang = e.target.id.substring(e.target.id.lastIndexOf("-"),2);
-		switch (e.target.id) {
-			case "LG_sel-lang-fr":
-				lang = "fr";
-				break;
-			case "LG_sel-lang-pt":
-				lang = "pt";
-				break;
-			case "LG_sel-lang-en":
-				lang = "en";
-				break;
-			default:
-				lang = "fr";
-		}
+function clickF (e) {
+	console.log("click : " + e.target.id);
+	if (e.target.id.indexOf("LG_icone-lang-") > -1 
+		|| e.target.id.indexOf("LG_span-lang-") > -1){
+		let lang = e.target.id.slice(e.target.id.length -2 , e.target.id.length);
+		console.log(lang);
 		window.location.href = myURL + "?lang=" + lang;
 	}
-}*/
+}
 
 function LG_selectLangue (langue) {
 	window.location.href = myURL + "?lang=" + langue;
@@ -269,6 +258,7 @@ function LG_genererHtml(params) {
 			img1.setAttribute("src", window.LG_chemin + "/images/"+ params[i].flag + ".png");
 
 			let span = document.createElement("span");
+			span.setAttribute("id", "LG_span-lang-" + params[i].id);
 			span.setAttribute("class", "LG_menu-item-span");
 			span.innerHTML = "&nbsp;"+ params[i].flag;
 
