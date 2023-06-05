@@ -11,48 +11,21 @@ IHM avec l'option Multilangues
   <link href="./lang/lang.css" rel="stylesheet" type="text/css"/>
   <script src="./lang/lang.js" type="text/javascript" id="LG"></script>
 
-- il faut égalemen ajouter la langue à afficher dans les appels des pages suivantes dès lors qu'elles l'utilisent
-  <a href="./quizz/quizzSPslider.html?lang=fr">
-
--- on a les langues suivantes à disposition : 
+- la langue par défaut chargée au début est le français. 
+-- On peut switcher par la suite avec les langues suivantes à disposition : 
 --- fr : français
 --- pt : portugais
 --- en : anglais
-------------------------------------------------------------------------------
 
+- Chaque langue a un fichier avec l'ensemble des chaines de caractères pour le module quizz
+Il doit être installer dans le répertoire 'lang/' et doit se nommer 'lang_<abbréviation langue>.js'
 
-- chaque langue a un fichier avec l'ensemble des chaines de caractères pour le module quizz
-- le fichier est chargé dynamiquement avec la page via le paramètre 'lang' grace à l'import des pages
+le fichier est structuré comme suit :
+lang = {
+    LIB_A006:"Sports", 
+    LIB_A001:"Découvre de nouvelles émotions en devenant arbitre de ton sport préféré",
+    LIB_A002:"Football"
+}
 
-
-
-- appel de la lang par défaut depuis les pages HTML de départ:
-
-        <a href="./quizz/quizzSPslider.html?lang=fr">
-
-- les objets qui bénéficient de la gestion des langues doivent avoir un id et l'attribut "lab"
-
+Il faut relier ces informations aux éléments de l'interface dans le fihcier HTML via l'attribut 'lab':
 <p id="titre" lab="LIB_A001" class="asi-text"></p>
-
-définir la variable pathLangues 
-
-multilangue dans le fichier js lié au ficheir HTML
-  var pathLangues = "../lang";
-
-- on charge le fichier de langue dans une méthode init()
-
-	paramsURL = getParameters();	// on récupère un tableau associatif depuis les paramètres de l'URL
-	selectLangue(paramsURL.lang);	// on charge les chaines dns la langue souhaitée
-
-
-on définit les valeurs dans la méthode ready()
-  setLibelle("titre","LIB_A001");
-	setLibelle("btnQuizz","LIB_B002");
-
-    le fichier d'appel doit pousser le chix de la langue
-
-document.location.href="./mob/indexSP.html?lang=fr";
-
-- le menu des langues peut être initialisé sur la page en ajoutant le code suivant dans le fichier HTML
-
-
