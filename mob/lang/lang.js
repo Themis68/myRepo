@@ -49,8 +49,10 @@ function ready(){
 			let src = lg.getAttribute("src");
 			window.LG_chemin = src.substring(0, src.lastIndexOf("/")+1);
 		}
+		//: on recharge le dico si on a cliqué sur le menu pour changer de langue
+		let langAfficher = LG_getLangue();
 		// insérer le script avec le bon dico
-		LG_insertDico(window.LG_defaut.id);
+		LG_insertDico(langAfficher.id);
 	}
 }
 
@@ -169,7 +171,7 @@ function clickF (e) {
 	if (e.target.id.indexOf("LG_icone-lang-") > -1 
 		|| e.target.id.indexOf("LG_span-lang-") > -1){
 		let lang = e.target.id.slice(e.target.id.length -2 , e.target.id.length);
-		console.log(lang);
+		console.log("on switch sur " + lang);
 		window.location.href = myURL + "?lang=" + lang;
 	}
 }
