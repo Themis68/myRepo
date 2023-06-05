@@ -67,10 +67,8 @@ function LG_load() {
 		// génération du code HTML
 		LG_genererHtml(window.LG_params);
 		// MAJ de la langue par defaut
-		LG_displayLang(window.LG_defaut);
-
-				
-
+		let langAfficher = LG_getLangue();
+		LG_displayLang(langAfficher);
 	}
 }
 
@@ -118,20 +116,26 @@ function LG_getParameters(){
 	return urlParams;
 }
 
+function LG_getLangue() {	
+	// QUELLE LANGUE AFFICHEE
+	// récupérer les paramètres dans l'URL
+	let params = LG_getParameters();
+
+	// on vérifie si la langue est gérée
+	let indice = LG_arraySearch(window.LG_params, params.lang);
+	if( indice > -1) {
+		// on affiche la langue
+		//console.log("langue : " + window.LG_params[indice]);
+		return(window.LG_params[indice]);
+	} else {
+		// on affiche la langue par défaut
+		//console.log("default");
+		return(window.LG_defaut);
+	}
+}
 
 function LG_displayLang(langue) {
-	/*
-		// on affiche le nom court de la langue
-		let span = document.createElement("span");
-		span.innerHTML = " " + (LG_params[indice].flag);
-		window.LG_menu_lang_title.appendChild(span);
-
-		// afficher icone
-		let chemin = window.LG_chemin + "/images/" + params.lang + ".png";
-		window.LG_icone_lang.setAttribute("src", chemin);
-		*/
-
-
+	console.log("///// " + langue);
 	window.LG_menu_lang_title = document.getElementById("LG_menu-lang-title");	// titre de la langue à afficher
 	window.LG_icone_lang = document.getElementById("LG_icone-lang");				// drapeau de la langue
 
@@ -145,36 +149,12 @@ function LG_displayLang(langue) {
 	let chemin = window.LG_chemin + "/images/" +langue.id + ".png";
 	window.LG_icone_lang.setAttribute("src", chemin);
 }
-/*
-function LG_ready(codeLang) {	
-	// QUELLE LANGUE AFFICHEE
-	// récupérer les paramètres dans l'URL
-	let params = LG_getParameters();
-
-	// on vérifie si la langue est gérée
-	let indice = LG_arraySearch(window.LG_params, paramsURL.lang);
-	if( indice > -1) {
-		// on insère le code de la lang dans le header
-		// intégration du fichier de langue sélectionné
-		LG_insertLangue("../mob/lang", params.lang);	// on charge les chaines dns la langue souhaitée
-
-		// on sélectionne une langue
-		LG_selectLangue(paramsURL.lang);
-
-		// on affiche la langue
-		LG_displayLang(LG_params[params.lang]);
-	} else {
-		// afficher une erreur
-		window.alert("La langue "+params.lang + " n'est pas prise en charge");
-	}
-}
-*/
 
 function LG_insertDico(dico){
 	// ajout accès au fichier des langues	
 	let myScript = document.createElement("script");
 	myScript.type = "text/javascript";
-	myScript.src = window.LG_chemin + "lang_"+dico+ ".js" ; 
+	myScript.src = window.LG_chemin + "lang_"+ dico + ".js" ; 
 	document.head.appendChild(myScript);
 }
 
@@ -194,9 +174,9 @@ function clickF (e) {
 	}
 }
 
-function LG_selectLangue (langue) {
+/*function LG_selectLangue (langue) {
 	window.location.href = myURL + "?lang=" + langue;
-}
+}*/
 
 /*
 	génération du code HTML du menu des langues
