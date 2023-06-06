@@ -187,7 +187,7 @@ function setLibelle(id, libelle){
 /*
 	génération du code HTML du menu des langues
 */
-function LG_genererHtml(params) {
+function LG_genererHtml2(params) {
 	// binôome : drapeau et abbréviation
 	let label  = document.createElement("label");
     label.setAttribute("for", "LG_menu-cb");
@@ -256,5 +256,33 @@ function LG_genererHtml(params) {
 		}
 		nav.appendChild(ul);
 		window.LG_codeHtml.appendChild(nav);
+	}
+}
+
+
+function LG_genererHtml(params) {
+
+	// binôme : drapeau et abbréviation
+	let pathIcone = window.LG_chemin + "/images/"+ window.LG_defaut.flag + ".png";
+	let libLangue = window.LG_defaut.flag; 
+	let label = `
+	<label for="LG_menu-cb" class="LG_menu-label">
+		<img id="LG_menu-lang" class="LG_menu-item_img" src="${pathIcone}"/>
+		<span id="LG_menu-lang-title" class="LG_menu-item-span">&nbsp;${libLangue}</span>
+	</label>
+
+	`
+	window.LG_codeHtml.innerHTML = label;
+
+	if(window.LG_codeHtml.getAttribute("data-menu") == "true") {
+		// on active le menu
+
+		// case a cocher
+		let input  = `<input type="checkbox" id="LG_menu-cb" class="LG_menu-cb">`
+
+		window.LG_codeHtml.innerHTML = window.LG_codeHtml.innerHTML + input;
+
+		// menu déroulant
+
 	}
 }
