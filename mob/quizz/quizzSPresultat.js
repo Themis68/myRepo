@@ -45,7 +45,7 @@ function ready() {
 	if (document.readyState === "complete") {
 		// lancer le ring
 		gestSvg(window.nbPointsUtilisateur, window.nbPointsMax);
-		setLibelle("asi-title","LIB_D002");
+		setLibelle("asi-title","LAB_D002");
 
 	}
 }

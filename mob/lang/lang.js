@@ -137,7 +137,6 @@ function LG_getLangue() {
 }
 
 function LG_displayLang(langue) {
-	console.log("///// " + langue);
 	window.LG_menu_lang_title = document.getElementById("LG_menu-lang-title");	// titre de la langue à afficher
 	window.LG_icone_lang = document.getElementById("LG_icone-lang");				// drapeau de la langue
 
@@ -160,11 +159,6 @@ function LG_insertDico(dico){
 	document.head.appendChild(myScript);
 }
 
-function setLibelle(id, libelle){
-    let obj = document.getElementById(id);
-    obj.innerHTML = eval("lang."+libelle);
-}
-
 // on gère le changement de lkangue
 function clickF (e) {
 	console.log("click : " + e.target.id);
@@ -176,9 +170,19 @@ function clickF (e) {
 	}
 }
 
-/*function LG_selectLangue (langue) {
-	window.location.href = myURL + "?lang=" + langue;
-}*/
+function LG_chaines() {
+	// on récupère les éléments qui ont l'attribut "lab"
+	let LABs = document.querySelectorAll("span[lab],p[lab]")
+	LABs.forEach(element => {
+		let e = document.getElementById(element.id);
+		setLibelle(element.id, e.getAttribute("lab"));
+	});
+}
+
+function setLibelle(id, libelle){
+    let obj = document.getElementById(id);
+    obj.innerHTML = eval("LG_lang."+libelle);
+}
 
 /*
 	génération du code HTML du menu des langues
@@ -253,13 +257,4 @@ function LG_genererHtml(params) {
 		nav.appendChild(ul);
 		window.LG_codeHtml.appendChild(nav);
 	}
-}
-
-function LG_chaines() {
-    setLibelle("titre","LIB_A001");
-    setLibelle("titre1","LIB_A002");
-    setLibelle("titre2","LIB_A003");
-    setLibelle("titre3","LIB_A004");
-    setLibelle("titre4","LIB_A005");
-    setLibelle("asi-title","LIB_A006");
 }

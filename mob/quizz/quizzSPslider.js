@@ -35,8 +35,8 @@ function ready() {
 		// afficher les infos du quizz
 		doAfterSlide(0);
 		// charger les chaines
-		setLibelle("titre","LIB_B001");
-		setLibelle("btnQuizz","LIB_B002");
+		setLibelle("titre","LAB_B001");
+		setLibelle("btnQuizz","LAB_B002");
 
 	}
 }

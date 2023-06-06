@@ -1,16 +1,16 @@
-lang = {
-    LIB_A006:"Sports", 
-    LIB_A001:"Découvre de nouvelles émotions en devenant arbitre de ton sport préféré",
-    LIB_A002:"Football",
-    LIB_A003:"Futsal",
-    LIB_A004:"Basketball",
-    LIB_A005:"Handball",
-    LIB_B001:"Choisis un quizz pour t'essayer à devenir arbitre",
-    LIB_B002:"Lancer le Quizz",
-    LIB_B003:"Catalogue",
-    LIB_C001:"Votre navigateur ne gère pas les fichiers sons",
-    LIB_C002:"Question suivante",
-    LIB_C003:"Voir résultat",
-    LIB_D001:"Envoyer le résultat",
-    LIB_D002:"Résultat"
+LG_lang = {
+    LAB_A006:"Sports", 
+    LAB_A001:"Découvre de nouvelles émotions en devenant arbitre de ton sport préféré",
+    LAB_A002:"Football",
+    LAB_A003:"Futsal",
+    LAB_A004:"Basketball",
+    LAB_A005:"Handball",
+    LAB_B001:"Choisis un quizz pour t'essayer à devenir arbitre",
+    LAB_B002:"Lancer le Quizz",
+    LAB_B003:"Catalogue",
+    LAB_C001:"Votre navigateur ne gère pas les fichiers sons",
+    LAB_C002:"Question suivante",
+    LAB_C003:"Voir résultat",
+    LAB_D001:"Envoyer le résultat",
+    LAB_D002:"Résultat"
 }

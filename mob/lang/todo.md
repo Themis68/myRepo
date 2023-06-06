@@ -22,10 +22,12 @@ Il doit être installer dans le répertoire 'lang/' et doit se nommer 'lang_<abb
 
 le fichier est structuré comme suit :
 lang = {
-    LIB_A006:"Sports", 
-    LIB_A001:"Découvre de nouvelles émotions en devenant arbitre de ton sport préféré",
-    LIB_A002:"Football"
+    LAB_A006:"Sports", 
+    LAB_A001:"Découvre de nouvelles émotions en devenant arbitre de ton sport préféré",
+    LAB_A002:"Football"
 }
 
 Il faut relier ces informations aux éléments de l'interface dans le fihcier HTML via l'attribut 'lab':
-<p id="titre" lab="LIB_A001" class="asi-text"></p>
+<p id="titre" lab="LAB_A001" class="asi-text"></p>
+
+- Lorsqu'on choisit une autre langue, tous les objets tagués <p> et <span> ayant l'attribut "lab" sont mis à jour. 

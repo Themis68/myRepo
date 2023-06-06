@@ -40,10 +40,10 @@ function ready() {
 		gestChrono("","");
 
 		// charger les chaines
-		setLibelle("comptearebours","LIB_C001");
-		setLibelle("bonne","LIB_C001");
-		setLibelle("mauvaise","LIB_C001");
-		setLibelle("btnNextQuestion","LIB_C002");
+		setLibelle("comptearebours","LAB_C001");
+		setLibelle("bonne","LAB_C001");
+		setLibelle("mauvaise","LAB_C001");
+		setLibelle("btnNextQuestion","LAB_C002");
 	}
 }
 
@@ -243,11 +243,11 @@ function gestChrono(phase, data) {
 			let btnNextQuestion = document.getElementById("btnNextQuestion");
 			if (indexQuestionSuivante === undefined) {
 				//quizz fini	
-				setLibelle("btnNextQuestion","LIB_C003");	
+				setLibelle("btnNextQuestion","LAB_C003");	
 				btnNextQuestion.setAttribute("href", pageSuivante + "?id=" + window.quizzId + "&reussir=" + window.nbPointsUtilisateur + "&total=" + window.nbPointsMax);
 			} else {
 				// affichage bouton question suivante	
-				setLibelle("btnNextQuestion","LIB_C002");	
+				setLibelle("btnNextQuestion","LAB_C002");	
 			}
 			btnNextQuestion.style.display = "flex";
 
