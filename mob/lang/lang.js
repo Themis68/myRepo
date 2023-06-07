@@ -11,8 +11,8 @@ var LG_defaut = {id: "fr", flag:"FR"};
 
 // déclaration des objets
 var LG_codeHtml = "";
-var LG_menu_lang_title = "";
-var LG_icone_lang = "";
+var LG_menu_title = "";
+var LG_menu_icone = "";
 var LG_chemin = "";
 
 // URI complète
@@ -44,7 +44,7 @@ function ready(){
 		if (window.LG_codeHtml != null) {
 			// module activé
 			LG_etatModule = true;
-			// récupérer le chemin relatif pour langue
+			// récupérer le chemin relatif pour langue dans le script
 			let lg = document.getElementById("LG");	
 			let src = lg.getAttribute("src");
 			window.LG_chemin = src.substring(0, src.lastIndexOf("/")+1);
@@ -68,7 +68,7 @@ function LG_load() {
 	if (LG_etatModule) {
 		// génération du code HTML
 		LG_genererHtml(window.LG_params);
-		// MAJ de la langue par defaut
+		// MAJ de la langue à utiliser
 		let langAfficher = LG_getLangue();
 		LG_displayLang(langAfficher);
 	}
@@ -127,28 +127,22 @@ function LG_getLangue() {
 	let indice = LG_arraySearch(window.LG_params, params.lang);
 	if( indice > -1) {
 		// on affiche la langue
-		//console.log("langue : " + window.LG_params[indice]);
 		return(window.LG_params[indice]);
 	} else {
 		// on affiche la langue par défaut
-		//console.log("default");
 		return(window.LG_defaut);
 	}
 }
 
 function LG_displayLang(langue) {
-	window.LG_menu_lang_title = document.getElementById("LG_menu-lang-title");	// titre de la langue à afficher
-	window.LG_icone_lang = document.getElementById("LG_icone-lang");				// drapeau de la langue
+	window.LG_menu_title = document.getElementById("LG_menu-title");		// titre de la langue à afficher
+	window.LG_menu_icone = document.getElementById("LG_menu-icone");				// drapeau de la langue
 
 	// afficher langue
-	window.LG_menu_lang_title.innerHTML = "&nbsp;" + langue.flag;
-	// afficher icone
-
-	// comment gérer le chemin d'accès de la page HTML ?
-	// on peut le récupérer ?
-	// on le passe en paralètre ?
-	let chemin = window.LG_chemin + "/images/" +langue.id + ".png";
-	window.LG_icone_lang.setAttribute("src", chemin);
+	window.LG_menu_title.innerHTML = "&nbsp;" + langue.flag;
+	// afficher l'icone
+	let chemin = window.LG_chemin + "/images/" +langue.flag + ".png";
+	window.LG_menu_icone.setAttribute("src", chemin);
 }
 
 function LG_insertDico(dico){
@@ -193,17 +187,16 @@ function LG_genererHtml2(params) {
     label.setAttribute("for", "LG_menu-cb");
 	label.setAttribute("class", "LG_menu-label");
 
-	// drapeau
+	// drapeau 
 	let img  = document.createElement("img");
-	img.setAttribute("class", "LG_menu-item-img");
-	img.setAttribute("id", "LG_icone-lang");
-	img.setAttribute("src", window.LG_chemin + "/images/"+ window.LG_defaut.flag + ".png");
+	img.setAttribute("id", "LG_menu-icone");
+	img.setAttribute("class", "LG_menu-img");
 	img.setAttribute("src", "");
 
 	// langue abrégée
 	let span  = document.createElement("span");
-	span.setAttribute("id", "LG_menu-lang-title");
-	span.setAttribute("class", "LG_menu-item-span");
+	span.setAttribute("id", "LG_menu-title");
+	span.setAttribute("class", "LG_menu-span");
 	label.appendChild(img);
 	label.appendChild(span);
 
@@ -267,8 +260,8 @@ function LG_genererHtml(params) {
 	let libLangue = window.LG_defaut.flag; 
 	let label = `
 	<label for="LG_menu-cb" class="LG_menu-label">
-		<img id="LG_menu-lang" class="LG_menu-item_img" src="${pathIcone}"/>
-		<span id="LG_menu-lang-title" class="LG_menu-item-span">&nbsp;${libLangue}</span>
+		<img id="LG_menu-icone" class="LG_menu-img" src="" />
+		<span id="LG_menu-title" class="LG_menu-span"></span>
 	</label>
 
 	`
