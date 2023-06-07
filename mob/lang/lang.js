@@ -276,6 +276,21 @@ function LG_genererHtml(params) {
 		window.LG_codeHtml.innerHTML = window.LG_codeHtml.innerHTML + input;
 
 		// menu déroulant
+		let nav = `<ul> 
+
+		${params.map(param => `
+			<li class="LG_menu-item">
+				<a id="LG_sel-lang-${param.id}" class="LG_menu-label" href="">
+					<img id="LG_icone-lang-${param.id}" class="LG_menu-img" src="${window.LG_chemin}/images/${param.flag}.png"/>
+					<span id="LG_span-lang-${param.id}" class="LG_menu-span">
+						&nbsp;${param.flag}
+					</span>
+				</a>
+			</li>
+		`)}
+		</ul>`;
+
+		window.LG_codeHtml.innerHTML = window.LG_codeHtml.innerHTML + nav;
 
 	}
 }
