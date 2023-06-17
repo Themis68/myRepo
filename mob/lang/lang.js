@@ -153,9 +153,13 @@ function LG_insertDico(dico){
 	document.head.appendChild(myScript);
 }
 
-// on gère le changement de lkangue
+// on gère le changement de langue
 function clickF (e) {
 	console.log("click : " + e.target.id);
+
+	// clic sur le menu : LG_menu-icone
+
+	// click sur un sous-menu : LG_icone-lang
 	if (e.target.id.indexOf("LG_icone-lang-") > -1 
 		|| e.target.id.indexOf("LG_span-lang-") > -1){
 		let lang = e.target.id.slice(e.target.id.length -2 , e.target.id.length);
@@ -256,27 +260,22 @@ function LG_genererHtml2(params) {
 function LG_genererHtml(params) {
 
 	// binôme : drapeau et abbréviation
-	let pathIcone = window.LG_chemin + "/images/"+ window.LG_defaut.flag + ".png";
-	let libLangue = window.LG_defaut.flag; 
+	//let pathIcone = window.LG_chemin + "/images/"+ window.LG_defaut.flag + ".png";
+	//let libLangue = window.LG_defaut.flag; 
 	let label = `
 	<label for="LG_menu-cb" class="LG_menu-label">
 		<img id="LG_menu-icone" class="LG_menu-img" src="" />
 		<span id="LG_menu-title" class="LG_menu-span"></span>
 	</label>
-
+	<input type="checkbox" id="LG_menu-cb" class="LG_menu-cb">
 	`
 	window.LG_codeHtml.innerHTML = label;
 
 	if(window.LG_codeHtml.getAttribute("data-menu") == "true") {
-		// on active le menu
+		// on active le menu déroulant
 
-		// case a cocher
-		let input  = `<input type="checkbox" id="LG_menu-cb" class="LG_menu-cb">`
-
-		window.LG_codeHtml.innerHTML = window.LG_codeHtml.innerHTML + input;
-
-		// menu déroulant
-		let nav = `<ul> 
+		let nav = `<nav class="LG_menu-nav">
+		<ul> 
 
 		${params.map(param => `
 			<li class="LG_menu-item">
