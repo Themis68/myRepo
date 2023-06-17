@@ -19,6 +19,7 @@ IHM avec l'option Multilangues
 
 - Chaque langue a un fichier avec l'ensemble des chaines de caractères pour le module quizz
 Il doit être installer dans le répertoire 'lang/' et doit se nommer 'lang_<abbréviation langue>.js'
+ex : lang_fr.js
 
 le fichier est structuré comme suit :
 lang = {
@@ -26,6 +27,8 @@ lang = {
     LAB_A001:"Découvre de nouvelles émotions en devenant arbitre de ton sport préféré",
     LAB_A002:"Football"
 }
+
+On doit avoir les mêmes codes LAB_... pour chaque langue disponible
 
 Il faut relier ces informations aux éléments de l'interface dans le fihcier HTML via l'attribut 'lab':
 <p id="titre" lab="LAB_A001" class="asi-text"></p>
