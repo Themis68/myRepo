@@ -17,7 +17,7 @@ var scenario = [
     id: 1,                                            identifiant du quizz
     titre: "Contrôle des connaissances",              titre affiché du quizz
     fichier: "1968754A1.js",                          nom du fichier ayant les questions du quizz
-    multilangue: "false",                             indique si le quizz est dans plusieurs langues disponibles
+    multilangue: "fr,pt",                             indique les langues disponibles pour ce quizz
     variable: "script",                               utilisé seulement pour la version desktop (DEPRICATED dans une version à venir)
     description: "Ensemble des lois (séance 1)",      description affichée du quizz
     niveau: 1,                                        niveau de difficulté (1: débutant, 2 confirmé, 3 expert)

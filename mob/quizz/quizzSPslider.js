@@ -1,5 +1,7 @@
 const version = "1.0.19";
 
+var paramsURL = "";
+
 // initialisation matrice device
 var matriceDevice = viewportSize();
 
@@ -12,20 +14,19 @@ var pathSVG = pathImagesCommunes + "svg/";			// images svg
 var pageSuivante = "./quizzSPquestions.html";					// fichiers langues
 var myURLcomplete = document.location.href;
 var myURL  = myURLcomplete.substring( 0 ,myURLcomplete.lastIndexOf( "/" ) );
-var nbQuizz = arrayAssoSize(scenario);
+var nbQuizz = arrayAssoSize(scenario);	
 
-// multilangue
-var pathLangues = "../lang";	
-
-document.addEventListener("DOMContentLoaded", init, false);	
-//document.addEventListener("touchstart", clickF, false);		
-window.addEventListener('resize', windowResize, false);
 document.addEventListener('readystatechange', ready, false);
+document.addEventListener("DOMContentLoaded", init, false);	
+window.addEventListener('load', windowLoaded, false); 
+window.addEventListener('resize', windowResize, false);
 
 function ready() {
     // valeurs de l'état : interactive / complete
 	// Cette condition évite le doublement du chargement
 	if (document.readyState === "complete") {
+		console.log("5 - event");
+
 		// 1 - on créé les vignettes du slider
 		creerVignettes("holder");
 		// 2 - on met à jour les attributs dynamiques des classes du Slider
@@ -35,20 +36,26 @@ function ready() {
 		// afficher les infos du quizz
 		doAfterSlide(0);
 		// charger les chaines
-		setLibelle("titre","LAB_B001");
-		setLibelle("btnQuizz","LAB_B002");
-
+	} else {
+		console.log("1 - event");
 	}
 }
 
 
 function init() {
+	console.log("3 - event");
+
 	// calcul hauteur
     matriceDevice = viewportSize();
     calculHauteur(matriceDevice.height);
 	setVersion(version);
 	paramsURL = getParameters();	// on récupère un tableau associatif depuis les paramètres de l'URL
-	selectLangue(pathLangues, paramsURL.lang);	// on charge les chaines dns la langue souhaitée
+	//selectLangue(pathLangues, paramsURL.lang);	// on charge les chaines dns la langue souhaitée
+}
+
+function windowLoaded() {
+    console.log("7 - event");
+    // LANG : appeler l'initialisation
 }
 
 function creerVignettes(id) {

@@ -9,8 +9,7 @@ var matriceDevice = viewportSize();
 document.addEventListener('readystatechange', ready, false);
 document.addEventListener("DOMContentLoaded", init, false);	
 window.addEventListener('load', windowLoaded, false); 
-
-window.addEventListener('resize', windowResize, false); 
+//window.addEventListener('resize', windowResize, false); 
 
 
 function ready() {

@@ -48,11 +48,14 @@ function ready(){
 			let lg = document.getElementById("LG");	
 			let src = lg.getAttribute("src");
 			window.LG_chemin = src.substring(0, src.lastIndexOf("/")+1);
+			console.log("set chemin "+ window.LG_chemin);
+
+			//: on recharge le dico si on a cliqué sur le menu pour changer de langue
+			let langAfficher = LG_getLangue();
+			// insérer le script avec le bon dico
+			LG_insertDico(langAfficher.id);
 		}
-		//: on recharge le dico si on a cliqué sur le menu pour changer de langue
-		let langAfficher = LG_getLangue();
-		// insérer le script avec le bon dico
-		LG_insertDico(langAfficher.id);
+		
 	}
 }
 
@@ -125,12 +128,28 @@ function LG_getLangue() {
 
 	// on vérifie si la langue est gérée
 	let indice = LG_arraySearch(window.LG_params, params.lang);
+	// il faut mettre à jour le renvoi vers la page suivante
+
 	if( indice > -1) {
 		// on affiche la langue
+		setRenvoi(window.LG_params[indice].id);
 		return(window.LG_params[indice]);
 	} else {
 		// on affiche la langue par défaut
+		setRenvoi(window.LG_defaut.id);		
 		return(window.LG_defaut);
+	}
+}
+
+function setRenvoi(lang){
+	// on prépare la transmission de la langue à la page suivante
+	let renvoi = document.getElementById("LG_renvoi");
+	if (renvoi != undefined) {
+		const ref = renvoi.getAttribute("href");
+		// on vérifie si la langue est déjà présente dans l'URI
+		if (ref.indexOf("lang=") == -1){
+			renvoi.setAttribute("href", ref +"?lang=" +lang);
+		}
 	}
 }
 
@@ -146,6 +165,7 @@ function LG_displayLang(langue) {
 }
 
 function LG_insertDico(dico){
+	console.log("charge dico");
 	// ajout accès au fichier des langues	
 	let myScript = document.createElement("script");
 	myScript.type = "text/javascript";
@@ -185,77 +205,6 @@ function setLibelle(id, libelle){
 /*
 	génération du code HTML du menu des langues
 */
-function LG_genererHtml2(params) {
-	// binôome : drapeau et abbréviation
-	let label  = document.createElement("label");
-    label.setAttribute("for", "LG_menu-cb");
-	label.setAttribute("class", "LG_menu-label");
-
-	// drapeau 
-	let img  = document.createElement("img");
-	img.setAttribute("id", "LG_menu-icone");
-	img.setAttribute("class", "LG_menu-img");
-	img.setAttribute("src", "");
-
-	// langue abrégée
-	let span  = document.createElement("span");
-	span.setAttribute("id", "LG_menu-title");
-	span.setAttribute("class", "LG_menu-span");
-	label.appendChild(img);
-	label.appendChild(span);
-
-	window.LG_codeHtml.appendChild(label);
-
-	if(window.LG_codeHtml.getAttribute("data-menu") == "true") {
-		// on active le menu
-
-		// case a cocher
-		let input  = document.createElement("input");
-		input.setAttribute("type", "checkbox");
-		input.setAttribute("id", "LG_menu-cb");
-		input.setAttribute("class", "LG_menu-cb");
-
-		window.LG_codeHtml.appendChild(input);
-
-		// menu déroulant
-		let nav = document.createElement("nav");
-		nav.setAttribute("class", "LG_menu-nav");
-
-		// boucle pour les langues
-		let ul = document.createElement("ul");
-		
-		for (let i = 0; i < LG_arrayAssoSize(params); i++){
-			// langue
-			let li  = document.createElement("li");
-			li.setAttribute("class", "LG_menu-item");
-
-			// kien hypertext
-			let hyp = document.createElement("a");
-			hyp.setAttribute("id", "LG_sel-lang-" + params[i].id);
-			hyp.setAttribute("class", "LG_menu-label");
-			hyp.setAttribute("href", "");
-			// img
-			let img1 = document.createElement("img");
-			img1.setAttribute("id", "LG_icone-lang-" + params[i].id);
-			img1.setAttribute("class", "LG_menu-item-img");
-			img1.setAttribute("src", window.LG_chemin + "/images/"+ params[i].flag + ".png");
-
-			let span = document.createElement("span");
-			span.setAttribute("id", "LG_span-lang-" + params[i].id);
-			span.setAttribute("class", "LG_menu-item-span");
-			span.innerHTML = "&nbsp;"+ params[i].flag;
-
-			hyp.appendChild(img1);
-			hyp.appendChild(span);
-			li.appendChild(hyp);
-			ul.appendChild(li);
-
-		}
-		nav.appendChild(ul);
-		window.LG_codeHtml.appendChild(nav);
-	}
-}
-
 
 function LG_genererHtml(params) {
 

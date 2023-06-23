@@ -34,3 +34,9 @@ Il faut relier ces informations aux éléments de l'interface dans le fihcier HT
 <p id="titre" lab="LAB_A001" class="asi-text"></p>
 
 - Lorsqu'on choisit une autre langue, tous les objets tagués <p> et <span> ayant l'attribut "lab" sont mis à jour. 
+
+- il est possible de transmettre la langue o la page suivante. Pour cela il suffit d'ajout le id="LG_renvoi" suivant à la section de code qui permet le renvoi (il s'agit d'un tag "<a>"
+
+ex : <a href="./quizz/quizzSPslider.html" id="LG_renvoi">
+
+cela aura pour conséquence de mettre à jour "href" : "./quizz/quizzSPslider.html?lang=<langue>"
