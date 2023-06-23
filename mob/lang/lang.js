@@ -48,7 +48,6 @@ function ready(){
 			let lg = document.getElementById("LG");	
 			let src = lg.getAttribute("src");
 			window.LG_chemin = src.substring(0, src.lastIndexOf("/")+1);
-			console.log("set chemin "+ window.LG_chemin);
 
 			//: on recharge le dico si on a cliqué sur le menu pour changer de langue
 			let langAfficher = LG_getLangue();
@@ -165,7 +164,7 @@ function LG_displayLang(langue) {
 }
 
 function LG_insertDico(dico){
-	console.log("charge dico");
+	console.log("charge dico " + dico);
 	// ajout accès au fichier des langues	
 	let myScript = document.createElement("script");
 	myScript.type = "text/javascript";
@@ -175,8 +174,6 @@ function LG_insertDico(dico){
 
 // on gère le changement de langue
 function clickF (e) {
-	console.log("click : " + e.target.id);
-
 	// clic sur le menu : LG_menu-icone
 
 	// click sur un sous-menu : LG_icone-lang
