@@ -239,3 +239,13 @@ function LG_genererHtml(params) {
 
 	}
 }
+
+function getLanguesOfQuizz(tabLangue) {
+	let codeHTML = ` 
+
+		${tabLangue.map(langue => `
+			<img id="LG_menu-icone" class="LG_menu-img" src="${window.LG_chemin}/images/${langue}.png" />&nbsp;
+		`)}
+	`;
+	return codeHTML;
+}

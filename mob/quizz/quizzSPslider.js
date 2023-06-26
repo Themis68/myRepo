@@ -120,6 +120,11 @@ function doAfterSlide(indexQuizz){
 		loiQuizz.innerHTML = "Loi " + quizz.loi + " : " +lois[quizz.loi - 1].libelle;
 	}
 
+	// multilangue
+	let multilangue = document.getElementById("multilangue");
+	let tabLangue = quizz.multilangue.split(",");
+	multilangue.innerHTML = getLanguesOfQuizz(tabLangue);
+
 	// bouton de lancement
 	let btnQuizz = document.getElementById("btnQuizz");
 	btnQuizz.setAttribute("href", pageSuivante + "?lang=" + paramsURL.lang + "&id=" + quizz.id + "&question=1");
