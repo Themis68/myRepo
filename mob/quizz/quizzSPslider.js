@@ -123,7 +123,9 @@ function doAfterSlide(indexQuizz){
 	// multilangue
 	let multilangue = document.getElementById("multilangue");
 	let tabLangue = quizz.multilangue.split(",");
-	multilangue.innerHTML = getLanguesOfQuizz(tabLangue);
+
+	// on appelle une fonction de la librairie LG
+	multilangue.innerHTML = LG_getLanguesOfQuizz(tabLangue);
 
 	// bouton de lancement
 	let btnQuizz = document.getElementById("btnQuizz");
