@@ -34,11 +34,11 @@ function ready(){
 	
 	// Cette condition évite le doublement du chargement
 	if (document.readyState === "complete") {
-		console.log("6 - ready");
+		console.log("6 - LG ready");
 		// insertion des chaines de caracteres
 		LG_chaines();
 	} else {
-		console.log("2 - ready");
+		console.log("2 - LG ready");
 		// on regarde s'il y a un appel du module
 		window.LG_codeHtml = document.getElementById("LG_menu-lang");	
 		if (window.LG_codeHtml != null) {
@@ -187,7 +187,7 @@ function clickF (e) {
 
 function LG_chaines() {
 	// on récupère les éléments qui ont l'attribut "lab"
-	let LABs = document.querySelectorAll("span[lab],p[lab]")
+	let LABs = document.querySelectorAll("span[lab],p[lab],a[lab]")
 	LABs.forEach(element => {
 		let e = document.getElementById(element.id);
 		setLibelle(element.id, e.getAttribute("lab"));
