@@ -30,10 +30,10 @@ lang = {
 
 On doit avoir les mêmes codes LAB_... pour chaque langue disponible
 
-Il faut relier ces informations aux éléments de l'interface dans le fihcier HTML via l'attribut 'lab':
+Il faut relier ces informations aux éléments de l'interface dans le fichier HTML via l'attribut 'lab':
 <p id="titre" lab="LAB_A001" class="asi-text"></p>
 
-- Lorsqu'on choisit une autre langue, tous les objets tagués <p> et <span> ayant l'attribut "lab" sont mis à jour. 
+- Lorsqu'on choisit une autre langue, tous les objets tagués <p>, <a> et <span> ayant l'attribut "lab" sont mis à jour. 
 
 - il est possible de transmettre la langue à la page suivante. Pour cela il suffit d'ajout le id="LG_renvoi" suivant à la section de code qui permet le renvoi (il s'agit d'un tag "<a>"
 
