@@ -35,8 +35,11 @@ Il faut relier ces informations aux éléments de l'interface dans le fihcier HT
 
 - Lorsqu'on choisit une autre langue, tous les objets tagués <p> et <span> ayant l'attribut "lab" sont mis à jour. 
 
-- il est possible de transmettre la langue o la page suivante. Pour cela il suffit d'ajout le id="LG_renvoi" suivant à la section de code qui permet le renvoi (il s'agit d'un tag "<a>"
+- il est possible de transmettre la langue à la page suivante. Pour cela il suffit d'ajout le id="LG_renvoi" suivant à la section de code qui permet le renvoi (il s'agit d'un tag "<a>"
 
 ex : <a href="./quizz/quizzSPslider.html" id="LG_renvoi">
 
 cela aura pour conséquence de mettre à jour "href" : "./quizz/quizzSPslider.html?lang=<langue>"
+
+Toute page peut récupérer la liste des langues pour un quizz donné sous forme de drapeaux en appelant la fonction LG_getLanguesOfQuizz(tabLangue)
+Il suffit de lui passer un tableau de [fr,pt,..]

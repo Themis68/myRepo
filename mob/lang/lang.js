@@ -240,7 +240,7 @@ function LG_genererHtml(params) {
 	}
 }
 
-function getLanguesOfQuizz(tabLangue) {
+function LG_getLanguesOfQuizz(tabLangue) {
 	let codeHTML = ` 
 
 		${tabLangue.map(langue => `
