@@ -109,7 +109,7 @@ function getInfoQuizz(indexQuizz){
 	titreQuizz.innerHTML = infosQuizz.titre;
 
 	// niveau du quizz
-	let svgNiveau = document.getElementById("svgNiveau");
+	//let svgNiveau = document.getElementById("svgNiveau");
 	svgNiveau.setAttribute("src", "../../images/svg/niveau" + infosQuizz.niveau + ".svg");
 
 	// description du quizz

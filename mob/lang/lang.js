@@ -241,11 +241,13 @@ function LG_genererHtml(params) {
 }
 
 function LG_getLanguesOfQuizz(tabLangue) {
+	console.log(tabLangue);
 	let codeHTML = ` 
 
-		${tabLangue.map(langue => `
-			<img id="LG_menu-icone" class="LG_menu-img" src="${window.LG_chemin}/images/${langue}.png" />&nbsp;
-		`)}
-	`;
+		<div class="langues">
+					${tabLangue.map(langue => 
+					`<div class="c-${langue}"><img src="${window.LG_chemin}/images/${langue}.png" />
+					</div>`)}
+		</div>`;
 	return codeHTML;
 }

@@ -100,38 +100,41 @@ function doAfterSlide(indexQuizz){
 	// récupérer le quizz sélectionné
 	quizz = scenario[indexQuizz];
 
-	// titre du quizz
-	let titreQuizz = document.getElementById("titreQuizz");
-	titreQuizz.innerHTML = quizz.titre;
-
 	// niveau du quizz
-	let svgNiveau = document.getElementById("svgNiveau");
-	svgNiveau.setAttribute("src", pathSVG + "niveau" + quizz.niveau + ".svg");
-
-	// description du quizz
-	let descriptionQuizz = document.getElementById("descriptionQuizz");
-	descriptionQuizz.innerHTML = quizz.description;
+	//let svgNiveau = document.getElementById("svgNiveau");
+	console.log(quizz.niveau);
 
 	// loi liée au quizz éventuellement
-	let loiQuizz = document.getElementById("loiQuizz");
+	let loi = "";
 	if (quizz.loi === undefined) {
-		loiQuizz.innerHTML = "Mix de lois";
+		loi = "Mix de lois";
 	} else {
-		loiQuizz.innerHTML = "Loi " + quizz.loi + " : " +lois[quizz.loi - 1].libelle;
+		loi = "Loi " + quizz.loi + " : " +lois[quizz.loi - 1].libelle;
 	}
 
 	// multilangue
-	let multilangue = document.getElementById("multilangue");
 	let tabLangue = quizz.multilangue.split(",");
 
-	// on appelle une fonction de la librairie LG
-	multilangue.innerHTML = LG_getLanguesOfQuizz(tabLangue);
+	const codeHtml = `
+		<span class="quizz_name" id="titreQuizz">${quizz.titre}</span>
+
+		<div class="quizz-options">
+			<strong>DESCRIPTION</strong>
+			<span id="descriptionQuizz">${quizz.description}</span>
+			<span id="loiQuizz">${loi}</span>
+			<strong>LANGUES</strong>
+			${LG_getLanguesOfQuizz(tabLangue)}
+        </div>`
+
+	let statsContainer = document.getElementById("stats-container");
+	statsContainer.innerHTML = codeHtml;
 
 	// bouton de lancement
 	let btnQuizz = document.getElementById("btnQuizz");
 	btnQuizz.setAttribute("href", pageSuivante + "?lang=" + paramsURL.lang + "&id=" + quizz.id + "&question=1");
 
 	// afficher la zone d'informations
-	document.getElementsByClassName("infosQuizz")[0].style.display = "flex";
+	document.getElementsByClassName("stats")[0].style.display = "flex";
+
 	
 }
