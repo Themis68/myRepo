@@ -6,7 +6,7 @@ var scenario = [
         multilangue: "fr,pt",
         variable: "script",
         description: "Ensemble des lois (séance 1)",
-        niveau: 1,
+        niveau: 2,
         temps: 12
     },
     {
@@ -46,7 +46,7 @@ var scenario = [
         multilangue: "fr",
         variable: "script",
         description: "Touches, Corners, Coup de pied de but",
-        niveau: 1,
+        niveau: 3,
         temps: 12
     },
     {

@@ -4,6 +4,12 @@
 **************************************
                A CORRIGER V3
 **************************************
+
+- QUIZZ/mob
+-- clic sur indicateurs inactifs
+
+
+- VIDEO
 - erreur sur clic de deuxième vidéo après avoir visionné la première
 - même erreur en changeant de niveau de question
 - le clic sur le fanion n'exécute pas l'appel au site car le clic est considéré comme PAUSE de la vidéo

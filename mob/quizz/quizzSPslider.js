@@ -101,8 +101,10 @@ function doAfterSlide(indexQuizz){
 	quizz = scenario[indexQuizz];
 
 	// niveau du quizz
-	//let svgNiveau = document.getElementById("svgNiveau");
-	console.log(quizz.niveau);
+	let niveau = "";
+	for(let i=0; i < quizz.niveau; i++){
+		niveau += "<img src='../images/etoile.png' />";
+	}
 
 	// loi liée au quizz éventuellement
 	let loi = "";
@@ -120,6 +122,7 @@ function doAfterSlide(indexQuizz){
 
 		<div class="quizz-options">
 			<strong>DESCRIPTION</strong>
+			<span id="niveauQuizz">Niveau ${niveau}</span>
 			<span id="descriptionQuizz">${quizz.description}</span>
 			<span id="loiQuizz">${loi}</span>
 			<strong>LANGUES</strong>

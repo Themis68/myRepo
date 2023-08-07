@@ -8,6 +8,8 @@ LG_lang = {
     LAB_B001:"Choose a quiz to try your hand at becoming a referee",
     LAB_B002:"Launch the Quiz",
     LAB_B003:"Catalog",
+    LAB_B004:"Description",
+    LAB_B005:"Languages",
     LAB_C001:"Your browser does not support sound files",
     LAB_C002:"Next question",
     LAB_C003:"See result",

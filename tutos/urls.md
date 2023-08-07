@@ -31,3 +31,6 @@ https://www.pngwing.com/en/search?q=slider+gesture
 
 code :
 https://developer.mozilla.org/fr/docs/Web/Events
+
+Creating HTML with JavaScript (template)
+https://gomakethings.com/html-templates-with-vanilla-javascript/

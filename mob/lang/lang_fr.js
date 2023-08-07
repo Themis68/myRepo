@@ -8,6 +8,8 @@ LG_lang = {
     LAB_B001:"Choisis un quizz pour t'essayer à devenir arbitre",
     LAB_B002:"Lancer le Quizz",
     LAB_B003:"Catalogue",
+    LAB_B004:"Description",
+    LAB_B005:"Langues",
     LAB_C001:"Votre navigateur ne gère pas les fichiers sons",
     LAB_C002:"Question suivante",
     LAB_C003:"Voir résultat",
