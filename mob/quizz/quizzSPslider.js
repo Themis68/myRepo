@@ -25,17 +25,17 @@ function ready() {
     // valeurs de l'état : interactive / complete
 	// Cette condition évite le doublement du chargement
 	if (document.readyState === "complete") {
+		// window.LG_menu_title.innerHTML
 		console.log("5 - event");
-
 		// 1 - on créé les vignettes du slider
-		creerVignettes("holder");
+		let nbSlides = creerVignettes("holder", LG_etatModule, LG_langUsed);
 		// 2 - on met à jour les attributs dynamiques des classes du Slider
-		paramSlider(arrayAssoSize(scenario));
+		// paramSlider(arrayAssoSize(scenario));
+		paramSlider(nbSlides);
 		// 3 - on lance la fonction slider
 		loadSlider();
 		// afficher les infos du quizz
 		doAfterSlide(0);
-		// charger les chaines
 	} else {
 		console.log("1 - event");
 	}
@@ -58,40 +58,53 @@ function windowLoaded() {
     // LANG : appeler l'initialisation
 }
 
-function creerVignettes(id) {
-	// création des indicateurs
+function creerVignettes(id, etatModuleLang, langueUtilisee) {
+	// indicateurs
 	let ind = document.getElementById("indicateurs");
-	for (let i = 0; i < arrayAssoSize(scenario); i++) {
-		let myInd = document.createElement("li");
-		myInd.setAttribute("id", "indicateur" + i);
-		myInd.setAttribute("data-target", "#carousel-example");
-		myInd.setAttribute("data-slide-to", i);
-		myInd.setAttribute("class", "cercle"+ (i === 0 ? '-active' : ''));
-		ind.appendChild(myInd);
-	}
-	
-	// création des vignettes
+	// vignettes
 	let holder = document.getElementById(id);
+	// nombre de quizz conservés
+	let iteQuizz = 0;
+
 	for (let i = 0; i < arrayAssoSize(scenario); i++) {
-		// mySlideImage
-		let mySlideImage = document.createElement("img");
-		mySlideImage.setAttribute("class", "slide-image");
-		let poster = (scenario[i].loi === undefined ? "bases.png" : "Loi_" + scenario[i].loi + ".png");
-		mySlideImage.setAttribute("src", pathPosters + poster);
+		// on verifie si le quizz doit être conservé
 
-		let mySlide = document.createElement("div");
-		mySlide.setAttribute("class", "slide");
-		mySlide.appendChild(mySlideImage);
+		if (etatModuleLang === true && scenario[i].multilangue.indexOf(langueUtilisee) >= 0 ){
+			// création des indicateurs		
+			//for (let i = 0; i < arrayAssoSize(scenario); i++) {
+			let myInd = document.createElement("li");
+			myInd.setAttribute("id", "indicateur" + iteQuizz);
+			myInd.setAttribute("data-target", "#carousel-example");
+			myInd.setAttribute("data-slide-to", iteQuizz);
+			myInd.setAttribute("class", "cercle"+ (iteQuizz === 0 ? '-active' : ''));
+			ind.appendChild(myInd);
+			//}
+		
+			// création des vignettes
+			//for (let i = 0; i < arrayAssoSize(scenario); i++) {
+			// mySlideImage
+			let mySlideImage = document.createElement("img");
+			mySlideImage.setAttribute("class", "slide-image");
+			let poster = (scenario[i].loi === undefined ? "bases.png" : "Loi_" + scenario[i].loi + ".png");
+			mySlideImage.setAttribute("src", pathPosters + poster);
 
-		let mySlideWrapper = document.createElement("div");
-		mySlideWrapper.setAttribute("class", "slide-wrapper");
+			let mySlide = document.createElement("div");
+			mySlide.setAttribute("class", "slide");
+			mySlide.appendChild(mySlideImage);
 
-		// ajouter le POSTER
-		mySlideWrapper.appendChild(mySlide);
+			let mySlideWrapper = document.createElement("div");
+			mySlideWrapper.setAttribute("class", "slide-wrapper");
 
-		// ajouter à la liste des vignettes
-		holder.appendChild(mySlideWrapper);
+			// ajouter le POSTER
+			mySlideWrapper.appendChild(mySlide);
+
+			// ajouter à la liste des vignettes
+			holder.appendChild(mySlideWrapper);
+			//}
+			iteQuizz++;
+		}
 	}
+	return iteQuizz;
 }
 
 

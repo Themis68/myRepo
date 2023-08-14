@@ -8,12 +8,14 @@ var LG_params = [
 ];
 
 var LG_defaut = {id: "fr", flag:"FR"};
+var LG_langUsed = LG_defaut.id;
 
 // déclaration des objets
 var LG_codeHtml = "";
 var LG_menu_title = "";
 var LG_menu_icone = "";
 var LG_chemin = "";
+
 
 // URI complète
 var myURLcomplete = document.location.href;
@@ -28,6 +30,8 @@ ils ne fonctionneront que si le module est activé
 document.addEventListener('readystatechange', ready, false);
 document.addEventListener("DOMContentLoaded", init, false);	 
 window.addEventListener('load', LG_load, false); 
+document.addEventListener("touchstart", clickF, false);
+
 document.addEventListener("touchstart", clickF, false);
 
 function ready(){
@@ -59,14 +63,14 @@ function ready(){
 }
 
 function init(){
-	console.log("4 - init");
+	console.log("4 - LG init");
 	if (LG_etatModule) {
 
 	}
 }
 
 function LG_load() {
-	console.log("8 - load");
+	console.log("8 - LG load");
 	if (LG_etatModule) {
 		// génération du code HTML
 		LG_genererHtml(window.LG_params);
@@ -157,6 +161,7 @@ function LG_displayLang(langue) {
 	window.LG_menu_icone = document.getElementById("LG_menu-icone");				// drapeau de la langue
 
 	// afficher langue
+	LG_langUsed = langue.flag;
 	window.LG_menu_title.innerHTML = "&nbsp;" + langue.flag;
 	// afficher l'icone
 	let chemin = window.LG_chemin + "/images/" +langue.flag + ".png";
@@ -180,7 +185,6 @@ function clickF (e) {
 	if (e.target.id.indexOf("LG_icone-lang-") > -1 
 		|| e.target.id.indexOf("LG_span-lang-") > -1){
 		let lang = e.target.id.slice(e.target.id.length -2 , e.target.id.length);
-		console.log("on switch sur " + lang);
 		window.location.href = myURL + "?lang=" + lang;
 	}
 }
@@ -202,7 +206,6 @@ function setLibelle(id, libelle){
 /*
 	génération du code HTML du menu des langues
 */
-
 function LG_genererHtml(params) {
 
 	// binôme : drapeau et abbréviation

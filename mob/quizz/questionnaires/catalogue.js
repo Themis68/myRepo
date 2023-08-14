@@ -53,7 +53,7 @@ var scenario = [
         id: 6,
         titre: "Les bases sur les éléments du matchs",
         fichier: "bases_2274.js",
-        multilangue: "fr",
+        multilangue: "fr,pt",
         variable: "script",
         description: "Mix sur les éléments liés au match",
         niveau: 1,

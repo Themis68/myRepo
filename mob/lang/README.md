@@ -43,3 +43,7 @@ cela aura pour conséquence de mettre à jour "href" : "./quizz/quizzSPslider.ht
 
 Toute page peut récupérer la liste des langues pour un quizz donné sous forme de drapeaux en appelant la fonction LG_getLanguesOfQuizz(tabLangue)
 Il suffit de lui passer un tableau de [fr,pt,..]
+
+- il est possible de changer de langue dans la page d'accueil des disciplines sportives
+chaque page affichera la langue sélectionnée pour information
+en effet le choix de la langue impact le contenu des autres pages.
