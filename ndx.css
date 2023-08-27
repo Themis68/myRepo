@@ -1,8 +1,18 @@
 @import url(./typo/scoreboard/stylesheet.css);
 @import url(./typo/passion_one/stylesheet.css);
 
-html {
+:root {
+  --marge-laterale: 0.5vw;  /* marge générale*/
+  --marge-verticale: 0.5vh;           /* marge générale*/
+  --gouttiere_verticale: calc(var(--marge-verticale) / 2); /* marge générale / 2 */
+}
 
+
+
+html {
+  /* héritage actif */
+  padding: 0;
+  background-color: white;
 }
 
 body {
@@ -14,20 +24,15 @@ body {
 
   min-height: 100vh; 
 
-  background-color: white;
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-left: var(--marge-laterale);
+  margin-right: var(--marge-laterale);
 
-
+  /* héritage actif */
   font-family: scoreboardregular, sans-serif;
   font-size: 1.5em;
   color: white;
-
-  /* héritage actif */
-  box-sizing : border-box; 
-  margin: 0;
-  padding-bottom: 0.5vh;
-  padding-left: 1vw;
-  padding-right: 1vw;
-  padding-top: 0.5vh;
 
 }
 
@@ -38,10 +43,10 @@ header {
   align-items: start;
   width: 100vh;
   flex: 0.1;
-  padding-top: 0.5vh;
-  padding-left: 1vw;
-  padding-right: 1vw;
-  padding-bottom: 0.5vh;
+
+  margin-top: var(--marge-verticale);
+  margin-bottom: var(--gouttiere_verticale);
+
   background-color: green;
 }
 
@@ -52,10 +57,10 @@ use {
   align-items: start;
   width: 100vh;
   flex: 1;
-  padding-top: 0.5vh;
-  padding-bottom: 0.5vh;
-  padding-left: 1vw;
-  padding-right: 1vw;
+
+  margin-top: var(--gouttiere_verticale);
+  margin-bottom: var(--gouttiere_verticale);
+
   background-color: blue;
 }
 
@@ -65,12 +70,10 @@ footer {
   justify-content: flex-start;
   align-items: start;
   width: 100vh;
-  flex: 0.1;
-  padding-top: 0.5vh;
-  padding-left: 1vw;
-  padding-right: 1vw; 
-  padding-bottom: 0.5vh;
-  
+  flex: 0.1;  
+
+  margin-top: var(--gouttiere_verticale);
+  margin-bottom: var(--marge-verticale);
 
   background-color: red;
 }
