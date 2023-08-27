@@ -12,7 +12,6 @@
 html {
   /* héritage actif */
   padding: 0;
-  background-color: white;
 }
 
 body {
@@ -29,11 +28,7 @@ body {
   margin-left: var(--marge-laterale);
   margin-right: var(--marge-laterale);
 
-  /* héritage actif */
-  font-family: scoreboardregular, sans-serif;
-  font-size: 1.5em;
-  color: white;
-
+  background-color: white;
 }
 
 header {
