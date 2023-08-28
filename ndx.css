@@ -15,7 +15,6 @@ html {
 }
 
 body {
-
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -25,8 +24,8 @@ body {
 
   margin-top: 0;
   margin-bottom: 0;
-  margin-left: var(--marge-laterale);
-  margin-right: var(--marge-laterale);
+  margin-left: 0.5vw; /*var(--marge-laterale);*/
+  margin-right: 0.5vw; /*var(--marge-laterale);*/
 
   background-color: white;
 }
@@ -39,8 +38,8 @@ header {
   width: 100vh;
   flex: 0.1;
 
-  margin-top: var(--marge-verticale);
-  margin-bottom: var(--gouttiere_verticale);
+  margin-top: 0.5vh; /*var(--marge-verticale);*/
+  margin-bottom: 0.5vh; /*var(--gouttiere_verticale);*/
 
   background-color: green;
 }
@@ -53,8 +52,8 @@ use {
   width: 100vh;
   flex: 1;
 
-  margin-top: var(--gouttiere_verticale);
-  margin-bottom: var(--gouttiere_verticale);
+  margin-top: 0.25vh; /*var(--gouttiere_verticale);*/
+  margin-bottom: 0.25vh; /*var(--gouttiere_verticale);*/
 
   background-color: blue;
 }
@@ -67,8 +66,8 @@ footer {
   width: 100vh;
   flex: 0.1;  
 
-  margin-top: var(--gouttiere_verticale);
-  margin-bottom: var(--marge-verticale);
+  margin-top: 0.25vh; /*var(--gouttiere_verticale);*/
+  margin-bottom: 0.25vh; /*var(--marge-verticale);*/
 
   background-color: red;
 }
