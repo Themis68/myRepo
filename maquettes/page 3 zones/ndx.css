@@ -7,7 +7,6 @@
   --marge-laterale: 0.5vw;  /* marge générale*/
   --marge-verticale: 0.5vh;           /* marge générale*/
   --gouttiere_verticale: calc(var(--marge-verticale) / 2); /* marge générale / 2 */
-  --heightBandeau: calc(( 100vh *0.1) - var(--marge-verticale) - var(--gouttiere_verticale));
 }
 
 
@@ -42,32 +41,14 @@ header {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  align-items: center;
+  align-items: start;
   width: 100vw;
-
-  max-height: var(--heightBandeau); /* obligatoire sinon se propage vers le bas*/
-  min-height: var(--heightBandeau);
+  flex: 0.1;
 
   margin-top: var(--marge-verticale);
   margin-bottom: var(--gouttiere_verticale);
 
   background-color: green;
-}
-
-footer {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  width: 100vw;
- 
-  min-height: var(--heightBandeau); /* obligatoire sinon se réduit vers le haut*/
-  max-height: var(--heightBandeau);
-
-  margin-top: var(--gouttiere_verticale);
-  margin-bottom: var(--marge-verticale);
-
-  background-color: red;
 }
 
 use {
@@ -84,6 +65,19 @@ use {
   background-color: blue;
 }
 
+footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: start;
+  width: 100vw;
+  flex: 0.1;  
+
+  margin-top: var(--gouttiere_verticale);
+  margin-bottom: var(--marge-verticale);
+
+  background-color: red;
+}
 
 /********************* CSS PORTRAIT *******************/
 @media (orientation: portrait) {
