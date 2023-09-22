@@ -1,13 +1,26 @@
 #LG_menu-lang {
-   width: 5ch;
-   margin-right: 3ch;
+   margin-right: 2.1vw;
+   max-width: calc(var(--widthBandeau) - var(--marge-laterale));
+   padding-right: var(--marge-laterale);
 }
 
 .LG_menu-label {
-   display: flex;
    position: relative;
-   width: 3em;
-   height: 100%;
+   text-decoration: none;
+   /*masquer les styles des hyperliens*/
+   margin: 0 !important;
+   display:inline-flex;
+   padding-left: calc(var(--marge-laterale) /2);
+   font-size: 2rem !important;
+   align-items: center;
+}
+
+label2 {
+   
+   margin: 0 !important;
+   display:inline-flex;
+   padding-left: calc(var(--marge-laterale) /2);
+   font-size: 2rem !important;
 }
 
 nav {
@@ -19,18 +32,16 @@ nav {
    flex: 1 !important;
 }
 
+.LG_menu-ul{
+   padding-left: 1.3vw;
+}
+
 /* Associe les mêmes règles au label et à la case
    pour les superposer, et "cacher" la case à cocher. */
 .LG_menu-label, .LG_menu-cb {
    /* Retire l'affichage par défaut des éléments de formulaire */
    /* ... comme les checkbox */
    appearance: none;
-}
-
-label {
-   margin: 0 !important;
-   display: inherit !important;
-   font-size: 2rem !important;
 }
 
 .LG_menu-nav {
@@ -40,6 +51,7 @@ label {
      transform: translateX(100%);*/
      display: none;
      position: absolute;
+     background-color: beige;
 }
 
  /* SI la case est cochée, modifier la classe "menu-nav" */
@@ -50,24 +62,26 @@ label {
      display: flex;
      background: white;
      /* décale le menu à gauche et en-dessous */
-     transform: translate(-70%, -15%); 
+     transform: translate(-10%, 0%); 
      transition: transform 1s linear;
 }
 
 .LG_menu-item {
    list-style-type: none;
-   width: 8ch;
+   width: 10ch;
 }
 
 .LG_menu-img {
    /* Taille fixe */
-   height: 2rem;
-   width: 2rem;
-   padding-bottom: 2px;
+   height: 3.5rem;
+   width: 3.5rem;
+   /* arrodnir les bords */
+   border-radius: 57% 23%;
 }
 
 .LG_menu-span {
    font-size: 1.8rem;
    font-family: Arial, Helvetica, sans-serif;
+   padding-left: 0.5vw;
    background-color: white;
 }

@@ -1,5 +1,5 @@
 // variables
-var LG_etatModule = false;	// par défaut le module ne doit pas êtrre utilisé
+var LG_etatModule = false;	// par défaut le module ne doit pas être utilisé
 
 var LG_params = [
 	{id: "fr", flag:"FR"},
@@ -28,49 +28,67 @@ ils ne fonctionneront que si le module est activé
 
 // gestion des évènements
 document.addEventListener('readystatechange', ready, false);
-document.addEventListener("DOMContentLoaded", init, false);	 
 window.addEventListener('load', LG_load, false); 
 document.addEventListener("touchstart", clickF, false);
 
-document.addEventListener("touchstart", clickF, false);
+function ready() {
+    switch(document.readyState) {
+        case "uninitialized":   // Has not started loading
+            // apparait en cas de ralentissement
+            console.log("1 LG");   // ne passe aps à cet étape
+            break;
+        case "loading":         // Is loading
+            // apparait en cas de ralentissement
+            console.log("2 LG");   // ne passe aps à cet étape
+            /*
+            L'évènement DOMContentLoaded est déclenché quand le document HTML initial est complètement chargé et analysé, 
+            sans attendre la fin du chargement des feuilles de styles, images et sous-document.
+            */
+            document.addEventListener("DOMContentLoaded", DOMContentLoaded, false);	
+            break;
+        case "loaded":          // Has been loaded
+            console.log("3 LG");   // ne passe pas à cet étape
+            break;
+        case "interactive":     // Has loaded enough to interact with
+            console.log("4 LG");
+            // on voit déjà les objets en dur dans la page
+			// on regarde s'il y a un appel du module
+			window.LG_codeHtml = document.getElementById("LG_menu-lang");	
+			if (window.LG_codeHtml != null) {
+				// module activé
+				LG_etatModule = true;
+				// récupérer le chemin relatif pour langue dans le script
+				let lg = document.getElementById("LG");	
+				let src = lg.getAttribute("src");
+				window.LG_chemin = src.substring(0, src.lastIndexOf("/")+1);
+				// ajouter le fichier des styles de LANG
+				LG_declareCSS(window.LG_chemin);
 
-function ready(){
-	
-	// Cette condition évite le doublement du chargement
-	if (document.readyState === "complete") {
-		console.log("6 - LG ready");
-		// insertion des chaines de caracteres
-		LG_chaines();
-	} else {
-		console.log("2 - LG ready");
-		// on regarde s'il y a un appel du module
-		window.LG_codeHtml = document.getElementById("LG_menu-lang");	
-		if (window.LG_codeHtml != null) {
-			// module activé
-			LG_etatModule = true;
-			// récupérer le chemin relatif pour langue dans le script
-			let lg = document.getElementById("LG");	
-			let src = lg.getAttribute("src");
-			window.LG_chemin = src.substring(0, src.lastIndexOf("/")+1);
+				// on recharge la langue si on a cliqué sur le menu pour changer de langue
+				let langAfficher = LG_getLangue();
+				// insérer le script avec la bonne langue
+				LG_declareLangue(window.LG_chemin, langAfficher.id);
+			}
+            break;
+        case "complete":        // Fully loaded
+            console.log("5 LG");
+			// insertion des chaines de caracteres
+			LG_chaines();
 
-			//: on recharge le dico si on a cliqué sur le menu pour changer de langue
-			let langAfficher = LG_getLangue();
-			// insérer le script avec le bon dico
-			LG_insertDico(langAfficher.id);
-		}
-		
-	}
+        default:
+
+    }
 }
 
-function init(){
-	console.log("4 - LG init");
+function DOMContentLoaded(){
+	console.log("4 LG");
 	if (LG_etatModule) {
 
 	}
 }
 
 function LG_load() {
-	console.log("8 - LG load");
+	console.log("7 LG");
 	if (LG_etatModule) {
 		// génération du code HTML
 		LG_genererHtml(window.LG_params);
@@ -144,8 +162,8 @@ function LG_getLangue() {
 	}
 }
 
+// on prépare la transmission de la langue à la page suivante s'il y a un point d'appel
 function setRenvoi(lang){
-	// on prépare la transmission de la langue à la page suivante
 	let renvoi = document.getElementById("LG_renvoi");
 	if (renvoi != undefined) {
 		const ref = renvoi.getAttribute("href");
@@ -158,22 +176,33 @@ function setRenvoi(lang){
 
 function LG_displayLang(langue) {
 	window.LG_menu_title = document.getElementById("LG_menu-title");		// titre de la langue à afficher
-	window.LG_menu_icone = document.getElementById("LG_menu-icone");				// drapeau de la langue
+	window.LG_menu_icone = document.getElementById("LG_menu-icone");		// drapeau de la langue
 
 	// afficher langue
 	LG_langUsed = langue.flag;
-	window.LG_menu_title.innerHTML = "&nbsp;" + langue.flag;
+	window.LG_menu_title.innerHTML = langue.flag;
 	// afficher l'icone
 	let chemin = window.LG_chemin + "/images/" +langue.flag + ".png";
 	window.LG_menu_icone.setAttribute("src", chemin);
 }
 
-function LG_insertDico(dico){
-	console.log("charge dico " + dico);
+// on automatise l'insertion des CSS de LANG dans le HEAD
+function LG_declareCSS(cheminLang){
+	console.log("declare CSS");
+	// ajout accès au fichier des styles des langues	
+	let myCSS = document.createElement("link");
+	myCSS.type = "text/css";
+	myCSS.rel = "stylesheet";
+	myCSS.href = cheminLang + "lang.css" ; 
+	document.head.appendChild(myCSS);
+}
+
+// on automatise l'insertion du fichier de la langue sélectionnée/défaut de LANG dans le HEAD
+function LG_declareLangue(cheminLang, langue){
 	// ajout accès au fichier des langues	
 	let myScript = document.createElement("script");
 	myScript.type = "text/javascript";
-	myScript.src = window.LG_chemin + "lang_"+ dico + ".js" ; 
+	myScript.src = cheminLang + "lang_"+ langue + ".js" ; 
 	document.head.appendChild(myScript);
 }
 
@@ -224,14 +253,14 @@ function LG_genererHtml(params) {
 		// on active le menu déroulant
 
 		let nav = `<nav class="LG_menu-nav">
-		<ul> 
+		<ul class="LG_menu-ul"> 
 
 		${params.map(param => `
 			<li class="LG_menu-item">
 				<a id="LG_sel-lang-${param.id}" class="LG_menu-label" href="">
 					<img id="LG_icone-lang-${param.id}" class="LG_menu-img" src="${window.LG_chemin}/images/${param.flag}.png"/>
 					<span id="LG_span-lang-${param.id}" class="LG_menu-span">
-						&nbsp;${param.flag}
+						${param.flag}
 					</span>
 				</a>
 			</li>
