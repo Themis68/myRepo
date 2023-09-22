@@ -28,9 +28,11 @@ on partage la zone 10% / le reste / 10%
     line-height: normal;
 }
 
+/*
+
 #LG_menu-lang {
-    /*flex: 0.1;*/
     margin-right: 1.7ch;
     max-width: calc(var(--widthBandeau) - var(--marge-laterale));
     padding-right: var(--marge-laterale);
 }
+*/
