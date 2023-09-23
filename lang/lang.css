@@ -15,12 +15,10 @@
    align-items: center;
 }
 
-label2 {
-   
-   margin: 0 !important;
-   display:inline-flex;
-   padding-left: calc(var(--marge-laterale) /2);
-   font-size: 2rem !important;
+/*gestion du soulgné du menu*/
+label {
+   border-bottom: 1px solid grey;
+   padding-bottom: 0.5vh;
 }
 
 nav {
@@ -52,6 +50,7 @@ nav {
      display: none;
      position: absolute;
      background-color: beige;
+     /*generer un effet 3d sur le bord*/
 }
 
  /* SI la case est cochée, modifier la classe "menu-nav" */
@@ -64,6 +63,10 @@ nav {
      /* décale le menu à gauche et en-dessous */
      transform: translate(-10%, 0%); 
      transition: transform 1s linear;
+     /* effet 3D */
+     box-shadow: 0 0 5px 5px rgba(0,0,0,0.2);
+     border: 2px solid beige;
+     border-radius: 10px;
 }
 
 .LG_menu-item {
@@ -71,17 +74,24 @@ nav {
    width: 10ch;
 }
 
+.LG_menu-item:hover{
+   color: red;
+   transform: scale(1.2);
+   transition: transform 0.5s ease-in-out;
+}
+
 .LG_menu-img {
    /* Taille fixe */
    height: 3.5rem;
    width: 3.5rem;
-   /* arrodnir les bords */
+   /* arrondir les bords */
    border-radius: 57% 23%;
 }
 
 .LG_menu-span {
+   color: black;
    font-size: 1.8rem;
    font-family: Arial, Helvetica, sans-serif;
-   padding-left: 0.5vw;
-   background-color: white;
+   padding-left: 1.7vw;
+   background-color: transparent;
 }

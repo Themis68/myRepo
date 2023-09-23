@@ -29,7 +29,7 @@ ils ne fonctionneront que si le module est activé
 // gestion des évènements
 document.addEventListener('readystatechange', ready, false);
 window.addEventListener('load', LG_load, false); 
-document.addEventListener("touchstart", clickF, false);
+document.addEventListener('touchstart', clickF, false);
 
 function ready() {
     switch(document.readyState) {
@@ -92,6 +92,7 @@ function LG_load() {
 	if (LG_etatModule) {
 		// génération du code HTML
 		LG_genererHtml(window.LG_params);
+
 		// MAJ de la langue à utiliser
 		let langAfficher = LG_getLangue();
 		LG_displayLang(langAfficher);
@@ -206,16 +207,28 @@ function LG_declareLangue(cheminLang, langue){
 	document.head.appendChild(myScript);
 }
 
-// on gère le changement de langue
 function clickF (e) {
-	// clic sur le menu : LG_menu-icone
+	if (e.target.id.indexOf("LG_" ) > -1) {
+		// on a cliqué sur une élément de LG
+		if (e.target.id == "LG_menu-icone" || e.target.id == "LG_menu-title") {
+			let sousmenu = document.getElementById("LG_menu-cb");
+			if (sousmenu.checked){
+				// sous-menu masqué
+				console.log("masqué");
+			} else {
+				// sous-menu affiché
+				console.log("affiché");
+			}
+		}
 
-	// click sur un sous-menu : LG_icone-lang
-	if (e.target.id.indexOf("LG_icone-lang-") > -1 
+		// click sur un sous-menu : LG_icone-lang
+		if (e.target.id.indexOf("LG_icone-lang-") > -1 
 		|| e.target.id.indexOf("LG_span-lang-") > -1){
-		let lang = e.target.id.slice(e.target.id.length -2 , e.target.id.length);
-		window.location.href = myURL + "?lang=" + lang;
-	}
+			// on gère le changement de langue
+			let lang = e.target.id.slice(e.target.id.length -2 , e.target.id.length);
+			window.location.href = myURL + "?lang=" + lang;
+		}
+	}	
 }
 
 function LG_chaines() {
@@ -247,6 +260,8 @@ function LG_genererHtml(params) {
 	</label>
 	<input type="checkbox" id="LG_menu-cb" class="LG_menu-cb">
 	`
+
+
 	window.LG_codeHtml.innerHTML = label;
 
 	if(window.LG_codeHtml.getAttribute("data-menu") == "true") {

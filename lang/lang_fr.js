@@ -1,5 +1,5 @@
 LG_lang = {
-    LAB_A006:"Sports", 
+    LAB_A006:"Disciplines", 
     LAB_A001:"Découvre de nouvelles émotions en devenant arbitre de ton sport préféré",
     LAB_A002:"Football",
     LAB_A003:"Futsal",
