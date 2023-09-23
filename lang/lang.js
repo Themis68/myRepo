@@ -1,11 +1,12 @@
 // variables
-var LG_etatModule = false;	// par défaut le module ne doit pas être utilisé
-
-var LG_params = [
-	{id: "fr", flag:"FR"},
-	{id: "pt", flag:"PT"},
-	{id: "en", flag:"EN"}
-];
+let LG_ = {
+	etatModule:false,	// par défaut le module ne doit pas être utilisé
+	params: [
+		{id: "fr", flag:"FR"},
+		{id: "pt", flag:"PT"},
+		{id: "en", flag:"EN"}
+	]
+};
 
 var LG_defaut = {id: "fr", flag:"FR"};
 var LG_langUsed = LG_defaut.id;
@@ -56,7 +57,7 @@ function ready() {
 			window.LG_codeHtml = document.getElementById("LG_menu-lang");	
 			if (window.LG_codeHtml != null) {
 				// module activé
-				LG_etatModule = true;
+				LG_.etatModule = true;
 				// récupérer le chemin relatif pour langue dans le script
 				let lg = document.getElementById("LG");	
 				let src = lg.getAttribute("src");
@@ -82,16 +83,16 @@ function ready() {
 
 function DOMContentLoaded(){
 	console.log("4 LG");
-	if (LG_etatModule) {
+	if (LG_.etatModule) {
 
 	}
 }
 
 function LG_load() {
 	console.log("7 LG");
-	if (LG_etatModule) {
+	if (LG_.etatModule) {
 		// génération du code HTML
-		LG_genererHtml(window.LG_params);
+		LG_genererHtml(LG_.params);
 
 		// MAJ de la langue à utiliser
 		let langAfficher = LG_getLangue();
@@ -149,17 +150,17 @@ function LG_getLangue() {
 	let params = LG_getParameters();
 
 	// on vérifie si la langue est gérée
-	let indice = LG_arraySearch(window.LG_params, params.lang);
+	let indice = LG_arraySearch(LG_.params, params.lang);
 	// il faut mettre à jour le renvoi vers la page suivante
 
 	if( indice > -1) {
 		// on affiche la langue
-		setRenvoi(window.LG_params[indice].id);
-		return(window.LG_params[indice]);
+		setRenvoi(LG_.params[indice].id);
+		return(LG_.params[indice]);
 	} else {
 		// on affiche la langue par défaut
 		setRenvoi(window.LG_defaut.id);		
-		return(window.LG_defaut);
+		return(LG_defaut);
 	}
 }
 
@@ -221,7 +222,7 @@ function clickF (e) {
 			}
 		}
 
-		// click sur un sous-menu : LG_icone-lang
+		// click sur un sous-menu : ucone ou texte
 		if (e.target.id.indexOf("LG_icone-lang-") > -1 
 		|| e.target.id.indexOf("LG_span-lang-") > -1){
 			// on gère le changement de langue
@@ -249,10 +250,6 @@ function setLibelle(id, libelle){
 	génération du code HTML du menu des langues
 */
 function LG_genererHtml(params) {
-
-	// binôme : drapeau et abbréviation
-	//let pathIcone = window.LG_chemin + "/images/"+ window.LG_defaut.flag + ".png";
-	//let libLangue = window.LG_defaut.flag; 
 	let label = `
 	<label for="LG_menu-cb" class="LG_menu-label">
 		<img id="LG_menu-icone" class="LG_menu-img" src="" />
