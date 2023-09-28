@@ -9,27 +9,31 @@
 	
  class LangModule {
     constructor() {
-        this.etatModule = false;
+        this.afficherMenu = false;	// le menu est masqué par défaut
         this.params = [
                 {id: "fr", flag:"FR"},
                 {id: "pt", flag:"PT"},
                 {id: "en", flag:"EN"}
             ];
-        this.defaut = this.params[0];
-        this.langUsed = this.defaut.id;
+        this.defaut = this.params[0];	// français par défaut
+        this.langUsed = this.defaut.id;	// langue utilisée à l'instant t
 
-        this.codeHtml = "";
+        this.codeHtml = "";		// inconnu à ce stade d'instanciation
         this.menu_title = "";
         this.menu_icone = "";
-        this.chemin = "";
 
-        this.myURLcomplete = document.location.href;
-        this.myURL  = this.myURLcomplete.substring( 0 ,this.myURLcomplete.lastIndexOf( "?" ) );
+        this.chemin = this.getChemin();
+        this.myURL  = this.prefixURL();
 
         document.addEventListener('readystatechange', this.ready.bind(this), false);
         window.addEventListener('load', this.load.bind(this), false); 
         document.addEventListener('touchstart', this.clickF.bind(this), false);
     }
+
+	prefixURL(){
+		let myURI = document.location.href;
+		return myURI.substring( 0 , myURI.lastIndexOf( "?" ) );
+	}
 
     ready() {
         switch(document.readyState) {
@@ -52,22 +56,18 @@
             case "interactive":     // Has loaded enough to interact with
                 console.log("4 LG");
                 // on voit déjà les objets en dur dans la page
-                // on regarde s'il y a un appel du module
-                window.codeHtml = document.getElementById("LG_menu-lang");	
-                if (window.codeHtml != null) {
+                // on regarde s'il y a un appel du module depuis le client
+			   	this.codeHtml = document.getElementById("LG_menu-lang");
+                if (this.codeHtml != null) {
                     // module activé
-                    this.etatModule = true;
-                    // récupérer le chemin relatif pour langue dans le script
-                    let lg = document.getElementById("LG");	
-                    let src = lg.getAttribute("src");
-                    window.chemin = src.substring(0, src.lastIndexOf("/")+1);
+                    this.afficherMenu = true;
                     // ajouter le fichier des styles de LANG
-                    this.declareCSS(window.chemin);
+                    this.declareCSS();
     
                     // on recharge la langue si on a cliqué sur le menu pour changer de langue
-                    let langAfficher = this.getLangue();
+                   // let langAfficher = this.getLangue();
                     // insérer le script avec la bonne langue
-                    this.declareLangue(window.chemin, langAfficher.id);
+                    this.declareLangue();
                 }
                 break;
             case "complete":        // Fully loaded
@@ -80,23 +80,34 @@
     
         }
     }
+
+	getChemin(){
+		 // récupérer le chemin relatif pour langue dans le script
+		 let lg = document.getElementById("LG");	
+		 if (lg !== undefined){
+		 	let src = lg.getAttribute("src");
+		 	return src.substring(0, src.lastIndexOf("/")+1);
+		 } else {
+			return "";
+		 }
+	}
     
     DOMContentLoaded(){
         console.log("4 LG");
-        if (this.etatModule) {
+        if (this.afficherMenu) {
     
         }
     }
     
     load() {
         console.log("7 LG");
-        if (this.etatModule) {
+        if (this.afficherMenu) {
             // génération du code HTML
-            this.genererHtml(this.params);
+            this.genererHtml();
     
             // MAJ de la langue à utiliser
-            let langAfficher = this.getLangue();
-            this.displayLang(langAfficher);
+           // let langAfficher = this.getLangue();
+            this.displayLang();
         }
     }
     
@@ -176,34 +187,34 @@
         }
     }
     
-    displayLang(langue) {
+    displayLang() {
         window.menu_title = document.getElementById("LG_menu-title");		// titre de la langue à afficher
         window.menu_icone = document.getElementById("LG_menu-icone");		// drapeau de la langue
     
         // afficher langue
-        this.langUsed = langue.flag;
-        window.menu_title.innerHTML = langue.flag;
+        this.langUsed = this.getLangue().flag;
+        window.menu_title.innerHTML = this.getLangue().flag;
         // afficher l'icone
-        let chemin = window.chemin + "/images/" +langue.flag + ".png";
-        window.menu_icone.setAttribute("src", chemin);
+        let cheminIcone = this.chemin + "/images/" +this.getLangue().flag + ".png";
+        window.menu_icone.setAttribute("src", cheminIcone);
     }
     
     // on automatise l'insertion des CSS de LANG dans le HEAD
-    declareCSS(cheminLang){
+    declareCSS(){
         // ajout accès au fichier des styles des langues	
         let myCSS = document.createElement("link");
         myCSS.type = "text/css";
         myCSS.rel = "stylesheet";
-        myCSS.href = cheminLang + "lang.css" ; 
+        myCSS.href = this.chemin + "lang.css" ; 
         document.head.appendChild(myCSS);
     }
     
     // on automatise l'insertion du fichier de la langue sélectionnée/défaut de LANG dans le HEAD
-    declareLangue(cheminLang, langue){
+    declareLangue(){
         // ajout accès au fichier des langues	
         let myScript = document.createElement("script");
         myScript.type = "text/javascript";
-        myScript.src = cheminLang + "lang_"+ langue + ".js" ; 
+        myScript.src = this.chemin + "lang_"+ this.getLangue().id + ".js" ; 
         document.head.appendChild(myScript);
     }
     
@@ -258,18 +269,18 @@
         `
     
     
-        window.codeHtml.innerHTML = label;
+        this.codeHtml.innerHTML = label;
     
-        if(window.codeHtml.getAttribute("data-menu") == "true") {
+        if(this.codeHtml.getAttribute("data-menu") == "true") {
             // on active le menu déroulant
     
             let nav = `<nav class="LG_menu-nav">
             <ul class="LG_menu-ul"> 
     
-            ${params.map(param => `
+            ${this.params.map(param => `
                 <li class="LG_menu-item">
                     <a id="LG_sel-lang-${param.id}" class="LG_menu-label" href="">
-                        <img id="LG_icone-lang-${param.id}" class="LG_menu-img" src="${window.chemin}/images/${param.flag}.png"/>
+                        <img id="LG_icone-lang-${param.id}" class="LG_menu-img" src="${this.chemin}/images/${param.flag}.png"/>
                         <span id="LG_span-lang-${param.id}" class="LG_menu-span">
                             ${param.flag}
                         </span>
@@ -278,7 +289,7 @@
             `)}
             </ul>`;
     
-            window.codeHtml.innerHTML = window.codeHtml.innerHTML + nav;
+            this.codeHtml.innerHTML = this.codeHtml.innerHTML + nav;
     
         }
     }
@@ -289,7 +300,7 @@
     
             <div class="langues">
                         ${tabLangue.map(langue => 
-                        `<div class="c-${langue}"><img src="${window.chemin}/images/${langue}.png" />
+                        `<div class="c-${langue}"><img src="${this.chemin}/images/${langue}.png" />
                         </div>`)}
             </div>`;
         return codeHTML;
