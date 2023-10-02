@@ -4,6 +4,16 @@
    padding-right: var(--marge-laterale);
 }
 
+#LG_menu-lang[data-menu="true"] {
+   border-bottom: 1px solid grey;
+   padding-bottom: 0.5vh;
+}
+
+#LG_menu-lang[data-menu="false"] {
+   border-bottom: 0;
+   padding-bottom: 0;
+}
+
 .LG_menu-label {
    position: relative;
    text-decoration: none;
@@ -13,12 +23,6 @@
    padding-left: calc(var(--marge-laterale) /2);
    font-size: 2rem !important;
    align-items: center;
-}
-
-/*gestion du soulgné du menu*/
-label {
-   border-bottom: 1px solid grey;
-   padding-bottom: 0.5vh;
 }
 
 nav {
