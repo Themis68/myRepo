@@ -6,11 +6,12 @@
  * 
  * 
  */
-	
+
+
  class LangModule {
     constructor() {
-        this.afficherMenu = false;	// le menu est masqué par défaut
-        this.params = [
+        this.etatMenu = false;	// le menu est masqué par défaut
+        this.params = [     // liste toutes les langues disponibles
                 {id: "fr", flag:"FR"},
                 {id: "pt", flag:"PT"},
                 {id: "en", flag:"EN"}
@@ -22,13 +23,39 @@
         this.menu_title = "";
         this.menu_icone = "";
 
-        this.chemin = this.getChemin();
-        this.myURL  = this.prefixURL();
+        this.chemin = this.getChemin(); // chemin d'accès au module langue
+        this.myURL  = this.prefixURL(); // récupère l'URI appelante
 
         document.addEventListener('readystatechange', this.ready.bind(this), false);
         window.addEventListener('load', this.load.bind(this), false); 
         document.addEventListener('touchstart', this.clickF.bind(this), false);
     }
+
+    setMenu(etat){
+        this.setEtatMenu(etat);
+        if (etat === true){
+            // on active le menu des langues
+            this.load();
+        }
+
+
+    }
+
+    // SETTERS
+    setEtatMenu(etat) {
+        this.etatMenu = etat;
+    }
+
+    // GETTERS
+    getEtatMenu() {
+        return this.etatMenu;
+    }
+    getDefaut() {
+        return this.defaut;
+    }
+
+
+    //*******************************************************
 
 	prefixURL(){
 		let myURI = document.location.href;
@@ -56,22 +83,22 @@
             case "interactive":     // Has loaded enough to interact with
                 console.log("4 LG");
                 // on voit déjà les objets en dur dans la page
-                // on regarde s'il y a un appel du module depuis le client
-			   	this.codeHtml = document.getElementById("LG_menu-lang");
-                if (this.codeHtml != null) {
-                    // module activé
-                    this.afficherMenu = true;
-                    // ajouter le fichier des styles de LANG
-                    this.declareCSS();
-    
-                    // on recharge la langue si on a cliqué sur le menu pour changer de langue
-                   // let langAfficher = this.getLangue();
-                    // insérer le script avec la bonne langue
-                    this.declareLangue();
-                }
+
+                // on affiche les infos sur la langue utilisée (icone et abbréviation)
+                // ajouter le fichier des styles de LANG
+                this.declareCSS();
+                // on récupère le dictionnaire de la langue par défaut
+                this.declareLangue(); 
                 break;
             case "complete":        // Fully loaded
                 console.log("5 LG");
+                 // on affiche la langue utilisée
+                let langue = document.getElementById("LG_menu-lang");
+                if (langue != undefined){
+                    langue.innerHTML = this.genererHtmlLangueUsed();
+                } else {
+                    alert("ERREUR : vous devez ajouter un élément avec l'id LG_menu-lang");
+                }
                 // insertion des chaines de caracteres
                 this.chaines();
 				break;
@@ -91,25 +118,6 @@
 			return "";
 		 }
 	}
-    
-    DOMContentLoaded(){
-        console.log("4 LG");
-        if (this.afficherMenu) {
-    
-        }
-    }
-    
-    load() {
-        console.log("7 LG");
-        if (this.afficherMenu) {
-            // génération du code HTML
-            this.genererHtml();
-    
-            // MAJ de la langue à utiliser
-           // let langAfficher = this.getLangue();
-            this.displayLang();
-        }
-    }
     
     // retourne la taille d'un tableau associatif
     //
@@ -220,28 +228,34 @@
     
     clickF (e) {
         if (e.target.id.indexOf("LG_" ) > -1) {
+
             // on a cliqué sur une élément de LG
             if (e.target.id == "LG_menu-icone" || e.target.id == "LG_menu-title") {
-                let sousmenu = document.getElementById("LG_menu-cb");
-                if (sousmenu.checked){
+                if (this.etatMenu === true) {
+                    let sousmenu = document.getElementById("LG_menu-cb");
+                    if (sousmenu.checked){
                     // sous-menu masqué
-                    console.log("masqué");
-                } else {
+                    } else {
                     // sous-menu affiché
-                    console.log("affiché");
+                    }
                 }
             }
     
-            // click sur un sous-menu : ucone ou texte
+            // click sur un sous-menu : icone ou texte
             if (e.target.id.indexOf("LG_icone-lang-") > -1 
             || e.target.id.indexOf("LG_span-lang-") > -1){
-                // on gère le changement de langue
-                let lang = e.target.id.slice(e.target.id.length -2 , e.target.id.length);
-                window.location.href = this.myURL + "?lang=" + lang;
+               // on met à jour l'URL
+                this.updateURL(e.target.id);
             }
         }	
     }
+
+    updateURL(langueSelectionnee) {
+        let lang = langueSelectionnee.slice(langueSelectionnee.length -2 , langueSelectionnee.length);
+        window.location.href = this.myURL + "?lang=" + lang;
+    }
     
+    // ***************      DICTIONNAIRE
     chaines() {
         // on récupère les éléments qui ont l'attribut "lab"
         let LABs = document.querySelectorAll("span[lab],p[lab],a[lab]")
@@ -255,32 +269,24 @@
         let obj = document.getElementById(id);
         obj.innerHTML = eval("LG_lang."+libelle);
     }
+    // ***************      
+    
     
     /*
         génération du code HTML du menu des langues
     */
-    genererHtml(params) {
-        let label = `
-        <label for="LG_menu-cb" class="LG_menu-label">
-            <img id="LG_menu-icone" class="LG_menu-img" src="" />
-            <span id="LG_menu-title" class="LG_menu-span"></span>
-        </label>
-        <input type="checkbox" id="LG_menu-cb" class="LG_menu-cb">
-        `
-    
-    
-        this.codeHtml.innerHTML = label;
-    
-        if(this.codeHtml.getAttribute("data-menu") == "true") {
-            // on active le menu déroulant
-    
+        
+    genererHtmlMenu() {    
+        if(this.etatMenu === true) {
+                // on active le menu déroulant
+        
             let nav = `<nav class="LG_menu-nav">
             <ul class="LG_menu-ul"> 
     
             ${this.params.map(param => `
                 <li class="LG_menu-item">
                     <a id="LG_sel-lang-${param.id}" class="LG_menu-label" href="">
-                        <img id="LG_icone-lang-${param.id}" class="LG_menu-img" src="${this.chemin}/images/${param.flag}.png"/>
+                        <img id="LG_icone-lang-${param.id}" class="LG_menu-img" src="${this.chemin}images/${param.flag}.png"/>
                         <span id="LG_span-lang-${param.id}" class="LG_menu-span">
                             ${param.flag}
                         </span>
@@ -288,14 +294,40 @@
                 </li>
             `)}
             </ul>`;
-    
-            this.codeHtml.innerHTML = this.codeHtml.innerHTML + nav;
-    
+        
+            let menu = document.getElementById("LG_menu-lang");
+            if (menu != undefined){
+                menu.innerHTML = menu.innerHTML + nav;
+            }
+        
         }
     }
-    
+
+    genererHtmlLangueUsed() {
+        // QUELLE LANGUE AFFICHEE
+        // récupérer les paramètres dans l'URL
+        let paramsUrl = this.getParameters();
+        console.log(paramsUrl);
+        let langue = "";
+        if (paramsUrl.lang !== undefined) {
+            langue = paramsUrl.lang;
+            let indice = this.arraySearch(this.params, langue);
+            return `
+            <label for="LG_menu-cb" class="LG_menu-label">
+                <img id="LG_menu-icone" class="LG_menu-img" src="${this.chemin}images/${this.params[indice].flag}.png" />
+                <span id="LG_menu-title" class="LG_menu-span">${this.params[indice].flag}</span>
+            </label>
+            <input type="checkbox" id="LG_menu-cb" class="LG_menu-cb">
+            `;
+        } else {
+            // il n'y a pas de langue dans l'URL : on vient de lancer la page pour la première fois
+            //langue = this.defaut.id;  
+            this.updateURL(this.defaut.id);      
+        }
+       
+    }
+
     getLanguesOfQuizz(tabLangue) {
-        console.log(tabLangue);
         let codeHTML = ` 
     
             <div class="langues">
@@ -305,4 +337,21 @@
             </div>`;
         return codeHTML;
     }
+
+        // gère l'affichage du menu
+    load() {
+        console.log("7 LG");
+        if (this.etatMenu === true) {
+            // génération du code HTML du menu
+            this.genererHtmlMenu();
+        }
+    }
+
+    DOMContentLoaded(){
+        console.log("4 LG");
+    }
 }
+
+// on part du principe que si ce module est appelé par un fichier html c'est qu'il est utilisé
+// on instancie donc un élément de la classe
+let LG_ = new LangModule(); // on active la gestion des langues
