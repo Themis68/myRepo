@@ -10,6 +10,8 @@
   --heightBandeau: calc(( 100vh *0.1) - var(--marge-verticale) - var(--gouttiere_verticale));
 }
 
+/*peut-on définir des variables css dans :root avec des valeurs variables*/
+
 
 
 html {
@@ -51,7 +53,7 @@ header {
   margin-top: var(--marge-verticale);
   margin-bottom: var(--gouttiere_verticale);
 
-  background-color: green;
+  background-color: transparent;
 }
 
 footer {

@@ -9,12 +9,9 @@ on partage la zone 10% / le reste / 10%
 #asi_logo {
     max-width: calc(var(--widthBandeau) - var(--marge-laterale));
     padding-left: var(--marge-laterale);
-/*flex: 0.1;*/
-
 }
 
 #asi_logo_img {
-/*flex: 0.1;*/
     max-height: 7vh;
 }
   
@@ -24,15 +21,6 @@ on partage la zone 10% / le reste / 10%
     flex: 1;
     font-family: scoreboardregular, sans-serif;
     font-size: 9vw;
-    color: white;
+    color: black;
     line-height: normal;
 }
-
-/*
-
-#LG_menu-lang {
-    margin-right: 1.7ch;
-    max-width: calc(var(--widthBandeau) - var(--marge-laterale));
-    padding-right: var(--marge-laterale);
-}
-*/
