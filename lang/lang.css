@@ -2,8 +2,11 @@
    margin-right: 2.1vw;
    max-width: calc(var(--widthBandeau) - var(--marge-laterale));
    padding-right: var(--marge-laterale);
+   border-bottom: 0;
+   padding-bottom: 0;
 }
 
+/*
 #LG_menu-lang[data-menu="true"] {
    border-bottom: 1px solid grey;
    padding-bottom: 0.5vh;
@@ -13,7 +16,7 @@
    border-bottom: 0;
    padding-bottom: 0;
 }
-
+*/
 #LG_triangle {
    height: 3vh;
 }
@@ -69,7 +72,7 @@ nav {
      display: flex;
      background: white;
      /* décale le menu à gauche et en-dessous */
-     transform: translate(-10%, 0%); 
+     transform: translate(12%, 0%); 
      transition: transform 1s linear;
      /* effet 3D */
      box-shadow: 0 0 5px 5px rgba(0,0,0,0.2);
