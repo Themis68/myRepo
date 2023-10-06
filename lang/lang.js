@@ -233,11 +233,8 @@
             if (e.target.id == "LG_menu-icone" || e.target.id == "LG_menu-title") {
                 if (this.etatMenu === true) {
                     let sousmenu = document.getElementById("LG_menu-cb");
-                    if (sousmenu.checked){
-                    // sous-menu masqué
-                    } else {
+                    // sous-menu masqué si checked
                     // sous-menu affiché
-                    }
                 }
             }
     
@@ -287,9 +284,7 @@
                 <li class="LG_menu-item">
                     <a id="LG_sel-lang-${param.id}" class="LG_menu-label" href="">
                         <img id="LG_icone-lang-${param.id}" class="LG_menu-img" src="${this.chemin}images/${param.flag}.png"/>
-                        <span id="LG_span-lang-${param.id}" class="LG_menu-span">
-                            ${param.flag}
-                        </span>
+                        <span id="LG_span-lang-${param.id}" class="LG_menu-span">${param.flag}</span>
                     </a>
                 </li>
             `)}
@@ -309,13 +304,20 @@
         let paramsUrl = this.getParameters();
         console.log(paramsUrl);
         let langue = "";
+        let triangle ="";
         if (paramsUrl.lang !== undefined) {
             langue = paramsUrl.lang;
             let indice = this.arraySearch(this.params, langue);
+
+            if (this.etatMenu === true) {
+                triangle = `<img id="LG_triangle" src="${this.chemin}images/triangle_menu.svg"/>`
+            }
+
             return `
             <label for="LG_menu-cb" class="LG_menu-label">
                 <img id="LG_menu-icone" class="LG_menu-img" src="${this.chemin}images/${this.params[indice].flag}.png" />
                 <span id="LG_menu-title" class="LG_menu-span">${this.params[indice].flag}</span>
+                ${triangle}
             </label>
             <input type="checkbox" id="LG_menu-cb" class="LG_menu-cb">
             `;
