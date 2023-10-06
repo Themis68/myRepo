@@ -24,7 +24,7 @@
         this.menu_icone = "";
 
         this.chemin = this.getChemin(); // chemin d'accès au module langue
-        this.myURL  = this.prefixURL(); // récupère l'URI appelante
+        this.myURL  = this.getPrefixeURL(); // récupère l'URI appelante
 
         document.addEventListener('readystatechange', this.ready.bind(this), false);
         window.addEventListener('load', this.load.bind(this), false); 
@@ -57,7 +57,7 @@
 
     //*******************************************************
 
-	prefixURL(){
+	getPrefixeURL(){
 		let myURI = document.location.href;
 		return myURI.substring( 0 , myURI.lastIndexOf( "?" ) );
 	}
@@ -194,7 +194,7 @@
             }
         }
     }
-    
+    /*
     displayLang() {
         window.menu_title = document.getElementById("LG_menu-title");		// titre de la langue à afficher
         window.menu_icone = document.getElementById("LG_menu-icone");		// drapeau de la langue
@@ -206,7 +206,7 @@
         let cheminIcone = this.chemin + "/images/" +this.getLangue().flag + ".png";
         window.menu_icone.setAttribute("src", cheminIcone);
     }
-    
+    */
     // on automatise l'insertion des CSS de LANG dans le HEAD
     declareCSS(){
         // ajout accès au fichier des styles des langues	
