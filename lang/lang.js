@@ -25,12 +25,12 @@
         this.menu_title = "";
         this.menu_icone = "";
 
-        this.chemin = this.getChemin(); // chemin d'accès au module langue
+        this.chemin = this.getCheminClassLangue(); // chemin d'accès au module langue
         this.myURL  = this.getPrefixeURL(); // récupère l'URI appelante
 
         document.addEventListener('readystatechange', this.ready.bind(this), false);
         window.addEventListener('load', this.load.bind(this), false); 
-        document.addEventListener('touchstart', this.clickF.bind(this), false);
+        document.addEventListener('touchstart', this.listenClick.bind(this), false);
     }
 
     setMenu(etat){
@@ -84,9 +84,9 @@
 
                 // on affiche les infos sur la langue utilisée (icone et abbréviation)
                 // ajouter le fichier des styles de LANG
-                this.declareCSS();
+                this.attachCssIntoHtml();
                 // on récupère le dictionnaire de la langue par défaut
-                this.declareLangue(); 
+                this.attachLangueIntoHtml(); 
                 break;
             case "complete":        // Fully loaded
                 console.log("5 LG");
@@ -97,8 +97,8 @@
                 } else {
                     alert("ERREUR : vous devez ajouter un élément avec l'id LG_menu-lang");
                 }
-                // insertion des chaines de caracteres
-                this.chaines();
+                // insertion des getLabElements de caracteres
+                this.getLabElements();
 				break;
     
             default:
@@ -106,26 +106,26 @@
         }
     }
 
-    getChemin() {
+    getCheminClassLangue() {
         // récupérer le chemin relatif pour langue dans le script
         // usage de chaining operator (?) et de nullish coalescing operator (??)
         let src = document.getElementById("LG")?.getAttribute("src");
         return src?.substring(0, src.lastIndexOf("/")+1) ?? "";
     }
 
-    arrayAssoSize(arr) {
+    utilArrayAssoSize(arr) {
         // retourne la taille d'un tableau associatif
         //
-        // exemple appel : arrayAssoSize(scenario) avec 
+        // exemple appel : utilArrayAssoSize(scenario) avec 
         // - scenario un tableau associatif
         return Object.keys(arr).length;
     }
 
-    arraySearch(arr, valObject) {
+    utilArraySearch(arr, valObject) {
         return arr.findIndex(item => item.id === valObject);
     }
     
-    getParameters() {
+    getParametersIntoUrl() {
         // recuperation des paramètres de l'url
         let urlParams = new URLSearchParams(window.location.search);
         let params = {};
@@ -135,28 +135,28 @@
         return params;
     }
     
-    getLangue() {	
+    getLangueIntoURL() {	
         // QUELLE LANGUE AFFICHEE
         // récupérer les paramètres dans l'URL
-        const paramsUrl = this.getParameters();
+        const paramsUrl = this.getParametersIntoUrl();
     
         // on vérifie si la langue est gérée
-        //let indice = this.arraySearch(this.params, paramsUrl.lang);
+        //let indice = this.utilArraySearch(this.params, paramsUrl.lang);
         const foundParam = this.params.find(param => param.id === paramsUrl.lang);
         
         // il faut mettre à jour le renvoi vers la page suivante
         if( foundParam) {
             // on affiche la langue
-            this.setRenvoi(foundParam.id);
+            this.setRenvoiToPage(foundParam.id);
             return(foundParam);
         } else {
             // on affiche la langue par défaut
-            this.setRenvoi(this.defaut.id);		
+            this.setRenvoiToPage(this.defaut.id);		
             return(this.defaut);
         }
     }
     
-    setRenvoi(lang){
+    setRenvoiToPage(lang){
         // on prépare la transmission de la langue à la page suivante s'il y a un point d'appel
         let renvoi = document.getElementById("renvoi");
         if (renvoi) {
@@ -168,7 +168,7 @@
         }
     }
 
-    declareCSS(){
+    attachCssIntoHtml(){
         // on automatise l'insertion des CSS de LANG dans le HEAD
         // ajout accès au fichier des styles des langues	
         let myCSS = document.createElement("link");
@@ -187,16 +187,16 @@
     */
     }
     
-    declareLangue(){
+    attachLangueIntoHtml(){
         // on automatise l'insertion du fichier de la langue sélectionnée/défaut de LANG dans le HEAD
         // ajout accès au fichier des langues	
         let myScript = document.createElement("script");
         myScript.type = "text/javascript";
-        myScript.src = `${this.chemin}lang_${this.getLangue().id}.js`;
+        myScript.src = `${this.chemin}lang_${this.getLangueIntoURL().id}.js`;
         document.head.appendChild(myScript);
     }
     
-    clickF (e) {
+    listenClick (e) {
         if (!e.target.id.startsWith("LG_")) return;
 
         if (["LG_menu-icone", "LG_menu-title"].includes(e.target.id) && this.etatMenu) {
@@ -209,11 +209,11 @@
         // click sur un sous-menu : icone ou texte
         if (e.target.id.startsWith("LG_icone-lang-") || e.target.id.startsWith("LG_span-lang-")) {
             // on met à jour l'URL
-            this.updateURL(e.target.id);
+            this.setLangueIntoUrl(e.target.id);
         }
     }
 
-    updateURL(langueSelectionnee) {
+    setLangueIntoUrl(langueSelectionnee) {
         /*let lang = langueSelectionnee.slice(langueSelectionnee.length -2 , langueSelectionnee.length);
         window.location.href = this.myURL + "?lang=" + lang;*/
                 let lang = langueSelectionnee.slice(-2);
@@ -221,15 +221,15 @@
     }
     
     // ***************      DICTIONNAIRE
-    chaines() {
+    getLabElements() {
         // on récupère les éléments qui ont l'attribut "lab"
         let LABs = document.querySelectorAll("span[lab],p[lab],a[lab]")
         LABs.forEach(element => {
-            this.setLibelle(element.id, element.getAttribute("lab"));
+            this.setLibelleOfLabElement(element.id, element.getAttribute("lab"));
         });
     }
     
-    setLibelle(id, libelle){
+    setLibelleOfLabElement(id, libelle){
         let obj = document.getElementById(id);
         //obj.innerHTML = eval("LG_lang."+libelle);
         if (LG_lang && LG_lang.hasOwnProperty(libelle)) {
@@ -243,7 +243,7 @@
         génération du code HTML du menu des langues
     */
         
-    genererHtmlMenu() {    
+    genererHtmlMenuLangue() {    
         if (this.etatMenu) {
             const navItems = this.params.map(param => `
                 <li class="LG_menu-item">
@@ -270,13 +270,13 @@
     genererHtmlLangueUsed() {
         // QUELLE LANGUE AFFICHEE
         // récupérer les paramètres dans l'URL
-        const paramsUrl = this.getParameters();
+        const paramsUrl = this.getParametersIntoUrl();
         const foundParam = paramsUrl.lang ? this.params.find(param => param.id === paramsUrl.lang) : this.defaut;
 
         if (!paramsUrl.lang) {
             // il n'y a pas de langue dans l'URL : on vient de lancer la page pour la première fois
             //langue = this.defaut.id;  
-            this.updateURL(this.defaut.id); 
+            this.setLangueIntoUrl(this.defaut.id); 
         }
 
         const triangle = this.etatMenu ? `<img id="LG_triangle" src="${this.chemin}images/triangle_menu.svg"/>` : '';
@@ -307,7 +307,7 @@
         console.log("7 LG");
         if (this.etatMenu === true) {
             // génération du code HTML du menu
-            this.genererHtmlMenu();
+            this.genererHtmlMenuLangue();
         }
     }
 
