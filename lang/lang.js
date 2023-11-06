@@ -11,15 +11,14 @@
  class LangModule {
     constructor() {
         this.etatMenu = false;	// le menu est masqué par défaut
-        this.params = [     // liste toutes les langues disponibles
+        this.LibLangues = [     // liste toutes les langues disponibles
             {id: "fr", flag:"FR"},
             {id: "en", flag:"EN"},
             {id: "pt", flag:"PT"}
             ];
-        const [defaut] = this.params;
-        this.defaut = defaut;
-            //this.defaut = this.params[0];	// français par défaut
-        this.langUsed = this.defaut.id;	// langue utilisée à l'instant t
+        const [defaultLang] = this.LibLangues;
+        this.defaultLang = defaultLang;
+        this.langUsed = this.defaultLang.id;	// langue utilisée à l'instant t
 
         this.codeHtml = "";		// inconnu à ce stade d'instanciation
         this.menu_title = "";
@@ -48,12 +47,11 @@
     getEtatMenu() {
         return this.etatMenu;
     }
-    getDefaut() {
-        return this.defaut;
+    getdefaultLang() {
+        return this.defaultLang;
     }
 
 
-    //*******************************************************
     getPrefixeURL() {
         let myURL = new URL(document.location.href);
         return myURL.origin + myURL.pathname;
@@ -84,9 +82,9 @@
 
                 // on affiche les infos sur la langue utilisée (icone et abbréviation)
                 // ajouter le fichier des styles de LANG
-                this.attachCssIntoHtml();
+                this.setCssIntoHtml();
                 // on récupère le dictionnaire de la langue par défaut
-                this.attachLangueIntoHtml(); 
+                this.setLangueIntoHtml(); 
                 break;
             case "complete":        // Fully loaded
                 console.log("5 LG");
@@ -115,9 +113,6 @@
 
     utilArrayAssoSize(arr) {
         // retourne la taille d'un tableau associatif
-        //
-        // exemple appel : utilArrayAssoSize(scenario) avec 
-        // - scenario un tableau associatif
         return Object.keys(arr).length;
     }
 
@@ -127,48 +122,15 @@
     
     getParametersIntoUrl() {
         // recuperation des paramètres de l'url
-        let urlParams = new URLSearchParams(window.location.search);
-        let params = {};
-        for(let param of urlParams) {
-            params[param[0]] = decodeURIComponent(param[1]);
+        let urlLibLangues = new URLSearchParams(window.location.search);
+        let LibLangues = {};
+        for(let libLangue of urlLibLangues) {
+            LibLangues[libLangue[0]] = decodeURIComponent(libLangue[1]);
         }
-        return params;
-    }
-    
-    getLangueIntoURL() {	
-        // QUELLE LANGUE AFFICHEE
-        // récupérer les paramètres dans l'URL
-        const paramsUrl = this.getParametersIntoUrl();
-    
-        // on vérifie si la langue est gérée
-        //let indice = this.utilArraySearch(this.params, paramsUrl.lang);
-        const foundParam = this.params.find(param => param.id === paramsUrl.lang);
-        
-        // il faut mettre à jour le renvoi vers la page suivante
-        if( foundParam) {
-            // on affiche la langue
-            this.setRenvoiToPage(foundParam.id);
-            return(foundParam);
-        } else {
-            // on affiche la langue par défaut
-            this.setRenvoiToPage(this.defaut.id);		
-            return(this.defaut);
-        }
-    }
-    
-    setRenvoiToPage(lang){
-        // on prépare la transmission de la langue à la page suivante s'il y a un point d'appel
-        let renvoi = document.getElementById("renvoi");
-        if (renvoi) {
-            const ref = renvoi.getAttribute("href");
-            // on vérifie si la langue est déjà présente dans l'URI
-            if (!ref.includes("lang=")){
-                renvoi.setAttribute("href", `${ref}?lang=${lang}`);
-            }
-        }
+        return LibLangues;
     }
 
-    attachCssIntoHtml(){
+    setCssIntoHtml(){
         // on automatise l'insertion des CSS de LANG dans le HEAD
         // ajout accès au fichier des styles des langues	
         let myCSS = document.createElement("link");
@@ -186,14 +148,41 @@
     la gestion des setAttributes écrits sur plusieurs lignes n'est pas reconnu
     */
     }
+
+    getLangueIntoURL() {	
+        // QUELLE LANGUE AFFICHEE
+        // récupérer les paramètres dans l'URL
+        const LibLanguesUrl = this.getParametersIntoUrl();    
+        // on vérifie si la langue est présente dans l'URL
+        const foundParam = this.LibLangues.find(param => param.id === LibLanguesUrl.lang);
+        // et on la retourne
+        return (foundParam || this.defaultLang);
+    }
     
-    attachLangueIntoHtml(){
+    setRenvoiToPage(lang){
+        // on prépare la transmission de la langue à la page suivante s'il y a un point d'appel
+        let renvoi = document.getElementById("renvoi");
+        if (renvoi) {
+            const ref = renvoi.getAttribute("href");
+            // on vérifie si la langue est déjà présente dans l'URI
+            if (!ref.includes("lang=")){
+                renvoi.setAttribute("href", `${ref}?lang=${lang}`);
+            }
+        }
+    }
+    
+    setLangueIntoHtml(){
         // on automatise l'insertion du fichier de la langue sélectionnée/défaut de LANG dans le HEAD
         // ajout accès au fichier des langues	
         let myScript = document.createElement("script");
         myScript.type = "text/javascript";
-        myScript.src = `${this.chemin}lang_${this.getLangueIntoURL().id}.js`;
+        //on récupère la langue en cours dans l'URL
+        const langToSend = this.getLangueIntoURL();
+        // on affiche la langue         
+        myScript.src = `${this.chemin}lang_${langToSend.id}.js`;
         document.head.appendChild(myScript);
+        // on met à jour la fonction de renvoi de page
+        this.setRenvoiToPage(langToSend.id);
     }
     
     listenClick (e) {
@@ -214,13 +203,10 @@
     }
 
     setLangueIntoUrl(langueSelectionnee) {
-        /*let lang = langueSelectionnee.slice(langueSelectionnee.length -2 , langueSelectionnee.length);
-        window.location.href = this.myURL + "?lang=" + lang;*/
-                let lang = langueSelectionnee.slice(-2);
+        let lang = langueSelectionnee.slice(-2);
         window.location.href = `${this.myURL}?lang=${lang}`;
     }
     
-    // ***************      DICTIONNAIRE
     getLabElements() {
         // on récupère les éléments qui ont l'attribut "lab"
         let LABs = document.querySelectorAll("span[lab],p[lab],a[lab]")
@@ -231,21 +217,14 @@
     
     setLibelleOfLabElement(id, libelle){
         let obj = document.getElementById(id);
-        //obj.innerHTML = eval("LG_lang."+libelle);
         if (LG_lang && LG_lang.hasOwnProperty(libelle)) {
             obj.innerHTML = LG_lang[libelle];
         }
-    }
-    // ***************      
-    
-    
-    /*
-        génération du code HTML du menu des langues
-    */
+    }    
         
     genererHtmlMenuLangue() {    
         if (this.etatMenu) {
-            const navItems = this.params.map(param => `
+            const navItems = this.LibLangues.map(param => `
                 <li class="LG_menu-item">
                     <a id="LG_sel-lang-${param.id}" class="LG_menu-label" href="">
                         <img id="LG_icone-lang-${param.id}" class="LG_menu-img" src="${this.chemin}images/${param.flag}.png"/>
@@ -270,13 +249,13 @@
     genererHtmlLangueUsed() {
         // QUELLE LANGUE AFFICHEE
         // récupérer les paramètres dans l'URL
-        const paramsUrl = this.getParametersIntoUrl();
-        const foundParam = paramsUrl.lang ? this.params.find(param => param.id === paramsUrl.lang) : this.defaut;
+        const LibLanguesUrl = this.getParametersIntoUrl();
+        const foundParam = LibLanguesUrl.lang ? this.LibLangues.find(param => param.id === LibLanguesUrl.lang) : this.defaultLang;
 
-        if (!paramsUrl.lang) {
+        if (!LibLanguesUrl.lang) {
             // il n'y a pas de langue dans l'URL : on vient de lancer la page pour la première fois
-            //langue = this.defaut.id;  
-            this.setLangueIntoUrl(this.defaut.id); 
+            //langue = this.defaultLang.id;  
+            this.setLangueIntoUrl(this.defaultLang.id); 
         }
 
         const triangle = this.etatMenu ? `<img id="LG_triangle" src="${this.chemin}images/triangle_menu.svg"/>` : '';
