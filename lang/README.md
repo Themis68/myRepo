@@ -2,7 +2,21 @@ ARRET SUR IMAGE !
 
 - IHM avec l'option Multilangues
 
--- Le module sera activé uniquement s'il détecte la présence d'un objet qui l'appelle depuis la page HTML
+-- Le module sera activé uniquement s'il détecte la présence du code suivante dans la section <HEAD> de la page qui le demande
+
+<script src="lang/lang.js" type="text/javascript" id="LG"></script>
+
+le cas échéant, une instance de la classe du modele sera créée automatiquement.
+cette instance pourra être appelée via LG_ avec la structrue suivante :
+
+
+TODO : vérifier que si le menu est désactivé on peut passer le langage par défaut à la page suivante
+
+
+
+
+
+
   <div id="menu-lang" data-menu="true"></div>
 -- data-menu="true" : module activé
 -- data-menu="false" : module désactivé

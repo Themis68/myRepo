@@ -1,8 +1,3 @@
-// chainage avec les template
- // var template = import("template.js");
- // import {temple} from "template.js";
- //const Template = require('template.js');
-
 // écouteurs
 document.addEventListener('readystatechange', ready, false);
 
