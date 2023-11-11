@@ -2,7 +2,7 @@
 document.addEventListener('readystatechange', ready, false);
 
 // on choisi d'afficher ou amsquer le menu des langues
-// on aura dinc la langue par défaut
+// on aura donc la langue par défaut
 const afficherMenuLangue = true;
 LG_.setMenu(afficherMenuLangue);
 
@@ -38,7 +38,6 @@ function ready() {
             break;
         case "complete":        // Fully loaded
             console.log("5 HTML");
-
             break;
         default:
 
@@ -51,12 +50,3 @@ function DOMContentLoaded(){
     // ne passe pas à cette étape
     console.log("DOMContentLoaded");
 }
-
-/*
-window.addEventListener('load', (event) => {
-    let header = document.getElementsByTagName("footer")[0];
-    let headerHeight = header.getBoundingClientRect().height;
-    //let useHeight = window.innerHeight - headerHeight - footerHeight;
-    header.style.maxHeight = headerHeight + "px";
-});
-*/

@@ -1,12 +1,4 @@
 @import url(./typo/scoreboard/stylesheet.css);
-@import url(./typo/passion_one/stylesheet.css);
-
-:root {
-  --marge-laterale: 0.5vw;  /* marge générale*/
-  --marge-verticale: 0.5vh;           /* marge générale*/
-  --gouttiere_verticale: calc(var(--marge-verticale) / 2); /* marge générale / 2 */
-}
-
 
 
 html {
@@ -17,65 +9,61 @@ html {
 body {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  background-color: white;
+}
+
+@keyframes fade {
+  0% {
+    Opacity : 0 ;
+    transform: scale(0)   /* echelle */
+      translateY(-50%);   /* tiré de la moitié de sa propre hauteur */
+  }
+  100% {
+    Opacity : 1 ;
+    transform: scale(1) 
+      translateY(-50%);
+  }
+}
+
+.titre {
+  font-family: scoreboardregular;
+  color: black;
+}
+
+
+use {
+  display: flex;
+  flex-direction: column;
   justify-content: center;
-  align-items: start;
-  min-height: 100vh; 
-
-  margin-top: 0;
-  margin-bottom: 0;
-  margin-left: var(--marge-laterale);
-  margin-right: var(--marge-laterale);
-
-  background-color: yellow;
+  align-items: center;
+  /* animation*/
+  transform: translateY(-50%); /* tiré de la moitié de sa propre hauteur */
+  Animation-name : fade ;
+  Animation-delay : 0s ;
+  Animation-duration : 4s ;
+  Animation-iteration-count : 1 ;
+  margin-top: 45vh; /* poussé de la moitié de hauteur de viewport */
 }
 
 @media (orientation: portrait) {
 
-  header {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: start;
-    width: 100vh;
-    flex: 0.1;
-
-    margin-top: var(--marge-verticale);
-    margin-bottom: var(--gouttiere_verticale);
-
-    background-color: green;
+  object {
+    height: 20em;
   }
 
-  use {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: start;
-    width: 100vh;
-    flex: 1;
-
-    margin-top: var(--gouttiere_verticale);
-    margin-bottom: var(--gouttiere_verticale);
-
-    background-color: blue;
+  .titre {
+    font-size: 5em;
   }
-
-  footer {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: start;
-    width: 100vh;
-    flex: 0.1;  
-
-    margin-top: var(--gouttiere_verticale);
-    margin-bottom: var(--marge-verticale);
-
-    background-color: red;
-  }
-
-
 }
 
 @media (orientation: landscape) {
 
+  object {
+    height: 10em;
+  }
+
+  .titre {
+    font-size: 3em;
+  }
 }

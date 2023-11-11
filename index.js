@@ -1,18 +1,12 @@
-let version = "1.0.20";
-
-
 document.addEventListener("DOMContentLoaded", init, false);	
-// gestion du portrait/payasage
-window.addEventListener('resize', windowResize, false);
 
 function init(){
     // recupérer infos taille viewport
     let matriceDevice = viewportSize();
     // appel nécessaire pour aligner le footer tout en bas
     calculHauteur(matriceDevice.height);
-    setVersion(version);
-
-    setTimeout('RedirectionJavascript()', 6000);
+    // on redirige selon le device
+   // setTimeout('RedirectionJavascript()', 6000);
 }
 
 function RedirectionJavascript(){
@@ -27,8 +21,3 @@ function RedirectionJavascript(){
         document.location.href="./desk/indexDK.html";
     }
 }
-
-function setVersion(version) {
-    document.getElementById("version").innerHTML = version;
-}
-
