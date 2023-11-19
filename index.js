@@ -6,7 +6,7 @@ function init(){
     // appel nécessaire pour aligner le footer tout en bas
     calculHauteur(matriceDevice.height);
     // on redirige selon le device
-   // setTimeout('RedirectionJavascript()', 6000);
+   setTimeout('RedirectionJavascript()', 6000);
 }
 
 function RedirectionJavascript(){
@@ -15,7 +15,7 @@ function RedirectionJavascript(){
     // par LANG lors du chargement de la page
     if (isMobileDevice()) {
         // mobile
-        document.location.href="./mob/indexSP.html";
+        document.location.href="./y22/indexSP.html";
     } else {
         //desktop
         document.location.href="./desk/indexDK.html";

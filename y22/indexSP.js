@@ -1,15 +1,18 @@
+// initialisation matrice device
+var matriceDevice = viewportSize();
+
 // écouteurs
 document.addEventListener('readystatechange', ready, false);
+document.addEventListener("DOMContentLoaded", DOMContentLoaded, false);	
 
 // on choisi d'afficher ou amsquer le menu des langues
 // on aura donc la langue par défaut
 const afficherMenuLangue = true;
 LG_.setMenu(afficherMenuLangue);
 
-
 function ready() {
     // recupérer infos taille viewport
-    let matriceDevice = getViewportSize();
+    matriceDevice = getViewportSize();
     switch(document.readyState) {
         case "uninitialized":   // Has not started loading
             // apparait en cas de ralentissement
@@ -37,16 +40,21 @@ function ready() {
             myHeader.innerHTML = myTemplate.header("LAB_A006", afficherMenuLangue);
             break;
         case "complete":        // Fully loaded
-            console.log("5 HTML");
+            console.log("5 - READY ", document.readyState);
             break;
         default:
 
     }
 }
 
-
-
-function DOMContentLoaded(){
-    // ne passe pas à cette étape
+/**
+ * s'exécute au lancement de la page
+ */
+function DOMContentLoaded() {
     console.log("DOMContentLoaded");
+    // passe après READY()
+    // calcul hauteur
+    matriceDevice = viewportSize();
+    calculHauteur(matriceDevice.height - 200);
+    paramsURL = getParameters();	// on récupère un tableau associatif depuis les paramètres de l'URL
 }

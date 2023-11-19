@@ -1,0 +1,86 @@
+/* ne pas mettre de . avant le chemin sinon cela ne fonctionne pas  */
+@import url(../commun.css);
+
+ /*--------------------------------  ITEMS CATALOGUES   ------------------------------------------*/
+ .items {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;    /* on centre sur le device */
+  align-items: baseline;  /* position en haut */
+}
+
+.item {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  background-position: bottom 10px right 10px;
+  background-repeat: no-repeat;
+  background-size: 100% 100%; /* prend toute la taille de l'objet container */
+  justify-content: center;    /* on centre sur le device */
+  align-items:baseline;  /* position en haut */
+  height: 25vh;  /* toute la hauteur du mobile */
+  width: 45vw;   /* toute la largeur du mobile */
+  margin-bottom: 3vw;
+}
+
+.itemgris {
+  filter: grayscale(100%);
+  -webkit-filter: grayscale(100%);
+  -moz-filter: grayscale(100%);
+}
+
+.item1 {
+  background-image: url(../images/football.jpg);
+}
+
+.item2 {
+  background-image: url(../images/futsal.jpg);
+}
+
+.item3 {
+  background-image: url(../images/basketball.jpg);
+}
+
+.item4 {
+  background-image: url(../images/handball.jpg);
+}
+
+.item_demicercle {
+    position: absolute;
+    opacity: 0.5;
+}
+
+.item_pict {
+    width: 50vw;   /* toute la largeur du mobile */
+}
+
+.item_titre {
+    z-index: 1;
+    width: auto;   /* largeur du parent */
+    color: black;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 5em;
+}
+
+.item_titredesactive {
+  color: rgb(208, 188, 188);
+}
+
+/*--------------------------------  FIN ITEMS CATALOGUES   ------------------------------------------*/
+
+
+/* petits écrans */
+/*@media (orientation: portrait) and (max-device-width: 480px) {*/
+
+@media (orientation: portrait) {
+  .navbar-brand {
+    font-size: 1rem !important;
+  }
+
+  
+}
+
+@media (orientation: landscape) {
+  
+}

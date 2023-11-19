@@ -1,17 +1,48 @@
-ARRET SUR IMAGE ! 
+IHM avec l'option Multilangues
 
-- IHM avec l'option Multilangues
+-- 1 Activer le module des langues sur une page
 
--- Le module sera activé uniquement s'il détecte la présence du code suivante dans la section <HEAD> de la page qui le demande
+--- 1.1 Ajouter le code suivant dans la section <HEAD> de la page HTML qui le demande
 
 <script src="lang/lang.js" type="text/javascript" id="LG"></script>
 
-le cas échéant, une instance de la classe du modele sera créée automatiquement.
-cette instance pourra être appelée via LG_ avec la structrue suivante :
+-> src contient le chemin vers le fichier lang.js
+-> les modules suivants sont intégrés automatiquement si le le module est activé :
+  
+  <link href="./lang/lang.css" rel="stylesheet" type="text/css"/>
+  <script src="./lang/lang<langue>.js" type="text/javascript"></script>
 
+--- 1.2 Ajouter le code suivant dans la section dans la section de déclaration de la page JS qui gère la page HTML
 
-TODO : vérifier que si le menu est désactivé on peut passer le langage par défaut à la page suivante
+const afficherMenuLangue = true;
+LG_.setMenu(afficherMenuLangue);
 
+-- 2 Paramétrer les chaines de caractères
+
+Si vous souhaitez qu'une chaine de caract_res soit paramétrée, il faut ajouter une balise à l'élément dans la page HTML comme ceci :
+
+<p id="titre" lab="LAB_A001" class="asi-text"></p>
+
+-> la balise lab contient le code qui renvoi vers les chaines de caractères correspondant à la langue activée.
+
+-- 3 - Créer les fichiers des chaines de caractères par langue
+-> chaque langue a un fichier avec l'ensemble des chaines de caractères pour le module quizz
+Il doit être installer dans le répertoire 'lang/' et doit se nommer 'lang_<abbréviation langue>.js'
+ex : lang_fr.js
+
+le fichier est structuré comme suit :
+lang = {
+    LAB_A006:"Sports", 
+    LAB_A001:"Découvre de nouvelles émotions en devenant arbitre de ton sport préféré",
+    LAB_A002:"Football"
+}
+-> la langue par défaut chargée au début est le français. 
+-> On peut switcher par la suite avec les langues suivantes à disposition : 
+  fr : français
+  pt : portugais
+  en : anglais
+
+Attention : il doit y avoir une chaine de caractère par langue pour chaque appel de la balise lab
 
 
 
@@ -22,29 +53,11 @@ TODO : vérifier que si le menu est désactivé on peut passer le langage par d�
 -- data-menu="false" : module désactivé
 
 
--- il faut intégrer les appels suivants dans la zone HEAD de la page appelante :
-  <script src="./lang/lang.js" type="text/javascript" id="LG"></script>
 
-  les modules suivants sont intégrés automatiquement si le le module est activé :
-  <link href="./lang/lang.css" rel="stylesheet" type="text/css"/>
-  <script src="./lang/lang<langue>.js" type="text/javascript"></script>
 
--- la langue par défaut chargée au début est le français. 
--- On peut switcher par la suite avec les langues suivantes à disposition : 
---- fr : français
---- pt : portugais
---- en : anglais
 
--- Chaque langue a un fichier avec l'ensemble des chaines de caractères pour le module quizz
-Il doit être installer dans le répertoire 'lang/' et doit se nommer 'lang_<abbréviation langue>.js'
-ex : lang_fr.js
 
-le fichier est structuré comme suit :
-lang = {
-    LAB_A006:"Sports", 
-    LAB_A001:"Découvre de nouvelles émotions en devenant arbitre de ton sport préféré",
-    LAB_A002:"Football"
-}
+
 
 On doit avoir les mêmes codes LAB_... pour chaque langue disponible
 

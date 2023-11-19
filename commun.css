@@ -1,0 +1,114 @@
+@import url(./typo/scoreboard/stylesheet.css);
+@import url(./typo/passion_one/stylesheet.css);
+
+:root {
+  --marge-laterale: 0.5vw;  /* marge générale*/
+  --marge-verticale: 0.5vh;           /* marge générale*/
+  --gouttiere_verticale: calc(var(--marge-verticale) / 2); /* marge générale / 2 */
+  --heightBandeau: calc(( 100vh *0.1) - var(--marge-verticale) - var(--gouttiere_verticale));
+  --widthBandeau: calc( 100vw * 0.2);
+}
+
+
+/* mettre après root */
+
+
+html {
+  /* héritage actif */
+  padding: 0;
+  background-color: white;
+}
+
+/********************* CSS COMMUN *******************/
+body {
+  display: flex!important;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+
+  min-height: 100vh; 
+
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-left: var(--marge-laterale);
+  margin-right: var(--marge-laterale);
+
+  /* héritage actif */
+  font-family: scoreboardregular, sans-serif;
+  font-size: 1.5em;
+  color: white;
+  background-color: white;
+}
+
+/********************************************  HEADER  ****************************************/
+header {
+  display: flex!important;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100vw;
+
+  max-height: var(--heightBandeau); /* obligatoire sinon se propage vers le bas*/
+  min-height: var(--heightBandeau);
+
+  margin-top: var(--marge-verticale);
+  margin-bottom: var(--gouttiere_verticale);
+
+  background-color: transparent;
+}
+
+#asi_logo {
+  max-width: calc(var(--widthBandeau) - var(--marge-laterale));
+  padding-left: var(--marge-laterale);
+}
+
+#asi_logo_img {
+  max-height: 7vh;
+}
+
+#asi_title {
+  padding-left: var(--marge-laterale);
+  padding-right: var(--marge-laterale);
+  flex: 1;
+  font-family: scoreboardregular, sans-serif;
+  font-size: 9vw;
+  color: black;
+  line-height: normal;
+}
+
+/********************************************  FIN .HEADER  ****************************************/
+
+footer {
+  display: flex!important;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100vw;
+ 
+  min-height: var(--heightBandeau); /* obligatoire sinon se réduit vers le haut*/
+  max-height: var(--heightBandeau);
+
+  margin-top: var(--gouttiere_verticale);
+  margin-bottom: var(--marge-verticale);
+}
+
+use {
+  display: flex!important;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: start;
+  width: 100vw;
+  flex: 1;
+
+  margin-top: var(--gouttiere_verticale);
+  margin-bottom: var(--gouttiere_verticale);
+}
+
+
+/********************* CSS PORTRAIT *******************/
+@media (orientation: portrait) {
+}
+
+/********************* CSS PAYSAGE *******************/
+@media (orientation: landscape) {
+}
