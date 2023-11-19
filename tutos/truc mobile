@@ -1,9 +1,19 @@
-VIDEO :
-- gestion du centrage des infos de l'arbitre en mode fullscreen :
-    x gestion lors du clic sur le bouton
-    x gestion lors de l'affichage initial de la vidéo
-    x gestion lors d'un redimensionnement de le la fenêtre 
-x les silhouettes ne 'affichent pas à l'init de la vidéo
+- index.html
+
+-- un seul fichier pour tous les devices
+-- effets
+Il s'agit d'afficher le logo pendant un certain temps et de lui donner une animation.
+La difficulté est de centre le logo et le titre verticalement en fonction du device utilisé.
+Cela permet de donner un côté sympa et surtout de calculer le type de device utilisé avant de renvoyer vers la bonne page (Desktop ou Mobile)
+La position auto du footer tient compte de l'existence de la status bar même si on ne la voit pas.
+On met un timeOut avant de renvoyer vers la page de travail selon le device
+
+- indexSP.html
+
+-- on a une grille qui propose des sports
+-- effets
+on n'a plus de footer car c'est plus esthétique
+on a ajouté des effets d'ombre pour donner un côté 3D aux boutons
 
 /********************/
 

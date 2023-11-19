@@ -1,0 +1,26 @@
+/*            HEADER             
+on partage la zone 10% / le reste / 10%
+*/
+
+:root {
+     --widthBandeau: calc( 100vw * 0.2);
+  }
+
+#asi_logo {
+    max-width: calc(var(--widthBandeau) - var(--marge-laterale));
+    padding-left: var(--marge-laterale);
+}
+
+#asi_logo_img {
+    max-height: 7vh;
+}
+  
+#asi_title {
+    padding-left: var(--marge-laterale);
+    padding-right: var(--marge-laterale);
+    flex: 1;
+    font-family: scoreboardregular, sans-serif;
+    font-size: 9vw;
+    color: black;
+    line-height: normal;
+}

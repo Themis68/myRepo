@@ -1,4 +1,4 @@
-var version = "1.0.20";
+const version = "1.0.20";
 
 // initialisation matrice device
 var matriceDevice = viewportSize();
@@ -45,6 +45,7 @@ function ready() {
 	if (document.readyState === "complete") {
 		// lancer le ring
 		gestSvg(window.nbPointsUtilisateur, window.nbPointsMax);
+		setLibelle("asi-title","LAB_D002");
 
 	}
 }
@@ -108,7 +109,7 @@ function getInfoQuizz(indexQuizz){
 	titreQuizz.innerHTML = infosQuizz.titre;
 
 	// niveau du quizz
-	let svgNiveau = document.getElementById("svgNiveau");
+	//let svgNiveau = document.getElementById("svgNiveau");
 	svgNiveau.setAttribute("src", "../../images/svg/niveau" + infosQuizz.niveau + ".svg");
 
 	// description du quizz

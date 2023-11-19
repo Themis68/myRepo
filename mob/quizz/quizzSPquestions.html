@@ -24,25 +24,27 @@
   <link href="../commun.css" rel="stylesheet" type="text/css" media="all" />
   <link href="./quizzSPquestions.css" rel="stylesheet" type="text/css"/>
 
+  <!-- doit etre avant quizzSPquestions.js -->
+  <script src="../../fonctions.js" type="text/javascript"></script>
+
   <!-- scripts -->
   <script src="../commun.js" type="text/javascript"></script>
-  <script src="../../quizz/questionnaires/catalogue.js" type="text/javascript"></script>
+  <script src="./questionnaires/catalogue.js" type="text/javascript"></script>
   <script src="./quizzSPquestions.js" type="text/javascript"></script>
 
+  <!-- doit etre après quizzSPquestions.js -->
+  <script src="../lang/lang.js" type="text/javascript"></script>
 </head>
 
 <body>
-  <audio id="comptearebours">
+  <audio id="comptearebours" lab="LAB_C001">
     <source src="../../sons/comptearebours.wav" type="audio/wav">
-    Votre navigateur ne gère pas les fichiers sons.
   </audio>
-  <audio id="bonne">
+  <audio id="bonne" lab="LAB_C001">
     <source src="../../sons/bonnereponse.wav" type="audio/wav"> <!--type="audio/x-wav"-->
-    Votre navigateur ne gère pas les fichiers sons.
   </audio>
-  <audio id="mauvaise">
+  <audio id="mauvaise" lab="LAB_C001">
     <source src="../../sons/mauvaisereponse.mp3" type="audio/mpeg"> <!--type="audio/mp3"-->
-    Votre navigateur ne gère pas les fichiers sons.
   </audio>
 
   <header>
@@ -91,7 +93,7 @@
     </propositions>
 
     <suivant>
-      <a id="btnNextQuestion" href="#" class="btn btn-primary">Question suivante</a>
+      <a id="btnNextQuestion" href="#" class="btn btn-primary" lab="LAB_C002"></a>
     </suivant>
 
   </content>

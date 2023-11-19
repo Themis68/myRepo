@@ -1,0 +1,108 @@
+#LG_menu-lang {
+   margin-right: 2.1vw;
+   max-width: calc(var(--widthBandeau) - var(--marge-laterale));
+   padding-right: var(--marge-laterale);
+   border-bottom: 0;
+   padding-bottom: 0;
+}
+
+/*
+#LG_menu-lang[data-menu="true"] {
+   border-bottom: 1px solid grey;
+   padding-bottom: 0.5vh;
+}
+
+#LG_menu-lang[data-menu="false"] {
+   border-bottom: 0;
+   padding-bottom: 0;
+}
+*/
+#LG_triangle {
+   height: 3vh;
+}
+
+.LG_menu-label {
+   position: relative;
+   text-decoration: none;
+   /*masquer les styles des hyperliens*/
+   margin: 0 !important;
+   display:inline-flex;
+   padding-left: calc(var(--marge-laterale) /2);
+   font-size: 2rem !important;
+   align-items: center;
+}
+
+nav {
+   z-index: 1;
+}
+
+.navbar {
+   /* on surcharge pour prendre toute la largeur */
+   flex: 1 !important;
+}
+
+.LG_menu-ul{
+   padding-left: 1.3vw;
+}
+
+/* Associe les mêmes règles au label et à la case
+   pour les superposer, et "cacher" la case à cocher. */
+.LG_menu-label, .LG_menu-cb {
+   /* Retire l'affichage par défaut des éléments de formulaire */
+   /* ... comme les checkbox */
+   appearance: none;
+}
+
+.LG_menu-nav {
+  /* A la place de "display: none" :
+     translater sur l'axe X, càd décaler horizontalement
+     l'élement pour le sortir de la page 
+     transform: translateX(100%);*/
+     display: none;
+     position: absolute;
+     background-color: beige;
+     /*generer un effet 3d sur le bord*/
+}
+
+ /* SI la case est cochée, modifier la classe "menu-nav" */
+.LG_menu-cb:checked ~ .LG_menu-nav {
+  /* A la place de "display: block" :
+     Remettre l'élément à sa place d'origine 
+     transform: translateX(0); */
+     display: flex;
+     background: white;
+     /* décale le menu à gauche et en-dessous */
+     transform: translate(12%, 0%); 
+     transition: transform 1s linear;
+     /* effet 3D */
+     box-shadow: 0 0 5px 5px rgba(0,0,0,0.2);
+     border: 2px solid beige;
+     border-radius: 10px;
+}
+
+.LG_menu-item {
+   list-style-type: none;
+   width: 10ch;
+}
+
+.LG_menu-item:hover{
+   color: red;
+   transform: scale(1.2);
+   transition: transform 0.5s ease-in-out;
+}
+
+.LG_menu-img {
+   /* Taille fixe */
+   height: 3.5rem;
+   width: 3.5rem;
+   /* arrondir les bords */
+   border-radius: 57% 23%;
+}
+
+.LG_menu-span {
+   color: black;
+   font-size: 1.8rem;
+   font-family: Arial, Helvetica, sans-serif;
+   padding-left: 1.7vw;
+   background-color: transparent;
+}

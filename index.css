@@ -1,58 +1,16 @@
 @import url(./typo/scoreboard/stylesheet.css);
-@import url(./typo/passion_one/stylesheet.css);
 
-:root {
-  --fond-color: #f5efef;
-  --proposition: #c1a809;
-  --proposition-ko: red;
-  --proposition-ok: green;
-  --proposition-none:white;
-}
 
 html {
-
-}
-
-a:link,
-a:visited, 
-a:active {
-text-decoration: none;
+  /* héritage actif */
+  padding: 0;
 }
 
 body {
   display: flex;
   flex-direction: column;
+  align-items: center;
   background-color: white;
- /* justify-content: flex-start;*/
-  align-items: center;
-}
-
-content {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-
-  /* alignement vertical sur le viewport */
-  margin-top: 45vh; /* poussé de la moitié de hauteur de viewport */
-  transform: translateY(-50%); /* tiré de la moitié de sa propre hauteur */
-
-  /* animation*/
-  Animation-name : fade ;
-  Animation-delay : 0s ;
-  Animation-duration : 4s ;
-  Animation-iteration-count : 1 ;
-}
-
-object {
-  height: 20em;
-  vertical-align: top;
-}
-
-footer {
-  display: flex;
-  margin-top : auto;
-  justify-content: center;
 }
 
 @keyframes fade {
@@ -70,23 +28,42 @@ footer {
 
 .titre {
   font-family: scoreboardregular;
-  font-size: 5em;
   color: black;
 }
 
-.footer {
-  font-family: var(--font-family-sans-serif);
-  font-size: 2em;
-  color: black;
-  padding-bottom: 1em;
+
+use {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* animation*/
+  transform: translateY(-50%); /* tiré de la moitié de sa propre hauteur */
+  Animation-name : fade ;
+  Animation-delay : 0s ;
+  Animation-duration : 4s ;
+  Animation-iteration-count : 1 ;
+  margin-top: 45vh; /* poussé de la moitié de hauteur de viewport */
 }
 
-/* SMARTPHONE */
-@media (orientation: portrait) and (max-device-width: 480px) {
+@media (orientation: portrait) {
 
+  object {
+    height: 20em;
+  }
+
+  .titre {
+    font-size: 5em;
+  }
 }
 
-/* IPAD */
-@media (orientation: portrait) and (min-device-width: 481px) and (max-device-width: 768px){
+@media (orientation: landscape) {
 
+  object {
+    height: 10em;
+  }
+
+  .titre {
+    font-size: 3em;
+  }
 }
