@@ -58,7 +58,7 @@ header {
 }
 
 #asi_logo {
-  max-width: calc(var(--widthBandeau) - var(--marge-laterale));
+  flex: 0.1;
   padding-left: var(--marge-laterale);
 }
 
@@ -67,9 +67,9 @@ header {
 }
 
 #asi_title {
+  flex: 0.8;
   padding-left: var(--marge-laterale);
   padding-right: var(--marge-laterale);
-  flex: 1;
   font-family: scoreboardregular, sans-serif;
   font-size: 9vw;
   color: black;
