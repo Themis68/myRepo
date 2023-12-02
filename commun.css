@@ -58,12 +58,15 @@ header {
 }
 
 #asi_logo {
+  display: flex!important;
   flex: 0.1;
   padding-left: var(--marge-laterale);
 }
 
 #asi_logo_img {
-  max-height: 7vh;
+    height: 5em;
+    vertical-align: middle;;
+    padding-right: 1vh;
 }
 
 #asi_title {
