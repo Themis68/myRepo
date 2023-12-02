@@ -1,7 +1,7 @@
 class Template {
     constructor(PAGE_ACCUEIL, LOGO_ASI) {
         this.PAGE_ACCUEIL = "y22/indexSP.html";
-        this.LOGO_ASI = "imagesNew/svg/asi.svg";
+        this.LOGO_ASI = "../imagesNew/svg/asi.svg";
     }
     
     header(titre, afficherMenuLang) {

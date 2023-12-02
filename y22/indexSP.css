@@ -2,12 +2,28 @@
 @import url(../commun.css);
 
  /*--------------------------------  ITEMS CATALOGUES   ------------------------------------------*/
+ .titreH {
+  flex: 5;
+ }
+
+ .asi-text{
+  text-align: center;
+  margin-bottom: 10px;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  font-family: passion_oneregular;
+  color: green;
+  font-weight: 6700;
+  font-size: 6vw;
+}
+
  .items {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-evenly;    /* on centre sur le device */
-  align-items: baseline;  /* position en haut */
+  align-items: center;  /* position en haut */
+  flex: 95;
 }
 
 .item {
@@ -22,6 +38,7 @@
   height: 25vh;  /* toute la hauteur du mobile */
   width: 45vw;   /* toute la largeur du mobile */
   margin-bottom: 3vw;
+  border-radius: 50%;
 }
 
 .itemgris {
@@ -74,9 +91,7 @@
 /*@media (orientation: portrait) and (max-device-width: 480px) {*/
 
 @media (orientation: portrait) {
-  .navbar-brand {
-    font-size: 1rem !important;
-  }
+
 
   
 }
