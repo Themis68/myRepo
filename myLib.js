@@ -104,3 +104,8 @@ function isMobileDevice() {
     || navigator.userAgent.match(/Windows Phone/i)
     || navigator.userAgent.match(/Mobile/i));
  }
+
+ function arrayAssoSize(arr) {
+  // retourne la taille d'un tableau associatif
+  return Object.keys(arr).length;
+}

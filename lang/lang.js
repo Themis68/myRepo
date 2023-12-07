@@ -47,8 +47,13 @@
     getEtatMenu() {
         return this.etatMenu;
     }
+    
     getdefaultLang() {
         return this.defaultLang;
+    }
+
+    getLangUsed() {
+        return this.langUsed;
     }
 
 
@@ -270,17 +275,6 @@
             `;       
     }
 
-    getLanguesOfQuizz(tabLangue) {
-        let codeHTML = ` 
-    
-            <div class="langues">
-                        ${tabLangue.map(langue => 
-                        `<div class="c-${langue}"><img src="${this.chemin}/images/${langue}.png" />
-                        </div>`)}
-            </div>`;
-        return codeHTML;
-    }
-
         // gère l'affichage du menu
     load() {
         console.log("7 LG");
@@ -292,6 +286,17 @@
 
     DOMContentLoaded(){
         console.log("4 LG");
+    }
+
+    getLanguesOfQuizz(tabLangue) {
+        let codeHTML = ` 
+    
+            <div class="langues">
+                        ${tabLangue.map(langue => 
+                        `<div class="c-${langue}"><img src="${this.chemin}/images/${langue}.png" />
+                        </div>`)}
+            </div>`;
+        return codeHTML;
     }
 }
 

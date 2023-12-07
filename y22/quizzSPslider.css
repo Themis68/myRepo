@@ -1,6 +1,6 @@
 /* ne pas mettre de . avant le chemin sinon cela ne fonctionne pas  */
-@import url(../../typo/scoreboard/stylesheet.css);
-@import url(../../typo/passion_one/stylesheet.css);
+@import url(../carousel/slider.css);
+@import url(../commun.css);
 
 /*********  CONTENT  **********/
 body, a, p, span {
@@ -141,9 +141,7 @@ h1 {
 
 
 @media (orientation: portrait) {
-  nav, body {
-    line-height: 1;
-  }
+
 }
 
 @media (orientation: landscape) {
