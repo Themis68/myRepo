@@ -17,10 +17,17 @@ html {
   /* héritage actif */
   padding: 0;
   background-color: white;
+
+}
+
+a {
+  font-family: scoreboardregular, system-ui;
 }
 
 /********************* CSS COMMUN *******************/
 body {
+  background: #eaebec;
+  
   display: flex!important;
   flex-direction: column;
   justify-content: center;
@@ -33,11 +40,10 @@ body {
   margin-left: var(--marge-laterale);
   margin-right: var(--marge-laterale);
 
-  /* héritage actif */
+  /* héritage actif 
   font-family: scoreboardregular, sans-serif;
   font-size: 1.5em;
-  color: white;
-  background-color: white;
+  color: white;*/
 }
 
 /********************************************  HEADER  ****************************************/
@@ -81,6 +87,28 @@ header {
 
 /********************************************  FIN .HEADER  ****************************************/
 
+use {
+  display: flex!important;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: start;
+  width: 100vw;
+  flex: 1;
+
+  margin-top: var(--gouttiere_verticale);
+  margin-bottom: var(--gouttiere_verticale);
+}
+
+#titre{
+  font-family: passion_oneregular, sans-serif;
+  font-size: 3em;
+  color: green ;
+  padding-bottom: 10px;
+  line-height: 1.5em;
+  font-weight: normal;
+  padding-left: 1em;
+}
+
 footer {
   display: flex!important;
   flex-direction: row;
@@ -95,17 +123,7 @@ footer {
   margin-bottom: var(--marge-verticale);
 }
 
-use {
-  display: flex!important;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: start;
-  width: 100vw;
-  flex: 1;
 
-  margin-top: var(--gouttiere_verticale);
-  margin-bottom: var(--gouttiere_verticale);
-}
 
 
 /********************* CSS PORTRAIT *******************/

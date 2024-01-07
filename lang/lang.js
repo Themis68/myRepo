@@ -216,6 +216,7 @@
         // on récupère les éléments qui ont l'attribut "lab"
         let LABs = document.querySelectorAll("span[lab],p[lab],a[lab]")
         LABs.forEach(element => {
+            console.log("* ", element.id);
             this.setLibelleOfLabElement(element.id, element.getAttribute("lab"));
         });
     }

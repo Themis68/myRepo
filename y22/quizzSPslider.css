@@ -3,12 +3,6 @@
 @import url(../commun.css);
 
 /*********  CONTENT  **********/
-body, a, p, span {
-  font-family: system-ui;
-}
-body {
-  background: #eaebec;
-}
 .stats{
   display:flex;
   flex-direction: column;
@@ -119,17 +113,6 @@ h1 {
   filter: invert(20%) sepia(97%) saturate(4013%); /* tous et IE */
   -webkit-filter: invert(20%) sepia(97%) saturate(4013%); /*SAFARI OPERA CHROME */
   -moz-filter: invert(20%) sepia(97%) saturate(4013%); /*FIREFOX */
-}
-
-.titre{
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  font-size: 1em;
-  color: black;
-  background-color:white;
-  padding-bottom: 10px;
-  line-height: 1.5em;
-  font-weight: normal;
-  padding-left: 1em;
 }
 
 #btnQuizz {
