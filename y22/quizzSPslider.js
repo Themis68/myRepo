@@ -174,3 +174,4 @@ function doAfterSlide(indexQuizz){
 	document.getElementsByClassName("stats")[0].style.display = "flex";
 }
 
+

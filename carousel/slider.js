@@ -1,3 +1,5 @@
+document.addEventListener('click', gestionClick, false);
+
 function paramSlider(nbSlides) {
 	// .holder
 	var holder = document.getElementsByClassName("holder")[0];
@@ -151,4 +153,22 @@ function loadSlider() {
       slider.init();
     }
   }
+}
+
+function gestionClick(event){
+	var target = event.target || event.srcElement; // ce dernier pour compatibilité IE
+
+	switch (target.getAttribute('class')) { 
+		case 'cercle':	// clic sur un des indicateurs direct
+			console.log(target.id);
+			// MAJ etat des indicateurs
+			switchIndicateur(target);
+			break;
+	}
+}
+
+function switchIndicateur(target){
+  let active = document.getElementsByClassName("cercle-active")[0];
+  active.setAttribute("class", "cercle");	//désactiver
+  target.setAttribute("class", "cercle-active"); //activer
 }

@@ -7,7 +7,8 @@ var scenario = [
         variable: "script",
         description: "Ensemble des lois (séance 1)",
         niveau: 2,
-        temps: 12
+        temps: 12,
+        loi: 5
     },
     {
         id: 2,
@@ -17,7 +18,8 @@ var scenario = [
         variable: "script",
         description: "Les bases du football à 5",
         niveau: 1,
-        temps: 12
+        temps: 12,
+        loi: 1
     },
     {
         id: 3,
@@ -27,7 +29,8 @@ var scenario = [
         variable: "script",
         description: "Les bases du football à 8",
         niveau: 1,
-        temps: 12
+        temps: 12,
+        loi: 2
     },
     {
         id: 4,
@@ -37,7 +40,8 @@ var scenario = [
         variable: "script",
         description: "Les bases du football à 11",
         niveau: 1,
-        temps: 12
+        temps: 12,
+        loi: 3
     },
     {
         id: 5,
