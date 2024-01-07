@@ -1,6 +1,12 @@
 /* ne pas mettre de . avant le chemin sinon cela ne fonctionne pas  
 @import url(https://fonts.googleapis.com/css?family=Josefin+Slab:100);*/
 
+:root {
+  --padding-puce: 1em; 
+  --size-puce: 2em; 
+}
+
+
 /*_________    SLIDERS _____*/
 
 .animate {
@@ -29,7 +35,7 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  width: 85%;
+  /*width: 85%;*/
   height: 28vh;
   position: relative;
 }
@@ -38,6 +44,7 @@
   width: 100%;
   overflow: hidden;
   height: 100%;
+  padding-left: 1em; /* aligne sur #titre*/
 }
   
 .holder {
@@ -105,35 +112,37 @@ span {
 .indicateurs {
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  align-items: flex-start;
   margin-top: 2em;
 }
 
 /* position du bloc des indicateurs circulaires pris en charge 
 on s'appuie sur BOOTSTRAP */
+/* OL */
 .carousel-indicators {
-  justify-content: space-between !important; 
-  margin: 0 !important;
+  justify-content: flex-start; 
   position: relative !important;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
 }
 
+/* LI */
 .cercle {
   background-color: green !important;
   filter: grayscale(100%);
   border-radius: 50%;
-  width: 2em !important;  /* taille puce */
-  height: 2em !important; /* taille puce */
-  margin-left: 3em !important;
-  margin-right: 3em !important;
+  width: var(--size-puce)!important;
+  height: var(--size-puce)!important;
+  margin-left: var(--padding-puce)!important;
+  margin-right: var(--padding-puce)!important;
 }
 
+/* LI */
 .cercle-active {
   background-color: green !important;
   filter: grayscale(0%);
   border-radius: 50%;
-  width: 2em !important;  /* taille puce */
-  height: 2em !important; /* taille puce */
-  margin-left: 3em !important;
-  margin-right: 3em !important;
+  width: var(--size-puce)!important;
+  height: var(--size-puce)!important;
+  margin-left: var(--padding-puce)!important;
+  margin-right: var(--padding-puce)!important;
 }
