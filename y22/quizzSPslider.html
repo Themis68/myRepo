@@ -6,8 +6,11 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
-  
+  <meta name="viewport" content="user-scalable=no" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+    
   <title>Arrêt sur image !</title>
+
 
   <!-- Séquence : Conserver l'ordre de chargement ci-dessous  ----> 
   <link href="../bootstrap-4.3.1/css/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -30,22 +33,22 @@
   <header id="tmp_header" class="tmp_header"></header>
 
   <use id="tmp_use" class="tmp_use">
-    <div>
-      <p id="titre" lab="LAB_B001"></p>
-    </div>
+    <div><p id="titre" lab="LAB_B001"></p></div>
+
     <div class="slider-wrap">
       <div class="slider" id="slider">
-        <div class="holder" id="holder">
-        </div>
+        <div class="holder" id="holder"></div>
       </div>
-        <img class="icone-slider" src="../imagesNew/slider-black.png"/>
+      <img class="icone-slider" src="../imagesNew/slider-black.png" alt="finger" />
     </div>
+
     <div class="indicateurs">
       <ol id="indicateurs" class="carousel-indicators"></ol>
     </div>
+
     <div class="stats">        	
       <div id="stats-container" class="stats-container"></div>                         
-      <a id="btnQuizz" href="#" class="btn btn-primary" lab="LAB_B002"></a>
+      <a id="btnQuizz" href="#" class="btn btn-primary" lab="LAB_B002">definir</a>
     </div>
   </use>
 

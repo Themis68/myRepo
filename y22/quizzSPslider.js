@@ -95,42 +95,34 @@ function creerVignettes(id, etatModuleLang, langueUtilisee) {
 	let iteQuizz = 0;
 
 	console.log(arrayAssoSize(scenario));
-	
+
 	for (let i = 0; i < arrayAssoSize(scenario); i++) {
 		// on verifie si le quizz doit être conservé
 
 		if (scenario[i].multilangue.indexOf(langueUtilisee) >= 0 ){
 			// création des indicateurs		
-			//for (let i = 0; i < arrayAssoSize(scenario); i++) {
 			let myInd = document.createElement("li");
 			myInd.setAttribute("id", "indicateur" + iteQuizz);
 			myInd.setAttribute("data-target", "#carousel-example");
 			myInd.setAttribute("data-slide-to", iteQuizz);
 			myInd.setAttribute("class", "cercle"+ (iteQuizz === 0 ? '-active' : ''));
 			ind.appendChild(myInd);
-			//}
 		
 			// création des vignettes
-			//for (let i = 0; i < arrayAssoSize(scenario); i++) {
 			// mySlideImage
 			let mySlideImage = document.createElement("img");
 			mySlideImage.setAttribute("class", "slide-image");
 			let poster = (scenario[i].loi === undefined ? "bases.png" : "Loi_" + scenario[i].loi + ".png");
 			mySlideImage.setAttribute("src", pathPosters + poster);
-
 			let mySlide = document.createElement("div");
 			mySlide.setAttribute("class", "slide");
 			mySlide.appendChild(mySlideImage);
-
 			let mySlideWrapper = document.createElement("div");
 			mySlideWrapper.setAttribute("class", "slide-wrapper");
-
 			// ajouter le POSTER
 			mySlideWrapper.appendChild(mySlide);
-
 			// ajouter à la liste des vignettes
 			holder.appendChild(mySlideWrapper);
-			//}
 			iteQuizz++;
 		}
 	}
@@ -159,7 +151,6 @@ function doAfterSlide(indexQuizz){
 
 	// multilangue
 	let tabLangue = quizz.multilangue.split(",");
-
 	const codeHtml = `
 		<span class="quizz_name" id="titreQuizz">${quizz.titre}</span>
 
@@ -181,7 +172,5 @@ function doAfterSlide(indexQuizz){
 
 	// afficher la zone d'informations
 	document.getElementsByClassName("stats")[0].style.display = "flex";
-
-	
 }
 
