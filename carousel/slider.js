@@ -81,10 +81,6 @@ function loadSlider() {
           this.longTouch = false;
           setTimeout(function() {window.slider.longTouch = true;}, 250);
 
-          // arrêter l'animation de la main
-          this.el.iconeSlider.addClass('icone-slider').css('animation-play-state','paused');
-          document.getElementsByClassName("icone-slider")[0].style.display = "none";
-
           // Get the original touch position.
           this.touchstartx =  event.originalEvent.touches[0].pageX;
 
@@ -158,7 +154,16 @@ function loadSlider() {
           console.log("loadSlider : indicateur");
           document.getElementById("indicateur"+indexOld).setAttribute("class", "cercle");
           document.getElementById("indicateur"+indexNew).setAttribute("class", "cercle-active");
-        }
+          // arrêter l'animation de la main puisqu'on active un quizz différent
+          this.hideHand();
+        },
+
+        hideHand: function() {
+          console.log("loadSlider : hideHand");
+          // on arrête l'animation de la main
+          this.el.iconeSlider.addClass('icone-slider').css('animation-play-state','paused');
+          document.getElementsByClassName("icone-slider")[0].style.display = "none";
+        } 
       };
 
       slider.init();
@@ -178,7 +183,7 @@ function gestionClick(event){
       let indexNew = target.id.substring(10);
       slider.indicateur(indexOld, indexNew);
       // MAJ infos Quizz
-      console.log("sldier : ",slider.index);
+      console.log("slider : ",slider.index);
       slider.index = indexNew;
       doAfterSlide(slider.index);   // afficher les infos du quizz
 			break;
