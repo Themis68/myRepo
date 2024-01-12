@@ -49,11 +49,13 @@ function loadSlider() {
         longTouch: undefined,
         direction: undefined,
         continuer: false,
-        nbSlides: document.getElementById("holder").dataset.nbslides, // recupère le nbre de slides
+        nbSlides: document.querySelectorAll("li[id^='indicateur']").length,
+        //nbSlides: document.getElementById("holder").dataset.nbslides, // recupère le nbre de slides
         
         init: function() {
           console.log("loadSlider : init");
           this.bindUIEvents();
+
         },
 
         bindUIEvents: function() {
@@ -175,7 +177,8 @@ function gestionClick(event){
 	var target = event.target || event.srcElement; // ce dernier pour compatibilité IE
 
 	switch (target.getAttribute('class')) { 
-		case 'cercle':	// clic sur un des indicateurs direct
+		case 'cercle':	
+      // clic sur un des indicateurs direct
 			// MAJ etat des indicateurs
 
       // on isole l'index de l'indicateur
