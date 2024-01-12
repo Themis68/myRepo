@@ -184,21 +184,3 @@ function gestionClick(event){
 			break;
 	}
 }
-/*
-function switchIndicateur2(target){
-  console.log("switchIndicateur");
-  // MAJ indicateurs
-  let active = document.getElementsByClassName("cercle-active")[0];
-  active.setAttribute("class", "cercle");	//désactiver
-  // Affichage nouveau quizz
-  let tabIndicateurs = document.getElementsByClassName("cercle");
-  for (let item of tabIndicateurs) {
-    console.log(item);
-    item.setAttribute("style", "width:0%");
-  }
-
-  target.setAttribute("class", "cercle-active"); //activer
-  target.setAttribute("style", "width:100%");
-
-}
-*/
