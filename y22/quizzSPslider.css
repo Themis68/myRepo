@@ -1,6 +1,6 @@
 /* ne pas mettre de . avant le chemin sinon cela ne fonctionne pas  */
 @import url(../carousel/slider.css);
-@import url(../commun.css);
+@import url(../communASI.css);
 
 /*********  CONTENT  **********/
 .stats{

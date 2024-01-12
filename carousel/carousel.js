@@ -8,6 +8,10 @@ var screenParams = [
 
 
 $('#carousel-example').on('slide.bs.carousel', function (e) {
+    // FONCTION PAS APPELLEE LORS DU DRRAG
+
+
+    
     /*
     Bootstrap’s carousel class exposes two events for hooking into carousel functionality.
 
@@ -37,9 +41,11 @@ $('#carousel-example').on('slide.bs.carousel', function (e) {
         for (var i=0; i<it; i++) {
             // append slides to end
             if (e.direction=="left") {
+                console.log("drag left");
                 $('.carousel-item').eq(i).appendTo('.carousel-inner');
             }
             else {
+                console.log("drag right");
                 $('.carousel-item').eq(0).appendTo('.carousel-inner');
             }
         }

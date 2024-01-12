@@ -1,13 +1,16 @@
-document.addEventListener('click', gestionClick, false);
+var slider = {};
+  
+  document.addEventListener('click', gestionClick, false);
 
 function paramSlider(nbSlides) {
+  console.log("paramSlider");
 	// .holder
 	var holder = document.getElementsByClassName("holder")[0];
 	holder.style.width = (nbSlides * 100) + "%";
   holder.setAttribute("data-nbslides", nbSlides);
 
 	// .slide div
-	var slide = document.getElementsByClassName("slide");
+//	var slide = document.getElementsByClassName("slide");
 
 	// .slide-wrapper
 	var slideWrapper = document.getElementsByClassName("slide-wrapper");
@@ -18,15 +21,18 @@ function paramSlider(nbSlides) {
 }
 
 function loadSlider() {
+  console.log("loadSlider");
   if (document.readyState === "complete") {
     if (navigator.msMaxTouchPoints) {
+      // on est sur un device qui accepte le TOUCHER
       $('#slider').addClass('ms-touch');
 
       $('#slider').on('scroll', function() {
+        console.log("loadSlider : scroll");
         $('.slide-image').css('transform','translate3d(-' + (100-$(this).scrollLeft()/6) + 'px,0,0)');
       });
     } else {
-      var slider = {
+      slider = {
         el: {
           slider: document.getElementById("slider"), //$("#slider"),
           holder: $(".holder"), // il faut affecter comme ça sinon on ne peut pas appeler .ON 
@@ -46,36 +52,37 @@ function loadSlider() {
         nbSlides: document.getElementById("holder").dataset.nbslides, // recupère le nbre de slides
         
         init: function() {
+          console.log("loadSlider : init");
           this.bindUIEvents();
         },
 
         bindUIEvents: function() {
 
           this.el.holder.on("touchstart", function(event) {
+            console.log("loadSlider : touchstart");
             slider.start(event);
           });
 
           this.el.holder.on("touchmove", function(event) {
+            console.log("loadSlider : touchmove");
             slider.move(event);
           });
 
           this.el.holder.on("touchend", function(event) {
+            console.log("loadSlider : touchend");
             slider.end(event);
           });
 
         },
 
         start: function(event) {
+          console.log("loadSlider : start");
           // passage uniquement sur le premier appui
-          // Test for flick.
           this.longTouch = false;
-          setTimeout(function() {
-            window.slider.longTouch = true;
-          }, 250);
+          setTimeout(function() {window.slider.longTouch = true;}, 250);
 
-          // arrêter l'animation
+          // arrêter l'animation de la main
           this.el.iconeSlider.addClass('icone-slider').css('animation-play-state','paused');
-          //masquer l'icone slider
           document.getElementsByClassName("icone-slider")[0].style.display = "none";
 
           // Get the original touch position.
@@ -86,6 +93,7 @@ function loadSlider() {
         },
 
         move: function(event) {
+          console.log("loadSlider : move");
           // Continuously return touch position.
           this.touchmovex =  event.originalEvent.touches[0].pageX;
           
@@ -123,6 +131,7 @@ function loadSlider() {
         },
 
         end: function(event) {
+          console.log("loadSlider : end");
           // on vérifie si le move était autorisé
           if (this.continuer == true) {
             // Calculate the distance swiped.
@@ -145,6 +154,8 @@ function loadSlider() {
         },
 
         indicateur: function(indexOld, indexNew) {
+          // MAJ état des indicateurs
+          console.log("loadSlider : indicateur");
           document.getElementById("indicateur"+indexOld).setAttribute("class", "cercle");
           document.getElementById("indicateur"+indexNew).setAttribute("class", "cercle-active");
         }
@@ -160,15 +171,34 @@ function gestionClick(event){
 
 	switch (target.getAttribute('class')) { 
 		case 'cercle':	// clic sur un des indicateurs direct
-			console.log(target.id);
 			// MAJ etat des indicateurs
-			switchIndicateur(target);
+
+      // on isole l'index de l'indicateur
+      let indexOld = document.getElementsByClassName("cercle-active")[0].getAttribute("id").substring(10);
+      let indexNew = target.id.substring(10);
+      slider.indicateur(indexOld, indexNew);
+      // MAJ infos Quizz
+      console.log("sldier : ",slider.index);
+      slider.index = indexNew;
+      doAfterSlide(slider.index);   // afficher les infos du quizz
 			break;
 	}
 }
-
-function switchIndicateur(target){
+/*
+function switchIndicateur2(target){
+  console.log("switchIndicateur");
+  // MAJ indicateurs
   let active = document.getElementsByClassName("cercle-active")[0];
   active.setAttribute("class", "cercle");	//désactiver
+  // Affichage nouveau quizz
+  let tabIndicateurs = document.getElementsByClassName("cercle");
+  for (let item of tabIndicateurs) {
+    console.log(item);
+    item.setAttribute("style", "width:0%");
+  }
+
   target.setAttribute("class", "cercle-active"); //activer
+  target.setAttribute("style", "width:100%");
+
 }
+*/
