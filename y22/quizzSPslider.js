@@ -146,21 +146,28 @@ function doAfterSlide(indexQuizz){
 	if (quizz.loi === undefined) {
 		loi = "Mix de lois";
 	} else {
-		loi = "Loi " + quizz.loi + " : " +lois[quizz.loi - 1].libelle;
+		loi = quizz.loi + " -> " +lois[quizz.loi - 1].libelle;
 	}
 
 	// multilangue
 	let tabLangue = quizz.multilangue.split(",");
 	const codeHtml = `
-		<span class="quizz_name" id="titreQuizz">${quizz.titre}</span>
-
-		<div class="quizz-options">
-			<strong>DESCRIPTION</strong>
-			<span id="niveauQuizz">Niveau ${niveau}</span>
-			<span id="descriptionQuizz">${quizz.description}</span>
-			<span id="loiQuizz">${loi}</span>
-			<strong>LANGUES</strong>
-		  ${LG_.getLanguesOfQuizz(tabLangue)}
+		<div class="px-3 pt-3">
+			<h3 class="name">${quizz.titre}</h3>
+			<p class="quote2">${quizz.description}</p>
+		</div>
+		<div class="px-3">
+			<img class="rule" src="../imagesNew/svg/rule.svg" />
+			<span class="quote2">Loi : ${loi}</span>
+		</div>
+		<div class="d-flex justify-content-between  px-3 pb-3">
+			<div>
+				<img class="level" src="../imagesNew/svg/brain-freeze-outline.svg" />
+				<span class="quote2 pl-2">Niveau : ${niveau}</span>
+			</div>
+			<div>
+				${LG_.getLanguesOfQuizz(tabLangue)}
+			</div>
 		</div>`
 
 	let statsContainer = document.getElementById("stats-container");

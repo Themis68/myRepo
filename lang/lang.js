@@ -290,13 +290,11 @@
     }
 
     getLanguesOfQuizz(tabLangue) {
-        let codeHTML = ` 
-    
-            <div class="langues">
-                        ${tabLangue.map(langue => 
-                        `<div class="c-${langue}"><img src="${this.chemin}/images/${langue}.png" />
-                        </div>`)}
-            </div>`;
+        let codeHTML = `<div class="langues">
+                            ${tabLangue.map(langue => 
+                            `<div class="c-${langue}"><img class="LG_langOfQuizz" src="${this.chemin}/images/${langue}.png" />
+                            </div>`)}
+                        </div>`;
         return codeHTML;
     }
 }
