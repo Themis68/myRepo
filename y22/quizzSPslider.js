@@ -146,7 +146,7 @@ function doAfterSlide(indexQuizz){
 	if (quizz.loi === undefined) {
 		loi = "Mix de lois";
 	} else {
-		loi = quizz.loi + " -> " +lois[quizz.loi - 1].libelle;
+		loi = `${lois[quizz.loi - 1].libelle} (${quizz.loi})`;
 	}
 
 	// multilangue
@@ -158,12 +158,12 @@ function doAfterSlide(indexQuizz){
 		</div>
 		<div class="px-3">
 			<img class="rule" src="../imagesNew/svg/rule.svg" />
-			<span class="quote2">Loi : ${loi}</span>
+			<span class="quote2">${loi}</span>
 		</div>
 		<div class="d-flex justify-content-between  px-3 pb-3">
 			<div>
 				<img class="level" src="../imagesNew/svg/brain-freeze-outline.svg" />
-				<span class="quote2 pl-2">Niveau : ${niveau}</span>
+				<span class="quote2 pl-2">${niveau}</span>
 			</div>
 			<div>
 				${LG_.getLanguesOfQuizz(tabLangue)}
