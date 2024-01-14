@@ -1,26 +1,24 @@
 var slider = {};
   
-  document.addEventListener('click', gestionClick, false);
+document.addEventListener('click', gestionClick, false);
 
 function paramSlider(nbSlides) {
   console.log("paramSlider");
+
 	// .holder
 	var holder = document.getElementsByClassName("holder")[0];
 	holder.style.width = (nbSlides * 100) + "%";
-  holder.setAttribute("data-nbslides", nbSlides);
-
-	// .slide div
-//	var slide = document.getElementsByClassName("slide");
+ // holder.setAttribute("data-nbslides", nbSlides);
 
 	// .slide-wrapper
 	var slideWrapper = document.getElementsByClassName("slide-wrapper");
 	for(let i = 0; i < nbSlides; i++) {
 		slideWrapper[i].style.width = (100 / nbSlides) + "%";
-    slideWrapper[i].style.height = "90%";
+    slideWrapper[i].style.height = "100%";
 	}
 }
 
-function loadSlider() {
+function loadSlider(nbSlides) {
   console.log("loadSlider");
   if (document.readyState === "complete") {
     if (navigator.msMaxTouchPoints) {
@@ -49,7 +47,7 @@ function loadSlider() {
         longTouch: undefined,
         direction: undefined,
         continuer: false,
-        nbSlides: document.querySelectorAll("li[id^='indicateur']").length,
+        nbSlides: nbSlides,
         //nbSlides: document.getElementById("holder").dataset.nbslides, // recupère le nbre de slides
         
         init: function() {

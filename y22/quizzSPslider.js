@@ -57,11 +57,11 @@ function ready() {
         case "complete":        // Fully loaded
             console.log("5 - READY ", document.readyState);
 			// 1 - on créé les vignettes du slider
-			let nbSlides = creerVignettes("holder", LG_.getEtatMenu(), LG_.getLangUsed());
+			let nbSlides = creerVignettes("holder", LG_.getLangUsed());
 			// 2 - on met à jour les attributs dynamiques des classes du Slider
 			paramSlider(nbSlides);
 			// 3 - on lance la fonction slider
-			loadSlider();
+			loadSlider(nbSlides);
 			// afficher les infos du quizz
 			doAfterSlide(0);
             break;
@@ -86,7 +86,7 @@ function windowLoaded() {
     // LANG : appeler l'initialisation
 }
 
-function creerVignettes(id, etatModuleLang, langueUtilisee) {
+function creerVignettes(id, langueUtilisee) {
 	// indicateurs
 	let ind = document.getElementById("indicateurs");
 	// vignettes

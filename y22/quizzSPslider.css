@@ -6,7 +6,9 @@
 .stats{
   display:flex;
   flex-direction: column;
-  width: 85%;
+  width: 97%;
+  margin-left:1rem;
+  margin-right:1rem;
 }
 .stats-container{
 	top:272px;
