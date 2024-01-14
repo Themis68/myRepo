@@ -52,7 +52,7 @@ function ready() {
             const myTemplate = new Template();
             const myHeader =  document.getElementById('tmp_header');
             // afficher/masquer le menu des Langues ?
-            myHeader.innerHTML = myTemplate.header("LAB_A006", afficherMenuLangue);
+            myHeader.innerHTML = myTemplate.header("LAB_B003", afficherMenuLangue);
             break;
         case "complete":        // Fully loaded
             console.log("5 - READY ", document.readyState);
