@@ -18,6 +18,8 @@ https://stackoverflow.com/questions/43312042/svg-object-change-color-from-extern
 https://www.zonecss.fr/rechercher/index.php?mot=animate&Valider=Rechercher&typeexpression=1&typerecherche=0
 https://angrytools.com/css-generator/filter/
 https://www.webtips.dev/make-a-doughnut-chart-icon-with-css
+
+carousel :
 https://css-tricks.com/slider-with-sliding-backgrounds/
 
 
