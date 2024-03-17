@@ -49,14 +49,14 @@ var scenario = [
     },
     {
         id: 5,
-        titre: "ring",
+        titre: "ESSAI",
         poster: "gardien.png",
         fichier: "bases_07.js",
         variable: "script7",
-        description: "Questionnaire pour les Penalties",
+        description: "Questionnaire d'essai",
         loi: 6,
         niveau: 1,
         tempsQuestion: 10,
-        tempsReponse: 8
+        tempsReponse: 10
     }
 ]

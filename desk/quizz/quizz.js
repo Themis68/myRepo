@@ -7,9 +7,7 @@ var screenParams = [
 	{width:991, code:"xl-3"}
 ];
 
-// variables 
 var ratio = 0;
-var tempsConsomme = 0;
 var quizz = [];
 var scripts = [];
 var actions = [];
@@ -285,8 +283,7 @@ function gestionBoard(etape, objet) {
 			// complement
 			let scoreFinal = quizzNbPointRegul.toFixed(2) ;	// on arrondi à 2 chiffres
 			document.querySelector("inter complement").style.display = "flex";
-			document.querySelector("inter complement p").innerHTML = avatar + " " + tabMessages[3] + " " + scoreFinal + (scoreFinal> 1 ? " points" : " point") 
-			+"</b> en " + tempsConsomme +(tempsConsomme > 1 ? " secondes" : " seconde")+ "<br>" +tabMessages[4];
+			document.querySelector("inter complement p").innerHTML = avatar + " " + tabMessages[3] + " " + scoreFinal + (scoreFinal> 1 ? " points" : " point") +"</b><br>" +  tabMessages[4];
 			// lancer le ring
 			document.querySelector("inter complement #ring").style.display = "flex";
 			gestSvg(scoreFinal, nbQuests[niveauQuest].points);
@@ -355,14 +352,11 @@ function chronoR(reponse) {
 	let pChronoR = document.querySelector("inter suite chrono p");
 	let value = parseInt(pChronoR.innerHTML,10);
 	if (value == 0) {
-		// fin du chrono
 		response(questionOn, -1);
 	} else {
 		if (value <= 4) {
-			// compte à rebours 
 			playSound("comptearebours");
 		}
-		// on decompte le chrono
 		pChronoR.innerHTML = (value -1).toString();
 	}
 }
@@ -378,9 +372,7 @@ function response(numQ, propSel) {
 		document.getElementById("book"+ (i+1)).removeAttribute("onclick");
 	}
 	
-	let gagne = false;	// init variable
-
-	// choix du son à jouer selon réponse
+	let gagne = false;
 	myQ = tabQuestions[numQ-1];
 	if (propSel != myQ.reponse.solution) {
 		// mauvaise réponse
@@ -390,11 +382,13 @@ function response(numQ, propSel) {
 		playSound("bonne");
 		gagne = true;
 	}
+	
+	let loi = "";
 
 	// on récupère le chrono restant
-	let pChronoR = document.querySelector("inter suite chrono p");	// on récupère la valeur du chrono en cours
-	let tempsRestant = parseInt(pChronoR.innerHTML,10);	// on convertit la valeur en entier
-	let tempsPropose = 0.0;	// on initialise la valeur proposée
+	let pChronoR = document.querySelector("inter suite chrono p");
+	let tempsRestant = parseInt(pChronoR.innerHTML,10);
+	let tempsPropose = 0.0;
 	if (myQ.reponse.temps == undefined) {
 		// temps du quizz
 		tempsPropose = parseInt(quizz.tempsReponse,10);
@@ -402,17 +396,7 @@ function response(numQ, propSel) {
 		// temps de la question
 		tempsPropose = parseInt(myQ.reponse.temps,10);
 	}
-
-	if (gagne) {
-		// Gagné : on tient compte du temps utilisé
-		tempsConsomme = tempsConsomme + (tempsPropose - tempsRestant);
-		console.log("max " + tempsPropose + " /  utilisé "+ (tempsPropose) + " total utilisé " + tempsConsomme);
-	} else {
-		// Perdu : on ajoute le temps prévu pour la question
-		tempsConsomme = tempsConsomme + tempsPropose;
-		console.log("max " + tempsPropose + " /  utilisé "+ (tempsPropose - tempsRestant) + " total utilisé " + tempsConsomme);
-	}
-	//ratio = tempsRestant / tempsPropose ;
+	ratio = tempsRestant / tempsPropose ;
 
 	// MAJ score
 	if(gagne) {
@@ -422,8 +406,6 @@ function response(numQ, propSel) {
 	// on initialise le chrono
 	clearTimeout(myChronoR);
 
-	// gestion de la loi à afficher
-	let loi = "";
 	document.getElementsByClassName("prop"+ myQ.reponse.solution)[0].setAttribute("style", "filter:drop-shadow(2px 4px 6px);cursor:pointer");
 	if (myQ.reponse.loi == undefined){
 		// prendre la loi du quizz
@@ -454,14 +436,13 @@ function addScore(value) {
 		quizzNbPointRegul = 0;
     } else {
       //  quizzNbPoint = quizzNbPoint + value;
-		//console.log("ratio "+ratio +"   points  " + (value * ratio));
-		/*if (ratio >= 0.7) {
+		console.log("ratio "+ratio +"   points  " + (value * ratio));
+		if (ratio >= 0.7) {
 			// on favorise la réponse dans la moitié du temps impartie
 			quizzNbPointRegul = quizzNbPointRegul + value;
 		} else {
 			quizzNbPointRegul = quizzNbPointRegul + (value * ratio);
-		}*/
-		quizzNbPointRegul = quizzNbPointRegul + value;
+		}
 	} 
 	
    // var score = ('0' + quizzNbPoint.toString()).substr(-2);       // on a le score avec deux digits
