@@ -1,3 +1,9 @@
+/* 
+utilisé par les pages DESK 
+
+*/
+	
+
 var paramsURL;
 
 // recuperation des paramètres de l'url

@@ -1,18 +1,14 @@
 /* ne pas mettre de . avant le chemin sinon cela ne fonctionne pas  */
-@import url(../../typo/scoreboard/stylesheet.css);
-@import url(../../typo/passion_one/stylesheet.css);
+@import url(../carousel/slider.css);
+@import url(../communASI.css);
 
 /*********  CONTENT  **********/
-body, a, p, span {
-  font-family: system-ui;
-}
-body {
-  background: #eaebec;
-}
 .stats{
   display:flex;
   flex-direction: column;
-  width: 85%;
+  width: 97%;
+  margin-left:1rem;
+  margin-right:1rem;
 }
 .stats-container{
 	top:272px;
@@ -121,17 +117,6 @@ h1 {
   -moz-filter: invert(20%) sepia(97%) saturate(4013%); /*FIREFOX */
 }
 
-.titre{
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  font-size: 1em;
-  color: black;
-  background-color:white;
-  padding-bottom: 10px;
-  line-height: 1.5em;
-  font-weight: normal;
-  padding-left: 1em;
-}
-
 #btnQuizz {
   font-size: 3em;
   margin-top: 1em;
@@ -139,11 +124,137 @@ h1 {
   margin-right: 2em;
 }
 
+/************************************************************************
+// STATS QUIZZ  
+*/
+
+
+.pic1{
+  position: relative;
+  right: 22px;
+  top: 23px;
+}
+.pic2{
+  position: relative;
+  left: 25px;
+  top: 17px;
+}
+.pic3{
+  position: relative;
+  right: 13px;
+  bottom: 18px;
+}
+.pic4{
+  position: relative;
+  left: 14px;
+  bottom: 21px;
+}
+.project{
+  text-align: center;
+  font-size: 22px;
+  font-weight: 600;
+  color: #fd4040;
+}
+.quote{
+  text-align: center;
+  font-size: 12px;
+  font-weight: 400;
+  color: #fff;
+
+}
+
+.two{
+  font-family: passion_oneregular, sans-serif;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  flex :1;
+  background-color: #fff;
+  text-align: left;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);    
+}
+.star{
+  font-size: 20px !important;
+  color: #b1b4b7;
+}
+.dot{
+  font-size: 20px !important;
+  color: #b1b4b7;
+}
+.round{
+  border-radius: 50%;
+  background-color: #eee;
+  width: 33px;
+  height: 33px;
+  margin-bottom: -10px;
+  align-items: center;
+  justify-content: center;
+}
+.name{
+  font-family: passion_oneregular, sans-serif;
+  font-size: 3rem;
+  color: #464e56;
+  text-align: left;
+  transform: scaleY(1.5);
+}
+.quote2{
+  font-family: passion_oneregular, sans-serif;
+   font-size: 1.7rem;
+   font-weight: 500;
+   color: #868e94;
+   text-align: left;
+   transform: scaleY(1.2);
+}
+.img1{
+  position: relative;
+  left: 20px;
+  z-index: 28;
+  border: 0.5px solid #6ebde4;
+  border-radius: 50%;
+  background-color: #bcd8e6;
+}
+.img2{
+  position: relative;
+  left: 10px;
+  z-index: 29;
+  border: 0.5px solid #6ebde4;
+  border-radius: 50%;
+  background-color: #bcd8e6;
+}
+.img3{
+  z-index: 30;  
+  border: 0.5px solid #6ebde4;
+  border-radius: 50%; 
+  background-color: #bcd8e6;
+}
+
+i {
+  font-size: 2.5rem;
+}
+
+.rule{
+   color: #727475;
+   width: 3rem;
+}
+
+.level{
+   color: #727475;
+   width: 3rem;
+}
+
+.imgfix{
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  top: 2px;
+}
+
 
 @media (orientation: portrait) {
-  nav, body {
-    line-height: 1;
-  }
+
 }
 
 @media (orientation: landscape) {

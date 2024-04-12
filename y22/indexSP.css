@@ -1,5 +1,5 @@
 /* ne pas mettre de . avant le chemin sinon cela ne fonctionne pas  */
-@import url(../commun.css);
+@import url(../communASI.css);
 
  /*--------------------------------  ITEMS CATALOGUES   ------------------------------------------*/
  .titreH {
@@ -77,7 +77,7 @@
     width: auto;   /* largeur du parent */
     color: black;
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 5em;
+    font-size: 4em;
 }
 
 .item_titredesactive {

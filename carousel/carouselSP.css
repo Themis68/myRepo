@@ -1,3 +1,9 @@
+/***************** ajout Paulo ******************/
+.carouselFanion {
+    width: 15%;
+    padding-left: 3px;
+    padding-right: 3px;
+}
 /*************************************************/
 /* bloc des indicateurs */
 .carousel-indicators {
@@ -267,3 +273,11 @@
     }
 }
 */
+.showCarouselItem {
+    display: flex !important;
+    /*visibility: visible;*/
+}
+
+.hideCarouselItem {
+    display: none;
+    /*visibility: hidden;*/

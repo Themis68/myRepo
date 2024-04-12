@@ -47,8 +47,13 @@
     getEtatMenu() {
         return this.etatMenu;
     }
+    
     getdefaultLang() {
         return this.defaultLang;
+    }
+
+    getLangUsed() {
+        return this.langUsed;
     }
 
 
@@ -211,6 +216,7 @@
         // on récupère les éléments qui ont l'attribut "lab"
         let LABs = document.querySelectorAll("span[lab],p[lab],a[lab]")
         LABs.forEach(element => {
+            console.log("* ", element.id);
             this.setLibelleOfLabElement(element.id, element.getAttribute("lab"));
         });
     }
@@ -270,17 +276,6 @@
             `;       
     }
 
-    getLanguesOfQuizz(tabLangue) {
-        let codeHTML = ` 
-    
-            <div class="langues">
-                        ${tabLangue.map(langue => 
-                        `<div class="c-${langue}"><img src="${this.chemin}/images/${langue}.png" />
-                        </div>`)}
-            </div>`;
-        return codeHTML;
-    }
-
         // gère l'affichage du menu
     load() {
         console.log("7 LG");
@@ -292,6 +287,15 @@
 
     DOMContentLoaded(){
         console.log("4 LG");
+    }
+
+    getLanguesOfQuizz(tabLangue) {
+        let codeHTML = `<div class="langues">
+                            ${tabLangue.map(langue => 
+                            `<div class="c-${langue}"><img class="LG_langOfQuizz" src="${this.chemin}/images/${langue}.png" />
+                            </div>`)}
+                        </div>`;
+        return codeHTML;
     }
 }
 
