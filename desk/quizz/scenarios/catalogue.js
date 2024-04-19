@@ -9,8 +9,8 @@ var scenario = [
         variable: "script4",
         description: "Questionnaire pour le tournoi Georges Masson",
         niveau: 1,
-        tempsQuestion: 10,
-        tempsReponse: 10
+        tempsQuestion: 15,
+        tempsReponse: 15
     },
     {
         id: 2,
@@ -20,8 +20,8 @@ var scenario = [
         variable: "script3",
         description: "Questionnaire pour le tournoi Georges Masson",
         niveau: 1,
-        tempsQuestion: 10,
-        tempsReponse: 10
+        tempsQuestion: 15,
+        tempsReponse: 15
     },
     {
         id: 3,
@@ -32,8 +32,8 @@ var scenario = [
         description: "Questionnaire pour les Penalties",
         loi: 5,
         niveau: 1,
-        tempsQuestion: 10,
-        tempsReponse: 8
+        tempsQuestion: 15,
+        tempsReponse: 15
     },
     {
         id: 4,
@@ -44,8 +44,8 @@ var scenario = [
         description: "Questionnaire pour les Penalties",
         loi: 6,
         niveau: 1,
-        tempsQuestion: 10,
-        tempsReponse: 8
+        tempsQuestion: 15,
+        tempsReponse: 15
     },
     {
         id: 5,
