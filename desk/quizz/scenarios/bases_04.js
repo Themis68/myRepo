@@ -1,4 +1,4 @@
-var version = "1.0.1";
+var version = "1.0.2";
 
 var script4 = [               
     {
@@ -36,7 +36,7 @@ var script4 = [
         niveau: 1,
         question: {
             temps: 15,
-            libelle: "Quel est le nombre de remplaçants maximum ?",
+            libelle: "Quel est le nombre de remplaçants maximum sur la feuille de match  ?",
             attributs: ["1","2","3","5"]
         },
         reponse: {
@@ -51,21 +51,6 @@ var script4 = [
         niveau: 1,
         question: {
             temps: 15,
-            libelle: "Qui peut arbitrer en priorité ces matchs ?",
-            attributs: ["u15-u16","les joueurs eux-mêmes","encadrant ou responsable d'équipe","Séniors"]
-        },
-        reponse: {
-            temps: 15,
-            solution: 2,
-            loi: 5,
-            points: 4
-        }
-    },
-    {
-        number: 5,
-        niveau: 1,
-        question: {
-            temps: 15,
             libelle: "Où se situe la zone de hors-jeu ?",
             attributs: ["Surface de réparation","Milieu de terrain","Zone de but","Il n'y en a pas"]
         },
@@ -77,7 +62,7 @@ var script4 = [
         }
     },
     {
-        number: 6,
+        number: 5,
         niveau: 1,
         question: {
             temps: 15,
@@ -92,7 +77,7 @@ var script4 = [
         }
     },
     {
-        number: 7,
+        number: 6,
         niveau: 1,
         question: {
             temps: 15,
@@ -107,7 +92,7 @@ var script4 = [
         }
     },
     {
-        number: 8,
+        number: 7,
         niveau: 1,
         question: {
             temps: 15,
@@ -122,22 +107,7 @@ var script4 = [
         }
     },
     {
-        number: 9,
-        niveau: 1,
-        question: {
-            temps: 15,
-            libelle: "A quelle distance du but se trouve le point de Penalty ?",
-            attributs: ["6 m","9 m","9 m 15","11 m"]
-        },
-        reponse: {
-            temps: 15,
-            solution: 1,
-            loi: 14,
-            points: 2
-        }
-    },
-    {
-        number: 10,
+        number: 8,
         niveau: 1,
         question: {
             temps: 15,
