@@ -15,8 +15,9 @@ function RedirectionJavascript(){
     // par LANG lors du chargement de la page
     if (isMobileDevice()) {
         // mobile
-        // document.location.href="./y22/indexSP.html";
-        document.location.href="./desk/indexDK.html";
+        document.location.href="./y22/indexSP.html";
+        //document.location.href="./mob/indexSP.html";
+        //document.location.href="./desk/indexDK.html";
     } else {
         //desktop
         document.location.href="./desk/indexDK.html";
