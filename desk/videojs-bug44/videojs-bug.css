@@ -1,0 +1,108 @@
+/**
+ * videojs-bug
+ * @version 1.0.0-rc.2
+ * @copyright 2017 johndanek <john.danek@teamcoco.com>
+ * @license MIT
+ -- version 1.0.0-ps.1 : 
+      gestion des styles du container et du contenant
+      gestion de la taille de la police de caractère relative (vw)
+ */
+
+ /* gestion des équipes 
+ .vjs-bug-titreAppBug {
+  font-family: scoreboardregular;
+  font-size: 24pt;
+  color: white;
+  width: max-content;
+  text-align: center;
+}
+*/
+
+.vjs-bugs {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* gestion de la zone d'infos sur les équipes FANION + TITRE + SILHOUETTE */
+.vjs-bug-compose {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+/* CANVAS OBJECT */
+.vjs-bug-silhBug {
+  /* flex: 1;  !! ne pas mettre cette ligne sinon on distrod l'image */
+  background-color: transparent;
+}
+
+.vjs-bug-titreBug {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.vjs-bug-titreBug span {
+  font-family: passion_oneregular;
+  font-size: 1.2vw;
+  color: white;
+  background-color: midnightblue;
+  padding: 3px; /* padding pour le titre dans son rectangle */
+}
+
+ /* gestion du score */
+ .vjs-bug-text{
+  color:white;
+  font-family: scoreboardregular;
+  font-size: 14pt;
+  width: max-content;
+ }
+
+ .vjs-bug-textScoreBug{
+  font-family: passion_oneregular;
+  font-size: 14pt;
+  color: white;
+  width: max-content;
+  text-align: center;
+  background-color: midnightblue;
+ }
+
+ /* AFFICHE L'OBJET */
+ .vjs-bug-show {
+   display: flex;
+ }
+ 
+ /* CACHE L'OBJET */
+ .vjs-bug-hide {
+   display: none;
+ }
+
+/* on posse en flex
+/*.video-js .vjs-bug{display:inline-block;position:absolute}
+*/
+.video-js .vjs-bug{
+  display:flex;
+  position:absolute
+}
+
+
+.video-js .vjs-bug.no-link{pointer-events:none}
+
+.video-js .vjs-bug.vjs-bug-tl .vjs-bug-compose{
+  top:0;
+  left:0;
+  justify-content: flex-start;  /* alignement des blocs en fonction de la position de l'objet*/
+}
+
+.video-js .vjs-bug.vjs-bug-tr .vjs-bug-compose{
+  top:0;
+  right:0;
+  justify-content: flex-end;  /* alignement des blocs en fonction de la position de l'objet*/
+}
+
+.video-js .vjs-bug.vjs-bug-bl{bottom:0;left:0}
+.video-js .vjs-bug.vjs-bug-br{bottom:0;right:0}
+.video-js .vjs-bug.vjs-bug-tc{top:0}
+.video-js .vjs-bug.vjs-bug-bc{bottom:0}
+.video-js .vjs-bug.vjs-bug-cl{left:0}
+.video-js .vjs-bug.vjs-bug-cr{right:0}

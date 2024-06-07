@@ -1,8 +1,28 @@
 // variables EVENTS
 var media_events = new Array();
 media_events["loadstart"] = 0;
+//media_events["progress"] = 0;
+//media_events["suspend"] = 0;
+//media_events["abort"] = 0;t
+//media_events["error"] = 0;
+//media_events["emptied"] = 0;
+//media_events["stalled"] = 0;
+//media_events["loadedmetadata"] = 0;
+//media_events["loadeddata"] = 0;
+//media_events["canplay"] = 0;
+//media_events["canplaythrough"] = 0;
 media_events["playing"] = 0;
+//media_events["waiting"] = 0;
+//media_events["seeking"] = 0;
+//media_events["seeked"] = 0;
+//media_events["ended"] = 0;
+//media_events["durationchange"] = 0;
 media_events["timeupdate"] = 0;
+//media_events["play"] = 0;
+//media_events["pause"] = 0;
+//media_events["ratechange"] = 0;
+//media_events["resize"] = 0;
+//media_events["volumechange"] = 0;
 media_events["currentTime"] = 0;
 
 // varianbles des videos
@@ -12,7 +32,6 @@ var timeOutEffet = 0; // pointe sur le timeout
 var idVideoOn = 0;	// numero de la vidéo selectionnée
 var nivZoom = 1;
 var video = [];
-var scripts = [];
 var actions = [];
 var actionEnCours = [];
 var isDefineBVideoJS = false;		// permet de gérer la délcaration de videoJS au premier tour
@@ -49,14 +68,16 @@ var tabMessages = [
 ]
 
 // chemins
-var pathJS = "./matchs/";		// vidéos des matchs
-var pathImages = "./images/";		// autres images
-var pathVideos = "./scenarios/";		// vidéos des matchs
+//var pathJS = "./scripts/";		// vidéos des matchs
+var pathImages = "./images/";	// autres images
+var pathVideos = "./scripts/";	// vidéos des matchs
 var pathLois = "../lois/images";
+
+var myVideo = "";
 // **********************************************************************************************************
 
 document.addEventListener("DOMContentLoaded", init, false);	// lance l'écoute des évènements et appelle INIT
-document.addEventListener("click", central, false);	// lance l'écoute des évènements CLIC
+document.addEventListener("click", central, false);	// lance l'écoute des évènements et appelle INIT
 document.addEventListener("fullscreenchange", gererFullscreen);	// gestion du cic sur le bouton de fullscreen
 window.addEventListener("resize", gererResize);	// gestion du remiensionnement
 
@@ -79,20 +100,25 @@ function init() {
 	//
 
     header();
-	footer();
+    footer();
+
+	// mettre les listener ici car il faut avoir chargée la page
 
 	// clic sur l'image de bascule
 	var bascule = document.querySelector("bascule img");
 	bascule.addEventListener("click", fBascule);	// de haut en bas
 
     document._video = document.getElementById("myVideo");   // identification de l'objet video
-	creerVignettes("vignettes");					        // générer la vignettes dans le carousel
+	creerVignettes("vignettes");					        // générer le vignettes dans le carousel
 }
 
 function central(event) {
-	// gestion de la position de la souris pour plus tard
 	var target = event.target || event.srcElement; // ce dernier pour compatibilité IE
-
+	/*if(target.getAttribute('class') == 'vjs-icon-placeholder') {
+		// clic sur big play
+		draw("vjs-bug-silhEquipeA", video[0].gauche.maillotCouleur);
+		draw("vjs-bug-silhEquipeB", video[0].droite.maillotCouleur);
+    }*/
 	// positonnement des objets particuliers
 	// centrage sur la vidéo
 	if (document.getElementById("vjs-bug-Arbitre") != undefined) {
@@ -103,17 +129,26 @@ function central(event) {
 	switch (target.getAttribute('class')) { 
 		case 'vjs-icon-placeholder':	// clic sur le grand bouton PLAY, le fullscreen, le son
 		case 'vjs-poster':				// clic sur l'image
-			draw("vjs-bug-EquipeAC", video[0].gauche.maillotCouleur);
-			draw("vjs-bug-EquipeBC", video[0].droite.maillotCouleur);
-			draw("vjs-bug-ArbitreC", video[0].arbitre.maillotCouleur);
+			draw("vjs-bug-EquipeAC", video[0].gauche.maillotCouleur, video[0].gauche.shortCouleur);
+		//	draw("vjs-bug-EquipeBC", video[0].droite.maillotCouleur, video[0].droite.shortCouleur);
+		//	draw("vjs-bug-Arbitre", video[0].arbitre.maillotCouleur, video[0].arbitre.shortCouleur);
 
 			//masquer les boutons de contrôle
 			document.getElementsByClassName("vjs-control-bar")[0].children[0].classList.add("vjs-hidden");	// play
 			document.getElementsByClassName("vjs-control-bar")[0].children[5].classList.add("vjs-hidden");  // time progress
 			break;
 	}
-
 }
+
+/*
+contentButtons.onclick = function(event) {
+    var event = event || window.event;
+    var target = event.target || event.srcElement;
+    if(target.getAttribute('name') == 'add-order') {
+        addRow();
+    }
+}
+*/
 
 function centrerObjetSurVideo(video, objet){
 
@@ -126,56 +161,69 @@ function centrerObjetSurVideo(video, objet){
 	return ((videoTaille.width / 2 ) - (objetTaille.width / 2))+ "px";
 }
 
-function draw(id, maillotCouleur) {
-	let canvas = document.getElementById(id);
-
-	if (canvas.getContext) {
-		let ctx = canvas.getContext("2d");
-
-		// fond
-		ctx.beginPath();
-		ctx.lineWidth="1";
-		ctx.arc(14, 14, 14, 0, 2 * Math.PI);	// X rayon, Y rayon, rayon, angle de départ, 2*PI pour le cercle complet
-		ctx.fillStyle = "black";	// couleur de fond
-		ctx.fill();		// ordre de remplissage
-		ctx.closePath();
-
-		// tete
-		ctx.beginPath();
-		ctx.lineWidth="1";
-		ctx.arc(14, 8, 5, 0, 2 * Math.PI);		// X rayon, Y rayon, rayon, angle de départ, 2*PI pour le cercle complet
-		ctx.fillStyle = maillotCouleur;	// couleur de fond
-		ctx.fill();		// ordre de remplissage
-		ctx.closePath();
-
-		// corps
-		let rectWidth = 18;
-		let rectHeight = 8;
-		let rectX = 5;
-		let rectY = 15; //12;
-		let cornerRadius = 5;
-
-		ctx.beginPath();
-		ctx.fillStyle = maillotCouleur;
-		ctx.lineWidth = 1;
-		ctx.moveTo(rectX + cornerRadius, rectY);
-		ctx.lineTo(rectX + rectWidth - cornerRadius, rectY);
-		ctx.arcTo(rectX + rectWidth, rectY, rectX + rectWidth, rectY + cornerRadius, cornerRadius);	// arrondi droite
-		ctx.lineTo(rectX + rectWidth, rectY + rectHeight);	// descendre
-		ctx.lineTo(rectX, rectY + rectHeight);	// horizontale basse
-		ctx.lineTo(rectX, rectY + cornerRadius);	// remonter
-		ctx.arcTo(rectX, rectY, rectX + cornerRadius, rectY, cornerRadius);	// arrondi gauche
-		ctx.fill();		// ordre de remplissage
-		ctx.closePath();
+function user() {
+	let avatarOk = false;
+	const reg = /^([a-zA-Z]){3,20}$/g;	// accepte des chaines de caractères jusqu'à 5 caractères
+	do {
+		avatar = window.prompt("Indique ton prénom s'il te plait (3 à 20 lettres maximum)");
+		avatarOk = reg.exec(avatar);
 	}
+	while (!avatarOk);
+	document.getElementById("avatar").innerHTML = avatar.toUpperCase();
 }
 
+/*
+function draw(id, maillotCouleur) {
+	let canvas = document.getElementById(id);
+	console.log(canvas);
+    	if (canvas.getContext) {
+			let ctx = canvas.getContext("2d");
+			
+			// fond
+			ctx.beginPath();
+  			ctx.lineWidth="1";
+  			ctx.arc(14, 14, 14, 0, 2 * Math.PI);		// X rayon, Y rayon, rayon, angle de départ, 2*PI pour le cercle complet
+  			ctx.fillStyle = "black";	// couleur de fond
+			ctx.fill();		// ordre de remplissage
+			ctx.closePath();
+
+			// tete
+			ctx.beginPath();
+  			ctx.lineWidth="1";
+  			ctx.arc(14, 8, 5, 0, 2 * Math.PI);		// X rayon, Y rayon, rayon, angle de départ, 2*PI pour le cercle complet
+  			ctx.fillStyle = maillotCouleur;	// couleur de fond
+			ctx.fill();		// ordre de remplissage
+			ctx.closePath();
+
+			// corps
+			let rectWidth = 18;
+      		let rectHeight = 8;
+      		let rectX = 5;
+      		let rectY = 15; //12;
+      		let cornerRadius = 5;
+
+			ctx.beginPath();
+			ctx.fillStyle = maillotCouleur;
+			ctx.lineWidth = 1;
+			ctx.moveTo(rectX + cornerRadius, rectY);
+			ctx.lineTo(rectX + rectWidth - cornerRadius, rectY);
+			ctx.arcTo(rectX + rectWidth, rectY, rectX + rectWidth, rectY + cornerRadius, cornerRadius);	// arrondi droite
+			ctx.lineTo(rectX + rectWidth, rectY + rectHeight);	// descendre
+			ctx.lineTo(rectX, rectY + rectHeight);	// horizontale basse
+			ctx.lineTo(rectX, rectY + cornerRadius);	// remonter
+			ctx.arcTo(rectX, rectY, rectX + cornerRadius, rectY, cornerRadius);	// arrondi gauche
+			ctx.fill();		// ordre de remplissage
+			ctx.closePath();
+    }
+}*/
+
 function creerVignettes(id) {
-	//
-    // générer le vignettes dans le carousel
-	//
-	
+    //
+    // générer les vignettes dans le carousel
+    //
+
 	// création des indicateurs
+	/*
 	let ind = document.getElementById("indicateurs");
 
 	for (let i = 0; i < arrayAssoSize(scenario); i++) {
@@ -185,11 +233,12 @@ function creerVignettes(id) {
 		if(i === 0) { myInd.setAttribute("class", "active cercle"); } else {myInd.setAttribute("class", "cercle");}
 		ind.appendChild(myInd);
 	}
+	*/
 
-	// création des vignettes
-	let bloc = document.getElementById(id);
-	
-	for (let i = 0; i < arrayAssoSize(scenario); i++) {
+    let bloc = document.getElementById(id);
+
+			// création des vignettes
+	for (let i = 0; i < arrayAssoSize(rencontres); i++) {
 
 		// div
 		let myDiv = document.createElement("div");
@@ -200,7 +249,7 @@ function creerVignettes(id) {
 		myImg.className = "img-fluid mx-auto d-block";
 		myImg.setAttribute("alt", "img" + i);
 		myImg.setAttribute("title", "img" + i);
-		myImg.setAttribute("src", (pathVideos + scenario[i][0].poster) || (pathImages + "pelouses/stade.jpg"));
+		myImg.setAttribute("src", pathVideos + (rencontres[i][0].poster || "./stade.jpg"));
 
 		// caption
 		let myCaption = document.createElement("div");
@@ -209,31 +258,31 @@ function creerVignettes(id) {
 		let myF = document.createElement("img");
 		myF.className = "carouselFanion";
 		myF.setAttribute("title", "fanionG" + i);
-		myF.setAttribute("src", pathImages + 'fanions/' + (scenario[i][0].gauche.fanion || "fff.png'"));
+		myF.setAttribute("src", pathImages + 'fanions/' + (rencontres[i][0].gauche.fanion || "fff.png'"));
 		myCaption.appendChild(myF);
 		// fanion
 		myF = document.createElement("img");
 		myF.className = "carouselFanion";
 		myF.setAttribute("title", "fanionD" + i);
-		myF.setAttribute("src", pathImages + 'fanions/' +(scenario[i][0].droite.fanion || "fff.png'"));
+		myF.setAttribute("src", pathImages + 'fanions/' +(rencontres[i][0].droite.fanion || "fff.png'"));
 		myCaption.appendChild(myF);
 		
         let myP = document.createElement("p");        
-		myP.innerHTML = scenario[i][0].gauche.nom + "<br>" + scenario[i][0].droite.nom;
+		myP.innerHTML = rencontres[i][0].gauche.nom + "<br>" + rencontres[i][0].droite.nom;
 		myCaption.appendChild(myP);
 		myCaption.className = "carousel-caption d-none d-md-block";
-		myCaption.setAttribute("onclick", 'javascript:switchVideo('+ scenario[i][0].id +');');	// mettre ici car cette DIV est au-dessus de l'image
-		myCaption.setAttribute("title", (scenario[i][0].rencontre));
-		myCaption.setAttribute("alt", (scenario[i][0].rencontre));
+		myCaption.setAttribute("onclick", 'javascript:switchVideo('+ rencontres[i][0].id +');');	// mettre ici car cette DIV est au-dessus de l'image
+		myCaption.setAttribute("title", (rencontres[i][0].rencontre));
+		myCaption.setAttribute("alt", (rencontres[i][0].rencontre));
 
 		myDiv.appendChild(myImg);
 		myDiv.appendChild(myCaption);
 
 		bloc.appendChild(myDiv);
 
-		let myScript = document.createElement("SCRIPT");
+		let myScript = document.createElement("script");
 		myScript.setAttribute("type", "text/javascript");
-		myScript.setAttribute("src",  pathVideos + scenario[i][0].scenario);
+		myScript.setAttribute("src",  pathVideos + rencontres[i][0].scenario);
 		document.head.appendChild(myScript);
 	}
 }
@@ -252,7 +301,7 @@ function fBascule(event) {
 		carousel.style.display = "flex";
 		this.src = pathImages + "fleche_ouverte.png";
 		this.alt = "affiche la liste des matchs";
-		span.innerHTML = avatar + " " + tabMessages[0];
+		span.innerHTML = "cliquez sur la vignette du match que vous souhaitez arbitrer";
 	} else {
 		// on ferme
 		carousel.style.display = "none";
@@ -265,20 +314,23 @@ function fBascule(event) {
 function switchVideo(n) {
     //
     // affectation de la nouvelle vidéo et des attributs liés
-    //;
+    //
 
-	if (n > arrayAssoSize(scenario)) {
+
+	if (n > arrayAssoSize(rencontres)) {
 		// vérifie si l'index de la vidéo existe dans le fichier tableau.js
 		n = 0;
 		return false;
 	} else {
 		// MAJ videos
 		idVideo = n;		// 1 = première vidéo
-		video = scenario[n-1];    // recup scénario de la vidéo
+		video = rencontres[n-1];    // recup scénario de la vidéo
 		idVideoOn = n; //video[0].id;
 		
 		//
 		// travail sur les actions et l'IHM associée
+		//
+		//actions = video[1];    // recup tableau des actions (position 3)
 		actions = eval(video[0].variable);
 
 		listeEvents("events", media_events);	// créé le tableau des évènements vidéos
@@ -309,12 +361,16 @@ function switchVideo(n) {
 			// calcul des dimensions en tenant compte du ratio prévu
 			let match = document.querySelector("match");
 			let carousel = document.querySelector("carousel");
+			//console.log("match", match.offsetWidth, match.offsetHeight);
+			//console.log("carousel", carousel.offsetWidth, carousel.offsetHeight);
 
 			hauteur = match.offsetHeight + carousel.offsetHeight;
 			matchWCalcule = hauteur  * 1.75;	// 1,78 est le ratio accepté par videoJs
 
+			code = ""; //"<script> alert(\"esd\"); </script>";
+
             // on créé la vidéo
-			 myVideo = videojs('myVideo', {
+			var myVideo = videojs('myVideo', {
 				disableVideoPlayPauseClick: true,
 				width: matchWCalcule,
 				height: hauteur,
@@ -322,7 +378,7 @@ function switchVideo(n) {
 				preload:  'none',
 				loop: false,
 				fluid: true,
-				poster: (pathVideos + video[0].poster) || (pathImages + "pelouses/pelousemini.png"),
+				poster: (pathVideos + video[0].poster || pathImages + "pelouses/pelousemini.png"),
 				controlBar: {
 					volumePanel: {	// avec l'ancienne version de video-js on appelait volumeMenuButton
 						inline: false,
@@ -357,78 +413,9 @@ function switchVideo(n) {
 							{lab: '1x', val: 1}
 						]
 					},
-					bug: [{
-							type: "equipe",
-							id:"vjs-bug-EquipeA",
-							visibility: true,
-							libelle: "<span>"+ video[0].gauche.nom +"</span>",
-							classeCSSText: "vjs-bug-titreBug",
-							opacity: 1,
-							left: "20px",
-							top: "20px",
-							position: 'tl',
-							imgSrc: pathImages + "fanions/" + (video[0].gauche.fanion || 'fff.png'),
-							alt: video[0].gauche.nom  || "fanion par défaut",
-							link: video[0].gauche.site,
-							classeCSSCanvas: "vjs-bug-silhBug",
-							paddingInterne: "3px"
-						}, 
-						{
-							type: "equipe",
-							id:"vjs-bug-EquipeB",
-							visibility: true,
-							libelle: "<span>"+ video[0].droite.nom +"</span>",
-							classeCSSText: "vjs-bug-titreBug",
-							opacity: 1,
-							right: "20px",
-							top: "20px",
-							position: 'tr',
-							imgSrc: pathImages + "fanions/" + (video[0].droite.fanion || 'fff.png'),
-							alt: video[0].droite.nom  || "fanion par défaut",
-							link: video[0].droite.site,
-							classeCSSCanvas: "vjs-bug-silhBug",
-							paddingInterne: "3px"
-						}, 
-						{
-							type: "arbitre",
-							id:"vjs-bug-Arbitre",
-							visibility: true,
-							libelle: "<span>"+ avatar +"</span>",
-							classeCSSText: "vjs-bug-titreBug",
-							opacity: 1,
-							top: "20px",
-							position: 'tc',
-							imgSrc: pathImages + "fanions/" + (video[0].droite.fanion || 'fff.png'),
-							alt: video[0].droite.nom  || "fanion par défaut",
-							link: video[0].droite.site,
-							classeCSSCanvas: "vjs-bug-silhBug",
-							paddingInterne: "3px"
-						} 
-/*
-						{
-							type: "canvas",
-							id:"vjs-bug-silhArbitre",
-							visibility: true,
-							height: 30,
-							width: 30,
-							classeCSS: "vjs-bug-silhArbitreBug",
-							opacity: 1,
-							left: (30 + 20 + 160 + 5 + 200) + "px",
-							top: "20px",
-							position: 'tc'
-						},
-						{
-							type: "text",
-							id:"vjs-bug-titreArbitre",
-							visibility: true,
-							libelle: "<span>"+ avatar +"</span>",
-							classeCSS: "vjs-bug-titreArbitre",
-							opacity: 1,
-							left: (30 + 20 + 160 + 5 + 200) + "px",
-							top: "50px",
-							position: 'tc'
-						}*/
-					/*{
+					bug: [
+						/*
+					{
 						type: "pict",
 						id:"vjs-bug-pictEquipeA",
 						visibility: true,
@@ -464,20 +451,6 @@ function switchVideo(n) {
 						left: (30 + 20 + 160 + 5) + "px",
 						top: "20px",
 						position: 'tl'
-					},*/
-						
-					]
-					/*{
-						type: "canvas",
-						id:"vjs-bug-silhEquipeB",
-						visibility: true,
-						height: 30,
-						width: 30,
-						classeCSS: "vjs-bug-silhEquipBug",
-						opacity: 1,
-						right: (30 + 20 + 170 + 5) + "px",
-						top: "20px",
-						position: 'tr'
 					},
 					{
 						type: "text",
@@ -503,20 +476,113 @@ function switchVideo(n) {
 						right: "20px",
 						top: "20px",
 						position: 'tr'
-					}]*/
-				}
+					}*/
+					{
+						type: "equipe",
+						id:"vjs-bug-EquipeA",
+						visibility: true,
+						imgSrc: pathImages + "fanions/" + (video[0].gauche.fanion || "fff.png"),
+						alt: video[0].gauche.nom  || "fanion par défaut",
+						paddingInterne: "3px",
+						libelle: "<span>"+ video[0].gauche.nom +"</span>",
+						heightTitre: 30,
+						classeCSSText: "vjs-bug-titreBug",
+						classeCSSCanvas: "vjs-bug-silhBug",
+						opacity: 1,
+						top: "20px",
+						position: 'tc',
+						link: video[0].gauche.site,
+						height: 30,
+						width: 30
+					},
+					{
+						type: "arbitre",
+						id:"vjs-bug-Arbitre",
+						visibility: true,
+						imgSrc: pathImages + "fanions/fff.png",
+						paddingInterne: "3px",
+						libelle: "<span>"+ avatar +"</span>",
+						heightTitre: 30,
+						imgSrc: pathImages + "fanions/fff.png",
+						classeCSSText: "vjs-bug-titreBug",
+						classeCSSCanvas: "vjs-bug-silhBug",
+						opacity: 1,
+						top: "20px",
+						position: 'tc',
+						alt: "fanion par défaut",
+						height: 30,
+						width: 30
+					},
+					{
+						type: "equipe",
+						id:"vjs-bug-EquipeB",
+						visibility: true,
+						imgSrc: pathImages + "fanions/" + (video[0].droite.fanion || "fff.png"),
+						paddingInterne: "3px",
+						libelle: "<span>"+ video[0].droite.nom +"</span>",
+						heightTitre: 30,
+						classeCSSText: "vjs-bug-titreBug",
+						classeCSSCanvas: "vjs-bug-silhBug",
+						opacity: 1,
+						top: "20px",
+						position: 'tc',
+						alt: video[0].droite.nom  || "fanion par défaut",
+						link: video[0].droite.site,
+						height: 30,
+						width: 30
+					}
+				/*	{
+						type: "canvas",
+						id:"vjs-bug-silhArbitre",
+						visibility: true,
+						height: 30,
+						width: 30,
+						classeCSS: "vjs-bug-silhArbitreBug",
+						opacity: 1,
+						left: (30 + 20 + 160 + 5 + 200) + "px",
+						top: "20px",
+						position: 'tc'
+					},
+					{
+						type: "text",
+						id:"vjs-bug-titreArbitre",
+						visibility: true,
+						libelle: "<span>"+ avatar +"</span>",
+						classeCSS: "vjs-bug-titreArbitre",
+						opacity: 1,
+						left: (30 + 20 + 160 + 5 + 200) + "px",
+						top: "50px",
+						position: 'tc'
+					},
+					{
+						type: "canvas",
+						id:"vjs-bug-silhEquipeB",
+						visibility: true,
+						height: 30,
+						width: 30,
+						classeCSS: "vjs-bug-silhEquipBug",
+						opacity: 1,
+						right: (30 + 20 + 160 + 5) + "px",
+						top: "20px",
+						position: 'tr'
+					},*/
+					
+				]}
 			});
 		}
 
 		numQuestion = 0;	// on ré-initialise le nombre e questions
 		
+		console.log("init");
+
 		isDefineBVideoJS = true;
 		myVideo.load();
 
+		// zone canvas
+	//	draw("canvasG", video[0].gauche.couleur.maillot, video[0].gauche.couleur.short, video[0].gauche.couleur.chaussettes);
 
 		let inter = document.getElementById("inter");
 		inter.offsetHeight * hauteur;
-		
 		inter.style.display = "flex";
 		// EQUIPES : doit être après le chargement des plugins videos
 		gestionCamps(1);	// affichage des Informations sur l'équipe pour la première mi-temps
@@ -531,6 +597,9 @@ function switchVideo(n) {
 function listeEvents(id, arrayEventDef) {
     //
     // créé le tableau des évènements vidéos
+	//
+	// ajouter le code suivant au fichier video.html
+	//   <events><div id="events"></div></events>
 	//
     for (let key in arrayEventDef) {
 		document._video.addEventListener(key, capture, false);
@@ -574,7 +643,7 @@ function capture(event) {
 	// attention cette fonction n'est appelée que si la vidéo est en marche !!
 	// la pause arrête le passage de l'event
 
-	// attention : si l'on change les ligne de place dans cette fonction, on peut être dans la situation de gérer deux appels à un même évènement
+	// attention : si l'on change les ligne sde place dans cette fonction, on peut être dans la situation de gérer deux appels  àun même évènement
 	if (event.type === 'timeupdate') {
 		var seq = Math.trunc(document._video.currentTime);	// on récupère la partie entière du pointeur temps
 		if (seq !== seqUsed) {	
@@ -587,6 +656,7 @@ function capture(event) {
 				var asWork = arrayAssoSearch(actions, timeCode);	// renvoi l'indice de l'action si elle existe pour cette séquence
 				// on teste si on doit jouer ou pas
 				if (asWork > -1) {
+					//console.log("timing", timeCode);
 					switch(actions[asWork].act) {
 						case "Question":
 						case "Bonus":
@@ -638,24 +708,23 @@ function getVideo() {
 function gestionCamps(mitemps) {
 		// fanions incrustés
 	// en première mi-temps c'est l'init du plugin qui affiche les infos
-
 	if (mitemps===0) {
 		// on a cliqué sur une autre rencontre
 		document.getElementById("vjs-bug-EquipeAT").innerHTML = "<span>" + video[0].gauche.nom + "</span>";
 		document.getElementById("vjs-bug-EquipeBT").innerHTML = "<span>" + video[0].droite.nom + "</span>";
 		document.getElementById("vjs-bug-EquipeAF").setAttribute("src", pathImages + "fanions/"+ (video[0].gauche.fanion || "fff.png"));
 		document.getElementById("vjs-bug-EquipeBF").setAttribute("src", pathImages + "fanions/"+ (video[0].droite.fanion || "fff.png"));
-		draw("vjs-bug-EquipeAC", video[0].gauche.maillotCouleur);
-		draw("vjs-bug-EquipeBC", video[0].droite.maillotCouleur);
-		draw("vjs-bug-ArbitreC", video[0].arbitre.maillotCouleur);
+		draw("vjs-bug-EquipeAC", video[0].gauche.maillotCouleur, video[0].gauche.shortCouleur);
+	//	draw("vjs-bug-EquipeBC", video[0].droite.maillotCouleur, video[0].droite.shortCouleur);
+	//	draw("vjs-bug-ArbitreC", video[0].arbitre.maillotCouleur, video[0].arbitre.shortCouleur);
 	}
 	if (mitemps===2) {
 		document.getElementById("vjs-bug-EquipeAT").innerHTML = "<span>" + video[0].droite.nom + "</span>";
 		document.getElementById("vjs-bug-EquipeBT").innerHTML = "<span>" + video[0].gauche.nom + "</span>";
 		document.getElementById("vjs-bug-EquipeAF").setAttribute("src", pathImages + "fanions/"+ (video[0].droite.fanion || "fff.png"));
 		document.getElementById("vjs-bug-EquipeBF").setAttribute("src", pathImages + "fanions/"+ (video[0].gauche.fanion || "fff.png"));
-		draw("vjs-bug-EquipeAC", video[0].droite.maillotCouleur);
-		draw("vjs-bug-EquipeBC", video[0].gauche.maillotCouleur);
+		draw("vjs-bug-EquipeAC", video[0].droite.maillotCouleur, video[0].gauche.shortCouleur);
+		//draw("vjs-bug-EquipeBC", video[0].gauche.maillotCouleur, video[0].droite.shortCouleur);
 	}
 }
 
@@ -671,11 +740,13 @@ function showContent(etat) {
 	bascule_img.setAttribute("src",pathImages  +   (etat === true ? "fleche_fermee.png" : "fleche_ouverte.png"));	// MAJ icone bascule
 
 	let bascule_titre = document.querySelector("bascule span");
+	//bascule_titre.innerHTML = (etat === true ? "cliquez sur cet icône pour afficher les matchs disponibles" : "cliquez sur la vignette du match que vous souhaitez arbitrer");
 	bascule_titre.innerHTML = avatar + " " + (etat === true ? tabMessages[1] : tabMessages[0]);
 
 	myVideo.style.visibility  = "visible";
 	// la gestion du cadre doit se faire ici et non dans switchVideo sinon cela ne fonctionne pas
 	myVideo.classList.add("cadre");
+
 }
 
 function scanQuestion() {
@@ -738,25 +809,32 @@ var mesActions = {
     },
 
     Information : function (ind) {
-		// affiche l'information
         actionEnCours = actions[ind];
         // on affiche le bouton répondre si FAIRPLAY et pas encore GAGNE
-		//timeOut = setTimeout(gestionInter, actionEnCours.saut.attente, "FermeInfo", actionEnCours); 
-		if (actionEnCours.type === 'but'){
-			playSound("goal");
-		}
+        timeOut = setTimeout(gestionInter, 2000, "FermeInfo", actionEnCours); 
+        if ((actionEnCours.type === 'fairplay') && (questionsFaites.indexOf(actionEnCours.step) < 0)) {
+           /* var btnBonus = document.getElementById("btnBonus");
+            btnBonus.onclick = function() 
+            {
+                fairplay(ind); 
+            };*/
+            //showItem("btnBonus", true);
+        } else {
+           // .showItem("btnBonus", false);
+        }
 
         gestionInter("InterInformation", actionEnCours);
     },
 
     AllerA: function (ind) {
-		actionEnCours = actions[ind];
-		allerA(actionEnCours.indice);
+        actionEnCours = actions[ind];
+        allerA(actionEnCours.indice);
     },
 
     Fin: function (ind) {
-		actionEnCours = actions[ind];
+        actionEnCours = actions[ind];
 		gestionInter("Termine", actionEnCours);
+        //showConseiller('fin', ((videoNbPoint / nbQuests[0].points) > 0.5));
     },
 
     Mitemps: function (ind) {
@@ -783,7 +861,7 @@ function continuer2() {
         gestJauge();
     }
 
-	document._video.playbackRate = 1;   // vitesse normale
+    document._video.playbackRate = 1;   // vitesse normale
 	document._video.volume = volumeLevel;	//restauration du volume sonore
 	// suppression du flou éventuel
 	classId("del", "myVideo", "vjs-blurOn");
@@ -800,7 +878,10 @@ function continuer2() {
 // v2
 function fProposition(reponse) {
 	// gestion des réponses	
-	let bonneReponse = actionEnCours.reponse.solution;
+	let bonneReponse = actionEnCours.reponse.solution; // code.substr(1, 1);
+    //let reponse = code; //code.substr(3, 3);
+    
+    //console.log(bonneReponse, reponse);
 
 	if (bonneReponse === reponse) {
 		playSound("bonne");
@@ -814,7 +895,6 @@ function fProposition(reponse) {
             // DEJA TRAITE
         }
 	} else {
-		playSound("mauvaise");
 		classId("add", "proposition" + reponse, "rouge");
 		classId("add", "proposition" + bonneReponse, "green");
     }
@@ -826,13 +906,11 @@ function fProposition(reponse) {
 	gestionInter("reponse", actionEnCours);    	// gerer la réponse
 }
 
-
 function allerA(indice) {
-    timeOutEffet = setTimeout(endTimeOut, 500, indice); // effet de transition de 1/2 seconde
+    timeOutEffet = setTimeout(endTimeOut, 500, convertInSeqCode(indice)); // effet de transition
     classId("del", "myVideo", "vjs-blurOff");
     classId("add", "myVideo", "vjs-blurOn"); 
 }
-
 
 function endTimeOut(indice) {
     // on est arrivé à la fin de l'effet alors on retire l'effet
@@ -851,7 +929,7 @@ function gestJauge() {
     if (numQuestion == 0) {
         jauge[0].setAttribute("aria-valuenow", 0);
         jauge[0].setAttribute("style", "width: 0%");
-        jauge[0].innerHTML = nbQuests[niveauQuest].nb + " Question" + (nbQuests[niveauQuest].nb > 1 ? "s" : "");
+		jauge[0].innerHTML = nbQuests[niveauQuest].nb + " Question" + (nbQuests[niveauQuest].nb > 1 ? "s" : "");
     } else {
         jauge[0].setAttribute("aria-valuenow", numQuestion);
         pourCent = numQuestion / nbQuests[niveauQuest].nb * 100;
@@ -866,7 +944,7 @@ function fReplay(param) {
     addScore(-1);   // MAJ score
     replaysFaits.push(actionEnCours.step);    // on enbregistre l'opération
     getVideo().currentTime = getVideo().currentTime - (param); // on recule de X secondes
-	document._video.playbackRate = 0.2; // on active le ralentis
+    document._video.playbackRate = 0.2; // on active le ralentis
 	volumeLevel = document._video.volume;	// on sauvegarde le niveau du volume
 	document._video.volume = 0;	// mode MUTE
 	// suppression du flou éventuel
@@ -890,6 +968,36 @@ function addScore(value) {
 
     document.querySelector("inter suite score p").innerHTML = myScore + ':' + scoreMax;
 }
+
+// ?? on garde ou pas ?
+/*
+function showConseiller(rubrique, resultat, points) {
+     // conseiller
+     let monConseiller = document.getElementById("conseiller");
+     let source = myURL + '/images/conseiller/tete'+ Math.floor(Math.random() * Math.floor(4) + 1)+'.png';
+
+    let text = '<p style="text-align:center;font-size: 16pt;font-weight: bolder;">' + (resultat ? 'BRAVO !' : 'DOMMAGE') + '<br><br>';    
+    let isEnd = false;
+
+    switch(rubrique) {
+        case 'fin':
+            text+= '<span ' + (resultat ? 'class="gagne">Tu as Plus de<br><span style="font-size: 18pt;font-weight: bolder;">50%</span> de réussite' : 'class="perdu">Reviens vite essayer') +'</span></p>';
+            isEnd = true;
+            break;
+
+        case 'traite':
+            text+=  '<span ' + (resultat ? 'class="gagne">Mais tu as déja tes points' : 'class="perdu">Et pourtant tu l\'as déjà faite') + '</span></p>';
+            break;
+
+        case 'reponse':
+            text+= '<span ' + (resultat ? 'class="gagne">Tu as gagné<br><span style="font-size: 18pt;font-weight: bolder;">' + points + (points>1?' pts':' pt') : 'class="perdu">Essaye encore') + "</span></span></p>";
+            break;
+    }
+    showZone("zConseiller", true, isEnd);
+    monConseiller.setAttribute("src", source);
+    document.getElementById("rep").innerHTML = text;
+}
+*/
 
 // v2
 function convertInTimeCode(myStep) {
@@ -927,10 +1035,10 @@ function gestNiveaux(idVideo) {
     for (let i=0; i < 3; i++) {
         span.id = "level" + (i+1);
         span.className = ((i+1) === niveauQuest ? "badge badge-current badge-light" : "badge badge-light");
-		span.setAttribute("onclick","fNiveaux("+ (i + 1) + "," + idVideo +");"); 
+        span.setAttribute("onclick","fNiveaux("+ (i + 1) + "," + idVideo +");"); 
 		span.setAttribute("title", nbQuests[i+1].niv);
 		span.setAttribute("alt", nbQuests[i+1].niv);
-        span.innerHTML = (i + 1);
+ 		span.innerHTML = (i + 1);
         button.appendChild(span);
         span = document.createElement("span");
     }
@@ -941,9 +1049,8 @@ function gestPropositions(etape, attributs, reponse) {
     let propositions = document.querySelector("inter propositions");
     
     let proposition  = document.createElement("proposition");
-	let loi = document.createElement("a");
-	// let img = document.createElement("img");
-    let i = document.createElement("i");
+    let loi = document.createElement("a");
+    //let img = document.createElement("img");
     let button = document.createElement("button");
 
 	switch(etape) {
@@ -1002,9 +1109,9 @@ function gestionInter(etape, objet) {
 
 	let inter = document.querySelector("inter");
 	switch (etape) {
-		case "selectVideo":
-		   // classSelector("set", "inter tete", "Information");
-		    document.querySelector("inter jauge div").style.display = "flex";
+		/*case "selectVideo":
+            console.log(video);
+           // classSelector("set", "inter tete", "Information");
 			document.querySelector("inter tete titre p").innerHTML = "Match";
 			document.querySelector("inter tete points").style.display = "none";
 			gestNiveaux(idVideoOn);
@@ -1014,7 +1121,7 @@ function gestionInter(etape, objet) {
 			document.querySelector("inter question p").innerHTML = video[0].description;
 			document.querySelector("inter propositions").style.display = "none";
             document.querySelector("inter complement").style.display = "flex";
-            document.querySelector("inter complement p").innerHTML = tabMessages[2]+(nbQuests[niveauQuest].nb > 1 ? "des questions" : "une question") + " de niveau " + nbQuests[niveauQuest].niv + ".<br><br>"+ tabMessages[3];
+            document.querySelector("inter complement p").innerHTML = "Vous allez analyser le match avec des questions de niveau " + nbQuests[niveauQuest].niv + ".<br><br>Cliquez sur le bouton Play sur la vidéo pour déclencher le visionnage du match"
             document.querySelector("inter complement img").style.display = "none";
 			// replay
 			document.querySelector("inter suite replay span").style.display = "none";
@@ -1023,21 +1130,49 @@ function gestionInter(etape, objet) {
 			addScore(0);	// on init même si c'est masqué
 			// next
 			document.querySelector("inter suite next img").style.display = "none";
-            break;
+
+			//draw("canvasG", video[0].gauche.couleur.maillot, video[0].gauche.couleur.short, video[0].gauche.couleur.chaussettes);
+            break;*/
+		case "selectVideo":
+			// classSelector("set", "inter tete", "Information");
+				document.querySelector("inter jauge div").style.display = "flex";
+				document.querySelector("inter tete titre p").innerHTML = "Match";
+				document.querySelector("inter tete points").style.display = "none";
+				gestNiveaux(idVideoOn);
+				scanQuestion();	// analyse du scénario
+				gestJauge();	// MAJ de la jauge
+				document.querySelector("inter question p").style.display = "flex";
+				document.querySelector("inter question p").innerHTML = video[0].description;
+				document.querySelector("inter propositions").style.display = "none";
+				document.querySelector("inter complement").style.display = "flex";
+				document.querySelector("inter complement p").innerHTML = tabMessages[2]+(nbQuests[niveauQuest].nb > 1 ? "des questions" : "une question") + " de niveau " + nbQuests[niveauQuest].niv + ".<br><br>"+ tabMessages[3];
+				document.querySelector("inter complement img").style.display = "none";
+				// replay
+				document.querySelector("inter suite replay span").style.display = "none";
+				// score
+				document.querySelector("inter suite score p").style.display = "none";
+				addScore(0);	// on init même si c'est masqué
+				// next
+				document.querySelector("inter suite next img").style.display = "none";
+				break;
         
         case "FermeInfo":
+            //console.log("fermeInfo");
+          //  classSelector("set", "inter tete", "Information");
             document.querySelector("inter tete titre p").innerHTML = "Match";
             document.querySelector("inter tete points").style.display = "none";
             document.querySelector("inter question p").style.display = "none";
             document.querySelector("inter propositions").style.display = "none";
             document.querySelector("inter complement").style.display = "none";
             document.querySelector("inter suite replay span").style.display = "none";
-			document.querySelector("inter suite score p").style.display = "flex";
-			allerA(objet.saut.indice);
+            document.querySelector("inter suite score p").style.display = "flex";
+            allerA(objet.saut.indice);
             break;
 
 		case "InterQuestion":
 			// tete
+            //classSelector("set", "inter tete", objet.act);
+           // classSelector("set", "inter suite", objet.act);
 			document.querySelector("inter tete titre p").innerHTML = objet.act;
             document.querySelector("inter tete points").style.display = "flex";
             classSelector("set", "inter tete points p",  objet.act);
@@ -1052,12 +1187,14 @@ function gestionInter(etape, objet) {
 			document.querySelector("inter propositions").style.display = "flex";
 			// complement
 			document.querySelector("inter complement").style.display = "none";
+			// Suite
+			//document.querySelector("inter suite").style.display = "flex";
             // replay
             if (replaysFaits.indexOf(objet.step) < 0) {
                 // pas traité encore
-                document.querySelector("inter suite replay span").style.display = (objet.question.reculReplay ? "flex" : "none");
-                document.querySelector("inter suite replay span").innerHTML = objet.question.reculReplay;
-                document.querySelector("inter suite replay span").setAttribute("onclick","fReplay(" + (objet.question.reculReplay) + ");");
+                document.querySelector("inter suite replay span").style.display = (objet.reculReplay ? "flex" : "none");
+                document.querySelector("inter suite replay span").innerHTML = objet.reculReplay;
+                document.querySelector("inter suite replay span").setAttribute("onclick","fReplay(" + (objet.reculReplay) + ");");
             } else {
                 document.querySelector("inter suite replay span").style.display = "none";
             }
@@ -1069,6 +1206,8 @@ function gestionInter(etape, objet) {
 		
 		case "InterBonus":
 			// tete
+            //classSelector("set", "inter tete", objet.act);
+           // classSelector("set", "inter suite", objet.act);
 			document.querySelector("inter tete titre p").innerHTML = objet.act;
             document.querySelector("inter tete points").style.display = "flex";
             classSelector("set", "inter tete points p",  objet.act);
@@ -1090,6 +1229,8 @@ function gestionInter(etape, objet) {
             break;
         
         case "InterInformation":
+         //   classSelector("set", "inter tete", objet.act);
+           // classSelector("set", "inter suite", objet.act);
             document.querySelector("inter tete titre p").innerHTML = objet.act;
             document.querySelector("inter tete points").style.display = "none";
             // question
@@ -1100,11 +1241,11 @@ function gestionInter(etape, objet) {
             document.querySelector("inter complement").style.display = "none";
             document.querySelector("inter suite replay span").style.display = "none";
 			document.querySelector("inter suite score p").style.display = "flex";
-			document.querySelector("inter suite next img").style.display = "none";
+            document.querySelector("inter suite next img").style.display = "none";
+            
 			timeOut = setTimeout(gestionInter, (objet.saut.attente * 1000), "FermeInfo", objet); 
-			
 			//allerA(objet.saut);	// lance le minuteur
-            break;
+			break;
 
 		case "reponse":
             // complement
@@ -1116,7 +1257,7 @@ function gestionInter(etape, objet) {
                 document.querySelector("inter complement img").style.display = (objet.reponse.pict === undefined ? "none" : "flex");
                 if (objet.reponse.pict !== undefined) {
                     // on doit avoir le IF car sinon ca généère un message d'eereur lors de l'affectation de l'image  
-                    document.querySelector("inter complement img").setAttribute("src",pathImages + 'arbitres/' + objet.reponse.pict);
+                    document.querySelector("inter complement img").setAttribute("src",objet.reponse.pict);
                 }
             }
             // replay

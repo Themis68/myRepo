@@ -1,6 +1,125 @@
 @import url(../typo/scoreboard/stylesheet.css);
 @import url(../typo/passion_one/stylesheet.css);
-@import url(../commun44.css);
+html,
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-image: url("images/pelouses/stade3.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+p,
+ol,
+ul,
+li,
+dl,
+dt,
+dd,
+blockquote,
+figure,
+fieldset,
+legend,
+textarea,
+pre,
+iframe,
+hr,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 100%;
+  font-weight: normal;
+}
+ul {
+  list-style: none;
+}
+button,
+input,
+select,
+textarea {
+  margin: 0;
+}
+html {
+  box-sizing: border-box;
+  font-family: passion_oneregular;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+embed,
+iframe,
+object,
+audio,
+video {
+  height: auto;
+  max-width: 100%;
+}
+img {
+  max-width: 100%;
+}
+iframe {
+  border: 0;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+td,
+th {
+  padding: 0;
+  text-align: left;
+}
+
+/************************************************************************/
+/************************************************************************/
+
+.pleincadre {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.asimini {
+  width: 12%;
+}
+.asititre {
+  font-family: scoreboardregular;
+  color: white;
+  font-size: 2em;
+}
+
+.asimessage {
+  font-family: Arial, Helvetica, sans-serif;
+  color: black;
+  font-size: 2em;
+  text-align: center;
+}
+
+body {
+  min-height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+}
+
+
+/*********************************************************/
+
 #grey {
   filter: url(#grayscale);
   fill: red;
@@ -31,8 +150,16 @@ tete.FermeInfo {
   width: -webkit-fill-available;
   padding-right: 5px;
 }
-.video-js.vjs-playing .vjs-tech {
-  pointer-events: none;
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+main header {
+  font-family: scoreboardregular;
+  font-size: 3vw;
+  color: white;
 }
 main section {
   display: flex;
@@ -43,7 +170,7 @@ main section {
 main section div p {
   text-align: center;
   color: white;
-  font-size: 1.25vw;
+  font-size: 1.5vw;
 }
 main menu {
   display: flex;
@@ -57,7 +184,6 @@ main menu bascule {
 main menu bascule img {
   align-self: flex-start;
   padding-right: 20px;
-  width: 4%;
 }
 main menu bascule span {
   align-self: flex-start;
@@ -67,9 +193,6 @@ main menu bascule span {
 main menu carousel {
   display: flex;
   align-self: center;
-}
-main menu carousel .carousel-caption {
-  padding-top: 0px!important;
 }
 main content {
   width: 95vw;
@@ -108,7 +231,7 @@ main content inter tete {
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   padding: 5px;
-  background-image: url("images/pelouses/stade.jpg");
+  background-image: url("../images/stade.jpg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -163,7 +286,7 @@ main content inter tete points {
 }
 main content inter tete points p {
   display: flex;
-  font-family: "scoreboardregular";
+  font-family: scoreboardregular;
   font-size: 2vw;
   color: black;
 }
@@ -213,17 +336,12 @@ main content inter propositions proposition a {
   padding: 4px;
   padding-left: 10px;
   text-decoration: none;
-  /* img {
-                            display: flex;
-                            flex: 1;
-                            height: 4vh;
-                            padding-right: 6px;
-                        }*/
 }
-main content inter propositions proposition a i {
-  padding-top: 4px;
-  color: navy;
-  font-size: x-large;
+main content inter propositions proposition a img {
+  display: flex;
+  flex: 1;
+  height: 4vh;
+  padding-right: 6px;
 }
 main content inter propositions proposition button {
   flex: 11;
@@ -235,10 +353,10 @@ main content inter propositions proposition button .btn {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
-  padding-top: 0.2rem;
-  padding-bottom: 0.2rem;
+  padding-left: 0.50rem;
+  padding-right: 0.50rem;
+  padding-top: 0.20rem;
+  padding-bottom: 0.20rem;
 }
 main content inter complement {
   background-color: white;
@@ -259,7 +377,6 @@ main content inter complement p {
 main content inter complement img {
   display: none;
   padding-right: 3px;
-  height: fit-content;
 }
 main content inter suite {
   display: flex;
@@ -283,7 +400,7 @@ main content inter suite replay {
 }
 main content inter suite replay span {
   display: flex;
-  background-image: url("images/replay.png");
+  background-image: url("../images/replay.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -304,7 +421,7 @@ main content inter suite score {
 }
 main content inter suite score p {
   display: flex;
-  font-family: "scoreboardregular";
+  font-family: scoreboardregular;
   font-size: 2vw;
   color: black;
 }
@@ -322,4 +439,30 @@ main content inter suite next img {
   border-color: white;
   border-style: solid;
   border-width: 2px;
+}
+footer {
+  display: flex;
+  flex-grow: 0;
+  flex-shrink: 1;
+  /*background-color: midnightblue;*/
+  color: white;
+  padding-top: 5px;
+  padding-left: 5px;
+  font-size: 1.5em;
+  flex-basis: 2.5rem;
+}
+footer div span a {
+  color:white;
+}
+
+footer div span a:hover {
+  color:white;
+  font-weight: bold;
+}
+
+#events {
+  visibility: hidden;
+}
+#events th {
+  font-size: 0vw;
 }

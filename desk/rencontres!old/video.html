@@ -2,7 +2,16 @@
 <html lang="fr">
 
 <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8" />
+
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  
   <title>Vidéos de matchs</title>
+
+  <script src="../commun.js" type="text/javascript"></script>
 
   <script>
     // nécessaire pour que VIDEO prenne toute la largeur
@@ -10,70 +19,52 @@
     window.VIDEOJS_NO_DYNAMIC_STYLE = false;
   </script>
 
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta charset="utf-8" />
+  <script src="../video.js/video.js" type="text/javascript"></script>
+  <link href="../video.js/video-js.css" rel="stylesheet" type="text/css">
 
-  <title>Arrêt sur image !</title>
-
-  <script src="../commun.js" type="text/javascript"></script>
-
-  <script src="https://kit.fontawesome.com/abe2364430.js" crossorigin="anonymous" SameSite="none Secure"></script>
-
-  <script src="../video44.js/video.js" type="text/javascript"></script>
-  <link href="../video44.js/video-js.css" rel="stylesheet" type="text/css">
-
-  <script src="../videojs-brand44/videojs-brand.js" type="text/javascript">
+  <script src="../videojs-brand/videojs-brand.js" type="text/javascript">
     videojs.registerPlugin('brand', videojs-brand);
   </script>
-  <link href="../videojs-brand44/videojs-brand.css" rel="stylesheet" type="text/css">
+  <link href="../videojs-brand/videojs-brand.css" rel="stylesheet" type="text/css">
 
-  <script src="../videojs-zoom44/videojs-zoom.js" type="text/javascript">
+  <script src="../videojs-zoom/videojs-zoom.js" type="text/javascript">
     videojs.registerPlugin('videoJsZoom', videojs-zoom);
   </script>
-  <link href="../videojs-zoom44/videojs-zoom.css" rel="stylesheet" type="text/css">
+  <link href="../videojs-zoom/videojs-zoom.css" rel="stylesheet" type="text/css">
 
-  <script src="../videojs-bug44/videojs-bug.js" type="text/javascript">
+  <script src="../videojs-bug/videojs-bug.js" type="text/javascript">
     videojs.registerPlugin('videojs-bug', videojs-bug);
   </script>
-  <link href="../videojs-bug44/videojs-bug.css" rel="stylesheet" type="text/css">
+  <link href="../videojs-bug/videojs-bug.css" rel="stylesheet" type="text/css">
+
+  <script src="./video.js" type="text/javascript"></script>
+  <script src="./fonctions.js" type="text/javascript"></script>
+  <script src="./scripts/catalogue.js" type="text/javascript"></script>
+
+  <script src="https://kit.fontawesome.com/abe2364430.js" crossorigin="anonymous"></script>
 
   <!-- Séquence : Conserver l'ordre de chargement ci-dessous -->
   <link href="../../bootstrap-4.3.1/css/bootstrap.min.css" rel="stylesheet" type="text/css">
   <script src="../../jquery-3.1.1/jquery.slim.min.js"></script>
 
     <!-- carousel -->
-  <script src="../carousel44/util.js"></script>
-  <script src="../carousel44/carousel.js"></script>
-  <link href="../carousel44/carousel.css" rel="stylesheet" type="text/css">
+  <script src="./util.js"></script>
+  <script src="./carousel.js"></script>
+  <link href="./carousel.css" rel="stylesheet" type="text/css">
   <!-- fin séquence -->
   
   <!-- conserver cette ligne en dernier sinon on perd les styles par défaut -->
   <link href="./video.css" rel="stylesheet" type="text/css">
-  <script src="./scenarios/catalogue.js" type="text/javascript"></script>
-  <script src="./video.js" type="text/javascript"></script>
-
 </head>
 
 <body onLoad="user();">
-  <audio id="goal">
-    <source src="../sons/goal.wav" type="audio/wav">
-    Your browser does not support the audio element.
-  </audio>
-  <audio id="bonne">
-    <source src="../sons/bonnereponse.wav" type="audio/wav"> <!--type="audio/x-wav"-->
-    Votre navigateur ne gère pas les fichiers sons.
-  </audio>
-  <audio id="mauvaise">
-    <source src="../sons/mauvaisereponse.mp3" type="audio/mpeg"> <!--type="audio/mp3"-->
-    Votre navigateur ne gère pas les fichiers sons.
-  </audio>
-  <audio id="fin">
-    <source src="../sons/findematch.mp3" type="audio/mpeg"> <!--type="audio/mp3"-->
-    Votre navigateur ne gère pas les fichiers sons.
-  </audio>
-
   <main>
     <header></header>
+    <section>
+      <div>
+        <p>Bienvenue <span id="avatar"></span> dans le module d'analyse de l'arbitrage
+      </div>
+    </section>
     <menu>
       <bascule>
         <img src="../images/fleche_ouverte.png" alt=""/>
@@ -83,7 +74,6 @@
         <div id="carousel-example" class="carousel slide" data-ride="carousel" data-interval="false">
           <div id="vignettes" class="carousel-inner row w-100 mx-auto" role="listbox">
           </div>
-          <ol id="indicateurs" class="carousel-indicators"></ol>
           <a class="carousel-control-prev" href="#carousel-example" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="sr-only">Previous</span>
@@ -117,7 +107,7 @@
           </points>
         </tete>
         <jauge>
-              <div class="progress" title="progression dans les questions" alt="progression dans les questions">
+              <div class="progress">
                   <div class="progress-bar" role="progressbar" style="width: 10%;" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">
                   </div>
               </div>
@@ -139,19 +129,16 @@
               <p>00:00</p>
             </score>
             <next>
-                <img src="./images/suivante.png" onclick="continuer2();" alt="continuer"/>
+                <img src="../images/suivante.png" onclick="continuer2();" alt="continuer"/>
             </next>
         </suite>
       </inter>
     </content>
   </main>
   
-  <footer></footer>
-  <event>
-    <table>
-      <tbody id="events"></tbody>
-    </table>
-  </event>
+  <footer>
+  </footer>
+  <div id="events"></div>
 </body>
 
 </html>
