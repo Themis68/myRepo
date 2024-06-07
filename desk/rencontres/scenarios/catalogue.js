@@ -54,32 +54,6 @@ var scenario = [
     [
         {
             id: 3,
-            rencontre: "Nantes Metropole / Club Chavanoz",
-            poster: "Futsal_NMF_FCC.png",
-            fichier: "Futsal_NMF_FCC.mp4",
-            scenario: "Futsal_NMF_FCC.js",
-            variable: "script3",
-            description: "Match D1 Futsal opposant Nantes Métropole Futsal à Futsal Club Chavanoz",
-            gauche: {
-                nom: "Nantes Métropole Futsal",
-                fanion: "NMF.jpg",
-                site: "http://nantesmetropolefutsal.fr/",
-                maillotCouleur: "rgb(0,0,200)"
-            },
-            droite: {
-                nom: "Futsal Club Chavanoz",
-                fanion: "FCC.jpg",
-                site: "http://www.futsal-chavanoz.com/",
-                maillotCouleur: "rgb(255, 255, 255)"
-            },
-            arbitre: {
-                maillotCouleur: "rgb(0,200,0)"
-            }
-        }
-    ],
-    [
-        {
-            id: 4,
             rencontre: "PDLL/Bretagne",
             poster: "Pole_PloufraganMT2.png",
             fichier: "Pole_PloufraganMT2.mp4",
@@ -88,7 +62,7 @@ var scenario = [
             description: "Match amical opposant Les Pôles espoirs des Ligues de Bretagne (en blanc) et des Pays de La Loire (en bleu marine) - 2ème période",
             gauche: {
                 nom: "Ligue Pays De la Loire",
-                fanion: "Ligue2.png",
+                fanion: "ligue2.png",
                 site: "https://lfpl.fff.fr",
                 maillotCouleur: "rgb(67, 76, 108)"
             },
