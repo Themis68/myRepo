@@ -16,7 +16,7 @@ var scenario = [
             },
             droite: {
                 nom: "Ligue Pays De la Loire",
-                fanion: "Ligue2.png",
+                fanion: "ligue2.png",
                 site: "https://lfpl.fff.fr",
                 maillotCouleur: "rgb(67, 76, 108)"
             },
