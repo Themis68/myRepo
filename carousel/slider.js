@@ -52,13 +52,13 @@ function loadSlider(nbSlides) {
           imgSlide: $(".slide-image"), // il faut affecter comme ça sinon on ne peut pas appeler .CSS (addClass notamment)
           iconeSlider: $(".icone-slider")
         },
-
-        slideWidth: 0, // on n'arrive pas à récupérer la valkeur de slider à ce niveau là (cf TOUCHSTART ci-dessous)
+        slideWidth: 0, // on n'arrive pas à récupérer la valeur de slider à ce niveau là (cf TOUCHSTART ci-dessous)
         holderWidth: $(".holder").width(),
        // touchstartx: undefined,
        // touchmovex: undefined,
         movex: undefined,
-       // index: 0,
+        index: 0,
+        oldIndex: -1,
        // longTouch: undefined,
         direction: undefined,
         continuer: false,
@@ -66,23 +66,19 @@ function loadSlider(nbSlides) {
         //nbSlides: document.getElementById("holder").dataset.nbslides, // recupère le nbre de slides
         
         init: function() { 
-          console.log("loadSlider : init" );
+          console.log("loadSlider : init");
+          console.dir(slider);
           this.bindUIEvents();
 
         },
 
         bindUIEvents: function() {
-
-
           this.el.holder.on("touchstart", function(event) {
-            slider.slideWidth = $("#slider").width()  // n&écessaire pour initialiser la valeur
+            slider.slideWidth = $("#slider").width()  // nécessaire pour initialiser la valeur
             slider.start(event);
           });
 
           this.el.holder.on("touchmove", function(event) {
-            console.log(slider.slideWidth);
-            console.log(nbSlides);
-
             slider.move(event);
           });
 
@@ -94,6 +90,8 @@ function loadSlider(nbSlides) {
 
         start: function(event) {
           console.log("loadSlider : start");
+          this.oldIndex = this.index;
+          console.dir(slider);
           // passage uniquement sur le premier appui
           this.longTouch = false;
           setTimeout(function() {window.slider.longTouch = true;}, 250);
@@ -115,15 +113,27 @@ function loadSlider(nbSlides) {
           // Calculate distance to translate holder.
           this.direction = this.touchstartx - this.touchmovex;
           this.continuer = false;
+
+          // on initialise la variable d'incrément à chaque passage
+          var inc = 0;
           if(this.direction > 0) {
             // glisser vers gauche
             // on contrôle la borne supérieure
             this.continuer = (this.index == (this.nbSlides-1) ? false : true);
+            if (this.oldIndex != this.index-1) {
+              // on va au slide suivant
+              inc = 1;
+            }
           } else {
             // glisser vers droite
             // on contrôle la borne inférieure
-            this.continuer = (this.index == 0 ? false : true);
+            this.continuer = (this.index == -1 ? false : true);
+            if (this.oldIndex != this.index+1) {
+              // on va au slide précédent
+              inc = -1;
+            }
           }
+          console.log("****** " + this.continuer);
 
           if(this.continuer == true) {
             // on continue le sliding
@@ -142,26 +152,53 @@ function loadSlider(nbSlides) {
             if (panx < 100) { 
               this.el.imgSlide.css('transform','translate3d(-' + panx + 'px,0,0)');
             }
+            this.index = this.index + inc;
+            console.log(this.index);
           }
+
         },
 
         end: function(event) {
           console.log("loadSlider : end");
+
+       /*   var inc = 0;
+          if(this.direction > 0) {
+            // glisser vers gauche
+            // on contrôle la borne supérieure
+            this.continuer = (this.index == (this.nbSlides-1) ? false : true);
+            if (this.oldIndex != this.index-1) {
+              // on va au slide suivant
+              inc = 1;
+            }
+          } else {
+            // glisser vers droite
+            // on contrôle la borne inférieure
+            this.continuer = (this.index == -1 ? false : true);
+            if (this.oldIndex != this.index+1) {
+              // on va au slide précédent
+              inc = -1;
+            }
+          }*/
+
+
+          console.dir(slider);
           // on vérifie si le move était autorisé
           if (this.continuer == true) {
             // Calculate the distance swiped.
-            var absMove = Math.abs(this.index*this.slideWidth - this.movex);
+            // var absMove = Math.abs(this.index*this.slideWidth - this.movex);
             // Calculate the index. All other calculations are based on the index.
-            if (absMove > this.slideWidth/2 || this.longTouch === false) {
-              var indexOld = this.index;
+            // si on a glissé au moins de la moitié de l'image on passe à l'image suivante/précédente
+            //if (absMove > this.slideWidth/2 || this.longTouch === false) {
+           /*   var indexOld = this.index;
               if (this.movex > this.index*this.slideWidth && this.index < (this.nbSlides-1)) {
                 this.index++;
               } else if (this.movex < this.index*this.slideWidth && this.index > 0) {
                 this.index--;
-              }
-              this.indicateur(indexOld, this.index);  // MAJ indicateur
+              }*/
+              //this.indicateur(indexOld, this.index);  // MAJ indicateur
+              this.indicateur(this.oldIndex, this.index);  // MAJ indicateur
               doAfterSlide(this.index);   // afficher les infos du quizz
-            }     
+            //}     
             // Move and animate the elements.
             this.el.holder.addClass('animate').css('transform', 'translate3d(-' + this.index*this.slideWidth + 'px,0,0)');
             this.el.imgSlide.addClass('animate').css('transform', 'translate3d(-' + 100-this.index*50 + 'px,0,0)');
@@ -173,13 +210,16 @@ function loadSlider(nbSlides) {
           console.log("loadSlider : indicateur");
           document.getElementById("indicateur"+indexOld).setAttribute("class", "cercle");
           document.getElementById("indicateur"+indexNew).setAttribute("class", "cercle-active");
-          // MAJ image de backgrounf
-          if (indexOld>indexNew) {
+
+          // this.direction est déjà mis à jour dans slider.move()
+       /*   if (indexOld>indexNew) {
             // glisser àç droite
             this.direction = 1;
           } else {
             this.direction = -1;
-          }
+          }*/
+
+          // MAJ image de background
           this.sliding(this.direction);
           // arrêter l'animation de la main puisqu'on active un quizz différent
           this.hideHand();
@@ -189,6 +229,7 @@ function loadSlider(nbSlides) {
           console.log("loadSlider : hideHand");
           // on arrête l'animation de la main
           this.el.iconeSlider.addClass('icone-slider').css('animation-play-state','paused');
+          // on masque l'objet pour l'ensemble de la sequence
           document.getElementsByClassName("icone-slider")[0].style.display = "none";
         }, 
 

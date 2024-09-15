@@ -1,0 +1,14 @@
+1 - A CORRIGER
+- le glissement de l'image fait apparaitre une marge blanche entre les images qui va en se diminuant
+- le glissemebt de l'image doit être calculé afin de valider si on dépasse 50% de la taille de l'image sinon on réaffiche l'image d'avant
+- on ne peut pas aller à la dernière image si on est à l'avant dernière
+- revoir la séquence :
+-- start
+-- move
+--- mouvemement de la souris : 
+---- on vérifie si on peut (y-a-t-il une image à suivre ?) OUI -> on deplace l'image
+---- on dépasse la mitité de l'image ? OUI -> on valide le changement d'image
+----                                   SINON on réaffiche l'umage en cours
+--- changement d'index d'image : 
+---- on met à jour l'indicateur
+---- on charge les informations du quizz
