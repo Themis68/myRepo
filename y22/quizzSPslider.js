@@ -70,7 +70,6 @@ function ready() {
     }
 }
 
-
 function DOMContentLoaded() {
     console.log("DOMContentLoaded");
 
@@ -110,19 +109,24 @@ function creerVignettes(id, langueUtilisee) {
 		
 			// création des vignettes
 			// mySlideImage
-			let mySlideImage = document.createElement("img");
-			mySlideImage.setAttribute("class", "slide-image");
-			let poster = (scenario[i].loi === undefined ? "bases.png" : "Loi_" + scenario[i].loi + ".png");
-			mySlideImage.setAttribute("src", pathPosters + poster);
+			//let mySlideImage = document.createElement("img");
+			//mySlideImage.setAttribute("class", "slide-image");
+			//mySlideImage.setAttribute("src", pathPosters + poster);
 			let mySlide = document.createElement("div");
 			mySlide.setAttribute("class", "slide");
-			mySlide.appendChild(mySlideImage);
-			let mySlideWrapper = document.createElement("div");
-			mySlideWrapper.setAttribute("class", "slide-wrapper");
+			mySlide.setAttribute("id", "slide-" + i);
+			// fond
+			let poster = (scenario[i].loi === undefined ? "bases.png" : "Loi_" + scenario[i].loi + ".png");
+			//mySlide.setAttribute("background-image", "url(" + pathPosters + poster + ")");
+			mySlide.setAttribute("style","background-image:url('../imagesNew/posters/" + poster + "')");
+			
+			//mySlide.appendChild(mySlideImage);
+			//let mySlideWrapper = document.createElement("div");
+			//mySlideWrapper.setAttribute("class", "slide-wrapper");
 			// ajouter le POSTER
-			mySlideWrapper.appendChild(mySlide);
+			holder.appendChild(mySlide);
 			// ajouter à la liste des vignettes
-			holder.appendChild(mySlideWrapper);
+			//holder.appendChild(mySlideWrapper);
 			iteQuizz++;
 		}
 	}

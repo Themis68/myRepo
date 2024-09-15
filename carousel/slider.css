@@ -33,32 +33,26 @@
 .slider-wrap {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  /*width: 85%;*/
+  justify-content: flex-center;
+  align-items: flex-center;
   height: 28vh;
   position: relative;
 }
 
 .slider {
   width: 100%;
-  overflow: hidden;
+  overflow-x: scroll;
   height: 100%;
-  padding-left: 1em; /* aligne sur #titre*/
+}
+
+.slide {
+  width: -webkit-fill-available;
+  height: 100%;
+  float: left;
 }
   
 .holder {
   width: 300%;  /* correspond nb SLIDE * 100% */
-  overflow-y: hidden;
-}
-  
-.slide-wrapper {
-  width: 33.333%; /* correspond 100% / nb SLIDE */
-  height: 100%;
-  float: left;
-  height: 500px;
-  position: relative;
-  overflow: hidden;
 }
 
 /* icone slider*/
@@ -80,11 +74,6 @@
 @keyframes moved {
   from {transform: translateX(30px);} /* Équivalent à : translateX(10px) ou translate(10px, 0) */
   to{transform: translateX(-30px);}
-}
-
-.slide {
-  height: 100%;
-  position: relative;
 }
 
 .slide img {
@@ -145,30 +134,4 @@ on s'appuie sur BOOTSTRAP */
   height: var(--size-puce)!important;
   margin-left: var(--padding-puce)!important;
   margin-right: var(--padding-puce)!important;
-}
-
-/************************************************/
-
-.container2 {
-  position: relative;
-  width: 850px;
-  height: 480px;
-  overflow: hidden;
-}
-.slide2 {
-  width: 850px;
-  height: 480px;
-  background-color: lightcoral;
-}
-.slider2 {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 6800px;
-  height: 480px;
-  background-image: url('./posters/loi_5.png'), url('./posters/loi_1.png'), url('./posters/loi_2.png'), url('./posters/loi_3.png'),
-  url('./posters/bases.png'), url('./posters/bases.png'), url('./posters/bases.png'), url('./posters/bases.png'); 
-  background-size: 6800px 450px; /* Affichez uniquement les 100 premiers pixels de l'image de fond */
-  background-position: 0 0; /* Déplacez l'image de fond de 200 pixels vers la gauche */
-  background-repeat: no-repeat; /* on affiche une seule image*/
 }

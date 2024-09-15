@@ -1,5 +1,4 @@
-var slider = {};
-  
+ 
 document.addEventListener('click', gestionClick, false);
 
 function paramSlider(nbSlides) {
@@ -8,14 +7,14 @@ function paramSlider(nbSlides) {
 	// .holder
 	var holder = document.getElementsByClassName("holder")[0];
 	holder.style.width = (nbSlides * 100) + "%";
- // holder.setAttribute("data-nbslides", nbSlides);
+  holder.style.height = "100%";
 
 	// .slide-wrapper
-	var slideWrapper = document.getElementsByClassName("slide-wrapper");
+/*	var slideWrapper = document.getElementsByClassName("slide-wrapper");
 	for(let i = 0; i < nbSlides; i++) {
 		slideWrapper[i].style.width = (100 / nbSlides) + "%";
     slideWrapper[i].style.height = "100%";
-	}
+	}*/
 }
 
 function loadSlider(nbSlides) {
@@ -40,12 +39,10 @@ function loadSlider(nbSlides) {
       $('#slider').on('scroll', function() {
         console.log("loadSlider : scroll");
         $('.slide-image').css('transform','translate3d(-' + (100-$(this).scrollLeft()/6) + 'px,0,0)');
-
-        //               this.el.holder.css('transform','translate3d(-' + 900 + 'px,0,0)');
       });
 
       // n'accepte pas le TOUCHER
-      slider = {
+      var slider = {
         el: {
           slider: $("#slider"), //document.getElementById("slider"), 
           holder: $(".holder"), // il faut affecter comme ça sinon on ne peut pas appeler .ON 
@@ -55,7 +52,7 @@ function loadSlider(nbSlides) {
 
         slideWidth: 0, // on n'arrive pas à récupérer la valkeur de slider à ce niveau là (cf TOUCHSTART ci-dessous)
         holderWidth: $(".holder").width(),
-       // touchstartx: undefined,
+        touchstartx: undefined,
        // touchmovex: undefined,
         movex: undefined,
        // index: 0,
@@ -63,30 +60,26 @@ function loadSlider(nbSlides) {
         direction: undefined,
         continuer: false,
         nbSlides: nbSlides,
-        //nbSlides: document.getElementById("holder").dataset.nbslides, // recupère le nbre de slides
+        curSlide: 0,
         
         init: function() { 
-          console.log("loadSlider : init" );
+          console.log("loadSlider : init", slider.curSlide );  
           this.bindUIEvents();
 
         },
 
         bindUIEvents: function() {
-
-
           this.el.holder.on("touchstart", function(event) {
             slider.slideWidth = $("#slider").width()  // n&écessaire pour initialiser la valeur
             slider.start(event);
           });
 
           this.el.holder.on("touchmove", function(event) {
-            console.log(slider.slideWidth);
-            console.log(nbSlides);
-
             slider.move(event);
           });
 
           this.el.holder.on("touchend", function(event) {
+            console.log("EVENT : slide courant -> " + slider.curSlide);
             slider.end(event);
           });
 
@@ -119,11 +112,14 @@ function loadSlider(nbSlides) {
             // glisser vers gauche
             // on contrôle la borne supérieure
             this.continuer = (this.index == (this.nbSlides-1) ? false : true);
+            this.curSlide - this.curSlide + 1 ;
           } else {
             // glisser vers droite
             // on contrôle la borne inférieure
             this.continuer = (this.index == 0 ? false : true);
+            this.curSlide - this.curSlide - 1 ;
           }
+          console.log("curslide " + this.curSlide);
 
           if(this.continuer == true) {
             // on continue le sliding
@@ -163,8 +159,8 @@ function loadSlider(nbSlides) {
               doAfterSlide(this.index);   // afficher les infos du quizz
             }     
             // Move and animate the elements.
-            this.el.holder.addClass('animate').css('transform', 'translate3d(-' + this.index*this.slideWidth + 'px,0,0)');
-            this.el.imgSlide.addClass('animate').css('transform', 'translate3d(-' + 100-this.index*50 + 'px,0,0)');
+            //this.el.holder.addClass('animate').css('transform', 'translate3d(-' + this.index*this.slideWidth + 'px,0,0)');
+            //this.el.imgSlide.addClass('animate').css('transform', 'translate3d(-' + 100-this.index*50 + 'px,0,0)');
           }
         },
 
