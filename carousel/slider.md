@@ -1,7 +1,9 @@
 1 - A CORRIGER
 - le glissement de l'image fait apparaitre une marge blanche entre les images qui va en se diminuant
 - le glissemebt de l'image doit être calculé afin de valider si on dépasse 50% de la taille de l'image sinon on réaffiche l'image d'avant
-- on ne peut pas aller à la dernière image si on est à l'avant dernière
+- on ne peut pas aller à la dernière image si on est à l'avant dernière si on a déjà scrollé toutes les images
+- qaund on est à la derni§re image l'index=7 et le old inddex=7 aussi 
+- quand on clique sur l'indicateur directement l'image ne switche pas 
 - revoir la séquence :
 -- start
 -- move

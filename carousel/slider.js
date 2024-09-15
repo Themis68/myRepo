@@ -101,6 +101,10 @@ function loadSlider(nbSlides) {
 
           // The movement gets all janky if there's a transition on the elements.
           $('.animate').removeClass('animate');
+
+          // init des valeurs
+          this.continuer = false;
+          
         },
 
         move: function(event) {
@@ -114,26 +118,15 @@ function loadSlider(nbSlides) {
           this.direction = this.touchstartx - this.touchmovex;
           this.continuer = false;
 
-          // on initialise la variable d'incrément à chaque passage
-          var inc = 0;
           if(this.direction > 0) {
             // glisser vers gauche
             // on contrôle la borne supérieure
             this.continuer = (this.index == (this.nbSlides-1) ? false : true);
-            if (this.oldIndex != this.index-1) {
-              // on va au slide suivant
-              inc = 1;
-            }
           } else {
             // glisser vers droite
             // on contrôle la borne inférieure
             this.continuer = (this.index == -1 ? false : true);
-            if (this.oldIndex != this.index+1) {
-              // on va au slide précédent
-              inc = -1;
-            }
           }
-          console.log("****** " + this.continuer);
 
           if(this.continuer == true) {
             // on continue le sliding
@@ -152,8 +145,8 @@ function loadSlider(nbSlides) {
             if (panx < 100) { 
               this.el.imgSlide.css('transform','translate3d(-' + panx + 'px,0,0)');
             }
-            this.index = this.index + inc;
-            console.log(this.index);
+
+            /** TODO : bloquer le scroll de l'image dès lors qu'on a affiche 50% de l'image  */
           }
 
         },
@@ -161,24 +154,25 @@ function loadSlider(nbSlides) {
         end: function(event) {
           console.log("loadSlider : end");
 
-       /*   var inc = 0;
-          if(this.direction > 0) {
-            // glisser vers gauche
-            // on contrôle la borne supérieure
-            this.continuer = (this.index == (this.nbSlides-1) ? false : true);
-            if (this.oldIndex != this.index-1) {
-              // on va au slide suivant
-              inc = 1;
+          if(this.continuer == true){
+            // on met à jour le slide courant seulement s'il a été autorisé lors du slider.move
+            var inc = 0;
+            if(this.direction > 0) {
+              // glisser vers gauche
+              if (this.oldIndex != this.index-1) {
+                // on va au slide suivant
+                inc = 1;
+              }
+            } else {
+              // glisser vers droite
+
+              if (this.oldIndex != this.index+1) {
+                // on va au slide précédent
+                inc = -1;
+              }
             }
-          } else {
-            // glisser vers droite
-            // on contrôle la borne inférieure
-            this.continuer = (this.index == -1 ? false : true);
-            if (this.oldIndex != this.index+1) {
-              // on va au slide précédent
-              inc = -1;
-            }
-          }*/
+            this.index = this.index + inc;
+          }
 
 
           console.dir(slider);
