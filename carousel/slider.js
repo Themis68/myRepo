@@ -19,57 +19,74 @@ function paramSlider(nbSlides) {
 }
 
 function loadSlider(nbSlides) {
-  console.log("loadSlider");
+  console.log("TOUCH : " + navigator.msMaxTouchPoints);
   if (document.readyState === "complete") {
+
     if (navigator.msMaxTouchPoints) {
+      // ce parametre remonte undefined sur une simulation CHROME MOBILE
+
       // on est sur un device qui accepte le TOUCHER
-      $('#slider').addClass('ms-touch');
+    /*  $('#slider').addClass('ms-touch');
 
       $('#slider').on('scroll', function() {
         console.log("loadSlider : scroll");
         $('.slide-image').css('transform','translate3d(-' + (100-$(this).scrollLeft()/6) + 'px,0,0)');
       });
+      */
     } else {
+      // cee code est mis ici car la simulation d'un mobile sous chrome remonte undefined pour le parametre navigator.msMaxTouchPoints
+      $('#slider').addClass('ms-touch');
+
+      $('#slider').on('scroll', function() {
+        console.log("loadSlider : scroll");
+        $('.slide-image').css('transform','translate3d(-' + (100-$(this).scrollLeft()/6) + 'px,0,0)');
+
+        //               this.el.holder.css('transform','translate3d(-' + 900 + 'px,0,0)');
+      });
+
+      // n'accepte pas le TOUCHER
       slider = {
         el: {
-          slider: document.getElementById("slider"), //$("#slider"),
+          slider: $("#slider"), //document.getElementById("slider"), 
           holder: $(".holder"), // il faut affecter comme ça sinon on ne peut pas appeler .ON 
-          imgSlide: $(".slide-image"), // il faut affecter comme ça sinon on ne peut pas appeler .CSS
+          imgSlide: $(".slide-image"), // il faut affecter comme ça sinon on ne peut pas appeler .CSS (addClass notamment)
           iconeSlider: $(".icone-slider")
         },
 
-        slideWidth: $("#slider").width(), // width est recupéré par ce moyen seulement
+        slideWidth: 0, // on n'arrive pas à récupérer la valkeur de slider à ce niveau là (cf TOUCHSTART ci-dessous)
         holderWidth: $(".holder").width(),
-        touchstartx: undefined,
-        touchmovex: undefined,
+       // touchstartx: undefined,
+       // touchmovex: undefined,
         movex: undefined,
-        index: 0,
-        longTouch: undefined,
+       // index: 0,
+       // longTouch: undefined,
         direction: undefined,
         continuer: false,
         nbSlides: nbSlides,
         //nbSlides: document.getElementById("holder").dataset.nbslides, // recupère le nbre de slides
         
-        init: function() {
-          console.log("loadSlider : init");
+        init: function() { 
+          console.log("loadSlider : init" );
           this.bindUIEvents();
 
         },
 
         bindUIEvents: function() {
 
+
           this.el.holder.on("touchstart", function(event) {
-            console.log("loadSlider : touchstart");
+            slider.slideWidth = $("#slider").width()  // n&écessaire pour initialiser la valeur
             slider.start(event);
           });
 
           this.el.holder.on("touchmove", function(event) {
-            console.log("loadSlider : touchmove");
+            console.log(slider.slideWidth);
+            console.log(nbSlides);
+
             slider.move(event);
           });
 
           this.el.holder.on("touchend", function(event) {
-            console.log("loadSlider : touchend");
             slider.end(event);
           });
 
@@ -110,13 +127,15 @@ function loadSlider(nbSlides) {
 
           if(this.continuer == true) {
             // on continue le sliding
-            this.movex = this.index * this.slideWidth + this.direction;
+            this.movex = (this.index * this.slideWidth) + this.direction;
 
             // Defines the speed the images should move at.
             var panx = 100-this.movex/6;
             // this.holderWidth = permet de savoir s'il y a encore des images
+            // on garde c contrôle même si on a déjà fait un controle ci-dessus sur le this.index 
             if (this.movex < this.holderWidth) { // Makes the holder stop moving when there is no more content.
-              this.el.holder.css('transform','translate3d(-' + this.movex + 'px,0,0)');
+              //this.el.holder.css('transform','translate3d(-' + this.movex + 'px,0,0)');
+         //     this.el.holder.css('transform','translate3d(-' + this.movex + 'px,0,0)');
             }
             
             // Corrects an edge-case problem where the background image moves without the container moving.
@@ -154,6 +173,14 @@ function loadSlider(nbSlides) {
           console.log("loadSlider : indicateur");
           document.getElementById("indicateur"+indexOld).setAttribute("class", "cercle");
           document.getElementById("indicateur"+indexNew).setAttribute("class", "cercle-active");
+          // MAJ image de backgrounf
+          if (indexOld>indexNew) {
+            // glisser àç droite
+            this.direction = 1;
+          } else {
+            this.direction = -1;
+          }
+          this.sliding(this.direction);
           // arrêter l'animation de la main puisqu'on active un quizz différent
           this.hideHand();
         },
@@ -163,7 +190,22 @@ function loadSlider(nbSlides) {
           // on arrête l'animation de la main
           this.el.iconeSlider.addClass('icone-slider').css('animation-play-state','paused');
           document.getElementsByClassName("icone-slider")[0].style.display = "none";
-        } 
+        }, 
+
+        sliding: function(direction){
+          console.log(direction);
+          if (direction == 1) {
+              console.log("Slide à droite");
+          } else {
+              console.log("Slide à gauche");
+          }
+          myObj = document.getElementById("slider2");
+          // récupérer les valeurs
+          var style = window.getComputedStyle(myObj);
+          var backgroundPosition = style.getPropertyValue('background-position');
+          var backgroundPositionArray = backgroundPosition.split(" ");
+          myObj.style.backgroundPosition = parseInt(backgroundPositionArray[0], 10) + (direction * 850) + "px 0";
+        }
       };
 
       slider.init();
@@ -184,7 +226,6 @@ function gestionClick(event){
       let indexNew = target.id.substring(10);
       slider.indicateur(indexOld, indexNew);
       // MAJ infos Quizz
-      console.log("slider : ",slider.index);
       slider.index = indexNew;
       doAfterSlide(slider.index);   // afficher les infos du quizz
 			break;
