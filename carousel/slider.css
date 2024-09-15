@@ -146,29 +146,3 @@ on s'appuie sur BOOTSTRAP */
   margin-left: var(--padding-puce)!important;
   margin-right: var(--padding-puce)!important;
 }
-
-/************************************************/
-
-.container2 {
-  position: relative;
-  width: 850px;
-  height: 480px;
-  overflow: hidden;
-}
-.slide2 {
-  width: 850px;
-  height: 480px;
-  background-color: lightcoral;
-}
-.slider2 {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 6800px;
-  height: 480px;
-  background-image: url('./posters/loi_5.png'), url('./posters/loi_1.png'), url('./posters/loi_2.png'), url('./posters/loi_3.png'),
-  url('./posters/bases.png'), url('./posters/bases.png'), url('./posters/bases.png'), url('./posters/bases.png'); 
-  background-size: 6800px 450px; /* Affichez uniquement les 100 premiers pixels de l'image de fond */
-  background-position: 0 0; /* Déplacez l'image de fond de 200 pixels vers la gauche */
-  background-repeat: no-repeat; /* on affiche une seule image*/
-}

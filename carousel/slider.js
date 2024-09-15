@@ -199,7 +199,7 @@ function loadSlider(nbSlides) {
           } else {
               console.log("Slide à gauche");
           }
-          myObj = document.getElementById("slider2");
+          myObj = document.getElementById("slider");
           // récupérer les valeurs
           var style = window.getComputedStyle(myObj);
           var backgroundPosition = style.getPropertyValue('background-position');
