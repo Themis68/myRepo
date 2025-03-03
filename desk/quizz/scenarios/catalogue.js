@@ -1,4 +1,4 @@
-var version = "1.0.0";
+var version = "1.1";
 
 var scenario = [
     {
@@ -26,7 +26,7 @@ var scenario = [
     },
     {
         id: 3,
-        titre: "Les bases du foot à 8",
+        titre: "Les bases du foot à 8 chez les u11f",
         poster: "bases2.jpg",
         fichier: "bases_03.js",
         variable: "script3",
