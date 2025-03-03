@@ -8,14 +8,3 @@
         "start": "ouvrir index.html"
     }
 }
-
-{
-  "name": "votre-projet",
-  "version": "1.0.0",
-  "description": "Une brève description de votre projet",
-  "author": "Votre Nom",
-  "license": "ISC",
-  "scripts": {
-    "start": "ouvrir index.html"
-  }
-}
