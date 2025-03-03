@@ -1,4 +1,4 @@
-var version = "1.03";
+var version = "1.1";
 
 var script3 = [               
     {
