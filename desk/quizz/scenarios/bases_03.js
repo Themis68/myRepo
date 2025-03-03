@@ -115,7 +115,7 @@ var script3 = [
         question: {
             temps: 15,
             libelle: "Une touche n'est pas valable si : ?",
-            attributs: ["Lancer le ballon depuis la nuque","Tenir le ballon de ses deux mains","Faire face au terrain de jeu","Un des pieds est d&écollé"]
+            attributs: ["Lancer le ballon depuis la nuque","Tenir le ballon de ses deux mains","Faire face au terrain de jeu","Un des pieds est décollé"]
         },
         reponse: {
             solution: 3,
