@@ -1,4 +1,4 @@
-var version = "1.1";
+var version = "1.2";
 
 var script3 = [               
     {
@@ -118,7 +118,7 @@ var script3 = [
             attributs: ["Lancer le ballon depuis la nuque","Tenir le ballon de ses deux mains","Faire face au terrain de jeu","Un des pieds est décollé"]
         },
         reponse: {
-            solution: 3,
+            solution: 4,
             loi: 15,
             points: 2
         }
