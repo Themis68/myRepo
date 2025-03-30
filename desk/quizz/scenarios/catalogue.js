@@ -15,25 +15,25 @@ var scenario = [
     },
     {
         id: 2,
-        titre: "Les bases du foot à 5",
+        titre: "Foot à 5 chez les u9",
         poster: "bases2.jpg",
         fichier: "bases_04.js",
         variable: "script4",
         description: "Questionnaire pour le tournoi Georges Masson",
         niveau: 1,
-        tempsQuestion: 12,
-        tempsReponse: 12
+        tempsQuestion: 15,
+        tempsReponse: 15
     },
     {
         id: 3,
-        titre: "Les bases du foot à 8 chez les u11f",
+        titre: "Foot à 8 chez les u11",
         poster: "bases2.jpg",
         fichier: "bases_03.js",
         variable: "script3",
         description: "Questionnaire pour le tournoi Georges Masson",
         niveau: 1,
-        tempsQuestion: 12,
-        tempsReponse: 12
+        tempsQuestion: 15,
+        tempsReponse: 15
     },
     {
         id: 4,

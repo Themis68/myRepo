@@ -97,11 +97,11 @@ var script4 = [
         question: {
             temps: 15,
             libelle: "Où doit-on positionner le ballon lors d'un coup de pied de but ?",
-            attributs: ["A 5 m","A 6 m","Sur le point de Penalty","Position libre dans la surface de réparation"]
+            attributs: ["5 m","6 m","Point de Penalty","Dans la surface de réparation"]
         },
         reponse: {
             temps: 15,
-            solution: 2,
+            solution: 4,
             loi: 16,
             points: 4
         }
@@ -111,13 +111,13 @@ var script4 = [
         niveau: 1,
         question: {
             temps: 15,
-            libelle: "Dans quel cas un arbitre peut-il revenir sur une décision ?",
-            attributs: ["Jamais","Seulement s'il s'agit d'un but accordé par erreur","Seulement si le jeu n'a pas repris","seulement sur suggestion de l'arbitre assistant"]
+            libelle: "A quelle distance doivent se trouver les adversaires lors d'une remise en touche ?",
+            attributs: ["2 m","4 m","6 m","9 m 15"]
         },
         reponse: {
             temps: 15,
-            solution: 3,
-            loi: 5,
+            solution: 1,
+            loi: 15,
             points: 5
         }
     }

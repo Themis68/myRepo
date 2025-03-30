@@ -61,7 +61,6 @@ var script3 = [
             attributs: ["Il tend le bras vers l'endroit de la faute","Il tend le bras vers le camp de l'équipe sanctionnée","Il lève le bras puis le baisse","Il maintient le bras levé jusqu'à l'exécution du coup-franc"]
         },
         reponse: {
-            temps: 15,
             solution: 4,
             loi: 12,
             points: 4
@@ -88,7 +87,6 @@ var script3 = [
             attributs: ["A 1 m à gauche ou à droite du point de Penalty","Sur le point de Penalty","A la limite de la surface de réparation","Position libre dans la surface de réparation"]
         },
         reponse: {
-            temps: 15,
             solution: 1,
             loi: 16,
             points: 4
@@ -98,12 +96,10 @@ var script3 = [
         number: 8,
         niveau: 1,
         question: {
-            temps: 12,
             libelle: "Dans quel cas un arbitre peut-il revenir sur une décision ?",
             attributs: ["Jamais","Seulement s'il s'agit d'un but accordé par erreur","Seulement si le jeu n'a pas repris","seulement sur suggestion de l'arbitre assistant"]
         },
         reponse: {
-            temps: 15,
             solution: 3,
             loi: 5,
             points: 5
@@ -113,7 +109,6 @@ var script3 = [
         number: 9,
         niveau: 1,
         question: {
-            temps: 15,
             libelle: "Une touche n'est pas valable si : ?",
             attributs: ["Lancer le ballon depuis la nuque","Tenir le ballon de ses deux mains","Faire face au terrain de jeu","Un des pieds est décollé"]
         },
@@ -127,7 +122,7 @@ var script3 = [
         number: 10,
         niveau: 1,
         question: {
-            libelle: "A quelle diqstance minimum doivent se tenir les adversaires d'une touche ?",
+            libelle: "A quelle distance minimum doivent se tenir les adversaires lors d'une touche ?",
             attributs: ["2 m","4 m","4 m 15","6 m"]
         },
         reponse: {
